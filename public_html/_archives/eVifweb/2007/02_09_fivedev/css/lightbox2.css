@@ -1,0 +1,134 @@
+/* common styling */
+/* set up the overall width of the menu div and the margins with a relative position*/
+
+/* remove the bullets and set the margin and padding to zero for the unordered list */
+#photogallery ul {
+padding:0px;
+margin:0;
+list-style-type: none;
+border:0;
+}
+
+#photogallery {}
+
+/* style the links to be 233px wide by 30px high with a top and right border 1px solid white. Set the background color and the font size. */
+.menu2 ul li a, .menu2 ul li a:visited {
+display:block; 
+float:left;
+text-align:center; 
+text-decoration:none; 
+width:233px; 
+height:30px; 
+color:#000; 
+border:1px solid #fff;
+border-width:1px 1px 0 0;
+background:#faeec7; 
+line-height:30px; 
+font-size:11px;
+}
+/* make the dropdown ul invisible */
+#photogallery ul li ul {
+display: none;
+}
+/* clear the link floats at the end of each line so that IE gets it right */
+span.clr {display:block; clear:both; width:0; height:0; font-size:0; line-height:1px;}
+
+
+
+/* specific to non IE browsers */
+/* set the background and foreground color of the main menu li on hover */
+#photogallery ul li:hover a{
+color:#fff; 
+background:#dfc184;
+}
+/* make the sub menu ul visible and position it beneath the first list item */
+#photogallery ul li:hover ul {
+text-align:left;
+display:block; 
+position:absolute; 
+top:31px; 
+left:0; 
+}
+/* make the sub menu ul li the full width with padding and border. */
+#photogallery ul li:hover ul li {
+width:461px;
+height:390px;
+border:20px solid #dfc184;
+background:#eee url(../lbox/click.gif) top center no-repeat; 
+color:#000;
+position:relative;
+padding:70px 100px;
+cursor:pointer;
+}
+
+/* style the initial image size 100px x 75px no border and 5pixel padding */
+#photogallery ul li:hover ul li a img {
+width:100px; height:75px;
+border:0; margin:5px;
+}
+
+/* style the size, background color, border and margin of the submenu links */
+#photogallery ul li:hover ul li a {
+float:left;
+width:110px;
+height:85px;
+background:#eee;
+border:1px solid #888;
+margin:1px;
+}
+/* style position of the links on hover */
+#photogallery ul li:hover ul li a:hover {
+position:relative;
+}
+/* keep the large image hidden with a position absolute to take it out of the page flow */
+#photogallery ul li:hover ul li a img.bigger {
+visibility:hidden; position:absolute; z-index:0;}
+
+/* style the 2x size image on hover with an absolute position to place it centrally over the original image */
+#photogallery ul li:hover li a:hover img {
+width:200px; height:150px;
+position:absolute;
+left:-50px; top:-38px;
+border:0;
+border:1px solid #888;
+padding:5px;
+background:#ccc;
+}
+/* give the link focus/active state a relative position and remove the focus/active border so that it doesn't spoil the large image */
+/* active img for Opera (and Safari thanks to Anonymous Coward) and focus for Firefox */
+#photogallery ul li:hover ul li a:active img, #photogallery ul li:hover ul li a:focus {
+background:#aaa; 
+position:relative; 
+outline:none;
+}
+
+/* make the large image visible and give it an absolute position, set the padding and margin, use the default pointer */
+#photogallery ul li:hover ul li a:active img.bigger, #photogallery ul li:hover ul li a:focus img.bigger {
+visibility:visible;
+background:#ddd; 
+position:absolute; 
+width:640px; 
+height:480px; 
+z-index:200; 
+padding:5px; 
+border:1px solid #888; 
+cursor:default;
+}
+
+/* position the large image depending on the photo clicked */
+#photogallery ul li:hover ul li a:active img.pos1, .menu2 ul li:hover ul li a:focus img.pos1 {top:-42px; left:-103px;}
+#photogallery ul li:hover ul li a:active img.pos2, .menu2 ul li:hover ul li a:focus img.pos2 {top:-42px; left:-217px;}
+#photogallery ul li:hover ul li a:active img.pos3, .menu2 ul li:hover ul li a:focus img.pos3 {top:-42px; left:-331px;}
+#photogallery ul li:hover ul li a:active img.pos4, .menu2 ul li:hover ul li a:focus img.pos4 {top:-42px; left:-445px;}
+#photogallery ul li:hover ul li a:active img.pos5, .menu2 ul li:hover ul li a:focus img.pos5 {top:-131px; left:-103px;}
+#photogallery ul li:hover ul li a:active img.pos6, .menu2 ul li:hover ul li a:focus img.pos6 {top:-131px; left:-217px;}
+#photogallery ul li:hover ul li a:active img.pos7, .menu2 ul li:hover ul li a:focus img.pos7 {top:-131px; left:-331px;}
+#photogallery ul li:hover ul li a:active img.pos8, .menu2 ul li:hover ul li a:focus img.pos8 {top:-131px; left:-445px;}
+#photogallery ul li:hover ul li a:active img.pos9, .menu2 ul li:hover ul li a:focus img.pos9 {top:-220px; left:-103px;}
+#photogallery ul li:hover ul li a:active img.pos10, .menu2 ul li:hover ul li a:focus img.pos10 {top:-220px; left:-217px;}
+#photogallery ul li:hover ul li a:active img.pos11, .menu2 ul li:hover ul li a:focus img.pos11 {top:-220px; left:-331px;}
+#photogallery ul li:hover ul li a:active img.pos12, .menu2 ul li:hover ul li a:focus img.pos12 {top:-220px; left:-445px;}
+#photogallery ul li:hover ul li a:active img.pos13, .menu2 ul li:hover ul li a:focus img.pos13 {top:-309px; left:-103px;}
+#photogallery ul li:hover ul li a:active img.pos14, .menu2 ul li:hover ul li a:focus img.pos14 {top:-309px; left:-217px;}
+#photogallery ul li:hover ul li a:active img.pos15, .menu2 ul li:hover ul li a:focus img.pos15 {top:-309px; left:-331px;}
+#photogallery ul li:hover ul li a:active img.pos16, .menu2 ul li:hover ul li a:focus img.pos16 {top:-309px; left:-445px;}

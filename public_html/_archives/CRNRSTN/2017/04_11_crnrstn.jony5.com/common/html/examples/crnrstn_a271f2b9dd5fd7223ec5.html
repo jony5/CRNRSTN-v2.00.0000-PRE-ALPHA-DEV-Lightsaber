@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd"><html><head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>CRNRSTN :: Code Example</title></head><body><p>Requests to delete all cookie data (whether encrypted or not) will be sent to the browser when this method is invoked. The successful operation of this method...of course...requires the client browser is accepting cookies to begin with.<br /></p><div id="example_scrollto_0" class="example_scrollto" onClick="initScrollTo_lnk(this,'http://192.168.172.135/crnrstn/crnrstn/documentation/classes/cookie_manager/deleteallcookies/?ns=cookie_manager#');"><a href="#" target="_self">Link</a>.</div><div id="crnrstn_a271f2b9dd5fd7223ec5_0" class="code_wrapper"><div id="lineNum_967000259" class="l_num">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br><br><br><br><br></div><div class="code_shell"><code>
+<span class="code_str_qtd">&lt;?php</span><br><span CLASS="code_comment">
+/*</span><br><span CLASS="code_comment">
+// J5</span><br>
+<span CLASS="code_comment">// Code is Poetry */</span><br>
+<span id="b7a73b3bf3e58d97abca_1863311501j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>(<span class="code_str_qtd">'./_crnrstn.root.inc.php'</span>);  <span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// PATH...i.e. &lt;?php $ROOT=&quot;../&quot;; ? &gt; </span><br>
+<span id="b7a73b3bf3e58d97abca_659950436j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'_crnrstn.config.inc.php'</span>);  <span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// CRNRSTN CONFIGURATION FILE</span><br>
+<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// DELETE ALL COOKIES</span><br>
+<span id="e43e09b42c84b845c5a9_1376892267j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span>($oENV-&gt;oCOOKIE_MGR-&gt;deleteAllCookies()){<br>
+<span CLASS="tab">&nbsp;</span><span id="d5086e9d793d631ffdc3_1616368321j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">echo</span> <span class="code_str_qtd">'Deleting all cookies..................COMPLETE&lt;br&gt;'</span>;<br>
+}<br>
+<br>
+<span CLASS="code_comment"># NOTE THAT ANY COOKIE_MANAGER METHODS MUST BE INVOKED PRIOR TO OUTPUT </span><br>
+<span CLASS="code_comment"># BEING SENT TO THE CLIENT BROWSER...AS COOKIE DATA IS INCLUDED IN THE HTTP HEADER</span><br>
+<span class="code_str_qtd">?&gt;</span><br>
+&lt;!DOCTYPE HTML PUBLIC <span class="code_html_string_quote">"-//W3C//DTD HTML 4.01 Transitional//EN"</span> <span class="code_html_string_quote">"http://www.w3.org/TR/html4/loose.dtd"</span>&gt;<br>
+&lt;html&gt;<br>
+&lt;head&gt;<br>
+<span class="code_str_qtd">&lt;?php</span><br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// ENVIRONMENTALS CLASS GET() METHOD FOR DOCUMENT_ROOT RESOURCE KEY DATA</span><br>
+<span id="006a6b3966aa8cac16d4_793490357j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">include</span>($oENV-&gt;get(<span class="code_str_qtd">'DOCUMENT_ROOT'</span>).<span class="code_str_qtd">'inc/head/head.inc.php'</span>);<br>
+<br>
+<span class="code_str_qtd">?&gt;</span><br>
+&lt;script type=<span class="code_html_string_quote">"text/javascript"</span> language=<span class="code_html_string_quote">"javascript"</span> src=<span class="code_html_string_quote">"</span><span class="code_str_qtd">&lt;?php</span> <span id="d5086e9d793d631ffdc3_232989946j00000101" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">echo</span> $oENV-&gt;get(<span class="code_str_qtd">'ROOT_PATH_CLIENT_HTTP'</span>); <span class="code_str_qtd">?&gt;</span><span class="code_html_string_quote">inc/prototype.js"</span> &gt;&lt;/script&gt;<br>
+&lt;/head&gt;<br>
+&lt;body&gt;<br>
+&lt;-- DEMO HTML OUTPUT HERE --&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;<br>
+</code></div></div><div class="example_title_wrapper"><code style="color:#FF0000;">Figure 20.</code></div><div class="cb_15"></div><div class="comment_tt_wrapper"><span id="b7a73b3bf3e58d97abca_0101626001462259598j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span> <span class="code_tt_space">&nbsp;</span><span id="e43e09b42c84b845c5a9_0218276001462259598j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span> <span class="code_tt_space">&nbsp;</span><span id="d5086e9d793d631ffdc3_0230747001462259598j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">echo</span> <span class="code_tt_space">&nbsp;</span><span id="006a6b3966aa8cac16d4_0328400001462259598j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">include</span> <span class="code_tt_space">&nbsp;</span></div><div class="cb_15"></div></body></html>

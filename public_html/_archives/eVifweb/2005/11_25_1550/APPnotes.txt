@@ -1,0 +1,40 @@
+5 App Wish List:
+
+Priorities:
+(1)	Communication
+(2)	Organization
+(3) 	Accountability
+
+Give client ability to post messages to you.
+	- message board like style
+	- email notification that message post has been made
+
+=================================
+
+Welcome [NAME]					September 23,0000
+
+Updates:
+[There are no new posts at this time.] or <Thanks for sending me the.....>
+
+Recent Posts:
+<Thanks for sending me the.....>
+<Thanks for sending me the.....>
+<Thanks for sending me the.....>
+
+
+Your projects:
+			Status		
+This is project 1		[xxxxxxx]	<view details>
+This is project 2		[xxxxxxx]	<view details>
+This is project 3		[xxxxxxx]	<view details>
+
+================================
+
+
+Status
+This is project 1		[Awaiting Content][Awaiting payment][Completed][Payment Pending][Pending Your Approval][Good][Good]
+
+
+
+
+

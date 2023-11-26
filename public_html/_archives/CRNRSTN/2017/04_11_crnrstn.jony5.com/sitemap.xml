@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/crnrstn/</loc>
+	<lastmod>2016-04-05</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/crnrstn/__construct/</loc>
+	<lastmod>2016-04-27</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/crnrstn/requireddetectionmatches/</loc>
+	<lastmod>2016-04-27</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/crnrstn/addenvironment/</loc>
+	<lastmod>2016-04-27</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/classes/crdocumentation/nrstn/initlogging</loc>
+	<lastmod>2016-04-28</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/crnrstn/initsessionencryption/</loc>
+	<lastmod>2016-04-28</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/crnrstn/initcookieencryption/</loc>
+	<lastmod>2016-04-28</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/crnrstn/grantexclusiveaccess/</loc>
+	<lastmod>2016-05-02</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/crnrstn/denyaccess/</loc>
+	<lastmod>2016-05-02</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/crnrstn/adddatabase/</loc>
+	<lastmod>2016-04-27</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/crnrstn/defineenvresource/</loc>
+	<lastmod>2016-04-27</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/environmentals/</loc>
+	<lastmod>2016-05-02</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/environmentals/__construct/</loc>
+	<lastmod>2016-04-05</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/environmentals/get/</loc>
+	<lastmod>2016-05-02</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/cookie_manager/</loc>
+	<lastmod>2016-05-02</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/cookie_manager/__construct/</loc>
+	<lastmod>2016-05-02</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/cookie_manager/addcookie/</loc>
+	<lastmod>2016-05-02</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/cookie_manager/addencryptedcookie/</loc>
+	<lastmod>2016-04-05</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/cookie_manager/addrawcookie/</loc>
+	<lastmod>2016-05-02</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/cookie_manager/getcookie/</loc>
+	<lastmod>2016-05-02</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/cookie_manager/getencryptedcookie/</loc>
+	<lastmod>2016-04-05</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/cookie_manager/getallcookies/</loc>
+	<lastmod>2016-05-02</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/cookie_manager/getallencryptedcookies/</loc>
+	<lastmod>2014-10-31</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/cookie_manager/deletecookie/</loc>
+	<lastmod>2016-05-02</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/cookie_manager/deleteencryptedcookie/</loc>
+	<lastmod>2016-04-05</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/cookie_manager/deleteallcookies/</loc>
+	<lastmod>2016-05-02</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/http_manager/</loc>
+	<lastmod>2016-04-26</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/http_manager/extractdata/</loc>
+	<lastmod>2016-04-05</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/http_manager/issethttp/</loc>
+	<lastmod>2016-04-05</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/http_manager/issetparam/</loc>
+	<lastmod>2016-05-02</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/http_manager/getheaders/</loc>
+	<lastmod>2016-04-05</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/mysqli_conn_manager/</loc>
+	<lastmod>2016-04-05</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/mysqli_conn_manager/returnconnection/</loc>
+	<lastmod>2016-04-05</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/mysqli_conn_manager/processquery/</loc>
+	<lastmod>2016-04-05</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/mysqli_conn_manager/processmultiquery/</loc>
+	<lastmod>2016-04-05</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/mysqli_conn_manager/closeconnection/</loc>
+	<lastmod>2014-10-31</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/session_manager/</loc>
+	<lastmod>2016-04-05</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/session_manager/setsessionparam/</loc>
+	<lastmod>2016-04-05</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/session_manager/getsessionparam/</loc>
+	<lastmod>2016-04-05</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/session_manager/issetsessionparam/</loc>
+	<lastmod>2016-04-05</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/logging/</loc>
+	<lastmod>2014-11-11</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/logging/capturenotice/</loc>
+	<lastmod>2014-11-11</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/soap_manager/</loc>
+	<lastmod>2016-04-05</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/soap_manager/__construct/</loc>
+	<lastmod>2016-04-05</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/soap_manager/returncontent/</loc>
+	<lastmod>2016-04-05</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/soap_manager/returnfault/</loc>
+	<lastmod>2014-11-11</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/soap_manager/returnerror/</loc>
+	<lastmod>2014-11-11</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/soap_manager/returnresult/</loc>
+	<lastmod>2014-11-11</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/soap_manager/returnclientrequest/</loc>
+	<lastmod>2014-11-11</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/soap_manager/returnclientresponse/</loc>
+	<lastmod>2014-11-11</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/documentation/classes/soap_manager/returnclientgetdebug/</loc>
+	<lastmod>2014-11-11</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/download/</loc>
+	<lastmod>2017-04-11</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/about/</loc>
+	<lastmod>2017-04-11</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/licensing/</loc>
+	<lastmod>2017-04-11</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+<url>
+	<loc>http://crnrstn.jony5.com/</loc>
+	<lastmod>2017-04-11</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+</urlset>

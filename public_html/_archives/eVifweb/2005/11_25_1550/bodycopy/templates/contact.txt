@@ -1,0 +1,14 @@
+<h1>Contact</h1>
+
+<p><strong>CommercialNet&trade;</strong><br />
+(770) 242-1845 / Main<br />
+(770) 242-1287 / Sales-Support (Mon-Fri , 9am-6pm)<br />
+(801) 684-2259 / 24-hour Sales-Support Voicemail<br />
+(208) 460-5659 / eFax<br />
+Email: <a href="mailto:info@commercialnet.biz">info@commercialnet</a></p><br>
+
+<strong>HOURS</strong><br>9:00am to 6:00pm EST  Mon-Fri<br>Please leave a message after 6pm<a href="#top"></p>
+
+
+
+<div class="backToTop">Back to Top</a></div>

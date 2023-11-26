@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd"><html><head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>CRNRSTN :: Code Example</title></head><body><p>Here is an example of the instantiation of a <a href="../../../classes/cookie_manager/" target="_self">cookie_manager</a> :: class object (line 16) and the subsequent attempt to send a cookie to the client browser with an expire of 30 minutes (line 21).<br />
+<br />
+The successful operation of this method...of course...requires the client browser is accepting cookies to begin with.<br />
+<br />
+See documentation and sample code on the <a href="../../../classes/environmentals/get/?scrl=2200&brwsr=webkit" target="_self">crnrstn_tmpcache</a> :: class object for more information about the lightweight helper class for the C<span class="the_R">R</span>NRSTN <a href="../../../classes/environmentals/" target="_self">environmentals</a> :: class object that is also shown here in this example.<br />
+<br />
+Please note that if cookie encryption has been initialized through the C<span class="the_R">R</span>NRSTN Suite ::, there are special methods that must be used to take advantage of that functionality.</p><div id="example_scrollto_0" class="example_scrollto" onClick="initScrollTo_lnk(this,'http://192.168.172.132/crnrstn/documentation/classes/cookie_manager/addcookie/?ns=cookie_manager');"><a href="#" target="_self">Link</a>.</div><div id="crnrstn_acac47f63dc5da08a77f_0" class="code_wrapper"><div id="lineNum_849639782" class="l_num">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br><br><br><br><br></div><div class="code_shell"><code>
+<span class="code_str_qtd">&lt;?php</span><br><span CLASS="code_comment">
+/*</span><br><span CLASS="code_comment">
+// J5</span><br>
+<span CLASS="code_comment">// Code is Poetry */</span><br>
+<span id="b7a73b3bf3e58d97abca_402638810j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>(<span class="code_str_qtd">'./_crnrstn.root.inc.php'</span>);  <span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// PATH...i.e. &lt;?php $ROOT=&quot;../&quot;; ? &gt; </span><br>
+<span id="b7a73b3bf3e58d97abca_38350428j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'_crnrstn.config.inc.php'</span>);  <span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// CRNRSTN CONFIGURATION FILE</span><br>
+<span id="b7a73b3bf3e58d97abca_1701122839j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'crnrstn.tmpcache.inc.php'</span>);<span CLASS="tab">&nbsp;</span> <span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// CRNRSTN TMP CACHE CLASS DEFINITION</span><br>
+<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// PASS CRNRSTN ENVIRONMENTALS CLASS OBJECT TO LIGTHWEIGHT TMP CACHE CONSTRUCTOR</span><br>
+$oTMPCACHE = <span id="f109c58b6897e5839fe2_1762104979j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> crnrstn_tmpcache($oENV);<br>
+<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// INSTANTIATE A CRNRSTN COOKIE_MANAGER :: CLASS OBJECT </span><br>
+<span id="e43e09b42c84b845c5a9_327229519j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span>(!<span id="8a854f2276292f7697c0_j00000101968006213" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">isset</span>($oCOOKIE_MGR)){<br>
+<span CLASS="tab">&nbsp;</span>$oCOOKIE_MGR = <span id="f109c58b6897e5839fe2_112930308j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> cookie_manager();<br>
+}<br>
+<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// SEND A COOKIE TO THE CLIENT WITH 30 MIN EXPIRE</span><br>
+$oCOOKIE_MGR-&gt;addCookie(<span class="code_str_qtd">'chocChip[1]'</span>,<span class="code_str_qtd">'value for two!'</span>, <span id="0e7d9dc9993d0bba7c74_1574488738j00000101" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">time</span>() + 1800);<br>
+<br>
+<span CLASS="code_comment"># NOTE THAT ANY COOKIE_MANAGER METHODS MUST BE INVOKED PRIOR TO OUTPUT </span><br>
+<span CLASS="code_comment"># BEING SENT TO THE CLIENT BROWSER...AS COOKIE DATA IS INCLUDED IN THE HTTP HEADER</span><br>
+<span class="code_str_qtd">?&gt;</span><br>
+&lt;!DOCTYPE HTML PUBLIC <span class="code_html_string_quote">"-//W3C//DTD HTML 4.01 Transitional//EN"</span> <span class="code_html_string_quote">"http://www.w3.org/TR/html4/loose.dtd"</span>&gt;<br>
+&lt;html&gt;<br>
+&lt;head&gt;<br>
+<span class="code_str_qtd">&lt;?php</span><br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// ENVIRONMENTALS CLASS GET() METHOD FOR DOCUMENT_ROOT RESOURCE KEY DATA</span><br>
+<span id="006a6b3966aa8cac16d4_1324546164j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">include</span>($oTMPCACHE-&gt;getEnvParam(<span class="code_str_qtd">'DOCUMENT_ROOT'</span>).<span class="code_str_qtd">'inc/head/head.inc.php'</span>);<br>
+<br>
+<span class="code_str_qtd">?&gt;</span><br>
+&lt;script type=<span class="code_html_string_quote">"text/javascript"</span> language=<span class="code_html_string_quote">"javascript"</span> src=<span class="code_html_string_quote">"</span><span class="code_str_qtd">&lt;?php</span> <span id="d5086e9d793d631ffdc3_1958390212j00000101" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">echo</span> $oTMPCACHE-&gt;getEnvParam(<span class="code_str_qtd">'ROOT_PATH_CLIENT_HTTP'</span>); <span class="code_str_qtd">?&gt;</span><span class="code_html_string_quote">inc/prototype.js"</span> &gt;&lt;/script&gt;<br>
+&lt;/head&gt;<br>
+&lt;body&gt;<br>
+&lt;-- DEMO HTML OUTPUT HERE --&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;<br>
+</code></div></div><div class="example_title_wrapper"><code style="color:#FF0000;">Figure 12.</code></div><div class="cb_15"></div><div class="comment_tt_wrapper"><span id="b7a73b3bf3e58d97abca_0877752001459921841j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span> <span class="code_tt_space">&nbsp;</span><span id="f109c58b6897e5839fe2_0325537001459921842j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> <span class="code_tt_space">&nbsp;</span><span id="e43e09b42c84b845c5a9_0412990001459921842j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span> <span class="code_tt_space">&nbsp;</span><span id="8a854f2276292f7697c0_j000001010416624001459921842" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">isset</span> <span class="code_tt_space">&nbsp;</span><span id="0e7d9dc9993d0bba7c74_0557345001459921842j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">time</span> <span class="code_tt_space">&nbsp;</span><span id="006a6b3966aa8cac16d4_0818422001459921842j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">include</span> <span class="code_tt_space">&nbsp;</span><span id="d5086e9d793d631ffdc3_0833628001459921842j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">echo</span> <span class="code_tt_space">&nbsp;</span></div><div class="cb_15"></div></body></html>

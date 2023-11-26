@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd"><html><head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>CRNRSTN :: Code Example</title></head><body><p>On line 10, we get all cookies and store in array. Traversing the returned array from <a href="../../../classes/cookie_manager/getallcookies/" target="_self">getAllCookies()</a> is not too hard once the rhythm is found.<br /></p><div id="example_scrollto_0" class="example_scrollto" onClick="initScrollTo_lnk(this,'http://192.168.172.135/crnrstn/crnrstn/documentation/classes/cookie_manager/getallcookies/?ns=cookie_manager#');"><a href="#" target="_self">Link</a>.</div><div id="crnrstn_8b508b64892bdf1d3a44_0" class="code_wrapper"><div id="lineNum_659338817" class="l_num">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br><br><br><br><br></div><div class="code_shell"><code>
+<span class="code_str_qtd">&lt;?php</span><br><span CLASS="code_comment">
+/*</span><br><span CLASS="code_comment">
+// J5</span><br>
+<span CLASS="code_comment">// Code is Poetry */</span><br>
+<span id="b7a73b3bf3e58d97abca_177296745j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>(<span class="code_str_qtd">'./_crnrstn.root.inc.php'</span>);  <span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// PATH...i.e. &lt;?php $ROOT=&quot;../&quot;; ? &gt; </span><br>
+<span id="b7a73b3bf3e58d97abca_1379815292j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'_crnrstn.config.inc.php'</span>);  <span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// CRNRSTN CONFIGURATION FILE</span><br>
+<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// GET ALL COOKIES</span><br>
+$cookie_ARRAY = $oENV-&gt;oCOOKIE_MGR-&gt;getAllCookies();<br>
+<br>
+<span id="6ca3d3b92e61bd047c8d_495612958j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">for</span>($i=0;$i&lt;sizeof($cookie_ARRAY);$i++){<br>
+ <span CLASS="tab">&nbsp;</span>$cookieCrawler_ARRAY = <span id="b8bd31f2cb7986b7fb8f_82051239j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">each</span>($cookie_ARRAY);<br>
+<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// LIST NAME OF SIMPLE COOKIE</span><br>
+<span CLASS="tab">&nbsp;</span><span id="e43e09b42c84b845c5a9_759327472j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span>(!<span id="6be7c31919bfd4ce22ee_j000001011793987338" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">is_array</span>($cookie_ARRAY[$cookieCrawler_ARRAY[<span class="code_str_qtd">'key'</span>]]) &amp;&amp; <span id="8a854f2276292f7697c0_1096848786j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">isset</span>($cookie_ARRAY[$cookieCrawler_ARRAY[<span class="code_str_qtd">'key'</span>]])){<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span id="d5086e9d793d631ffdc3_616428689j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">echo</span> <span class="code_str_qtd">'I found a cookie named :: '</span>.$cookieCrawler_ARRAY[<span class="code_str_qtd">'key'</span>].<span class="code_str_qtd">'&lt;br&gt;'</span>;<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// EXTRACT DATA FROM COOKIE</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span id="d5086e9d793d631ffdc3_393858844j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">echo</span> <span class="code_str_qtd">'I contain this information :: '</span>.$oENV-&gt;oCOOKIE_MGR-&gt;getCookie($cookieCrawler_ARRAY[<span class="code_str_qtd">'key'</span>]);<br>
+<br>
+<span CLASS="tab">&nbsp;</span>}<span id="e065810be95e4c37e63c_1885323956j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">else</span>{<br>
+<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// WE HAVE AT LEAST ONE 1-DIMENSION ARRAY TO TRAVERSE</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span id="9c79be84cf595ca0ad6a_856470724j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">foreach</span> ($cookie_ARRAY[$cookieCrawler_ARRAY[<span class="code_str_qtd">'key'</span>]] as $tmp_cookie_name_dim1=&gt;$tmp_cookie_value_dim1) {<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// LIST NAME OF 1-DIMENSION ARRAY COOKIE</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span id="e43e09b42c84b845c5a9_2111065054j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span>(!<span id="6be7c31919bfd4ce22ee_j00000101737106882" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">is_array</span>($cookie_ARRAY[$cookieCrawler_ARRAY[<span class="code_str_qtd">'key'</span>]][$tmp_cookie_name_dim1])){<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>$tmp_cookie_name_dim1 = $cookieCrawler_ARRAY[<span class="code_str_qtd">'key'</span>].&quot;[&quot;.$tmp_cookie_name_dim1.&quot;]&quot;;<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span id="d5086e9d793d631ffdc3_1957939578j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">echo</span> <span class="code_str_qtd">'I found a cookie named :: '</span>.$tmp_cookie_name_dim1.<span class="code_str_qtd">'&lt;br&gt;'</span>;<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// EXTRACT DATA FROM COOKIE</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span id="d5086e9d793d631ffdc3_1837097450j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">echo</span> <span class="code_str_qtd">'I contain this information :: '</span>.$oENV-&gt;oCOOKIE_MGR-&gt;getCookie($tmp_cookie_name_dim1);<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>}<span id="e065810be95e4c37e63c_263900678j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">else</span>{<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// WE HAVE ANOTHER DIMENSION TO TRAVERSE BUT STOPPING EXAMPLE HERE</span><br>
+<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>}<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>}<br>
+<span CLASS="tab">&nbsp;</span>}<br>
+}<br>
+<br>
+<span class="code_str_qtd">?&gt;</span><br>
+&lt;!DOCTYPE HTML PUBLIC <span class="code_html_string_quote">"-//W3C//DTD HTML 4.01 Transitional//EN"</span> <span class="code_html_string_quote">"http://www.w3.org/TR/html4/loose.dtd"</span>&gt;<br>
+&lt;html&gt;<br>
+&lt;head&gt;<br>
+<span class="code_str_qtd">&lt;?php</span><br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// ENVIRONMENTALS CLASS GET() METHOD FOR DOCUMENT_ROOT RESOURCE KEY DATA</span><br>
+<span id="006a6b3966aa8cac16d4_562114999j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">include</span>($oENV-&gt;get(<span class="code_str_qtd">'DOCUMENT_ROOT'</span>).<span class="code_str_qtd">'inc/head/head.inc.php'</span>);<br>
+<br>
+<span class="code_str_qtd">?&gt;</span><br>
+&lt;script type=<span class="code_html_string_quote">"text/javascript"</span> language=<span class="code_html_string_quote">"javascript"</span> src=<span class="code_html_string_quote">"</span><span class="code_str_qtd">&lt;?php</span> <span id="d5086e9d793d631ffdc3_2065414759j00000101" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">echo</span> $oENV-&gt;get(<span class="code_str_qtd">'ROOT_PATH_CLIENT_HTTP'</span>); <span class="code_str_qtd">?&gt;</span><span class="code_html_string_quote">inc/prototype.js"</span> &gt;&lt;/script&gt;<br>
+&lt;/head&gt;<br>
+&lt;body&gt;<br>
+&lt;-- DEMO HTML OUTPUT HERE --&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;<br>
+</code></div></div><div class="example_title_wrapper"><code style="color:#FF0000;">Figure 18.</code></div><div class="cb_15"></div><div class="comment_tt_wrapper"><span id="b7a73b3bf3e58d97abca_0651913001462258937j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span> <span class="code_tt_space">&nbsp;</span><span id="6ca3d3b92e61bd047c8d_0771206001462258937j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">for</span> <span class="code_tt_space">&nbsp;</span><span id="b8bd31f2cb7986b7fb8f_0792738001462258937j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">each</span> <span class="code_tt_space">&nbsp;</span><span id="e43e09b42c84b845c5a9_0851347001462258937j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span> <span class="code_tt_space">&nbsp;</span><span id="6be7c31919bfd4ce22ee_j000001010853014001462258937" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">is_array</span> <span class="code_tt_space">&nbsp;</span><span id="8a854f2276292f7697c0_0860245001462258937j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">isset</span> <span class="code_tt_space">&nbsp;</span><span id="d5086e9d793d631ffdc3_0884943001462258937j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">echo</span> <span class="code_tt_space">&nbsp;</span><span id="e065810be95e4c37e63c_0004037001462258938j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">else</span> <span class="code_tt_space">&nbsp;</span><span id="9c79be84cf595ca0ad6a_0094346001462258938j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">foreach</span> <span class="code_tt_space">&nbsp;</span><span id="006a6b3966aa8cac16d4_0751520001462258938j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">include</span> <span class="code_tt_space">&nbsp;</span></div><div class="cb_15"></div></body></html>

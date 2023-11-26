@@ -1,0 +1,110 @@
+
+<h1>Frequently Asked Questions</h1>
+
+<p style="border-top:1px solid gray; border-bottom:1px solid gray; padding-bottom:2px; font-size:11px; line-height:18px;">
+	<a href="#19"><h2>Non-Taxable IDB</h2></a><br /><br>
+	<a href="#01">1. File an application for financing</a><br />
+	<a href="#02">2. Adoption of Inducement Resolution</a><br />
+	<a href="#03">3. Preliminary Negotiation</a><br />
+	<a href="#04">4. Obtain Bond Sale Commitment</a><br />
+	<a href="#05">5. TEFRA Hearing</a><br />
+	<a href="#06">6. Application for an Allocation of the State Bond Cap</a><br />
+	<a href="#07">7. Basic bond documents</a><br />
+	<a href="#08">8. Adoption of Bond Resolution</a><br />
+	<a href="#09">9. Validation Proceeding</a><br />
+	<a href="#10">10. Closing</a><br /><br><br>
+
+	<a href="#20"><h2>Taxable IDB</h2></a><br /><br>
+	<a href="#11">1. File an application for financing</a><br />
+	<a href="#12">2. Adoption of Inducement Resolution</a><br />
+	<a href="#13">3. Preliminary Negotiation</a><br />
+	<a href="#14">4. Obtain Bond Sale Commitment</a><br />
+	<a href="#15">5. Basic bond documents</a><br />
+	<a href="#16">6. Adoption of Bond Resolution</a><br />
+	<a href="#17">7. Validation Proceeding</a><br />
+	<a href="#18">8. Closing</a><br />
+</p>
+<br>
+<a name="19"><h1>Non-Taxable IDB</h1></a>
+<br>
+
+<a name="01"></a>
+<h2>1. File an application for financing</h2>
+<p>Most Issures require the company to file with it an application or request for financing which describes the company, the nature and estimated cost of the project, and the number of jobs the project will create.  Often financial information relating to the company must accompany the application.</p>
+
+<a name="02"></a>
+<h2>2. Adoption of Inducement Resolution</h2>
+<p>Next, an Inducement Resolution is adopted at a duly called meeting of the Issuer, "including" the company to proceed with the project and providing that bond proceeds may be used to reimburse the company for certain project costs that it may wish to pay with its own funds prior to the issuance of the bonds.  If the bonds are to be tax-exempt IDBs, this Inducement Resolution should be adopted before the company makes major expenditures for project costs, because (under the federal tax regulations) proceeds of tax-exempt IDBs can only be used to pay project costs after the bonds are issued and to reimburse (i) project costs paid by the company not earlier than 60 days prior to the adoption of the Inducement Resolution (or some other "declaration of intent" on the part of the issuer to issue the bonds), (ii) certain preliminary expenditures and (iii) other capital expenditures in an aggregate amount not to exceed the lesser of $100,000 or 5% of the proceeds of the IDBs.</p>
+
+<a name="03"></a>
+<h2>3. Preliminary Negotiation</h2>
+<p>If it has not already done so, the company then commences preliminary negotiations with prospective bond purchasers (such as banks) or with placement agents, or underwriters for the sale of bonds.</p>
+
+<a name="04"></a>
+<h2>4. Obtain Bond Sale Commitment</h2>
+<p>Detailed financing terms will, as a result of the preliminary negotiations, be agreed upon, and a bond purchase commitment letter will then be issued and accepted by the company.  Having a detailed commitment letter generally saves time (and other aggrivations) in the document drafting process refferred to in step 7.</p>
+
+<a name="05"></a>
+<h2>5. TEFRA Hearing</h2>
+<p>In the case of federally tax-exempt IDBs, TEFRA hearing and approval proceeds are conducted.  This step requires that a public hearing be held on at least 14 days notice published in the local news paper.  Following the TEFRA Hearing, the bond issue is approved by the elected officials of the local general purpose government.  This step is sometimes combined with step 2 relating to the Inducement Resolution, where the amount of the financing is not likely to be changed.</p>
+
+<a name="06"></a>
+<h2>6. Application for an Allocation of the State Bond Cap</h2>
+<p>In the case of federally tax-exempt bonds, other than qualified 501(c)(3) bonds, certain "exempt facilities bonds" (referred to above) and current refunding bonds, the Issuer next applies to for an allocation (in an amount equal to the proposed bond amount) of a portion of the state's bond cap necessary for the bonds.</p>
+
+<a name="07"></a>
+<h2>7. Basic bond documents</h2>
+<p>Upon finalization of the terms of the financing commitment, bond counsel drafts the basic financing documents for review by the parties to the transaction.</p>
+
+<a name="08"></a>
+<h2>8. Adoption of Bond Resolution</h2>
+<p>Upon agreement of the parties as to the terms and provisions of the bonds and the basic financing documents, the Issuer will, at a meeting duly held, adopt a Bond Resolution authorizing the bonds and approving the financing documents.</p>
+
+<a name="09"></a>
+<h2>9. Validation Proceedin</h2>
+<p>Following the adoption of the Bond Resolution, a bond validation proceeding is commenced in the Superior Court of the county in which the Issuer is located.  Validation is a routine judicial proceeding, but the entire process takes about 30 days.  During that period, various closing documents are prepared by bond counsel.</p>
+
+<a name="10"></a>
+<h2>10. Closing</h2>
+<p>The transaction may be closed on the first mutually agreed-upon date after obtaining a favorable validation judgment from the Superior Court (forever confirming the validity of the bonds), and after obtaining an allocation of the state bond cap (if such allocation is required).</p>
+<br>
+<div class="backToTop"><a href="#top">Back to Top</a></div>
+<br>
+<a name="20"><h2>Taxable IDB</h2></a>
+<br>
+
+<a name="11"></a>
+<h2>1. File an application for financing</h2>
+<p>Most Issures require the company to file with it an application or request for financing which describes the company, the nature and estimated cost of the project, and the number of jobs the project will create.  Often financial information relating to the company must accompany the application.</p>
+
+<a name="12"></a>
+<h2>2. Adoption of Inducement Resolution</h2>
+<p>Next, an Inducement Resolution is adopted at a duly called meeting of the Issuer, "including" the company to proceed with the project and providing that bond proceeds may be used to reimburse the company for certain project costs that it may wish to pay with its own funds prior to the issuance of the bonds.  If the bonds are to be tax-exempt IDBs, this Inducement Resolution should be adopted before the company makes major expenditures for project costs, because (under the federal tax regulations) proceeds of tax-exempt IDBs can only be used to pay project costs after the bonds are issued and to reimburse (i) project costs paid by the company not earlier than 60 days prior to the adoption of the Inducement Resolution (or some other "declaration of intent" on the part of the issuer to issue the bonds), (ii) certain preliminary expenditures and (iii) other capital expenditures in an aggregate amount not to exceed the lesser of $100,000 or 5% of the proceeds of the IDBs.</p>
+
+<a name="13"></a>
+<h2>3. Preliminary Negotiation</h2>
+<p>If it has not already done so, the company then commences preliminary negotiations with prospective bond purchasers (such as banks) or with placement agents, or underwriters for the sale of bonds.</p>
+
+<a name="14"></a>
+<h2>4. Obtain Bond Sale Commitment</h2>
+<p>Detailed financing terms will, as a result of the preliminary negotiations, be agreed upon, and a bond purchase commitment letter will then be issued and accepted by the company.  Having a detailed commitment letter generally saves time (and other aggirvations) in the document drafting process refferred to in step 7.</p>
+
+<a name="15"></a>
+<h2>5. Basic bond documents</h2>
+<p>Upon finalization of the terms of the financing commitment, bond counsel drafts the basic financing documents for review by the parties to the transaction.</p>
+
+<a name="16"></a>
+<h2>6. Adoption of Bond Resolution</h2>
+<p>Upon agreement of the parties as to the terms and provisions of the bonds and the basic financing documents, the Issuer will, at a meeting duly held, adopt a Bond Resolution authorizing the bonds and approving the financing documents.</p>
+
+
+<a name="17"></a>
+<h2>7. Validation Proceeding</h2>
+<p>Following the adoption of the Bond Resolution, a bond validation proceeding is commenced in the Superior Court of the county in which the Issuer is located.  Validation is a routine judicial proceeding, but the entire process takes about 30 days.  During that period, various closing documents are prepared by bond counsel.</p>
+
+<a name="18"></a>
+<h2>8. Closing</h2>
+<p>The transaction may be closed on the first mutually agreed-upon date after obtaining a favorable validation judgment from the Superior Court (forever confirming the validity of the bonds), and after obtaining an allocation of the state bond cap (if such allocation is required).</p>
+
+
+<div class="backToTop"><a href="#top">Back to Top</a></div>

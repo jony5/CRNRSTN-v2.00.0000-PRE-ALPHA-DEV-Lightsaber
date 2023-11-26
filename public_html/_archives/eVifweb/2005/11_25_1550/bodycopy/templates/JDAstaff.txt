@@ -1,0 +1,26 @@
+<h1>Joint Development Authority Staff</h1>
+
+<h2><u>Counsel</u></h2>
+<p><strong>Senator Leroy Johnson</strong><br>Development Authority of Fulton County</p>
+<p><strong>Lewis C. Horne, Jr.</strong><br>Development Authority of Fulton County</p>
+<p><strong>G. Robert Oliver</strong><br>Development Authority of Clayton County</p>
+<p><strong>Greg Worthy</strong><br>DeKalb County Development Authority</p>
+<p><strong>Robert Maddox</strong><br>Rockdale County Development Authority</p>
+
+<br>
+<h2><u>Executive Support Staff</u></h2>
+<p><strong>Dr. C. Clayton Powell</strong><br>Executive Director<br>Development Authority of Fulton County</p>
+<p><strong>Joseph Johnson</strong><br>Dir., Economic Development, Fulton County Government</p>
+<p><strong>Doris Metcalfe Coleman</strong><br>Fulton County Government, EDD</p>
+<p><strong>Bob Simmons</strong><br>Fulton County Government, EDD</p>
+<p><strong>Marva Bryan</strong><br>Fulton County Government, EDD</p>
+
+<p><strong>Camille Goodlett</strong><br>Fulton County Governemnt, EDD</p>
+<p><strong>Joyce Rhodes</strong><br>Fulton County Governemnt, EDD</p>
+<p><strong>Emory L. Brock</strong><br>Dir., Development Authority of Clayton County</p>
+<p><strong>Maceo Rogers</strong><br>DeKalb Economic Development</p>
+<p><strong>Maria Mullins</strong><br>DeKalb Economic Development</p>
+<p><strong>Larry McKinney</strong><br>Conyers-Rockdale Partners for Tomorrow, Chamber of Commerce</p>
+
+
+<div class="backToTop"><a href="#top">Back to Top</a></div>

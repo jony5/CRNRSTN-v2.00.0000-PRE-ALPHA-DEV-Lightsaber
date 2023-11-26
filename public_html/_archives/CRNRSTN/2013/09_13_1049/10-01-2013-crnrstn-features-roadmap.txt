@@ -1,0 +1,311 @@
+<?php
+session_start();
+
+//
+// CRNRSTN CLASS INCLUDES ::
+include_once('./_crnrstn.root.inc.php');
+include_once($ROOT . '/_crnrstn/classes/crnrstn/crnrstn.inc.php');
+include_once($ROOT . '/_crnrstn/classes/logging/crnrstn.log.inc.php');
+include_once($ROOT . '/_crnrstn/classes/environmentals/crnrstn.env.inc.php');
+include_once($ROOT . '/_crnrstn/classes/security/crnrstn.ipauthmgr.inc.php');
+include_once($ROOT . '/_crnrstn/classes/database/mysqli/crnrstn.mysqli.inc.php');
+include_once($ROOT . '/_crnrstn/classes/session/crnrstn.session.inc.php');
+
+$oCRNRSTN = new crnrstn($_SERVER);
+$oCRNRSTN->requiredDetectionMatches(5);
+
+$oCRNRSTN->addEnvironment('000WEBHOSTJONY5', E_ALL & ~E_NOTICE & ~E_STRICT);
+$oCRNRSTN->addEnvironment('LOCALHOST_PC', E_ERROR);
+
+if(!($oCRNRSTN->oSESSION_MGR->getSessionParam('ACCESS_AUTHORIZED')==1) || (!($oCRNRSTN->oSESSION_MGR->getSessionParam('AUTHORIZED_IP') == $oCRNRSTN->oMYSQLI_IPSECURITY_MGR->clientIpAddress()))){
+
+	$oCRNRSTN->grantExclusiveAccess('LOCALHOST_PC','127.0.0.1');
+	#...etc.
+}
+
+$oCRNRSTN->addDatabase('LOCALHOST_PC', 'localhost', 'crnrstn_demo', 'aXNTPxGPeLRwYzTS', 'crnrstn_demo', 3306);
+
+if($oCRNRSTN->oSESSION_MGR->getSessionParam('_CRNRSTN_ENV_KEY') == ''){
+
+	$oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'DATABASE_HOST', 'localhost');
+	$oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'DATABASE_DBNAME', 'wpdemo');
+	$oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'DATABASE_USERNAME', 'wpdemo');
+	$oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'DATABASE_PASSWORD', 'QGF5TU7yf95C8Y3h');
+	#...etc.
+}
+
+$oENV = new environmentals($oCRNRSTN);
+
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # CRNRSTN :: BENCHMARKING # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+Benchmarking :: Types ::
+- Application benchmarking (web server, application code, database)
+- Component benchmarking (e.g. mysql)
+
+Benchmarking :: What to measure ::
+- Transactions per time unit (http://www.tpc.org)
+- Response time or latency (percentiles)
+- Scalability (performance under a changing workload)
+- Concurrency (number of threads/connections doing *work* simultaneously)
+
+Benchmarking :: Techniques to give a higher level of confidence to the acquired metrics ::
+- Logging all database queries for a period of time (or several small time frames) so you can use accurate data for your benchmark tests.
+- Log HTTP requests on web server
+- Log CPU usage, disk I/O, network traffic statistics, counters from SHOW GLOBAL STATUS...
+
+Profiling :: Types ::
+- Application benchmarking (web server, application code, database)
+- Component benchmarking (e.g. mysql)
+
+Profiling :: Goal - How much of each pages response times is consumed by...
+- DB processes.
+- external resources, such as calls to web services or search engines
+- operations that involve processing large amounts of data like parsing big XML files
+- expensive operations in tight loops, such as abusing regular expressions
+- badly optimized algorithms, such as native search algorithms to find items in lists
+
+Profiling :: Techniques
+- debug mode that makes each page display its queries along with their times and number of rows. we can then run explain on slow queries. for deeper analysis we combine this data with metrics from the mysql server
+- Profiling code should gather at least the following,
+* total execution time (page render time)
+* each query executed
+* each connection opened to the mysql server
+* every call to an external resource (SOA, memcached, externally invoked scripts)
+* potentially expensive function calls such as XML parsing
+* user and system cpu time
+
+<?php
+$profiling_enabled = rand(0,100) >99;		// VARIABLE TO RETURN TRUE (FOR TRIGGERING PROFILING) 1% OF THE TIME 
+?>
+
+
+<?php
+/* 
+Class Timer, implementation of time logging in PHP (High Performance MySQL. Second Edition.)
+*/
+class Timer {
+	private $timer_ARRAY = array();
+	
+	private function startTime($point){
+		$dat = getrusage();
+		
+		$this->timer_ARRAY[$point]['start'] = microtime(TRUE);
+		$this->timer_ARRAY[$point][start_usr_time] = $dat["ru_utime.tv_sec"] * 1e6 + $dat["ru_utime.tv_usec"];
+		$this->timer_ARRAY[$point]['start_time'] = $dat["ru_stime.tv_sec"] * 1e6 + $dat["ru_stime.tv_usec"];
+	}
+	
+	private function stopTime($point, $comment=''){
+		$dat = getrusage();
+		$this->timer_ARRAY[$point]['end'] = microtime(TRUE);
+		$this->timer_ARRAY[$point]['end_usr_time'] = $dat["ru_utime.tv_sec"] * 1e6 + $dat["ru_utime.tv_usec"];
+		$this->timer_ARRAY[$point]['end_sys_time'] = $dat["ru_stime.tv_sec"] * 1e6 + $dat["ru_stime.tv_usec"];
+		
+		$this->timer_ARRAY[$point]['comment'] .= $comment;
+		
+		$this->timer_ARRAY[$point]['sum'] += $this->timer_ARRAY[$point]['end'] - $this->timer_ARRAY[$point]['start'];
+		$this->timer_ARRAY[$point]['sum_usr_time'] += ($this->timer_ARRAY[$point]['end_usr_time'] - $this->timer_ARRAY[$point]['start_usr_time']) / 1e6;
+		
+		$this->timer_ARRAY[$point]['sum_sys_time'] += ($this->timer_ARRAY[$point]['end_sys_time'] - $this->timer_ARRAY[$point]['start_sys_time']) / 1e6;
+	}
+	
+	private function logdata(){
+		$query_logger = DBQuerylog::getInstance('DBQueryLog');
+		$data['usrtime'] = $this->timer_ARRAY['Page']['sum_usr_time'];
+		$data['walltime'] = $this->timer_ARRAY['Page']['sum'];
+		$data['systime'] = $this->timer_ARRAY['Page']['sum_sys_time'];
+		$data['mysql_time'] = $this->timer_ARRAY['MySQL']['sum'];
+		$data['mysql_count_queries'] = $this->timer_ARRAY['MySQL]['cnt'];
+		$data['mysql_queries'] = $this->timer_ARRAY['MySQL']['comment'];
+		$data['sphinx_time'] = $this->timer_ARRAY['Sphinx']['sum'];
+		
+		$query_logger->logProfilingData(data);
+	}
+	
+	// This helper function implements the Singleton pattern 
+	private function getInstance(){
+		static $instance;
+		
+		if(!isset($instance)){
+			$instance = new Timer();
+		}
+		
+		return($instance);
+		
+	}
+}
+
+class mysqlx extends mysqli{
+	function query($query, $resultmode){
+		$timer = Timer::getInstance();
+		$timer->startTime('MySQL');
+		$res = parent::query($query, $resultmode);
+  		$time->stopTime('MySQL', "Query: $query\n");
+		return $res;
+	}
+}
+
+?>
+
+CREATE TABLE logs.performance_log_template(
+	IPADDRESS				INT UNSIGNED NOT NULL,
+	PAGE					VARCHAR(255) NOT NULL,
+	USER_TIME				FLOAT NOT NULL,
+	SYSTEM_TIME				FLOAT NOT NULL,
+	MYSQL_TIME				FLOAT NOT NULL,
+	WALL_TIME				FLOAT NOT NULL,
+	SPHINX_TIME				FLOAT NOT NULL,
+	MYSQL_COUNT_QUERIES		INT UNSIGNED NOT NULL,
+	MYSQL_QUERIES			TEXT NOT NULL,
+	LOGGED					TIMESTAMP NOT NULL,
+							default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+	USER_AGENT				VARCHAR(255) NOT NULL,
+	REFERER					VARCHAR(255) NOT NULL
+) ENGINE=ARCHIVE;
+
+
+<?php
+// START OF THE PAGE EXECUTION
+$timer = Timer::getInstance();
+$timer->startTime('Page');
+
+// ...other code...
+
+// END OF THE PAGE EXECUTION
+$timer->stopTime('Page');
+$timer->logdata();
+?>
+
+
+<?php
+/*
+Class DBQueryLog logs profiling data into the database
+*/
+
+class DBQueryLog {
+	
+	/* Logs the data, creating the log table if it doesn't exist. Note that it's cheaper to assume the table
+	 * exists, and catch the error if it doesn't, than to check for its existence with every query.
+	 */
+	 
+	function logProfilingData($data){
+		$table_name = "logs.performance_log_" . @date("ymd");
+		
+		$query = "INSERT DELAYED INTO $table_name (IPADDRESS, PAGE, USER_TIME, WALL_TIME, SYSTEM_TIME, MYSQL_TIME, SPHINX_TIME, MYSQL_COUNT_QUERIES, MYSQL_QUERIES, USER_AGENT, REFERER) VALUES (.. DATA ..)";
+		
+		$res = $this->mysqlx->query($query);
+		// HANDLE "TABLE NOT FOUND" ERROR - CREATE NEW TABLE FOR EACH NEW DAY
+		if ((!res) && ($this->mysqlx->errno==1146)){
+			$res = $this->mysqlx->query("CREATE TABLE $table_name LIKE logs.performance_log_template");
+			$res = $this->mysqlx-query($query);
+		}
+	}
+}
+?>
+
+
+<?php
+class Foo
+{
+    public $var = '3.1415962654';
+}
+
+$baseMemory = memory_get_usage();
+
+for ( $i = 0; $i <= 100000; $i++ )
+{
+    $a = new Foo;
+    $a->self = $a;
+    if ( $i % 500 === 0 )
+    {
+        echo sprintf( '%8d: ', $i ), memory_get_usage() - $baseMemory, "\n";
+    }
+}
+
+?>
+
+file:///C:/Documents%20and%20Settings/J5/My%20Documents/_WEBSITES_FROM_JONY5.COM/_phpmanual/features.gc.performance-considerations.html
+
+<?php
+class Foo
+{
+    public $var = '3.1415962654';
+}
+
+for ( $i = 0; $i <= 1000000; $i++ )
+{
+    $a = new Foo;
+    $a->self = $a;
+}
+
+echo memory_get_peak_usage(), "\n";
+?>
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+SET @input := 'hello crnrstn';
+SELECT BENCHMARK(16000000, MD5(@input));
+
+[1000000] Showing rows 0 - 0 ( 1 total, Query took 0.8895 sec)
+[1000000] Showing rows 0 - 0 ( 1 total, Query took 0.9145 sec)
+[1000000] Showing rows 0 - 0 ( 1 total, Query took 0.9539 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 6.9424 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 6.9332 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 6.9139 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 6.9253 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 6.9969 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 6.9175 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 6.9835 sec)
+[16000000] Showing rows 0 - 0 ( 1 total, Query took 13.8549 sec)
+[16000000] Showing rows 0 - 0 ( 1 total, Query took 14.0986 sec)
+[16000000] Showing rows 0 - 0 ( 1 total, Query took 13.8777 sec)
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+SET @input := 'hello crnrstn';
+SELECT BENCHMARK(16000000, CRC32(@input));
+
+[1000000] Showing rows 0 - 0 ( 1 total, Query took 0.1612 sec)
+[1000000] Showing rows 0 - 0 ( 1 total, Query took 0.1220 sec)
+[1000000] Showing rows 0 - 0 ( 1 total, Query took 0.1432 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 0.9958 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 0.9733 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 0.9968 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 1.0285 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 0.9981 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 0.9989 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 0.9749 sec)
+[16000000] Showing rows 0 - 0 ( 1 total, Query took 1.9640 sec)
+[16000000] Showing rows 0 - 0 ( 1 total, Query took 1.9796 sec)
+[16000000] Showing rows 0 - 0 ( 1 total, Query took 1.9923 sec)
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+SET @input := 'hello crnrstn';
+SELECT BENCHMARK(16000000, SHA1(@input));
+
+[1000000] Showing rows 0 - 0 ( 1 total, Query took 1.5545 sec)
+[1000000] Showing rows 0 - 0 ( 1 total, Query took 1.4973 sec)
+[1000000] Showing rows 0 - 0 ( 1 total, Query took 1.6198 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 11.9984 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 11.9921 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 12.1104 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 12.0844 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 12.0617 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 12.0269 sec)
+[8000000] Showing rows 0 - 0 ( 1 total, Query took 12.1242 sec)
+[16000000] Showing rows 0 - 0 ( 1 total, Query took 24.1316 sec)
+[16000000] Showing rows 0 - 0 ( 1 total, Query took 23.9778 sec)
+[16000000] Showing rows 0 - 0 ( 1 total, Query took 24.2531 sec)
+
+= = = = = =  = = = = = = =
+( 0 unique results returned in 5.3187730312347 seconds	 )
+
+( 0 unique results returned in 38.630270957947 seconds; 0 words (0 CRC32 checksums) in -38.629671812057 seconds)
+
+( 0 unique results returned in 41.610846996307 seconds
+264298 words (132 [+ 1] batches of 2000 to MySQL) in 41.55376791954 seconds
+)At batch ID of 1(2000) there was a batch multi_query Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSERT INTO `crnrstn_demo4`.`benchmark_batch_052E2E0C0A` (`PARAM1`, `PARAM1_CRC3' at line 1
+
+ ( 0 unique results returned in 38.116955041885 seconds
+264298 words (132 [+ 1] batches of 2000 to MySQL) in 38.091202020645 seconds
+)At batch ID of 1(2000) there was a batch multi_query Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSERT INTO `crnrstn_demo4`.`benchmark_batch_2000_C333AADFC3` (`PARAM1`, `PARAM1' at line 1

@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<link rel="shortcut icon" href="fiveicon.ico" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="expires" content="-1" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="author" content="" />
+<meta name="ROBOTS" content="ALL" />
+<meta name="description" content="" />
+<meta name="KEYWORDS" content="" />
+
+<link href="css/fivestyle.css" type="text/css" rel="stylesheet" />
+<!--<script type="text/javascript" src="script/prototype.js"></script>-->
+<script type="text/javascript" src="script/moo.fx.js"></script>
+<script type="text/javascript" src="script/moo.ajax.js"></script>
+<script type="text/javascript" src="script/moo.fx.pack.js"></script>
+<script type="text/javascript" src="script/rico.js"></script>
+<script type="text/javascript" src="script/scriptaculous.js"></script>
+
+<!-- XML -->
+<script src="script/xml/misc.js" language="JavaScript"></script>
+<script src="script/xml/dom.js" language="JavaScript"></script>
+<script src="script/xml/xpath.js" language="JavaScript"></script>
+<script src="script/xml/xslt.js" type="text/javascript"></script>
+<script src="script/xml/xslt_script.js" type="text/javascript"></script>
+
+<script language="JavaScript" type="text/javascript">
+var loginvisible=false;
+function navigate(navelement){
+	if(loginvisible){
+		Effect.SlideDown('menuslidetxt',{duration:1.0});
+		Effect.SlideUp('loginshell',{duration:.5}); 
+		loginvisible=false;
+	}
+	var hitnavstr=navelement.id+'on';
+	document.getElementById(hitnavstr).style.display="block"; 
+
+	document.getElementById('dyncontent').innerHTML = '<img src=imgs/loading.gif width=32 height=32 alt=loading... title=loading... />';
+	new Ajax.Updater('dyncontent', 'content/' + navelement.name + '.php', {asynchronous:true, evalScripts:true});
+	
+	activatenav(navelement);
+}
+
+function activatenav(mynav){
+//================================//turn grey on
+var nodes = $A(document.getElementsByClassName("nav"));
+		nodes.each(function(node){
+			document.getElementById(node.id).style.display="inline"; 
+		}); /*end node cycling */
+//================================
+//================================// turn red off
+var nodes = $A(document.getElementsByClassName("nbuttonon"));
+		var tempnavstrholder = mynav.id+'on';
+		
+		nodes.each(function(node){
+		if(node.id!=tempnavstrholder){
+		
+			new Rico.Effect.FadeTo(node.id, 
+			.0, // opacity
+			500, // 500ms (1/2 second)
+			10, // 10 steps
+			{complete:function() {/*   */}} );	
+		}else{
+			new Rico.Effect.FadeTo(node.id, 
+			1, // opacity
+			500, // 500ms (1/2 second)
+			10, // 10 steps
+			{complete:function() {/*   */}} );	
+		}
+					}); /*end node cycling */
+//================================
+	
+	//var hitnavstr=mynav.id+'on';
+	new Rico.Effect.FadeTo(mynav.id, 
+			0, // opacity
+			500, // 500ms (1/2 second)
+			10, // 10 steps
+	{complete:function() {document.getElementById(mynav.id).style.display="none"; }} );
+
+//=========================
+	new Rico.Effect.FadeTo(mynav.id, 
+	.6, // opacity
+	500, // 500ms (1/2 second)
+	2, // 10 steps
+	{complete:function() {/* put function here  */}} );
+//=========================
+
+}
+
+function turnoff(mydiv){
+	
+	new Rico.Effect.FadeTo(mydiv.id, 
+	.6, // opacity
+	750, // 500ms (1/2 second)
+	10, // 10 steps
+	{complete:function() {}} );
+	
+ }
+ 
+  function turnon(mydiv){
+  
+	new Rico.Effect.FadeTo(mydiv.id, 
+	.99, // opacity
+	250, // 500ms (1/2 second)
+	5, // 10 steps
+	{complete:function() {}} );
+	
+ }
+
+function registerpage(){
+		
+		var nodes = $A(document.getElementsByClassName("nav"));
+		var tempnavstrholder = "";
+		
+		nodes.each(function(node){
+			fader = new fx.Opacity(node.id);
+			fader.custom(1,.6);
+		}); /*end node cycling */
+		document.getElementById('dyncontent').innerHTML = '<img src=imgs/loading.gif width=32 height=32 alt=loading... title=loading... />';
+		new Ajax.Updater('dyncontent', 'content/home.php', {asynchronous:true, evalScripts:true});	
+
+		document.getElementById('nav00on').style.display="block"; 
+		
+		new Rico.Effect.FadeTo('nav00', 
+			0, // opacity
+			500, // 500ms (1/2 second)
+			10, // 10 steps
+		{complete:function() {document.getElementById('nav00').style.display="none"; }} );	
+		
+
+		document.getElementById('nav00').style.display="none"; 
+	
+		new Rico.Effect.FadeTo('nav00', 
+			.6, // opacity
+			500, // 500ms (1/2 second)
+			10, // 10 steps
+		{complete:function() { document.getElementById('footer').innerHTML = '&copy; EvifWeb Development';	new Ajax.Updater('footer', 'content/footer.php', {asynchronous:true, evalScripts:true});}} );	
+		
+		delete nodes;
+		
+		cleanxml();
+		
+	// write footer	
+	
+	}	
+</script>
+
+
+<title>Evifweb Development</title>
+</head>
+
+<body onload="Javascript:registerpage();">
+
+<div id="header" style=" min-width:600px;">
+	<div style=" min-width:600px;">
+		<div id="logo5"><img src="imgs/logo00.gif" width="173" height="93" border="0" alt="5" title="5" /></div>
+		<div id="ribbon"><img src="imgs/ribbon.gif" width="11" height="93" alt="evifWeb Development" /><img src="imgs/title.gif" width="188" height="93" alt="web development" title="web development" /></div>
+	</div>
+	<div id="fivenav">
+	
+		<div class="tnav">
+			<div class="nbuttonon" id="nav00on" style="display:none;"><img class="navon" src="imgs/tnav_homesel.gif" width="91" height="70" alt="home" name="home" /></div>
+			<div class="nbutton"><img name="home" class="nav" id="nav00" src="imgs/tnav_home.gif" width="91" height="70" alt="home" onmouseover="turnon(this);" onmouseout="turnoff(this);" onmousedown="navigate(this);" /></div>
+		</div>
+		<div class="tnav">
+			<div class="nbuttonon" id="nav01on" style="display:none;"><img class="navon"  src="imgs/tnav_aboutsel.gif" width="91" height="70" alt="about" name="about" /></div>
+			<div class="nbutton"><img class="nav" id="nav01" src="imgs/tnav_about.gif" width="91" height="70" alt="about" name="about" onmouseover="turnon(this);" onmouseout="turnoff(this);" onmousedown="navigate(this);" /></div>			
+		</div>
+		<div class="tnav">
+			<div class="nbuttonon" id="nav02on" style="display:none;" ><img class="navon" src="imgs/tnav_emailsel.gif" width="91" height="70" alt="email" name="email" /></div>
+			<div class="nbutton"><img class="nav" id="nav02" src="imgs/tnav_email.gif" width="91" height="70" alt="email" name="email"  onmouseover="turnon(this);" onmouseout="turnoff(this);" onmousedown="navigate(this);" /></div>			
+		</div>
+		<div class="tnav">
+			<div class="nbuttonon" id="nav03on" style="display:none;"><img class="navon" src="imgs/tnav_portfoliosel.gif" width="91" height="70" alt="portfolio" name="portfolio" /></div>
+			<div class="nbutton"><img class="nav" id="nav03" src="imgs/tnav_portfolio.gif" width="91" height="70" alt="portfolio" name="portfolio"  onmouseover="turnon(this);" onmouseout="turnoff(this);" onmousedown="navigate(this);" /></div>			
+		</div>
+		<div class="tnav">
+			<div class="nbuttonon" id="nav04on" style="display:none;"><img class="navon" src="imgs/tnav_servicessel.gif" width="91" height="70" alt="services" name="services" /></div>
+			<div class="nbutton"><img class="nav" id="nav04" src="imgs/tnav_services.gif" width="91" height="70" alt="services" name="services" onmouseover="turnon(this);" onmouseout="turnoff(this);" onmousedown="navigate(this);" /></div>			
+		</div>
+		<div class="tnav">
+			<div class="nbuttonon" id="nav05on" style="display:none;"><img class="navon" src="imgs/tnav_contactsel.gif" width="91" height="70" alt="contact" name="contact" /></div>
+			<div class="nbutton"><img class="nav" id="nav05" src="imgs/tnav_contact.gif" width="91" height="70" alt="contact" name="contact" onmouseover="turnon(this);" onmouseout="turnoff(this);" onmousedown="navigate(this);" /></div>			
+		</div>
+		<div class="tnav" >
+			<div class="nbutton"><img class="nav" id="nav99" src="imgs/navcap.gif" width="90" height="69" onmouseover="turnon(this);" onmouseout="turnoff(this);" /></div>
+		</div>
+	</div><!-- close fivenav -->
+</div><!-- close header -->
+
+<div style="clear:both;">
+	<div id="loginshell" style="display:none;">
+		<div id="login" >
+			<form action="admin/login.php" method="post" >
+				<div id="signinlink"><input tabindex="3" type=image src="images/translink.gif" name="signin" value="submit" ></div>
+				<input tabindex="1" class="logintxtbx" type="text" name="username"  > Username <br>
+				<input tabindex="2" class="logintxtbx" type="password" name="password"> Password
+			</form>
+		<span class="clr"></span>[
+		<span style="margin-left:10px;"><a href="client/newaccount.php">Create an account</a></span>
+		</div>
+	</div>
+
+	<div id="menuslidetxt"><a href="#" onclick="Effect.SlideDown('loginshell',{duration:.5}); effect_2 = Effect.SlideUp('menuslidetxt',{duration:1.0}); loginvisible=true; ">login</a></div>
+</div>
+<div id="contentshell">
+	<div id="dyncontent"><!-- AJAX some shit here --></div>
+	<div><hr /></div>
+	<form onsubmit="test_xslt();return false">
+	<div id="XMLFORM">
+    
+      <table>
+        <tr>
+          <td>
+            <div id="xml" style=" visibility:hidden;">
+              <page>
+                <message>
+                  Hello World.
+                </message>
+              </page>
+            </div>
+          </td>
+          <td>
+            <div id="xslt" style=" visibility:hidden;">
+              <xsl:stylesheet>
+                <xsl:template match="/">
+                  <xsl:apply-templates select="page/message"/>
+                </xsl:template>
+                
+                <xsl:template match="page/message">
+                  <div style="color:green">
+                    <xsl:value-of select="."/>
+                  </div>
+                </xsl:template>
+              </xsl:stylesheet>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input type="submit" value="process"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div id="html"></div>
+          </td>
+          <td>
+           
+          </td>
+        </tr>
+      </table>
+    </form>
+	</div>
+	  </form>
+	 <div id="htmldisplay"></div>
+</div><!-- END CONTENT SHELL -->
+
+
+<!-- Grey bar at bottom -->
+<div id="bottomGrey">
+	<div id="footer">&copy; EvifWeb Development</div>
+</div>
+
+</body>
+</html>

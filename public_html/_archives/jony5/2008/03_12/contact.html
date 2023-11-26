@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="css/styles.css" type="text/css" />
+<script type="text/javascript" language="javascript" src="js/validation.lib.js"></script>
+<script type="text/javascript" language="javascript" src="js/prototype.js"></script>
+<script type="text/javascript" language="javascript" src="js/form.lib.js"></script>
+ 
+<title>| J5</title>
+</head>
+
+<body>
+<div id="shell">
+	<div id="theme_img"><img src="imgs/theme/newpic_00_gd.jpg" width="533" height="104" alt="| J5" title="| J5" /></div>
+	<div class="cb"></div>
+	
+	<div id="tnav_shell">
+	<table cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td><div class="nav_element"><img src="imgs/tnav_star.jpg" width="33" height="25" alt="*" title="*" /></div></td>
+		<td><div class="link_shell"><div class="link"><a href="index.html" target="_self">home</a></div></div></td>
+		<!--<td><div class="link_shell"><div class="link"><a href="gallery.html" target="_self">gallery</a></div></div></td>-->
+		<td><div class="link_shell"><div class="link"><a href="projects.html" target="_self">projects</a></div></div></td>
+		<td><div class="link_shell"><div class="link"><a href="contact.html" target="_self">contact</a></div></div></td>
+	</tr>
+	</table>
+	</div>
+	<div class="cb"></div>
+	
+	<div id="body_shell">
+		<div class="b_content">
+		<form name="mainform" id="mainform" action="content/action/c_me.php" method="POST" >
+ 
+			<table cellpadding="0" cellspacing="0" border="0">
+			<tr>
+ 				<td valign="top" >
+					<div class="doc_content">
+			 
+					<div class="copy">
+					<div style="padding-bottom:4px;"><img src="imgs/title_contact.gif" width="87" height="23" alt="Contact" title="Contact" /></div>
+					 
+					 
+					<div class="cb" style="height:3px; border-top:1px solid #cccccc; margin:0px;"></div>
+					<div id="content_contact">
+						<div style="padding-top:10px;">
+						<table cellpadding="0" cellspacing="0" border="0">
+						<tr>
+							<td width="60" valign="top" align="right" style="padding-right:10px; padding-top:3px;">subject</td>
+							<td width="225">
+							<select id="msgsub" name="msgsub" style="padding-left:3px;font-family:Arial, Helvetica, sans-serif; font-size:12px; width:150px;">
+								<option value="0" style="padding-left:5px;"> -   </option>
+								<option value="1" style="padding-left:5px;">Party Invitation</option>
+								<option value="2" style="padding-left:5px;">Let's hang out</option>
+								  
+								 <option value="3" style="padding-left:5px;">Websites</option> 
+								 <option value="4" style="padding-left:5px;">Email Newsletters</option> 
+								 
+								<option value="5" style="padding-left:5px;">Other</option>
+							</select>
+							</td>
+							<td width="160"><div id="errtext_msgsub" class="errtext">please select a subject</div></td>
+						</tr>
+						</table>
+						</div>
+						<div class="cb" style="height:5px;"></div>
+						<div>
+						<table cellpadding="0" cellspacing="0" border="0">
+						<tr>
+							<td width="60" valign="top" align="right" style="padding-right:10px; padding-top:3px;">name</td>
+							<td width="225"><input id="n" name="n" type="text" size="30" maxlength="50" style="width:200px;font-family:Arial, Helvetica, sans-serif; font-size:12px;" /></td>
+							<td width="160"><div id="errtext_n" class="errtext">please enter your name</div></td>
+						</tr>
+						</table>
+						</div>
+						<div class="cb" style="height:5px;"></div>
+						<div>
+						<table cellpadding="0" cellspacing="0" border="0">
+						<tr>
+							<td width="60" valign="top" align="right" style="padding-right:10px; padding-top:3px;">email</td>
+							<td width="225"><input id="e" name="e" type="text" size="30" maxlength="50" style="width:200px;font-family:Arial, Helvetica, sans-serif; font-size:12px;" /></td>
+							<td width="160"><div id="errtext_e" class="errtext">invalid or missing email</div></td>
+						</tr>
+						</table>
+						</div>
+						<div class="cb" style="height:5px;"></div>
+						<div>
+						<table cellpadding="0" cellspacing="0" border="0">
+						<tr>
+							<td width="60" valign="top" align="right" style="padding-right:10px; padding-top:3px;">message</td>
+							<td valign="top" width="225"><textarea id="m" name="m" cols="22" rows="5" style="width:200px; font-family:Arial, Helvetica, sans-serif; font-size:12px;" onkeydown="checklength(this.value,'1000');"></textarea><div style="font-size:10px; color:#666666;">1000 char limit</div></td>
+							<td valign="top" width="160"><div style="font-size:11px;"></div></td>
+						</tr>
+						</table>
+						</div>
+						<div style="width:282px; text-align:right;">
+						<input type="image" name="submit_btn" id="submit_btn" src="imgs/submit_lnk.gif" alt="Submit" border="0" style="height:20px;width:65px;" onclick="if(valid_c()){return true}else{return false;}"/>
+						<!--<img src="imgs/submit_lnk.gif" width="45" height="20" alt="Submit" title="Submit" />-->
+						</div> 
+					</div> 
+ 
+					</div>
+					</div>				</td>
+ 			</tr>
+			</table>
+ </form>
+		</div>
+	</div>
+	<div class="cb"></div>
+	
+	<div id="ftr_shell">
+		<div><img src="imgs/btm_cp.jpg" width="532" height="34" alt="" title="" /></div>
+		<div style="padding-top:5px;">&copy; 2008-2009 All Rights Reserved.</div>
+	<div class="cb"></div>
+</div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-2181418-7");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+</body>
+</html>

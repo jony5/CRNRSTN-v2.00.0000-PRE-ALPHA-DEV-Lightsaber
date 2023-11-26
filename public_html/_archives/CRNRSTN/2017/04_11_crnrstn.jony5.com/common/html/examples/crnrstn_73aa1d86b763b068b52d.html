@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd"><html><head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>CRNRSTN :: Code Example</title></head><body><p>At line number 159 of this complete configuration file, the constructor of the <a href="../../../documentation/classes/environmentals/" target="_self">environmentals</a> :: class object consumes one parameter...the previously instantiated and properly configured <a href="../../../documentation/classes/crnrstn/" target="_self">crnrstn</a> :: class object...and then processes all of the configuration information contained therein...selecting the appropriate settings for the present and running environment.<br />
+<br />
+Upon the successful instantiation of the <a href="../../../documentation/classes/environmentals/" target="_self">environmentals</a> :: class object, a streamlined and potentially encrypted packet of configuration data has been stored in memory for the C<span class="the_R">R</span>NRSTN Suite :: to access for the facilitation of the applications' operation within the running hosting environment.</p><div id="example_scrollto_0" class="example_scrollto" onClick="initScrollTo_lnk(this,'http://192.168.172.135/crnrstn/crnrstn/documentation/classes/environmentals/?ns=environmentals|cookie_manager');"><a href="#" target="_self">Link</a>.</div><div id="crnrstn_73aa1d86b763b068b52d_0" class="code_wrapper"><div id="lineNum_2086134375" class="l_num">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109<br>110<br>111<br>112<br>113<br>114<br>115<br>116<br>117<br>118<br>119<br>120<br>121<br>122<br>123<br>124<br>125<br>126<br>127<br>128<br>129<br>130<br>131<br>132<br>133<br>134<br>135<br>136<br>137<br>138<br>139<br>140<br>141<br>142<br>143<br>144<br>145<br>146<br>147<br>148<br>149<br>150<br>151<br>152<br>153<br>154<br>155<br>156<br><br><br><br><br></div><div class="code_shell"><code>
+<span class="code_str_qtd">&lt;?php</span><br><span CLASS="code_comment">
+/*</span><br><span CLASS="code_comment">
+// J5</span><br>
+<span CLASS="code_comment">// Code is Poetry */</span><br>
+<span id="6c399a691382212fff05_1608220360j00000101" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">session_start</span>();<br>
+<br>
+<span CLASS="code_comment"># THE CRNRSTN SUITE :: STACK OF CLASS DEFINITIONS [OPT = optional]</span><br>
+<span id="b7a73b3bf3e58d97abca_1803279777j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>(<span class="code_str_qtd">'./_crnrstn.root.inc.php'</span>);<br>
+<span id="b7a73b3bf3e58d97abca_1635278595j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'/_crnrstn/classes/crnrstn/crnrstn.inc.php'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// CRNRSTN</span><br>
+<span id="b7a73b3bf3e58d97abca_727185931j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'/_crnrstn/classes/logging/crnrstn.log.inc.php'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// LOGGING</span><br>
+<span id="b7a73b3bf3e58d97abca_414243174j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'/_crnrstn/classes/environmentals/crnrstn.env.inc.php'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// ENVIRONMENTALS</span><br>
+<span id="b7a73b3bf3e58d97abca_1269765747j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'/_crnrstn/classes/security/crnrstn.ipauthmgr.inc.php'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// SECURITY</span><br>
+<span id="b7a73b3bf3e58d97abca_406111080j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'/_crnrstn/classes/security/crnrstn.ciphermgr.inc.php'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// ENCRYPTION</span><br>
+<span id="b7a73b3bf3e58d97abca_884928660j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'/_crnrstn/classes/database/mysqli/crnrstn.mysqli.inc.php'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// DATABASE</span><br>
+<span id="b7a73b3bf3e58d97abca_1823247301j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'/_crnrstn/classes/soa/nusoap/nusoap.php'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// NUSOAP (3RD PARTY CLIENT/SERVER SOAP)</span><br>
+<span id="b7a73b3bf3e58d97abca_1517061003j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'/_crnrstn/classes/soa/nusoap/class.wsdlcache.php'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// NUSOAP (3RD PARTY CLIENT/SERVER SOAP)</span><br>
+<span id="b7a73b3bf3e58d97abca_437494298j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'/_crnrstn/classes/soa/crnrstn.soap.inc.php'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// SOAP MANAGEMENT</span><br>
+<span id="b7a73b3bf3e58d97abca_403310252j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'/_crnrstn/classes/session/crnrstn.session.inc.php'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// SESSION MANAGEMENT</span><br>
+<span id="b7a73b3bf3e58d97abca_503246234j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'/_crnrstn/classes/session/crnrstn.cookie.inc.php'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// COOKIE MANAGEMENT</span><br>
+<span id="b7a73b3bf3e58d97abca_2120377892j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'/_crnrstn/classes/session/crnrstn.http.inc.php'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// HTTP MANAGEMENT</span><br>
+<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// INSTANTIATE AN INSTANCE OF CRNRSTN BY PASSING SERVER SUPER GLOBAL AND UNIQUE CONFIG SERIAL</span><br>
+$oCRNRSTN = <span id="f109c58b6897e5839fe2_618711974j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> crnrstn(<span id="3b2edfd71817df77a304_j000001011465345663" class="code_html_doc_type_tag" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">$_SERVER</span>,<span class="code_str_qtd">'RrI5nh3'</span>);<br>
+<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// REQUIRED $_SERVER ENVIRONMENT DETECTION MATCHES</span><br>
+$oCRNRSTN-&gt;requiredDetectionMatches(3);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><br>
+<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// CONFIGURE CRNRSTN FOR THE FOLLOWING HOSTING ENVIRONMENTS</span><br>
+$oCRNRSTN-&gt;addEnvironment(<span class="code_str_qtd">'LOCALHOST_MY_OLD_MAC_TOWER'</span>, <span id="b340155e95c6efe29beb_1116292334j00000101" class="code_system_constants" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">E_ALL</span> &amp; ~<span id="5340722603173e83b56b_j000001011646798437" class="code_system_constants" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">E_NOTICE</span>);<br>
+$oCRNRSTN-&gt;addEnvironment(<span class="code_str_qtd">'PREPROD'</span>, <span id="b340155e95c6efe29beb_914901842j00000101" class="code_system_constants" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">E_ALL</span> &amp; ~<span id="5340722603173e83b56b_j000001011745748390" class="code_system_constants" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">E_NOTICE</span>);<br>
+$oCRNRSTN-&gt;addEnvironment(<span class="code_str_qtd">'000WEBHOSTJONY5'</span>, <span id="b340155e95c6efe29beb_1199569676j00000101" class="code_system_constants" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">E_ALL</span> &amp; ~<span id="5340722603173e83b56b_j00000101732391804" class="code_system_constants" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">E_NOTICE</span> &amp; ~<span id="677c6f7f346ee775bcd5_j000001011420474779" class="code_system_constants" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">E_STRICT</span>);<br>
+$oCRNRSTN-&gt;addEnvironment(<span class="code_str_qtd">'PROD_01'</span>, <span id="b340155e95c6efe29beb_2079759913j00000101" class="code_system_constants" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">E_ALL</span> &amp; ~<span id="be48e4758132952ab363_j000001011440825971" class="code_system_constants" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">E_DEPRECATED</span> &amp; ~<span id="677c6f7f346ee775bcd5_j000001012013180708" class="code_system_constants" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">E_STRICT</span>);<br>
+$oCRNRSTN-&gt;addEnvironment(<span class="code_str_qtd">'LOCALHOST_PC'</span>, <span id="b340155e95c6efe29beb_1097704323j00000101" class="code_system_constants" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">E_ALL</span> &amp; ~<span id="5340722603173e83b56b_j000001011354381844" class="code_system_constants" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">E_NOTICE</span> &amp; ~<span id="677c6f7f346ee775bcd5_j0000010136449750" class="code_system_constants" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">E_STRICT</span>);<br>
+<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// CONFIGURE LOGGING PROFILES FOR THE FOLLOWING HOSTING ENVIRONMENTS</span><br>
+$oCRNRSTN-&gt;initLogging(<span class="code_str_qtd">'PREPROD'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// SYSTEM DEFAULT ERROR LOGGING</span><br>
+$oCRNRSTN-&gt;initLogging(<span class="code_str_qtd">'LOCALHOST_MY_OLD_MAC_TOWER'</span>, <span class="code_str_qtd">'SCREEN'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// SEND OUTPUT TO SCREEN</span><br>
+$oCRNRSTN-&gt;initLogging(<span class="code_str_qtd">'000WEBHOSTJONY5'</span>, <span class="code_str_qtd">'EMAIL'</span>,<span class="code_str_qtd">'email1@domain.com,email2@domain.com'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// EMAIL LOG TRANSACTION TO LIST OF COMMA DELIMITED EMAIL ACCOUNTS</span><br>
+$oCRNRSTN-&gt;initLogging(<span class="code_str_qtd">'PROD_01'</span>, <span class="code_str_qtd">'FILE'</span>,<span class="code_str_qtd">'/var/log/customlogs/crnrstnlogs.txt'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// PATH TO FOLDER &amp; FILE WHERE LOG DATA WILL BE APPENDEED</span><br>
+$oCRNRSTN-&gt;initLogging(<span class="code_str_qtd">'LOCALHOST_PC'</span>, <span class="code_str_qtd">'DEFAULT'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// SYSTEM DEFAULT ERROR LOGGING</span><br>
+<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// INITIALIZE SESSION ENCRYPTION PROFILES [PREPROD &amp; LOCALHOST_PC ARE THE SAME]</span><br>
+<span CLASS="code_comment"># CIPHER AUTO-DETECT. USE STRENGTH OF 5.</span><br>
+$oCRNRSTN-&gt;initSessionEncryption(<span class="code_str_qtd">'LOCALHOST_MY_OLD_MAC_TOWER'</span>, <span class="code_str_qtd">'5'</span>);<br>
+<br>
+<span CLASS="code_comment"># SAME AS initSessionEncryption(LOCALHOST_PC, 1);</span><br>
+$oCRNRSTN-&gt;initSessionEncryption(<span class="code_str_qtd">'PREPROD'</span>);<br>
+<br>
+<span CLASS="code_comment"># USE cast-128. WILL IGNORE SPECIFIED MAX STRENGTH OF 8.</span><br>
+$oCRNRSTN-&gt;initSessionEncryption(<span class="code_str_qtd">'000WEBHOSTJONY5'</span>, <span class="code_str_qtd">'8'</span>, <span class="code_str_qtd">'cast-128'</span>);<br>
+<br>
+<span CLASS="code_comment"># NO SESSION ENCRYPTION</span><br>
+$oCRNRSTN-&gt;initSessionEncryption(<span class="code_str_qtd">'PROD_01'</span>, <span class="code_str_qtd">'0'</span>);<br>
+<br>
+<span CLASS="code_comment"># WILL USE cast-128 (OR NEXT CLOSEST CIPHER) WITH MINIMUM STRENGTH OF 1.</span><br>
+$oCRNRSTN-&gt;initSessionEncryption(<span class="code_str_qtd">'LOCALHOST_PC'</span>, 1);<br>
+<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// INITIALIZE COOKIE ENCRYPTION PROFILES [PREPROD &amp; LOCALHOST_PC ARE THE SAME]</span><br>
+<span CLASS="code_comment"># CIPHER AUTO-DETECT. USE STRENGTH OF 5.</span><br>
+$oCRNRSTN-&gt;initCookieEncryption(<span class="code_str_qtd">'LOCALHOST_MY_OLD_MAC_TOWER'</span>, <span class="code_str_qtd">'5'</span>);<br>
+<br>
+<span CLASS="code_comment"># SAME AS initSessionEncryption(LOCALHOST_PC, 1);</span><br>
+$oCRNRSTN-&gt;initCookieEncryption(<span class="code_str_qtd">'PREPROD'</span>);<br>
+<br>
+<span CLASS="code_comment"># USE cast-128. WILL IGNORE SPECIFIED MAX STRENGTH OF 8.</span><br>
+$oCRNRSTN-&gt;initCookieEncryption(<span class="code_str_qtd">'000WEBHOSTJONY5'</span>, <span class="code_str_qtd">'8'</span>, <span class="code_str_qtd">'cast-128'</span>);<br>
+<br>
+<span CLASS="code_comment"># NO SESSION ENCRYPTION</span><br>
+$oCRNRSTN-&gt;initCookieEncryption(<span class="code_str_qtd">'PROD_01'</span>, <span class="code_str_qtd">'0'</span>);<br>
+<br>
+<span CLASS="code_comment"># WILL USE cast-128 (OR NEXT CLOSEST CIPHER) WITH MINIMUM STRENGTH OF 1.</span><br>
+$oCRNRSTN-&gt;initCookieEncryption(<span class="code_str_qtd">'LOCALHOST_PC'</span>, 1);<br>
+<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// INITIALIZATION OF SECURITY PROTOCOLS FOR RESOURCE ACCESS</span><br>
+<span CLASS="code_comment"># IP ADDRESSES FOR DEMO ONLY...OF COURSE</span><br>
+$oCRNRSTN-&gt;grantExclusiveAccess(<span class="code_str_qtd">'LOCALHOST_PC'</span>, <span class="code_str_qtd">'C://path//to//config//file//_crnrstn.ipauthmgr.config.inc.php'</span>);<br>
+$oCRNRSTN-&gt;grantExclusiveAccess(<span class="code_str_qtd">'LOCALHOST_MY_OLD_MAC_TOWER'</span>, <span class="code_str_qtd">'127.0.0.1'</span>);<br>
+$oCRNRSTN-&gt;grantExclusiveAccess(<span class="code_str_qtd">'PROD_01'</span>, <span class="code_str_qtd">'211.167.0.1, 128.*, 129.0.*, FE80::230:80FF:FEF3:4701'</span>);<br>
+$oCRNRSTN-&gt;grantExclusiveAccess(<span class="code_str_qtd">'PREPROD'</span>, <span class="code_str_qtd">'127.*'</span>);<br>
+$oCRNRSTN-&gt;grantExclusiveAccess(<span class="code_str_qtd">'000WEBHOSTJONY5'</span>, <span class="code_str_qtd">'212.0.0.1, 187.*, 128.0.4.50, 128.0.4.60, 130.51.10.*'</span>);<br>
+<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// INITIALIZATION OF SECURITY PROTOCOLS FOR RESOURCE ACCESS</span><br>
+<span CLASS="code_comment"># IP ADDRESSES FOR DEMO ONLY...OF COURSE</span><br>
+$oCRNRSTN-&gt;denyAccess(<span class="code_str_qtd">'LOCALHOST_PC'</span>, <span class="code_str_qtd">'C://path//to//confg//file//_crnrstn.ipauthmgr.config.inc.php'</span>);<br>
+$oCRNRSTN-&gt;denyAccess(<span class="code_str_qtd">'LOCALHOST_MY_OLD_MAC_TOWER'</span>,<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'127.0.0.1'</span>);<br>
+$oCRNRSTN-&gt;denyAccess(<span class="code_str_qtd">'PROD_01'</span>, <span class="code_str_qtd">'211.167.0.1, 128.*, 129.0.*, FE80::230:80FF:FEF3:4701'</span>);<br>
+$oCRNRSTN-&gt;denyAccess(<span class="code_str_qtd">'PREPROD'</span>, <span class="code_str_qtd">'127.*'</span>);<br>
+$oCRNRSTN-&gt;denyAccess(<span class="code_str_qtd">'000WEBHOSTJONY5'</span>, <span class="code_str_qtd">'212.0.0.1, 187.*, 128.0.4.50, 128.0.4.60, 130.51.10.*'</span>);<br>
+<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// INITIALIZE DATABASE FUNCTIONALITY FOR EACH ENVIRONMENT</span><br>
+<span CLASS="code_comment">// **UNLESS PATH TO CONFIG FILE IS PROVIDED, HOST, UN, PWD &amp; DB ARE REQUIRED**</span><br>
+<span CLASS="code_comment"># PROTIP :: </span><br>
+<span CLASS="code_comment"># Instead of relying on hard-coded configuration file based db connections to manage</span><br>
+<span CLASS="code_comment"># connections to n+1 databases, db connections can also be established progammatically </span><br>
+<span CLASS="code_comment"># by passing all parameters through the mysqli_connection_manager :: returnConnection() method.</span><br>
+$oCRNRSTN-&gt;addDatabase(<span class="code_str_qtd">'LOCALHOST_PC'</span>,<span class="code_str_qtd">'C://path//to//config//file//_crnrstn.db.config.inc.php'</span>);<br>
+$oCRNRSTN-&gt;addDatabase(<span class="code_str_qtd">'LOCALHOST_MY_OLD_MAC_TOWER'</span>,<span class="code_str_qtd">'localhost'</span>,<span class="code_str_qtd">'user_c_assets'</span>,<span class="code_str_qtd">'xxpasswordxx'</span>,<span class="code_str_qtd">'db_c_assets'</span>,80);<br>
+$oCRNRSTN-&gt;addDatabase(<span class="code_str_qtd">'PREPROD'</span>,<span class="code_str_qtd">'preprod1.domain.com'</span>,<span class="code_str_qtd">'user_c_posts'</span>,<span class="code_str_qtd">'xxpasswordxx'</span>,<span class="code_str_qtd">'db_c_posts'</span>,80);<br>
+$oCRNRSTN-&gt;addDatabase(<span class="code_str_qtd">'000WEBHOSTJONY5'</span>,<span class="code_str_qtd">'preprod2.domain.com'</span>,<span class="code_str_qtd">'user_c_demo'</span>,<span class="code_str_qtd">'xxpasswordxx'</span>,<span class="code_str_qtd">'db_c_demo'</span>,80);<br>
+$oCRNRSTN-&gt;addDatabase(<span class="code_str_qtd">'PROD_01'</span>,<span class="code_str_qtd">'prod1.domain.com'</span>,<span class="code_str_qtd">'user_c_users'</span>,<span class="code_str_qtd">'xxpasswordxx'</span>,<span class="code_str_qtd">'db_c_users'</span>,3306);<br>
+<br>
+$oENV = <span id="f109c58b6897e5839fe2_85849772j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> crnrstn_environmentals($oCRNRSTN,<span class="code_str_qtd">'simple_configcheck'</span>);<br>
+<span id="e43e09b42c84b845c5a9_728674429j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span>(!$oENV-&gt;isConfigured($oCRNRSTN)){<br>
+<span CLASS="tab">&nbsp;</span><span id="fa4f03d67bd4dc9baa81_1515867608j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">unset</span>($oENV);<br>
+<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// RESOURCE CONFIG FOR ENVIRONMENT :: LOCALHOST_PC</span><br>
+<span CLASS="tab">&nbsp;</span>$oCRNRSTN-&gt;defineEnvResource(<span class="code_str_qtd">'LOCALHOST_PC'</span>,<span class="code_str_qtd">'DOMAIN'</span>,<span class="code_str_qtd">'localhost_pc_domain.com'</span>);<br>
+<span CLASS="tab">&nbsp;</span>$oCRNRSTN-&gt;defineEnvResource(<span class="code_str_qtd">'LOCALHOST_PC'</span>,<span class="code_str_qtd">'SERVER_PROTOCOL'</span>,<span class="code_str_qtd">'HTTP/1.1'</span>);<br>
+<span CLASS="tab">&nbsp;</span>$oCRNRSTN-&gt;defineEnvResource(<span class="code_str_qtd">'LOCALHOST_PC'</span>,<span class="code_str_qtd">'SSL_ENABLED'</span>,false);<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">#...etc</span><br>
+<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// RESOURCE CONFIG FOR NEXT ENVIRONMENT :: LOCALHOST_MY_OLD_MAC_TOWER</span><br>
+<span CLASS="tab">&nbsp;</span>$oCRNRSTN-&gt;defineEnvResource(<span class="code_str_qtd">'LOCALHOST_MY_OLD_MAC_TOWER'</span>,<span class="code_str_qtd">'DOMAIN'</span>,<span class="code_str_qtd">'localhost_mac_domain.com'</span>);<br>
+<span CLASS="tab">&nbsp;</span>$oCRNRSTN-&gt;defineEnvResource(<span class="code_str_qtd">'LOCALHOST_MY_OLD_MAC_TOWER'</span>,<span class="code_str_qtd">'SERVER_PROTOCOL'</span>,<span class="code_str_qtd">'HTTP/1.1'</span>);<br>
+<span CLASS="tab">&nbsp;</span>$oCRNRSTN-&gt;defineEnvResource(<span class="code_str_qtd">'LOCALHOST_MY_OLD_MAC_TOWER'</span>,<span class="code_str_qtd">'SSL_ENABLED'</span>,false);<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">#...etc</span><br>
+<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// RESOURCE CONFIG FOR NEXT ENVIRONMENT :: PREPROD</span><br>
+<span CLASS="tab">&nbsp;</span>$oCRNRSTN-&gt;defineEnvResource(<span class="code_str_qtd">'PREPROD'</span>,<span class="code_str_qtd">'DOMAIN'</span>,<span class="code_str_qtd">'preprod_domain.com'</span>);<br>
+<span CLASS="tab">&nbsp;</span>$oCRNRSTN-&gt;defineEnvResource(<span class="code_str_qtd">'PREPROD'</span>,<span class="code_str_qtd">'SERVER_PROTOCOL'</span>,<span class="code_str_qtd">'HTTP/1.1'</span>);<br>
+<span CLASS="tab">&nbsp;</span>$oCRNRSTN-&gt;defineEnvResource(<span class="code_str_qtd">'PREPROD'</span>,<span class="code_str_qtd">'SSL_ENABLED'</span>,false);<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">#...etc</span><br>
+<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// RESOURCE CONFIG FOR NEXT ENVIRONMENT :: 000WEBHOSTJONY5</span><br>
+<span CLASS="tab">&nbsp;</span>$oCRNRSTN-&gt;defineEnvResource(<span class="code_str_qtd">'000WEBHOSTJONY5'</span>,<span class="code_str_qtd">'DOMAIN'</span>,<span class="code_str_qtd">'webhost_domain.com'</span>);<br>
+<span CLASS="tab">&nbsp;</span>$oCRNRSTN-&gt;defineEnvResource(<span class="code_str_qtd">'000WEBHOSTJONY5'</span>,<span class="code_str_qtd">'SERVER_PROTOCOL'</span>,<span class="code_str_qtd">'HTTP/1.1'</span>);<br>
+<span CLASS="tab">&nbsp;</span>$oCRNRSTN-&gt;defineEnvResource(<span class="code_str_qtd">'000WEBHOSTJONY5'</span>,<span class="code_str_qtd">'SSL_ENABLED'</span>,false);<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">#...etc</span><br>
+<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// RESOURCE CONFIG FOR NEXT ENVIRONMENT :: PROD_01</span><br>
+<span CLASS="tab">&nbsp;</span>$oCRNRSTN-&gt;defineEnvResource(<span class="code_str_qtd">'PROD_01'</span>,<span class="code_str_qtd">'DOMAIN'</span>,<span class="code_str_qtd">'prod_domain.com'</span>);<br>
+<span CLASS="tab">&nbsp;</span>$oCRNRSTN-&gt;defineEnvResource(<span class="code_str_qtd">'PROD_01'</span>,<span class="code_str_qtd">'SERVER_PROTOCOL'</span>,<span class="code_str_qtd">'HTTP/1.1'</span>);<br>
+<span CLASS="tab">&nbsp;</span>$oCRNRSTN-&gt;defineEnvResource(<span class="code_str_qtd">'PROD_01'</span>,<span class="code_str_qtd">'SSL_ENABLED'</span>,false);<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">#...etc</span><br>
+<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// COMMON RESOURCES FOR ALL ENVIRONMENTS INDICATED BY (*)</span><br>
+<span CLASS="tab">&nbsp;</span>$oCRNRSTN-&gt;defineEnvResource(<span class="code_str_qtd">'*'</span>,<span class="code_str_qtd">'FREEDOWNLOADLINK'</span>,<span class="code_str_qtd">'http://bit.ly/1d5OxXQ'</span>);<br>
+<span CLASS="tab">&nbsp;</span>$oCRNRSTN-&gt;defineEnvResource(<span class="code_str_qtd">'*'</span>,<span class="code_str_qtd">'ANALYTICS_TRK_ID'</span>,<span class="code_str_qtd">'123456-6543-J5'</span>);<br>
+<span CLASS="tab">&nbsp;</span>$oCRNRSTN-&gt;defineEnvResource(<span class="code_str_qtd">'*'</span>,<span class="code_str_qtd">'NUSOAP_USECURL'</span>,<span class="code_str_qtd">'0'</span>);<br>
+</code></div></div><blockquote>The C<span class="the_R">R</span>NRSTN Suite :: environmentals class object can now be instantiated. The successful creation of this class object marks the completion of the C<span class="the_R">R</span>NRSTN Suite :: configuration.</blockquote><div id="example_scrollto_1" class="example_scrollto" onClick="initScrollTo_lnk(this,'http://192.168.172.135/crnrstn/crnrstn/documentation/classes/environmentals/?ns=environmentals|cookie_manager');"><a href="#" target="_self">Link</a>.</div><div id="crnrstn_73aa1d86b763b068b52d_1" class="code_wrapper"><div id="lineNum_1889129549" class="l_num">157<br>158<br>159<br>160<br>161<br>162<br>163<br>164<br>165<br>166<br><br><br><br><br></div><div class="code_shell"><code>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// INSTANTIATE ENVIRONMENTAL CLASS OBJECT</span><br>
+<span CLASS="tab">&nbsp;</span>$oENV = <span id="f109c58b6897e5839fe2_216469377j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> crnrstn_environmentals($oCRNRSTN);<br>
+<span CLASS="tab">&nbsp;</span><span id="fa4f03d67bd4dc9baa81_95569891j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">unset</span>($oCRNRSTN);<br>
+}<span id="e065810be95e4c37e63c_155889076j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">else</span>{<br>
+<span CLASS="tab">&nbsp;</span><span id="fa4f03d67bd4dc9baa81_1486235124j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">unset</span>($oCRNRSTN);<br>
+}<br>
+<span class="code_str_qtd">?&gt;</span><br>
+</code></div></div><div class="example_title_wrapper"><code style="color:#FF0000;">Figure 11.</code></div><div class="cb_15"></div><div class="comment_tt_wrapper"><span id="6c399a691382212fff05_0184373001462255910j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">session_start</span> <span class="code_tt_space">&nbsp;</span><span id="b7a73b3bf3e58d97abca_0213751001462255910j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span> <span class="code_tt_space">&nbsp;</span><span id="f109c58b6897e5839fe2_0839864001462255910j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> <span class="code_tt_space">&nbsp;</span><span id="3b2edfd71817df77a304_j000001010844013001462255910" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">$_SERVER</span> <span class="code_tt_space">&nbsp;</span><span id="b340155e95c6efe29beb_0953521001462255910j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">E_ALL</span> <span class="code_tt_space">&nbsp;</span><span id="5340722603173e83b56b_j000001010957739001462255910" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">E_NOTICE</span> <span class="code_tt_space">&nbsp;</span><span id="677c6f7f346ee775bcd5_j000001010982591001462255910" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">E_STRICT</span> <span class="code_tt_space">&nbsp;</span><span id="be48e4758132952ab363_j000001010992721001462255910" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">E_DEPRECATED</span> <span class="code_tt_space">&nbsp;</span><span id="e43e09b42c84b845c5a9_0027647001462255912j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span> <span class="code_tt_space">&nbsp;</span><span id="fa4f03d67bd4dc9baa81_0042246001462255912j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">unset</span> <span class="code_tt_space">&nbsp;</span><span id="e065810be95e4c37e63c_0738320001462255912j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">else</span> <span class="code_tt_space">&nbsp;</span></div><div class="cb_15"></div></body></html>

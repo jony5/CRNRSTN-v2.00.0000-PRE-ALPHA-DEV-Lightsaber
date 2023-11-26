@@ -1,0 +1,122 @@
+@charset "UTF-8";
+/* 
+//
+// Code is Poetry */
+
+*									{ font-family:Helvetica, Arial, sans-serif; border:0px; margin:0px; padding:0px;}
+body								{ border-top:2px solid #000;}
+ul									{ list-style:none;}
+blockquote							{ font-size:11px; font-style:italic; margin:10px;}
+
+#header_wrapper						{ text-align:center; margin:0px auto; width:900px;}
+#page_wrapper						{ width:900px; padding-left:25px; padding-right:25px; text-align:center; margin:0px auto; }
+
+#interstitial_wrapper				{ text-align:center; margin:0px auto; width:350px; position:relative;}
+#interstitial_logo					{ font-size:40px; font-weight:bold; text-align:left; margin-left:25px;}
+#interstitial_lnk_main_wrapper		{ text-align:center; width:340px; margin:0px auto; margin-right:0px;}
+
+
+#j5_logo							{ float:left; font-size:26px; margin-top:10px; margin-left:35px;}
+#logo_footer						{ float:left; font-size:26px; margin:10px; color:#FFF}
+
+
+#header_wrapper #lnk_main_wrapper	{ float:right;}
+#lnk_main_wrapper					{ text-align:center; width:350px; margin:0px auto; margin-right:0px;}  /* 350px*/
+.lnk_main_nav	a					{ font-size:15px; font-weight:bold; float:left; padding-right:15px; padding-left:15px; text-decoration:none; color:#000;}
+.lnk_main_nav	a:hover				{ color:#999;}
+
+#header_hr							{ width:100%; border-bottom:1px dashed #000; margin-top:5px; margin-bottom:5px;}
+#footer_upper_hr					{ width:100%; border-top:7px solid #000; margin:0px auto; text-align:center;  margin-top:5px;}
+#footer_wrapper						{ font-family:Helvetica, Arial, sans-serif; font-size:13px; text-align:center; width:900px; margin:0px auto;}
+#footer-copyright					{ font-family:Helvetica, Arial, sans-serif; font-size:13px; text-align:left; margin-top:15px; margin-bottom:15px;}
+#footer_lower						{ font-family:Helvetica, Arial, sans-serif; font-size:13px; text-align:left; color:#FFF; background-color:#000;}
+.footer_lower_lnk_main_wrapper		{ padding-left:50px;}
+.footer_lower_lnk_main a			{ font-weight:bold; text-decoration:none; color:#FFF; font-size:13px; float:left;}
+.footer_lower_lnk_main a:hover		{ font-weight:bold; text-decoration:none; color:#999; font-size:13px; float:left;}
+
+.footer_lower_lnk_sub a				{ text-decoration:none; color:#FFF; font-size:13px; float:left; margin-left:20px;}
+.footer_lower_lnk_sub a:hover		{ text-decoration:none; color:#999; font-size:13px; float:left; margin-left:20px;}
+#footer_hr							{ width:100%; border-bottom:1px dashed #FFF; margin-top:5px; margin-bottom:5px;}
+
+
+#main_content_wrapper				{ font-family:Helvetica, Arial, sans-serif; font-size:13px; text-align:center; width:850px; margin:0px auto;}
+#main_content_title					{ float:right; font-size:20px; font-weight:bold; margin-right:15px;}
+
+#primary_tab_wrapper				{ background-color:#FFF; width:100%; height:45px; overflow:hidden; }
+.primary_tab_lnk_sub_inactive		{ height:35px; background-color:#FFF; float:left; }
+.primary_tab_lnk_sub_inactive a		{ text-decoration:none; color:#000; font-size:13px; float:left; padding-left:20px; padding-right:20px; font-weight:bold; padding-top:10px;}
+.primary_tab_lnk_sub_inactive a:hover		{ text-decoration:none; color:#CCC; font-size:13px; float:left; padding-left:20px; padding-right:20px; font-weight:bold; padding-top:10px;}
+
+.primary_tab_lnk_sub_active			{ height:35px; float:left; background-color:#9C9C9C;}
+.primary_tab_lnk_sub_active a		{ text-decoration:none; color:#000; font-size:13px; float:left; padding-left:20px; padding-right:20px; font-weight:bold; padding-top:10px;}
+
+#primary_content					{ font-family:Helvetica, Arial, sans-serif; font-size:13px; text-align:center; width:850px; margin:0px auto; background-color:#9C9C9C; position:reative;}
+
+.tab_area_wrapper					{ }
+.tab_pane_wrapper					{ background-color:#FFF; padding:5px; display:block; border:5px solid #9C9C9C;}
+.tab_pane_wrapper_hidden			{ display:none; }
+
+.col_wrapper						{ position:reative; }
+.tab_pane_l_col_wrapper				{ float:left; width:400px; text-align:left;margin-left:10px;}
+.tab_pane_r_col_wrapper				{ float:left; width:400px; text-align:left;margin-left:10px;}
+
+.mini_col							{ float:left; margin:20px; width:240px; height:180px;}
+
+.copy								{ font-size:12px; text-align:left; margin-top:2px;  line-height:18px;}
+.copy a								{ text-decoration:none; color:#F33; text-decoration:underline; }
+.copy_sub_title						{ font-size:14px; font-weight:bold; margin-top:25px;}
+.copy_job_title						{ font-size:12px; font-weight:bold; margin-top:10px;}
+.copy_citydate_title				{ font-size:12px; margin-top:2px; font-style:italic; font-weight:normal;}
+.copy li							{ list-style:square; margin-left:10px;}
+.copy ul							{ margin-top:15px;}
+.copy_section_title					{ font-weight:bold; font-size:13px; padding-top:10px;}
+
+
+.contact_input_title				{ font-weight:bold; font-size:13px; color:#000; margin-bottom:5px; text-align:left;}
+.contact_input_text_wrapper			{ background-color:#9C9C9C; height:28px; width:225px;}
+.contact_input_text_wrapper	input	{ background:none; width:95%; height:20px; margin-top:5px; color:#FFF; font-size:12px; font-weight:bold; padding-left:5px;}
+.contact_input_text_wrapper	textarea							{ background-color:#9C9C9C; width:95%; height:20px; margin-top:5px; color:#FFF; font-size:12px; font-weight:bold;}
+.contact_err_msg					{ display:none; color:#F33;}
+
+.contact_btn_wrapper				{ background-color:#000; height:40px; float:left; cursor:pointer;}
+.contact_btn_text					{ color:#FFF; font-size:13px; font-weight:bold; text-align:center; margin:0px auto; padding:14px 20px 0px 20px;}
+
+.input_text_wrapper_err				{ background-color:#F33; color:#FFF;}
+.contact_form_ip					{ font-size:12px; color:#F33; float:right; text-align:right; width:100%; margin:0px 20px 10px 0px; }
+
+#confirmation_message				{ color:#009900; margin-left:20px;}
+.confirmation_message				{ color:#009900; margin-left:20px;}
+
+.mailing_input_title				{ font-weight:bold; font-size:13px; color:#000; margin-bottom:5px; text-align:left;}
+.mailing_input_text_wrapper			{ background-color:#9C9C9C; height:28px; width:225px;}
+.mailing_input_text_wrapper	input	{ background:none; width:95%; height:20px; margin-top:5px; color:#FFF; font-size:12px; font-weight:bold; padding-left:5px;}
+.mailing_input_text_wrapper select	{ background-color:#9C9C9C; width:95%; height:20px; margin-top:5px; color:#FFF; font-size:12px; font-weight:bold;}
+select option						{ padding-left:10px;}
+.mailing_input_text_wrapper textarea							{ background-color:#9C9C9C; width:95%; height:20px; margin-top:5px; color:#FFF; font-size:12px; font-weight:bold;}
+
+.mailing_err_msg					{ display:none; color:#F33;}
+
+.mailing_btn_wrapper				{ background-color:#000; height:40px; float:left; cursor:pointer;}
+.mailing_btn_text					{ color:#FFF; font-size:13px; font-weight:bold; text-align:center; margin:0px auto; padding:14px 20px 0px 20px;}
+
+.mailing_option_chk_wrapper			{}
+.mailing_option_chk					{ float:left;}
+.mailing_option_chk_text			{ font-size:10px; float:left; padding-left:5px;}
+
+.mailing_option_radio_wrapper		{}
+.mailing_option_radio				{ float:left;}
+.mailing_option_radio_text			{ font-size:10px; float:left; padding-left:5px;}
+
+.mailing_form_ip					{ font-size:12px; color:#F33; float:right; text-align:right; width:100%; margin:0px 20px 10px 0px; }
+
+.cb 								{ display:block; clear:both; line-height:0px; overflow:hidden; border:0px; padding:0px; margin:0px; height:0px; background-color:#FFF;}
+.cb_5	 							{ display:block; clear:both; line-height:1px; height:5px; overflow:hidden; border:0px; padding:0px; margin:0px; }
+.cb_10	 							{ display:block; clear:both; line-height:1px; height:10px; overflow:hidden; border:0px; padding:0px; margin:0px; }
+.cb_15	 							{ display:block; clear:both; line-height:1px; height:15px; overflow:hidden; border:0px; padding:0px; margin:0px; }
+.cb_20	 							{ display:block; clear:both; line-height:1px; height:20px; overflow:hidden; border:0px; padding:0px; margin:0px; }
+.cb_30	 							{ display:block; clear:both; line-height:1px; height:30px; overflow:hidden; border:0px; padding:0px; margin:0px; }
+.cb_35	 							{ display:block; clear:both; line-height:1px; height:35px; overflow:hidden; border:0px; padding:0px; margin:0px; }
+.cb_40	 							{ display:block; clear:both; line-height:1px; height:40px; overflow:hidden; border:0px; padding:0px; margin:0px; }
+.cb_100								{ display:block; clear:both; line-height:1px; height:100px; overflow:hidden; border:0px; padding:0px; margin:0px; }
+.cb_300								{ display:block; clear:both; line-height:1px; height:300px; overflow:hidden; border:0px; padding:0px; margin:0px; }
+.hidden								{ width:0px; height:0px; position:absolute; left:-2000px; overflow:hidden;}

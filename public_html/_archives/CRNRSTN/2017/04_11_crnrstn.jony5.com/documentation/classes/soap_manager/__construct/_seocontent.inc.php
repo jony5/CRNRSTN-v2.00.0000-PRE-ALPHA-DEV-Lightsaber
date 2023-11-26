@@ -1,0 +1,7 @@
+<div class="hidden"><h1>__construct()</h1>
+		<p>Inspired by the NuSOAP WDSLCLIENT4.PHP sample file, the <a href="../../../classes/soap_manager/" target="_self">soap_manager</a> :: class of the C<span class="the_R">R</span>NRSTN Suite :: sits directly on top of the NuSOAP (0.9.5) PHP Toolkit for web services (SOAP server/client) support and development. When the <a href="../../../classes/soap_manager/" target="_self">soap_manager</a> class is instantiated, an instance of a NuSOAP web services client (within the constructor of the soap_manager) will be created as well. This can be customized for different SOAP client (or connection) types as needed.</p>
+		<p>Version: </p>
+		<p>Method Definition: __construct($oENV)</p>
+		<p>Invoking class: soap_manager</p><h2>Technical Specifications:<h2><p>INSPIRATION :: WSDLCLIENT4.PHP,v 1.6 2005/05/12 21:42:06 SNICHOL EEP<br />
+WSDL CLIENT SAMPLE, BASED ON SOAP BUILDERS ROUND 2 INTEROP<br />
+SERVICE :: WSDL || PAYLOAD :: RPC/ENCODED || TRANSPORT :: HTTP || AUTHENTICATION :: NONE</p><p>Currently tested on an ubuntu 4.2 server running PHP Version 5.2.6 and Apache 2.2.11</p><p>It is recommended that you upgrade to the latest version of PHP to take advantage of the latest gains in security and processing efficiency.</p><h2>Parameters:</h2><h3>$oENV</h3><p>The C<span class="the_R">R</span>NRSTN Suite :: environmentals :: class object.</p><p>Last upated: 2017-04-11 02:27:21</p></div>

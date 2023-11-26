@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd"><html><head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>CRNRSTN :: Code Example</title></head><body><p>The following excerpts from a user authentication use case provide an excellent window into the practical application of the C<span class="the_R">R</span>NRSTN <a href="../../../classes/session_manager/" target="_self">session_manager</a> :: class.</p><blockquote>On line 5 of the user authentication excerpt below, through the invocation of <a href="../../../classes/session_manager/setsessionparam/" target="_self">setSessionParam()</a> a parameter is set within the PHP SESSION for use as a data gather form initialization value should the attempted user authentication end in failure. </blockquote><div id="example_scrollto_0" class="example_scrollto" onClick="initScrollTo_lnk(this,'http://192.168.172.132/crnrstn/documentation/classes/session_manager/setsessionparam/?ns=session_manager');"><a href="#" target="_self">Link</a>.</div><div id="crnrstn_54b3ac7cf9b5757e6416_0" class="code_wrapper"><div id="lineNum_1679876076" class="l_num">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br><br><br><br><br></div><div class="code_shell"><code>
+<span class="code_str_qtd">&lt;?php</span><br>
+<span CLASS="code_comment">#...etc.</span><br>
+<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// STORE USERNAME IN SESSION FOR FORM PREPOPULATION AFTER BAD LOGIN ATTEMPT</span><br>
+<span CLASS="tab">&nbsp;</span>self::$oUserEnvironment-&gt;oSESSION_MGR-&gt;setSessionParam(<span class="code_str_qtd">'FORM_UN'</span>, self::$frm_input_username);<br>
+<br>
+<span CLASS="code_comment">#...etc.</span><br>
+<span class="code_str_qtd">?&gt;</span><br>
+</code></div></div><blockquote>The foreach loop in this additional excerpt iterates through the <a href="../../../classes/soap_manager/" target="_self">web services response</a> to a successful user authentication attempt and stores all of the returned values in the users' PHP SESSION with a prefix to each SESSION parameter name of 'LOGIN_'  via <a href="../../../classes/session_manager/setsessionparam/" target="_self">setSessionParam()</a> (line 22).<br />
+</blockquote><div id="example_scrollto_1" class="example_scrollto" onClick="initScrollTo_lnk(this,'http://192.168.172.132/crnrstn/documentation/classes/session_manager/setsessionparam/?ns=session_manager');"><a href="#" target="_self">Link</a>.</div><div id="crnrstn_54b3ac7cf9b5757e6416_1" class="code_wrapper"><div id="lineNum_133494740" class="l_num">11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br><br><br><br><br></div><div class="code_shell"><code>
+<span class="code_str_qtd">&lt;?php</span><br>
+<span CLASS="code_comment">#...etc.</span><br>
+<span CLASS="tab">&nbsp;</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// WE HAVE VALID USER. INITIALIZE USER SESSION WITH EACH SOAP RESPONSE PARAMATER</span><br>
+<span CLASS="tab">&nbsp;</span><span id="9c79be84cf595ca0ad6a_831455199j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">foreach</span>($this-&gt;svc_resp_ARRAY as $key=&gt;$val){<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// THE SESSION_MANAGER :: CLASS OBJECT BELONGING TO THE CRNRSTN  </span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// ENVIRONMENTAL :: CLASS OBJECT (VIA USER :: CONSTRUCTOR) IS INVOKED</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// FOR SESSION INITIALIZATION</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>self::$oUserEnvironment-&gt;oSESSION_MGR-&gt;setSessionParam(<span class="code_str_qtd">'LOGIN_'</span>.$key, $val);<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// STORE ACTIVITYKEY RETURNED BY WEB SERVICE TO ENCRYPTED SESSION PERSIST </span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// COOKIE (100 DAY EXPIRE) VIA CRNRSTN COOKIE_MANAGER :: CLASS OF THE </span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// ENVIRONMENTAL :: CLASS OBJECT </span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span id="e43e09b42c84b845c5a9_2106206449j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span>($key==<span class="code_str_qtd">'SESSION_PERSIST'</span> &amp;&amp; $val==<span class="code_str_qtd">'1'</span>){<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>self::$oUserEnvironment-&gt;oCOOKIE_MGR-&gt;addEncryptedCookie(<span class="code_str_qtd">"loginPersist"</span>, self::$oUserEnvironment-&gt;oSESSION_MGR-&gt;getSessionParam('LOGIN_ACTIVITYKEY'), <span id="0e7d9dc9993d0bba7c74_1159895780j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">time</span>()+60*60*24*100, '/');<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>}<br>
+<span CLASS="tab">&nbsp;</span>}<br>
+<br>
+<span CLASS="code_comment">#...etc.</span><br>
+<span class="code_str_qtd">?&gt;</span><br>
+</code></div></div><blockquote>For the complete code sample of the user authentication process, see the example under the C<span class="the_R">R</span>NRSTN <a href="../../../classes/http_manager/?scrl=1188&brwsr=webkit" target="_self">http_manager</a> :: class object <a href="../../../classes/http_manager/?scrl=1188&brwsr=webkit" target="_self">here</a>. The user :: class definition can be found <a href="../../../classes/http_manager/?scrl=2336&brwsr=webkit" target="_self">here</a>.</blockquote><div class="example_title_wrapper"><code style="color:#FF0000;">Figure 41.</code></div><div class="cb_15"></div><div class="comment_tt_wrapper"><span id="9c79be84cf595ca0ad6a_0939212001459924116j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">foreach</span> <span class="code_tt_space">&nbsp;</span><span id="e43e09b42c84b845c5a9_0924177001459924117j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span> <span class="code_tt_space">&nbsp;</span><span id="0e7d9dc9993d0bba7c74_0034557001459924118j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">time</span> <span class="code_tt_space">&nbsp;</span></div><div class="cb_15"></div></body></html>

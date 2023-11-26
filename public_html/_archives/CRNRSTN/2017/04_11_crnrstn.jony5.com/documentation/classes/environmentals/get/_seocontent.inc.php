@@ -1,0 +1,5 @@
+<div class="hidden"><h1>get()</h1>
+		<p>Access to all $resourceValues specified for the running environment through the crnrstn :: <a href="../../../classes/crnrstn/defineenvresource/" target="_self">defineEnvResource()</a> method is provided through the <a href="../../../documentation/classes/environmentals/get/" target="_self">get()</a> method.<br /></p>
+		<p>Version: </p>
+		<p>Method Definition: get($resourceKey)</p>
+		<p>Invoking class: environmentals</p><h2>Technical Specifications:<h2><p>Currently tested on an ubuntu 4.2 server running PHP Version 5.2.6 and Apache 2.2.11</p><p>It is recommended that you upgrade to the latest version of PHP to take advantage of the latest gains in security and processing efficiency.</p><h2>Parameters:</h2><h3>$resourceKey</h3><p>A user-defined key representing information that the application will be accessing. E.g. "ROOT_PATH_CLIENT_HTTP","SSL_ENABLED", "DOCUMENT_ROOT" or "FREEDOWNLOADLINK".</p><p>Last upated: 2017-04-11 02:27:21</p></div>

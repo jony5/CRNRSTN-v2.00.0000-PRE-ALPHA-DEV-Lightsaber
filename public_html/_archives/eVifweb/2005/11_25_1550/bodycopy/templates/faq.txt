@@ -1,0 +1,128 @@
+
+<h1>Frequently Asked Questions</h1>
+
+<p style="border-top:1px solid gray; border-bottom:1px solid gray; padding-bottom:2px; font-size:11px; line-height:18px;">
+	<a href="#01">What is the CommercialNet&trade; DVT Production Suite?</a><br />
+	<a href="#02">Who creates my DVTs?</a><br />
+	<a href="#03">How long does it take to create a DVT?</a><br />
+	<a href="#04">Do I need to have a Web site to use the DVT Production Suite?</a><br />
+	<a href="#05">How long can my DVT be?</a><br />
+	<a href="#06">If DVTs don't use video, then why are the images moving as though they were video-taped?</a><br />
+	<a href="#07">What is the advantage of using the DVT Production Suite over software-based products?</a><br />
+	<a href="#08">Does a film crew need to be on-site to film property or products for a DVT?</a><br />
+	<a href="#09">Can the DVT Production Suite be used by service-based and professional businesses?</a><br />
+	<a href="#10">When will the newest release of the DVT Production Suite be available?</a><br />
+	<a href="#11">How will prospective consumers access DVTs?</a><br />
+	<a href="#12">Where will finished videos be hosted?</a><br />
+	<a href="#13">How long can DVTs be posted online?</a><br />
+	<a href="#14">What makes the DVT Production Suite a "better product" than its competitors?</a><br />
+	<a href="#15">How much does a licensed subscription to the DVT Production Suite Cost?</a><br />
+	<a href="#16">I work in a large real estate firm.  Is volume pricing available?</a><br />
+	<a href="#17">Can I upload music tracks of my choice into my DVTs?</a><br />
+	<a href="#18">How many images can I upload into the Video Window of my DVT?</a><br />
+	<a href="#19">Why doesn't the scrolling text synchronize with the video element of the presentation?</a><br />
+	<a href="#20">Who gets the messages sent through the Reply Card feature?</a><br />
+	<a href="#21">Can I change my DVT once it is published to the Web?</a><br />
+	<a href="#22">Can I change the color or skin of the DVT player?</a><br />
+	<a href="#23">What other new features will be introduced in the near future?</a><br />
+</p>
+
+<a name="01"></a>
+<h2>What is the CommercialNet&trade; DVT Production Suite?</h2>
+<p>The DVT (Digital Visual Tour) Production Suite is a Web-based, licensable application that allows anyone with a broadband-connected computer to create compelling voice-narrated visual tours and presentations without having to install any software.</p>
+
+<a name="02"></a>
+<h2>Who creates my DVTs?</h2>
+<p>You create your own Digital Visual Tours using our powerful and easy-to-use set of Web-based tools and features.  All you need are digital images of your products and services and an imagination.</p>
+
+<a name="03"></a>
+<h2>How long does it take to create a DVT?</h2>
+<p>In most cases, if you already have properly formatted images and audio files, you can assemble a DVT presentation in 30-to-60 minutes.</p>
+
+<a name="04"></a>
+<h2>Do I need to have a Web site to use the DVT Production Suite?</h2>
+<p>No.  Each DVT created with the production suite is hosted by CommercialNet&trade; and plays within a browser.  Of course, you can link to your DVTs from your Web site if you have one.</p>
+
+<a name="05"></a>
+<h2>How long can my DVT be?</h2>
+<p>The Video Window allows for twenty images to be uploaded with voice-narration, so the length of your DVT is essentially determined by the length of your audio tracks.  Since audio tracks should last for about 20-seconds each, your DVT shouldn't be longer than about six minutes if you use all twenty frames.  The Display window allows for an unlimited number of images that can be individually linked to any Web page, Web form, document or file on the Internet.</p>
+
+<a name="06"></a>
+<h2>If DVTs don't use video, then why are the images moving as though they were video-taped?</h2>
+<p>The DVT Production Suite gives you tools to create "pan and zoom" effects on your digital images to create the "illusion" of motion video.  We decided to incorporate this technique simply because 99 percent of all sellable products in the world are stationary objects.  It didn't make sense to use to film stationary object with a motion video camera when the end-results are nearly the same.  Additionally, using our technique keeps DVT files sizes very low which allowed us to reduce our price to you even more!</p>
+
+<a name="07"></a>
+<h2>What is the advantage of using the DVT Production Suite over software-based products?</h2>
+<p>The DVT Production Suite is totally Web-based, so there's no software to install.  Additionally, most popular "visual" or "virtual" tour software products are platform-dependent and can only operate on one operating system.  For example, VisualTour&reg; by TRF Systems (<a href="http://www.visualtour.com" target="_blank">www.visualtour.com</a>) only works on Windows operating systems so Apple and Linux users can not take advantage of their product.  All users need to begin creating rich, product tours with the DVT Production Suite is a broadband-connected computer (such as DSL, Cable, T-1), a Web browser (such as Internet Explorer, Netscape, Safari, Firefox) and the free Macromedia&reg; Flash&reg; plug-in available from <a href="http://www.flash.com" target="_blank">www.flash.com</a>.</p>
+
+<a name="08"></a>
+<h2>Does a film crew need to be on-site to film property or products for a DVT?</h2>
+<p>No! And that's the beauty of using CommercialNet&trade; DVTs (Digital Visual Tours) - NO VIDEO IS USED WHATSOEVER.  Every DVT uses ordinary digital photos that you can take with a digital camera.</p>
+
+<a name="09"></a>
+<h2>Can the DVT Production Suite be used by service-based and professional businesses?</h2>
+<p>Absolutely!  Unlike competitive products that use slide-show or 360-degree panoramic formats to show products, the DVT Production Suite allows you to create a presentation that is more similar to television commercials than traditional "virtual tours".</p>
+
+<a name="10"></a>
+<h2>When will the newest release of the DVT Production Suite be available?</h2>
+<p>The official release date is June 7, 2005.</p>
+
+<a name="11"></a>
+<h2>How will prospective consumers access DVTs?</h2>
+<p>Every DVT is assigned a unique URL (Universal Resource Locator, or Web address) and is easily linkable through a text link or graphical button. Finished DVTs can be embedded within the marketer's Web site, linked from an MLS listing (for real estate agents), or sent directly to consumers via email.  Additionally, each DVT has integrated referral tools so consumers can send links to DVTs to their friends, family and co-workers.  Consumers can also access DVTs through <a href="http://www.mydvt.com" target="_blank">www.MyDVT.com</a> using the DVT ID number.</p>
+
+<a name="12"></a>
+<h2>Where will finished videos be hosted?</h2>
+<p>All finished DVTs are hosted by CommercialNet&trade;. You never have to worry about loading finished DVTs onto their corporate or personal Web servers or exceeding their monthly bandwidth allotment with Internet Service Providers.</p>
+
+<a name="13"></a>
+<h2>How long can DVTs be posted online?</h2>
+<p>DVTs will remain online for as long as you pay your licensing/subscription fee.</p>
+
+<a name="14"></a>
+<h2>What makes the DVT Production Suite a "better product" than its competitors?</h2>
+<p>There are many competitive products on the market that offer great value, but we didn't build the DVT Production Suite to "compete" against them as much as we just wanted to give consumers a better way to learn about products and services that interest them.</p>
+
+<p>So-called "virtual tour" products are typically useful only for the real estate market because of how images are presented - either as slide shows or a 360-degree panoramic.  We took a different approach by allowing our service subscribers to use their digital still-images to create a presentation more similar to a television commercial (or infomercial) than a traditional "virtual tour".  Television commercials have more impact on consumers for three reasons.  First, marketers use moving images on TV to hold the consumer's attention longer.  Second, TV allow marketers to push audio (such as voice and music) to further stimulate the consumer's brain and educate them.  And finally, TV shows, commercials and infomercials have a storyline that consumers follow.  This is how we as consumers can sit on a couch for hours on end watching TV and commercials!</p>
+
+<p>Because the DVT Production Suite allows you to create what is essentially a short infomercial or storyboard about your products and services, you are not confined to using DVTs just to show real estate.  You can actually use the DVT Production Suite to create voice-narrated, dynamic, rich-media presentation about anything! Best of all, you don't need to use any video, and you certainly don't have to know anything about TV production.  Our integrated Web-based tools allow you to build visual storyboards (using your digital images) and insert voice-narration scripts and audio files within minutes.</p>
+
+<a name="15"></a>
+<h2>How much does a licensed subscription to the DVT Production Suite Cost?</h2>
+<p>Using the DVT Production Suite costs only $179.95 for the account set-up fee plus $25 per month.  Monthly payments are billed in three-month increments of $75.</p>
+
+<a name="16"></a>
+<h2>I work in a large real estate firm.  Is volume pricing available?</h2>
+<p>Not at this time.  Our prices are extremely competitive as priced.</p><br />
+
+<h1>Feature FAQ</h1>
+
+<a name="17"></a>
+<h2>Can I upload music tracks of my choice into my DVTs?</h2>
+<p>No.  Because of specific laws concerning the use of copyrighted media, all DVTs come with five authorized royalty-free music tracks pre-installed into the media player.  These default music tracks should be appropriate for most uses.  An upcoming upgrade will allow you to select any five authorized royalty-free music tracks from an online music list.  The exception to this rule is if you are a musician who wants to load your own music tracks.  This feature will also be available in a soon-to-be-released upgrade.</p>
+
+<a name="18"></a>
+<h2>How many images can I upload into the Video Window of my DVT?</h2>
+<p>The current DVT Production Suite only allows twenty images and twenty voice-narration tracks to be uploaded into single DVT presentation.  We have found that twenty images are sufficient to market most products and services effectively.  Conversely, the Display Window of the DVT player allows you to upload an unlimited number of images that can be uniquely hyperlinked to any Web site, Web form, document, image or file on the Internet.</p>
+
+<a name="19"></a>
+<h2>Why doesn't the scrolling text synchronize with the video element of the presentation?</h2>
+<p>The Scrolling Marquee is more of a "memory jogger" feature than an "informational" feature.  The DVT Production Suite allows you to create a linear storyline about your product unlike "virtual tour" products that use static images.  Because the video element of your DVT functions much like a TV commercial, viewing audiences pay more attention to the video element than any other part of the DVT media player - but, their eyes still scan around the player (it's just human nature).  As their eyes scan, the scrolling text reinforces information and reminds them of what they have seen in earlier parts of the video element while also building anticipation for what they are about to see further into the presentation.  Combined with voice-narration, consumers can retain up to 30-percent more information in 24-hours through simple osmosis.  If we had incorporated a paragraph of text for them to read (as opposed to bullet points) while the video and audio were playing, consumers would miss out on what they could "see" because they were reading instead of watching or listening.</p>
+
+<a name="20"></a>
+<h2>Who gets the messages sent through the Reply Card feature?</h2>
+<p>The Reply Card sends emails to whatever email address is entered into the email field by the DVT Production Suite account-holder.</p>
+
+<a name="21"></a>
+<h2>Can I change my DVT once it is published to the Web?</h2>
+<p>Yes!  Using your Client Administration System (CAS), you can change images in the Identity Window and Display Window at any time.  You can also "re-publish" your video element in a different order by simply dragging and dropping image frames.  You CANNOT insert new image frames once a DVT has been published.</p>
+
+<a name="22"></a>
+<h2>Can I change the color or skin of the DVT player?</h2>
+<p>Not at this time, but that is a feature that will be coming very soon.</p>
+
+<a name="23"></a>
+<h2>What other new features will be introduced in the near future?</h2>
+<p>Instant messaging, voice chat, video chat, music loader, skins, and much more!  We are striving to make the DVT Production Suite the best virtual tour and rich media presentation builder you have ever used at the lowest price-points possible.</p>
+
+<div class="backToTop"><a href="#top">Back to Top</a></div>

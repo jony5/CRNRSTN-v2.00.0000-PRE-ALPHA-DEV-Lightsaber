@@ -1,0 +1,49 @@
+@charset "UTF-8";
+/* 
+// J5
+// Code is Poetry */
+
+*									{ border:0px; padding:0px; margin:0px; font-family:Arial, Helvetica, sans-serif;}
+body 								{ background-color:#FFF; padding:0px; margin:0px; width:100%;}
+input								{ height:26px; font-size:20px; color:#666; padding-left:4px; border:1px solid #CCC;}
+
+#content_wrapper					{ text-align:center; margin:0px auto; width:100%;}
+#footer_wrapper						{ text-align:center; margin:0px auto; width:100%;}
+#content_shell						{ width:515px; height:550px; border:2px solid #DDD; text-align:center; margin:0px auto; margin-top:20px;}
+#footer_shell						{ width:515px; height:50px; text-align:center; margin:0px auto; margin-top:10px;}
+#crnrstn_logo						{ text-align:left; margin:11px 0 0 10px; float:left;}
+.page_title							{ text-align:right; font-family:Arial, Helvetica, sans-serif; font-size:28px; font-weight:bold;margin:80px 30px 0 0;}
+.page_subtitle						{ text-align:right; font-size:20px; font-family:Arial, Helvetica, sans-serif; color:#666; position:absolute; margin:40px 0 0 66px; line-height:30px;}
+.red_line							{ height:550px; width:3px; background-color:#FF0000; position:relative; float:right;}
+#form_wrapper						{ padding-top:100px; float:right;}
+.submit_shell						{ margin:40px;}
+.form_element_label					{ float:left; text-align:right; width:150px; padding:9px 0 0 0; margin-left:20px; font-size:20px; font-weight:bold; color:#333;}
+.form_element_input input			{ background-color:#D0D0D0; border:2px solid #666; width:270px; height:40px; color:#333; font-size:20px; font-weight:bold;}
+.input_shell_wrapper				{ width:470px; text-align:right; margin-right:35px; margin-top:5px;}
+#footer_copy						{ font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#666666; float:left;margin:5px}
+#five								{ float:right; margin:3px 5px 0 0;}
+#confirm_msg						{ color:#FF0000; font-size:15px; font-weight:bold; position:absolute; top:335px; left:130px;}
+
+/*FORMS :: GENERAL*/
+.input_validation_copy_shell		{ text-align:right; margin:0px auto; width:470px; height:35px; }
+.input_validation_copy				{ color:#FF0000; font-weight:bold; font-size:14px; text-align:right;}
+
+.submit_shell						{ text-align:center; margin:0px auto; width:430px;}
+.form_submit_btn					{ float:right; background-color:#FF0000; border:1px solid #939393; width:70px; height:27px; font-size:13px; font-weight:bold; padding-top:8px; cursor:pointer; color:#F7F7F7;}
+.frm_errstatus						{ color:#FF0000; font-weight:bold; font-size:12px; text-align:left;}
+.submit_btn_highlighted				{ background-color:#FF6464; border:1px solid #666;}
+.submit_btn_clear					{ background-color:#FF0000; border:1px solid #939393;}
+
+/*UTILITY*/  
+.hidden								{ width:0px; height:0px; position:absolute; left:-2000px; overflow:hidden;}
+.cb 								{ display:block; clear:both; height:0px; line-height:0px; overflow:hidden; width:100%; font-size:1px;}
+.cb_5	 							{ display:block; clear:both; height:5px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_10	 							{ display:block; clear:both; height:10px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_15	 							{ display:block; clear:both; height:15px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_20								{ display:block; clear:both; height:20px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_30								{ display:block; clear:both; height:30px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_40								{ display:block; clear:both; height:40px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_50	 							{ display:block; clear:both; height:50px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_70								{ display:block; clear:both; height:70px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}  	
+.cb_100 							{ display:block; clear:both; height:100px; line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_200								{ display:block; clear:both; height:200px; line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}

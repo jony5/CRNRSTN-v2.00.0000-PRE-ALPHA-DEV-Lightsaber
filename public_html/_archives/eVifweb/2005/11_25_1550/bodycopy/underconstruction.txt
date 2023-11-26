@@ -1,0 +1,3 @@
+<h2>While we revamp our website to better serve our clients, please <a href="admin/contact.php">contact us</a> if you have any questions. </h2>
+
+

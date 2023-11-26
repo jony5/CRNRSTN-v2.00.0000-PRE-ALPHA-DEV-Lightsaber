@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navigation>
+	<rootpath>http://127.0.0.1/</rootpath>
+	<classes>
+		<class>
+			<classname uri="http://127.0.0.1/class_a_name/">class_a_name</classname>
+			<classmethods>
+				<method uri="http://127.0.0.1/methodA_1/">methodA_1</method>
+				<method uri="http://127.0.0.1/methodA_2/">methodA_2</method>
+				<method uri="http://127.0.0.1/methodA_3/">methodA_3</method>
+				<method uri="http://127.0.0.1/methodA_4/">methodA_4</method>
+			</classmethods>
+		</class>
+		<class>
+			<classname uri="http://127.0.0.1/class_b_name/">class_b_name</classname>
+			<classmethods>
+				<method uri="http://127.0.0.1/methodB_1/">methodB_1</method>
+				<method uri="http://127.0.0.1/methodB_2/">methodB_2</method>
+				<method uri="http://127.0.0.1/methodB_3/">methodB_3</method>
+				<method uri="http://127.0.0.1/methodB_4/">methodB_4</method>
+				<method uri="http://127.0.0.1/methodB_5/">methodB_5</method>
+			</classmethods>
+		</class>
+		<class>
+			<classname uri="http://127.0.0.1/class_c_name/">class_c_name</classname>
+			<classmethods>
+				<method uri="http://127.0.0.1/methodC_1/">methodC_1</method>
+				<method uri="http://127.0.0.1/methodC_2/">methodC_2</method>
+				<method uri="http://127.0.0.1/methodC_3/">methodC_3</method>
+				<method uri="http://127.0.0.1/methodC_4/">methodC_4</method>
+				<method uri="http://127.0.0.1/methodC_5/">methodC_5</method>
+				<method uri="http://127.0.0.1/methodC_6/">methodC_6</method>
+			</classmethods>
+		</class>
+	</classes>
+	<meta_datecreated></meta_datecreated>
+</navigation>

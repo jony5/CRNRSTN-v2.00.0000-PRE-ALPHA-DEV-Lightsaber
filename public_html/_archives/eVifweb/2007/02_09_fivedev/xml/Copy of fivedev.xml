@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<pages>
+	<webpage>
+		<name>home</name>
+		<title>home</title>
+		<copy>_home</copy>	
+	</webpage>
+
+	<webpage>
+		<name>about</name>
+		<title>about</title>
+		<copy>_about</copy>	
+	</webpage>
+
+	<webpage>
+		<name>email</name>
+		<title>email</title>
+		<copy>_email</copy>	
+	</webpage>
+
+	<webpage>
+		<name>portfolio</name>
+		<title>portfolio</title>
+		<copy>_portfolio</copy>	
+	</webpage>
+
+	<webpage>
+		<name>services</name>
+		<title>services</title>
+		<copy>_services</copy>	
+	</webpage>
+
+	<webpage>
+		<name>contact</name>
+		<title>contact</title>
+		<copy>_contact</copy>	
+	</webpage>
+</pages>

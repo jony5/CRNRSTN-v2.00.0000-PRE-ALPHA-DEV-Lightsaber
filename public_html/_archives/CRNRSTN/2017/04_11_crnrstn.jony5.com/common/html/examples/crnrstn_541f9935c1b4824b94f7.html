@@ -1,0 +1,17 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd"><html><head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>CRNRSTN :: Code Example</title></head><body><p>In the example below, we use the http_manager class object (that was instantiated within the environmentals class object) to extract data stored in the servers' POST method type.</p><div id="example_scrollto_0" class="example_scrollto" onClick="initScrollTo_lnk(this,'http://192.168.172.135/crnrstn/crnrstn/documentation/classes/http_manager/?ns=http_manager');"><a href="#" target="_self">Link</a>.</div><div id="crnrstn_541f9935c1b4824b94f7_0" class="code_wrapper"><div id="lineNum_2141046276" class="l_num">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br><br><br><br><br></div><div class="code_shell"><code>
+<span class="code_str_qtd">&lt;?php</span><br><span CLASS="code_comment">
+/*</span><br><span CLASS="code_comment">
+// J5</span><br>
+<span CLASS="code_comment">// Code is Poetry */</span><br>
+<span id="b7a73b3bf3e58d97abca_1388499958j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>(<span class="code_str_qtd">'./_crnrstn.root.inc.php'</span>);  <span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// PATH...i.e. &lt;?php $ROOT=&quot;../&quot;; ? &gt; </span><br>
+<span id="b7a73b3bf3e58d97abca_348336427j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'_crnrstn.config.inc.php'</span>);  <span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// CRNRSTN CONFIGURATION FILE</span><br>
+<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// GRAB POST DATA WITH HTTP_MANAGER AND STORE IN PARAMS FOR PROCESSING</span><br>
+$frm_input_username = $oENV-&gt;oHTTP_MGR-&gt;extractData(<span id="cf15b07c236d3fcbcfd6_1116674398j000001011" class="code_html_doc_type_tag" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">$_POST</span>, <span class="code_str_qtd">'un'</span>);<br>
+$frm_input_password = self::$oENV-&gt;oHTTP_MGR-&gt;extractData(<span id="cf15b07c236d3fcbcfd6_1097902007j000001011" class="code_html_doc_type_tag" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">$_POST</span>, <span class="code_str_qtd">'pwd'</span>);<br>
+$frm_input_sessionpersist = $oENV-&gt;oHTTP_MGR-&gt;extractData(<span id="cf15b07c236d3fcbcfd6_695737257j000001011" class="code_html_doc_type_tag" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">$_POST</span>, <span class="code_str_qtd">'login_persist'</span>);<br>
+<br>
+<span CLASS="code_comment">#...process form input</span><br>
+<span class="code_str_qtd">?&gt;</span><br>
+</code></div></div><div class="example_title_wrapper"><code style="color:#FF0000;">Figure 22a.</code></div><div class="cb_15"></div><div class="comment_tt_wrapper"><span id="b7a73b3bf3e58d97abca_0063639001462261789j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span> <span class="code_tt_space">&nbsp;</span><span id="cf15b07c236d3fcbcfd6_0195424001462261789j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">$_POST</span> <span class="code_tt_space">&nbsp;</span></div><div class="cb_15"></div></body></html>

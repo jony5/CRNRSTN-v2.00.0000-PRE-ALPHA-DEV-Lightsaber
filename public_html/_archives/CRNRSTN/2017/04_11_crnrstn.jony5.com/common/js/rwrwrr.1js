@@ -1,0 +1,13 @@
+/* 
+// J5
+// Code is Poetry */
+
+//
+// INITIALIZE
+Event.observe(window, 'load', initPage, false);
+
+function iniPage(){
+	
+	
+	
+}

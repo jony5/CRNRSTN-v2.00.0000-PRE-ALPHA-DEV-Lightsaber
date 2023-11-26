@@ -1,0 +1,13 @@
+<div class="hidden"><h1>deleteAllCookies()</h1>
+		<p>Due to the fact that there is no specific method in PHP for deleting a cookie, what actually happens when cookie data needs to be removed from the client is the method for adding a new cookie is called having the $name of the cookie targeted for deletion being passed to it. The expiration timestamp is also sent except that instead of pointing to some time in the future for the cookie to expire, it has been set to a reasonable amount of time (such as 1 hour) that is in the past. <br />
+<br />
+When a browser receives this request and updates the expiration timestamp of the specified cookie, the browser will then subsequently delete said cookie because it will be recognized as being expired.<br />
+<br />
+The <a href="../../../classes/cookie_manager/deleteallcookies/" target="_self">deleteAllCookies()</a> method of the <a href="../../../classes/cookie_manager/" target="_self">cookie_manager</a> :: class in the C<span class="the_R">R</span>NRSTN Suite :: will perform this act of deletion automatically for all cookie data (whether encrypted or not) stored in the $_COOKIE super global. Multi-dimensional cookies of up to 4 dimensions will be processed.<br />
+<br />
+Remember that cookies are part of the HTTP header, so <a href="../../../classes/cookie_manager/deleteallcookies/" target="_self">deleteAllCookies()</a> must be called before any output is sent to the browser.<br />
+<br />
+If the C<span class="the_R">R</span>NRSTN Suite :: has been initialized via <a href="../../../classes/crnrstn/initcookieencryption/" target="_self">initCookieEncryption()</a> to apply an encryption layer to the cookie management process, there are special methods for encryption that must be used. See examples and documentation on the following: <a href="../../../classes/cookie_manager/addencryptedcookie/" target="_self">addEncryptedCookie()</a>, <a href="../../../classes/cookie_manager/getencryptedcookie/" target="_self">getEncryptedCookie()</a> and <a href="../../../classes/cookie_manager/deleteencryptedcookie/" target="_self">deleteEncryptedCookie()</a>.</p>
+		<p>Version: </p>
+		<p>Method Definition: deleteAllCookies()</p>
+		<p>Invoking class: cookie_manager</p><h2>Technical Specifications:<h2><p>It is recommended that you upgrade to the latest version of PHP to take advantage of the latests gains in security and processing efficiency.</p><p>Currently tested on an ubuntu 4.2 server running PHP Version 5.2.6 and Apache 2.2.11</p><h2>Parameters:</h2><p>Last upated: 2017-04-11 02:27:21</p></div>

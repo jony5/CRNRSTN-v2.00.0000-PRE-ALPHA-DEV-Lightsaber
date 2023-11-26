@@ -1,0 +1,528 @@
+http://www.commercialnet.biz/agents/photos/$ticket-$i.jpg,";
+http://www.commercialnet.biz/agents/audio/$ticket-$i.mp3,"
+http://www.commercialnet.biz/dvt/control/ad-sequential.php?videoid=$id";
+http://www.commercialnet.biz/dvt/control/click.php";
+http://www.commercialnet.biz/agents/cards/$panelTop";
+http://www.commercialnet.biz/agents/skins/idtop/$skin";
+http://www.commercialnet.biz/agents/contacts/$panelBottom";
+http://www.commercialnet.biz/agents/skins/idbottom/$skin";
+
+
+
+
+describe agents;
++------------------+--------------+------+-----+---------+----------------+
+| Field            | Type         | Null | Key | Default | Extra          |
++------------------+--------------+------+-----+---------+----------------+
+| id               | int(11)      |      | PRI | NULL    | auto_increment |
+| prefix           | varchar(255) | YES  |     | NULL    |                |
+| firstname        | varchar(255) | YES  |     | NULL    |                |
+| middlename       | varchar(255) | YES  |     | NULL    |                |
+| lastname         | varchar(255) | YES  |     | NULL    |                |
+| suffix           | varchar(255) | YES  |     | NULL    |                |
+| address1         | varchar(255) | YES  |     | NULL    |                |
+| address2         | varchar(255) | YES  |     | NULL    |                |
+| city             | varchar(255) | YES  |     | NULL    |                |
+| state            | varchar(255) | YES  |     | NULL    |                |
+| zip              | varchar(255) | YES  |     | NULL    |                |
+| phone1           | varchar(255) | YES  |     | NULL    |                |
+| phone1type       | varchar(255) | YES  |     | NULL    |                |
+| phone2           | varchar(255) | YES  |     | NULL    |                |
+| phone2type       | varchar(255) | YES  |     | NULL    |                |
+| phone3           | varchar(255) | YES  |     | NULL    |                |
+| phone3type       | varchar(255) | YES  |     | NULL    |                |
+| phone4           | varchar(255) | YES  |     | NULL    |                |
+| phone4type       | varchar(255) | YES  |     | NULL    |                |
+| phone5           | varchar(255) | YES  |     | NULL    |                |
+| phone5type       | varchar(255) | YES  |     | NULL    |                |
+| email1           | varchar(255) | YES  |     | NULL    |                |
+| email2           | varchar(255) | YES  |     | NULL    |                |
+| email3           | varchar(255) | YES  |     | NULL    |                |
+| website          | varchar(255) | YES  |     | NULL    |                |
+| license          | varchar(255) | YES  |     | NULL    |                |
+| broker           | varchar(255) | YES  |     | NULL    |                |
+| creditlimit      | varchar(255) | YES  |     | NULL    |                |
+| status           | varchar(255) | YES  |     | NULL    |                |
+| username         | varchar(255) | YES  |     | NULL    |                |
+| password         | varchar(255) | YES  |     | NULL    |                |
+| paymentmode      | varchar(255) | YES  |     | NULL    |                |
+| signupdate       | datetime     | YES  |     | NULL    |                |
+| filename_logo    | varchar(128) | YES  |     | NULL    |                |
+| filename_contact | varchar(128) | YES  |     | NULL    |                |
+| contacturl       | varchar(255) | YES  |     | NULL    |                |
++------------------+--------------+------+-----+---------+----------------+
+36 rows in set (0.02 sec)
+describe videos;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| id            | int(11)      |      | PRI | NULL    | auto_increment |
+| name          | varchar(255) | YES  |     | NULL    |                |
+| mls           | varchar(64)  | YES  |     | NULL    |                |
+| agent         | int(11)      | YES  |     | NULL    |                |
+| campaign      | int(11)      | YES  |     | NULL    |                |
+| price         | float        | YES  |     | NULL    |                |
+| invoice       | int(11)      | YES  |     | NULL    |                |
+| invoiceline   | int(11)      | YES  |     | NULL    |                |
+| purchaseorder | varchar(255) | YES  |     | NULL    |                |
+| status        | varchar(64)  | YES  |     | NULL    |                |
+| type          | varchar(64)  | YES  |     | NULL    |                |
+| ticketnumber  | varchar(32)  | YES  |     | NULL    |                |
+| orderdate     | datetime     | YES  |     | NULL    |                |
+| bulletpoints  | blob         | YES  |     | NULL    |                |
+| canceldate    | datetime     | YES  |     | NULL    |                |
+| infolink      | varchar(255) | YES  |     | NULL    |                |
+| editor        | varchar(255) | YES  |     | NULL    |                |
+| edittime      | varchar(255) | YES  |     | NULL    |                |
+| editdate      | datetime     | YES  |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+19 rows in set (0.00 sec)
+
+mysql> describe videophotos;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int(11)      |      | PRI | NULL    | auto_increment |
+| videoid     | int(11)      | YES  |     | NULL    |                |
+| photoid     | int(11)      | YES  |     | NULL    |                |
+| description | blob         | YES  |     | NULL    |                |
+| xpos1       | int(11)      | YES  |     | NULL    |                |
+| xpos2       | int(11)      | YES  |     | NULL    |                |
+| ypos1       | int(11)      | YES  |     | NULL    |                |
+| ypos2       | int(11)      | YES  |     | NULL    |                |
+| scale1      | int(11)      | YES  |     | NULL    |                |
+| scale2      | int(11)      | YES  |     | NULL    |                |
+| duration    | float        | YES  |     | NULL    |                |
+| editor      | varchar(255) | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+12 rows in set (0.00 sec)
+mysql> describe videos;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| id            | int(11)      |      | PRI | NULL    | auto_increment |
+| name          | varchar(255) | YES  |     | NULL    |                |
+| mls           | varchar(64)  | YES  |     | NULL    |                |
+| agent         | int(11)      | YES  |     | NULL    |                |
+| campaign      | int(11)      | YES  |     | NULL    |                |
+| price         | float        | YES  |     | NULL    |                |
+| invoice       | int(11)      | YES  |     | NULL    |                |
+| invoiceline   | int(11)      | YES  |     | NULL    |                |
+| purchaseorder | varchar(255) | YES  |     | NULL    |                |
+| status        | varchar(64)  | YES  |     | NULL    |                |
+| type          | varchar(64)  | YES  |     | NULL    |                |
+| ticketnumber  | varchar(32)  | YES  |     | NULL    |                |
+| orderdate     | datetime     | YES  |     | NULL    |                |
+| bulletpoints  | blob         | YES  |     | NULL    |                |
+| canceldate    | datetime     | YES  |     | NULL    |                |
+| infolink      | varchar(255) | YES  |     | NULL    |                |
+| editor        | varchar(255) | YES  |     | NULL    |                |
+| edittime      | varchar(255) | YES  |     | NULL    |                |
+| editdate      | datetime     | YES  |     | NULL    |                |
+| paymentref    | int(11)      | YES  |     | NULL    |                |
+| onlinedate    | datetime     | YES  |     | NULL    |                |
+| eta           | datetime     | YES  |     | NULL    |                |
+| notes         | blob         | YES  |     | NULL    |                |
+| audiodate     | datetime     | YES  |     | NULL    |                |
+| completedate  | datetime     | YES  |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+25 rows in set (0.00 sec)
+
+mysql>
+
+mysql> describe videophotos;
++-------------+---------+------+-----+---------+----------------+
+| Field       | Type    | Null | Key | Default | Extra          |
++-------------+---------+------+-----+---------+----------------+
+| id          | int(11) |      | PRI | NULL    | auto_increment |
+| videoid     | int(11) | YES  |     | NULL    |                |
+| photoid     | int(11) | YES  |     | NULL    |                |
+| description | blob    | YES  |     | NULL    |                |
++-------------+---------+------+-----+---------+----------------+
+4 rows in set (0.03 sec)
+mysql> 
+
+mysql> describe videos;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| id            | int(11)      |      | PRI | NULL    | auto_increment |
+| name          | varchar(255) | YES  |     | NULL    |                |
+| mls           | varchar(64)  | YES  |     | NULL    |                |
+| agent         | int(11)      | YES  |     | NULL    |                |
+| campaign      | int(11)      | YES  |     | NULL    |                |
+| price         | float        | YES  |     | NULL    |                |
+| invoice       | int(11)      | YES  |     | NULL    |                |
+| invoiceline   | int(11)      | YES  |     | NULL    |                |
+| purchaseorder | varchar(255) | YES  |     | NULL    |                |
+| status        | varchar(64)  | YES  |     | NULL    |                |
+| type          | varchar(64)  | YES  |     | NULL    |                |
+| ticketnumber  | varchar(32)  | YES  |     | NULL    |                |
+| orderdate     | datetime     | YES  |     | NULL    |                |
+| bulletpoints  | blob         | YES  |     | NULL    |                |
+| canceldate    | datetime     | YES  |     | NULL    |                |
+| infolink      | varchar(255) | YES  |     | NULL    |                |
+| editor        | varchar(255) | YES  |     | NULL    |                |
+| edittime      | varchar(255) | YES  |     | NULL    |                |
+| editdate      | datetime     | YES  |     | NULL    |                |
+| paymentref    | int(11)      | YES  |     | NULL    |                |
+| onlinedate    | datetime     | YES  |     | NULL    |                |
+| eta           | datetime     | YES  |     | NULL    |                |
+| notes         | blob         | YES  |     | NULL    |                |
+| audiodate     | datetime     | YES  |     | NULL    |                |
+| completedate  | datetime     | YES  |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+25 rows in set (0.00 sec)
+
+mysql>
+
+mysql> describe videos;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| id            | int(11)      |      | PRI | NULL    | auto_increment |
+| name          | varchar(255) | YES  |     | NULL    |                |
+| mls           | varchar(64)  | YES  |     | NULL    |                |
+| agent         | int(11)      | YES  |     | NULL    |                |
+| campaign      | int(11)      | YES  |     | NULL    |                |
+| price         | float        | YES  |     | NULL    |                |
+| invoice       | int(11)      | YES  |     | NULL    |                |
+| invoiceline   | int(11)      | YES  |     | NULL    |                |
+| purchaseorder | varchar(255) | YES  |     | NULL    |                |
+| status        | varchar(64)  | YES  |     | NULL    |                |
+| type          | varchar(64)  | YES  |     | NULL    |                |
+| ticketnumber  | varchar(32)  | YES  |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+12 rows in set (0.00 sec)
+
+mysql>
+
+mysql> describe videophotos;
++-------------+---------+------+-----+---------+----------------+
+| Field       | Type    | Null | Key | Default | Extra          |
++-------------+---------+------+-----+---------+----------------+
+| id          | int(11) |      | PRI | NULL    | auto_increment |
+| videoid     | int(11) | YES  |     | NULL    |                |
+| photoid     | int(11) | YES  |     | NULL    |                |
+| description | blob    | YES  |     | NULL    |                |
++-------------+---------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> 
+mysql> describe ads;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int(11)      |      | PRI | NULL    | auto_increment |
+| name        | varchar(255) | YES  |     | NULL    |                |
+| agent       | int(11)      | YES  |     | NULL    |                |
+| filename    | varchar(32)  | YES  |     | NULL    |                |
+| destination | varchar(255) | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> describe campaignads;
++----------+---------+------+-----+---------+----------------+
+| Field    | Type    | Null | Key | Default | Extra          |
++----------+---------+------+-----+---------+----------------+
+| id       | int(11) |      | PRI | NULL    | auto_increment |
+| campaign | int(11) | YES  |     | NULL    |                |
+| ad       | int(11) | YES  |     | NULL    |                |
++----------+---------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> 
+
+mysql> describe adsincampaigns;
++----------+---------+------+-----+---------+----------------+
+| Field    | Type    | Null | Key | Default | Extra          |
++----------+---------+------+-----+---------+----------------+
+| id       | int(11) |      | PRI | NULL    | auto_increment |
+| campaign | int(11) | YES  |     | NULL    |                |
+| ad       | int(11) | YES  |     | NULL    |                |
++----------+---------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> describe campaigns;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int(11)      |      | PRI | NULL    | auto_increment |
+| name        | varchar(255) | YES  |     | NULL    |                |
+| status      | varchar(64)  | YES  |     | NULL    |                |
+| agent       | int(11)      | YES  |     | NULL    |                |
+| datecreated | datetime     | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> describe newcampaigns;
+ERROR: 
+
+mysql> describe newcampaigns;
+ERROR 2006: MySQL server has gone away
+No connection. Trying to reconnect...
+Connection id:    1
+Current database: commercialnet
+
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int(11)      |      | PRI | NULL    | auto_increment |
+| name        | varchar(128) | YES  |     | NULL    |                |
+| agent       | int(11)      | YES  |     | NULL    |                |
+| datecreated | datetime     | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.07 sec)
+
+mysql> 
+mysql> describe videos;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| id            | int(11)      |      | PRI | NULL    | auto_increment |
+| name          | varchar(255) | YES  |     | NULL    |                |
+| mls           | varchar(64)  | YES  |     | NULL    |                |
+| agent         | int(11)      | YES  |     | NULL    |                |
+| campaign      | int(11)      | YES  |     | NULL    |                |
+| price         | float        | YES  |     | NULL    |                |
+| invoice       | int(11)      | YES  |     | NULL    |                |
+| invoiceline   | int(11)      | YES  |     | NULL    |                |
+| purchaseorder | varchar(255) | YES  |     | NULL    |                |
+| status        | varchar(64)  | YES  |     | NULL    |                |
+| type          | varchar(64)  | YES  |     | NULL    |                |
+| ticketnumber  | varchar(32)  | YES  |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+12 rows in set (0.00 sec)
+
+mysql>
+
+mysql> describe videophotos;
++-------------+---------+------+-----+---------+----------------+
+| Field       | Type    | Null | Key | Default | Extra          |
++-------------+---------+------+-----+---------+----------------+
+| id          | int(11) |      | PRI | NULL    | auto_increment |
+| videoid     | int(11) | YES  |     | NULL    |                |
+| photoid     | int(11) | YES  |     | NULL    |                |
+| description | blob    | YES  |     | NULL    |                |
++-------------+---------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> 
+
+mysql> describe videos;
++------------------+--------------+------+-----+---------+----------------+
+| Field            | Type         | Null | Key | Default | Extra          |
++------------------+--------------+------+-----+---------+----------------+
+| id               | int(11)      |      | PRI | NULL    | auto_increment |
+| name             | varchar(255) | YES  |     | NULL    |                |
+| mls              | varchar(64)  | YES  |     | NULL    |                |
+| agent            | int(11)      | YES  |     | NULL    |                |
+| campaign         | int(11)      | YES  |     | NULL    |                |
+| price            | float        | YES  |     | NULL    |                |
+| invoice          | int(11)      | YES  |     | NULL    |                |
+| invoiceline      | int(11)      | YES  |     | NULL    |                |
+| purchaseorder    | varchar(255) | YES  |     | NULL    |                |
+| status           | varchar(64)  | YES  |     | NULL    |                |
+| type             | varchar(64)  | YES  |     | NULL    |                |
+| ticketnumber     | varchar(32)  | YES  |     | NULL    |                |
+| orderdate        | datetime     | YES  |     | NULL    |                |
+| bulletpoints     | blob         | YES  |     | NULL    |                |
+| canceldate       | datetime     | YES  |     | NULL    |                |
+| infolink         | varchar(255) | YES  |     | NULL    |                |
+| editor           | varchar(255) | YES  |     | NULL    |                |
+| edittime         | varchar(255) | YES  |     | NULL    |                |
+| editdate         | datetime     | YES  |     | NULL    |                |
+| paymentref       | int(11)      | YES  |     | NULL    |                |
+| onlinedate       | datetime     | YES  |     | NULL    |                |
+| eta              | datetime     | YES  |     | NULL    |                |
+| notes            | blob         | YES  |     | NULL    |                |
+| audiodate        | datetime     | YES  |     | NULL    |                |
+| completedate     | datetime     | YES  |     | NULL    |                |
+| imageprocessdate | datetime     | YES  |     | NULL    |                |
+| hidden           | int(11)      | YES  |     | NULL    |                |
+| counter          | int(11)      | YES  |     | 0       |                |
+| address1         | varchar(128) | YES  |     | NULL    |                |
+| address2         | varchar(128) | YES  |     | NULL    |                |
+| neighborhood     | varchar(128) | YES  |     | NULL    |                |
+| dvtcity             | varchar(255) | YES  |     | NULL    |                |
+| dvtstate           | varchar(255) | YES  |     | NULL    |                |
+| dvtzip              | varchar(255) | YES  |     | NULL    |                |
+| description      | blob         | YES  |     | NULL    |                |
+| askingprice      | varchar(128) | YES  | MUL | NULL    |                |
+| listimage        | int(11)      | YES  | MUL | NULL    |                |
++------------------+--------------+------+-----+---------+----------------+
+34 rows in set (0.00 sec)
+
+mysql>
+
+mysql> describe videophotos;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int(11)      |      | PRI | NULL    | auto_increment |
+| videoid     | int(11)      | YES  |     | NULL    |                |
+| photoid     | int(11)      | YES  |     | NULL    |                |
+| description | blob         | YES  |     | NULL    |                |
+| xpos1       | int(11)      | YES  |     | NULL    |                |
+| xpos2       | int(11)      | YES  |     | NULL    |                |
+| ypos1       | int(11)      | YES  |     | NULL    |                |
+| ypos2       | int(11)      | YES  |     | NULL    |                |
+| scale1      | int(11)      | YES  |     | NULL    |                |
+| scale2      | int(11)      | YES  |     | NULL    |                |
+| duration    | float        | YES  |     | NULL    |                |
+| editor      | varchar(255) | YES  |     | NULL    |                |
+| resized     | int(11)      | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+13 rows in set (0.00 sec)
+
+mysql>
+
+mysql> describe adsincampaigns;
++----------+---------+------+-----+---------+----------------+
+| Field    | Type    | Null | Key | Default | Extra          |
++----------+---------+------+-----+---------+----------------+
+| id       | int(11) |      | PRI | NULL    | auto_increment |
+| campaign | int(11) | YES  |     | NULL    |                |
+| ad       | int(11) | YES  |     | NULL    |                |
++----------+---------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql>
+
+describe individualads;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| id       | int(11)      |      | PRI | NULL    | auto_increment |
+| name     | varchar(128) | YES  |     | NULL    |                |
+| agent    | int(11)      | YES  |     | NULL    |                |
+| filename | varchar(32)  | YES  |     | NULL    |                |
+| url      | varchar(255) | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> describe newcampaigns;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int(11)      |      | PRI | NULL    | auto_increment |
+| name        | varchar(128) | YES  |     | NULL    |                |
+| agent       | int(11)      | YES  |     | NULL    |                |
+| datecreated | datetime     | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> describe adsincampaigns;
++----------+---------+------+-----+---------+----------------+
+| Field    | Type    | Null | Key | Default | Extra          |
++----------+---------+------+-----+---------+----------------+
+| id       | int(11) |      | PRI | NULL    | auto_increment |
+| campaign | int(11) | YES  |     | NULL    |                |
+| ad       | int(11) | YES  |     | NULL    |                |
++----------+---------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> 
+describe agents;
++------------------+--------------+------+-----+---------+----------------+
+| Field            | Type         | Null | Key | Default | Extra          |
++------------------+--------------+------+-----+---------+----------------+
+| id               | int(11)      |      | PRI | NULL    | auto_increment |
+| prefix           | varchar(255) | YES  |     | NULL    |                |
+| firstname        | varchar(255) | YES  |     | NULL    |                |
+| middlename       | varchar(255) | YES  |     | NULL    |                |
+| lastname         | varchar(255) | YES  |     | NULL    |                |
+| suffix           | varchar(255) | YES  |     | NULL    |                |
+| address1         | varchar(255) | YES  |     | NULL    |                |
+| address2         | varchar(255) | YES  |     | NULL    |                |
+| city             | varchar(255) | YES  |     | NULL    |                |
+| state            | varchar(255) | YES  |     | NULL    |                |
+| zip              | varchar(255) | YES  |     | NULL    |                |
+| phone1           | varchar(255) | YES  |     | NULL    |                |
+| phone1type       | varchar(255) | YES  |     | NULL    |                |
+| phone2           | varchar(255) | YES  |     | NULL    |                |
+| phone2type       | varchar(255) | YES  |     | NULL    |                |
+| phone3           | varchar(255) | YES  |     | NULL    |                |
+| phone3type       | varchar(255) | YES  |     | NULL    |                |
+| phone4           | varchar(255) | YES  |     | NULL    |                |
+| phone4type       | varchar(255) | YES  |     | NULL    |                |
+| phone5           | varchar(255) | YES  |     | NULL    |                |
+| phone5type       | varchar(255) | YES  |     | NULL    |                |
+| email1           | varchar(255) | YES  |     | NULL    |                |
+| email2           | varchar(255) | YES  |     | NULL    |                |
+| email3           | varchar(255) | YES  |     | NULL    |                |
+| website          | varchar(255) | YES  |     | NULL    |                |
+| license          | varchar(255) | YES  |     | NULL    |                |
+| broker           | varchar(255) | YES  |     | NULL    |                |
+| creditlimit      | varchar(255) | YES  |     | NULL    |                |
+| status           | varchar(255) | YES  |     | NULL    |                |
+| username         | varchar(255) | YES  |     | NULL    |                |
+| password         | varchar(255) | YES  |     | NULL    |                |
+| paymentmode      | varchar(255) | YES  |     | NULL    |                |
+| signupdate       | datetime     | YES  |     | NULL    |                |
+| filename_logo    | varchar(128) | YES  |     | NULL    |                |
+| filename_contact | varchar(128) | YES  |     | NULL    |                |
+| contacturl       | varchar(255) | YES  |     | NULL    |                |
++------------------+--------------+------+-----+---------+----------------+
+36 rows in set (0.02 sec)
+describe videos;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| id            | int(11)      |      | PRI | NULL    | auto_increment |
+| name          | varchar(255) | YES  |     | NULL    |                |
+| mls           | varchar(64)  | YES  |     | NULL    |                |
+| agent         | int(11)      | YES  |     | NULL    |                |
+| campaign      | int(11)      | YES  |     | NULL    |                |
+| price         | float        | YES  |     | NULL    |                |
+| invoice       | int(11)      | YES  |     | NULL    |                |
+| invoiceline   | int(11)      | YES  |     | NULL    |                |
+| purchaseorder | varchar(255) | YES  |     | NULL    |                |
+| status        | varchar(64)  | YES  |     | NULL    |                |
+| type          | varchar(64)  | YES  |     | NULL    |                |
+| ticketnumber  | varchar(32)  | YES  |     | NULL    |                |
+| orderdate     | datetime     | YES  |     | NULL    |                |
+| bulletpoints  | blob         | YES  |     | NULL    |                |
+| canceldate    | datetime     | YES  |     | NULL    |                |
+| infolink      | varchar(255) | YES  |     | NULL    |                |
+| editor        | varchar(255) | YES  |     | NULL    |                |
+| edittime      | varchar(255) | YES  |     | NULL    |                |
+| editdate      | datetime     | YES  |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+19 rows in set (0.00 sec)
+
+mysql> describe videophotos;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int(11)      |      | PRI | NULL    | auto_increment |
+| videoid     | int(11)      | YES  |     | NULL    |                |
+| photoid     | int(11)      | YES  |     | NULL    |                |
+| description | blob         | YES  |     | NULL    |                |
+| xpos1       | int(11)      | YES  |     | NULL    |                |
+| xpos2       | int(11)      | YES  |     | NULL    |                |
+| ypos1       | int(11)      | YES  |     | NULL    |                |
+| ypos2       | int(11)      | YES  |     | NULL    |                |
+| scale1      | int(11)      | YES  |     | NULL    |                |
+| scale2      | int(11)      | YES  |     | NULL    |                |
+| duration    | float        | YES  |     | NULL    |                |
+| editor      | varchar(255) | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+12 rows in set (0.00 sec)
+
+mysql> 
+
+sql> describe individualads;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| id       | int(11)      |      | PRI | NULL    | auto_increment |
+| name     | varchar(128) | YES  |     | NULL    |                |
+| agent    | int(11)      | YES  |     | NULL    |                |
+| filename | varchar(32)  | YES  |     | NULL    |                |
+| url      | varchar(255) | YES  |     | NULL    |                |
+| datetime | datetime     | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> 

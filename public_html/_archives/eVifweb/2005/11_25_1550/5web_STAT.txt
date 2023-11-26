@@ -1,0 +1,59 @@
+Files to create:
+
+description:		file name			linked from 
+-------------------		-------------------		-------------------
+new account setup		client/newaccount.php	client/index.php
+new account form		client/includes/clientinfo.inc	client/newaccount.php
+
+
+client home page:		client/weclome.php		login.php
+global admin home		admin/mastercontrol.php	login.php
+forgot password		client/forgotpassword.php	client/index.php  //not avaliable for the admin account
+
+
+Links:
+
+webhost General
+http://www.bluehost.com
+
+
+Web Host Account Login:
+http://www.bluehost.com/cgi-bin/cplogin/?domain=fivedevc&password=gY96sb21
+
+phpMyAdmin
+http://70.98.111.58:2082/3rdparty/phpMyAdmin/index.php
+
+
+TABLE `fiveusers` 
+
+`prefix` VARCHAR( 3 ) 
+`fname` VARCHAR( 100 ) 
+`mname` VARCHAR( 100 ) 
+`lname` VARCHAR( 100 ) 
+`suffix` VARCHAR( 10 ) 
+`address1` VARCHAR( 255 ) 
+`address2` VARCHAR( 100 ) 
+`city` VARCHAR( 255 ) 
+`state` VARCHAR( 2 ) 
+`zip` VARCHAR( 25 ) 
+`country` VARCHAR( 100 ) 
+`email1` VARCHAR( 255 ) 
+`email2` VARCHAR( 255 ) 
+`phone1` VARCHAR( 25 ) 
+`phone2` VARCHAR( 25 ) 
+`phone3` VARCHAR( 25 ) 
+`phone4` VARCHAR( 25 ) 
+`p1type` VARCHAR( 10 ) 
+`p2type` VARCHAR( 10 ) 
+`p3type` VARCHAR( 10 ) 
+`p4type` VARCHAR( 10 ) 
+`url1` VARCHAR( 255 ) 
+`url2` VARCHAR( 255 ) 
+`url3` VARCHAR( 255 ) 
+`url4` VARCHAR( 255 ) 
+`u1type` VARCHAR( 10 ) 
+`u2type` VARCHAR( 10 ) 
+`u3type` VARCHAR( 10 ) 
+`u4type` VARCHAR( 10 ) 
+`msgrid` VARCHAR( 100 ) 
+`busname` VARCHAR( 255 )

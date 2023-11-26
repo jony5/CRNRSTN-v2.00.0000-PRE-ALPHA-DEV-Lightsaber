@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd"><html><head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>CRNRSTN :: Code Example</title></head><body><p>The C<span class="the_R">R</span>NRSTN <a href="../../../classes/environmentals/" target="_self">environmentals</a> :: class object has its own personal copy of the <a href="../../../classes/cookie_manager/" target="_self">cookie_manager</a> :: class object that can be used to manage cookies on the client.<br />
+<br />
+On line 17 in this example, the navigation state is being pulled from cookie data in order to initialize a parameter for the same within session management.<br /></p><div id="example_scrollto_0" class="example_scrollto" onClick="initScrollTo_lnk(this,'http://192.168.172.135/crnrstn/crnrstn/documentation/classes/cookie_manager/getcookie/?ns=cookie_manager#');"><a href="#" target="_self">Link</a>.</div><div id="crnrstn_1c1d7f7e2eb7a466f242_0" class="code_wrapper"><div id="lineNum_739289053" class="l_num">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br><br><br><br><br></div><div class="code_shell"><code>
+<span class="code_str_qtd">&lt;?php</span><br><span CLASS="code_comment">
+/*</span><br><span CLASS="code_comment">
+// J5</span><br>
+<span CLASS="code_comment">// Code is Poetry */</span><br>
+<span id="b7a73b3bf3e58d97abca_294940530j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>(<span class="code_str_qtd">'./_crnrstn.root.inc.php'</span>);  <span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// PATH...i.e. &lt;?php $ROOT=&quot;../&quot;; ? &gt; </span><br>
+<span id="b7a73b3bf3e58d97abca_1307119530j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'_crnrstn.config.inc.php'</span>);  <span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// CRNRSTN CONFIGURATION FILE</span><br>
+<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// CAN WE GET NAVSTATE INITIALIZATION INFORMATION FROM CLEAR TEXT COOKIE </span><br>
+<span CLASS="code_comment">// THROUGH THE CRNRSTN ENVIRONMENTAL :: CLASS OBJECTS PERSONAL COPY OF </span><br>
+<span CLASS="code_comment">// THE COOKIE_MANAGER :: CLASS OBJECT</span><br>
+$ns_updated = $oENV-&gt;oCOOKIE_MGR-&gt;getCookie(<span class="code_str_qtd">'clientNavigationState'</span>);<br>
+<br>
+<span id="e43e09b42c84b845c5a9_1529728323j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span>($ns_updated!=<span class="code_str_qtd">""</span>){<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// INITIALIZE SESSION FROM COOKIE DATA RETRIEVED THROUGH GETCOOKIE</span><br>
+<span CLASS="tab">&nbsp;</span>$oENV-&gt;oSESSION_MGR-&gt;setSessionParam(<span class="code_str_qtd">'NS'</span>, $ns_updated);<br>
+ <br>
+}<br>
+<br>
+<span CLASS="code_comment"># NOTE THAT ANY COOKIE_MANAGER METHODS MUST BE INVOKED PRIOR TO OUTPUT </span><br>
+<span CLASS="code_comment"># BEING SENT TO THE CLIENT BROWSER...AS COOKIES ARE PART OF THE HTTP HEADER</span><br>
+<span class="code_str_qtd">?&gt;</span><br>
+&lt;!DOCTYPE HTML PUBLIC <span class="code_html_string_quote">"-//W3C//DTD HTML 4.01 Transitional//EN"</span> <span class="code_html_string_quote">"http://www.w3.org/TR/html4/loose.dtd"</span>&gt;<br>
+&lt;html&gt;<br>
+&lt;head&gt;<br>
+<span class="code_str_qtd">&lt;?php</span><br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// ENVIRONMENTALS CLASS GET() METHOD FOR DOCUMENT_ROOT RESOURCE KEY DATA</span><br>
+<span id="006a6b3966aa8cac16d4_1466220329j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">include</span>($oENV-&gt;get(<span class="code_str_qtd">'DOCUMENT_ROOT'</span>).<span class="code_str_qtd">'inc/head/head.inc.php'</span>);<br>
+<br>
+<span class="code_str_qtd">?&gt;</span><br>
+&lt;script type=<span class="code_html_string_quote">"text/javascript"</span> language=<span class="code_html_string_quote">"javascript"</span> src=<span class="code_html_string_quote">"</span><span class="code_str_qtd">&lt;?php</span> <span id="d5086e9d793d631ffdc3_1806687311j00000101" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">echo</span> $oENV-&gt;get(<span class="code_str_qtd">'ROOT_PATH_CLIENT_HTTP'</span>); <span class="code_str_qtd">?&gt;</span><span class="code_html_string_quote">inc/prototype.js"</span> &gt;&lt;/script&gt;<br>
+&lt;/head&gt;<br>
+&lt;body&gt;<br>
+&lt;-- DEMO HTML OUTPUT HERE --&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;<br>
+</code></div></div><div class="example_title_wrapper"><code style="color:#FF0000;">Figure 18.</code></div><div class="cb_15"></div><div class="comment_tt_wrapper"><span id="b7a73b3bf3e58d97abca_0357736001462258327j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span> <span class="code_tt_space">&nbsp;</span><span id="e43e09b42c84b845c5a9_0530205001462258327j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span> <span class="code_tt_space">&nbsp;</span><span id="006a6b3966aa8cac16d4_0690036001462258327j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">include</span> <span class="code_tt_space">&nbsp;</span><span id="d5086e9d793d631ffdc3_0695941001462258327j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">echo</span> <span class="code_tt_space">&nbsp;</span></div><div class="cb_15"></div></body></html>

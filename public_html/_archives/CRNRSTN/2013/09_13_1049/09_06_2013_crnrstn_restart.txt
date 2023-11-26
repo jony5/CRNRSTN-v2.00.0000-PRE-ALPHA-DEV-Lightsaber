@@ -1,0 +1,94 @@
+todoS :: FILE UPLOAD ADDED TO CONTACT REQUEST FORM
+- copy localhost /contact/ directory to "/contact2/" and FTP for testing
+- FTP /docs/
+- FTP /common/includes/security/
+- FTP /common/js/main.js
+- FTP /common/js/lib/forms/validation.js
+
+- UPDATE DATABASE TABLE jony5_contact_request in STORMER FOR NEW FIELDS ::
+	*FILENAME_USER_GEN(100), FILENAME(100), FILETYPE(10), URLKEY(300) [confirm FIELD DATECREATED exists]
+	[SQL INSERT FIELDS for jony5_contact_request :: CONTACT_SERIAL, EMAIL, MOBILENUMBER, FIRSTNAME, 
+	LASTNAME, SUBJECT, MESSAGE, ZIPCODE, IPADDRESS, 
+	FILENAME_USER_GEN, FILENAME, FILETYPE, URLKEY, DATEMODIFIED]
+
+- CONFIRM DIRECTORY PERMISSIONS FOR FILE UPLOADS. OK TO SET RECURSIVELY (777) FROM /docs/
+
+- smoke test and debug contact submission form from /contact2/
+	* confirm file upload, copy and serialization
+	* confirm the URI is in contact request email inbox. 
+	* manually inspect the DB insert for accuracy and completeness.
+
+- [SUCCESS :: you now can rename contact2 to contact and upload/overwrite the exhisting]
+
+- smoke test and debug getting to content submitted through contact form
+	* test URI from email for access to DB/FILE data
+	* test login functionality and session memory
+
+todos :: any coding outstandings
+- 
+- 
+-  
+- 
+- 
+
+
+
+
+= = = = = = = = = = = = = = = = =
+
+- POINT HTML DOWNLOAD LINK (CONFIG.INC.PHP) TO LATEST POST TO GOOGLE DRIVE [DONE]
+- UPDATE URL IN CONFIG.INC.PHP TO UPDATED GOOGLE DRIVE FILE [DONE]
+= = = = = = = = = = = = = = = = =
+- FTP CONFIG.INC.PHP 		[MANDATORY CONFIRM][DONE]
+- FTP ALL /DOWNLOADS 		[OPTIONAL][SKIPPED...USING GOOGLE DRIVE CLOUD SVCS]
+- FTP ALL /CSS			[MANDATORY CONFIRM][DONE]
+- FTP ALL /IMGS			[MANDATORY CONFIRM][DONE]
+- FTP ALL /JS			[PASSIVE CONFIRM][DONE]
+- FTP INCLUDES - /META		[PASSIVE CONFIRM][DONE]
+- FTP INCLUDES - /FOOTER	[PASSIVE CONFIRM][DONE]
+- FTP INCLUDES - /HEADER	[PASSIVE CONFIRM][DONE]
+
+- FTP ALL /BIO			[PASSIVE CONFIRM][DONE]
+- FTP ALL /WORK			[PASSIVE CONFIRM][DONE]	
+- FTP ALL /CONTACT		[PASSIVE CONFIRM][DONE]
+- FTP ALL /SIGNUP		[PASSIVE CONFIRM][DONE]
+- FTP ALL /CANNABIS-CASE-STUDY	[PASSIVE CONFIRM][DONE]
+- FTP FLYING.PHP		[PASSIVE CONFIRM][DONE]
+- FTP INDEX.PHP			[PASSIVE CONFIRM][DONE]
+
+RELEASE COMPLETED @ 0730 ON 8/12/2013
+= = = = = = = = = = = = = = = = =
+
+ITEMS TO INCLUDE IN NEXT RELEASE
+- FTP common/imgs/80x15_powered.gif  	[MANDATORY CONFIRM][DONE]
+- FTP common/includes/footer/		[PASSIVE CONFIRM][DONE]
+- FTP CONFIG.INC.PHP 			[MANDATORY CONFIRM][DONE]
+
+RELEASE COMPLETED @ 0939 ON 8/12/2013
+= = = = = = = = = = = = = = = = =
+
+FTP sitemap.xml
+FTP flying.PHP  
+FTP common/includes/fbposttext.inc.php
+FTP common/includes/fbcontent.inc.php
+FTP common/includes/fbcontent_v2.inc.php
+DELETE 2011/12/Screen shot 2013-07-08 at 8.38.42 PM.png
+
+RELEASE COMPLETED @ 0345 ON 8/13/2013
+= = = = = = = = = = = = = = = = =
+
+FTP CONFIG.INC.PHP 	
+FTP sitemap.xml
+FTP common/includes/fbcontent/fbposttext.inc.php
+FTP common/includes/fbnav/fbnav.inc.php
+FTP common/imgs/facebook/2013/08/[updated images]
+
+RELEASE COMPLETED @ 0929 ON 8/21/2013
+= = = = = = = = = = = = = = = = =
+
+
+
+
+
+
+

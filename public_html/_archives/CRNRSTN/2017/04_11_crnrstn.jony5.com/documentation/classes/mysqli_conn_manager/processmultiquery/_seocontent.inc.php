@@ -1,0 +1,10 @@
+<div class="hidden"><h1>processMultiQuery()</h1>
+		<p>When sending data to or requesting data from a MySQL database, <a href="../../../classes/mysqli_conn_manager/processmultiquery/" target="_self">processMultiQuery()</a> receives a MySQLi database connection handle and the query(s) (as parameters) and processes the transaction...returning the result.<br />
+<br />
+The functionality of <a href="../../../classes/mysqli_conn_manager/processmultiquery/" target="_self">processMultiQuery()</a> stands directly on top of the native $mysqli->multi_query(). For additional information about the behaviour of the $mysqli->multi_query() method, please see the PHP.net documentation.</p>
+		<p>Version: </p>
+		<p>Method Definition: processMultiQuery($mysqli, $query)</p>
+		<p>Invoking class: mysqli_conn_manager</p><h2>Technical Specifications:<h2><p>It is recommended that you upgrade to the latest version of PHP to take advantage of the latest gains in security and processing efficiency.</p><p>Currently tested on an ubuntu 4.2 server running PHP Version 5.2.6, Apache 2.2.11 and MySQL 5.0.75</p><p>Executes one or multiple queries which are concatenated by a semicolon.</p><p>To retrieve the resultset from the first query you can use mysqli_use_result() or mysqli_store_result(). All subsequent query results can be processed using mysqli_more_results() and mysqli_next_result().</p><h2>Parameters:</h2><h3>$mysqli</h3><p>The MySQLi database connection handle that was returned by <a href="../../../classes/mysqli_connection_manager/returnconnection/?m=6d0d2e1ee0024980f06a" target="_self">returnConnection()</a>.</p><h3>$query</h3><p>The query string.<br />
+<br />
+Data inside the query should be properly escaped.<br />
+For example: $funkyName = $mysqli->real_escape_string($funkyName);</p><p>Last upated: 2017-04-11 02:27:21</p></div>
