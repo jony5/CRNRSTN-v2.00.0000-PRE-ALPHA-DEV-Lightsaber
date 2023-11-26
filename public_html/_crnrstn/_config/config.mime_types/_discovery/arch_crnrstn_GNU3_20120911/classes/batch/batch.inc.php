@@ -157,7 +157,10 @@ class TransactionBatch extends {
 					if ($result = mysqli_use_result($this->_FreshBatch_oMysqli)) {
 						
 						//
-						// PREPARE QUERIES FOR LOCK AND LOAD.
+						// PREPARE QUERIES FOR POP, DROP, AND LOCK.
+						//
+						// Huey - Pop, Lock & Drop It (Video Edit)
+						// https://www.youtube.com/watch?v=WEYMaSoXQUM
 						$this->_queryToLock="UPDATE `rtm_transactions_email` SET ISRUNNING=true, BATCH_STARTDATE='".date("Y-m-d H:i:s",time())."' WHERE ";
 						
 						while ($row = mysqli_fetch_assoc($result)) {
