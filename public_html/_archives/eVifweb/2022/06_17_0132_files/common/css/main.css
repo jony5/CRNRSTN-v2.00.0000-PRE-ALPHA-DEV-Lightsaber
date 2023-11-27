@@ -1,0 +1,127 @@
+@charset "UTF-8";
+/* 
+// J5
+// Code is Poetry */
+
+*									{ font-family:Arial, Helvetica, sans-serif;}
+body								{ border:0px; margin:0px; padding:0px;}
+a									{ text-decoration:none; color:#0066CC;}
+
+#hdr_logo_shell						{ width:75%; margin-top:17px;}
+#evifweb_hdr_logo					{ border:0px; width:66px; margin:0 0 10px 10px; height:42px; float:left; }
+#evifweb_hdr_title					{ font-size:25px; font-family:Arial, Helvetica, sans-serif; padding:12px 0 0 15px; float:left;}
+#wolf_pup							{ float:right; position:absolute; left:88%; height:275px; width:231px;}
+.hdr_amp							{ font-size:18px;}
+#hdr_dbl_hr_shell					{ width:100%;}
+#hdr_hr_top							{ width:100%; clear:both; background-color:#000; height:10px; margin:0 0 2px 0;}
+#hdr_hr_btm							{ width:100%; clear:both; background-color:#606060; height:3px; margin:0 0 0 0;}
+
+#main_nav_shell						{float:left; width:130px;}
+#content							{float:left; width:79%; margin-left:20px;}
+
+#content p							{ font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#333; margin:20px 20px 0 20px; line-height:25px;}
+.copy								{ padding:5px 0 5px 0;}
+
+
+#main_nav_ul						{ list-style:none; padding-left:0px; text-align:right;}
+#main_nav_ul li						{ padding-bottom:20px;}
+#admin_sub_nav_ul li				{ padding-bottom:2px;}
+#account_sub_nav_ul li				{ padding-bottom:2px;}
+#tools_sub_nav_ul li				{ padding-bottom:2px;}
+#resources_sub_nav_ul li			{ padding-bottom:2px;}
+.sub_nav_ul							{ list-style:none; padding-left:0px; padding-top:5px; text-align:right;}
+.main_nav_lnk						{ font-size:24px; font-family:Arial, Helvetica, sans-serif;}
+.main_nav_lnk a						{ color:#000;}
+.left_nav_dash_title				{ font-size:18px; font-weight:bold;}
+.left_nav_sub_lnk					{ font-size:13px; font-weight:normal; padding-top:4px;}
+.left_nav_sub_lnk a					{ color:#000;}
+
+#dashboard_content_shell			{ width:100%;}
+#dashboard_page_title				{ font-size:25px; font-weight:bold; padding-top:10px;}
+
+#ftr_shell							{ width:100%; padding-top:30px; clear:both;}
+#footer-copyright					{ font-size:12px; font-family:Arial, Helvetica, sans-serif; text-align:center; margin:0px auto; color:#333;}
+#ftr_hr								{ height:30px; background-color:#333; width:100%;}
+
+
+.the_R								{ color:#F00;}
+.bold_block_quote					{ background-color:#000; font-family:Arial, Helvetica, sans-serif; font-size:25px; color:#FFF; padding:10px 10px 10px 10px; margin:20px 0 20px 0; border:2px solid #666; line-height:35px;}
+
+.txt_lang_data						{ font-size:12px;}
+
+/*ACTIVITY LOG*/
+.a_log_lang_content					{ font-style:italic;}
+.a_log_asset_kivotos				{ font-style:italic;}
+.a_log_topic_name					{}
+.a_log_kivotos_status				{ font-weight:bold;}
+.a_log_kivotos_duedate				{ font-weight:bold;}
+.a_log_user_perm_type				{ font-weight:bold;}
+
+/*FORMS :: GENERAL*/
+.form_shell							{ width:100%; text-align:center; margin:0px auto; }
+#form_box							{ border:3px solid #000; padding:20px 40px 40px 40px;}
+#form_title							{ font-size:24px; font-family:Arial, Helvetica, sans-serif; float:left; padding-top:20px;}
+.main_form_wrapper					{ background-color:#FFF; border:2px solid #D4D0C8; text-align:center; margin:0px auto;}
+.form_red_border					{ border-right:5px solid #FF0000;}
+.form_crnrstn_logo					{ text-align:left;}
+.input_shell_wrapper				{ margin-left:40px; position:relative; top:-15px;}
+.form_input_shell					{ width:100%;}
+.req_star							{ font-weight:bold; font-size:14px; color:#F00;}
+.form_element_label					{ text-align:left; font-size:15px; color:#000; font-family:Arial, Helvetica, sans-serif; padding-bottom:5px;}
+.form_element_input input			{ background-color:#F0EEF1; border:2px solid #999; height:35px; color:#333; font-size:14px; font-weight:bold; padding-left:10px;}
+.input_validation_copy_shell		{ margin:0px auto; height:19px; }
+.input_validation_copy				{ color:#FF0000; font-weight:bold; font-size:12px; font-family:Arial, Helvetica, sans-serif;}
+.form_submit_shell					{ width:265px;}
+.form_submit_btn					{ float:right; background-color:#FFCC00; border:1px solid #999; font-size:16px; font-weight:bold; padding:10px 25px 10px 25px; cursor:pointer;}
+.form_save_btn						{ float:right; background-color:#FFCC00; border:1px solid #999; font-size:16px; font-weight:bold; padding-top:8px; cursor:pointer; margin-right:30px;}
+.remember_me_copy					{ font-size:12px; float:left; margin:11px 10px 0 0;}
+.remember_me_chkbx					{ float:left; margin:7px 0 0 0;}
+.frm_errstatus						{ color:#FF0000; font-weight:bold; font-size:13px; text-align:right;}
+.submit_btn_highlighted				{ background-color:#FFDA10; border:1px solid #FF0000;}
+.submit_btn_clear					{ background-color:#FFCC00; border:1px solid #999;}
+.charCnt							{ font-size:11px; color:#666; text-align:left;}
+.original_content					{ color:#333; font-size:19px; color:#06C;}
+
+.form_cancel_btn					{ float:left; background-color:#FFF; border:1px solid #999; font-size:16px; font-weight:bold; padding:10px 25px 10px 25px; cursor:pointer;}
+
+.signin_shell						{ margin-left:30px; width:600px;}
+.evif_logo_form						{ float:right; padding:10px 10px 0 0;}
+
+
+#user_transaction_status_msg		{ padding-left:20px; padding-right:20px;}
+.user_transaction_wrapper			{ width:100%; text-align:center; margin:0px auto; padding:2px 0 2px 0; font-size:21px;}
+.user_transaction_content			{ width:940px; text-align:center; margin:0px auto; }
+.user_transaction_success			{ width:830px; padding:10px 0 10px 0; background-color:#30AC30; color:#EEE; font-weight:bold; border:2px solid #006600;}
+.user_transaction_error				{ width:830px; padding:10px 0 10px 0; background-color:#E80000; color:#EEE; font-weight:bold; border:2px solid #840000;}
+.user_transaction_bg_xmas_clear		{ background-color:#000000; padding:0 3px 0 3px;}
+
+/*CHECKBOX*/
+.crnrstn_chkbx_wrapper				{ float:left; margin:5px; font-size:15px; cursor:pointer;}
+.crnrstn_chkbx_on					{ float:left; width:20px; height:20px; overflow:hidden; display:block;}
+.crnrstn_chkbx						{ float:left; position:relative; width:20px; height:20px; overflow:hidden; display:block;}
+.crnrstn_chkbx img 					{ position:absolute; top:-20px; left:0px;}
+.crnrstn_chkbx_copy					{ float:left; margin:2px 5px 0 12px;}
+.crnrstn_radio_wrapper				{ float:left; margin:5px; font-size:15px; cursor:pointer;}
+.crnrstn_radio_on					{ float:left; width:20px; height:20px; overflow:hidden; display:block;}
+.crnrstn_radio						{ float:left; position:relative; width:20px; height:20px; overflow:hidden; display:block;}
+.crnrstn_radio img					{ position:absolute; top:-20px;}
+.crnrstn_radio_copy					{ float:left; margin:2px 5px 0 5px;}
+
+
+/*ADMIN*/
+.hr									{ width:100%; text-align:center; margin:0px auto; border-bottom:2px dashed #06F;}
+
+/*UTILITY*/  
+.hidden								{ width:0px; height:0px; position:absolute; left:-2000px; overflow:hidden;}
+.cb 								{ display:block; clear:both; height:0px; line-height:0px; overflow:hidden; width:100%; font-size:1px;}
+.cb_5	 							{ display:block; clear:both; height:5px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_10	 							{ display:block; clear:both; height:10px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_15	 							{ display:block; clear:both; height:15px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_20								{ display:block; clear:both; height:20px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_30								{ display:block; clear:both; height:30px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_40								{ display:block; clear:both; height:40px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_50	 							{ display:block; clear:both; height:50px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_60	 							{ display:block; clear:both; height:60px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_75								{ display:block; clear:both; height:75px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}  	
+.cb_100 							{ display:block; clear:both; height:100px; line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_200								{ display:block; clear:both; height:200px; line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}

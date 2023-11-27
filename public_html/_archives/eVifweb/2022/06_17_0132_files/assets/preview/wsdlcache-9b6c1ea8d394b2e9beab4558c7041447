@@ -1,0 +1,552 @@
+O:4:"wsdl":51:{s:4:"wsdl";s:65:"http://www.evifweb.com/assets/_soa/sync/1.0.0/wsdl/index.php?wsdl";s:7:"schemas";a:1:{s:35:"http://www.evifweb.com/soap/crnrstn";a:1:{i:0;O:16:"nusoap_xmlschema":35:{s:6:"schema";s:0:"";s:3:"xml";s:0:"";s:19:"enclosingNamespaces";a:8:{s:8:"SOAP-ENV";s:41:"http://schemas.xmlsoap.org/soap/envelope/";s:3:"xsd";s:32:"http://www.w3.org/2001/XMLSchema";s:3:"xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:8:"SOAP-ENC";s:41:"http://schemas.xmlsoap.org/soap/encoding/";s:3:"tns";s:35:"http://www.evifweb.com/soap/crnrstn";s:4:"soap";s:37:"http://schemas.xmlsoap.org/wsdl/soap/";s:4:"wsdl";s:32:"http://schemas.xmlsoap.org/wsdl/";s:3:"ns8";s:32:"http://schemas.xmlsoap.org/wsdl/";}s:10:"schemaInfo";a:4:{s:15:"targetNamespace";s:35:"http://www.evifweb.com/soap/crnrstn";s:13:"schemaVersion";s:32:"http://www.w3.org/2001/XMLSchema";s:18:"elementFormDefault";s:11:"unqualified";s:20:"attributeFormDefault";s:11:"unqualified";}s:21:"schemaTargetNamespace";s:35:"http://www.evifweb.com/soap/crnrstn";s:10:"attributes";a:0:{}s:12:"complexTypes";a:2:{s:6:"oAsset";a:6:{s:4:"name";s:6:"oAsset";s:9:"typeClass";s:11:"complexType";s:7:"phpType";s:6:"struct";s:13:"simpleContent";s:5:"false";s:10:"compositor";s:3:"all";s:8:"elements";a:24:{s:8:"ASSET_ID";a:3:{s:4:"name";s:8:"ASSET_ID";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:10:"ASSET_TYPE";a:3:{s:4:"name";s:10:"ASSET_TYPE";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:10:"KIVOTOS_ID";a:3:{s:4:"name";s:10:"KIVOTOS_ID";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:9:"CLIENT_ID";a:3:{s:4:"name";s:9:"CLIENT_ID";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:7:"USER_ID";a:3:{s:4:"name";s:7:"USER_ID";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:7:"CHANNEL";a:3:{s:4:"name";s:7:"CHANNEL";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:11:"REMOTE_ADDR";a:3:{s:4:"name";s:11:"REMOTE_ADDR";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:9:"FILE_NAME";a:3:{s:4:"name";s:9:"FILE_NAME";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:8:"FILE_EXT";a:3:{s:4:"name";s:8:"FILE_EXT";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:9:"FILE_PATH";a:3:{s:4:"name";s:9:"FILE_PATH";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:9:"FILE_SIZE";a:3:{s:4:"name";s:9:"FILE_SIZE";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:14:"FILE_MIME_TYPE";a:3:{s:4:"name";s:14:"FILE_MIME_TYPE";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:20:"ASSET_DLOAD_ENDPOINT";a:3:{s:4:"name";s:20:"ASSET_DLOAD_ENDPOINT";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:22:"ASSET_PREVIEW_ENDPOINT";a:3:{s:4:"name";s:22:"ASSET_PREVIEW_ENDPOINT";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:19:"ASSET_UPLOAD_STATUS";a:3:{s:4:"name";s:19:"ASSET_UPLOAD_STATUS";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:4:"NAME";a:3:{s:4:"name";s:4:"NAME";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:11:"DESCRIPTION";a:3:{s:4:"name";s:11:"DESCRIPTION";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:17:"PREVIOUS_VERSIONS";a:3:{s:4:"name";s:17:"PREVIOUS_VERSIONS";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:15:"DLOAD_END_POINT";a:3:{s:4:"name";s:15:"DLOAD_END_POINT";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:13:"AUTHORIZED_IP";a:3:{s:4:"name";s:13:"AUTHORIZED_IP";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:16:"AUTHORIZED_USERS";a:3:{s:4:"name";s:16:"AUTHORIZED_USERS";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:12:"DATEMODIFIED";a:3:{s:4:"name";s:12:"DATEMODIFIED";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:11:"DATECREATED";a:3:{s:4:"name";s:11:"DATECREATED";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:8:"LANGCODE";a:3:{s:4:"name";s:8:"LANGCODE";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}}}s:13:"oAssetAuthReq";a:6:{s:4:"name";s:13:"oAssetAuthReq";s:9:"typeClass";s:11:"complexType";s:7:"phpType";s:6:"struct";s:13:"simpleContent";s:5:"false";s:10:"compositor";s:3:"all";s:8:"elements";a:6:{s:8:"ASSET_ID";a:3:{s:4:"name";s:8:"ASSET_ID";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:10:"KIVOTOS_ID";a:3:{s:4:"name";s:10:"KIVOTOS_ID";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:9:"CLIENT_ID";a:3:{s:4:"name";s:9:"CLIENT_ID";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:7:"USER_ID";a:3:{s:4:"name";s:7:"USER_ID";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:9:"IPADDRESS";a:3:{s:4:"name";s:9:"IPADDRESS";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}s:9:"SESSIONID";a:3:{s:4:"name";s:9:"SESSIONID";s:4:"type";s:39:"http://www.w3.org/2001/XMLSchema:string";s:4:"form";s:11:"unqualified";}}}}s:16:"complexTypeStack";a:0:{}s:18:"currentComplexType";N;s:8:"elements";a:0:{}s:12:"elementStack";a:0:{}s:14:"currentElement";N;s:11:"simpleTypes";a:0:{}s:15:"simpleTypeStack";a:0:{}s:17:"currentSimpleType";N;s:7:"imports";a:2:{s:41:"http://schemas.xmlsoap.org/soap/encoding/";a:1:{i:0;a:2:{s:8:"location";s:0:"";s:6:"loaded";b:1;}}s:32:"http://schemas.xmlsoap.org/wsdl/";a:1:{i:0;a:2:{s:8:"location";s:0:"";s:6:"loaded";b:1;}}}s:6:"parser";N;s:8:"position";i:37;s:5:"depth";i:1;s:11:"depth_array";a:4:{i:0;i:0;i:1;i:29;i:2;i:30;i:3;i:36;}s:7:"message";a:37:{i:0;a:1:{s:5:"cdata";s:0:"";}i:1;a:1:{s:5:"cdata";s:0:"";}i:2;a:1:{s:5:"cdata";s:0:"";}i:3;a:1:{s:5:"cdata";s:0:"";}i:4;a:1:{s:5:"cdata";s:0:"";}i:5;a:1:{s:5:"cdata";s:0:"";}i:6;a:1:{s:5:"cdata";s:0:"";}i:7;a:1:{s:5:"cdata";s:0:"";}i:8;a:1:{s:5:"cdata";s:0:"";}i:9;a:1:{s:5:"cdata";s:0:"";}i:10;a:1:{s:5:"cdata";s:0:"";}i:11;a:1:{s:5:"cdata";s:0:"";}i:12;a:1:{s:5:"cdata";s:0:"";}i:13;a:1:{s:5:"cdata";s:0:"";}i:14;a:1:{s:5:"cdata";s:0:"";}i:15;a:1:{s:5:"cdata";s:0:"";}i:16;a:1:{s:5:"cdata";s:0:"";}i:17;a:1:{s:5:"cdata";s:0:"";}i:18;a:1:{s:5:"cdata";s:0:"";}i:19;a:1:{s:5:"cdata";s:0:"";}i:20;a:1:{s:5:"cdata";s:0:"";}i:21;a:1:{s:5:"cdata";s:0:"";}i:22;a:1:{s:5:"cdata";s:0:"";}i:23;a:1:{s:5:"cdata";s:0:"";}i:24;a:1:{s:5:"cdata";s:0:"";}i:25;a:1:{s:5:"cdata";s:0:"";}i:26;a:1:{s:5:"cdata";s:0:"";}i:27;a:1:{s:5:"cdata";s:0:"";}i:28;a:1:{s:5:"cdata";s:0:"";}i:29;a:1:{s:5:"cdata";s:0:"";}i:30;a:1:{s:5:"cdata";s:0:"";}i:31;a:1:{s:5:"cdata";s:0:"";}i:32;a:1:{s:5:"cdata";s:0:"";}i:33;a:1:{s:5:"cdata";s:0:"";}i:34;a:1:{s:5:"cdata";s:0:"";}i:35;a:1:{s:5:"cdata";s:0:"";}i:36;a:1:{s:5:"cdata";s:0:"";}}s:16:"defaultNamespace";a:37:{i:0;b:0;i:1;b:0;i:2;b:0;i:3;b:0;i:4;b:0;i:5;b:0;i:6;b:0;i:7;b:0;i:8;b:0;i:9;b:0;i:10;b:0;i:11;b:0;i:12;b:0;i:13;b:0;i:14;b:0;i:15;b:0;i:16;b:0;i:17;b:0;i:18;b:0;i:19;b:0;i:20;b:0;i:21;b:0;i:22;b:0;i:23;b:0;i:24;b:0;i:25;b:0;i:26;b:0;i:27;b:0;i:28;b:0;i:29;b:0;i:30;b:0;i:31;b:0;i:32;b:0;i:33;b:0;i:34;b:0;i:35;b:0;i:36;b:0;}s:5:"title";s:6:"NuSOAP";s:7:"version";s:5:"0.9.5";s:8:"revision";s:18:"$Revision: 1.123 $";s:9:"error_str";s:0:"";s:9:"debug_str";s:0:"";s:12:"charencoding";b:1;s:10:"debugLevel";i:9;s:16:"XMLSchemaVersion";s:32:"http://www.w3.org/2001/XMLSchema";s:16:"soap_defencoding";s:10:"ISO-8859-1";s:10:"namespaces";a:8:{s:8:"SOAP-ENV";s:41:"http://schemas.xmlsoap.org/soap/envelope/";s:3:"xsd";s:32:"http://www.w3.org/2001/XMLSchema";s:3:"xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:8:"SOAP-ENC";s:41:"http://schemas.xmlsoap.org/soap/encoding/";s:3:"tns";s:35:"http://www.evifweb.com/soap/crnrstn";s:4:"soap";s:37:"http://schemas.xmlsoap.org/wsdl/soap/";s:4:"wsdl";s:32:"http://schemas.xmlsoap.org/wsdl/";s:3:"ns8";s:32:"http://schemas.xmlsoap.org/wsdl/";}s:14:"usedNamespaces";a:2:{s:8:"SOAP-ENC";s:41:"http://schemas.xmlsoap.org/soap/encoding/";s:4:"wsdl";s:32:"http://schemas.xmlsoap.org/wsdl/";}s:7:"typemap";a:6:{s:32:"http://www.w3.org/2001/XMLSchema";a:43:{s:6:"string";s:6:"string";s:7:"boolean";s:7:"boolean";s:5:"float";s:6:"double";s:6:"double";s:6:"double";s:7:"decimal";s:6:"double";s:8:"duration";s:0:"";s:8:"dateTime";s:6:"string";s:4:"time";s:6:"string";s:4:"date";s:6:"string";s:10:"gYearMonth";s:0:"";s:5:"gYear";s:0:"";s:9:"gMonthDay";s:0:"";s:4:"gDay";s:0:"";s:6:"gMonth";s:0:"";s:9:"hexBinary";s:6:"string";s:12:"base64Binary";s:6:"string";s:7:"anyType";s:6:"string";s:13:"anySimpleType";s:6:"string";s:16:"normalizedString";s:6:"string";s:5:"token";s:6:"string";s:8:"language";s:0:"";s:7:"NMTOKEN";s:0:"";s:8:"NMTOKENS";s:0:"";s:4:"Name";s:0:"";s:6:"NCName";s:0:"";s:2:"ID";s:0:"";s:5:"IDREF";s:0:"";s:6:"IDREFS";s:0:"";s:6:"ENTITY";s:0:"";s:8:"ENTITIES";s:0:"";s:7:"integer";s:7:"integer";s:18:"nonPositiveInteger";s:7:"integer";s:15:"negativeInteger";s:7:"integer";s:4:"long";s:7:"integer";s:3:"int";s:7:"integer";s:5:"short";s:7:"integer";s:4:"byte";s:7:"integer";s:18:"nonNegativeInteger";s:7:"integer";s:12:"unsignedLong";s:0:"";s:11:"unsignedInt";s:0:"";s:13:"unsignedShort";s:0:"";s:12:"unsignedByte";s:0:"";s:15:"positiveInteger";s:0:"";}s:35:"http://www.w3.org/2000/10/XMLSchema";a:11:{s:2:"i4";s:0:"";s:3:"int";s:7:"integer";s:7:"boolean";s:7:"boolean";s:6:"string";s:6:"string";s:6:"double";s:6:"double";s:5:"float";s:6:"double";s:8:"dateTime";s:6:"string";s:11:"timeInstant";s:6:"string";s:12:"base64Binary";s:6:"string";s:6:"base64";s:6:"string";s:7:"ur-type";s:5:"array";}s:32:"http://www.w3.org/1999/XMLSchema";a:11:{s:2:"i4";s:0:"";s:3:"int";s:7:"integer";s:7:"boolean";s:7:"boolean";s:6:"string";s:6:"string";s:6:"double";s:6:"double";s:5:"float";s:6:"double";s:8:"dateTime";s:6:"string";s:11:"timeInstant";s:6:"string";s:12:"base64Binary";s:6:"string";s:6:"base64";s:6:"string";s:7:"ur-type";s:5:"array";}s:26:"http://soapinterop.org/xsd";a:1:{s:10:"SOAPStruct";s:6:"struct";}s:41:"http://schemas.xmlsoap.org/soap/encoding/";a:3:{s:6:"base64";s:6:"string";s:5:"array";s:5:"array";s:5:"Array";s:5:"array";}s:30:"http://xml.apache.org/xml-soap";a:1:{i:0;s:3:"Map";}}s:11:"xmlEntities";a:5:{s:4:"quot";s:1:""";s:3:"amp";s:1:"&";s:2:"lt";s:1:"<";s:2:"gt";s:1:">";s:4:"apos";s:1:"'";}}}}s:13:"currentSchema";r:5;s:7:"message";a:36:{i:0;a:1:{s:5:"cdata";s:226:"
+
+
+ 
+ 
+ 
+  
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+  
+ 
+ 
+  
+   
+   
+   
+   
+   
+   
+  
+ 
+
+
+    Save details for extranet asset.Request authorization for asset download.";}i:1;a:1:{s:5:"cdata";s:4:"
+
+  ";}i:2;a:1:{s:5:"cdata";s:1:"
+";}i:3;a:1:{s:5:"cdata";s:3:"
+  ";}i:4;a:1:{s:5:"cdata";s:1:"
+";}i:5;a:1:{s:5:"cdata";s:3:"
+  ";}i:6;a:1:{s:5:"cdata";s:1:"
+";}i:7;a:1:{s:5:"cdata";s:3:"
+  ";}i:8;a:1:{s:5:"cdata";s:1:"
+";}i:9;a:1:{s:5:"cdata";s:3:"
+  ";}i:10;a:1:{s:5:"cdata";s:1:"
+";}i:11;a:1:{s:5:"cdata";s:3:"
+  ";}i:12;a:1:{s:5:"cdata";s:5:"
+    ";}i:13;a:1:{s:5:"cdata";s:5:"
+    ";}i:14;a:1:{s:5:"cdata";s:8:"
+  
+    ";}i:15;a:1:{s:5:"cdata";s:4:"
+
+  ";}i:16;a:1:{s:5:"cdata";s:5:"
+    ";}i:17;a:1:{s:5:"cdata";s:5:"
+    ";}i:18;a:1:{s:5:"cdata";s:8:"
+  
+    ";}i:19;a:1:{s:5:"cdata";s:1:"
+";}i:20;a:1:{s:5:"cdata";s:3:"
+  ";}i:21;a:1:{s:5:"cdata";s:3:"
+  ";}i:22;a:1:{s:5:"cdata";s:5:"
+    ";}i:23;a:1:{s:5:"cdata";s:5:"
+    ";}i:24;a:1:{s:5:"cdata";s:0:"";}i:25;a:1:{s:5:"cdata";s:8:"
+  
+    ";}i:26;a:1:{s:5:"cdata";s:0:"";}i:27;a:1:{s:5:"cdata";s:4:"
+
+  ";}i:28;a:1:{s:5:"cdata";s:5:"
+    ";}i:29;a:1:{s:5:"cdata";s:5:"
+    ";}i:30;a:1:{s:5:"cdata";s:0:"";}i:31;a:1:{s:5:"cdata";s:8:"
+  
+    ";}i:32;a:1:{s:5:"cdata";s:0:"";}i:33;a:1:{s:5:"cdata";s:1:"
+";}i:34;a:1:{s:5:"cdata";s:1:"
+";}i:35;a:1:{s:5:"cdata";s:3:"
+  ";}}s:12:"complexTypes";a:0:{}s:8:"messages";a:4:{s:19:"saveNewAssetRequest";a:1:{s:16:"oUploadAssetInfo";s:42:"http://www.evifweb.com/soap/crnrstn:oAsset";}s:20:"saveNewAssetResponse";a:1:{s:6:"return";s:39:"http://www.w3.org/2001/XMLSchema:string";}s:26:"assetAccessGrantReqRequest";a:1:{s:20:"oAssetAccessGrantReq";s:49:"http://www.evifweb.com/soap/crnrstn:oAssetAuthReq";}s:27:"assetAccessGrantReqResponse";a:1:{s:6:"return";s:42:"http://www.evifweb.com/soap/crnrstn:oAsset";}}s:14:"currentMessage";s:27:"assetAccessGrantReqResponse";s:16:"currentOperation";s:19:"assetAccessGrantReq";s:9:"portTypes";a:1:{s:15:"crnrstnPortType";a:2:{s:12:"saveNewAsset";a:2:{s:5:"input";a:1:{s:7:"message";s:19:"saveNewAssetRequest";}s:6:"output";a:1:{s:7:"message";s:20:"saveNewAssetResponse";}}s:19:"assetAccessGrantReq";a:3:{s:5:"input";a:1:{s:7:"message";s:26:"assetAccessGrantReqRequest";}s:6:"output";a:1:{s:7:"message";s:27:"assetAccessGrantReqResponse";}s:7:"binding";a:1:{s:7:"message";s:0:"";}}}}s:15:"currentPortType";s:15:"crnrstnPortType";s:8:"bindings";a:1:{s:14:"crnrstnBinding";a:7:{s:8:"portType";s:15:"crnrstnPortType";s:6:"prefix";s:4:"soap";s:5:"style";s:3:"rpc";s:9:"transport";s:36:"http://schemas.xmlsoap.org/soap/http";s:10:"operations";a:2:{s:12:"saveNewAsset";a:9:{s:4:"name";s:12:"saveNewAsset";s:7:"binding";s:14:"crnrstnBinding";s:8:"endpoint";s:60:"http://www.evifweb.com/assets/_soa/sync/1.0.0/wsdl/index.php";s:10:"soapAction";s:33:"urn:saveNewAssetwsdl#saveNewAsset";s:5:"style";s:3:"rpc";s:5:"input";a:5:{s:3:"use";s:7:"encoded";s:9:"namespace";s:20:"urn:saveNewAssetwsdl";s:13:"encodingStyle";s:41:"http://schemas.xmlsoap.org/soap/encoding/";s:7:"message";s:19:"saveNewAssetRequest";s:5:"parts";a:1:{s:16:"oUploadAssetInfo";s:42:"http://www.evifweb.com/soap/crnrstn:oAsset";}}s:6:"output";a:5:{s:3:"use";s:7:"encoded";s:9:"namespace";s:20:"urn:saveNewAssetwsdl";s:13:"encodingStyle";s:41:"http://schemas.xmlsoap.org/soap/encoding/";s:7:"message";s:20:"saveNewAssetResponse";s:5:"parts";a:1:{s:6:"return";s:39:"http://www.w3.org/2001/XMLSchema:string";}}s:9:"transport";s:36:"http://schemas.xmlsoap.org/soap/http";s:13:"documentation";s:0:"";}s:19:"assetAccessGrantReq";a:9:{s:4:"name";s:19:"assetAccessGrantReq";s:7:"binding";s:14:"crnrstnBinding";s:8:"endpoint";s:60:"http://www.evifweb.com/assets/_soa/sync/1.0.0/wsdl/index.php";s:10:"soapAction";s:47:"urn:assetAccessGrantReqwsdl#assetAccessGrantReq";s:5:"style";s:3:"rpc";s:5:"input";a:5:{s:3:"use";s:7:"encoded";s:9:"namespace";s:27:"urn:assetAccessGrantReqwsdl";s:13:"encodingStyle";s:41:"http://schemas.xmlsoap.org/soap/encoding/";s:7:"message";s:26:"assetAccessGrantReqRequest";s:5:"parts";a:1:{s:20:"oAssetAccessGrantReq";s:49:"http://www.evifweb.com/soap/crnrstn:oAssetAuthReq";}}s:6:"output";a:5:{s:3:"use";s:7:"encoded";s:9:"namespace";s:27:"urn:assetAccessGrantReqwsdl";s:13:"encodingStyle";s:41:"http://schemas.xmlsoap.org/soap/encoding/";s:7:"message";s:27:"assetAccessGrantReqResponse";s:5:"parts";a:1:{s:6:"return";s:42:"http://www.evifweb.com/soap/crnrstn:oAsset";}}s:9:"transport";s:36:"http://schemas.xmlsoap.org/soap/http";s:13:"documentation";s:0:"";}}s:11:"bindingType";s:37:"http://schemas.xmlsoap.org/wsdl/soap/";s:8:"endpoint";s:60:"http://www.evifweb.com/assets/_soa/sync/1.0.0/wsdl/index.php";}}s:14:"currentBinding";s:14:"crnrstnBinding";s:5:"ports";a:1:{s:11:"crnrstnPort";a:3:{s:7:"binding";s:14:"crnrstnBinding";s:8:"location";s:60:"http://www.evifweb.com/assets/_soa/sync/1.0.0/wsdl/index.php";s:11:"bindingType";s:37:"http://schemas.xmlsoap.org/wsdl/soap/";}}s:11:"currentPort";s:11:"crnrstnPort";s:6:"opData";a:0:{}s:6:"status";s:7:"service";s:13:"documentation";b:0;s:8:"endpoint";s:0:"";s:6:"import";a:0:{}s:8:"position";i:36;s:5:"depth";i:-1;s:11:"depth_array";a:4:{i:0;i:33;i:1;i:34;i:2;i:35;i:3;i:32;}s:9:"proxyhost";b:0;s:9:"proxyport";b:0;s:13:"proxyusername";b:0;s:13:"proxypassword";b:0;s:7:"timeout";i:0;s:16:"response_timeout";i:30;s:12:"curl_options";a:0:{}s:8:"use_curl";b:0;s:8:"username";s:0:"";s:8:"password";s:0:"";s:8:"authtype";s:0:"";s:11:"certRequest";a:0:{}s:5:"title";s:6:"NuSOAP";s:7:"version";s:5:"0.9.5";s:8:"revision";s:18:"$Revision: 1.123 $";s:9:"error_str";s:0:"";s:9:"debug_str";s:26633:"2018-09-25 13:44:39.846382 wsdl: ctor wsdl=http://www.evifweb.com/assets/_soa/sync/1.0.0/wsdl/index.php?wsdl timeout=0 response_timeout=30
+2018-09-25 13:44:39.849515 wsdl: parse and process WSDL path=http://www.evifweb.com/assets/_soa/sync/1.0.0/wsdl/index.php?wsdl
+2018-09-25 13:44:39.849527 wsdl: parse WSDL at path=http://www.evifweb.com/assets/_soa/sync/1.0.0/wsdl/index.php?wsdl
+2018-09-25 13:44:39.849539 wsdl: getting WSDL http(s) URL http://www.evifweb.com/assets/_soa/sync/1.0.0/wsdl/index.php?wsdl
+2018-09-25 13:44:39.849551 soap_transport_http: ctor url=http://www.evifweb.com/assets/_soa/sync/1.0.0/wsdl/index.php?wsdl use_curl= curl_options:
+array(0) {
+}
+2018-09-25 13:44:39.849578 soap_transport_http: parsed URL scheme = http
+2018-09-25 13:44:39.849583 soap_transport_http: parsed URL host = www.evifweb.com
+2018-09-25 13:44:39.849587 soap_transport_http: parsed URL path = /assets/_soa/sync/1.0.0/wsdl/index.php
+2018-09-25 13:44:39.849591 soap_transport_http: parsed URL query = wsdl
+2018-09-25 13:44:39.849602 soap_transport_http: set header Host: www.evifweb.com
+2018-09-25 13:44:39.849747 soap_transport_http: set header User-Agent: NuSOAP/0.9.5 (1.123)
+2018-09-25 13:44:39.849760 soap_transport_http: set header Accept-Encoding: gzip, deflate
+2018-09-25 13:44:39.849764 soap_transport_http: set header Connection: close
+2018-09-25 13:44:39.849772 soap_transport_http: entered send() with data of length: 0
+2018-09-25 13:44:39.849781 soap_transport_http: connect connection_timeout 0, response_timeout 30, scheme http, host www.evifweb.com, port 80
+2018-09-25 13:44:39.849789 soap_transport_http: calling fsockopen with host www.evifweb.com connection_timeout 0
+2018-09-25 13:44:40.105757 soap_transport_http: set response timeout to 30
+2018-09-25 13:44:40.105783 soap_transport_http: socket connected
+2018-09-25 13:44:40.105798 soap_transport_http: HTTP request: GET /assets/_soa/sync/1.0.0/wsdl/index.php?wsdl HTTP/1.1
+2018-09-25 13:44:40.105804 soap_transport_http: HTTP header: Host: www.evifweb.com
+2018-09-25 13:44:40.105823 soap_transport_http: HTTP header: User-Agent: NuSOAP/0.9.5 (1.123)
+2018-09-25 13:44:40.105827 soap_transport_http: HTTP header: Accept-Encoding: gzip, deflate
+2018-09-25 13:44:40.105831 soap_transport_http: HTTP header: Connection: close
+2018-09-25 13:44:40.105897 soap_transport_http: wrote data to socket, length = 168
+2018-09-25 13:44:40.218528 soap_transport_http: read line of 17 bytes: HTTP/1.1 200 OK
+2018-09-25 13:44:40.218560 soap_transport_http: read line of 37 bytes: Date: Tue, 25 Sep 2018 13:44:40 GMT
+2018-09-25 13:44:40.218568 soap_transport_http: read line of 16 bytes: Server: Apache
+2018-09-25 13:44:40.218573 soap_transport_http: read line of 40 bytes: Expires: Thu, 19 Nov 1981 08:52:00 GMT
+2018-09-25 13:44:40.218578 soap_transport_http: read line of 52 bytes: Cache-Control: no-store, no-cache, must-revalidate
+2018-09-25 13:44:40.218583 soap_transport_http: read line of 18 bytes: Pragma: no-cache
+2018-09-25 13:44:40.218588 soap_transport_http: read line of 58 bytes: Set-Cookie: PHPSESSID=mjtkq9te10ora82kpedqqnfr16; path=/
+2018-09-25 13:44:40.218594 soap_transport_http: read line of 19 bytes: Connection: close
+2018-09-25 13:44:40.218598 soap_transport_http: read line of 28 bytes: Transfer-Encoding: chunked
+2018-09-25 13:44:40.218603 soap_transport_http: read line of 44 bytes: Content-Type: text/xml; charset=ISO-8859-1
+2018-09-25 13:44:40.218607 soap_transport_http: read line of 2 bytes: 
+2018-09-25 13:44:40.218666 soap_transport_http: found end of headers after length 331
+2018-09-25 13:44:40.218730 soap_transport_http: found cookie: PHPSESSID = mjtkq9te10ora82kpedqqnfr16
+2018-09-25 13:44:40.218740 soap_transport_http: want to read chunked content
+2018-09-25 13:44:40.218746 soap_transport_http: read chunk line of 6 bytes
+2018-09-25 13:44:40.218754 soap_transport_http: chunk length 4673
+2018-09-25 13:44:40.218776 soap_transport_http: read buffer of 4673 bytes
+2018-09-25 13:44:40.218786 soap_transport_http: read chunk terminator of 2 bytes
+2018-09-25 13:44:40.223980 soap_transport_http: read chunk line of 3 bytes
+2018-09-25 13:44:40.223997 soap_transport_http: chunk length 0
+2018-09-25 13:44:40.224005 soap_transport_http: read body of length 4673
+2018-09-25 13:44:40.224011 soap_transport_http: received a total of 5004 bytes of data from server
+2018-09-25 13:44:40.224049 soap_transport_http: closed socket
+2018-09-25 13:44:40.224064 soap_transport_http: No Content-Encoding header
+2018-09-25 13:44:40.224070 soap_transport_http: end of send()
+2018-09-25 13:44:40.224092 wsdl: got WSDL URL
+2018-09-25 13:44:40.224097 wsdl: Parse WSDL
+2018-09-25 13:44:40.224435 wsdl: Parsing WSDL schema
+2018-09-25 13:44:40.224450 nusoap_xmlschema: nusoap_xmlschema class instantiated, inside constructor
+2018-09-25 13:44:40.224526 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> import namespace http://schemas.xmlsoap.org/soap/encoding/
+2018-09-25 13:44:40.224554 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> import namespace http://schemas.xmlsoap.org/wsdl/
+2018-09-25 13:44:40.224573 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing named complexType oAsset
+2018-09-25 13:44:40.224599 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element ASSET_ID of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.224607 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element ASSET_ID to complexType oAsset
+2018-09-25 13:44:40.224617 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element ASSET_ID
+2018-09-25 13:44:40.224633 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element ASSET_TYPE of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.224639 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element ASSET_TYPE to complexType oAsset
+2018-09-25 13:44:40.224646 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element ASSET_TYPE
+2018-09-25 13:44:40.224658 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element KIVOTOS_ID of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.224663 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element KIVOTOS_ID to complexType oAsset
+2018-09-25 13:44:40.224670 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element KIVOTOS_ID
+2018-09-25 13:44:40.224681 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element CLIENT_ID of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.224686 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element CLIENT_ID to complexType oAsset
+2018-09-25 13:44:40.224693 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element CLIENT_ID
+2018-09-25 13:44:40.224703 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element USER_ID of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.224708 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element USER_ID to complexType oAsset
+2018-09-25 13:44:40.224715 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element USER_ID
+2018-09-25 13:44:40.224726 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element CHANNEL of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.224731 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element CHANNEL to complexType oAsset
+2018-09-25 13:44:40.224737 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element CHANNEL
+2018-09-25 13:44:40.224747 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element REMOTE_ADDR of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.224752 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element REMOTE_ADDR to complexType oAsset
+2018-09-25 13:44:40.224759 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element REMOTE_ADDR
+2018-09-25 13:44:40.224780 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element FILE_NAME of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.224785 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element FILE_NAME to complexType oAsset
+2018-09-25 13:44:40.224794 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element FILE_NAME
+2018-09-25 13:44:40.224804 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element FILE_EXT of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.224815 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element FILE_EXT to complexType oAsset
+2018-09-25 13:44:40.224822 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element FILE_EXT
+2018-09-25 13:44:40.224832 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element FILE_PATH of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.224837 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element FILE_PATH to complexType oAsset
+2018-09-25 13:44:40.224844 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element FILE_PATH
+2018-09-25 13:44:40.224854 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element FILE_SIZE of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.224858 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element FILE_SIZE to complexType oAsset
+2018-09-25 13:44:40.224865 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element FILE_SIZE
+2018-09-25 13:44:40.224876 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element FILE_MIME_TYPE of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.224880 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element FILE_MIME_TYPE to complexType oAsset
+2018-09-25 13:44:40.224887 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element FILE_MIME_TYPE
+2018-09-25 13:44:40.224898 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element ASSET_DLOAD_ENDPOINT of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.224903 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element ASSET_DLOAD_ENDPOINT to complexType oAsset
+2018-09-25 13:44:40.224909 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element ASSET_DLOAD_ENDPOINT
+2018-09-25 13:44:40.224920 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element ASSET_PREVIEW_ENDPOINT of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.224925 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element ASSET_PREVIEW_ENDPOINT to complexType oAsset
+2018-09-25 13:44:40.224931 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element ASSET_PREVIEW_ENDPOINT
+2018-09-25 13:44:40.224942 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element ASSET_UPLOAD_STATUS of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.224947 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element ASSET_UPLOAD_STATUS to complexType oAsset
+2018-09-25 13:44:40.224954 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element ASSET_UPLOAD_STATUS
+2018-09-25 13:44:40.224964 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element NAME of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.224969 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element NAME to complexType oAsset
+2018-09-25 13:44:40.224975 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element NAME
+2018-09-25 13:44:40.224986 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element DESCRIPTION of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.224990 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element DESCRIPTION to complexType oAsset
+2018-09-25 13:44:40.224997 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element DESCRIPTION
+2018-09-25 13:44:40.225007 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element PREVIOUS_VERSIONS of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.225012 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element PREVIOUS_VERSIONS to complexType oAsset
+2018-09-25 13:44:40.225022 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element PREVIOUS_VERSIONS
+2018-09-25 13:44:40.225032 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element DLOAD_END_POINT of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.225037 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element DLOAD_END_POINT to complexType oAsset
+2018-09-25 13:44:40.225044 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element DLOAD_END_POINT
+2018-09-25 13:44:40.225054 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element AUTHORIZED_IP of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.225059 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element AUTHORIZED_IP to complexType oAsset
+2018-09-25 13:44:40.225066 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element AUTHORIZED_IP
+2018-09-25 13:44:40.225076 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element AUTHORIZED_USERS of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.225081 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element AUTHORIZED_USERS to complexType oAsset
+2018-09-25 13:44:40.225088 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element AUTHORIZED_USERS
+2018-09-25 13:44:40.225098 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element DATEMODIFIED of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.225103 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element DATEMODIFIED to complexType oAsset
+2018-09-25 13:44:40.225109 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element DATEMODIFIED
+2018-09-25 13:44:40.225119 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element DATECREATED of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.225124 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element DATECREATED to complexType oAsset
+2018-09-25 13:44:40.225130 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element DATECREATED
+2018-09-25 13:44:40.225140 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element LANGCODE of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.225145 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element LANGCODE to complexType oAsset
+2018-09-25 13:44:40.225151 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element LANGCODE
+2018-09-25 13:44:40.225176 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing complexType oAsset
+2018-09-25 13:44:40.225252 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> array(6) {
+  ["name"]=>
+  string(6) "oAsset"
+  ["typeClass"]=>
+  string(11) "complexType"
+  ["phpType"]=>
+  string(6) "struct"
+  ["simpleContent"]=>
+  string(5) "false"
+  ["compositor"]=>
+  string(3) "all"
+  ["elements"]=>
+  array(24) {
+    ["ASSET_ID"]=>
+    array(3) {
+      ["name"]=>
+      string(8) "ASSET_ID"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["ASSET_TYPE"]=>
+    array(3) {
+      ["name"]=>
+      string(10) "ASSET_TYPE"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["KIVOTOS_ID"]=>
+    array(3) {
+      ["name"]=>
+      string(10) "KIVOTOS_ID"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["CLIENT_ID"]=>
+    array(3) {
+      ["name"]=>
+      string(9) "CLIENT_ID"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["USER_ID"]=>
+    array(3) {
+      ["name"]=>
+      string(7) "USER_ID"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["CHANNEL"]=>
+    array(3) {
+      ["name"]=>
+      string(7) "CHANNEL"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["REMOTE_ADDR"]=>
+    array(3) {
+      ["name"]=>
+      string(11) "REMOTE_ADDR"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["FILE_NAME"]=>
+    array(3) {
+      ["name"]=>
+      string(9) "FILE_NAME"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["FILE_EXT"]=>
+    array(3) {
+      ["name"]=>
+      string(8) "FILE_EXT"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["FILE_PATH"]=>
+    array(3) {
+      ["name"]=>
+      string(9) "FILE_PATH"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["FILE_SIZE"]=>
+    array(3) {
+      ["name"]=>
+      string(9) "FILE_SIZE"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["FILE_MIME_TYPE"]=>
+    array(3) {
+      ["name"]=>
+      string(14) "FILE_MIME_TYPE"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["ASSET_DLOAD_ENDPOINT"]=>
+    array(3) {
+      ["name"]=>
+      string(20) "ASSET_DLOAD_ENDPOINT"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["ASSET_PREVIEW_ENDPOINT"]=>
+    array(3) {
+      ["name"]=>
+      string(22) "ASSET_PREVIEW_ENDPOINT"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["ASSET_UPLOAD_STATUS"]=>
+    array(3) {
+      ["name"]=>
+      string(19) "ASSET_UPLOAD_STATUS"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["NAME"]=>
+    array(3) {
+      ["name"]=>
+      string(4) "NAME"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["DESCRIPTION"]=>
+    array(3) {
+      ["name"]=>
+      string(11) "DESCRIPTION"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["PREVIOUS_VERSIONS"]=>
+    array(3) {
+      ["name"]=>
+      string(17) "PREVIOUS_VERSIONS"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["DLOAD_END_POINT"]=>
+    array(3) {
+      ["name"]=>
+      string(15) "DLOAD_END_POINT"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["AUTHORIZED_IP"]=>
+    array(3) {
+      ["name"]=>
+      string(13) "AUTHORIZED_IP"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["AUTHORIZED_USERS"]=>
+    array(3) {
+      ["name"]=>
+      string(16) "AUTHORIZED_USERS"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["DATEMODIFIED"]=>
+    array(3) {
+      ["name"]=>
+      string(12) "DATEMODIFIED"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["DATECREATED"]=>
+    array(3) {
+      ["name"]=>
+      string(11) "DATECREATED"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["LANGCODE"]=>
+    array(3) {
+      ["name"]=>
+      string(8) "LANGCODE"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+  }
+}
+
+2018-09-25 13:44:40.225268 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing named complexType oAssetAuthReq
+2018-09-25 13:44:40.225288 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element ASSET_ID of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.225293 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element ASSET_ID to complexType oAssetAuthReq
+2018-09-25 13:44:40.225301 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element ASSET_ID
+2018-09-25 13:44:40.225313 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element KIVOTOS_ID of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.225317 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element KIVOTOS_ID to complexType oAssetAuthReq
+2018-09-25 13:44:40.225324 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element KIVOTOS_ID
+2018-09-25 13:44:40.225334 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element CLIENT_ID of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.225339 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element CLIENT_ID to complexType oAssetAuthReq
+2018-09-25 13:44:40.225345 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element CLIENT_ID
+2018-09-25 13:44:40.225355 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element USER_ID of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.225359 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element USER_ID to complexType oAssetAuthReq
+2018-09-25 13:44:40.225365 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element USER_ID
+2018-09-25 13:44:40.225375 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element IPADDRESS of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.225380 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element IPADDRESS to complexType oAssetAuthReq
+2018-09-25 13:44:40.225387 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element IPADDRESS
+2018-09-25 13:44:40.225396 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> processing typed element SESSIONID of type http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.225401 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> add element SESSIONID to complexType oAssetAuthReq
+2018-09-25 13:44:40.225407 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing element SESSIONID
+2018-09-25 13:44:40.225417 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> done processing complexType oAssetAuthReq
+2018-09-25 13:44:40.225443 nusoap_xmlschema: <http://www.evifweb.com/soap/crnrstn> array(6) {
+  ["name"]=>
+  string(13) "oAssetAuthReq"
+  ["typeClass"]=>
+  string(11) "complexType"
+  ["phpType"]=>
+  string(6) "struct"
+  ["simpleContent"]=>
+  string(5) "false"
+  ["compositor"]=>
+  string(3) "all"
+  ["elements"]=>
+  array(6) {
+    ["ASSET_ID"]=>
+    array(3) {
+      ["name"]=>
+      string(8) "ASSET_ID"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["KIVOTOS_ID"]=>
+    array(3) {
+      ["name"]=>
+      string(10) "KIVOTOS_ID"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["CLIENT_ID"]=>
+    array(3) {
+      ["name"]=>
+      string(9) "CLIENT_ID"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["USER_ID"]=>
+    array(3) {
+      ["name"]=>
+      string(7) "USER_ID"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["IPADDRESS"]=>
+    array(3) {
+      ["name"]=>
+      string(9) "IPADDRESS"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+    ["SESSIONID"]=>
+    array(3) {
+      ["name"]=>
+      string(9) "SESSIONID"
+      ["type"]=>
+      string(39) "http://www.w3.org/2001/XMLSchema:string"
+      ["form"]=>
+      string(11) "unqualified"
+    }
+  }
+}
+
+2018-09-25 13:44:40.225454 wsdl: Parsing WSDL schema done
+2018-09-25 13:44:40.225480 wsdl: msg saveNewAssetRequest: found part (with type) oUploadAssetInfo: oUploadAssetInfo,http://www.evifweb.com/soap/crnrstn:oAsset
+2018-09-25 13:44:40.225507 wsdl: msg saveNewAssetResponse: found part (with type) return: return,http://www.w3.org/2001/XMLSchema:string
+2018-09-25 13:44:40.225526 wsdl: msg assetAccessGrantReqRequest: found part (with type) oAssetAccessGrantReq: oAssetAccessGrantReq,http://www.evifweb.com/soap/crnrstn:oAssetAuthReq
+2018-09-25 13:44:40.225541 wsdl: msg assetAccessGrantReqResponse: found part (with type) return: return,http://www.evifweb.com/soap/crnrstn:oAsset
+2018-09-25 13:44:40.225556 wsdl: portType crnrstnPortType operation: saveNewAsset
+2018-09-25 13:44:40.225589 wsdl: portType crnrstnPortType operation: assetAccessGrantReq
+2018-09-25 13:44:40.225624 wsdl: current binding: crnrstnBinding of portType: http://www.evifweb.com/soap/crnrstn:crnrstnPortType
+2018-09-25 13:44:40.225646 wsdl: current binding operation: saveNewAsset
+2018-09-25 13:44:40.225692 wsdl: current binding operation: assetAccessGrantReq
+2018-09-25 13:44:40.225733 wsdl: current service: crnrstn
+2018-09-25 13:44:40.225744 wsdl: current port: crnrstnPort
+2018-09-25 13:44:40.225776 wsdl: Parsing WSDL done
+2018-09-25 13:44:40.225794 wsdl: post-parse data gathering for saveNewAsset
+2018-09-25 13:44:40.225809 wsdl: post-parse data gathering for assetAccessGrantReq
+";s:12:"charencoding";b:1;s:10:"debugLevel";i:9;s:16:"XMLSchemaVersion";s:32:"http://www.w3.org/2001/XMLSchema";s:16:"soap_defencoding";s:10:"ISO-8859-1";s:10:"namespaces";a:8:{s:8:"SOAP-ENV";s:41:"http://schemas.xmlsoap.org/soap/envelope/";s:3:"xsd";s:32:"http://www.w3.org/2001/XMLSchema";s:3:"xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:8:"SOAP-ENC";s:41:"http://schemas.xmlsoap.org/soap/encoding/";s:3:"tns";s:35:"http://www.evifweb.com/soap/crnrstn";s:4:"soap";s:37:"http://schemas.xmlsoap.org/wsdl/soap/";s:4:"wsdl";s:32:"http://schemas.xmlsoap.org/wsdl/";s:3:"ns8";s:32:"http://schemas.xmlsoap.org/wsdl/";}s:14:"usedNamespaces";a:0:{}s:7:"typemap";a:6:{s:32:"http://www.w3.org/2001/XMLSchema";a:43:{s:6:"string";s:6:"string";s:7:"boolean";s:7:"boolean";s:5:"float";s:6:"double";s:6:"double";s:6:"double";s:7:"decimal";s:6:"double";s:8:"duration";s:0:"";s:8:"dateTime";s:6:"string";s:4:"time";s:6:"string";s:4:"date";s:6:"string";s:10:"gYearMonth";s:0:"";s:5:"gYear";s:0:"";s:9:"gMonthDay";s:0:"";s:4:"gDay";s:0:"";s:6:"gMonth";s:0:"";s:9:"hexBinary";s:6:"string";s:12:"base64Binary";s:6:"string";s:7:"anyType";s:6:"string";s:13:"anySimpleType";s:6:"string";s:16:"normalizedString";s:6:"string";s:5:"token";s:6:"string";s:8:"language";s:0:"";s:7:"NMTOKEN";s:0:"";s:8:"NMTOKENS";s:0:"";s:4:"Name";s:0:"";s:6:"NCName";s:0:"";s:2:"ID";s:0:"";s:5:"IDREF";s:0:"";s:6:"IDREFS";s:0:"";s:6:"ENTITY";s:0:"";s:8:"ENTITIES";s:0:"";s:7:"integer";s:7:"integer";s:18:"nonPositiveInteger";s:7:"integer";s:15:"negativeInteger";s:7:"integer";s:4:"long";s:7:"integer";s:3:"int";s:7:"integer";s:5:"short";s:7:"integer";s:4:"byte";s:7:"integer";s:18:"nonNegativeInteger";s:7:"integer";s:12:"unsignedLong";s:0:"";s:11:"unsignedInt";s:0:"";s:13:"unsignedShort";s:0:"";s:12:"unsignedByte";s:0:"";s:15:"positiveInteger";s:0:"";}s:35:"http://www.w3.org/2000/10/XMLSchema";a:11:{s:2:"i4";s:0:"";s:3:"int";s:7:"integer";s:7:"boolean";s:7:"boolean";s:6:"string";s:6:"string";s:6:"double";s:6:"double";s:5:"float";s:6:"double";s:8:"dateTime";s:6:"string";s:11:"timeInstant";s:6:"string";s:12:"base64Binary";s:6:"string";s:6:"base64";s:6:"string";s:7:"ur-type";s:5:"array";}s:32:"http://www.w3.org/1999/XMLSchema";a:11:{s:2:"i4";s:0:"";s:3:"int";s:7:"integer";s:7:"boolean";s:7:"boolean";s:6:"string";s:6:"string";s:6:"double";s:6:"double";s:5:"float";s:6:"double";s:8:"dateTime";s:6:"string";s:11:"timeInstant";s:6:"string";s:12:"base64Binary";s:6:"string";s:6:"base64";s:6:"string";s:7:"ur-type";s:5:"array";}s:26:"http://soapinterop.org/xsd";a:1:{s:10:"SOAPStruct";s:6:"struct";}s:41:"http://schemas.xmlsoap.org/soap/encoding/";a:3:{s:6:"base64";s:6:"string";s:5:"array";s:5:"array";s:5:"Array";s:5:"array";}s:30:"http://xml.apache.org/xml-soap";a:1:{i:0;s:3:"Map";}}s:11:"xmlEntities";a:5:{s:4:"quot";s:1:""";s:3:"amp";s:1:"&";s:2:"lt";s:1:"<";s:2:"gt";s:1:">";s:4:"apos";s:1:"'";}s:9:"wsdl_info";a:9:{s:14:"xmlns:SOAP-ENV";s:41:"http://schemas.xmlsoap.org/soap/envelope/";s:9:"xmlns:xsd";s:32:"http://www.w3.org/2001/XMLSchema";s:9:"xmlns:xsi";s:41:"http://www.w3.org/2001/XMLSchema-instance";s:14:"xmlns:SOAP-ENC";s:41:"http://schemas.xmlsoap.org/soap/encoding/";s:9:"xmlns:tns";s:35:"http://www.evifweb.com/soap/crnrstn";s:10:"xmlns:soap";s:37:"http://schemas.xmlsoap.org/wsdl/soap/";s:10:"xmlns:wsdl";s:32:"http://schemas.xmlsoap.org/wsdl/";s:5:"xmlns";s:32:"http://schemas.xmlsoap.org/wsdl/";s:15:"targetNamespace";s:35:"http://www.evifweb.com/soap/crnrstn";}s:20:"currentPortOperation";s:19:"assetAccessGrantReq";s:8:"opStatus";s:6:"output";s:11:"serviceName";s:7:"crnrstn";}

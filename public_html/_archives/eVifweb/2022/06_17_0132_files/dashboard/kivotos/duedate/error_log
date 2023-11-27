@@ -1,0 +1,6 @@
+[09-Aug-2018 22:33:44 UTC] database.inc.php (35) evifweb queryType sent to user database_integrations class object :: validate_session from [99.203.5.39]
+[09-Aug-2018 22:33:44 UTC] database.inc.php (35) evifweb queryType sent to user database_integrations class object :: pull_page_lang_elements from [99.203.5.39]
+[09-Aug-2018 22:33:44 UTC] database.inc.php (35) evifweb queryType sent to user database_integrations class object :: get_kivotos_details_simple from [99.203.5.39]
+[17-Sep-2018 17:09:04 UTC] database.inc.php (34) evifweb queryType sent to user database_integrations class object :: validate_session from [99.203.5.111]
+[17-Sep-2018 17:09:04 UTC] database.inc.php (34) evifweb queryType sent to user database_integrations class object :: pull_page_lang_elements from [99.203.5.111]
+[17-Sep-2018 17:09:04 UTC] database.inc.php (34) evifweb queryType sent to user database_integrations class object :: get_kivotos_details_simple from [99.203.5.111]

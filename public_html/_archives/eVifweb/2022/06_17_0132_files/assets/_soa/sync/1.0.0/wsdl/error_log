@@ -1,0 +1,4 @@
+[23-Aug-2018 15:28:16 UTC] database.inc.php (34) evifweb queryType sent to user database_integrations class object :: save_asset_content from [50.87.249.11]
+[23-Aug-2018 15:28:40 UTC] database.inc.php (34) evifweb queryType sent to user database_integrations class object :: request_asset_access_authorization from [50.87.249.11]
+[23-Aug-2018 15:29:23 UTC] database.inc.php (34) evifweb queryType sent to user database_integrations class object :: request_asset_access_authorization from [50.87.249.11]
+[25-Sep-2018 13:44:40 UTC] database.inc.php (34) evifweb queryType sent to user database_integrations class object :: request_asset_access_authorization from [50.87.249.11]

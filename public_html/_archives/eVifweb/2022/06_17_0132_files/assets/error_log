@@ -1,0 +1,3 @@
+[12-Aug-2018 17:27:13 UTC] database.inc.php (34) evifweb queryType sent to user database_integrations class object :: sys_get_asset from [96.73.223.43]
+[12-Aug-2018 17:27:13 UTC] database.inc.php (34) evifweb queryType sent to user database_integrations class object :: validate_session from [96.73.223.43]
+[12-Aug-2018 17:27:13 UTC] database.inc.php (34) evifweb queryType sent to user database_integrations class object :: pull_page_lang_elements from [96.73.223.43]

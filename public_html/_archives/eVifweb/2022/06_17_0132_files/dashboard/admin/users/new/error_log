@@ -1,0 +1,5 @@
+[31-Jul-2018 13:40:17 UTC] database.inc.php (35) evifweb queryType sent to user database_integrations class object :: validate_session
+[31-Jul-2018 13:40:17 UTC] database.inc.php (35) evifweb queryType sent to user database_integrations class object :: pull_page_lang_elements
+[01-Aug-2018 00:30:34 UTC] database.inc.php (35) evifweb queryType sent to user database_integrations class object :: validate_session
+[01-Aug-2018 00:30:34 UTC] database.inc.php (35) evifweb queryType sent to user database_integrations class object :: sys_lang_get
+[01-Aug-2018 00:30:34 UTC] database.inc.php (35) evifweb queryType sent to user database_integrations class object :: pull_page_lang_elements

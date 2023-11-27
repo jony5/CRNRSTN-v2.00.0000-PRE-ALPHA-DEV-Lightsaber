@@ -1,0 +1,98 @@
+@charset "UTF-8";
+/* 
+// J5
+// Code is Poetry */
+a									{ text-decoration: none; font-weight: normal;}
+#hdr_dbl_hr_shell					{ width:100%;}
+#hdr_hr_top							{ width:100%; clear:both; background-color:#000; height:10px; margin:0 0 2px 0;}
+#hdr_hr_btm							{ width:100%; clear:both; background-color:#606060; height:3px; margin:0 0 0 0;}
+
+.hdr_dbl_hr_shell					{ width:100%;}
+.hdr_hr_top							{ width:100%; clear:both; background-color:#000; height:10px; margin:0 0 2px 0;}
+.hdr_hr_btm							{ width:100%; clear:both; background-color:#606060; height:3px; margin:0 0 0 0;}
+
+.frm_errstatus						{ color:#FF0000; font-weight:bold; font-size:13px; text-align:right;}
+.req_star							{ font-weight:bold; font-size:14px; color:#F00;}
+.the_R								{ color:#F00;}
+.the_V								{ color:#F00;}
+
+.ui-filter-inset 					{ margin-top: 0; }
+.ui-li-aside						{ margin-top: 20px;}
+
+/*JQUERY*/
+@media ( min-width: 10em ) {
+	/* Show the table header rows and set all cells to display: table-cell */
+	.evif-asset-report td,
+	.evif-asset-report th,
+	.evif-asset-report tbody th,
+	.evif-asset-report tbody td,
+	.evif-asset-report thead td,
+	.evif-asset-report thead th {
+		display: table-cell;
+		margin: 0;
+	}
+	/* Hide the labels in each cell */
+	.evif-asset-report td .ui-table-cell-label,
+	.evif-asset-report th .ui-table-cell-label {
+		display: none;
+	}
+}
+	
+/*DASHBOARD*/
+.agg_element_hr						{border-top:solid 2px #EEE; width:100%; height:1px;}
+.agg_element_wrapper				{ }
+.icon_wrapper						{ position:relative; float:left; width:20px; height:20px; margin-top:5px;}
+.icon_img							{ position:absolute;}
+.element_detail_wrapper				{ float:left; padding-left:10px; width:88%;}
+.element_title a					{ text-decoration: none; font-weight:normal;}
+.element_date						{float: left;}
+.element_owner						{float: left; padding-left:8px;}
+.element_feeder_cnt					{ position:absolute; top:-8px; left:10px; background-color: #B50F23; color:#FFF; font-size:11px; font-weight:normal; padding:1px 3px 1px 3px; border-radius: 15px;}
+
+
+/*ACTIVITY LOG*/
+.a_log_lang_content					{ font-style:italic;}
+.a_log_asset_kivotos				{ font-style:italic;}
+.a_log_topic_name					{}
+.a_log_kivotos_status				{ font-weight:bold;}
+.a_log_kivotos_duedate				{ font-weight:bold;}
+.a_log_user_perm_type				{ font-weight:bold;}
+
+/*STREAM*/
+#new_stream_input					{ display: none; padding-top: 8px;}
+.stream_reply_input					{ width:88%; }
+#new_stream_lnk						{ padding-top: 8px;}
+#stream_file_attach					{ display:none;}
+.stream_output_wrapper				{ width: 100%;}
+.stream_order_wrapper				{ float: right; width:90%;}
+.vert_flow_wrapper					{ float:left; width:17px;}
+.stream_vert_flow_cap				{ height:68px;}
+.single_stream_wrapper				{ padding-bottom:15px;}
+.stream_content						{ padding-bottom:10px; padding-top:8px;}
+.stream_timestamp					{ float:left;}
+.stream_modified					{ font-style: italic; color:#828282;}
+.stream_edit_lnk					{}
+.stream_attach_lnk					{}
+.stream_reply						{ float:right; padding-right:10px;}
+.stream_hr							{ border-top:2px solid #156EF5;}
+.stream_hr_dsh						{border-top:2px dashed #156EF5;}
+.single_stream_wrapper a			{ font-weight:normal; text-decoration: none; text-underline: none; color:#0066CC;}
+.stream_mentions p					{ padding-top: 3px; padding-bottom: 3px; margin-top: 0px; margin-bottom: 0px; padding-left: 5px;}
+#popup_mention						{ padding:10px;}
+
+iframe 								{ border: none;}
+
+/*UTILITY*/  
+.hidden								{ width:0px; height:0px; position:absolute; left:-2000px; overflow:hidden;}
+.cb 								{ display:block; clear:both; height:0px; line-height:0px; overflow:hidden; width:100%; font-size:1px;}
+.cb_5	 							{ display:block; clear:both; height:5px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_10	 							{ display:block; clear:both; height:10px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_15	 							{ display:block; clear:both; height:15px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_20								{ display:block; clear:both; height:20px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_30								{ display:block; clear:both; height:30px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_40								{ display:block; clear:both; height:40px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_50	 							{ display:block; clear:both; height:50px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_60	 							{ display:block; clear:both; height:60px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_75								{ display:block; clear:both; height:75px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}  	
+.cb_100 							{ display:block; clear:both; height:100px; line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_200								{ display:block; clear:both; height:200px; line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
