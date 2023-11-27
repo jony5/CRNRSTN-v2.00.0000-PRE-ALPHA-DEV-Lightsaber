@@ -9,8 +9,9 @@ The SITE IS DOWN at this time. Hosting migration is in progress --> [lightsaber.
 
 [Click here](https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/) for temp diagrams that are being used for decision making now.
 
-Last updated on Saturday, November 25, 2023 @ 16:20:00.036194 EDT.
-
+Last updated on Sunday, November 26, 2023 @ 17:09:42.894539 EDT. WE ADDED A PROJECT 
+ARCHIVES FOLDER, _archives/, AND WE MOVED TO, _archives/CRNRSTN/2012/09_11_GNU3/:
+_crnrstn/_config/config.mime_types/_discovery/arch_crnrstn_GNU3_20120911/
 
 [lightsaber.crnrstn.jony5.com](http://lightsaber.crnrstn.jony5.com/)
 
