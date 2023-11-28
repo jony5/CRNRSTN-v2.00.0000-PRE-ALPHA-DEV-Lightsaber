@@ -1,0 +1,15 @@
+[12-Jun-2011 11:36:58] PHP Parse error:  syntax error, unexpected $end, expecting ',' or ';' in /home4/pixtwofl/public_html/wethrbug/4dayreport/index.php on line 112
+[13-Jun-2011 04:35:13] PHP Warning:  Missing argument 2 for encrypt(), called in /home4/pixtwofl/public_html/wethrbug/4dayreport/index.php on line 70 and defined in /home4/pixtwofl/public_html/wethrbug/db/wethrdb.inc.php on line 169
+[13-Jun-2011 05:07:20] PHP Warning:  mysql_fetch_row(): supplied argument is not a valid MySQL result resource in /home4/pixtwofl/public_html/wethrbug/4dayreport/index.php on line 32
+[13-Jun-2011 05:07:53] PHP Warning:  mysql_fetch_row(): supplied argument is not a valid MySQL result resource in /home4/pixtwofl/public_html/wethrbug/4dayreport/index.php on line 32
+[16-Jun-2022 22:01:43 America/Boise] PHP Warning:  include(../db/wethrdb.inc.php): Failed to open stream: No such file or directory in /home2/jonyfivc/public_html/wethrbug.jony5.com/4dayreport/index.php on line 4
+[16-Jun-2022 22:01:43 America/Boise] PHP Warning:  include(): Failed opening '../db/wethrdb.inc.php' for inclusion (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home2/jonyfivc/public_html/wethrbug.jony5.com/4dayreport/index.php on line 4
+[16-Jun-2022 22:01:43 America/Boise] PHP Warning:  include(../5dayforecast/security/sessionmgmt/session.inc.php): Failed to open stream: No such file or directory in /home2/jonyfivc/public_html/wethrbug.jony5.com/4dayreport/index.php on line 5
+[16-Jun-2022 22:01:43 America/Boise] PHP Warning:  include(): Failed opening '../5dayforecast/security/sessionmgmt/session.inc.php' for inclusion (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home2/jonyfivc/public_html/wethrbug.jony5.com/4dayreport/index.php on line 5
+[16-Jun-2022 22:01:43 America/Boise] PHP Warning:  Undefined array key "MNHASH" in /home2/jonyfivc/public_html/wethrbug.jony5.com/4dayreport/index.php on line 10
+[16-Jun-2022 22:01:43 America/Boise] PHP Warning:  Undefined array key "UNHASH" in /home2/jonyfivc/public_html/wethrbug.jony5.com/4dayreport/index.php on line 11
+[16-Jun-2022 22:01:43 America/Boise] PHP Warning:  Undefined array key "status" in /home2/jonyfivc/public_html/wethrbug.jony5.com/4dayreport/index.php on line 12
+[16-Jun-2022 22:01:43 America/Boise] PHP Fatal error:  Uncaught Error: Class "Object" not found in /home2/jonyfivc/public_html/wethrbug.jony5.com/4dayreport/index.php:14
+Stack trace:
+#0 {main}
+  thrown in /home2/jonyfivc/public_html/wethrbug.jony5.com/4dayreport/index.php on line 14

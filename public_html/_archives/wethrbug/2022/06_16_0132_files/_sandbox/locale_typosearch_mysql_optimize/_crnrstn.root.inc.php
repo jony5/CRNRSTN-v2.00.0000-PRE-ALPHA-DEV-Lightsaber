@@ -1,0 +1,2 @@
+<?php
+	$CRNRSTN_ROOT='../../';

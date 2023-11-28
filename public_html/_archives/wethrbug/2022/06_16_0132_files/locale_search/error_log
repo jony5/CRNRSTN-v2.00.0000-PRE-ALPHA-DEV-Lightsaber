@@ -1,0 +1,4 @@
+[08-Jun-2022 04:25:50 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function return_sizeof() on bool in /home2/jonyfivc/public_html/wethrbug.jony5.com/locale_search/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home2/jonyfivc/public_html/wethrbug.jony5.com/locale_search/index.php on line 15

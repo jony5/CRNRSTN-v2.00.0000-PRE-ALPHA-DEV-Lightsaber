@@ -1,0 +1,153 @@
+[08-Feb-2021 11:46:18 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function store_result() on bool in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php:11562
+Stack trace:
+#0 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php(1881): database_integration->executeQueryType('sys_lang_get', Object(user), Object(crnrstn_environmentals), Object(database_response_manager))
+#1 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2574): database_integration->processUserRequest('sys_lang_get', Object(user), Object(crnrstn_environmentals))
+#2 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2389): user->getSystemLanguages()
+#3 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/inc/language/lang.inc.php(7): user->loadLangComboHTML()
+#4 /home2/jonyfivc/public_html/wethrbug.jony5.com/index.php(8): require('/home2/jonyfivc...')
+#5 {main}
+  thrown in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php on line 11562
+[08-Feb-2021 11:46:34 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function store_result() on bool in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php:11562
+Stack trace:
+#0 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php(1881): database_integration->executeQueryType('sys_lang_get', Object(user), Object(crnrstn_environmentals), Object(database_response_manager))
+#1 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2574): database_integration->processUserRequest('sys_lang_get', Object(user), Object(crnrstn_environmentals))
+#2 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2389): user->getSystemLanguages()
+#3 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/inc/language/lang.inc.php(7): user->loadLangComboHTML()
+#4 /home2/jonyfivc/public_html/wethrbug.jony5.com/index.php(8): require('/home2/jonyfivc...')
+#5 {main}
+  thrown in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php on line 11562
+[08-Feb-2021 11:47:09 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function store_result() on bool in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php:11562
+Stack trace:
+#0 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php(1881): database_integration->executeQueryType('sys_lang_get', Object(user), Object(crnrstn_environmentals), Object(database_response_manager))
+#1 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2574): database_integration->processUserRequest('sys_lang_get', Object(user), Object(crnrstn_environmentals))
+#2 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2389): user->getSystemLanguages()
+#3 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/inc/language/lang.inc.php(7): user->loadLangComboHTML()
+#4 /home2/jonyfivc/public_html/wethrbug.jony5.com/index.php(8): require('/home2/jonyfivc...')
+#5 {main}
+  thrown in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php on line 11562
+[08-Feb-2021 11:47:13 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function store_result() on bool in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php:11562
+Stack trace:
+#0 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php(1881): database_integration->executeQueryType('sys_lang_get', Object(user), Object(crnrstn_environmentals), Object(database_response_manager))
+#1 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2574): database_integration->processUserRequest('sys_lang_get', Object(user), Object(crnrstn_environmentals))
+#2 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2389): user->getSystemLanguages()
+#3 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/inc/language/lang.inc.php(7): user->loadLangComboHTML()
+#4 /home2/jonyfivc/public_html/wethrbug.jony5.com/index.php(8): require('/home2/jonyfivc...')
+#5 {main}
+  thrown in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php on line 11562
+[08-Feb-2021 11:49:14 America/Boise] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'jony5_wethrbug'@'localhost' (using password: YES) in /home2/jonyfivc/public_html/wethrbug.jony5.com/_crnrstn/class/database/mysqli/crnrstn.mysqli.inc.php on line 71
+[08-Feb-2021 11:49:15 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function store_result() on bool in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php:11562
+Stack trace:
+#0 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php(1881): database_integration->executeQueryType('sys_lang_get', Object(user), Object(crnrstn_environmentals), Object(database_response_manager))
+#1 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2574): database_integration->processUserRequest('sys_lang_get', Object(user), Object(crnrstn_environmentals))
+#2 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2389): user->getSystemLanguages()
+#3 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/inc/language/lang.inc.php(7): user->loadLangComboHTML()
+#4 /home2/jonyfivc/public_html/wethrbug.jony5.com/index.php(8): require('/home2/jonyfivc...')
+#5 {main}
+  thrown in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php on line 11562
+[08-Feb-2021 11:49:23 America/Boise] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'jony5_wethrbug'@'localhost' (using password: YES) in /home2/jonyfivc/public_html/wethrbug.jony5.com/_crnrstn/class/database/mysqli/crnrstn.mysqli.inc.php on line 71
+[08-Feb-2021 11:49:24 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function store_result() on bool in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php:11562
+Stack trace:
+#0 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php(1881): database_integration->executeQueryType('sys_lang_get', Object(user), Object(crnrstn_environmentals), Object(database_response_manager))
+#1 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2574): database_integration->processUserRequest('sys_lang_get', Object(user), Object(crnrstn_environmentals))
+#2 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2389): user->getSystemLanguages()
+#3 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/inc/language/lang.inc.php(7): user->loadLangComboHTML()
+#4 /home2/jonyfivc/public_html/wethrbug.jony5.com/index.php(8): require('/home2/jonyfivc...')
+#5 {main}
+  thrown in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php on line 11562
+[08-Feb-2021 11:53:57 America/Boise] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user ''@'localhost' (using password: NO) in /home2/jonyfivc/public_html/wethrbug.jony5.com/_crnrstn/class/database/mysqli/crnrstn.mysqli.inc.php on line 73
+[08-Feb-2021 11:53:57 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function store_result() on bool in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php:11562
+Stack trace:
+#0 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php(1881): database_integration->executeQueryType('sys_lang_get', Object(user), Object(crnrstn_environmentals), Object(database_response_manager))
+#1 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2574): database_integration->processUserRequest('sys_lang_get', Object(user), Object(crnrstn_environmentals))
+#2 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2389): user->getSystemLanguages()
+#3 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/inc/language/lang.inc.php(7): user->loadLangComboHTML()
+#4 /home2/jonyfivc/public_html/wethrbug.jony5.com/index.php(8): require('/home2/jonyfivc...')
+#5 {main}
+  thrown in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php on line 11562
+[08-Feb-2021 11:53:59 America/Boise] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user ''@'localhost' (using password: NO) in /home2/jonyfivc/public_html/wethrbug.jony5.com/_crnrstn/class/database/mysqli/crnrstn.mysqli.inc.php on line 73
+[08-Feb-2021 11:53:59 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function store_result() on bool in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php:11562
+Stack trace:
+#0 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php(1881): database_integration->executeQueryType('sys_lang_get', Object(user), Object(crnrstn_environmentals), Object(database_response_manager))
+#1 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2574): database_integration->processUserRequest('sys_lang_get', Object(user), Object(crnrstn_environmentals))
+#2 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2389): user->getSystemLanguages()
+#3 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/inc/language/lang.inc.php(7): user->loadLangComboHTML()
+#4 /home2/jonyfivc/public_html/wethrbug.jony5.com/index.php(8): require('/home2/jonyfivc...')
+#5 {main}
+  thrown in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php on line 11562
+[08-Feb-2021 12:07:04 America/Boise] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user ''@'localhost' (using password: NO) in /home2/jonyfivc/public_html/wethrbug.jony5.com/_crnrstn/class/database/mysqli/crnrstn.mysqli.inc.php on line 73
+[08-Feb-2021 12:07:04 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function store_result() on bool in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php:11562
+Stack trace:
+#0 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php(1881): database_integration->executeQueryType('sys_lang_get', Object(user), Object(crnrstn_environmentals), Object(database_response_manager))
+#1 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2574): database_integration->processUserRequest('sys_lang_get', Object(user), Object(crnrstn_environmentals))
+#2 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2389): user->getSystemLanguages()
+#3 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/inc/language/lang.inc.php(7): user->loadLangComboHTML()
+#4 /home2/jonyfivc/public_html/wethrbug.jony5.com/index.php(8): require('/home2/jonyfivc...')
+#5 {main}
+  thrown in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php on line 11562
+[08-Feb-2021 12:26:08 America/Boise] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user ''@'localhost' (using password: NO) in /home2/jonyfivc/public_html/wethrbug.jony5.com/_crnrstn/class/database/mysqli/crnrstn.mysqli.inc.php on line 73
+[08-Feb-2021 12:26:08 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function store_result() on bool in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php:11562
+Stack trace:
+#0 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php(1881): database_integration->executeQueryType('sys_lang_get', Object(user), Object(crnrstn_environmentals), Object(database_response_manager))
+#1 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2574): database_integration->processUserRequest('sys_lang_get', Object(user), Object(crnrstn_environmentals))
+#2 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2389): user->getSystemLanguages()
+#3 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/inc/language/lang.inc.php(7): user->loadLangComboHTML()
+#4 /home2/jonyfivc/public_html/wethrbug.jony5.com/index.php(8): require('/home2/jonyfivc...')
+#5 {main}
+  thrown in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php on line 11562
+[08-Feb-2021 12:26:10 America/Boise] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user ''@'localhost' (using password: NO) in /home2/jonyfivc/public_html/wethrbug.jony5.com/_crnrstn/class/database/mysqli/crnrstn.mysqli.inc.php on line 73
+[08-Feb-2021 12:26:10 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function store_result() on bool in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php:11562
+Stack trace:
+#0 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php(1881): database_integration->executeQueryType('sys_lang_get', Object(user), Object(crnrstn_environmentals), Object(database_response_manager))
+#1 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2574): database_integration->processUserRequest('sys_lang_get', Object(user), Object(crnrstn_environmentals))
+#2 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2389): user->getSystemLanguages()
+#3 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/inc/language/lang.inc.php(7): user->loadLangComboHTML()
+#4 /home2/jonyfivc/public_html/wethrbug.jony5.com/index.php(8): require('/home2/jonyfivc...')
+#5 {main}
+  thrown in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php on line 11562
+[08-Feb-2021 12:26:13 America/Boise] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user ''@'localhost' (using password: NO) in /home2/jonyfivc/public_html/wethrbug.jony5.com/_crnrstn/class/database/mysqli/crnrstn.mysqli.inc.php on line 73
+[08-Feb-2021 12:26:13 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function store_result() on bool in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php:11562
+Stack trace:
+#0 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php(1881): database_integration->executeQueryType('sys_lang_get', Object(user), Object(crnrstn_environmentals), Object(database_response_manager))
+#1 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2574): database_integration->processUserRequest('sys_lang_get', Object(user), Object(crnrstn_environmentals))
+#2 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2389): user->getSystemLanguages()
+#3 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/inc/language/lang.inc.php(7): user->loadLangComboHTML()
+#4 /home2/jonyfivc/public_html/wethrbug.jony5.com/index.php(8): require('/home2/jonyfivc...')
+#5 {main}
+  thrown in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php on line 11562
+[08-Feb-2021 12:27:06 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function retrieveDataByID() on bool in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php:2476
+Stack trace:
+#0 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2542): user->getLangElem('COMBO_SEL_DEVIC...')
+#1 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/inc/device/detect.inc.php(7): user->loadDeviceComboHTML()
+#2 /home2/jonyfivc/public_html/wethrbug.jony5.com/index.php(24): require('/home2/jonyfivc...')
+#3 {main}
+  thrown in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php on line 2476
+[08-Feb-2021 12:31:05 America/Boise] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user ''@'localhost' (using password: NO) in /home2/jonyfivc/public_html/wethrbug.jony5.com/_crnrstn/class/database/mysqli/crnrstn.mysqli.inc.php on line 73
+[08-Feb-2021 12:31:05 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function store_result() on bool in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php:11562
+Stack trace:
+#0 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php(1881): database_integration->executeQueryType('sys_lang_get', Object(user), Object(crnrstn_environmentals), Object(database_response_manager))
+#1 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2574): database_integration->processUserRequest('sys_lang_get', Object(user), Object(crnrstn_environmentals))
+#2 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2389): user->getSystemLanguages()
+#3 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/inc/language/lang.inc.php(7): user->loadLangComboHTML()
+#4 /home2/jonyfivc/public_html/wethrbug.jony5.com/index.php(8): require('/home2/jonyfivc...')
+#5 {main}
+  thrown in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php on line 11562
+[08-Feb-2021 12:31:08 America/Boise] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user ''@'localhost' (using password: NO) in /home2/jonyfivc/public_html/wethrbug.jony5.com/_crnrstn/class/database/mysqli/crnrstn.mysqli.inc.php on line 73
+[08-Feb-2021 12:31:08 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function store_result() on bool in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php:11562
+Stack trace:
+#0 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php(1881): database_integration->executeQueryType('sys_lang_get', Object(user), Object(crnrstn_environmentals), Object(database_response_manager))
+#1 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2574): database_integration->processUserRequest('sys_lang_get', Object(user), Object(crnrstn_environmentals))
+#2 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2389): user->getSystemLanguages()
+#3 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/inc/language/lang.inc.php(7): user->loadLangComboHTML()
+#4 /home2/jonyfivc/public_html/wethrbug.jony5.com/index.php(8): require('/home2/jonyfivc...')
+#5 {main}
+  thrown in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php on line 11562
+[15-Jan-2022 01:53:45 America/Boise] PHP Warning:  mysqli::__construct(): (08004/1040): Too many connections in /home2/jonyfivc/public_html/wethrbug.jony5.com/_crnrstn/class/database/mysqli/crnrstn.mysqli.inc.php on line 71
+[15-Jan-2022 01:53:47 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function store_result() on bool in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php:11562
+Stack trace:
+#0 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php(1881): database_integration->executeQueryType('sys_lang_get', Object(user), Object(crnrstn_environmentals), Object(database_response_manager))
+#1 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2574): database_integration->processUserRequest('sys_lang_get', Object(user), Object(crnrstn_environmentals))
+#2 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/user.inc.php(2389): user->getSystemLanguages()
+#3 /home2/jonyfivc/public_html/wethrbug.jony5.com/common/inc/language/lang.inc.php(7): user->loadLangComboHTML()
+#4 /home2/jonyfivc/public_html/wethrbug.jony5.com/index.php(8): require('/home2/jonyfivc...')
+#5 {main}
+  thrown in /home2/jonyfivc/public_html/wethrbug.jony5.com/common/classes/database.inc.php on line 11562
