@@ -1,6 +1,7 @@
 <?php
+/**
+* @package CRNRSTN
 
-/*
 // J5
 // Code is Poetry */
 require('_crnrstn.root.inc.php');

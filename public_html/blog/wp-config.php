@@ -18,7 +18,9 @@
  * @package WordPress
  */
 
-/*
+/**
+* @package CRNRSTN
+
 // J5
 // Code is Poetry */
 require_once('_crnrstn.root.inc.php');
