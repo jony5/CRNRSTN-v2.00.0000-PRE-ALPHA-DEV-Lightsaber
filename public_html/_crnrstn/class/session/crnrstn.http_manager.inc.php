@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -522,7 +522,7 @@ class crnrstn_http_manager {
                     error_log(__LINE__  . ' http mgr $_GET $data[' . print_r($data, true) . ']. $index[' . print_r($index, true) . '].');
                     $this->oCRNRSTN->add_resource($index, $data, 'CRNRSTN::RESOURCE::GET_DATA');
 
-                        // CRNRSTN :: DECOUPLED DATA OBJECT (DDO) SERVICES LAYER.
+                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) SERVICES LAYER.
                         // # # C # R # N # R # S # T # N # : : # # # #
                         // CRNRSTN :: UGC DATA INPUT [HASH ACCELERATION]
 //                    $tmp_output = $this->add_resource($tmp_key, $tmp_hash_val, 'CRNRSTN::RESOURCE::HASH_ACCELERATION', CRNRSTN_AUTHORIZE_SESSION, 0);
@@ -588,7 +588,7 @@ class crnrstn_http_manager {
             switch($var_parse_channel){
                 case 'G':
 
-                    //error_log(__LINE__ . ' http mgr [' . $this->oCRNRSTN->request_id . '].');
+                    //error_log(__LINE__ . ' http mgr [' . $this->oCRNRSTN->get_crnrstn('request_id') . '].');
 
                     //
                     // DO WE HAVE GET DATA?
@@ -603,7 +603,7 @@ class crnrstn_http_manager {
 
                             $tmp_str = $_GET['crnrstn_pssdtl_packet'];
 
-                            $this->oCRNRSTN->channel_auth_data_reporting_sync($tmp_str, 'crnrstn_pssdtl_packet', 'DDO', 'get', CRNRSTN_AUTHORIZE_GET);
+                            $this->oCRNRSTN->channel_authorization_data_reporting_sync($tmp_str, 'crnrstn_pssdtl_packet', 'DDO', 'get', CRNRSTN_AUTHORIZE_GET);
 
                             $this->form_integration_isset_ARRAY['GET'] = true;
                             self::$ssdtla_enabled = true;
@@ -616,12 +616,12 @@ class crnrstn_http_manager {
                 break;
                 case 'P':
 
-                    //error_log(__LINE__ . ' http mgr [' . $this->oCRNRSTN->request_id . '].');
+                    //error_log(__LINE__ . ' http mgr [' . $this->oCRNRSTN->get_crnrstn('request_id') . '].');
                     //error_log(__LINE__ . ' http POST CHANNEL DATA INITIALIZING NOW FROM [' . __METHOD__ . '].');
 
                     if($this->issetHTTP($_POST)){
 
-                        //error_log(__LINE__ . ' http mgr GOT POST DATA [' . $this->oCRNRSTN->request_id . '].');
+                        //error_log(__LINE__ . ' http mgr GOT POST DATA [' . $this->oCRNRSTN->get_crnrstn('request_id') . '].');
 
                         /*
                         'crnrstn_xhr_root', 'crnrstn_xhr_root');
@@ -653,7 +653,7 @@ class crnrstn_http_manager {
                         if($this->issetParam($_POST, 'crnrstn_pssdtl_packet')){
                             //error_log(__LINE__ . ' http mgr.');
 
-                            $this->oCRNRSTN->channel_auth_data_reporting_sync($tmp_str, 'crnrstn_pssdtl_packet', 'DDO', 'post', CRNRSTN_AUTHORIZE_POST);
+                            $this->oCRNRSTN->channel_authorization_data_reporting_sync($tmp_str, 'crnrstn_pssdtl_packet', 'DDO', 'post', CRNRSTN_AUTHORIZE_POST);
 
                             $this->form_integration_isset_ARRAY['POST'] = true;
                             self::$ssdtla_enabled = true;
@@ -1831,8 +1831,23 @@ class crnrstn_http_manager {
                     //$this->oCRNRSTN->add_resource('custom_mobi_detection_result', $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'], 'CRNRSTN::RESOURCE::DEVICE_TYPE', NULL, 0);
 
                     //
-                    // CRNRSTN :: CONFIGURATION WILL INPUT CLEAN UGC DATA OR LOOK FOR
-                    // GRACEFUL DEGRADATION TO A VANILLA DEFAULT. ON ERR, RETURNS NULL.
+                    // THE CRNRSTN :: CONFIGURATION MANAGER WILL INPUT CLEAN UGC DATA
+                    // OR LOOK FOR THE BEST AND MOST ELEGANT (PLEASE READ AS GRACEFUL)
+                    // DEGRADATION PATHWAYS TO A VANILLA DEFAULT.
+                    //
+                    // ON CRITICAL ERR, $oCRNRSTN->config_ugc_input_clean_data() RETURNS
+                    // NULL, AND A SYSTEM EXCEPTION IS THROWN. OTHERWISE, IF THE INPUT
+                    // DATA IS NOT VALID BUT CAN BE OVERRIDDEN WITH A SETTINGS DEFAULT,
+                    // AN ON THE FLY PATCH IS MADE, AND A SYSTEM NOTIFICATION WITH
+                    // DETAILS ABOUT THE INTERNAL OVERRIDE IS QUIETLY CAPTURED.
+                    //
+                    // PLEASE NOTE: $oCRNRSTN->err_message_queue_retrieve() CAN RECEIVE
+                    //              AN ERR MESSAGE OUTPUT OVERRIDE...AS INPUT. ALSO TO NOTE IS
+                    //	            THAT ACCEPTABLE INPUT CAN INCLUDE DATA SUCH AS EMPTY STRING,
+                    //	            SOAP ERROR OBJECT, OR EVEN AN OpenSSL v1.1.1 ENCRYPTED JSON
+                    //	            PACKET CONTAINING SESSION META AND A CACHE EXPIRATION TTL.
+                    //
+                    //              NULL IS THE DEFAULT FOR ERR MESSAGE OUTPUT OVERRIDE.
                     error_log(__LINE__ . ' http custom_mobi_name[' . $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] . '].');
                     if(!($tmp_result = $this->oCRNRSTN->config_ugc_input_clean_data(__FUNCTION__ . '_string', $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'], 'custom_mobi_name', 'CRNRSTN::RESOURCE::DEVICE_TYPE', 0))){
 
@@ -1843,8 +1858,23 @@ class crnrstn_http_manager {
                     }
 
                     //
-                    // CRNRSTN :: CONFIGURATION WILL INPUT CLEAN UGC DATA OR LOOK FOR
-                    // GRACEFUL DEGRADATION TO A VANILLA DEFAULT. ON ERR, RETURNS NULL.
+                    // THE CRNRSTN :: CONFIGURATION MANAGER WILL INPUT CLEAN UGC DATA
+                    // OR LOOK FOR THE BEST AND MOST ELEGANT (PLEASE READ AS GRACEFUL)
+                    // DEGRADATION PATHWAYS TO A VANILLA DEFAULT.
+                    //
+                    // ON CRITICAL ERR, $oCRNRSTN->config_ugc_input_clean_data() RETURNS
+                    // NULL, AND A SYSTEM EXCEPTION IS THROWN. OTHERWISE, IF THE INPUT
+                    // DATA IS NOT VALID BUT CAN BE OVERRIDDEN WITH A SETTINGS DEFAULT,
+                    // AN ON THE FLY PATCH IS MADE, AND A SYSTEM NOTIFICATION WITH
+                    // DETAILS ABOUT THE INTERNAL OVERRIDE IS QUIETLY CAPTURED.
+                    //
+                    // PLEASE NOTE: $oCRNRSTN->err_message_queue_retrieve() CAN RECEIVE
+                    //              AN ERR MESSAGE OUTPUT OVERRIDE...AS INPUT. ALSO TO NOTE IS
+                    //	            THAT ACCEPTABLE INPUT CAN INCLUDE DATA SUCH AS EMPTY STRING,
+                    //	            SOAP ERROR OBJECT, OR EVEN AN OpenSSL v1.1.1 ENCRYPTED JSON
+                    //	            PACKET CONTAINING SESSION META AND A CACHE EXPIRATION TTL.
+                    //
+                    //              NULL IS THE DEFAULT FOR ERR MESSAGE OUTPUT OVERRIDE.
                     error_log(__LINE__ . ' http custom_mobi_name[' . $tmp_custom_profile_ARRAY[$tmp_detection_algorithm][CRNRSTN_INTEGER] . '].');
                     if(!($tmp_result = $this->oCRNRSTN->config_ugc_input_clean_data(__FUNCTION__ . '_integer', $tmp_custom_profile_ARRAY[$tmp_detection_algorithm][CRNRSTN_INTEGER], 'custom_mobi_integer', 'CRNRSTN::RESOURCE::DEVICE_TYPE', 0))){
 
@@ -1855,8 +1885,23 @@ class crnrstn_http_manager {
                     }
 
                     //
-                    // CRNRSTN :: CONFIGURATION WILL INPUT CLEAN UGC DATA OR LOOK FOR
-                    // GRACEFUL DEGRADATION TO A VANILLA DEFAULT. ON ERR, RETURNS NULL.
+                    // THE CRNRSTN :: CONFIGURATION MANAGER WILL INPUT CLEAN UGC DATA
+                    // OR LOOK FOR THE BEST AND MOST ELEGANT (PLEASE READ AS GRACEFUL)
+                    // DEGRADATION PATHWAYS TO A VANILLA DEFAULT.
+                    //
+                    // ON CRITICAL ERR, $oCRNRSTN->config_ugc_input_clean_data() RETURNS
+                    // NULL, AND A SYSTEM EXCEPTION IS THROWN. OTHERWISE, IF THE INPUT
+                    // DATA IS NOT VALID BUT CAN BE OVERRIDDEN WITH A SETTINGS DEFAULT,
+                    // AN ON THE FLY PATCH IS MADE, AND A SYSTEM NOTIFICATION WITH
+                    // DETAILS ABOUT THE INTERNAL OVERRIDE IS QUIETLY CAPTURED.
+                    //
+                    // PLEASE NOTE: $oCRNRSTN->err_message_queue_retrieve() CAN RECEIVE
+                    //              AN ERR MESSAGE OUTPUT OVERRIDE...AS INPUT. ALSO TO NOTE IS
+                    //	            THAT ACCEPTABLE INPUT CAN INCLUDE DATA SUCH AS EMPTY STRING,
+                    //	            SOAP ERROR OBJECT, OR EVEN AN OpenSSL v1.1.1 ENCRYPTED JSON
+                    //	            PACKET CONTAINING SESSION META AND A CACHE EXPIRATION TTL.
+                    //
+                    //              NULL IS THE DEFAULT FOR ERR MESSAGE OUTPUT OVERRIDE.
                     error_log(__LINE__ . ' http custom_mobi_name[' . $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] . '].');
                     if(!($tmp_result = $this->oCRNRSTN->config_ugc_input_clean_data(__FUNCTION__ . '_string', $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'], 'custom_mobi_detection_result', 'CRNRSTN::RESOURCE::DEVICE_TYPE', 0))){
 
@@ -1972,8 +2017,23 @@ class crnrstn_http_manager {
                     //$this->oCRNRSTN->add_resource('custom_mobi_detection_result', $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'], 'CRNRSTN::RESOURCE::DEVICE_TYPE', NULL, 0);
 
                     //
-                    // CRNRSTN :: CONFIGURATION WILL INPUT CLEAN UGC DATA OR LOOK FOR
-                    // GRACEFUL DEGRADATION TO A VANILLA DEFAULT. ON ERR, RETURNS NULL.
+                    // THE CRNRSTN :: CONFIGURATION MANAGER WILL INPUT CLEAN UGC DATA
+                    // OR LOOK FOR THE BEST AND MOST ELEGANT (PLEASE READ AS GRACEFUL)
+                    // DEGRADATION PATHWAYS TO A VANILLA DEFAULT.
+                    //
+                    // ON CRITICAL ERR, $oCRNRSTN->config_ugc_input_clean_data() RETURNS
+                    // NULL, AND A SYSTEM EXCEPTION IS THROWN. OTHERWISE, IF THE INPUT
+                    // DATA IS NOT VALID BUT CAN BE OVERRIDDEN WITH A SETTINGS DEFAULT,
+                    // AN ON THE FLY PATCH IS MADE, AND A SYSTEM NOTIFICATION WITH
+                    // DETAILS ABOUT THE INTERNAL OVERRIDE IS QUIETLY CAPTURED.
+                    //
+                    // PLEASE NOTE: $oCRNRSTN->err_message_queue_retrieve() CAN RECEIVE
+                    //              AN ERR MESSAGE OUTPUT OVERRIDE...AS INPUT. ALSO TO NOTE IS
+                    //	            THAT ACCEPTABLE INPUT CAN INCLUDE DATA SUCH AS EMPTY STRING,
+                    //	            SOAP ERROR OBJECT, OR EVEN AN OpenSSL v1.1.1 ENCRYPTED JSON
+                    //	            PACKET CONTAINING SESSION META AND A CACHE EXPIRATION TTL.
+                    //
+                    //              NULL IS THE DEFAULT FOR ERR MESSAGE OUTPUT OVERRIDE.
                     if(!($tmp_result = $this->oCRNRSTN->config_ugc_input_clean_data(__FUNCTION__ . '_string', $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'], 'custom_mobi_name', 'CRNRSTN::RESOURCE::DEVICE_TYPE', 0))){
 
                         //
@@ -1983,8 +2043,23 @@ class crnrstn_http_manager {
                     }
 
                     //
-                    // CRNRSTN :: CONFIGURATION WILL INPUT CLEAN UGC DATA OR LOOK FOR
-                    // GRACEFUL DEGRADATION TO A VANILLA DEFAULT. ON ERR, RETURNS NULL.
+                    // THE CRNRSTN :: CONFIGURATION MANAGER WILL INPUT CLEAN UGC DATA
+                    // OR LOOK FOR THE BEST AND MOST ELEGANT (PLEASE READ AS GRACEFUL)
+                    // DEGRADATION PATHWAYS TO A VANILLA DEFAULT.
+                    //
+                    // ON CRITICAL ERR, $oCRNRSTN->config_ugc_input_clean_data() RETURNS
+                    // NULL, AND A SYSTEM EXCEPTION IS THROWN. OTHERWISE, IF THE INPUT
+                    // DATA IS NOT VALID BUT CAN BE OVERRIDDEN WITH A SETTINGS DEFAULT,
+                    // AN ON THE FLY PATCH IS MADE, AND A SYSTEM NOTIFICATION WITH
+                    // DETAILS ABOUT THE INTERNAL OVERRIDE IS QUIETLY CAPTURED.
+                    //
+                    // PLEASE NOTE: $oCRNRSTN->err_message_queue_retrieve() CAN RECEIVE
+                    //              AN ERR MESSAGE OUTPUT OVERRIDE...AS INPUT. ALSO TO NOTE IS
+                    //	            THAT ACCEPTABLE INPUT CAN INCLUDE DATA SUCH AS EMPTY STRING,
+                    //	            SOAP ERROR OBJECT, OR EVEN AN OpenSSL v1.1.1 ENCRYPTED JSON
+                    //	            PACKET CONTAINING SESSION META AND A CACHE EXPIRATION TTL.
+                    //
+                    //              NULL IS THE DEFAULT FOR ERR MESSAGE OUTPUT OVERRIDE.
                     if(!($tmp_result = $this->oCRNRSTN->config_ugc_input_clean_data(__FUNCTION__ . '_integer', $tmp_custom_profile_ARRAY[$tmp_detection_algorithm][CRNRSTN_INTEGER], 'custom_mobi_integer', 'CRNRSTN::RESOURCE::DEVICE_TYPE', 0))){
 
                         //
@@ -1994,8 +2069,23 @@ class crnrstn_http_manager {
                     }
 
                     //
-                    // CRNRSTN :: CONFIGURATION WILL INPUT CLEAN UGC DATA OR LOOK FOR
-                    // GRACEFUL DEGRADATION TO A VANILLA DEFAULT. ON ERR, RETURNS NULL.
+                    // THE CRNRSTN :: CONFIGURATION MANAGER WILL INPUT CLEAN UGC DATA
+                    // OR LOOK FOR THE BEST AND MOST ELEGANT (PLEASE READ AS GRACEFUL)
+                    // DEGRADATION PATHWAYS TO A VANILLA DEFAULT.
+                    //
+                    // ON CRITICAL ERR, $oCRNRSTN->config_ugc_input_clean_data() RETURNS
+                    // NULL, AND A SYSTEM EXCEPTION IS THROWN. OTHERWISE, IF THE INPUT
+                    // DATA IS NOT VALID BUT CAN BE OVERRIDDEN WITH A SETTINGS DEFAULT,
+                    // AN ON THE FLY PATCH IS MADE, AND A SYSTEM NOTIFICATION WITH
+                    // DETAILS ABOUT THE INTERNAL OVERRIDE IS QUIETLY CAPTURED.
+                    //
+                    // PLEASE NOTE: $oCRNRSTN->err_message_queue_retrieve() CAN RECEIVE
+                    //              AN ERR MESSAGE OUTPUT OVERRIDE...AS INPUT. ALSO TO NOTE IS
+                    //	            THAT ACCEPTABLE INPUT CAN INCLUDE DATA SUCH AS EMPTY STRING,
+                    //	            SOAP ERROR OBJECT, OR EVEN AN OpenSSL v1.1.1 ENCRYPTED JSON
+                    //	            PACKET CONTAINING SESSION META AND A CACHE EXPIRATION TTL.
+                    //
+                    //              NULL IS THE DEFAULT FOR ERR MESSAGE OUTPUT OVERRIDE.
                     if(!($tmp_result = $this->oCRNRSTN->config_ugc_input_clean_data(__FUNCTION__ . '_string', $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'], 'custom_mobi_detection_result', 'CRNRSTN::RESOURCE::DEVICE_TYPE', 0))){
 
                         //

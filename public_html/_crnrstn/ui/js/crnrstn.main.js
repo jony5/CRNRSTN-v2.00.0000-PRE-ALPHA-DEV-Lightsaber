@@ -7317,8 +7317,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
     CRNRSTN_JS.prototype.extract_filename = function(str_path){
 
         //
-        // TODO :: GET SITE WWW ROOT INFO FROM THE PSSDTLP/CRNRSTN :: DECOUPLED DATA OBJECT (DDO)
-        // UI TUNNEL RESPONSE SITUATION. IN FACT, WHY NOT GET ALL THE VALUES WITH FLIPPED BITS?
+        // TODO :: GET SITE WWW ROOT INFO FROM THE PSSDTLP, THE CRNRSTN :: MULTI-CHANNEL
+        //         DECOUPLED DATA OBJECT (MC-DDO) UI TUNNEL RESPONSE PACKET.
         // var str_array = str_path.split(this.get_resource('ROOT_PATH_CLIENT_HTTP') + this.get_resource('ROOT_PATH_CLIENT_HTTP_DIR') + 'common/imgs/lifestyle_banner/desktop/');
         var str_array = str_path.c('http://172.16.225.128/jony5/common/imgs/lifestyle_banner/desktop/');
         var tmp_str = str_array[1];

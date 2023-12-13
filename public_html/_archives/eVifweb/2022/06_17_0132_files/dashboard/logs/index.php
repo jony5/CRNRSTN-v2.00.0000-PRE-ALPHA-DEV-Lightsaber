@@ -188,37 +188,37 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
     
     
     
-            <p style="padding-bottom:0px; margin-bottom:0px;">The user Jon Harris (c00000101@gmail.com) has been flagged to recieve a password reset notification.</p>
+            <p style="padding-bottom:0px; margin-bottom:0px;">The user Jon Harris (J00000101@gmail.com) has been flagged to recieve a password reset notification.</p>
             <div class="ui-nodisc-icon ui-alt-icon"><!-- Classes added to the wrapper -->
                 <a href="http://172.16.110.134/evifweb/dashboard/admin/users/settings/?uid=NgP3xRAymfn9xZFQGZkOlL3rhQEk5vtitD2aNyojJc0x6PiOYC" class="ui-btn ui-shadow ui-corner-all ui-icon-info ui-btn-icon-notext ui-btn-inline" data-ajax="false">Details</a>
             </div>
             <h5 style="padding-top:0px; margin-top:0px;">By Stephen Weber on 08/12/2018 at 12:25:09</h5>
             <hr>
-            <p style="padding-bottom:0px; margin-bottom:0px;">The user Jon Harris (c00000101@gmail.com) has been flagged to recieve a password reset notification.</p>
+            <p style="padding-bottom:0px; margin-bottom:0px;">The user Jon Harris (J00000101@gmail.com) has been flagged to recieve a password reset notification.</p>
             <div class="ui-nodisc-icon ui-alt-icon"><!-- Classes added to the wrapper -->
                 <a href="http://172.16.110.134/evifweb/dashboard/admin/users/settings/?uid=NgP3xRAymfn9xZFQGZkOlL3rhQEk5vtitD2aNyojJc0x6PiOYC" class="ui-btn ui-shadow ui-corner-all ui-icon-info ui-btn-icon-notext ui-btn-inline" data-ajax="false">Details</a>
             </div>
             <h5 style="padding-top:0px; margin-top:0px;">By Stephen Weber on 08/12/2018 at 12:25:09</h5>
             <hr>
-            <p style="padding-bottom:0px; margin-bottom:0px;">The user Jon Harris (c00000101@gmail.com) has been flagged to recieve a password reset notification.</p>
+            <p style="padding-bottom:0px; margin-bottom:0px;">The user Jon Harris (J00000101@gmail.com) has been flagged to recieve a password reset notification.</p>
             <div class="ui-nodisc-icon ui-alt-icon"><!-- Classes added to the wrapper -->
                 <a href="http://172.16.110.134/evifweb/dashboard/admin/users/settings/?uid=NgP3xRAymfn9xZFQGZkOlL3rhQEk5vtitD2aNyojJc0x6PiOYC" class="ui-btn ui-shadow ui-corner-all ui-icon-info ui-btn-icon-notext ui-btn-inline" data-ajax="false">Details</a>
             </div>
             <h5 style="padding-top:0px; margin-top:0px;">By Stephen Weber on 08/12/2018 at 12:25:09</h5>
             <hr>
-            <p style="padding-bottom:0px; margin-bottom:0px;">The user Jon Harris (c00000101@gmail.com) has been flagged to recieve a password reset notification.</p>
+            <p style="padding-bottom:0px; margin-bottom:0px;">The user Jon Harris (J00000101@gmail.com) has been flagged to recieve a password reset notification.</p>
             <div class="ui-nodisc-icon ui-alt-icon"><!-- Classes added to the wrapper -->
                 <a href="http://172.16.110.134/evifweb/dashboard/admin/users/settings/?uid=NgP3xRAymfn9xZFQGZkOlL3rhQEk5vtitD2aNyojJc0x6PiOYC" class="ui-btn ui-shadow ui-corner-all ui-icon-info ui-btn-icon-notext ui-btn-inline" data-ajax="false">Details</a>
             </div>
             <h5 style="padding-top:0px; margin-top:0px;">By Stephen Weber on 08/12/2018 at 12:25:09</h5>
             <hr>
-            <p style="padding-bottom:0px; margin-bottom:0px;">The user Jon Harris (c00000101@gmail.com) has been flagged to recieve a password reset notification.</p>
+            <p style="padding-bottom:0px; margin-bottom:0px;">The user Jon Harris (J00000101@gmail.com) has been flagged to recieve a password reset notification.</p>
             <div class="ui-nodisc-icon ui-alt-icon"><!-- Classes added to the wrapper -->
                 <a href="http://172.16.110.134/evifweb/dashboard/admin/users/settings/?uid=NgP3xRAymfn9xZFQGZkOlL3rhQEk5vtitD2aNyojJc0x6PiOYC" class="ui-btn ui-shadow ui-corner-all ui-icon-info ui-btn-icon-notext ui-btn-inline" data-ajax="false">Details</a>
             </div>
             <h5 style="padding-top:0px; margin-top:0px;">By Stephen Weber on 08/12/2018 at 12:25:09</h5>
             <hr>
-            <p style="padding-bottom:0px; margin-bottom:0px;">The user Jon Harris (c00000101@gmail.com) has been flagged to recieve a password reset notification.</p>
+            <p style="padding-bottom:0px; margin-bottom:0px;">The user Jon Harris (J00000101@gmail.com) has been flagged to recieve a password reset notification.</p>
             <div class="ui-nodisc-icon ui-alt-icon"><!-- Classes added to the wrapper -->
                 <a href="http://172.16.110.134/evifweb/dashboard/admin/users/settings/?uid=NgP3xRAymfn9xZFQGZkOlL3rhQEk5vtitD2aNyojJc0x6PiOYC" class="ui-btn ui-shadow ui-corner-all ui-icon-info ui-btn-icon-notext ui-btn-inline" data-ajax="false">Details</a>
             </div>

@@ -291,7 +291,7 @@ if(!$oCRNRSTN_ENV->isConfigured($oCRNRSTN)){
 	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'DOMAIN', 'evifweb.com');
 	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'SESSION_EXPIRE', 'INTERVAL 30 MINUTE');
 	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'PWD_RESET_LINK_EXPIRE', 'INTERVAL 30 MINUTE');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ADMIN_NOTIFICATIONS_EMAIL', 'c00000101@gmail.com');
+	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ADMIN_NOTIFICATIONS_EMAIL', 'J00000101@gmail.com');
 	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ADMIN_NOTIFICATIONS_RECIPIENTNAME', 'Evifweb CEO');
 	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'SMS_NOTIFICATIONS_ENDPOINT', '7708838879@messaging.sprintpcs.com');
 	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'SYSTEM_MSG_FROM_EMAIL', 'jharris@evifweb.com');
@@ -324,7 +324,7 @@ if(!$oCRNRSTN_ENV->isConfigured($oCRNRSTN)){
 	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'DOMAIN', 'www.evifweb.com');
 	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'SESSION_EXPIRE', 'INTERVAL 30 MINUTE');
 	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'PWD_RESET_LINK_EXPIRE', 'INTERVAL 30 MINUTE');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ADMIN_NOTIFICATIONS_EMAIL', 'c00000101@gmail.com');
+	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ADMIN_NOTIFICATIONS_EMAIL', 'J00000101@gmail.com');
 	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ADMIN_NOTIFICATIONS_RECIPIENTNAME', 'eVifweb CEO');
 	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'SMS_NOTIFICATIONS_ENDPOINT', '7708838879@messaging.sprintpcs.com');
 	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'SYSTEM_MSG_FROM_EMAIL', 'jharris@evifweb.com');

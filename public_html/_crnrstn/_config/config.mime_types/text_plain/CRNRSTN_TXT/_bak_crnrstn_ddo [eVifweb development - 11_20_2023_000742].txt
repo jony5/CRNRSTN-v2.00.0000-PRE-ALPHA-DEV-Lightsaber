@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -77,8 +77,9 @@ class crnrstn_decoupled_data_object {
 
     private static $env_key;
     private static $env_key_hash;
+    private static $config_serial;
 
-    private static $data_channel_init_sequence = 'GPHSJCDRO';
+    private static $data_channel_init_sequence = 'GPHSJCDROF';
     private static $system_channel_alpha_ARRAY = array();
     private static $system_channel_ARRAY = array();
 
@@ -110,21 +111,20 @@ class crnrstn_decoupled_data_object {
 
         $this->oCRNRSTN = $oCRNRSTN_n;
 
+        self::$config_serial = $this->oCRNRSTN->get_crnrstn('config_serial')
+
         if(get_class($oCRNRSTN_n) == 'crnrstn_user'){
 
             //
-            // TODO :: REFACTER oCRNRSTN_USR OUT. THIS TOUCHES LOGGING CLASS CONSTRUCT() FROM DAYS OF OLDE. WILL NOT BE EASY. GO TO LOGGING.
+            // TODO :: REFACTOR oCRNRSTN_USR OUT. THIS TOUCHES LOGGING CLASS CONSTRUCT() FROM DAYS OF OLDE. WILL NOT BE EASY. GO TO LOGGING.
             error_log(__LINE__ . ' env ' . __METHOD__ . ' TODO :: REFACTOR oCRNRSTN_USR OUT. THIS TOUCHES LOGGING CLASS CONSTRUCT() FROM DAYS OF OLDE. WILL NOT BE EASY. GO TO LOGGING. $oCRNRSTN_n=[' . get_class($oCRNRSTN_n) . ']');
 
             $this->oCRNRSTN_USR = $oCRNRSTN_n;
-            $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_USR);
 
         }else{
 
             //error_log(__LINE__ . ' env ' . __METHOD__ . ' $oCRNRSTN_n=[' . get_class($oCRNRSTN_n) . ']');
             $this->oCRNRSTN = $oCRNRSTN_n;
-
-            $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
 
         }
 
@@ -338,7 +338,7 @@ class crnrstn_decoupled_data_object {
         die();
 
         //
-        // WHERE, $data_channel_init_sequence = 'GPHSJCDRO';
+        // WHERE, $data_channel_init_sequence = 'GPHSJCDROF';
         // SEE, _crnrstn/_config/_config.defaults/_crnrstn.system_settings.inc.php.
         // THIS DATA IS REFERENCED ALOT, SO WE SAVE IT PUBLIC, PROTECTED, OR PRIVATE STATIC.
         $tmp_data_channel_init_sequence = $this->oCRNRSTN->get_resource('data_channel_init_sequence', 0, 'CRNRSTN::RESOURCE::MULTI_CHANNEL');
@@ -380,7 +380,7 @@ class crnrstn_decoupled_data_object {
         //     error_log(__LINE__ . ' crnrstn alpha_ARRAY[' . print_r(self::$system_channel_alpha_ARRAY, true) . '].');
         //     die();
 
-        //     $this->oCRNRSTN->destruct_output .= '<pre><code>[' . $this->oCRNRSTN->return_micro_time()  . '] [lnum ' .  __LINE__ . '] [rtime ' . $this->oCRNRSTN->wall_time() . '] crnrstn LOADED ' . $this->oCRNRSTN->format_bytes(strlen(serialize(self::$system_channel_ARRAY[$ch_alpha])), 3) . ' OF DATA FOR CRNRSTN :: MULTI-CHANNEL [' . $ch_alpha . '] PROFILE.</code></pre>';
+        //     $this->oCRNRSTN->destruct_output .= '<pre><code>[' . $this->oCRNRSTN->return_micro_time()  . '] [lnum ' .  __LINE__ . '] [rtime ' . $this->oCRNRSTN->wall_time() . '] crnrstn LOADED ' . $this->oCRNRSTN->format_bytes(self::$system_channel_ARRAY[$ch_alpha], 3) . ' OF DATA FOR CRNRSTN :: MULTI-CHANNEL [' . $ch_alpha . '] PROFILE.</code></pre>';
 
         //     $this->oCRNRSTN->oCRNRSTN_RRS_MAP->rrs_map_set('channel_bytes', self::$system_channel_ARRAY[$ch_alpha]['NAME']);
 
@@ -545,7 +545,7 @@ class crnrstn_decoupled_data_object {
                         //              + STORING UP TO THE CHANNEL CONFIGURED MAX_BYTES BYTES.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
-                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (DDO) SERVICES LAYER.
+                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) SERVICES LAYER.
                         // CHANNEL TRANSLATION CONTROL.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
@@ -689,7 +689,7 @@ class crnrstn_decoupled_data_object {
                         //              + STORING UP TO THE CHANNEL CONFIGURED MAX_BYTES BYTES.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
-                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (DDO) SERVICES LAYER.
+                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) SERVICES LAYER.
                         // CHANNEL TRANSLATION CONTROL.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
@@ -863,7 +863,7 @@ class crnrstn_decoupled_data_object {
                         //              + STORING UP TO THE CHANNEL CONFIGURED MAX_BYTES BYTES.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
-                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (DDO) SERVICES LAYER.
+                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) SERVICES LAYER.
                         // CHANNEL TRANSLATION CONTROL.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
@@ -1006,7 +1006,7 @@ class crnrstn_decoupled_data_object {
                         //              + STORING UP TO THE CHANNEL CONFIGURED MAX_BYTES BYTES.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
-                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (DDO) SERVICES LAYER.
+                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) SERVICES LAYER.
                         // CHANNEL TRANSLATION CONTROL.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
@@ -1150,7 +1150,7 @@ class crnrstn_decoupled_data_object {
                         //              + STORING UP TO THE CHANNEL CONFIGURED MAX_BYTES BYTES.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
-                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (DDO) SERVICES LAYER.
+                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) SERVICES LAYER.
                         // CHANNEL TRANSLATION CONTROL.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
@@ -1294,7 +1294,7 @@ class crnrstn_decoupled_data_object {
                         //              + STORING UP TO THE CHANNEL CONFIGURED MAX_BYTES BYTES.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
-                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (DDO) SERVICES LAYER.
+                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) SERVICES LAYER.
                         // CHANNEL TRANSLATION CONTROL.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
@@ -1438,7 +1438,7 @@ class crnrstn_decoupled_data_object {
                         //              + STORING UP TO THE CHANNEL CONFIGURED MAX_BYTES BYTES.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
-                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (DDO) SERVICES LAYER.
+                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) SERVICES LAYER.
                         // CHANNEL TRANSLATION CONTROL.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
@@ -1592,7 +1592,7 @@ class crnrstn_decoupled_data_object {
                         //              + STORING UP TO THE CHANNEL CONFIGURED MAX_BYTES BYTES.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
-                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (DDO) SERVICES LAYER.
+                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) SERVICES LAYER.
                         // CHANNEL TRANSLATION CONTROL.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
@@ -1736,7 +1736,7 @@ class crnrstn_decoupled_data_object {
                         //              + STORING UP TO THE CHANNEL CONFIGURED MAX_BYTES BYTES.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
-                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (DDO) SERVICES LAYER.
+                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) SERVICES LAYER.
                         // CHANNEL TRANSLATION CONTROL.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
@@ -1832,7 +1832,7 @@ class crnrstn_decoupled_data_object {
                         //                FUNCONALITY ARE CURRENTLY TBD.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
-                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (DDO) SERVICES LAYER.
+                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) SERVICES LAYER.
                         // CHANNEL TRANSLATION CONTROL.
                         //
                         // # # C # R # N # R # S # T # N # : : # # # #
@@ -2431,7 +2431,7 @@ class crnrstn_decoupled_data_object {
                     //
                     if($initialize !== false || !isset(self::$system_channel_alpha_ARRAY[$channel_ARRAY['SOURCEID']['INTEGER']])){
 
-                        error_log(__LINE__ . ' ddo RUNTIME WRITING ' . $this->oCRNRSTN->format_bytes(strlen(serialize($channel_ARRAY)), 4) . ' OF [' . strval($channel_ARRAY['NAME']) . '] CHANNEL META NOW.');
+                        error_log(__LINE__ . ' ddo RUNTIME WRITING ' . $this->oCRNRSTN->format_bytes($channel_ARRAY, 4) . ' OF [' . strval($channel_ARRAY['NAME']) . '] CHANNEL META NOW.');
 
                         //
                         // INITIALIZE CRNRSTN :: MULTI-CHANNEL META IN RUNTIME.
@@ -2749,7 +2749,7 @@ class crnrstn_decoupled_data_object {
 
                         //
                         // INITIALIZATION RETURN FOR ACCELERATION
-                        // OF MULI-CHANNEL RESOURCE MANAGEMENT.
+                        // OF MULTI-CHANNEL RESOURCE MANAGEMENT.
                         $tmp_channel_ARRAY['CHAR'] = 'G';
                         if($index_0 == 'CHAR'){
 
@@ -2889,7 +2889,7 @@ class crnrstn_decoupled_data_object {
 
                         //
                         // INITIALIZATION RETURN FOR ACCELERATION
-                        // OF MULI-CHANNEL RESOURCE MANAGEMENT.
+                        // OF MULTI-CHANNEL RESOURCE MANAGEMENT.
                         $tmp_channel_ARRAY['CHAR'] = 'P';
                         if($index_0 == 'CHAR'){
 
@@ -2965,7 +2965,7 @@ class crnrstn_decoupled_data_object {
 
                         //
                         // INITIALIZATION RETURN FOR ACCELERATION
-                        // OF MULI-CHANNEL RESOURCE MANAGEMENT.
+                        // OF MULTI-CHANNEL RESOURCE MANAGEMENT.
                         $tmp_channel_ARRAY['CHAR'] = 'C';
                         if($index_0 == 'CHAR'){
 
@@ -3039,7 +3039,7 @@ class crnrstn_decoupled_data_object {
 
                         //
                         // INITIALIZATION RETURN FOR ACCELERATION
-                        // OF MULI-CHANNEL RESOURCE MANAGEMENT.
+                        // OF MULTI-CHANNEL RESOURCE MANAGEMENT.
                         $tmp_channel_ARRAY['CHAR'] = 'H';
                         if($index_0 == 'CHAR'){
 
@@ -3113,7 +3113,7 @@ class crnrstn_decoupled_data_object {
 
                         //
                         // INITIALIZATION RETURN FOR ACCELERATION
-                        // OF MULI-CHANNEL RESOURCE MANAGEMENT.
+                        // OF MULTI-CHANNEL RESOURCE MANAGEMENT.
                         $tmp_channel_ARRAY['CHAR'] = 'D';
                         if($index_0 == 'CHAR'){
 
@@ -3188,7 +3188,7 @@ class crnrstn_decoupled_data_object {
 
                         //
                         // INITIALIZATION RETURN FOR ACCELERATION
-                        // OF MULI-CHANNEL RESOURCE MANAGEMENT.
+                        // OF MULTI-CHANNEL RESOURCE MANAGEMENT.
                         $tmp_channel_ARRAY['CHAR'] = 'S';
                         if($index_0 == 'CHAR'){
 
@@ -3263,7 +3263,7 @@ class crnrstn_decoupled_data_object {
 
                         //
                         // INITIALIZATION RETURN FOR ACCELERATION
-                        // OF MULI-CHANNEL RESOURCE MANAGEMENT.
+                        // OF MULTI-CHANNEL RESOURCE MANAGEMENT.
                         $tmp_channel_ARRAY['CHAR'] = 'J';
                         if($index_0 == 'CHAR'){
 
@@ -3339,7 +3339,7 @@ class crnrstn_decoupled_data_object {
 
                         //
                         // INITIALIZATION RETURN FOR ACCELERATION
-                        // OF MULI-CHANNEL RESOURCE MANAGEMENT.
+                        // OF MULTI-CHANNEL RESOURCE MANAGEMENT.
                         $tmp_channel_ARRAY['CHAR'] = 'R';
                         if($index_0 == 'CHAR'){
 
@@ -3437,7 +3437,7 @@ class crnrstn_decoupled_data_object {
 
                         //
                         // INITIALIZATION RETURN FOR ACCELERATION
-                        // OF MULI-CHANNEL RESOURCE MANAGEMENT.
+                        // OF MULTI-CHANNEL RESOURCE MANAGEMENT.
                         $tmp_channel_ARRAY['CHAR'] = 'O';
                         if($index_0 == 'CHAR'){
 
@@ -3517,7 +3517,7 @@ class crnrstn_decoupled_data_object {
 
                         //
                         // INITIALIZATION RETURN FOR ACCELERATION
-                        // OF MULI-CHANNEL RESOURCE MANAGEMENT.
+                        // OF MULTI-CHANNEL RESOURCE MANAGEMENT.
                         $tmp_channel_ARRAY['CHAR'] = 'O';
                         if($index_0 == 'CHAR'){
 
@@ -3652,7 +3652,7 @@ class crnrstn_decoupled_data_object {
             $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             //
-            // RETURN NOTHING.
+            // RETURN EMPTY STRING.
             return '';
 
         }
@@ -4975,7 +4975,7 @@ class crnrstn_decoupled_data_object {
                 if(is_array($data_key)){
 
                     //if(isset($this->data_auth_profile_ARRAY[$data_key[0]][$index])){
-                    if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_auth_profile'][$data_key[0]][$index])){
+                    if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_auth_profile'][$data_key[0]][$index])){
 
                         if(!($this->oCRNRSTN->isset_auth_profile($data_authorization_profile, $this->data_auth_profile_ARRAY[$data_key[0]][$index]) == true)){
 
@@ -4987,9 +4987,9 @@ class crnrstn_decoupled_data_object {
 
                 }else{
 
-                    if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_auth_profile'][$data_key][$index])){
+                    if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_auth_profile'][$data_key][$index])){
 
-                        if(!($this->oCRNRSTN->isset_auth_profile($data_authorization_profile, $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_auth_profile'][$data_key][$index]) == true)){
+                        if(!($this->oCRNRSTN->isset_auth_profile($data_authorization_profile, $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_auth_profile'][$data_key][$index]) == true)){
 
                             return $this->oCRNRSTN->session_salt();
 
@@ -5111,12 +5111,12 @@ class crnrstn_decoupled_data_object {
                         if(is_array($data_key)){
 
                             /*
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['ttl_profile'][$data_key][$index] = $ttl;
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['ttl'][$data_key][$index] = $tmp_ttl;
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_auth_profile'][$data_key][$index] = $data_authorization_profile;
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_type'][$data_key][$index] = $data_type;
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_flag'][$data_key][$index] = 1;
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index] = (int) $data_value;
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['ttl_profile'][$data_key][$index] = $ttl;
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['ttl'][$data_key][$index] = $tmp_ttl;
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_auth_profile'][$data_key][$index] = $data_authorization_profile;
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_type'][$data_key][$index] = $data_type;
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_flag'][$data_key][$index] = 1;
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index] = (int) $data_value;
 
                             */
 
@@ -5124,40 +5124,40 @@ class crnrstn_decoupled_data_object {
                             // SAVE MAYBE THE ENCRYPTED PSSDTLP. AND, I IMAGINE THE SAME KIND OF RULES WOULD
                             // APPLY TO THE SSDTLA.
                             //if(isset($this->data_value_ARRAY[$data_key[0]][$index])){
-                            if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key[0]][$index])){
+                            if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key[0]][$index])){
 
-                                $tmp_resource_bytes = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['resource_bytes'][$data_key[0]][$index];
+                                $tmp_resource_bytes = $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['resource_bytes'][$data_key[0]][$index];
 
                             }
 
                             $tmp_ARRAY['SALT'] = $tmp_serialization_salt;
-                            $tmp_ARRAY['HASH'] = $this->oCRNRSTN->hash($data_key[0] . $this->oCRNRSTN->hash($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_auth_profile'][$data_key[0]][$index], 'md5') . $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_type'][$data_key[0]][$index], 'md5');
+                            $tmp_ARRAY['HASH'] = $this->oCRNRSTN->hash($data_key[0] . $this->oCRNRSTN->hash($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_auth_profile'][$data_key[0]][$index], 'md5') . $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_type'][$data_key[0]][$index], 'md5');
                             $tmp_ARRAY['BYTES'] = $tmp_resource_bytes;
                             $tmp_ARRAY['KEY'] = $this->oCRNRSTN->return_clean_json_string($data_key[0]);
                             $tmp_ARRAY['TYPE'] = $this->data_type_ARRAY[$data_key[0]][$index];
                             $tmp_ARRAY['VALUE'] = $this->oCRNRSTN->return_clean_json_string($tmp_val);
-                            $tmp_ARRAY['TTL'] = $this->oCRNRSTN->return_clean_json_string($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['ttl_profile'][$data_key[0]][$index]);
-                            $tmp_ARRAY['AUTH_PROFILE'] = $this->oCRNRSTN->return_clean_json_string($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_auth_profile'][$data_key[0]][$index]);
+                            $tmp_ARRAY['TTL'] = $this->oCRNRSTN->return_clean_json_string($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['ttl_profile'][$data_key[0]][$index]);
+                            $tmp_ARRAY['AUTH_PROFILE'] = $this->oCRNRSTN->return_clean_json_string($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_auth_profile'][$data_key[0]][$index]);
 
                         }else{
 
                             // WE DO NOT PASS DATA VALUE (OR SENSITIVE META ABOUT VALUE) TO CLIENT...IF ANYTHING SAVE PSSDTLP.
                             // AND I IMAGINE THE SAME KIND OF RULES WOULD APPLY TO SSDTLP
                             $tmp_resource_bytes = 0;
-                            if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['resource_bytes'][$data_key][$index])){
+                            if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['resource_bytes'][$data_key][$index])){
 
-                                $tmp_resource_bytes = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['resource_bytes'][$data_key][$index];
+                                $tmp_resource_bytes = $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['resource_bytes'][$data_key][$index];
 
                             }
 
-                            if(!isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index])){
+                            if(!isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index])){
 
                                 // TODO :: GET THESE ISSET CHECKS OUT OF HERE. WE ARE MISSING A USE CASE.
                                 //error_log(__LINE__ . ' ddo env data_value_ARRAY not set.');
-                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index] = '';
-                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['ttl_profile'][$data_key][$index] = 60;
-                                //$this->data_auth_profile_ARRAY[$data_key][$index] = CRNRSTN_CHANNEL_FORM_INTEGRATIONS;
-                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_auth_profile'][$data_key][$index] = CRNRSTN_CHANNEL_SSDTLA;
+                                $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index] = '';
+                                $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['ttl_profile'][$data_key][$index] = 60;
+                                //$this->data_auth_profile_ARRAY[$data_key][$index] = CRNRSTN_CHANNEL_FORM;
+                                $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_auth_profile'][$data_key][$index] = CRNRSTN_CHANNEL_SSDTLA;
 
                             }
 
@@ -5223,22 +5223,22 @@ class crnrstn_decoupled_data_object {
                             // AND I IMAGINE THE SAME KIND OF RULES WOULD APPLY TO SSDTLP
                             //if(isset($this->data_value_ARRAY[$data_key[0]][$index])){
                             $tmp_resource_bytes = 0;
-                            if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['resource_bytes'][$data_key[0]][$index])){
+                            if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['resource_bytes'][$data_key[0]][$index])){
 
-                                $tmp_resource_bytes = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['resource_bytes'][$data_key[0]][$index];
+                                $tmp_resource_bytes = $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['resource_bytes'][$data_key[0]][$index];
 
                             }
 
                             $tmp_str_out .= '
 {
     "SALT"
-    "HASH" : "' . $this->oCRNRSTN->hash($data_key[0] . $this->oCRNRSTN->hash($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key[0]][$index], 'md5') . $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_type'][$data_key[0]][$index], 'md5') . '",
+    "HASH" : "' . $this->oCRNRSTN->hash($data_key[0] . $this->oCRNRSTN->hash($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key[0]][$index], 'md5') . $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_type'][$data_key[0]][$index], 'md5') . '",
     "BYTES" : ' . $tmp_resource_bytes . ',
     "KEY" : ' . $this->oCRNRSTN->return_clean_json_string($data_key[0]) . ',
-    "TYPE" : "' . $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_type'][$data_key[0]][$index] . '",
+    "TYPE" : "' . $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_type'][$data_key[0]][$index] . '",
     "VALUE" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_val) . ',
-    "TTL" : ' . $this->oCRNRSTN->return_clean_json_string($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['ttl'][$data_key[0]][$index]) . ',
-    "AUTH_PROFILE" : ' . $this->oCRNRSTN->return_clean_json_string($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_auth_profile'][$data_key[0]][$index]) . '
+    "TTL" : ' . $this->oCRNRSTN->return_clean_json_string($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['ttl'][$data_key[0]][$index]) . ',
+    "AUTH_PROFILE" : ' . $this->oCRNRSTN->return_clean_json_string($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_auth_profile'][$data_key[0]][$index]) . '
 },';
 
                         }else{
@@ -5246,60 +5246,60 @@ class crnrstn_decoupled_data_object {
                             // WE DO NOT PASS DATA VALUE (OR SENSITIVE META ABOUT VALUE) TO CLIENT...IF ANYTHING SAVE PSSDTLP.
                             // AND I IMAGINE THE SAME KIND OF RULES WOULD APPLY TO SSDTLP
                             $tmp_resource_bytes = 0;
-                            if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['resource_bytes'][$data_key][$index])){
+                            if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['resource_bytes'][$data_key][$index])){
 
-                                $tmp_resource_bytes = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['resource_bytes'][$data_key][$index];
+                                $tmp_resource_bytes = $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['resource_bytes'][$data_key][$index];
 
                             }
 
                             //if(!isset($this->data_value_ARRAY[$data_key][$index])){
-                            if(!isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index])){
+                            if(!isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index])){
 
                                 // TODO :: GET THESE ISSET CHECKS OUT OF HERE. WE ARE MISSING A USE CASE.
                                 //error_log(__LINE__ . ' ddo env data_value_ARRAY not set.');
                                 //$this->data_value_ARRAY[$data_key][$index] = 60;
-                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index] = '';
+                                $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index] = '';
 
                                 //$this->ttl_profile_ARRAY[$data_key][$index] = 60;
-                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['ttl_profile'][$data_key][$index] = $this->oCRNRSTN->rrs_map_get($channel . '_map_cache_ttl');
+                                $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['ttl_profile'][$data_key][$index] = $this->oCRNRSTN->rrs_map_get($channel . '_map_cache_ttl');
 
-                                //$this->data_auth_profile_ARRAY[$data_key][$index] = CRNRSTN_CHANNEL_FORM_INTEGRATIONS;
+                                //$this->data_auth_profile_ARRAY[$data_key][$index] = CRNRSTN_CHANNEL_FORM;
                                 //$this->data_auth_profile_ARRAY[$data_key][$index] = CRNRSTN_CHANNEL_SSDTLA;
-                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_auth_profile'][$data_key][$index] = CRNRSTN_CHANNEL_SSDTLA;
+                                $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_auth_profile'][$data_key][$index] = CRNRSTN_CHANNEL_SSDTLA;
 
                             }
 
-                            if(!isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_type'][$data_key][$index])){
+                            if(!isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_type'][$data_key][$index])){
 
                                 //error_log(__LINE__ . ' ddo env data_type_ARRAY not set.');
                                 //$this->data_type_ARRAY[$data_key][$index] = 'string';     // <-- OLD RUNTIME ARCHITECTURE.
 
                                 //
                                 // DEFAULT TO CRNRSTN_STRING, IF DATA TYPE IS NOT SET IN SESSION. THIS WOULD BE ATYPICAL..IMHO.
-                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_type'][$data_key][$index] = 'CRNRSTN_STRING';        // PREVIOUSLY 'string';
+                                $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_type'][$data_key][$index] = 'CRNRSTN_STRING';        // PREVIOUSLY 'string';
 
                             }
 
                             /*
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['ttl_profile'][$data_key][$index] = $ttl;
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['ttl'][$data_key][$index] = $tmp_ttl;
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_auth_profile'][$data_key][$index] = $data_authorization_profile;
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_type'][$data_key][$index] = $data_type;
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_flag'][$data_key][$index] = 1;
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index] = (int) $data_value;
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['ttl_profile'][$data_key][$index] = $ttl;
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['ttl'][$data_key][$index] = $tmp_ttl;
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_auth_profile'][$data_key][$index] = $data_authorization_profile;
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_type'][$data_key][$index] = $data_type;
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_flag'][$data_key][$index] = 1;
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index] = (int) $data_value;
 
                             */
 
                             //error_log(__LINE__.  ' ddo env $data_key=[' . $data_key . ']. $tmp_resource_bytes=[' . $tmp_resource_bytes . ']. $index=[' . $index . '].');
                             $tmp_str_out .= '
 {
-    "HASH" : "' . $this->oCRNRSTN->hash($data_key . $this->oCRNRSTN->hash($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index], 'md5') . $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_type'][$data_key][$index], 'md5') . '",
+    "HASH" : "' . $this->oCRNRSTN->hash($data_key . $this->oCRNRSTN->hash($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index], 'md5') . $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_type'][$data_key][$index], 'md5') . '",
     "BYTES" : ' . $tmp_resource_bytes . ',
     "KEY" : ' . $this->oCRNRSTN->return_clean_json_string($data_key) . ',
-    "TYPE" : "' . $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_type'][$data_key][$index] . '",
+    "TYPE" : "' . $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_type'][$data_key][$index] . '",
     "VALUE" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_val) . ',
-    "TTL" : ' . $this->oCRNRSTN->return_clean_json_string($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['ttl'][$data_key][$index]) . ',
-    "AUTH_PROFILE" : ' . $this->oCRNRSTN->return_clean_json_string($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_auth_profile'][$data_key][$index]) . '
+    "TTL" : ' . $this->oCRNRSTN->return_clean_json_string($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['ttl'][$data_key][$index]) . ',
+    "AUTH_PROFILE" : ' . $this->oCRNRSTN->return_clean_json_string($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_auth_profile'][$data_key][$index]) . '
 },';
 
                         }
@@ -5311,10 +5311,10 @@ class crnrstn_decoupled_data_object {
                     break;
                     case 'isset':
 
-                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_flag'][$data_key][$index])){
+                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_flag'][$data_key][$index])){
 
                             //return $this->data_flag_ARRAY[$data_key][$index];
-                            return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_flag'][$data_key][$index];
+                            return $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_flag'][$data_key][$index];
 
                         }else{
 
@@ -5326,24 +5326,24 @@ class crnrstn_decoupled_data_object {
                     case 'ttl':
 
                         //return $this->data_auth_profile_ARRAY[$data_key][$index];
-                        return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['ttl'][$data_key][$index];
+                        return $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['ttl'][$data_key][$index];
 
                     break;
                     case 'auth_profile':
 
                         //return $this->data_auth_profile_ARRAY[$data_key][$index];
-                        return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_auth_profile'][$data_key][$index];
+                        return $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_auth_profile'][$data_key][$index];
 
                     break;
                     case 'type':
 
                         //return $this->data_type_ARRAY[$data_key][$index];
-                        return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_type'][$data_key][$index];
+                        return $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_type'][$data_key][$index];
 
                     break;
                     case 'data_value':
 
-                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index])){
+                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index])){
 
                             //
                             //'CRNRSTN_STRING','CRNRSTN_INT', 'CRNRSTN_INTEGER', 'CRNRSTN_BOOL',
@@ -5358,20 +5358,20 @@ class crnrstn_decoupled_data_object {
                             // strings 'true' or 'false'
                             //if(is_bool($data_value) === true){
                             //
-                            error_log(__LINE__ . ' ddo CHECK THAT THIS IS INTEGER PROCESSING OF SESSION CRNRSTN :: DDO DATA. TYPE[' . strval($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index]) . ']. die();');
+                            error_log(__LINE__ . ' ddo CHECK THAT THIS IS INTEGER PROCESSING OF SESSION CRNRSTN :: DDO DATA. TYPE[' . strval($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index]) . ']. die();');
                             die();
 
-                            switch($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_type'][$data_key][$index]){
+                            switch($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_type'][$data_key][$index]){
                                 case CRNRSTN_INT:
 
                                     //return (int) $this->data_value_ARRAY[$data_key][$index];
-                                    return (int) $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index];
+                                    return (int) $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index];
 
                                 break;
                                 case CRNRSTN_INTEGER:
 
                                     //return (integer) $this->data_value_ARRAY[$data_key][$index];
-                                    return (integer) $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index];
+                                    return (integer) $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index];
 
                                 break;
                                 case CRNRSTN_BOOL:
@@ -5379,11 +5379,11 @@ class crnrstn_decoupled_data_object {
                                     if($data_authorization_profile == CRNRSTN_CHANNEL_SOAP){
 
                                         //return $this->data_value_ARRAY[$data_key][$index];
-                                        return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index];
+                                        return $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index];
 
                                     }else{
 
-                                        return $this->oCRNRSTN->boolean_conversion($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index]);
+                                        return $this->oCRNRSTN->boolean_conversion($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index]);
 
                                     }
 
@@ -5393,11 +5393,11 @@ class crnrstn_decoupled_data_object {
                                     if($data_authorization_profile == CRNRSTN_CHANNEL_SOAP){
 
                                         //return $this->data_value_ARRAY[$data_key][$index];
-                                        return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index];
+                                        return $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index];
 
                                     }else{
 
-                                        return $this->oCRNRSTN->boolean_conversion($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index]);
+                                        return $this->oCRNRSTN->boolean_conversion($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index]);
 
                                     }
 
@@ -5405,43 +5405,43 @@ class crnrstn_decoupled_data_object {
                                 case CRNRSTN_FLOAT:
 
                                     //return (float) $this->data_value_ARRAY[$data_key][$index];
-                                    return (float) $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index];
+                                    return (float) $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index];
 
                                 break;
                                 case CRNRSTN_DOUBLE:
 
                                     //return (double) $this->data_value_ARRAY[$data_key][$index];
-                                    return (double) $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index];
+                                    return (double) $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index];
 
                                 break;
                                 case CRNRSTN_RESOURCE:
 
                                     //return (float) $this->data_value_ARRAY[$data_key][$index];
-                                    return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index];
+                                    return $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index];
 
                                 break;
                                 case CRNRSTN_RESOURCE_CLOSED:
 
                                     //return (float) $this->data_value_ARRAY[$data_key][$index];
-                                    return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index];
+                                    return $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index];
 
                                 break;
                                 case CRNRSTN_STRING:
 
                                     //return (string) $this->data_value_ARRAY[$data_key][$index];
-                                    return (string) $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index];
+                                    return (string) $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index];
 
                                 break;
                                 case CRNRSTN_ARRAY:
 
                                     //return (array) $this->data_value_ARRAY[$data_key][$index];
-                                    return (array) $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index];
+                                    return (array) $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index];
 
                                 break;
                                 case CRNRSTN_OBJECT:
 
                                     //return (object) $this->data_value_ARRAY[$data_key][$index];
-                                    $tmp_obj_unserial = unserialize($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index]);
+                                    $tmp_obj_unserial = unserialize($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index]);
                                     return (object) $tmp_obj_unserial;
 
                                 break;
@@ -5455,7 +5455,7 @@ class crnrstn_decoupled_data_object {
 
                                     //error_log(__LINE__ .' env ddo - RETURN DEFAULT ['.$data_key.']');
                                     //return $this->data_value_ARRAY[$data_key][$index];
-                                    return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index];
+                                    return $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index];
 
                                 break;
 
@@ -5478,7 +5478,7 @@ class crnrstn_decoupled_data_object {
 
                         //error_log(__LINE__ .' env ddo - RETURN DEFAULT VALUE ['.$data_key.']');
                         //return $this->data_value_ARRAY[$data_key][$index];
-                        return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$data_key][$index];
+                        return $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$data_key][$index];
 
                     break;
 
@@ -5661,7 +5661,7 @@ class crnrstn_decoupled_data_object {
                                 //error_log(__LINE__ . ' ddo env data_value_ARRAY not set.');
                                 $this->data_value_ARRAY[$data_key][$index] = '';
                                 $this->ttl_profile_ARRAY[$data_key][$index] = 60;
-                                //$this->data_auth_profile_ARRAY[$data_key][$index] = CRNRSTN_CHANNEL_FORM_INTEGRATIONS;
+                                //$this->data_auth_profile_ARRAY[$data_key][$index] = CRNRSTN_CHANNEL_FORM;
                                 $this->data_auth_profile_ARRAY[$data_key][$index] = CRNRSTN_CHANNEL_SSDTLA;
 
                             }
@@ -5756,7 +5756,7 @@ class crnrstn_decoupled_data_object {
                                 //error_log(__LINE__ . ' ddo env data_value_ARRAY not set.');
                                 $this->data_value_ARRAY[$data_key][$index] = '';
                                 $this->ttl_profile_ARRAY[$data_key][$index] = 60;
-                                //$this->data_auth_profile_ARRAY[$data_key][$index] = CRNRSTN_CHANNEL_FORM_INTEGRATIONS;
+                                //$this->data_auth_profile_ARRAY[$data_key][$index] = CRNRSTN_CHANNEL_FORM;
                                 $this->data_auth_profile_ARRAY[$data_key][$index] = CRNRSTN_CHANNEL_SSDTLA;
 
                             }
@@ -6134,7 +6134,7 @@ class crnrstn_decoupled_data_object {
         [Wed May 17 04:05:11.437765 2023] [:error] [pid 16410] [client 172.16.225.1:52507]
         9064 env cache_storage_report[
         START_SESSION::Array\n(\n
-            [CRNRSTN_CONFIG_SERIAL_HASH] => 7d6721f110ebfb51e1475b32b3487852b118aa66676e6d2b107b27660bb037c8\n)\n
+            [CRNRSTN_CONFIG_SERIALIZATION_HASH] => 7d6721f110ebfb51e1475b32b3487852b118aa66676e6d2b107b27660bb037c8\n)\n
 
         START_RUNTIME::Array\n(\n
             [zRUMLdoedhCmzsuQx2r18tFUSZLspTMiUbqeEdP50mWU8ZfcRuM1K2WQzL4neP6k] => Array\n        (\n

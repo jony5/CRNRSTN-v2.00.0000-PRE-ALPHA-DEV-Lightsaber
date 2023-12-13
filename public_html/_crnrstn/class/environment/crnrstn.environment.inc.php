@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -72,29 +72,26 @@
 #
 class crnrstn_environment {
 
-    private static $config_serial;
-    public $config_serial_hash;
+    public $oCRNRSTN;
+    public $oCRNRSTN_USR;
+    protected $oCRNRSTN_DEV_INPUT_CONTROLLER;
+    private static $oCOOKIE_MGR;
+    private static $oHTTP_MGR;
+    private static $oFINITE_EXPRESS;
+    public $oCRNRSTN_ASSET_MGR;
 
-    protected $oLogger;
+    private static $env_key;
+    private static $env_key_hash;
+    private static $config_serial;
 
     private static $oLog_ProfileManager;
 
     private static $lang_content_ARRAY = array();
-    private static $sys_logging_profile_ARRAY = array();
+    private static $system_logging_output_profile_ARRAY = array();
     private static $sys_logging_meta_ARRAY = array();
 
-    public $env_key;
-    public $env_key_hash;
     protected $system_hash_algo;
     public $total_bytes_encrypted = 0;
-
-    public $oCRNRSTN;
-    public $oCRNRSTN_USR;
-    protected $oCRNRSTN_DEV_INPUT_CONTROLLER;
-    public $oCOOKIE_MGR;
-    private static $oHTTP_MGR;
-    private static $oFINITE_EXPRESS;
-    public $oCRNRSTN_ASSET_MGR;
 
     private static $sess_env_param_ARRAY = array();
     private static $m_starttime = array();
@@ -104,14 +101,12 @@ class crnrstn_environment {
     private static $openssl_digest_profile_ARRAY = array();
     private static $system_resource_constants_ARRAY = array();
     public $system_theme_style_constants_ARRAY = array();
-    private static $system_creative_element_keys_ARRAY = array();
     private static $weighted_elements_keys_ARRAY = array();
     public $soap_permissions_file_path_ARRAY = array();
     public $response_header_attribute_ARRAY = array();
 
     private static $requestProtocol;
 
-    public $log_silo_profile;
     public $starttime;
     //public $oCRNRSTN_oWCR_ARRAY = array();
     //public $wildCardResource_filePath = array();
@@ -132,7 +127,6 @@ class crnrstn_environment {
     protected $max_seconds_inactive = 600;
     public $operating_system;
     public $process_id;
-    private static $process_id_perf_stat_ARRAY = array();
 
     public function __construct($oCRNRSTN, $instanceType = NULL, $WORDPRESS_debug_mode = NULL){
 
@@ -142,8 +136,8 @@ class crnrstn_environment {
         // THIS IS A ROBUST ENV DETECTION AND SCRIPT TERMINATION TRIGGER METHOD THAT
         // ALSO RETURNS THE ENVIRONMENT KEY. WE ONLY NEED TO CALL THIS ONCE...AND
         // HOPEFULLY UNTO SUCCESS.
-        $this->env_key = $this->oCRNRSTN->return_env_key();
-        $this->env_key_hash = $this->oCRNRSTN->return_env_key(true);
+        self::$env_key = $this->oCRNRSTN->return_env_key();
+        self::$env_key_hash = $this->oCRNRSTN->return_env_key(true);
 
         $this->system_hash_algo = $this->oCRNRSTN->system_hash_algo();
 
@@ -156,9 +150,7 @@ class crnrstn_environment {
         $this->init_encrypt_profile($this->oCRNRSTN);
 
         self::$system_resource_constants_ARRAY = $this->oCRNRSTN->system_resource_constants_ARRAY();
-        $this->system_theme_style_constants_ARRAY = $this->oCRNRSTN->system_theme_style_constants_ARRAY;
 
-        self::$system_creative_element_keys_ARRAY = $this->oCRNRSTN->system_creative_element_keys_ARRAY;
         self::$weighted_elements_keys_ARRAY = $this->oCRNRSTN->weighted_elements_keys_ARRAY;
 
         self::$lang_content_ARRAY = $this->oCRNRSTN->return_lang_content_ARRAY();
@@ -170,43 +162,41 @@ class crnrstn_environment {
         // ROLL OVER SOAP PERMISSIONS.
         $this->soap_permissions_file_path_ARRAY = $this->oCRNRSTN->soap_permissions_file_path_ARRAY;
 
-        //
-        // ROLL OVER DEBUG/ERROR_LOG TRACE FROM CRNRSTN OBJECT AND THEN CONTINUE TO APPEND.
         self::$m_starttime = $this->oCRNRSTN->return_m_start_time();
 
-        $this->log_silo_profile = $this->oCRNRSTN->log_silo_profile;
-
+        //
+        // ROLL OVER DEBUG/ERROR_LOG TRACE FROM CRNRSTN
+        // OBJECT AND THEN CONTINUE TO APPEND.
         self::$oLog_ProfileManager = $this->oCRNRSTN->return_oLog_ProfileManager();
         self::$oLog_ProfileManager->sync_to_environment($this->oCRNRSTN, $this);
 
-        $this->config_serial_hash = $this->oCRNRSTN->get_server_config_serial('hash');
-        self::$config_serial = $this->oCRNRSTN->get_server_config_serial('raw');
+        self::$config_serial = $this->oCRNRSTN->get_crnrstn('config_serial');
         $this->oCRNRSTN_ASSET_MGR = $this->oCRNRSTN->oCRNRSTN_ASSET_MGR;
-
-        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
 
         //
         // TODO :: OBJECT INSTANTIATION REFACTORING TO SUPPORT PERSISTENCE OF STATE
         // COOKIE MANAGER SHOULD INSTANTIATE LOOKING FOR COOKIE::SSDTLA INTEGRATIONS FROM BROWSER...
         // SESSION MANAGER SHOULD INSTANTIATE LOOKING FOR...FROM SESSION....ETC. Thursday, August 18, 2022 @ 0247 hrs
-        $this->oCOOKIE_MGR = new crnrstn_cookie_manager($this->oCRNRSTN);
+        self::$oCOOKIE_MGR = new crnrstn_cookie_manager($this->oCRNRSTN);
 
         self::$oHTTP_MGR = new crnrstn_http_manager($this->oCRNRSTN, $this);
 
         self::$oFINITE_EXPRESS = new crnrstn_finite_expression();
 
-        // August 20, 2022 @ 0418 hrs
+        //
         // UNTIL WE GET SESSION MGMT NAILED DOWN (DATABASE, COOKIE, SSDTLA, PSSDTLA, AND SESSION) THIS WILL
         // ALWAYS EVALUATE TO TRUE. NO SESSION PINGS, YET). RUNTIME OPERATION GOES FROM 0-100 WITH NO
         // SESSION CACHE ASSISTANCE AND IS UP TO 1 SECONDS FASTER ON PAGE LOADS! AND THIS LOW-LEVEL REFACTORING
         // OPERATION IS NOT EVEN COMPLETE, YET.
+        //
+        // August 20, 2022 @ 0418 hrs
         if(!($instanceType == 'session_initialization_ping')){
 
             try{
 
                 //
                 //  DETERMINE KEY DESIGNATING THE RUNNING ENVIRONMENT, WHERE KEY = hash(env key)
-                if($this->env_key_hash == ''){
+                if(self::$env_key_hash == ''){
 
                     //
                     // WE DON'T HAVE THE ENVIRONMENT DETECTED. THROW EXCEPTION.
@@ -222,7 +212,10 @@ class crnrstn_environment {
 
                 }else{
 
-                    // TODO :: DO NOT RUN THIS AGAIN. FIGURE SOMETHING ELSE OUT.
+                    //
+                    // TODO :: DO NOT RUN THIS AGAIN...UNLESS YOU CAN
+                    //         FIGURE SOMETHING ELSE OUT...OR JUST
+                    //         CRUSH THIS PROPER. Thursday, December 7, 2023 @ 0352 hrs.
                     // FLASH WILD CARD RESOURCES OBJECT ARRAY TO ENVIRONMENTAL CLASS OBJECT
                     //$this->initializeWildCardResource($this->oCRNRSTN);
 
@@ -241,7 +234,7 @@ class crnrstn_environment {
 
                     //
                     // INITIALIZE IP ADDRESS RESTRICTIONS from grantExclusiveAccess()
-                    if(isset($this->oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash])){
+                    if(isset($this->oCRNRSTN->grant_accessIP_ARRAY[self::$config_serial][self::$env_key_hash])){
 
                         $this->initExclusiveAccess($this->oCRNRSTN);
 
@@ -249,7 +242,7 @@ class crnrstn_environment {
 
                     //
                     // INITIALIZE IP ADDRESS RESTRICTIONS from denyAccess()
-                    if(isset($this->oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash])){
+                    if(isset($this->oCRNRSTN->deny_accessIP_ARRAY[self::$config_serial][self::$env_key_hash])){
 
                         $this->initDenyAccess($this->oCRNRSTN);
 
@@ -257,7 +250,7 @@ class crnrstn_environment {
 
                     //
                     // INITIALIZE ADMINISTRATOR ACCESS.
-                    if(isset($this->oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_hash][$this->env_key_hash])){
+                    if(isset($this->oCRNRSTN->add_admin_creds_ARRAY[self::$config_serial][self::$env_key_hash])){
 
                         $this->initAdminAccess($this->oCRNRSTN);
 
@@ -265,15 +258,15 @@ class crnrstn_environment {
 
                     //
                     // BEFORE ALLOCATING ADDITIONAL MEMORY RESOURCES, PROCESS IP AUTHENTICATION
-                    if(isset($this->oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash]) || isset($this->oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash])){
-                        //error_log(__LINE__ . ' env env_key=[' . $this->env_key . ']. die();');
+                    if(isset($this->oCRNRSTN->grant_accessIP_ARRAY[self::$config_serial][self::$env_key_hash]) || isset($this->oCRNRSTN->deny_accessIP_ARRAY[self::$config_serial][self::$env_key_hash])){
+                        //error_log(__LINE__ . ' env env_key=[' . self::$env_key . ']. die();');
 
-                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have IP restrictions to process and apply for CRNRSTN :: config_serial_hash [' . $this->config_serial_hash . '] and environment key [' . $this->env_key_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                        //error_log(__LINE__ . ' env env_key=[' . $this->env_key . ']. die();');
+                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have IP restrictions to process and apply for CRNRSTN :: config_serial_hash [' . self::$config_serial . '] and environment key [' . self::$env_key_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                        //error_log(__LINE__ . ' env env_key=[' . self::$env_key . ']. die();');
 
                         if(!($this->oCRNRSTN->authorize_ip_access()) == true){
-                        //if(!($this->oCRNRSTN->oCRNRSTN_IPSECURITY_MGR->authorizeEnvAccess($this, $this->env_key_hash) == true)){
-                            error_log(__LINE__ . ' env authorizeEnvAccess() DENIED ON env_key=[' . $this->env_key . ']. die();');
+                        //if(!($this->oCRNRSTN->oCRNRSTN_IPSECURITY_MGR->authorizeEnvAccess($this, self::$env_key_hash) == true)){
+                            error_log(__LINE__ . ' env authorizeEnvAccess() DENIED ON env_key=[' . self::$env_key . ']. die();');
 
                             die();
                             //
@@ -287,7 +280,7 @@ class crnrstn_environment {
 
                     }else{
 
-                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('There are NO IP restrictions to process and apply for CRNRSTN :: config_serial_hash [' . $this->config_serial_hash . '] and environment key [' . $this->env_key_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('There are NO IP restrictions to process and apply for CRNRSTN :: config_serial_hash [' . self::$config_serial . '] and environment key [' . self::$env_key_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                     }
 
@@ -308,7 +301,7 @@ class crnrstn_environment {
                     //$this->init_engagement_config($this->oCRNRSTN);
 
                     //
-                    // INSTANTIATE USER CLASS OBJECT
+                    // INSTANTIATE THE CRNRSTN :: USER CLASS OBJECT.
                     $this->oCRNRSTN_USR = $this->return_ENV_oCRNRSTN_USR($WORDPRESS_debug_mode);
 
                     //
@@ -383,6 +376,8 @@ class crnrstn_environment {
             break;
 
         }
+
+        return true;
 
     }
 
@@ -482,7 +477,7 @@ class crnrstn_environment {
 
     }
 
-    public function get_openssl_cipher_profile($data_key, $data_type_family, $graceful_degrade = false){
+    public function get_openssl_cipher_profile($data_key, $data_type_family, $graceful_degrade = true){
 
         if(isset(self::$openssl_cipher_profile_ARRAY[$data_type_family][$data_key])){
 
@@ -544,23 +539,13 @@ class crnrstn_environment {
 
             }
 
-            if(file_exists('/proc/' . $this->process_id)){
-
-                //$this->print_r(self::$process_id_perf_stat_ARRAY[0], "PID Testing :: [".$this->operating_system."][running]PID ".$this->process_id, CRNRSTN_HTML, __LINE__, __METHOD__, __FILE__);
-
-            }else{
-
-                //$this->print_r(self::$process_id_perf_stat_ARRAY[0], "PID Testing :: [dead]PID ".$this->process_id, CRNRSTN_HTML, __LINE__, __METHOD__, __FILE__);
-
-            }
-
             return $str;
 
         }catch(Exception $e){
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -570,7 +555,7 @@ class crnrstn_environment {
 
     public function CRNRSTN_debug_mode(){
 
-        return $this->oCRNRSTN->CRNRSTN_debug_mode();
+        return $this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode');
 
     }
 
@@ -643,7 +628,7 @@ class crnrstn_environment {
 
     public function initialize_http_get_params(){
 
-        $this->oHTTP_MGR->initialize_http_get_params();
+        self::$oHTTP_MGR->initialize_http_get_params();
 
     }
 
@@ -657,7 +642,7 @@ class crnrstn_environment {
 
     public function consume_form_integration_packet(){
 
-        return $this->oHTTP_MGR->consume_form_integration_packet();
+        return self::$oHTTP_MGR->consume_form_integration_packet();
 
     }
 
@@ -672,12 +657,12 @@ class crnrstn_environment {
                 $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('CRNRSTN :: is now listening for requests.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                 error_log(__LINE__ . ' env calling oHTTP_MGR->client_request_listen(' . $listener_profile . ').');
-                return $this->oHTTP_MGR->client_request_listen($listener_profile);
+                return self::$oHTTP_MGR->client_request_listen($listener_profile);
 
             break;
             case 'RRS_MAP':
 
-                return $this->oHTTP_MGR->client_request_listen($listener_profile);
+                return self::$oHTTP_MGR->client_request_listen($listener_profile);
 
             break;
             case 'SSDTLA':
@@ -690,7 +675,7 @@ class crnrstn_environment {
                 $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('CRNRSTN :: is now listening for requests.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                 //error_log(__LINE__ . ' env calling oHTTP_MGR->client_request_listen.');
-                return $this->oHTTP_MGR->client_request_listen($listener_profile);
+                return self::$oHTTP_MGR->client_request_listen($listener_profile);
 
             break;
 
@@ -702,20 +687,20 @@ class crnrstn_environment {
 
     public function isset_crnrstn_services_http(){
 
-        return $this->oHTTP_MGR->isset_crnrstn_services_http();
+        return self::$oHTTP_MGR->isset_crnrstn_services_http();
 
     }
 
 //    public function sync_device_detected(){
 //
-//        return $this->oHTTP_MGR->sync_device_detected();
+//        return self::$oHTTP_MGR->sync_device_detected();
 //
 //    }
 
 
 //    public function return_client_accept_language_array($header_accept_language){
 //
-//        return $this->oHTTP_MGR->return_client_accept_language_array($this->oCRNRSTN_LANG_MGR, $header_accept_language);
+//        return self::$oHTTP_MGR->return_client_accept_language_array($this->oCRNRSTN_LANG_MGR, $header_accept_language);
 //
 //    }
 
@@ -1021,7 +1006,7 @@ class crnrstn_environment {
 
             $tmp_str = '<div id="crnrstn_soap_data_tunnel_form_shell" class="crnrstn_hidden"><form action="#" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data"><textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER PACKET (SSDTLP)</textarea><button type="submit">SUBMIT</button><input type="hidden" id="crnrstn_xhr_root" name="crnrstn_xhr_root" value="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '"><input type="hidden" id="crnrstn_interact_ui_module_programme" name="crnrstn_interact_ui_module_programme" value="' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme() . '"><input type="hidden" id="crnrstn_page_load_ttl" name="crnrstn_page_load_ttl" value="' . $this->oCRNRSTN->get_resource('page_load_ttl', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS') . '"><input type="hidden" id="crnrstn_inactivity_refresh_ttl" name="crnrstn_inactivity_refresh_ttl" value="' . $this->oCRNRSTN->get_resource('inactivity_refresh_ttl', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS') . '"><input type="hidden" id="crnrstn_ssdtla_module_sync_ttl" name="crnrstn_ssdtla_module_sync_ttl" value="' . $this->oCRNRSTN->get_resource('ssdtla_module_sync_ttl', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS') . '"><input type="hidden" id="crnrstn_share_module_inactivity_close_ttl" name="crnrstn_share_module_inactivity_close_ttl" value="' . $this->oCRNRSTN->get_resource('share_module_inactivity_close_ttl', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS') . '"><input type="hidden" id="crnrstn_debug_logging_output_channel" name="crnrstn_debug_logging_output_channel" value="' . $this->oCRNRSTN->get_resource('debug_logging_output_channel', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS') . '"><input type="hidden" id="crnrstn_client_debug_mode" name="crnrstn_client_debug_mode" value="' . $this->oCRNRSTN->get_resource('client_debug_mode', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS') . '"><input type="hidden" id="crnrstn_interact_ui_ttl" name="crnrstn_interact_ui_ttl" value="' . $this->return_interact_ui_ttl('interact_ui_ttl') . '"><input type="hidden" id="crnrstn_interact_ui_month_abbrev" name="crnrstn_interact_ui_month_abbrev" value="' . $this->return_interact_ui_ttl('interact_ui_month_abbrev') . '"><input type="hidden" id="crnrstn_interact_ui_month" name="crnrstn_interact_ui_month" value="' . $this->return_interact_ui_ttl('interact_ui_month') . '"><input type="hidden" id="crnrstn_interact_ui_day_abbrev" name="crnrstn_interact_ui_day_abbrev" value="' . $this->return_interact_ui_ttl('interact_ui_day_abbrev') . '"><input type="hidden" id="crnrstn_interact_ui_day" name="crnrstn_interact_ui_day" value="' . $this->return_interact_ui_ttl('interact_ui_day') . '"><input type="hidden" id="crnrstn_request_source" name="crnrstn_request_source" value=""><input type="hidden" id="crnrstn_resource_initialize" name="crnrstn_resource_initialize" value="' . $tmp_resource_initialize . '"><input type="hidden" id="crnrstn_interact_data_tunnel_get_params" name="crnrstn_interact_data_tunnel_get_params" value="' . $tmp_http_get_data_params . '"><input type="hidden" id="crnrstn_soap_service_client_ip" name="crnrstn_soap_service_client_ip" value="' . $this->oCRNRSTN->data_encrypt($this->oCRNRSTN->client_ip()) . '">' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme('hidden_hash_input_array');
             $tmp_str .= $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_CHANNEL_SSDTLA, 'crnrstn_soap_data_tunnel_form') . '</form><div id="crnrstn_interact_ui_loadbar_IMAGE_CACHE">' . $this->oCRNRSTN->return_creative('UI_PAGELOAD_INDICATOR', CRNRSTN_HTML) . '</div><div id="crnrstn_interact_ui_mit_license_src" class="crnrstn_hidden"></div><div id="crnrstn_interact_ui_theme_profile" class="crnrstn_hidden"></div></div>';
-            $this->oCRNRSTN->channel_auth_data_reporting_sync($tmp_str, 'PSSDTLA_ARCHITECTURE', 'DDO', 'pssdtla', CRNRSTN_AUTHORIZE_PSSDTLA);
+            $this->oCRNRSTN->channel_authorization_data_reporting_sync($tmp_str, 'PSSDTLA_ARCHITECTURE', 'DDO', 'pssdtla', CRNRSTN_AUTHORIZE_PSSDTLA);
             $tmp_str_array[] = $tmp_str;
 
         }else{
@@ -1059,7 +1044,7 @@ class crnrstn_environment {
 
             //
             // TODO :: MULTI-CHANNEL TESTING AND DEVELOPMENT; FIX CHANNEL REPORTING...,AS SYNC CRASHES THE PSSDTLA!
-            //$this->oCRNRSTN->channel_auth_data_reporting_sync($tmp_str, 'PSSDTLA_ARCHITECTURE', 'DDO', 'pssdtla', CRNRSTN_AUTHORIZE_PSSDTLA);
+            //$this->oCRNRSTN->channel_authorization_data_reporting_sync($tmp_str, 'PSSDTLA_ARCHITECTURE', 'DDO', 'pssdtla', CRNRSTN_AUTHORIZE_PSSDTLA);
             $tmp_str_array[] = $tmp_str;
 
         }
@@ -2127,7 +2112,7 @@ requirements related to returning the content for this request.
 
     public function return_sys_logging_profile(){
 
-        return self::$sys_logging_profile_ARRAY;
+        return self::$system_logging_output_profile_ARRAY;
 
     }
 
@@ -2181,7 +2166,7 @@ requirements related to returning the content for this request.
             case CRNRSTN_WORDPRESS_DEBUG:
 
                 //$this->oCRNRSTN->retrieve_data_value($data_key, $data_type_family, $index);
-                $this->oCRNRSTN->input_data_value($this->env_key, 'WORDPRESS_debug_mode', $WORDPRESS_debug_mode, '');
+                $this->oCRNRSTN->input_data_value(self::$env_key, 'WORDPRESS_debug_mode', $WORDPRESS_debug_mode, '');
 
                 $this->oCRNRSTN->toggle_bit(CRNRSTN_WORDPRESS_DEBUG);
 
@@ -2201,7 +2186,7 @@ requirements related to returning the content for this request.
         if(!isset($this->oCRNRSTN->oCRNRSTN_TRM)){
 
             // THIS IS BOUND TO THIRD PARTY SERVICE ON CONSTRUCTION. BREAK DEPENDENCY BEFORE NEXT USE.
-            // INSTANTIATE TUNNEL RESPONSE MANAGER
+            // INSTANTIATE THE TUNNEL RESPONSE MANAGER CLASS OBJECT.
             //$this->oCRNRSTN->oCRNRSTN_TRM = new crnrstn_ui_tunnel_response_manager($this->oCRNRSTN);
 
         }
@@ -2218,7 +2203,7 @@ requirements related to returning the content for this request.
 
     public function ssdtla_enabled(){
 
-        return $this->oHTTP_MGR->ssdtla_enabled();
+        return self::$oHTTP_MGR->ssdtla_enabled();
 
     }
 
@@ -2942,9 +2927,9 @@ requirements related to returning the content for this request.
 //
 //    }
 
-    public function get_server_config_serial($output_format = 'raw'){
+    public function config_serial(){
 
-        return $this->oCRNRSTN->get_server_config_serial($output_format);
+        return $this->oCRNRSTN->get_crnrstn('config_serial');
 
     }
 
@@ -2993,19 +2978,9 @@ requirements related to returning the content for this request.
 
         }catch(Exception $e){
 
-            if(isset($oCRNRSTN_USR)){
-
-                //
-                // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-                $oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
-
-            }else{
-
-                //
-                // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-                $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
-
-            }
+            //
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -3015,7 +2990,7 @@ requirements related to returning the content for this request.
 
     public function return_client_header_value($header_attribute, $index){
 
-        return $this->oHTTP_MGR->return_client_header_value($header_attribute, $index);
+        return self::$oHTTP_MGR->return_client_header_value($header_attribute, $index);
 
     }
 
@@ -3023,7 +2998,7 @@ requirements related to returning the content for this request.
 
         if(is_array($transport_protocol)){
 
-            return $this->oHTTP_MGR->issetHTTP($transport_protocol);
+            return self::$oHTTP_MGR->issetHTTP($transport_protocol);
 
         }
 
@@ -3043,7 +3018,7 @@ requirements related to returning the content for this request.
 
         }
 
-        return $this->oHTTP_MGR->issetHTTP($super_global);
+        return self::$oHTTP_MGR->issetHTTP($super_global);
 
     }
 
@@ -3107,19 +3082,19 @@ requirements related to returning the content for this request.
 
     private function ___init_wp_config($oCRNRSTN){
 
-        if(!!$oCRNRSTN->wp_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)]){
+        if(!!$oCRNRSTN->wp_config_file_path_ARRAY[self::$config_serial][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)]){
 
-            foreach($oCRNRSTN->wp_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)] as $key => $wp_config_file_path){
+            foreach($oCRNRSTN->wp_config_file_path_ARRAY[self::$config_serial][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)] as $key => $wp_config_file_path){
 
                 if(is_file($wp_config_file_path)){
 
                     $oCRNRSTN_oWCR_ARRAY = array();
 
-                    //$this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of WordPress profiles authorized to connect to CRNRSTN :: [' . $this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                    //$this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of WordPress profiles authorized to connect to CRNRSTN :: [' . $this->soap_permissions_file_path_ARRAY[self::$config_serial][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                     include_once($wp_config_file_path);
 
-                    $this->oCRNRSTN_WCR_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL][] = $oCRNRSTN_oWCR_ARRAY;
+                    $this->oCRNRSTN_WCR_ARRAY[self::$config_serial][CRNRSTN_LOG_ALL][] = $oCRNRSTN_oWCR_ARRAY;
 
                 }else{
 
@@ -3131,9 +3106,9 @@ requirements related to returning the content for this request.
 
         }else{
 
-            if(!!$oCRNRSTN->wp_config_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash]){
+            if(!!$oCRNRSTN->wp_config_file_path_ARRAY[self::$config_serial][self::$env_key_hash]){
 
-                foreach($oCRNRSTN->wp_config_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash] as $key => $wp_config_file_path){
+                foreach($oCRNRSTN->wp_config_file_path_ARRAY[self::$config_serial][self::$env_key_hash] as $key => $wp_config_file_path){
 
                     if(is_file($wp_config_file_path)){
 
@@ -3141,11 +3116,11 @@ requirements related to returning the content for this request.
 
                         //
                         // EXTRACT PROFILE FROM FILE
-                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of WordPress profiles authorized to connect to CRNRSTN :: [' . $this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of WordPress profiles authorized to connect to CRNRSTN :: [' . $this->soap_permissions_file_path_ARRAY[self::$config_serial][self::$env_key_hash][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                         include_once($wp_config_file_path);
 
-                        $this->oCRNRSTN_WCR_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL][] = $oCRNRSTN_oWCR_ARRAY;
+                        $this->oCRNRSTN_WCR_ARRAY[self::$config_serial][CRNRSTN_LOG_ALL][] = $oCRNRSTN_oWCR_ARRAY;
 
                     }else{
 
@@ -3167,9 +3142,9 @@ requirements related to returning the content for this request.
 
     private function init_analytics_config($oCRNRSTN){
 
-        if(!!$oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)]){
+        if(!!$oCRNRSTN->analytics_config_file_path_ARRAY[self::$config_serial][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)]){
 
-            foreach($oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)] as $key => $analytics_config_file_path){
+            foreach($oCRNRSTN->analytics_config_file_path_ARRAY[self::$config_serial][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)] as $key => $analytics_config_file_path){
 
                 if(is_file($analytics_config_file_path)){
 
@@ -3177,11 +3152,11 @@ requirements related to returning the content for this request.
 
                     //
                     // EXTRACT PROFILE FROM FILE
-                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of analytics SEO profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of analytics SEO profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->analytics_config_file_path_ARRAY[self::$config_serial][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                     include_once($analytics_config_file_path);
 
-                    $this->oCRNRSTN_WCR_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL][] = $oCRNRSTN_oWCR_ARRAY;
+                    $this->oCRNRSTN_WCR_ARRAY[self::$config_serial][CRNRSTN_LOG_ALL][] = $oCRNRSTN_oWCR_ARRAY;
 
                 }else{
 
@@ -3193,9 +3168,9 @@ requirements related to returning the content for this request.
 
         }else{
 
-            if(!!$oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash]){
+            if(!!$oCRNRSTN->analytics_config_file_path_ARRAY[self::$config_serial][self::$env_key_hash]){
 
-                foreach($oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash] as $key => $analytics_config_file_path){
+                foreach($oCRNRSTN->analytics_config_file_path_ARRAY[self::$config_serial][self::$env_key_hash] as $key => $analytics_config_file_path){
 
                     if(is_file($analytics_config_file_path)){
 
@@ -3203,11 +3178,11 @@ requirements related to returning the content for this request.
 
                         //
                         // EXTRACT PROFILE FROM FILE
-                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of analytics SEO profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of analytics SEO profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->analytics_config_file_path_ARRAY[self::$config_serial][self::$env_key_hash][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                         include_once($analytics_config_file_path);
 
-                        $this->oCRNRSTN_WCR_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL][] = $oCRNRSTN_oWCR_ARRAY;
+                        $this->oCRNRSTN_WCR_ARRAY[self::$config_serial][CRNRSTN_LOG_ALL][] = $oCRNRSTN_oWCR_ARRAY;
 
                     }else{
 
@@ -3229,7 +3204,7 @@ requirements related to returning the content for this request.
 
     public function return_form_submitted_value($getpost_input_name, $transport_protocol = NULL){
 
-        return $this->oHTTP_MGR->return_form_submitted_value($getpost_input_name, $transport_protocol);
+        return self::$oHTTP_MGR->return_form_submitted_value($getpost_input_name, $transport_protocol);
 
     }
 
@@ -3665,9 +3640,9 @@ requirements related to returning the content for this request.
 
     private function init_engagement_config($oCRNRSTN){
 
-        if(!!$oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)]){
+        if(!!$oCRNRSTN->engagement_config_file_path_ARRAY[self::$config_serial][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)]){
 
-            foreach($oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)] as $key => $engagement_config_file_path){
+            foreach($oCRNRSTN->engagement_config_file_path_ARRAY[self::$config_serial][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)] as $key => $engagement_config_file_path){
 
                 if(is_file($engagement_config_file_path)){
 
@@ -3675,11 +3650,11 @@ requirements related to returning the content for this request.
 
                     //
                     // EXTRACT ACCESS-BY-IP AUTHORIZATION PROFILE FROM FILE
-                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of engagement tag profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of engagement tag profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->engagement_config_file_path_ARRAY[self::$config_serial][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                     include_once($engagement_config_file_path);
 
-                    $this->oCRNRSTN_WCR_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL][] = $oCRNRSTN_oWCR_ARRAY;
+                    $this->oCRNRSTN_WCR_ARRAY[self::$config_serial][CRNRSTN_LOG_ALL][] = $oCRNRSTN_oWCR_ARRAY;
 
                 }else{
 
@@ -3691,9 +3666,9 @@ requirements related to returning the content for this request.
 
         }else{
 
-            if(!!$oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash]){
+            if(!!$oCRNRSTN->engagement_config_file_path_ARRAY[self::$config_serial][self::$env_key_hash]){
 
-                foreach($oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash] as $key => $engagement_config_file_path){
+                foreach($oCRNRSTN->engagement_config_file_path_ARRAY[self::$config_serial][self::$env_key_hash] as $key => $engagement_config_file_path){
 
                     if(is_file($engagement_config_file_path)){
 
@@ -3701,11 +3676,11 @@ requirements related to returning the content for this request.
 
                         //
                         // EXTRACT ACCESS-BY-IP AUTHORIZATION PROFILE FROM FILE
-                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of engagement tag profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of engagement tag profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->engagement_config_file_path_ARRAY[self::$config_serial][self::$env_key_hash][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                         include_once($engagement_config_file_path);
 
-                        $this->oCRNRSTN_WCR_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL][] = $oCRNRSTN_oWCR_ARRAY;
+                        $this->oCRNRSTN_WCR_ARRAY[self::$config_serial][CRNRSTN_LOG_ALL][] = $oCRNRSTN_oWCR_ARRAY;
 
                     }else{
 
@@ -3727,16 +3702,16 @@ requirements related to returning the content for this request.
 
     private function __initSOAPAuthorizationProfiles(){
 
-        if(!!$this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->hash(CRNRSTN_RESOURCE_ALL)]){
+        if(!!$this->soap_permissions_file_path_ARRAY[self::$config_serial][$this->hash(CRNRSTN_RESOURCE_ALL)]){
 
-            foreach($this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->hash(CRNRSTN_RESOURCE_ALL)] as $key => $soap_config_file_path){
+            foreach($this->soap_permissions_file_path_ARRAY[self::$config_serial][$this->hash(CRNRSTN_RESOURCE_ALL)] as $key => $soap_config_file_path){
 
                 if(is_file($soap_config_file_path)){
 
                     //
                     // EXTRACT ACCESS-BY-IP AUTHORIZATION PROFILE FROM FILE
-                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of endpoint profiles authorized to connect to the CRNRSTN :: SOAP Services layer [' . $this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->hash(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                    //include_once($this->soap_permissions_file_path_ARRAY[$this->hash($this->config_serial_hash)][$this->env_key_hash][$key]);
+                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of endpoint profiles authorized to connect to the CRNRSTN :: SOAP Services layer [' . $this->soap_permissions_file_path_ARRAY[self::$config_serial][$this->hash(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                    //include_once($this->soap_permissions_file_path_ARRAY[$this->hash(self::$config_serial)][self::$env_key_hash][$key]);
                     include_once($soap_config_file_path);
 
                 }else{
@@ -3749,16 +3724,16 @@ requirements related to returning the content for this request.
 
         }else{
 
-            if(!!$this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash]){
+            if(!!$this->soap_permissions_file_path_ARRAY[self::$config_serial][self::$env_key_hash]){
 
-                foreach($this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash] as $key => $soap_config_file_path){
+                foreach($this->soap_permissions_file_path_ARRAY[self::$config_serial][self::$env_key_hash] as $key => $soap_config_file_path){
 
                     if(is_file($soap_config_file_path)){
 
                         //
                         // EXTRACT ACCESS-BY-IP AUTHORIZATION PROFILE FROM FILE
-                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of endpoint profiles authorized to connect to the CRNRSTN :: SOAP Services layer [' . $this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                        //include_once($this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash][$key]);
+                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of endpoint profiles authorized to connect to the CRNRSTN :: SOAP Services layer [' . $this->soap_permissions_file_path_ARRAY[self::$config_serial][self::$env_key_hash][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                        //include_once($this->soap_permissions_file_path_ARRAY[self::$config_serial][self::$env_key_hash][$key]);
                         include_once($soap_config_file_path);
 
                     }else{
@@ -4105,7 +4080,7 @@ requirements related to returning the content for this request.
 
         //
         // DETECTED RESOURCE KEY
-        if(isset($this->env_key_hash)){
+        if(isset(self::$env_key_hash)){
 
             //
             // CLEAR OUT BITS FOR NEW LOGGING PROFILE DATA
@@ -4119,19 +4094,19 @@ requirements related to returning the content for this request.
 
             //
             // RETRIEVE LOGGING PROFILE DATA FROM CRNRSTN ::
-            self::$sys_logging_profile_ARRAY = $oCRNRSTN->return_logging_profile($this->env_key_hash);
-            self::$sys_logging_meta_ARRAY = $oCRNRSTN->return_logging_meta($this->env_key_hash);
+            self::$system_logging_output_profile_ARRAY = $oCRNRSTN->return_logging_profile(self::$env_key_hash);
+            self::$sys_logging_meta_ARRAY = $oCRNRSTN->return_logging_meta(self::$env_key_hash);
 
             //
             // SESSION DRIVEN RRS MAP ASSET RETURNS (E.G. IMAGE FROM A LINK) HAPPEN BEFORE LOGGING CONFIGURATION. THE
             // ENV CLASS OBJECT INSTANTIATION (USED FOR BUILDING RESPONSE HEADER) EXPOSES THIS MISSING CONFIG DATA.
             // WE MAY NOT HAVE AN ARRAY.
             // Thursday, March 23, 2023 @ 2328 hrs
-            if(is_array(self::$sys_logging_profile_ARRAY)){
+            if(is_array(self::$system_logging_output_profile_ARRAY)){
 
                 //
                 // FLIP BITWISE DATA FOR LOGGING PROFILE
-                foreach(self::$sys_logging_profile_ARRAY as $key => $int_const_profile){
+                foreach(self::$system_logging_output_profile_ARRAY as $key => $int_const_profile){
 
                 //     //
                 //     // CRNRSTN :: ICY_DIGITALITCC-BITMASK INTEGER
@@ -4150,8 +4125,7 @@ requirements related to returning the content for this request.
             //
             // NOW THAT WE HAVE LOGGING PROFILE DATA...SYNC LOGGING PROFILE MANAGER
             self::$oLog_ProfileManager->sync_to_environment($oCRNRSTN, $this);
-
-            $this->oLogger->sync_olog_profile_manager(self::$oLog_ProfileManager);
+            $this->oCRNRSTN->sync_olog_profile_manager(self::$oLog_ProfileManager);
 
         }
 
@@ -4159,23 +4133,23 @@ requirements related to returning the content for this request.
 
     private function initRuntimeConfig(){
 
-        //$this->oSESSION_MGR->oCRNRSTN_SESSION_DDO->add($this->env_key_hash,'CRNRSTN_' . $this->config_serial_hash . 'CRNRSTN_ENV_KEY_CRC');
+        //$this->oSESSION_MGR->oCRNRSTN_SESSION_DDO->add(self::$env_key_hash,'CRNRSTN_' . self::$config_serial . 'CRNRSTN_ENV_KEY_CRC');
 
         //
         // INITIALIZE CONFIG AND ENV KEYS.
-        #$_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'] = $this->config_serial_hash;  # MOVED TO CRNRSTN __construct() @ ~line 105
-        //$_SESSION['CRNRSTN_' . $this->config_serial_hash]['CRNRSTN_ENV_KEY_CRC'] = $this->env_key_hash;
-        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Initialize session[' . session_id() . '] with CRNRSTN :: config_serial_hash [' . $this->config_serial_hash . '] and environmental resource key [' . $this->env_key_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+        #$_SESSION['CRNRSTN_CONFIG_SERIALIZATION_HASH'] = self::$config_serial;  # MOVED TO CRNRSTN __construct() @ ~line 105
+        //$_SESSION['CRNRSTN_' . self::$config_serial]['CRNRSTN_ENV_KEY_CRC'] = self::$env_key_hash;
+        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Initialize session[' . session_id() . '] with CRNRSTN :: config_serial_hash [' . self::$config_serial . '] and environmental resource key [' . self::$env_key_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
     }
 
     private function initializeErrorReporting($oCRNRSTN){
 
-        if(isset($oCRNRSTN->env_err_reporting_profile_ARRAY[$this->config_serial_hash][$this->env_key_hash])){
+        if(isset($oCRNRSTN->env_err_reporting_profile_ARRAY[self::$config_serial][self::$env_key_hash])){
         //if($oCRNRSTN->isset_resource('data_value', 'err_reporting_profile', 'CRNRSTN::RESOURCE::CONFIGURATION') == true){
 
-            $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Initialize server error_reporting() to [' . $oCRNRSTN->env_err_reporting_profile_ARRAY[$this->config_serial_hash][$this->env_key_hash] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-            error_reporting((int) $oCRNRSTN->env_err_reporting_profile_ARRAY[$this->config_serial_hash][$this->env_key_hash]);
+            $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Initialize server error_reporting() to [' . $oCRNRSTN->env_err_reporting_profile_ARRAY[self::$config_serial][self::$env_key_hash] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+            error_reporting((int) $oCRNRSTN->env_err_reporting_profile_ARRAY[self::$config_serial][self::$env_key_hash]);
 
             //$tmp_int = $oCRNRSTN->get_resource('err_reporting_profile', 0, 'CRNRSTN::RESOURCE::CONFIGURATION');
             //$this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Initialize server error_reporting() to [' . $tmp_int . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
@@ -4189,21 +4163,21 @@ requirements related to returning the content for this request.
 
         //
         // PROCESS IP ADDRESS ACCESS AND RESTRICTION FOR SELECTED ENVIRONMENT
-        if(is_file($oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash])){
+        if(is_file($oCRNRSTN->grant_accessIP_ARRAY[self::$config_serial][self::$env_key_hash])){
 
             //
             // EXTRACT ACCESS-BY-IP AUTHORIZATION PROFILE FROM FILE.
-            $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for exclusive access IP restrictions at [' . $oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-            include_once($oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash]);
+            $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for exclusive access IP restrictions at [' . $oCRNRSTN->grant_accessIP_ARRAY[self::$config_serial][self::$env_key_hash] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+            include_once($oCRNRSTN->grant_accessIP_ARRAY[self::$config_serial][self::$env_key_hash]);
 
         }else{
 
             //
             // DO WE HAVE ANY IP DATA TO PROCESS?
-            if($oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash] != ''){
+            if($oCRNRSTN->grant_accessIP_ARRAY[self::$config_serial][self::$env_key_hash] != ''){
 
-                $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Process grant exclusive access IP[' . $oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash] . '] for this connection.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                $this->oCRNRSTN->oCRNRSTN_IPSECURITY_MGR->grantAccessWKey($this->env_key_hash, $oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash]);
+                $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Process grant exclusive access IP[' . $oCRNRSTN->grant_accessIP_ARRAY[self::$config_serial][self::$env_key_hash] . '] for this connection.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                $this->oCRNRSTN->oCRNRSTN_IPSECURITY_MGR->grantAccessWKey(self::$env_key_hash, $oCRNRSTN->grant_accessIP_ARRAY[self::$config_serial][self::$env_key_hash]);
 
             }
 
@@ -4213,19 +4187,19 @@ requirements related to returning the content for this request.
 
     private function initDenyAccess($oCRNRSTN){
 
-        if(is_file($oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash])){
+        if(is_file($oCRNRSTN->deny_accessIP_ARRAY[self::$config_serial][self::$env_key_hash])){
 
             //
             // EXTRACT ACCESS-BY-IP AUTHORIZATION PROFILE FROM FILE
-            $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for deny access IP restrictions at [' . $oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-            include_once($oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash]);
+            $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for deny access IP restrictions at [' . $oCRNRSTN->deny_accessIP_ARRAY[self::$config_serial][self::$env_key_hash] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+            include_once($oCRNRSTN->deny_accessIP_ARRAY[self::$config_serial][self::$env_key_hash]);
 
         }else{
 
-            if($oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash] != ""){
+            if($oCRNRSTN->deny_accessIP_ARRAY[self::$config_serial][self::$env_key_hash] != ""){
 
-                $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Process deny access IP[' . $oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash] . '] for this connection.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                $this->oCRNRSTN->oCRNRSTN_IPSECURITY_MGR->denyAccessWKey($this->env_key_hash, $oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash]);
+                $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Process deny access IP[' . $oCRNRSTN->deny_accessIP_ARRAY[self::$config_serial][self::$env_key_hash] . '] for this connection.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                $this->oCRNRSTN->oCRNRSTN_IPSECURITY_MGR->denyAccessWKey(self::$env_key_hash, $oCRNRSTN->deny_accessIP_ARRAY[self::$config_serial][self::$env_key_hash]);
 
             }else{
 
@@ -4239,17 +4213,17 @@ requirements related to returning the content for this request.
 
     private function initAdminAccess($oCRNRSTN){
 
-        $tmp_cnt = sizeof($oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_hash][$this->env_key_hash]['email']);
+        $tmp_cnt = sizeof($oCRNRSTN->add_admin_creds_ARRAY[self::$config_serial][self::$env_key_hash]['email']);
 
         for($i = 0; $i < $tmp_cnt; $i++){
 
-            $tmp_email = $oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_hash][$this->env_key_hash]['email'][$i];
-            $tmp_pwdhash = $oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_hash][$this->env_key_hash]['pwdhash'][$i];
-            $tmp_ttl = $oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_hash][$this->env_key_hash]['ttl'][$i];
+            $tmp_email = $oCRNRSTN->add_admin_creds_ARRAY[self::$config_serial][self::$env_key_hash]['email'][$i];
+            $tmp_pwdhash = $oCRNRSTN->add_admin_creds_ARRAY[self::$config_serial][self::$env_key_hash]['pwdhash'][$i];
+            $tmp_ttl = $oCRNRSTN->add_admin_creds_ARRAY[self::$config_serial][self::$env_key_hash]['ttl'][$i];
 
-            if(isset($oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_hash][$this->env_key_hash]['max_login_attempts'][$i])){
+            if(isset($oCRNRSTN->add_admin_creds_ARRAY[self::$config_serial][self::$env_key_hash]['max_login_attempts'][$i])){
 
-                $this->max_login_attempts = $oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_hash][$this->env_key_hash]['max_login_attempts'][$i];
+                $this->max_login_attempts = $oCRNRSTN->add_admin_creds_ARRAY[self::$config_serial][self::$env_key_hash]['max_login_attempts'][$i];
 
             }else{
 
@@ -4257,9 +4231,9 @@ requirements related to returning the content for this request.
 
             }
 
-            if(isset($oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_hash][$this->env_key_hash]['seconds_inactive'][$i])){
+            if(isset($oCRNRSTN->add_admin_creds_ARRAY[self::$config_serial][self::$env_key_hash]['seconds_inactive'][$i])){
 
-                $this->max_seconds_inactive = $oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_hash][$this->env_key_hash]['seconds_inactive'][$i];
+                $this->max_seconds_inactive = $oCRNRSTN->add_admin_creds_ARRAY[self::$config_serial][self::$env_key_hash]['seconds_inactive'][$i];
 
             }else{
 
@@ -4307,7 +4281,7 @@ requirements related to returning the content for this request.
 
         //
         // RETURN RESOURCE KEY FOR DETECTED ENVIRONMENT
-        return $this->env_key_hash;
+        return self::$env_key_hash;
 
     }
 
@@ -4494,7 +4468,7 @@ requirements related to returning the content for this request.
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return NULL;
 
@@ -4687,7 +4661,7 @@ requirements related to returning the content for this request.
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return NULL;
 
@@ -4721,7 +4695,7 @@ requirements related to returning the content for this request.
         $data_type_family = $this->return_encryption_data_type_family(CRNRSTN_ENCRYPT_DATABASE);
 
         //
-        // CRNRSTN :: DECOUPLED DATA OBJECT (DDO) SERVICES LAYER.
+        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) SERVICES LAYER.
         // # # C # R # N # R # S # T # N # : : # # # #
         // CRNRSTN :: UGC DATA INPUT [HASH ACCELERATION]
         $tmp_ = $this->add_resource($tmp_key, $tmp_hash_val, 'CRNRSTN::RESOURCE::HASH_ACCELERATION', CRNRSTN_AUTHORIZE_SESSION, 0);
@@ -4768,7 +4742,7 @@ requirements related to returning the content for this request.
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
 
@@ -4798,7 +4772,7 @@ requirements related to returning the content for this request.
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return NULL;
 
@@ -4861,7 +4835,7 @@ requirements related to returning the content for this request.
         if(isset($cipher_override) || $tmp_encrypt_cipher != ''){
 
             //
-            // RETRIEVE DATA FROM THE CRNRSTN :: DECOUPLED DATA OBJECT (DDO).
+            // RETRIEVE DATA FROM THE CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO).
             $tmp_encrypt_secret_key = $this->oCRNRSTN->get_resource('encrypt_secret_key', 0, $data_type_family);
             $tmp_encrypt_options = $this->oCRNRSTN->get_resource('encrypt_options', 0, $data_type_family);
             $tmp_hmac_alg = $this->oCRNRSTN->get_resource('hmac_alg', 0, $data_type_family);
@@ -4974,7 +4948,7 @@ requirements related to returning the content for this request.
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return NULL;
 
@@ -5144,7 +5118,7 @@ requirements related to returning the content for this request.
 
     public function proper_response_return($response, $header_options_array, $crnrstn_response_profile_key){
 
-        return $this->oHTTP_MGR->proper_response_return($response, $header_options_array, $crnrstn_response_profile_key);
+        return self::$oHTTP_MGR->proper_response_return($response, $header_options_array, $crnrstn_response_profile_key);
 
     }
 
@@ -5158,17 +5132,17 @@ requirements related to returning the content for this request.
 
     private function initializeWildCardResource($oCRNRSTN){
 
-        $env_key = $this->env_key;
+        $env_key = self::$env_key;
 
-        if(!!$oCRNRSTN->wildCardResource_filePath_ARRAY[$this->config_serial_hash][$this->oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)]){
+        if(!!$oCRNRSTN->wildCardResource_filePath_ARRAY[self::$config_serial][$this->oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)]){
 
-            $this->wildCardResource_filePath = $oCRNRSTN->wildCardResource_filePath_ARRAY[$this->config_serial_hash][$this->oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)];
+            $this->wildCardResource_filePath = $oCRNRSTN->wildCardResource_filePath_ARRAY[self::$config_serial][$this->oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)];
 
         }else{
 
-            if(!!$oCRNRSTN->wildCardResource_filePath_ARRAY[$this->config_serial_hash][$this->env_key_hash]){
+            if(!!$oCRNRSTN->wildCardResource_filePath_ARRAY[self::$config_serial][self::$env_key_hash]){
 
-                $this->wildCardResource_filePath = $oCRNRSTN->wildCardResource_filePath_ARRAY[$this->config_serial_hash][$this->env_key_hash];
+                $this->wildCardResource_filePath = $oCRNRSTN->wildCardResource_filePath_ARRAY[self::$config_serial][self::$env_key_hash];
 
             }
 
@@ -5182,11 +5156,11 @@ requirements related to returning the content for this request.
 
                 //
                 // INITIALIZE WILDCARD RESOURCES
-                $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Storing initialized Wild Card Resources at [' . $this->wildCardResource_filePath . '] in memory for this environment [' . $this->env_key_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Storing initialized Wild Card Resources at [' . $this->wildCardResource_filePath . '] in memory for this environment [' . self::$env_key_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                 include_once($this->wildCardResource_filePath);
 
-                $this->oCRNRSTN_WCR_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL][] = $oCRNRSTN_oWCR_ARRAY;
+                $this->oCRNRSTN_WCR_ARRAY[self::$config_serial][CRNRSTN_LOG_ALL][] = $oCRNRSTN_oWCR_ARRAY;
 
             }else{
 
@@ -5200,7 +5174,7 @@ requirements related to returning the content for this request.
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -5217,13 +5191,13 @@ requirements related to returning the content for this request.
 
         //
         // ENSURE ALL SIGNATURE HEADERS ARE IN PLACE AND CONTINUE
-        $this->oHTTP_MGR->header_options_add($tmp_crnrstn_signature_headers_ARRAY);
+        self::$oHTTP_MGR->header_options_add($tmp_crnrstn_signature_headers_ARRAY);
 
         //
         // ADD PRE-EXISTING HEADER OPTIONS AFTER DEFAULT FOR OVERWRITE
-        $this->oHTTP_MGR->header_options_add($tmp_curr_headers_ARRAY);
+        self::$oHTTP_MGR->header_options_add($tmp_curr_headers_ARRAY);
 
-        $this->oHTTP_MGR->header_options_apply();
+        self::$oHTTP_MGR->header_options_apply();
 
         //
         // Source: http://php.net/manual/en/function.http-response-code.php
@@ -5321,9 +5295,9 @@ requirements related to returning the content for this request.
             // CHECK FOR EXISTENCE OF PARAMETER WITHIN WILD CARD RESOURCE
             if(isset($wildCardKey)){
 
-                if(isset($this->oCRNRSTN_WCR_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL])){
+                if(isset($this->oCRNRSTN_WCR_ARRAY[self::$config_serial][CRNRSTN_LOG_ALL])){
 
-                    $tmp_oWCR_ARRAY = $this->oCRNRSTN_WCR_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL];
+                    $tmp_oWCR_ARRAY = $this->oCRNRSTN_WCR_ARRAY[self::$config_serial][CRNRSTN_LOG_ALL];
 
                     foreach($tmp_oWCR_ARRAY as $key => $oWCR){
 
@@ -5347,7 +5321,7 @@ requirements related to returning the content for this request.
                             // strings 'true' or 'false'
                             //if(is_bool($data_value) === true){
                             //
-                            error_log(__LINE__ . ' ddo CHECK THAT THIS IS INTEGER PROCESSING OF CRNRSTN :: DDO DATA. TYPE[' . strval($tmp_oDDO->preach('type', $paramName)) . ']. die();');
+                            error_log(__LINE__ . ' ddo CHECK THAT THIS IS INTEGER PROCESSING OF CRNRSTN :: DDO DATA. $paramName[' . strval($paramName) . ']. die();');
                             die();
 
                             switch($tmp_oDDO->preach('type', $paramName)){
@@ -5589,7 +5563,7 @@ requirements related to returning the content for this request.
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -5669,7 +5643,7 @@ requirements related to returning the content for this request.
 
     public function return_micro_time(){
 
-        return $this->oLogger->returnMicroTime();
+        return $this->oCRNRSTN->return_micro_time();
 
     }
 
@@ -5704,7 +5678,7 @@ requirements related to returning the content for this request.
 
             if($_SERVER['HTTPS'] && ($_SERVER['HTTPS'] != 'off')){
 
-                self::$requestProtocol='https://';
+                self::$requestProtocol = 'https://';
 
             }else{
 
@@ -5712,28 +5686,28 @@ requirements related to returning the content for this request.
 
                     if(!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'){
 
-                        self::$requestProtocol='https://';
+                        self::$requestProtocol = 'https://';
 
                     }else{
 
-                        self::$requestProtocol='http://';
+                        self::$requestProtocol = 'http://';
 
                     }
 
                 }else{
 
-                    self::$requestProtocol='http://';
+                    self::$requestProtocol = 'http://';
 
                 }
             }
 
         }else{
 
-            self::$requestProtocol='http://';
+            self::$requestProtocol = 'http://';
 
         }
 
-        return self::$requestProtocol.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+        return self::$requestProtocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
     }
 
@@ -5741,23 +5715,68 @@ requirements related to returning the content for this request.
     // SOURCE :: https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
     // COMMENT :: https://stackoverflow.com/a/13733588
     // AUTHOR :: Scott :: https://stackoverflow.com/users/1698153/scott
-    public function generate_new_key($len = 32, $char_selection = NULL){
+    public function generate_new_key($len = 32, $char_selection = NULL, $system_hashed_return = false, $algorithm_override = NULL, $binary_return = false, $runtime_acceleration = false, $session_acceleration_key = NULL){
 
         //
-        // SEND -1 AS $char_selection FOR USE OF *ALL* CHARACTERS IN RANDOM KEY
-        // GENERATION...ALL EXCEPT THE SEQUENCE \e ESCAPE KEY (ESC or 0x1B (27) in
-        // ASCII) AND NOT SPLITTING HAIRS CHOOSING BETWEEN SEQUENCE \n LINEFEED (LF or
-        // 0x0A (10) in ASCII) AND THE SEQUENCE \r CARRIAGE RETURN (CR or 0x0D
-        // (13) in ASCII)...AND ALSO SCREW BOTH \f FORM FEED (FF or 0x0C (12)
-        // in ASCII) AND \v VERTICAL TAB (VT or 0x0B (11) in ASCII) SEQUENCES.
+        // $char_selection = NULL [OR (int) 0]
+        //      $codeAlphabet = ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        //                      abcdefghijklmnopqrstuvwxyz
+        //                      0123456789
         //
-        // ALSO, CHECK OUT $char_selection=-2, AND $char_selection=-3.
-        // $char_selection=-3 IS THE NICEST(NO: QUOTES, COMMAS,...ETC.)...WITH
-        // THE MOST DISTINCT NUMBER OF CHARACTERS FOR A SERIAL, IMHO.
+        // $char_selection = '01'
+        //      $codeAlphabet = 01
+        //
+        // $char_selection = (int) -3
+        //      $codeAlphabet = ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        //                      abcdefghijklmnopqrstuvwxyz
+        //                      0123456789:+=_- )(*$#@!~.
+        //
+        // $char_selection = (int) -2
+        //      $codeAlphabet = ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        //                      abcdefghijklmnopqrstuvwxyz
+        //                      0123456789{}[]:+=_- )(*&%$#@!~?.
+        //
+        // $char_selection = (int) -1
+        //      $codeAlphabet = ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        //                      abcdefghijklmnopqrstuvwxyz
+        //                      0123456789{}[]:;\"\'|\\+=_- )(*&^%$#@!~
+        //                      `?/>.<,   '
+        //
+        // NOTE: $char_selection = -1 WILL USE *ALL* CHARACTERS ACROSS
+        //       ALL DIMENSIONS IN THE KNOWN ASCII UNIVERSE FOR SYSTEM
+        //       KEY GENERATION. THERE ARE SOME CHARACTER OMISSIONS TO
+        //       NOTE, HOWEVER. $char_selection = -1 EVOKES *ALL*
+        //       CHARACTERS EXCEPT:
+        //          - THE SEQUENCE \e ESCAPE KEY (ESC or 0x1B (27) in
+        //            ASCII), AND
+        //          - WE'RE NOT SPLITTING HAIRS CHOOSING BETWEEN
+        //            SEQUENCE \n LINEFEED (LF or 0x0A (10) in ASCII)
+        //            AND THE SEQUENCE \r CARRIAGE RETURN (CR or 0x0D
+        //            (13) in ASCII) AS I JUST LET THE PHPSTORM IDE
+        //            CHOOSE HOW TO CONVEY THE ENTER KEY TO TEXT, AND
+        //          - ALSO SCREW BOTH \f FORM FEED (FF or 0x0C (12) in
+        //            ASCII) AND \v VERTICAL TAB (VT or 0x0B (11) in
+        //            ASCII) SEQUENCES; WE DO NOT USE THESE CHARACTERS
+        //            FOR SYSTEM KEY GENERATION.
+        //
+        // NOTE: $char_selection = -3 PRODUCES A LITTLE MORE VARIATION IN
+        //       OUTPUT KEY (OVER $char_selection = NULL); IT HAS JUST A
+        //       FEW MORE CHARACTERS ADDED TO THE SET BEYOND THE PLAIN
+        //       ALPHA-NUMERIC ONES. -3 IS THE COOLEST...HOWEVER...BECAUSE
+        //       THESE NEW CHARACTERS WERE HAND SELECTED FOR BEING THE
+        //       NICEST (imho) TO WORK WITH AS DATA IN THE DATA
+        //       HANDLING WORLD.
+        //
+        //       TLDR; $char_selection = -3 PRODUCES CSV SAFE DATA. THE
+        //       OUTPUT HAS NO QUOTES, NO COMMAS, NO SEMI-COLONS...ETC.,
+        //       BUT IT HAS THE MOST DISTINCT NUMBER OF CHARACTERS FOR
+        //       THE STRONGEST POSSIBLE VARIATION IN SYSTEM KEY
+        //       GENERATION OUTPUT BY CRNRSTN ::
+        //
+        //       Wednesday, December 6, 2023 @ 2127 hrs.
         //
         // https://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.double
-
-        return $this->oCRNRSTN->generate_new_key($len, $char_selection);
+        return $this->oCRNRSTN->generate_new_key($len, $char_selection, $system_hashed_return, $algorithm_override, $binary_return, $runtime_acceleration, $session_acceleration_key);
 
     }
 
@@ -6251,7 +6270,7 @@ requirements related to returning the content for this request.
 
     public function client_agent_is($key, $userAgent = null, $httpHeaders = null){
 
-        return $this->oHTTP_MGR->is($key, $userAgent, $httpHeaders);
+        return self::$oHTTP_MGR->is($key, $userAgent, $httpHeaders);
 
     }
 
@@ -6298,7 +6317,7 @@ requirements related to returning the content for this request.
 
                 $oCRNRSTN->config_init_http('BLUEHOST_JONY5', 'https://lightsaber.crnrstn.jony5.com/', CRNRSTN_ROOT, '_crnrstn');
                 $oCRNRSTN->config_init_http('BLUEHOST_EVIFWEB', 'https://lightsaber.crnrstn.evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
-                $oCRNRSTN->config_init_http('LOCALHOST_PC_XP', 'http://172.16.225.128/jony5/', CRNRSTN_ROOT, '_crnrstn');
+                $oCRNRSTN->config_init_http('LOCALHOST_PC', 'http://172.16.225.128/jony5/', CRNRSTN_ROOT, '_crnrstn');
                 $oCRNRSTN->config_init_http('LOCALHOST_CHAD_MACBOOKPRO', 'http://172.16.225.139/evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
 
                 //
@@ -6368,7 +6387,7 @@ requirements related to returning the content for this request.
 
                 */
 
-                $tmp_sys_config_head_file_path = $tmp_crnrstn_favicon_asset_map_dir_root . DIRECTORY_SEPARATOR . 'integrations' . DIRECTORY_SEPARATOR . $tmp_crnrstn_system_directory . '_' . $this->env_key_hash;
+                $tmp_sys_config_head_file_path = $tmp_crnrstn_favicon_asset_map_dir_root . DIRECTORY_SEPARATOR . 'integrations' . DIRECTORY_SEPARATOR . $tmp_crnrstn_system_directory . '_' . self::$env_key_hash;
 
                 //
                 // GENERATE A CRNRSTN :: INTEGRATIONS CONFIGURATION FILE FOR THE ENVIRONMENT.
@@ -7173,15 +7192,15 @@ requirements related to returning the content for this request.
 
                     $this->oCRNRSTN->print_r('FILE[' . $i . ' of ' . $tmp_img_cnt . ']: ' . $tmp_scraped_filename_ARRAY[$i], 'oCRNRSTN_ASSET_MGR::is_approved_mime_type().', NULL, __LINE__, __METHOD__, __FILE__);
 
-//                    if($this->oCRNRSTN->oCRNRSTN_PERFORMANCE_REGULATOR->is_approved_mime_type(CRNRSTN_RESOURCE_IMAGE, $dir_filepath, $tmp_scraped_filename_ARRAY[$i])){
+//                    if($this->oCRNRSTN->is_approved_mime_type(CRNRSTN_RESOURCE_IMAGE, $dir_filepath, $tmp_scraped_filename_ARRAY[$i])){
 //
-//                        $this->oCRNRSTN->print_r('APPROVED FILE: ' . $tmp_scraped_filename_ARRAY[$i], 'oCRNRSTN_PERFORMANCE_REGULATOR::is_approved_mime_type().', NULL, __LINE__, __METHOD__, __FILE__);
+//                        $this->oCRNRSTN->print_r('APPROVED FILE: ' . $tmp_scraped_filename_ARRAY[$i], 'oCRNRSTN::is_approved_mime_type().', NULL, __LINE__, __METHOD__, __FILE__);
 //
 //                        die();
 //
 //                    }else{
 //
-//                        $this->oCRNRSTN->print_r('UNAUTHORIZED FILE TYPE: ' . $tmp_scraped_filename_ARRAY[$i], 'oCRNRSTN_PERFORMANCE_REGULATOR::is_approved_mime_type().', NULL, __LINE__, __METHOD__, __FILE__);
+//                        $this->oCRNRSTN->print_r('UNAUTHORIZED FILE TYPE: ' . $tmp_scraped_filename_ARRAY[$i], 'oCRNRSTN::is_approved_mime_type().', NULL, __LINE__, __METHOD__, __FILE__);
 //
 //                        die();
 //
@@ -7417,21 +7436,21 @@ requirements related to returning the content for this request.
 
     }
 
-    public function catch_exception($exception_obj, $syslog_constant = LOG_DEBUG, $method = NULL, $namespace = NULL, $output_profile = NULL, $output_profile_override_meta = NULL, $wcr_override_pipe = NULL){
-
-        $tmp_err_trace_str = $this->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString());
-
-        if(strlen($tmp_err_trace_str) > 0){
-
-            $this->error_log('PHP native exception output log trace received ::' . $tmp_err_trace_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-        }
-
-        //
-        // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-        $this->oLogger->catch_exception($exception_obj, $syslog_constant, $method, $namespace, $output_profile, $output_profile_override_meta, $wcr_override_pipe, $this);
-
-    }
+//    public function catch_exception($exception_obj, $syslog_constant = LOG_DEBUG, $method = NULL, $namespace = NULL, $output_profile = NULL, $output_profile_override_meta = NULL, $wcr_override_pipe = NULL){
+//
+//        $tmp_err_trace_str = $this->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString());
+//
+//        if(strlen($tmp_err_trace_str) > 0){
+//
+//            $this->error_log('PHP native exception output log trace received ::' . $tmp_err_trace_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+//
+//        }
+//
+//        //
+//        // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
+//        $this->oCRNRSTN->catch_exception($exception_obj, $syslog_constant, $method, $namespace, $output_profile, $output_profile_override_meta, $wcr_override_pipe, $this);
+//
+//    }
 
     public function return_PHP_exception_trace_pretty($exception_obj_trace_str, $format = 'ERROR_LOG'){
 
@@ -7942,7 +7961,8 @@ requirements related to returning the content for this request.
                     // HOOOSTON...VE HAF PROBLEM!
                     throw new Exception('Unable to determine string sanitization algorithm [' . $type . '] for the content[' . $str . '].');
 
-                    break;
+                break;
+
             }
 
             $str = str_replace($patterns, $replacements, $str);
@@ -7952,7 +7972,7 @@ requirements related to returning the content for this request.
 
         }catch(Exception $e){
 
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -7969,8 +7989,7 @@ requirements related to returning the content for this request.
 
         try{
 
-            switch ($type){
-
+            switch($type){
                 default:
 
                     //
@@ -7978,6 +7997,7 @@ requirements related to returning the content for this request.
                     throw new Exception('Unable to determine string sanitization algorithm [' . $type . '] for the content[' . $str . '].');
 
                 break;
+
             }
 
             $str = str_replace($patterns, $replacements, $str);
@@ -7987,7 +8007,7 @@ requirements related to returning the content for this request.
 
         }catch(Exception $e){
 
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -8431,85 +8451,85 @@ requirements related to returning the content for this request.
 
     public function header_signature_options_return(){
 
-        return $this->oHTTP_MGR->header_signature_options_return();
+        return self::$oHTTP_MGR->header_signature_options_return();
 
     }
 
     public function header_options_add($header_array, $overwrite_existing){
 
-        $this->oHTTP_MGR->header_options_add($header_array, $overwrite_existing);
+        self::$oHTTP_MGR->header_options_add($header_array, $overwrite_existing);
 
     }
 
     public function header_options_apply(){
 
-        $this->oHTTP_MGR->header_options_apply();
+        self::$oHTTP_MGR->header_options_apply();
 
     }
 
     public function get_headers($return_type){
 
-        return $this->oHTTP_MGR->get_headers($return_type);
+        return self::$oHTTP_MGR->get_headers($return_type);
 
     }
 
     public function get_user_agent(){
 
-        return $this->oHTTP_MGR->get_user_agent();
+        return self::$oHTTP_MGR->get_user_agent();
 
     }
 
     public function get_mobile_devices(){
 
-        return $this->oHTTP_MGR->get_mobile_devices();
+        return self::$oHTTP_MGR->get_mobile_devices();
 
     }
 
     public function get_tablet_devices(){
 
-        return $this->oHTTP_MGR->get_tablet_devices();
+        return self::$oHTTP_MGR->get_tablet_devices();
 
     }
 
     public function get_browsers(){
 
-        return $this->oHTTP_MGR->get_browsers();
+        return self::$oHTTP_MGR->get_browsers();
 
     }
 
     public function get_mobile_os(){
 
-        return $this->oHTTP_MGR->get_mobile_os();
+        return self::$oHTTP_MGR->get_mobile_os();
 
     }
 
     public function add_cookie($name, $value, $expires_or_options, $path, $domain, $secure, $httponly){
 
-        return $this->oCOOKIE_MGR->addCookie($name, $value, $expires_or_options, $path, $domain, $secure, $httponly);
+        return self::$oCOOKIE_MGR->addCookie($name, $value, $expires_or_options, $path, $domain, $secure, $httponly);
 
     }
 
     public function add_raw_cookie($name, $value, $expires_or_options, $path, $domain, $secure, $httponly){
 
-        return $this->oCOOKIE_MGR->addRawCookie($name, $value, $expires_or_options, $path, $domain, $secure, $httponly);
+        return self::$oCOOKIE_MGR->addRawCookie($name, $value, $expires_or_options, $path, $domain, $secure, $httponly);
 
     }
 
     public function delete_all_cookies($path){
 
-        return $this->oCOOKIE_MGR->deleteAllCookies($path);
+        return self::$oCOOKIE_MGR->deleteAllCookies($path);
 
     }
 
     public function delete_cookie($name, $path){
 
-        return $this->oCOOKIE_MGR->deleteCookie($name, $path);
+        return self::$oCOOKIE_MGR->deleteCookie($name, $path);
 
     }
 
     public function get_cookie($name){
 
-        return $this->oCOOKIE_MGR->getCookie($name);
+        return self::$oCOOKIE_MGR->getCookie($name);
 
     }
 

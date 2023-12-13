@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -112,12 +112,12 @@
  * will depend on the installation and compilation options used for OpenSSL in your machine(s).
  *
  * Example ::
- * $oCRNRSTN->init_session_encryption('LOCALHOST_PC', 'AES-192-OFB', 'this-Is-the-s3cret-encrypti0n-key', OPENSSL_RAW_DATA, 'sha256');          // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
+ * $oCRNRSTN->init_session_encryption('LOCALHOST_PC', 'AES-192-OFB', 'this-Is-the-s3cret-encrypti0n-key', OPENSSL_RAW_DATA, 'sha256');          // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
  */
 $this->config_init_session_encryption('BLUEHOST_JONY5', 'AES-256-CTR', '0(.sRg*QieO7@3Uc?di+mzL}=nQVC9Em', OPENSSL_RAW_DATA, 'ripemd256');
 $this->config_init_session_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', '}8gHpd?Q(7PKFqfscZ&7*ITDgdf@AKRt', OPENSSL_RAW_DATA, 'ripemd256');
 $this->config_init_session_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', '7+yyZF9R#20@8fi2-p5(xyWE#j4: U3x', OPENSSL_RAW_DATA, 'sha256');
-$this->config_init_session_encryption('LOCALHOST_PC_XP', 'AES-192-OFB', 'iB{5kb&0-I+C&MRF(i8Ip&ad4(igYN%#', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_session_encryption('LOCALHOST_PC', 'AES-192-OFB', 'iB{5kb&0-I+C&MRF(i8Ip&ad4(igYN%#', OPENSSL_RAW_DATA, 'sha256');
 
 //
 // INITIALIZATION FOR ENCRYPTION :: CRNRSTN :: COOKIE DATA :: ADVANCED CONFIGURATION PARAMETERS
@@ -177,13 +177,13 @@ $this->config_init_session_encryption('LOCALHOST_PC_XP', 'AES-192-OFB', 'iB{5kb&
  * will depend on the installation and compilation options used for OpenSSL in your machine(s).
  *
  * Example ::
- * $oCRNRSTN->init_cookie_encryption('LOCALHOST_PC_XP', 'AES-192-OFB', 'this-Is-the-s3cret-encrypti0n-key', OPENSSL_RAW_DATA, 'sha256');        // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
+ * $oCRNRSTN->init_cookie_encryption('LOCALHOST_PC', 'AES-192-OFB', 'this-Is-the-s3cret-encrypti0n-key', OPENSSL_RAW_DATA, 'sha256');        // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
  */
 $this->config_init_cookie_encryption('BLUEHOST_JONY5', 'AES-256-CTR', 'II0]E{w D:?vRrb+a-3&i]U9Ei~ABI4?', OPENSSL_RAW_DATA, 'ripemd256');
 $this->config_init_cookie_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', '4?4x&M$%nXiJ$4Qizs~&*cD~+~1~F]Ll', OPENSSL_RAW_DATA, 'ripemd256');
 $this->config_init_cookie_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-256-CTR', '5T:J~ws:r#($EZYwWZG)k9$SsSPr&NR+', OPENSSL_RAW_DATA, 'gost');
-$this->config_init_cookie_encryption('LOCALHOST_PC_XP', 'AES-256-CTR', 'M?3]~in?Y$K3DEeLZ:8frEuA &6uz4o5', OPENSSL_RAW_DATA, 'gost');
-//#$this->config_init_cookie_encryption('LOCALHOST_PC', 'AES-192-OFB', 'vVdE!n.Di4vk+=$0Yj:1-tb(aAD)4lc6', OPENSSL_RAW_DATA, 'sha256');         // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
+$this->config_init_cookie_encryption('LOCALHOST_PC', 'AES-256-CTR', 'M?3]~in?Y$K3DEeLZ:8frEuA &6uz4o5', OPENSSL_RAW_DATA, 'gost');
+//#$this->config_init_cookie_encryption('LOCALHOST_PC', 'AES-192-OFB', 'vVdE!n.Di4vk+=$0Yj:1-tb(aAD)4lc6', OPENSSL_RAW_DATA, 'sha256');         // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
 
 //
 // INITIALIZATION FOR ENCRYPTION :: CRNRSTN :: TUNNELLED DATA :: ADVANCED CONFIGURATION PARAMETERS
@@ -191,8 +191,8 @@ $this->config_init_cookie_encryption('LOCALHOST_PC_XP', 'AES-256-CTR', 'M?3]~in?
  * $oCRNRSTN->init_tunnel_encryption()
  *
  * DESCRIPTION :: Application security and data hygiene can be significantly enhanced with the basic
- * and consistent (only as strong as the weakest link) utilization of the CRNRSTN Suite :: v2.0.0 and its
- * encryption tunneling protocols. Sending data safely server to server (e.g. SOAP) and between the
+ * and consistent (only as strong as the weakest link) utilization of CRNRSTN and its encryption
+ * tunneling protocols. Sending data safely server to server (e.g. SOAP) and between the
  * server and client can be achieved with minimal effort and maximum data integrity through the
  * strategic application of this functionality across all data touch points within your application(s).
  * I have some apps where all data contained within hidden form fields is encrypted. When I have foreign
@@ -242,39 +242,39 @@ $this->config_init_cookie_encryption('LOCALHOST_PC_XP', 'AES-256-CTR', 'M?3]~in?
  * will depend on the installation and compilation options used for OpenSSL in your machine(s).
  *
  * Example ::
- * $oCRNRSTN->init_tunnel_encryption('LOCALHOST_PC', 'AES-192-OFB', 'this-Is-the-s3cret-encrypti0n-key', OPENSSL_RAW_DATA, 'sha256');               // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
+ * $oCRNRSTN->init_tunnel_encryption('LOCALHOST_PC', 'AES-192-OFB', 'this-Is-the-s3cret-encrypti0n-key', OPENSSL_RAW_DATA, 'sha256');               // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
  */
 $this->config_init_tunnel_encryption('BLUEHOST_JONY5', 'AES-256-CTR', 'l:pRuxhyg*uuO@(2k}:(:~U6#{qX(f}.', OPENSSL_RAW_DATA, 'ripemd256');
 $this->config_init_tunnel_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', 'Tkk7TvQ-xeE$c{#D1a6nC#]AV{]A7*Zd', OPENSSL_RAW_DATA, 'ripemd256');
 $this->config_init_tunnel_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', '[bP*Tf=B{o0OewI@Nm=A8y7mq72eJ jB', OPENSSL_RAW_DATA, 'sha256');
-$this->config_init_tunnel_encryption('LOCALHOST_PC_XP', 'AES-192-OFB', '[YZ3$?pd%[$DROExVDL4O-R)_xW[[T F', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_tunnel_encryption('LOCALHOST_PC', 'AES-192-OFB', '[YZ3$?pd%[$DROExVDL4O-R)_xW[[T F', OPENSSL_RAW_DATA, 'sha256');
 
 $this->config_init_get_encryption('BLUEHOST_JONY5', 'AES-256-CTR', '?D}@zZ:}7EPwYXcsAy4!f%da@#O#S(A#', OPENSSL_RAW_DATA, 'ripemd256');
 $this->config_init_get_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', 'rX7ngy-tdV 80n}hlcnJVv{mx*$DL3T{', OPENSSL_RAW_DATA, 'ripemd256');
 $this->config_init_get_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', '=[8gC]y(C9r)EXLn%%ZbBO#lb6*~jZqX', OPENSSL_RAW_DATA, 'sha256');
-$this->config_init_get_encryption('LOCALHOST_PC_XP', 'AES-192-OFB', 'CrYk%ROwg%2btUyVEAgnjG0vr*QZW1(v', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_get_encryption('LOCALHOST_PC', 'AES-192-OFB', 'CrYk%ROwg%2btUyVEAgnjG0vr*QZW1(v', OPENSSL_RAW_DATA, 'sha256');
 
 $this->config_init_post_encryption('BLUEHOST_JONY5', 'AES-256-CTR', 'f2joVqpP}G*qc2HL b8FY*vgG4CroB=g', OPENSSL_RAW_DATA, 'ripemd256');
 $this->config_init_post_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', '}?tyG?R .JLj-E&2.P. RdI.(5VD%1@d', OPENSSL_RAW_DATA, 'ripemd256');
 $this->config_init_post_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', 'z?Pi+6[8!HGIX_[tmy4Y97obWQFur$?&', OPENSSL_RAW_DATA, 'sha256');
-$this->config_init_post_encryption('LOCALHOST_PC_XP', 'AES-192-OFB', 'X~s[Az+65*~PVx@nMaD1JDNJ4xARN#@1', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_post_encryption('LOCALHOST_PC', 'AES-192-OFB', 'X~s[Az+65*~PVx@nMaD1JDNJ4xARN#@1', OPENSSL_RAW_DATA, 'sha256');
 
 $this->config_init_database_encryption('BLUEHOST_JONY5', 'AES-256-CTR', 'z0}n+2*Xe(zb*_ddphir)VFL)ZuNm.5v', OPENSSL_RAW_DATA, 'ripemd256');
 $this->config_init_database_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', 'hrkuXz:V+-ZUx:K9vIpKQBXfq4IctRcS', OPENSSL_RAW_DATA, 'ripemd256');
 $this->config_init_database_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', 'jIXA{ *+I_Q}rt(vp2B]l!mm6(jC$-f$', OPENSSL_RAW_DATA, 'sha256');
-$this->config_init_database_encryption('LOCALHOST_PC_XP', 'AES-192-OFB', '7mGiCkisIImW{}npDu&yk(6fa_gJROH!', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_database_encryption('LOCALHOST_PC', 'AES-192-OFB', '7mGiCkisIImW{}npDu&yk(6fa_gJROH!', OPENSSL_RAW_DATA, 'sha256');
 
 $this->config_init_soap_encryption('BLUEHOST_JONY5', 'AES-256-CTR', '6Jh28hwCug{zetTTx39OvHawva]4ck}M', OPENSSL_RAW_DATA, 'ripemd256');
 $this->config_init_soap_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', ']O*Jb%6]GV$wm_P4~a~IK3XDF-$jnI=5', OPENSSL_RAW_DATA, 'ripemd256');
 $this->config_init_soap_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', 'QMHQ$-oP:Ki7#fM1zYJ&@{aNZA.=nD?o', OPENSSL_RAW_DATA, 'sha256');
-$this->config_init_soap_encryption('LOCALHOST_PC_XP', 'AES-192-OFB', '3q?PCqf1*DP4%Z8yQNbp~C&Ln.IeT QU', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_soap_encryption('LOCALHOST_PC', 'AES-192-OFB', '3q?PCqf1*DP4%Z8yQNbp~C&Ln.IeT QU', OPENSSL_RAW_DATA, 'sha256');
 
 $this->config_init_file_encryption('BLUEHOST_JONY5', 'AES-256-CTR', '6Jh00hwCug{zetTTx39OvHawva]4ck}M', OPENSSL_RAW_DATA, 'ripemd256');
 $this->config_init_file_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', ']O*Jb%6]GV$wm_P447~IK3XDF-$jnI=5', OPENSSL_RAW_DATA, 'ripemd256');
 $this->config_init_file_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', 'QMHQ$-oP:Ki7#h21zYJ&@{aNZA.=nD?o', OPENSSL_RAW_DATA, 'sha256');
-$this->config_init_file_encryption('LOCALHOST_PC_XP', 'AES-192-OFB', '3q?PCqf1*DP4%Z8yQ0rp~C&Ln.IeT QU', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_file_encryption('LOCALHOST_PC', 'AES-192-OFB', '3q?PCqf1*DP4%Z8yQ0rp~C&Ln.IeT QU', OPENSSL_RAW_DATA, 'sha256');
 
 $this->config_init_oersl_encryption('BLUEHOST_JONY5', 'AES-256-CTR', 'BVRJfa[&{LXyir4Spg$ *fICdXRg4R?L', OPENSSL_RAW_DATA, 'ripemd256');
 $this->config_init_oersl_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', '-z(ine9+EQlDC@-J#_fkFuTS% JLr xj', OPENSSL_RAW_DATA, 'ripemd256');
 $this->config_init_oersl_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', 'rmnQMLYcsFXLW$xEM*]Y)ePH=2ujVkL?', OPENSSL_RAW_DATA, 'sha256');
-$this->config_init_oersl_encryption('LOCALHOST_PC_XP', 'AES-192-OFB', '_uvQqbhR97]sPo.WPh{FMS+}Sim9(0d}', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_oersl_encryption('LOCALHOST_PC', 'AES-192-OFB', '_uvQqbhR97]sPo.WPh{FMS+}Sim9(0d}', OPENSSL_RAW_DATA, 'sha256');

@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -153,20 +153,15 @@
 #
 class crnrstn_log_output_manager {
 
-    protected $oLogger;
-    private static $oCRNRSTN_n;
+    public $oCRNRSTN;
 
     public $maximum_email_log_trace = 23;   // REGULATE MAXIMUM LOG TRACE OUTPUT TO EMAIL & ERROR_LOG
 
-    public function __construct($oCRNRSTN_n){
+    public function __construct($oCRNRSTN){
 
-        if(get_class($oCRNRSTN_n) != 'crnrstn_logging'){
+        if(get_class($oCRNRSTN) != 'crnrstn_logging'){
 
-            self::$oCRNRSTN_n = $oCRNRSTN_n;
-
-            //
-            // INSTANTIATE LOGGER
-            $this->oLogger = new crnrstn_logging(__CLASS__, self::$oCRNRSTN_n);
+            $this->oCRNRSTN = $oCRNRSTN;
 
         }
 
@@ -174,7 +169,21 @@ class crnrstn_log_output_manager {
 
     public function return_log_trace_output_str($output_profile = 'ERROR_LOG', $line_wrap = NULL){
 
-        if(get_class(self::$oCRNRSTN_n) == 'crnrstn'){
+        if(get_class($this->oCRNRSTN) == 'crnrstn'){
+
+            /*
+            (int) CRNRSTN_LOG_EMAIL, CRNRSTN_LOG_EMAIL_PROXY,
+            CRNRSTN_LOG_FILE, CRNRSTN_CHANNEL_FILE,
+            CRNRSTN_LOG_FILE_FTP, CRNRSTN_LOG_SCREEN_TEXT,
+            CRNRSTN_LOG_SCREEN, CRNRSTN_LOG_SCREEN_HTML,
+            CRNRSTN_LOG_SCREEN_HTML_HIDDEN, CRNRSTN_LOG_DEFAULT,
+            CRNRSTN_LOG_ELECTRUM, CRNRSTN_LOG_DATABASE,
+            CRNRSTN_LOG_SSDTLA, CRNRSTN_LOG_PSSDTLA,
+            CRNRSTN_LOG_SOAP
+
+            Wednesday, December 6, 2023 @ 0703 hrs.
+
+            */
 
             //
             // RETURN LOG TRACE STRING
@@ -230,15 +239,15 @@ class crnrstn_log_output_manager {
         $tmp_str_array = array();
         $tmp_str_array[1] = '';
 
-        $oChunkRestrictData = self::$oCRNRSTN_n->chunkPageData($str, $chunkSize);
+        $oChunkRestrictData = $this->oCRNRSTN->chunkPageData($str, $chunkSize);
         $tmp_str_out_array = $oChunkRestrictData->return_linesArray();
 
         $tmp_out_str_1 = '';
 
         //
-        // RETURN ARRAY[0] = CHUNK SIZE AND ARRAY[1] = EVERYTHING ELSE
+        // RETURN ARRAY[0] = CHUNK SIZE AND ARRAY[1] = EVERYTHING ELSE.
         $tmp_chunk_cnt = sizeof($tmp_str_out_array);
-        for($i=0; $i<$tmp_chunk_cnt; $i++){
+        for($i = 0; $i < $tmp_chunk_cnt; $i++){
 
             if($i == 0){
 
@@ -252,7 +261,7 @@ class crnrstn_log_output_manager {
 
         }
 
-        $oChunkRestrictData = self::$oCRNRSTN_n->chunkPageData('...'.trim($tmp_out_str_1), 91);
+        $oChunkRestrictData = $this->oCRNRSTN->chunkPageData('...' . trim($tmp_out_str_1), 91);
         $tmp_out_str_1 = $oChunkRestrictData->return_linesString($output_format = 'HTML', $new_line_prefix = '...');
         $tmp_out_str_1 = ltrim($tmp_out_str_1,'<br>');
 
@@ -270,7 +279,7 @@ class crnrstn_log_output_manager {
         //
         // BUILD LOG TRACE STRING FOR HTML EMAIL
         $tmp_msg = '';
-        foreach(self::$oCRNRSTN_n->oLog_output_ARRAY as $key => $oLog){
+        foreach($this->oCRNRSTN->oLog_output_ARRAY as $key => $oLog){
 
             if(is_object($oLog)){
 
@@ -336,11 +345,11 @@ class crnrstn_log_output_manager {
 
         }
 
-        if(count($tmp_log_str_ARRAY)<1){
+        if(count($tmp_log_str_ARRAY) < 1){
 
-            if(isset(self::$oCRNRSTN_n->log_silo_profile)){
+            if(isset($this->oCRNRSTN->log_silo_profile)){
 
-                $tmp_condition = ' but, the restriction of log recording to the silo profile, (int) ' . self::$oCRNRSTN_n->log_silo_profile . ', seems to have reduced C<span style="color:#F90000;">R</span>NRSTN :: trace output activity to NULL';
+                $tmp_condition = ' but, the restriction of log recording to the silo profile, (int) ' . $this->oCRNRSTN->log_silo_profile . ', seems to have reduced C<span style="color:#F90000;">R</span>NRSTN :: trace output activity to NULL';
 
             }else{
 
@@ -348,13 +357,13 @@ class crnrstn_log_output_manager {
 
             }
 
-            if(self::$oCRNRSTN_n->CRNRSTN_debug_mode() < 2){
+            if($this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') < 2){
 
-                $tmp_msg = '** The C<span style="color:#F90000;">R</span>NRSTN :: configuration file debug mode of "' . self::$oCRNRSTN_n->CRNRSTN_debug_mode() . '" prevents aggregation of log trace data. **';
+                $tmp_msg = '** The C<span style="color:#F90000;">R</span>NRSTN :: configuration file debug mode of "' . $this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') . '" prevents aggregation of log trace data. **';
 
             }else{
 
-                $tmp_msg = '** The C<span style="color:#F90000;">R</span>NRSTN :: configuration file debug mode of "' . self::$oCRNRSTN_n->CRNRSTN_debug_mode() . '" allows aggregation of log trace data' . $tmp_condition . '. **';
+                $tmp_msg = '** The C<span style="color:#F90000;">R</span>NRSTN :: configuration file debug mode of "' . $this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') . '" allows aggregation of log trace data' . $tmp_condition . '. **';
 
             }
 
@@ -369,7 +378,7 @@ class crnrstn_log_output_manager {
             $tmp_log_cnt = count($tmp_log_str_ARRAY);
             $tmp_buffer_delta = $tmp_log_cnt - $this->maximum_email_log_trace;
 
-            if($tmp_buffer_delta<0){
+            if($tmp_buffer_delta < 0){
 
                 //
                 // OUTPUT ALL.
@@ -410,7 +419,7 @@ class crnrstn_log_output_manager {
         //
         // BUILD LOG TRACE STRING FOR TEXT EMAIL
         $tmp_msg = '';
-        foreach(self::$oCRNRSTN_n->oLog_output_ARRAY as $key => $oLog){
+        foreach($this->oCRNRSTN->oLog_output_ARRAY as $key => $oLog){
 
             if(is_object($oLog)){
 
@@ -422,7 +431,7 @@ class crnrstn_log_output_manager {
                 $tmp_msg .= ' [rtime ' . $tmp_runTime . ' secs]';
 
                 //
-                // GET LOG DATA - VARIABLE LENGTH
+                // GET LOG DATA - VARIABLE LENGTH.
                 $tmp_classMethod_raw = trim($oLog->get_classMethod());
 
                 if($tmp_classMethod_raw == ''){
@@ -461,9 +470,9 @@ class crnrstn_log_output_manager {
 
         if(count($tmp_log_str_ARRAY)<1){
 
-            if(isset(self::$oCRNRSTN_n->log_silo_profile)){
+            if(isset($this->oCRNRSTN->log_silo_profile)){
 
-                $tmp_condition = ' but, the restriction of log recording to the silo profile, (int) ' . self::$oCRNRSTN_n->log_silo_profile . ', seems to have reduced CRNRSTN :: trace output activity to NULL';
+                $tmp_condition = ' but, the restriction of log recording to the silo profile, (int) ' . $this->oCRNRSTN->log_silo_profile . ', seems to have reduced CRNRSTN :: trace output activity to NULL';
 
             }else{
 
@@ -471,13 +480,13 @@ class crnrstn_log_output_manager {
 
             }
 
-            if(self::$oCRNRSTN_n->CRNRSTN_debug_mode() < 2){
+            if($this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') < 2){
 
-                $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . self::$oCRNRSTN_n->CRNRSTN_debug_mode() . '" prevents aggregation of log trace data. **';
+                $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . $this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') . '" prevents aggregation of log trace data. **';
 
             }else{
 
-                $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . self::$oCRNRSTN_n->CRNRSTN_debug_mode() . '" allows aggregation of log trace data' . $tmp_condition . '. **';
+                $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . $this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') . '" allows aggregation of log trace data' . $tmp_condition . '. **';
 
             }
 
@@ -534,7 +543,7 @@ class crnrstn_log_output_manager {
             $line_break_char = '
 ';
 
-            foreach(self::$oCRNRSTN_n->oLog_output_ARRAY as $key=>$oLog){
+            foreach($this->oCRNRSTN->oLog_output_ARRAY as $key=>$oLog){
 
                 if(is_object($oLog)){
 
@@ -553,9 +562,9 @@ class crnrstn_log_output_manager {
 
             if(strlen($tmp_msg)<5){
 
-                if(isset(self::$oCRNRSTN_n->log_silo_profile)){
+                if(isset($this->oCRNRSTN->log_silo_profile)){
 
-                    $tmp_condition = ' but, the restriction of log recording to the silo profile, (int) ' . self::$oCRNRSTN_n->log_silo_profile . ', seems to have reduced C<span style="color:#F90000;">R</span>NRSTN :: trace output activity to NULL';
+                    $tmp_condition = ' but, the restriction of log recording to the silo profile, (int) ' . $this->oCRNRSTN->log_silo_profile . ', seems to have reduced C<span style="color:#F90000;">R</span>NRSTN :: trace output activity to NULL';
 
                 }else{
 
@@ -563,14 +572,14 @@ class crnrstn_log_output_manager {
 
                 }
 
-                if(self::$oCRNRSTN_n->CRNRSTN_debug_mode() < 2){
+                if($this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') < 2){
 
-                    $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . self::$oCRNRSTN_n->CRNRSTN_debug_mode() . '" prevents aggregation of log trace data. **
+                    $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . $this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') . '" prevents aggregation of log trace data. **
 ';
 
                 }else{
 
-                    $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . self::$oCRNRSTN_n->CRNRSTN_debug_mode() . '" allows aggregation of log trace data' . $tmp_condition . '. **
+                    $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . $this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') . '" allows aggregation of log trace data' . $tmp_condition . '. **
 ';
 
                 }
@@ -590,7 +599,7 @@ class crnrstn_log_output_manager {
             $tmp_log_out = '';
             $line_break_char = '<br>';
 
-            foreach(self::$oCRNRSTN_n->oLog_output_ARRAY as $key=>$oLog){
+            foreach($this->oCRNRSTN->oLog_output_ARRAY as $key=>$oLog){
 
                 if(is_object($oLog)){
 
@@ -609,9 +618,9 @@ class crnrstn_log_output_manager {
 
             if(strlen($tmp_msg)<5){
 
-                if(isset(self::$oCRNRSTN_n->log_silo_profile)){
+                if(isset($this->oCRNRSTN->log_silo_profile)){
 
-                    $tmp_condition = ' but, the restriction of log recording to the silo profile, (int) ' . self::$oCRNRSTN_n->log_silo_profile . ', seems to have reduced C<span style="color:#F90000;">R</span>NRSTN :: trace output activity to NULL';
+                    $tmp_condition = ' but, the restriction of log recording to the silo profile, (int) ' . $this->oCRNRSTN->log_silo_profile . ', seems to have reduced C<span style="color:#F90000;">R</span>NRSTN :: trace output activity to NULL';
 
                 }else{
 
@@ -619,14 +628,14 @@ class crnrstn_log_output_manager {
 
                 }
 
-                if(self::$oCRNRSTN_n->CRNRSTN_debug_mode() < 2){
+                if($this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') < 2){
 
-                    $tmp_msg = '** The C<span style="color:#F90000;">R</span>NRSTN :: configuration file debug mode of "' . self::$oCRNRSTN_n->CRNRSTN_debug_mode() . '" prevents aggregation of log trace data. **
+                    $tmp_msg = '** The C<span style="color:#F90000;">R</span>NRSTN :: configuration file debug mode of "' . $this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') . '" prevents aggregation of log trace data. **
 ';
 
                 }else{
 
-                    $tmp_msg = '** The C<span style="color:#F90000;">R</span>NRSTN :: configuration file debug mode of "' . self::$oCRNRSTN_n->CRNRSTN_debug_mode() . '" allows aggregation of log trace data' . $tmp_condition . '. **
+                    $tmp_msg = '** The C<span style="color:#F90000;">R</span>NRSTN :: configuration file debug mode of "' . $this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') . '" allows aggregation of log trace data' . $tmp_condition . '. **
 ';
                 }
 
@@ -650,7 +659,7 @@ class crnrstn_log_output_manager {
         $line_break_char = '
 ';
 
-        foreach(self::$oCRNRSTN_n->oLog_output_ARRAY as $key=>$oLog){
+        foreach($this->oCRNRSTN->oLog_output_ARRAY as $key=>$oLog){
 
             if(is_object($oLog)){
 
@@ -673,9 +682,9 @@ class crnrstn_log_output_manager {
 
         if(strlen($tmp_msg)<5){
 
-            if(isset(self::$oCRNRSTN_n->log_silo_profile)){
+            if(isset($this->oCRNRSTN->log_silo_profile)){
 
-                $tmp_condition = ' but, the restriction of log recording to the silo profile, (int) ' . self::$oCRNRSTN_n->log_silo_profile . ', seems to have reduced C<span style="color:#F90000;">R</span>NRSTN :: trace output activity to NULL';
+                $tmp_condition = ' but, the restriction of log recording to the silo profile, (int) ' . $this->oCRNRSTN->log_silo_profile . ', seems to have reduced C<span style="color:#F90000;">R</span>NRSTN :: trace output activity to NULL';
 
             }else{
 
@@ -683,14 +692,14 @@ class crnrstn_log_output_manager {
 
             }
 
-            if(self::$oCRNRSTN_n->CRNRSTN_debug_mode() < 2){
+            if($this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') < 2){
 
-                $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . self::$oCRNRSTN_n->CRNRSTN_debug_mode() . '" prevents aggregation of log trace data. **
+                $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . $this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') . '" prevents aggregation of log trace data. **
 ';
 
             }else{
 
-                $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . self::$oCRNRSTN_n->CRNRSTN_debug_mode() . '" allows aggregation of log trace data' . $tmp_condition . '. **
+                $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . $this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') . '" allows aggregation of log trace data' . $tmp_condition . '. **
 ';
 
             }
@@ -708,7 +717,7 @@ class crnrstn_log_output_manager {
         //
         // RETURN LOG TRACE STRING FOR PHP ERROR_LOG PARAMETER
         $tmp_msg = '';
-        foreach(self::$oCRNRSTN_n->oLog_output_ARRAY as $key=>$oLog){
+        foreach($this->oCRNRSTN->oLog_output_ARRAY as $key=>$oLog){
 
             if(is_object($oLog)){
 
@@ -720,9 +729,9 @@ class crnrstn_log_output_manager {
 
         if(count($tmp_log_str_ARRAY)<1){
 
-            if(isset(self::$oCRNRSTN_n->log_silo_profile)){
+            if(isset($this->oCRNRSTN->log_silo_profile)){
 
-                $tmp_condition = ' but, the restriction of log recording to the silo profile, (int) ' . self::$oCRNRSTN_n->log_silo_profile . ', seems to have reduced CRNRSTN :: trace output activity to NULL';
+                $tmp_condition = ' but, the restriction of log recording to the silo profile, (int) ' . $this->oCRNRSTN->log_silo_profile . ', seems to have reduced CRNRSTN :: trace output activity to NULL';
 
             }else{
 
@@ -730,13 +739,13 @@ class crnrstn_log_output_manager {
 
             }
 
-            if(self::$oCRNRSTN_n->CRNRSTN_debug_mode() < 2){
+            if($this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') < 2){
 
-                $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . self::$oCRNRSTN_n->CRNRSTN_debug_mode() . '" prevents aggregation of log trace data. **';
+                $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . $this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') . '" prevents aggregation of log trace data. **';
 
             }else{
 
-                $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . self::$oCRNRSTN_n->CRNRSTN_debug_mode() . '" allows aggregation of log trace data' . $tmp_condition . '. **';
+                $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . $this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') . '" allows aggregation of log trace data' . $tmp_condition . '. **';
 
             }
 
@@ -791,7 +800,7 @@ class crnrstn_log_output_manager {
         $line_break_char = '
 ';
 
-        foreach(self::$oCRNRSTN_n->oLog_output_ARRAY as $key => $oLog){
+        foreach($this->oCRNRSTN->oLog_output_ARRAY as $key => $oLog){
 
             if(is_object($oLog)){
 
@@ -805,13 +814,13 @@ class crnrstn_log_output_manager {
         $tmp_msg = trim($tmp_msg);
         if(strlen($tmp_msg)<5){
 
-            if(isset(self::$oCRNRSTN_n->log_silo_profile)){
+            if(isset($this->oCRNRSTN->log_silo_profile)){
 
 //
 //                if($pipe_pos !== false){
 //
 //                    $tmp_silo_str = '';
-//                    $tmp_silo_array = explode('|', self::$oCRNRSTN_n->log_silo_profile);
+//                    $tmp_silo_array = explode('|', $this->oCRNRSTN->log_silo_profile);
 //                    $tmp_cnt = sizeof($tmp_silo_array);
 //                    for ($i = 0; $i < $tmp_cnt; $i++){
 //                        $tmp_silo_str .= $tmp_silo_array[$i] . ' and ';
@@ -825,7 +834,7 @@ class crnrstn_log_output_manager {
 //
 //                }else{
 
-                $tmp_condition = ' but, the restriction of log recording to the silo profile, (int) ' . self::$oCRNRSTN_n->log_silo_profile . ', seems to have reduced C<span style="color:#F90000;">R</span>NRSTN :: trace output activity to NULL';
+                $tmp_condition = ' but, the restriction of log recording to the silo profile, (int) ' . $this->oCRNRSTN->log_silo_profile . ', seems to have reduced C<span style="color:#F90000;">R</span>NRSTN :: trace output activity to NULL';
 
                 //}
 
@@ -835,13 +844,13 @@ class crnrstn_log_output_manager {
 
             }
 
-            if(self::$oCRNRSTN_n->CRNRSTN_debug_mode() < 2){
+            if($this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') < 2){
 
-                $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . self::$oCRNRSTN_n->CRNRSTN_debug_mode() . '" prevents aggregation of log trace data. **';
+                $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . $this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') . '" prevents aggregation of log trace data. **';
 
             }else{
 
-                $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . self::$oCRNRSTN_n->CRNRSTN_debug_mode() . '" allows aggregation of log trace data' . $tmp_condition . '. **';
+                $tmp_msg = '** The CRNRSTN :: configuration file debug mode of "' . $this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') . '" allows aggregation of log trace data' . $tmp_condition . '. **';
 
             }
 

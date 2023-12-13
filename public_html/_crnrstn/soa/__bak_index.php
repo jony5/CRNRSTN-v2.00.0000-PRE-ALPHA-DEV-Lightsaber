@@ -9,13 +9,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -30,7 +30,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -66,7 +66,7 @@ require(CRNRSTN_ROOT.'_crnrstn.config.inc.php');
 require($oCRNRSTN_USR->get_resource('DOCUMENT_ROOT').$oCRNRSTN_USR->get_resource('DOCUMENT_ROOT_DIR').'/_crnrstn/class/soa/crnrstn.webservice.inc.php');
 
 //
-// INSTANTIATE SOAP SERVER AND PROVIDE SESSION ACCESS TO ENVIRONMENTAL CLASS OBJECT
+// INSTANTIATE A SOAP SERVER CLASS OBJECT, AND PROVIDE SESSION ACCESS TO ENVIRONMENTAL CLASS OBJECT.
 $server = new soap_server();
 $server->debug_flag = false;
 $server->configureWSDL("CRNRSTN_MESSENGER_FROM_NORTH", $oCRNRSTN_USR->get_resource('SOA_NAMESPACE'));
@@ -595,7 +595,7 @@ function getMethodContent($soapRequest){
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -611,7 +611,7 @@ function getMethodContent_PlusNav($soapRequest){
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -627,7 +627,7 @@ function getClassContent($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -643,7 +643,7 @@ function getClassContent_PlusNav($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -659,7 +659,7 @@ function getNavContent($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -675,7 +675,7 @@ function getToolTip($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -691,7 +691,7 @@ function getCommInsertStatus($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -707,7 +707,7 @@ function isValidLoginData($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -723,7 +723,7 @@ function trkDwnld($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -739,7 +739,7 @@ function resetPassword($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -755,7 +755,7 @@ function resetPassword2($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -771,7 +771,7 @@ function toggleLikeLink($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -787,7 +787,7 @@ function triggerActivationEmail($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -803,7 +803,7 @@ function isUnUnique($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -819,7 +819,7 @@ function creatNewUser($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -835,7 +835,7 @@ function updateUserSettings($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -851,7 +851,7 @@ function updateUserProfile($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -867,7 +867,7 @@ function searchResultsSuggest($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -884,7 +884,7 @@ function postUserComment($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -900,7 +900,7 @@ function postUserCommentReply($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -916,7 +916,7 @@ function updateUserComment($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -932,7 +932,7 @@ function retrieveUserAccnt_PlusNav($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -948,7 +948,7 @@ function retrieveUserAccnt($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -964,7 +964,7 @@ function getUserCommentbyID($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -980,7 +980,7 @@ function deleteUserComment($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -996,7 +996,7 @@ function getAllToolTips($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -1013,7 +1013,7 @@ function submitExamples($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -1029,7 +1029,7 @@ function getClassComments($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -1045,7 +1045,7 @@ function getMethodComments($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -1061,7 +1061,7 @@ function getSearchResultsFull($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -1077,7 +1077,7 @@ function postUserFeedback($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -1093,7 +1093,7 @@ function activateNewUser($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}
@@ -1109,7 +1109,7 @@ function logActivity($soapRequest) {
 	$SERVICE_RESPONSE = '';
 	
 	//
-	// INSTANTIATE WEB SERVICE MANAGER
+	// INSTANTIATE A WEB SERVICES MANAGER CLASS OBJECT.
 	if(!isset($oSERVICE_MGR)){
 		$oSERVICE_MGR = new crnrstn_soa_endpoint_request_manager($_SESSION['oCRNRSTN_ENV']);
 	}

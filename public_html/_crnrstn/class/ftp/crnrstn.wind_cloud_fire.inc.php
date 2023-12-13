@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -76,7 +76,6 @@
 #
 class crnrstn_wind_cloud_fire {
 
-    protected $oLogger;
     public $oCRNRSTN_USR;
     protected $oElectrum_STATS;
     private static $oFourLivingCreatures_FTP;
@@ -153,15 +152,11 @@ class crnrstn_wind_cloud_fire {
         try{
 
             //
-            // INSTANTIATE CRNRSTN_USR CLASS OBJECT
+            // CRNRSTN_USR CLASS OBJECT.
             $this->oCRNRSTN_USR = $oCRNRSTN_USR;
 
             //
-            // INSTANTIATE LOGGER CLASS OBJECT
-            $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_USR);
-
-            //
-            // INSTANTIATE ELECTRUM STATISTICIAN
+            // INSTANTIATE AN ELECTRUM STATISTICIAN CLASS OBJECT.
             $this->oElectrum_STATS = new crnrstn_electrum_the_statistician($oCRNRSTN_USR);
 
             $this->electrum_process_id = $this->oCRNRSTN_USR->generate_new_key(100);  // START_ELECTRUM_PROCESS_ID
@@ -1283,7 +1278,8 @@ class crnrstn_wind_cloud_fire {
 
                 if($wheels_high_awesome_cnt<5){
 
-                    $this->oCRNRSTN_USR->error_log('FF TRANSFER[' . $wheels_high_awesome_cnt.']=>' . $filePath, __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
+                    //$this->oCRNRSTN_USR->error_log('FF TRANSFER[' . $wheels_high_awesome_cnt.']=>' . $filePath, __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
+                    $this->oCRNRSTN_USR->error_log('FF TRANSFER[' . $wheels_high_awesome_cnt.']=>' . $filePath, __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
                 }else{
 
@@ -1763,7 +1759,7 @@ class crnrstn_wind_cloud_fire {
 
                 //
                 // EXTRACT ALL FILE PATH
-                $tmp_config_serial = $this->oCRNRSTN_USR->get_server_config_serial();
+                $tmp_config_serial = $this->oCRNRSTN->get_crnrstn('config_serial');
                 $_SESSION['CRNRSTN_' . $this->oCRNRSTN_USR->crcINT($tmp_config_serial)]['CRNRSTN_EXCEPTION_PREFIX'] = 'The CRNRSTN :: Electrum process has experienced FTP directory access related error on ' . $tmp_src_FTP_SERVER.'::' . $tmp_src_FTP_PORT.' when accessing the destination directory, ' . $tmp_src_FTP_DIR_PATH.' as ';
 
                 $tmp_serial = $FIREHOT_oEndpoint_SOURCE->return_serial();
@@ -3432,7 +3428,7 @@ class crnrstn_wind_cloud_fire {
                             // ATTEMPT TO CHANGE PERMISSIONS AND CHECK AGAIN
                             // BEFORE COMPLETELY GIVING UP
                             $tmp_current_perms = substr(decoct( fileperms($dirPath) ), 2);
-                            $tmp_config_serial = $this->oCRNRSTN_USR->get_server_config_serial();
+                            $tmp_config_serial = $this->oCRNRSTN->get_crnrstn('config_serial');
 
                             $_SESSION['CRNRSTN_'.$this->oCRNRSTN_USR->crcINT($tmp_config_serial)]['CRNRSTN_EXCEPTION_PREFIX'] = 'The CRNRSTN :: Electrum process has experienced permissions related error as the destination directory, '.$dirPath.' ('.$tmp_current_perms.'), is NOT writable to '.$permissions_chmod.', and furthermore ';
                             if(chmod($dirPath, $permissions_chmod)){
@@ -3532,7 +3528,7 @@ class crnrstn_wind_cloud_fire {
 
             $path = rtrim($path, '/');
 
-            $tmp_config_serial = $this->oCRNRSTN_USR->get_server_config_serial();
+            $tmp_config_serial = $this->oCRNRSTN->get_crnrstn('config_serial');
 
             //
             // STORE BASE(ROOT) ENDPOINT DIRECTORY
@@ -3615,7 +3611,7 @@ class crnrstn_wind_cloud_fire {
     private function _original_ftp_list_files_recursive($ftp_stream, $path){
 
         try{
-            $tmp_config_serial = $this->oCRNRSTN_USR->get_server_config_serial();
+            $tmp_config_serial = $this->oCRNRSTN->get_crnrstn('config_serial');
             $lines = ftp_rawlist($ftp_stream, $path);
             $_SESSION['CRNRSTN_'.$this->oCRNRSTN_USR->crcINT($tmp_config_serial)]['CRNRSTN_EXCEPTION_PREFIX'] = '';
 

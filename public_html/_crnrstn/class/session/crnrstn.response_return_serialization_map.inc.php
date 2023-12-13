@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -80,7 +80,6 @@
 #
 class crnrstn_response_return_serialization_map {
 
-    protected $oLogger;
     public $oCRNRSTN;
 
     private static $channel_resource_id_ARRAY = array();
@@ -88,6 +87,9 @@ class crnrstn_response_return_serialization_map {
     private static $cache_ARRAY = array();
     private static $data_key_cache_rw_acceleration_ARRAY = array();
     public $ugc_ARRAY = array();
+
+    private static $request_id;
+    private static $config_serial;
 
     //
     // BASE64 ENCODE SUPPORT PARAMETERS.
@@ -194,7 +196,6 @@ class crnrstn_response_return_serialization_map {
     private static $file_map_cache_ttl;
 
     //
-    //
     // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_php_sessionid', session_id());
     private static $get_php_sessionid;
     private static $post_php_sessionid;
@@ -207,7 +208,6 @@ class crnrstn_response_return_serialization_map {
     private static $soap_php_sessionid;
     private static $file_php_sessionid;
 
-    //
     //
     // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_client_ip_address', $this->client_ip());
     private static $get_client_ip_address;
@@ -222,7 +222,6 @@ class crnrstn_response_return_serialization_map {
     private static $file_client_ip_address;
 
     //
-    //
     // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_channel_config_ini_call_timestamp'
     private static $get_channel_config_ini_call_timestamp;
     private static $post_channel_config_ini_call_timestamp;
@@ -235,7 +234,6 @@ class crnrstn_response_return_serialization_map {
     private static $soap_channel_config_ini_call_timestamp;
     private static $file_channel_config_ini_call_timestamp;
 
-    //
     //
     // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_channel_is_opened_timestamp',
     private static $get_channel_is_opened_timestamp;
@@ -250,7 +248,6 @@ class crnrstn_response_return_serialization_map {
     private static $file_channel_is_opened_timestamp;
 
     //
-    //
     // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_channel_is_closed_timestamp',
     private static $get_channel_is_closed_timestamp;
     private static $post_channel_is_closed_timestamp;
@@ -263,7 +260,6 @@ class crnrstn_response_return_serialization_map {
     private static $soap_channel_is_closed_timestamp;
     private static $file_channel_is_closed_timestamp;
 
-    //
     //
     // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_channel_ddo_tunnel_ddo_begin_data_receipt_timestamp
     private static $get_ddo_begin_data_receipt_timestamp;
@@ -278,7 +274,6 @@ class crnrstn_response_return_serialization_map {
     private static $file_ddo_begin_data_receipt_timestamp;
 
     //
-    //
     // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_channel_ddo_tunnel_ddo_data_translation_complete_timestamp
     private static $get_ddo_data_complete_timestamp;
     private static $post_ddo_data_complete_timestamp;
@@ -292,8 +287,7 @@ class crnrstn_response_return_serialization_map {
     private static $file_ddo_data_complete_timestamp;
 
     //
-    //
-    // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_channel_opened_count
+    // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_channel_opened_count',
     private static $get_channel_opened_count;
     private static $post_channel_opened_count;
     private static $cookie_channel_opened_count;
@@ -306,8 +300,7 @@ class crnrstn_response_return_serialization_map {
     private static $file_channel_opened_count;
 
     //
-    //
-    // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_last_packet_bytes_total
+    // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_last_packet_bytes_total',
     private static $get_last_packet_bytes_total;
     private static $post_last_packet_bytes_total;
     private static $cookie_last_packet_bytes_total;
@@ -320,8 +313,7 @@ class crnrstn_response_return_serialization_map {
     private static $file_last_packet_bytes_total;
 
     //
-    //
-    // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_total_packet_bytes'
+    // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_total_packet_bytes',
     private static $get_total_packet_bytes;
     private static $post_total_packet_bytes;
     private static $cookie_total_packet_bytes;
@@ -334,8 +326,7 @@ class crnrstn_response_return_serialization_map {
     private static $file_total_packet_bytes;
 
     //
-    //
-    // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_last_packet_bytes_received
+    // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_last_packet_bytes_received',
     private static $get_last_packet_bytes_received;
     private static $post_last_packet_bytes_received;
     private static $cookie_last_packet_bytes_received;
@@ -348,8 +339,7 @@ class crnrstn_response_return_serialization_map {
     private static $file_last_packet_bytes_received;
 
     //
-    //
-    // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_total_bytes_received'
+    // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_total_bytes_received',
     private static $get_total_bytes_received;
     private static $post_total_bytes_received;
     private static $cookie_total_bytes_received;
@@ -362,8 +352,7 @@ class crnrstn_response_return_serialization_map {
     private static $file_total_bytes_received;
 
     //
-    //
-    // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_last_opened_timestamp'
+    // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_last_opened_timestamp',
     private static $get_last_opened_timestamp;
     private static $post_last_opened_timestamp;
     private static $cookie_last_opened_timestamp;
@@ -376,8 +365,7 @@ class crnrstn_response_return_serialization_map {
     private static $file_last_opened_timestamp;
 
     //
-    //
-    // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_last_closed_timestamp'
+    // $this->oCRNRSTN_RRS_MAP->rrs_map_set($tmp_channel_name . '_last_closed_timestamp',
     private static $get_last_closed_timestamp;
     private static $post_last_closed_timestamp;
     private static $cookie_last_closed_timestamp;
@@ -492,9 +480,8 @@ class crnrstn_response_return_serialization_map {
 
         $this->oCRNRSTN = $oCRNRSTN;
 
-        //
-        // INSTANTIATE LOGGER
-        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
+        self::$config_serial = $this->oCRNRSTN->get_crnrstn('config_serial');
+        self::$request_id = $this->oCRNRSTN->get_crnrstn('request_id');
 
         /*
         CRNRSTN :: ORDER OF OPERATIONS (PREFERENCE) FOR SPECIFICATION OF
@@ -519,7 +506,7 @@ class crnrstn_response_return_serialization_map {
 
         //
         // BYTES INITIALIZATION.
-        self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][CRNRSTN_CHANNEL_RUNTIME] = self::$total_bytes_ARRAY[CRNRSTN_RESOURCE_ALL] = self::$total_bytes_ARRAY['CHANNEL'][CRNRSTN_CHANNEL_RUNTIME] = 0;
+        self::$cache_ARRAY[self::$request_id]['channel_bytes'][CRNRSTN_CHANNEL_RUNTIME] = self::$total_bytes_ARRAY[CRNRSTN_RESOURCE_ALL] = self::$total_bytes_ARRAY['CHANNEL'][CRNRSTN_CHANNEL_RUNTIME] = 0;
 
     }
 
@@ -601,7 +588,7 @@ class crnrstn_response_return_serialization_map {
 
             }
 
-            error_log(__LINE__. ' rrs map INTEGER NOW? INIT CHANNEL[' . strval($ch_alpha) . '/' . print_r($tmp_channel, true) . '].');
+            error_log(__LINE__. ' rrs map  CHANNEL[' . strval($ch_alpha) . '/' . print_r($tmp_channel, true) . '].');
 
             //
             // INITIALIZE GLOBAL AND MULTI-CHANNEL BYTE REPORTING.
@@ -628,7 +615,7 @@ class crnrstn_response_return_serialization_map {
     // self::$cache_rrs_map_output_method_ARRAY,
     // $channel,
     // 'rrs_map_output_method',
-    // self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]
+    // self::$cache_id_ARRAY[self::$request_id][$ugc_value]
     //);
 
     private function cache_input_control($cache_data, $channel = CRNRSTN_CHANNEL_RUNTIME, $attribute = NULL, $cache_id = NULL){
@@ -644,15 +631,15 @@ class crnrstn_response_return_serialization_map {
                 switch($attribute) {
                     case 'rrs_map_output_method':
 
-                        //$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['rrs_map_output_method'][$tmp_cache_id]
+                        //$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['rrs_map_output_method'][$tmp_cache_id]
                         //error_log(__LINE__ . ' rrs map $attribute[' . $attribute . ']. RUNTIME CACHE[' . print_r($cache_data, true) . ']. $cache_id[' . $cache_id . '].');
-                        //error_log(__LINE__ . ' rrs map [' . $this->get_salt_ugc() . ']. $attribute[' . $attribute . ']. SESSION CACHE[' . print_r($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'], true) . ']. $cache_id[' . $cache_id . '].');
+                        //error_log(__LINE__ . ' rrs map [' . $this->get_salt_ugc() . ']. $attribute[' . $attribute . ']. SESSION CACHE[' . print_r($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'], true) . ']. $cache_id[' . $cache_id . '].');
 
-                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$attribute][$cache_id])){
+                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$attribute][$cache_id])){
 
-                            error_log(__LINE__ . ' rrs map $attribute[' . $attribute . ']. RETURN SESSION CACHE[' . print_r($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$attribute], true) . ']. $cache_id[' . $cache_id . '].');
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$attribute][$cache_id] = $attribute;
-                            return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$attribute][$cache_id];
+                            error_log(__LINE__ . ' rrs map $attribute[' . $attribute . ']. RETURN SESSION CACHE[' . print_r($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$attribute], true) . ']. $cache_id[' . $cache_id . '].');
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$attribute][$cache_id] = $attribute;
+                            return $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$attribute][$cache_id];
 
                         }
 
@@ -684,25 +671,25 @@ class crnrstn_response_return_serialization_map {
                         // self::$cache_rrs_map_output_method_ARRAY,
                         // $channel,
                         // 'rrs_map_output_method',
-                        // self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]
+                        // self::$cache_id_ARRAY[self::$request_id][$ugc_value]
                         //);
-                        //$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['rrs_map_output_method'][$tmp_cache_id]
+                        //$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['rrs_map_output_method'][$tmp_cache_id]
 
-                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$cache_id])){
+                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$cache_id])){
 
-                            error_log(__LINE__ . ' rrs map $attribute[' . $attribute . ']. SESSION CACHE[' . print_r($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'], true) . ']. $cache_id[' . $cache_id . '].');
+                            error_log(__LINE__ . ' rrs map $attribute[' . $attribute . ']. SESSION CACHE[' . print_r($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'], true) . ']. $cache_id[' . $cache_id . '].');
                             error_log(__LINE__ . ' rrs map RETURN SESSION CACHE[' . print_r($cache_data, true) . ']. $cache_id[' . $cache_id . '].');
 
-                            return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$cache_id];
+                            return $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$cache_id];
 
                         }
 
-                        if(isset($cache_data[$this->oCRNRSTN->request_id][$cache_id])){
+                        if(isset($cache_data[self::$request_id][$cache_id])){
 
-                            if(strlen($cache_data[$this->oCRNRSTN->request_id][$cache_id]) > 0){
+                            if(strlen($cache_data[self::$request_id][$cache_id]) > 0){
 
                                 error_log(__LINE__ . ' rrs map $attribute[' . $attribute . ']. RUNTIME CACHE[' . print_r($cache_data, true) . ']. $cache_id[' . $cache_id . '].');
-                                return $cache_data[$this->oCRNRSTN->request_id][$cache_id];
+                                return $cache_data[self::$request_id][$cache_id];
 
                             }
 
@@ -713,10 +700,10 @@ class crnrstn_response_return_serialization_map {
                          //self::$request_asset_meta_path_ARRAY
                          //error_log(__LINE__ . ' rrs map RETURN STRING CACHE[' . print_r($cache_data, true) . ']. $cache_id[' . $cache_id . '].');
 
-                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$cache_id])){
+                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$cache_id])){
 
                             error_log(__LINE__ . ' rrs map RETURN SESSION CACHE $cache_id[' . $cache_id . ']. [' . $cache_data[$cache_id] . '].');
-                            return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$cache_id];
+                            return $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$cache_id];
 
                         }
 
@@ -738,13 +725,13 @@ class crnrstn_response_return_serialization_map {
                                 [7208] => Array\n                (\n                    [5] => \n                    [6] => \n                    [11] => \n                    [12] => \n                )\n\n        )\n\n)\n]. $cache_id[14].
 
                         */
-                        if(isset($cache_data[$this->oCRNRSTN->request_id][$cache_id])){
+                        if(isset($cache_data[self::$request_id][$cache_id])){
 
-                            error_log(__LINE__ . ' rrs map RETURN RUNTIME CACHE $cache_id[' . $cache_id . ']. [' . $cache_data[$this->oCRNRSTN->request_id][$cache_id] . '].');
+                            error_log(__LINE__ . ' rrs map RETURN RUNTIME CACHE $cache_id[' . $cache_id . ']. [' . $cache_data[self::$request_id][$cache_id] . '].');
 
-                            if(strlen($cache_data[$this->oCRNRSTN->request_id][$cache_id]) > 0){
+                            if(strlen($cache_data[self::$request_id][$cache_id]) > 0){
 
-                                return $cache_data[$this->oCRNRSTN->request_id][$cache_id];
+                                return $cache_data[self::$request_id][$cache_id];
 
                             }
 
@@ -753,13 +740,13 @@ class crnrstn_response_return_serialization_map {
                     break;
                     case 'rrs_map_image_string':
 
-                        if(isset($cache_data[$this->oCRNRSTN->request_id][self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][$cache_id]][$cache_id])){
+                        if(isset($cache_data[self::$request_id][self::$request_map_output_mode_ARRAY[self::$request_id][$cache_id]][$cache_id])){
 
                             //error_log(__LINE__ . ' rrs map RETURN STRING CACHE[' . print_r($cache_data, true) . ']. $cache_id[' . $cache_id . '].');
 
-                            if(strlen($cache_data[$this->oCRNRSTN->request_id][self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][$cache_id]][$cache_id]) > 0){
+                            if(strlen($cache_data[self::$request_id][self::$request_map_output_mode_ARRAY[self::$request_id][$cache_id]][$cache_id]) > 0){
 
-                                return $cache_data[$this->oCRNRSTN->request_id][self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][$cache_id]][$cache_id];
+                                return $cache_data[self::$request_id][self::$request_map_output_mode_ARRAY[self::$request_id][$cache_id]][$cache_id];
 
                             }
 
@@ -792,27 +779,27 @@ class crnrstn_response_return_serialization_map {
 
                                  //
                                  // RESOURCE_ID IS JUST A SUGGESTION.
-                                 if(isset($cache_data[$this->oCRNRSTN->request_id][$cache_id])){
+                                 if(isset($cache_data[self::$request_id][$cache_id])){
 
                                      error_log(__LINE__ . ' rrs map RETURN STRING CACHE[' . print_r($cache_data, true) . ']. $cache_id[' . $cache_id . '].');
 
-                                     if(isset($cache_data[$this->oCRNRSTN->request_id][$cache_id]['filepath_base64'])){
+                                     if(isset($cache_data[self::$request_id][$cache_id]['filepath_base64'])){
 
-                                         if(strlen($cache_data[$this->oCRNRSTN->request_id][$cache_id]['filepath_base64']) > 0){
+                                         if(strlen($cache_data[self::$request_id][$cache_id]['filepath_base64']) > 0){
 
-                                             //error_log(__LINE__ . ' rrs map RETURN STRING CACHE[' . print_r($cache_data[$this->oCRNRSTN->request_id][$cache_id], true) . ']. $cache_id[' . $cache_id . '].');
+                                             //error_log(__LINE__ . ' rrs map RETURN STRING CACHE[' . print_r($cache_data[self::$request_id][$cache_id], true) . ']. $cache_id[' . $cache_id . '].');
 
-                                             return $cache_data[$this->oCRNRSTN->request_id][$cache_id]['filepath_base64'];
+                                             return $cache_data[self::$request_id][$cache_id]['filepath_base64'];
 
                                          }
 
                                      }
 
-                                     if(strlen($cache_data[$this->oCRNRSTN->request_id][$cache_id]) > 0){
+                                     if(strlen($cache_data[self::$request_id][$cache_id]) > 0){
 
-                                         //error_log(__LINE__ . ' rrs map RETURN STRING CACHE[' . print_r($cache_data[$this->oCRNRSTN->request_id][$cache_id], true) . ']. $cache_id[' . $cache_id . '].');
+                                         //error_log(__LINE__ . ' rrs map RETURN STRING CACHE[' . print_r($cache_data[self::$request_id][$cache_id], true) . ']. $cache_id[' . $cache_id . '].');
 
-                                         return $cache_data[$this->oCRNRSTN->request_id][$cache_id];
+                                         return $cache_data[self::$request_id][$cache_id];
 
                                      }
 
@@ -831,7 +818,7 @@ class crnrstn_response_return_serialization_map {
                             break;
                             default:
 
-                                error_log(__LINE__ . ' rrs map AN UNUSED DEFAULT (SWITCH) HAS BEEN HIT. $channel[' . $channel . ']. $attribute[' . $attribute . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $index[' . $index . '].');
+                                error_log(__LINE__ . ' rrs map AN UNUSED DEFAULT (SWITCH) HAS BEEN HIT. $channel[' . $channel . ']. $attribute[' . $attribute . '].');
 
                             break;
 
@@ -863,7 +850,7 @@ class crnrstn_response_return_serialization_map {
 //        switch($channel){
 //            case CRNRSTN_CHANNEL_SESSION:
 //
-//                //$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['ipaddress_id'][$this->oCRNRSTN->client_ip()] = $this->ip_resource_id($ugc_value);
+//                //$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['ipaddress_id'][$this->oCRNRSTN->client_ip()] = $this->ip_resource_id($ugc_value);
 //
 //            break;
 //            case CRNRSTN_CHANNEL_RUNTIME:
@@ -871,11 +858,11 @@ class crnrstn_response_return_serialization_map {
 //
 //                //
 //                // DOES THIS IP RESOURCE EXIST IN RUNTIME?
-//                if((isset(self::$cache_createdby_client_ip_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val]])) || (isset(self::$cache_modifiedby_client_ip_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val]]))){
+//                if((isset(self::$cache_createdby_client_ip_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$request_ugc_val]])) || (isset(self::$cache_modifiedby_client_ip_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$request_ugc_val]]))){
 //
-//                    if(isset(self::$cache_ipaddress_id_ARRAY[$this->oCRNRSTN->request_id][$ip])){
+//                    if(isset(self::$cache_ipaddress_id_ARRAY[self::$request_id][$ip])){
 //
-//                        return self::$cache_ipaddress_id_ARRAY[$this->oCRNRSTN->request_id][$ip];
+//                        return self::$cache_ipaddress_id_ARRAY[self::$request_id][$ip];
 //
 //                    }
 //
@@ -884,15 +871,15 @@ class crnrstn_response_return_serialization_map {
 //                //
 //                // GENERATE NEW IP ADDRESS ID. THIS WILL SAVE SPACE IN MEMORY.
 //                $tmp_cnt = 0;
-//                if(isset(self::$cache_ipaddress_id_ARRAY[$this->oCRNRSTN->request_id])){
+//                if(isset(self::$cache_ipaddress_id_ARRAY[self::$request_id])){
 //
-//                    $tmp_cnt = count(self::$cache_ipaddress_id_ARRAY[$this->oCRNRSTN->request_id]);
+//                    $tmp_cnt = count(self::$cache_ipaddress_id_ARRAY[self::$request_id]);
 //
 //                }
 //
 //                //
 //                // NEW IP RESOURCE.
-//                self::$cache_ipaddress_id_ARRAY[$this->oCRNRSTN->request_id][$ip] = $tmp_cnt;
+//                self::$cache_ipaddress_id_ARRAY[self::$request_id][$ip] = $tmp_cnt;
 //
 //                return $tmp_cnt;
 //
@@ -914,9 +901,9 @@ class crnrstn_response_return_serialization_map {
 //                    //
 //                    // GET STARTING CACHE RESOURCE_ID FROM $cache_merge_ARRAY SIZE.
 //                    $cache_resource_id = 0;
-//                    if(isset($cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'])){
+//                    if(isset($cache_merge_ARRAY[self::$request_id]['resource_id'])){
 //
-//                        $cache_resource_id = count($cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id']);
+//                        $cache_resource_id = count($cache_merge_ARRAY[self::$request_id]['resource_id']);
 //
 //                    }
 //
@@ -924,30 +911,30 @@ class crnrstn_response_return_serialization_map {
 //
 //                    //
 //                    // NOTE: RESOURCE_ID IS ONLY FOR RUNTIME REFERENCE.
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value] = $cache_resource_id; //self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value];
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['ipaddress_id'][$this->oCRNRSTN->client_ip()] = $this->ip_resource_id($ugc_value);
+//                    $cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value] = $cache_resource_id; //self::$cache_id_ARRAY[self::$request_id][$ugc_value];
+//                    $cache_merge_ARRAY[self::$request_id]['ipaddress_id'][$this->oCRNRSTN->client_ip()] = $this->ip_resource_id($ugc_value);
 //
-//                    //error_log(__LINE__ . ' rrs map $ugc_value[' . $ugc_value . ']. $cache_resource_id[' . $cache_resource_id . ']. $resource_id[' . self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value] . '].');
+//                    //error_log(__LINE__ . ' rrs map $ugc_value[' . $ugc_value . ']. $cache_resource_id[' . $cache_resource_id . ']. $resource_id[' . self::$cache_id_ARRAY[self::$request_id][$ugc_value] . '].');
 //                    //error_log(__LINE__ . ' rrs map $cache_rrs_map_filename_ARRAY[' . print_r(self::$cache_rrs_map_filename_ARRAY, true) . '].');
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['rrs_map_filename'][$cache_resource_id] = $this->cache_input_control(self::$cache_rrs_map_filename_ARRAY, $channel, 'rrs_map_filename', self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]);
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['rrs_map_file_extension'][$cache_resource_id] = $this->cache_input_control(self::$cache_rrs_map_file_extension_ARRAY, $channel, 'rrs_map_file_extension', self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]);
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['rrs_map_filepath'][$cache_resource_id] = $this->cache_input_control(self::$cache_rrs_map_filepath_ARRAY, $channel, 'rrs_map_filepath', self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]);
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['rrs_map_image_string'][self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]]][$cache_resource_id] = $this->cache_input_control(self::$cache_rrs_map_image_string_ARRAY, $channel, 'rrs_map_image_string', self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]);
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['meta_path'][$cache_resource_id] = $this->cache_input_control(self::$request_asset_meta_path_ARRAY, $channel, 'meta_path', self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]);
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['asset_family'][$cache_resource_id] = self::$request_family_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]];
+//                    $cache_merge_ARRAY[self::$request_id]['rrs_map_filename'][$cache_resource_id] = $this->cache_input_control(self::$cache_rrs_map_filename_ARRAY, $channel, 'rrs_map_filename', self::$cache_id_ARRAY[self::$request_id][$ugc_value]);
+//                    $cache_merge_ARRAY[self::$request_id]['rrs_map_file_extension'][$cache_resource_id] = $this->cache_input_control(self::$cache_rrs_map_file_extension_ARRAY, $channel, 'rrs_map_file_extension', self::$cache_id_ARRAY[self::$request_id][$ugc_value]);
+//                    $cache_merge_ARRAY[self::$request_id]['rrs_map_filepath'][$cache_resource_id] = $this->cache_input_control(self::$cache_rrs_map_filepath_ARRAY, $channel, 'rrs_map_filepath', self::$cache_id_ARRAY[self::$request_id][$ugc_value]);
+//                    $cache_merge_ARRAY[self::$request_id]['rrs_map_image_string'][self::$request_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$ugc_value]]][$cache_resource_id] = $this->cache_input_control(self::$cache_rrs_map_image_string_ARRAY, $channel, 'rrs_map_image_string', self::$cache_id_ARRAY[self::$request_id][$ugc_value]);
+//                    $cache_merge_ARRAY[self::$request_id]['meta_path'][$cache_resource_id] = $this->cache_input_control(self::$request_asset_meta_path_ARRAY, $channel, 'meta_path', self::$cache_id_ARRAY[self::$request_id][$ugc_value]);
+//                    $cache_merge_ARRAY[self::$request_id]['asset_family'][$cache_resource_id] = self::$request_family_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$ugc_value]];
 //                    error_log(__LINE__ . ' rrs map self::$request_asset_meta_key_ARRAY[' . print_r(self::$request_asset_meta_key_ARRAY,true) . '].');
 //
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['asset_meta_key'][$cache_resource_id] = self::$request_asset_meta_key_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]];
-//                    //$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['rrs_map_output_method'][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]] = $this->cache_input_control(self::$cache_rrs_map_output_method_ARRAY, $channel, 'rrs_map_output_method', self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]);
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['raw_output_mode'][$cache_resource_id] = self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]];
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['output_mode'][$cache_resource_id] = self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]];
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_bytes'][$cache_resource_id] = $this->get_cache($ugc_value);
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['datecreated'][$cache_resource_id] = time();
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['createdby_client_ip'][$cache_resource_id] = $this->ip_resource_id($ugc_value);
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['lastmodified'][$cache_resource_id] = time();
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['modifiedby_client_ip'][$cache_resource_id] = $this->ip_resource_id($ugc_value);
+//                    $cache_merge_ARRAY[self::$request_id]['asset_meta_key'][$cache_resource_id] = self::$request_asset_meta_key_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$ugc_value]];
+//                    //$cache_merge_ARRAY[self::$request_id]['rrs_map_output_method'][self::$cache_id_ARRAY[self::$request_id][$ugc_value]] = $this->cache_input_control(self::$cache_rrs_map_output_method_ARRAY, $channel, 'rrs_map_output_method', self::$cache_id_ARRAY[self::$request_id][$ugc_value]);
+//                    $cache_merge_ARRAY[self::$request_id]['raw_output_mode'][$cache_resource_id] = self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$ugc_value]];
+//                    $cache_merge_ARRAY[self::$request_id]['output_mode'][$cache_resource_id] = self::$request_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$ugc_value]];
+//                    $cache_merge_ARRAY[self::$request_id]['resource_bytes'][$cache_resource_id] = $this->get_cache($ugc_value);
+//                    $cache_merge_ARRAY[self::$request_id]['datecreated'][$cache_resource_id] = time();
+//                    $cache_merge_ARRAY[self::$request_id]['createdby_client_ip'][$cache_resource_id] = $this->ip_resource_id($ugc_value);
+//                    $cache_merge_ARRAY[self::$request_id]['lastmodified'][$cache_resource_id] = time();
+//                    $cache_merge_ARRAY[self::$request_id]['modifiedby_client_ip'][$cache_resource_id] = $this->ip_resource_id($ugc_value);
 //
-//                    //self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]
+//                    //self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]
 //                    error_log(__LINE__ . ' rrs map RUNTIME EXTRACTED FOR MERGE INTO SESSION. $cache_merge_ARRAY[' . print_r($cache_merge_ARRAY, true) . '].');
 //
 //                }
@@ -958,35 +945,35 @@ class crnrstn_response_return_serialization_map {
 //                // THE OLD APPLICATION ACCELERATION CACHE MGMT SITUATION.
 //                if(1 == 2){
 //
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value] = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$ugc_value];
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['ipaddress_id'][$this->oCRNRSTN->client_ip()] = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['ipaddress_id'][$this->oCRNRSTN->client_ip()];
+//                    $cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value] = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$ugc_value];
+//                    $cache_merge_ARRAY[self::$request_id]['ipaddress_id'][$this->oCRNRSTN->client_ip()] = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['ipaddress_id'][$this->oCRNRSTN->client_ip()];
 //
-//                    //$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['rrs_map_filename'][$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value]] = $this->cache_input_control($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'], $channel, 'rrs_map_filename', $resource_id);
-//                    error_log(__LINE__ . ' rrs map SESSION EXTRACT FOR MERGE INTO RUNTIME. $ugc_value[' . $ugc_value . ']. $resource_id[' . $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$ugc_value] . '].');
+//                    //$cache_merge_ARRAY[self::$request_id]['rrs_map_filename'][$cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value]] = $this->cache_input_control($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'], $channel, 'rrs_map_filename', $resource_id);
+//                    error_log(__LINE__ . ' rrs map SESSION EXTRACT FOR MERGE INTO RUNTIME. $ugc_value[' . $ugc_value . ']. $resource_id[' . $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$ugc_value] . '].');
 //
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['rrs_map_filename'][$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value]] = $this->cache_input_control($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'], $channel, 'rrs_map_filename', $resource_id);
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['rrs_map_file_extension'][$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value]] = $this->cache_input_control($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'], $channel, 'rrs_map_file_extension', $resource_id);
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['rrs_map_filepath'][$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value]] = $this->cache_input_control($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'], $channel, 'rrs_map_filepath', $resource_id);
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['rrs_map_image_string'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['output_mode'][$resource_id]][$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value]] = $this->cache_input_control($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'], $channel, 'rrs_map_image_string', $resource_id);
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['meta_path'][$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value]] = $this->cache_input_control($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'], $channel, 'meta_path', $resource_id);
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['asset_family'][$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value]] = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['asset_family'][$resource_id];
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['asset_meta_key'][$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value]] = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['asset_meta_key'][$resource_id];
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['rrs_map_output_method'][$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value]] = $this->cache_input_control($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'], $channel, 'rrs_map_output_method', $resource_id);
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['raw_output_mode'][$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value]] = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['raw_output_mode'][$resource_id];
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['output_mode'][$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value]] = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['output_mode'][$resource_id];
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_bytes'][$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value]] = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['resource_bytes'][$resource_id];
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['datecreated'][$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value]] = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['datecreated'][$resource_id];
-//                    $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['createdby_client_ip'][$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value]] = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['createdby_client_ip'][$resource_id];
+//                    $cache_merge_ARRAY[self::$request_id]['rrs_map_filename'][$cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value]] = $this->cache_input_control($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'], $channel, 'rrs_map_filename', $resource_id);
+//                    $cache_merge_ARRAY[self::$request_id]['rrs_map_file_extension'][$cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value]] = $this->cache_input_control($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'], $channel, 'rrs_map_file_extension', $resource_id);
+//                    $cache_merge_ARRAY[self::$request_id]['rrs_map_filepath'][$cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value]] = $this->cache_input_control($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'], $channel, 'rrs_map_filepath', $resource_id);
+//                    $cache_merge_ARRAY[self::$request_id]['rrs_map_image_string'][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['output_mode'][$resource_id]][$cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value]] = $this->cache_input_control($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'], $channel, 'rrs_map_image_string', $resource_id);
+//                    $cache_merge_ARRAY[self::$request_id]['meta_path'][$cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value]] = $this->cache_input_control($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'], $channel, 'meta_path', $resource_id);
+//                    $cache_merge_ARRAY[self::$request_id]['asset_family'][$cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value]] = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['asset_family'][$resource_id];
+//                    $cache_merge_ARRAY[self::$request_id]['asset_meta_key'][$cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value]] = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['asset_meta_key'][$resource_id];
+//                    $cache_merge_ARRAY[self::$request_id]['rrs_map_output_method'][$cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value]] = $this->cache_input_control($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'], $channel, 'rrs_map_output_method', $resource_id);
+//                    $cache_merge_ARRAY[self::$request_id]['raw_output_mode'][$cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value]] = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['raw_output_mode'][$resource_id];
+//                    $cache_merge_ARRAY[self::$request_id]['output_mode'][$cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value]] = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['output_mode'][$resource_id];
+//                    $cache_merge_ARRAY[self::$request_id]['resource_bytes'][$cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value]] = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['resource_bytes'][$resource_id];
+//                    $cache_merge_ARRAY[self::$request_id]['datecreated'][$cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value]] = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['datecreated'][$resource_id];
+//                    $cache_merge_ARRAY[self::$request_id]['createdby_client_ip'][$cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value]] = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['createdby_client_ip'][$resource_id];
 //
 //                    if($reset_ttl){
 //
-//                        $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['lastmodified'][$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value]] = time();
-//                        $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['modifiedby_client_ip'][$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value]] = $this->ip_resource_id($ugc_value, 'session');
+//                        $cache_merge_ARRAY[self::$request_id]['lastmodified'][$cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value]] = time();
+//                        $cache_merge_ARRAY[self::$request_id]['modifiedby_client_ip'][$cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value]] = $this->ip_resource_id($ugc_value, 'session');
 //
 //                    }else{
 //
-//                        $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['lastmodified'][$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value]] = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['lastmodified'][$resource_id];
-//                        $cache_merge_ARRAY[$this->oCRNRSTN->request_id]['modifiedby_client_ip'][$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['resource_id'][$ugc_value]] = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['modifiedby_client_ip'][$resource_id];
+//                        $cache_merge_ARRAY[self::$request_id]['lastmodified'][$cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value]] = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['lastmodified'][$resource_id];
+//                        $cache_merge_ARRAY[self::$request_id]['modifiedby_client_ip'][$cache_merge_ARRAY[self::$request_id]['resource_id'][$ugc_value]] = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['modifiedby_client_ip'][$resource_id];
 //
 //                    }
 //
@@ -1031,15 +1018,15 @@ class crnrstn_response_return_serialization_map {
                                     // WE ARE PROCESSING RUNTIME SYNC TO SESSION. CHECK IF SESSION CHANNEL IS ACTIVE.
                                     if($this->rrs_map_get($this->oCRNRSTN->get_channel_config($channel, 'NAME') . '_cache_is_active') == true){
 
-                                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'])){
+                                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'])){
 
                                             //
                                             // CYCLE THROUGH SESSION DATA AND BUILD NEW SESSION CACHE STARTING WITH EXISTING
                                             // SESSION DATA. EXCLUDE IF TTL EXPIRED OR REQUEST IS EXISTING IN RUNTIME ALREADY...THEN ADD
                                             // ANY NEW RETURNS CURRENTLY IN RUNTIME...UP TO THE MAX NUMBER OF BYTES FOR THE CHANNEL.
-                                            foreach($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'] as $ugc_value => $resource_id){
+                                            foreach($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'] as $ugc_value => $resource_id){
 
-                                                $tmp_lastmodified = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['lastmodified'][$resource_id];
+                                                $tmp_lastmodified = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['lastmodified'][$resource_id];
 
                                                 if(time() < ((int)$tmp_lastmodified + (int) $this->rrs_map_get($channel . '_map_cache_ttl'))){
 
@@ -1052,9 +1039,9 @@ class crnrstn_response_return_serialization_map {
                                                     error_log(__LINE__ . ' rrs map self::$request_map_output_mode_ARRAY[' . print_r(self::$request_map_output_mode_ARRAY, true) . '].');
                                                     error_log(__LINE__ . ' rrs map $ugc_value[' . $ugc_value . ']. self::$cache_id_ARRAY[' . print_r(self::$cache_id_ARRAY, true) . '].');
 
-                                                    if(isset(self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value])){
+                                                    if(isset(self::$cache_id_ARRAY[self::$request_id][$ugc_value])){
 
-                                                        if(isset(self::$cache_rrs_map_output_method_ARRAY[$this->oCRNRSTN->request_id][$resource_id])){
+                                                        if(isset(self::$cache_rrs_map_output_method_ARRAY[self::$request_id][$resource_id])){
 
                                                             $tmp_reset_ttl = true;
 
@@ -1075,9 +1062,9 @@ class crnrstn_response_return_serialization_map {
 
                                             //
                                             // NEED TO PUNT TOTAL BYTES TO AFTER ALL CACHE PROCESSING IS COMPLETE.
-                                            //$tmp_cache_profile_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'] = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['channel_bytes'];
+                                            //$tmp_cache_profile_ARRAY[self::$request_id]['channel_bytes'] = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['channel_bytes'];
 
-                                            //error_log(__LINE__ . ' rrs map RRS_MAP_CACHE[' . print_r($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][0], true) . '].');
+                                            //error_log(__LINE__ . ' rrs map RRS_MAP_CACHE[' . print_r($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][0], true) . '].');
 
                                         }
 
@@ -1094,22 +1081,22 @@ class crnrstn_response_return_serialization_map {
 
                                         //
                                         // DO WE HAVE ANY RRS MAP CACHE DATA?
-                                        //if(isset(self::$cache_rrs_map_output_method_ARRAY[$this->oCRNRSTN->request_id])){
-                                        if(isset(self::$cache_id_ARRAY[$this->oCRNRSTN->request_id])){
+                                        //if(isset(self::$cache_rrs_map_output_method_ARRAY[self::$request_id])){
+                                        if(isset(self::$cache_id_ARRAY[self::$request_id])){
 
                                             //
                                             // CYCLE THROUGH RUNTIME DATA AND BUILD NEW SESSION CACHE ADDING RUNTIME
                                             // DATA TO EXISTING SESSION DATA. EXCLUDE A RESOURCE IF THE REQUEST EXISTS
                                             // IN CACHE ALREADY, AND ADD ANY NEW RETURNS CURRENTLY IN RUNTIME...UP TO
                                             // THE MAX NUMBER OF BYTES FOR THE CHANNEL.
-                                            foreach(self::$cache_id_ARRAY[$this->oCRNRSTN->request_id] as $ugc_value => $resource_id){
+                                            foreach(self::$cache_id_ARRAY[self::$request_id] as $ugc_value => $resource_id){
 
                                                 $tmp_reset_ttl = false; // WE USE TIME() HERE.
                                                 //$tmp_valid_resource_id_ARRAY[] = $resource_id;
 
                                                 //
                                                 // ONLY PROCESS IF NOT CURRENTLY IN RUNTIME AND NOT IN SESSION MEMORY.
-                                                if(!isset($tmp_cache_profile_ARRAY['resource_id'][$ugc_value]) && !isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$ugc_value])){
+                                                if(!isset($tmp_cache_profile_ARRAY['resource_id'][$ugc_value]) && !isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$ugc_value])){
 
                                                     //
                                                     // MERGE EXISTING RUNTIME RESOURCE TO NEW STRUCTURE FOR SESSION CACHE UPDATE.
@@ -1124,7 +1111,7 @@ class crnrstn_response_return_serialization_map {
 
                                             }
 
-                                            //error_log(__LINE__ . ' rrs map RRS_MAP_CACHE[' . print_r($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][0], true) . '].');
+                                            //error_log(__LINE__ . ' rrs map RRS_MAP_CACHE[' . print_r($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][0], true) . '].');
 
                                         }
 
@@ -1163,7 +1150,7 @@ class crnrstn_response_return_serialization_map {
             $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             //
-            // RETURN NOTHING
+            // RETURN FALSE.
             return false;
 
         }
@@ -1498,12 +1485,12 @@ class crnrstn_response_return_serialization_map {
 //
 //                    //error_log(__LINE__ . ' rrs map RETURN STRING LINK AND EXIT[' . print_r(self::$request_map_output_mode_ARRAY, true) . '].');
 //
-//                    if(isset(self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$salt_ugc_override])){
+//                    if(isset(self::$cache_id_ARRAY[self::$request_id][$salt_ugc_override])){
 //
-//                        if(isset(self::$cache_rrs_map_image_string_ARRAY[$this->oCRNRSTN->request_id][self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$salt_ugc_override]]][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$salt_ugc_override]])){
+//                        if(isset(self::$cache_rrs_map_image_string_ARRAY[self::$request_id][self::$request_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$salt_ugc_override]]][self::$cache_id_ARRAY[self::$request_id][$salt_ugc_override]])){
 //
                             //self::$gone_to_plaid_ARRAY[CRNRSTN_ASSET_MAPPING] = true;
-//                            $tmp_url = self::$cache_rrs_map_image_string_ARRAY[$this->oCRNRSTN->request_id][self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$salt_ugc_override]]][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$salt_ugc_override]];
+//                            $tmp_url = self::$cache_rrs_map_image_string_ARRAY[self::$request_id][self::$request_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$salt_ugc_override]]][self::$cache_id_ARRAY[self::$request_id][$salt_ugc_override]];
 //
 //                            //error_log(__LINE__ . ' asset mgr Application Acceleration [runtime] FIRE. RRS Map resource return.');
 //                            return $tmp_url;
@@ -1516,17 +1503,17 @@ class crnrstn_response_return_serialization_map {
 
                 //
                 // DOES SESSION HAVE THE...SAUCE?
-                if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_salt_ugc])){
+                if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_salt_ugc])){
 
-                    if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['output_mode'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_salt_ugc]])){
+                    if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['output_mode'][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_salt_ugc]])){
 
-                        $tmp_asset_meta_key = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['asset_meta_key'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
+                        $tmp_asset_meta_key = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['asset_meta_key'][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
                         $tmp_request_ugc_value = $tmp_salt_ugc;
-                        $tmp_request_family = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['asset_family'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
+                        $tmp_request_family = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['asset_family'][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
 
-                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['meta_path'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_salt_ugc]])){
+                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['meta_path'][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_salt_ugc]])){
 
-                            $tmp_asset_meta_path = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['meta_path'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
+                            $tmp_asset_meta_path = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['meta_path'][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
 
                         }else{
 
@@ -1534,15 +1521,15 @@ class crnrstn_response_return_serialization_map {
 
                         }
 
-                        $tmp_output_mode = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['output_mode'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
+                        $tmp_output_mode = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['output_mode'][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
 
                         switch($tmp_output_mode){
                             case CRNRSTN_STRING:
 
-                                if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['url'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_salt_ugc]])){
+                                if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['url'][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_salt_ugc]])){
 
                                     //self::$gone_to_plaid_ARRAY[$channel] = true;
-                                    $tmp_url = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['url'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['output_mode'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_salt_ugc]]][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
+                                    $tmp_url = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['url'][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['output_mode'][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_salt_ugc]]][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
 
                                     error_log(__LINE__ . ' asset mgr Application Acceleration [session] FIRE. RRS Map resource return.');
 
@@ -1563,9 +1550,9 @@ class crnrstn_response_return_serialization_map {
                             case CRNRSTN_IMG:
                             case CRNRSTN_FAVICON:
 
-                                $tmp_rrs_map_filename = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['rrs_map_filename'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
-                                $tmp_rrs_map_filepath = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['rrs_map_filepath'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
-                                $tmp_rrs_map_file_extension = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['rrs_map_file_extension'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
+                                $tmp_rrs_map_filename = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['rrs_map_filename'][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
+                                $tmp_rrs_map_filepath = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['rrs_map_filepath'][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
+                                $tmp_rrs_map_file_extension = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['rrs_map_file_extension'][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
 
                                 error_log(__LINE__ . ' rrs map Application Acceleration [session] FIRE. $tmp_salt_ugc[' . $tmp_salt_ugc . '/' . $tmp_asset_meta_key . '].');
 
@@ -1575,9 +1562,9 @@ class crnrstn_response_return_serialization_map {
                                 // EXTRACT (FROM SYSTEM SETTINGS) THE MAXIMUM NUMBER OF ASSETS TO REPORT UPON.
                                 $tmp_max_asset = $this->oCRNRSTN->get_resource('mem_rpt_plaid_performance', 0, 'CRNRSTN::RESOURCE::REPORTING');
 
-                                if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc])){
+                                if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc])){
 
-                                    $tmp_cnt = count($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]);
+                                    $tmp_cnt = count($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]);
 
                                 }
 
@@ -1590,7 +1577,7 @@ class crnrstn_response_return_serialization_map {
 
                                     //
                                     // WRITE CRNRSTN :: PLAID REPORTING TO SESSION.
-                                    $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]['mem_report'][] = $mem_reports_ARRAY;
+                                    $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]['mem_report'][] = $mem_reports_ARRAY;
 
                                 }
 
@@ -1608,9 +1595,9 @@ class crnrstn_response_return_serialization_map {
                             case CRNRSTN_HTML & CRNRSTN_BASE64_JPEG:
                             case CRNRSTN_HTML & CRNRSTN_ASSET_MODE_BASE64 & CRNRSTN_JPEG:
 
-                                $tmp_rrs_map_filename = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['rrs_map_filename'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
-                                $tmp_rrs_map_filepath = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['rrs_map_filepath'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
-                                $tmp_rrs_map_file_extension = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['rrs_map_file_extension'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
+                                $tmp_rrs_map_filename = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['rrs_map_filename'][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
+                                $tmp_rrs_map_filepath = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['rrs_map_filepath'][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
+                                $tmp_rrs_map_file_extension = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['rrs_map_file_extension'][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_salt_ugc]];
 
                                 error_log(__LINE__ . ' rrs map Application Acceleration [session] FIRE. $tmp_salt_ugc[' . $tmp_salt_ugc . '/' . $tmp_asset_meta_key . '].');
 
@@ -1620,9 +1607,9 @@ class crnrstn_response_return_serialization_map {
                                 // EXTRACT (FROM SYSTEM SETTINGS) THE MAXIMUM NUMBER OF ASSETS TO REPORT UPON.
                                 $tmp_max_asset = $this->oCRNRSTN->get_resource('mem_rpt_plaid_performance', 0, 'CRNRSTN::RESOURCE::REPORTING');
 
-                                if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc])){
+                                if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc])){
 
-                                    $tmp_cnt = count($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]);
+                                    $tmp_cnt = count($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]);
 
                                 }
 
@@ -1635,7 +1622,7 @@ class crnrstn_response_return_serialization_map {
 
                                     //
                                     // WRITE CRNRSTN :: PLAID REPORTING TO SESSION.
-                                    $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]['mem_report'][] = $mem_reports_ARRAY;
+                                    $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]['mem_report'][] = $mem_reports_ARRAY;
 
                                 }
 
@@ -1645,7 +1632,7 @@ class crnrstn_response_return_serialization_map {
                             default:
 
                                 error_log(__LINE__ . ' rrs map Application Acceleration [session] MISFIRE. $tmp_salt_ugc[' . $tmp_salt_ugc . '].');
-                                error_log(__LINE__ . ' rrs map YA MISSED ONE. output_mode[' . $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['output_mode'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_salt_ugc]] . '] YEP. GOTTA DO THIS HERE.');
+                                error_log(__LINE__ . ' rrs map YA MISSED ONE. output_mode[' . $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['output_mode'][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_salt_ugc]] . '] YEP. GOTTA DO THIS HERE.');
 
                                 return $tmp_str;
 
@@ -1660,9 +1647,9 @@ class crnrstn_response_return_serialization_map {
                     $tmp_cnt = 0;
                     $tmp_max_asset = $this->oCRNRSTN->get_resource('mem_rpt_plaid_performance', 0, 'CRNRSTN::RESOURCE::REPORTING');
 
-                    if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc])){
+                    if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc])){
 
-                        $tmp_cnt = count($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]);
+                        $tmp_cnt = count($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]);
 
                     }
 
@@ -1675,7 +1662,7 @@ class crnrstn_response_return_serialization_map {
 
                         //
                         // WRITE CRNRSTN :: PLAID REPORTING TO SESSION.
-                        $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]['mem_report'][] = $mem_reports_ARRAY;
+                        $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]['mem_report'][] = $mem_reports_ARRAY;
 
                     }
 
@@ -1758,7 +1745,7 @@ class crnrstn_response_return_serialization_map {
                     break;
                     default:
 
-                        error_log(__LINE__ . ' rrs map AN UNUSED DEFAULT (SWITCH) HAS BEEN HIT. $channel[' . $channel . ']. $attribute[' . $attribute . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $index[' . $index . '].');
+                        error_log(__LINE__ . ' rrs map AN UNUSED DEFAULT (SWITCH) HAS BEEN HIT. $name[' . $name . ']. $channel[' . $channel . '].');
 
                     break;
 
@@ -1857,6 +1844,7 @@ class crnrstn_response_return_serialization_map {
             break;
             case 'get_cache_is_active':
 
+                error_log(__LINE__ . ' ' . __METHOD__ . ' $name[' . $name . ']=[' . print_r(self::$get_cache_is_active, true) . ']. $channel[' . $channel . '].');
                 return self::$get_cache_is_active;
 
             break;
@@ -2779,7 +2767,7 @@ class crnrstn_response_return_serialization_map {
 
                 //
                 // TAKE THIS OPPORTUNITY TO INITIALIZE CHANNEL BYTES TO ZERO (0).
-                self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][CRNRSTN_CHANNEL_GET] = 0;
+                self::$cache_ARRAY[self::$request_id]['channel_bytes'][CRNRSTN_CHANNEL_GET] = 0;
 
             break;
             case 'post_cache_is_active':
@@ -2791,7 +2779,7 @@ class crnrstn_response_return_serialization_map {
 
                 //
                 // TAKE THIS OPPORTUNITY TO INITIALIZE CHANNEL BYTES TO ZERO (0).
-                self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][CRNRSTN_CHANNEL_POST] = 0;
+                self::$cache_ARRAY[self::$request_id]['channel_bytes'][CRNRSTN_CHANNEL_POST] = 0;
 
             break;
             case 'cookie_cache_is_active':
@@ -2801,7 +2789,7 @@ class crnrstn_response_return_serialization_map {
 
                 //
                 // TAKE THIS OPPORTUNITY TO INITIALIZE CHANNEL BYTES TO ZERO (0).
-                self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][CRNRSTN_CHANNEL_COOKIE] = 0;
+                self::$cache_ARRAY[self::$request_id]['channel_bytes'][CRNRSTN_CHANNEL_COOKIE] = 0;
 
             break;
             case 'session_cache_is_active':
@@ -2813,7 +2801,7 @@ class crnrstn_response_return_serialization_map {
 
                 //
                 // TAKE THIS OPPORTUNITY TO INITIALIZE CHANNEL BYTES TO ZERO (0).
-                self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][CRNRSTN_CHANNEL_SESSION] = 0;
+                self::$cache_ARRAY[self::$request_id]['channel_bytes'][CRNRSTN_CHANNEL_SESSION] = 0;
 
             break;
             case 'database_cache_is_active':
@@ -2823,7 +2811,7 @@ class crnrstn_response_return_serialization_map {
 
                 //
                 // TAKE THIS OPPORTUNITY TO INITIALIZE CHANNEL BYTES TO ZERO (0).
-                self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][CRNRSTN_CHANNEL_DATABASE] = 0;
+                self::$cache_ARRAY[self::$request_id]['channel_bytes'][CRNRSTN_CHANNEL_DATABASE] = 0;
 
             break;
             case 'ssdtla_cache_is_active':
@@ -2833,7 +2821,7 @@ class crnrstn_response_return_serialization_map {
 
                 //
                 // TAKE THIS OPPORTUNITY TO INITIALIZE CHANNEL BYTES TO ZERO (0).
-                self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][CRNRSTN_CHANNEL_SSDTLA] = 0;
+                self::$cache_ARRAY[self::$request_id]['channel_bytes'][CRNRSTN_CHANNEL_SSDTLA] = 0;
 
             break;
             case 'pssdtla_cache_is_active':
@@ -2843,7 +2831,7 @@ class crnrstn_response_return_serialization_map {
 
                 //
                 // TAKE THIS OPPORTUNITY TO INITIALIZE CHANNEL BYTES TO ZERO (0).
-                self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][CRNRSTN_CHANNEL_PSSDTLA] = 0;
+                self::$cache_ARRAY[self::$request_id]['channel_bytes'][CRNRSTN_CHANNEL_PSSDTLA] = 0;
 
             break;
             case 'runtime_cache_is_active':
@@ -2853,7 +2841,7 @@ class crnrstn_response_return_serialization_map {
 
                 //
                 // TAKE THIS OPPORTUNITY TO INITIALIZE CHANNEL BYTES TO ZERO (0).
-                self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][CRNRSTN_CHANNEL_RUNTIME] = 0;
+                self::$cache_ARRAY[self::$request_id]['channel_bytes'][CRNRSTN_CHANNEL_RUNTIME] = 0;
 
             break;
             case 'soap_cache_is_active':
@@ -2863,7 +2851,7 @@ class crnrstn_response_return_serialization_map {
 
                 //
                 // TAKE THIS OPPORTUNITY TO INITIALIZE CHANNEL BYTES TO ZERO (0).
-                self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][CRNRSTN_CHANNEL_SOAP] = 0;
+                self::$cache_ARRAY[self::$request_id]['channel_bytes'][CRNRSTN_CHANNEL_SOAP] = 0;
 
             break;
             case 'file_cache_is_active':
@@ -2873,7 +2861,7 @@ class crnrstn_response_return_serialization_map {
 
                 //
                 // TAKE THIS OPPORTUNITY TO INITIALIZE CHANNEL BYTES TO ZERO (0).
-                self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][CRNRSTN_CHANNEL_FILE] = 0;
+                self::$cache_ARRAY[self::$request_id]['channel_bytes'][CRNRSTN_CHANNEL_FILE] = 0;
 
             break;
             case 'get_max_map_cache_bytes':
@@ -2990,7 +2978,7 @@ class crnrstn_response_return_serialization_map {
                         $tmp_str = '';
 
                         //
-                        // CRNRSTN :: DECOUPLED DATA OBJECT (DDO) DATA TRANSLATION.
+                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) DATA TRANSLATION.
                         // # # C # R # N # R # S # T # N # : : # # # #
                         // G :: HTTP $_GET REQUEST.
                         //
@@ -3003,7 +2991,7 @@ class crnrstn_response_return_serialization_map {
                         }
 
                         //error_log(__LINE__ . ' rrs map [' . $channel . '] CHANNEL DATA INITIALIZED $channel_bytes=0.');
-                        self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][$channel] = $this->oCRNRSTN->return_cache_bytes_size($tmp_str);
+                        self::$cache_ARRAY[self::$request_id]['channel_bytes'][$channel] = $this->oCRNRSTN->return_cache_bytes_size($tmp_str);
 
                     break;
                     case CRNRSTN_CHANNEL_POST:
@@ -3023,14 +3011,14 @@ class crnrstn_response_return_serialization_map {
                         }
 
                         //error_log(__LINE__ . ' rrs map [' . $channel . '] CHANNEL DATA INITIALIZED $channel_bytes=0.');
-                        self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][$channel] = $this->oCRNRSTN->return_cache_bytes_size($tmp_str);
+                        self::$cache_ARRAY[self::$request_id]['channel_bytes'][$channel] = $this->oCRNRSTN->return_cache_bytes_size($tmp_str);
 
                     break;
                     case CRNRSTN_CHANNEL_SESSION:
                         //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
 
                         //error_log(__LINE__ . ' rrs map [' . $channel . '] CHANNEL DATA INITIALIZED $channel_bytes=0.');
-                        $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['channel_bytes'][$channel] = 0;
+                        $_SESSION['CRNRSTN_' . self::$config_serial]['channel_bytes'][$channel] = 0;
 
                     break;
                     case CRNRSTN_CHANNEL_RUNTIME:
@@ -3047,7 +3035,7 @@ class crnrstn_response_return_serialization_map {
                         //S :: CRNRSTN :: SSDTLA PACKET (SOAP WRAPPED ENCRYPTED PSSDTLA PACKET. THE BROWSER WILL TALK LIKE A SERVER).
 
                         //error_log(__LINE__ . ' rrs map [' . $channel . '] CHANNEL DATA INITIALIZED $channel_bytes=0.');
-                        self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][$channel] = 0;
+                        self::$cache_ARRAY[self::$request_id]['channel_bytes'][$channel] = 0;
 
                     break;
                     default:
@@ -3828,7 +3816,7 @@ class crnrstn_response_return_serialization_map {
 
         /*
         CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA
-        OBJECT (DDO) SERVICES LAYER AUTHORIZATION
+        OBJECT (MC-DDO) SERVICES LAYER AUTHORIZATION
         PROFILES FOR DATA HANDLING.
         -----
         CRNRSTN_CHANNEL_ALL
@@ -4057,7 +4045,7 @@ class crnrstn_response_return_serialization_map {
                                 // - Wednesday April 19, 2023 1418 hrs
                                 error_log(__LINE__ . ' rrs map get_cache() cache_id['  . $this->get_cache('cache_id', $salt_ugc_override, CRNRSTN_CHANNEL_SESSION) . '].');
                                 error_log(__LINE__ . ' rrs map $channel_resource_id_ARRAY['  . self::$channel_resource_id_ARRAY['cache_id'][$channel] . '].');
-                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['resource_bytes'][$this->get_cache('cache_id', $salt_ugc_override, CRNRSTN_CHANNEL_SESSION)] = $tmp_byte_cnt;
+                                $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['resource_bytes'][$this->get_cache('cache_id', $salt_ugc_override, CRNRSTN_CHANNEL_SESSION)] = $tmp_byte_cnt;
                                 //$this->cache_write('resource_bytes', $tmp_byte_cnt, 'session');    // TOO CLOSE TO THE FIRE FOR THIS.
 
                                 //
@@ -4084,7 +4072,7 @@ class crnrstn_response_return_serialization_map {
                                 // CLOSE TO THINGS THAT HARDWARE CONTROLLERS DO IN PRACTICE OF
                                 // MEMORY MANAGEMENT...IMHO.
                                 // - Wednesday April 19, 2023 1418 hrs
-                                self::$cache_ARRAY[$this->oCRNRSTN->request_id]['resource_bytes'][$this->get_cache('cache_id', $salt_ugc_override, CRNRSTN_CHANNEL_RUNTIME)] = $tmp_byte_cnt;
+                                self::$cache_ARRAY[self::$request_id]['resource_bytes'][$this->get_cache('cache_id', $salt_ugc_override, CRNRSTN_CHANNEL_RUNTIME)] = $tmp_byte_cnt;
                                 //$this->cache_write('resource_bytes', $tmp_byte_cnt, 'runtime');    // TOO CLOSE TO THE FIRE FOR THIS.
 
                                 //
@@ -4152,7 +4140,7 @@ class crnrstn_response_return_serialization_map {
                             // CLOSE TO THINGS THAT HARDWARE CONTROLLERS DO IN PRACTICE OF
                             // MEMORY MANAGEMENT...IMHO.
                             // - Wednesday April 19, 2023 1418 hrs
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['resource_bytes'][$this->get_cache('cache_id',$salt_ugc_override, CRNRSTN_CHANNEL_SESSION)] = $tmp_byte_cnt;
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['resource_bytes'][$this->get_cache('cache_id',$salt_ugc_override, CRNRSTN_CHANNEL_SESSION)] = $tmp_byte_cnt;
 
                             //
                             // INCREMENT GLOBAL BYTES STORED COUNT.
@@ -4178,7 +4166,7 @@ class crnrstn_response_return_serialization_map {
                             // CLOSE TO THINGS THAT HARDWARE CONTROLLERS DO IN PRACTICE OF
                             // MEMORY MANAGEMENT...IMHO.
                             // - Wednesday April 19, 2023 1418 hrs
-                            self::$cache_ARRAY[$this->oCRNRSTN->request_id]['resource_bytes'][$this->get_cache('cache_id', $salt_ugc_override, CRNRSTN_CHANNEL_RUNTIME)] = $tmp_byte_cnt;
+                            self::$cache_ARRAY[self::$request_id]['resource_bytes'][$this->get_cache('cache_id', $salt_ugc_override, CRNRSTN_CHANNEL_RUNTIME)] = $tmp_byte_cnt;
                             //$this->cache_write('resource_bytes', $tmp_byte_cnt, 'runtime');    // TOO CLOSE TO THE FIRE FOR THIS.
 
                             //
@@ -4237,7 +4225,7 @@ class crnrstn_response_return_serialization_map {
 
         //
         // THIS METHOD IS COSTTLY.
-        $tmp_dataset_prefix_str = $this->oCRNRSTN->return_dataset_nomination_prefix('string', $this->oCRNRSTN->config_serial_hash(), $env_key, $data_type_family);
+        $tmp_dataset_prefix_str = $this->oCRNRSTN->return_dataset_nomination_prefix('string', self::$config_serial, $env_key, $data_type_family);
 
         self::$data_key_cache_rw_acceleration_ARRAY[$data_type_family][$ddo_memory_pointer] = $tmp_dataset_prefix_str . '::' . $ddo_memory_pointer;
 
@@ -4328,13 +4316,13 @@ class crnrstn_response_return_serialization_map {
             case CRNRSTN_CHANNEL_SESSION:
                 //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
 
-                if(!isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['channel_bytes'][$channel])){
+                if(!isset($_SESSION['CRNRSTN_' . self::$config_serial]['channel_bytes'][$channel])){
 
-                    $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['channel_bytes'][$channel] = 0;
+                    $_SESSION['CRNRSTN_' . self::$config_serial]['channel_bytes'][$channel] = 0;
 
                 }
 
-                $tmp_channel_bytes = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['channel_bytes'][$channel];
+                $tmp_channel_bytes = $_SESSION['CRNRSTN_' . self::$config_serial]['channel_bytes'][$channel];
 
             break;
             case CRNRSTN_CHANNEL_GET:
@@ -4354,13 +4342,13 @@ class crnrstn_response_return_serialization_map {
             case CRNRSTN_CHANNEL_RUNTIME:
                 //R :: RUNTIME.
 
-                if(!isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][$channel])){
+                if(!isset(self::$cache_ARRAY[self::$request_id]['channel_bytes'][$channel])){
 
-                    self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][$channel] = 0;
+                    self::$cache_ARRAY[self::$request_id]['channel_bytes'][$channel] = 0;
 
                 }
 
-                $tmp_channel_bytes = self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][$channel];
+                $tmp_channel_bytes = self::$cache_ARRAY[self::$request_id]['channel_bytes'][$channel];
 
             break;
             default:
@@ -4408,12 +4396,12 @@ class crnrstn_response_return_serialization_map {
                         case CRNRSTN_CHANNEL_SESSION:
                             //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
 
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['channel_bytes'][$channel] = $tmp_channel_bytes;
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['channel_bytes'][$channel] = $tmp_channel_bytes;
 
                             //
                             // UPDATE BYTES BY RESOURCE.
                             //error_log(__LINE__ . ' rrs map [' . self::$channel_resource_id_ARRAY['cache_id'][$channel] . ']==[' . $this->get_config_cache('cache_id', $ddo_memory_pointer, $data_type_family, NULL, $channel) . ']');
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()][$cache_storage]['resource_bytes'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]] = $tmp_resource_bytes;
+                            $_SESSION['CRNRSTN_' . self::$config_serial][$cache_storage]['resource_bytes'][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]] = $tmp_resource_bytes;
 
                         break;
                         case CRNRSTN_CHANNEL_RUNTIME:
@@ -4433,7 +4421,7 @@ class crnrstn_response_return_serialization_map {
                         case CRNRSTN_CHANNEL_SSDTLA:
                             //S :: CRNRSTN :: SSDTLA PACKET (SOAP WRAPPED ENCRYPTED PSSDTLA PACKET. THE BROWSER WILL TALK LIKE A SERVER).
 
-                            self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][$channel] = $tmp_channel_bytes;
+                            self::$cache_ARRAY[self::$request_id]['channel_bytes'][$channel] = $tmp_channel_bytes;
 
                             error_log(__LINE__ . ' rrs map $channel[' . $channel . ']. $tmp_resource_bytes[' . strval($tmp_resource_bytes) . ']. $tmp_channel_bytes[' . $tmp_channel_bytes . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $data_type_family[' . $data_type_family . '].');
 
@@ -4443,7 +4431,7 @@ class crnrstn_response_return_serialization_map {
 
                             //
                             // UPDATE BYTES BY RESOURCE.
-                            self::$cache_ARRAY[$this->oCRNRSTN->request_id]['resource_bytes'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]] = $tmp_resource_bytes;
+                            self::$cache_ARRAY[self::$request_id]['resource_bytes'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]] = $tmp_resource_bytes;
 
                         break;
                         default:
@@ -4475,11 +4463,11 @@ class crnrstn_response_return_serialization_map {
                         case CRNRSTN_CHANNEL_SESSION:
                             //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
 
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['channel_bytes'][$channel] = $tmp_channel_bytes;
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['channel_bytes'][$channel] = $tmp_channel_bytes;
 
                             //
                             // STORE BYTES BY RESOURCE.
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()][$cache_storage]['resource_bytes'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()][$cache_storage]['cache_id'][$ddo_memory_pointer]] = $tmp_resource_bytes;
+                            $_SESSION['CRNRSTN_' . self::$config_serial][$cache_storage]['resource_bytes'][$_SESSION['CRNRSTN_' . self::$config_serial][$cache_storage]['cache_id'][$ddo_memory_pointer]] = $tmp_resource_bytes;
 
                         break;
                         case CRNRSTN_CHANNEL_POST:
@@ -4499,11 +4487,11 @@ class crnrstn_response_return_serialization_map {
                         case CRNRSTN_CHANNEL_RUNTIME:
                             //R :: RUNTIME.
 
-                            self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][$channel] = $tmp_channel_bytes;
+                            self::$cache_ARRAY[self::$request_id]['channel_bytes'][$channel] = $tmp_channel_bytes;
 
                             //
                             // STORE BYTES BY RESOURCE.
-                            self::$cache_ARRAY[$this->oCRNRSTN->request_id]['resource_bytes'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]] = $tmp_resource_bytes;
+                            self::$cache_ARRAY[self::$request_id]['resource_bytes'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]] = $tmp_resource_bytes;
 
                         break;
                         default:
@@ -4532,7 +4520,7 @@ class crnrstn_response_return_serialization_map {
                         case CRNRSTN_CHANNEL_SESSION:
                             //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
 
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['channel_bytes'][$channel] = $tmp_channel_bytes;
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['channel_bytes'][$channel] = $tmp_channel_bytes;
 
                         break;
                         case CRNRSTN_CHANNEL_RUNTIME:
@@ -4552,7 +4540,7 @@ class crnrstn_response_return_serialization_map {
                         case CRNRSTN_CHANNEL_SSDTLA:
                             //S :: CRNRSTN :: SSDTLA PACKET (SOAP WRAPPED ENCRYPTED PSSDTLA PACKET. THE BROWSER WILL TALK LIKE A SERVER).
 
-                            self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][$channel] = $tmp_channel_bytes;
+                            self::$cache_ARRAY[self::$request_id]['channel_bytes'][$channel] = $tmp_channel_bytes;
 
                         break;
                         default:
@@ -4583,10 +4571,10 @@ class crnrstn_response_return_serialization_map {
         switch($output_method){
             case 'request_fulfillment':
 
-                if(self::$request_current_fulfilled_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]] == 1){
+                if(self::$request_current_fulfilled_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]] == 1){
 
                     //error_log(__LINE__ . ' rrs map return cache is active for this asset.');
-                    //error_log(__LINE__ . ' rrs map SUCCESSFUL CACHE MATCH ON [' . $output_method . ']. $this->oCRNRSTN->request_id[' . $this->oCRNRSTN->request_id . ']. serial str [' . $this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial] . '].');
+                    //error_log(__LINE__ . ' rrs map SUCCESSFUL CACHE MATCH ON [' . $output_method . ']. self::$request_id[' . self::$request_id . ']. serial str [' . $this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial] . '].');
 
                     return true;
 
@@ -4595,9 +4583,9 @@ class crnrstn_response_return_serialization_map {
             break;
             case 'return_asset_data':
 
-                if(isset($this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial])){
+                if(isset($this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial])){
 
-                    if(isset(self::$cache_rrs_map_output_method_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]])){
+                    if(isset(self::$cache_rrs_map_output_method_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]])){
 
                         return true;
 
@@ -4605,7 +4593,7 @@ class crnrstn_response_return_serialization_map {
 
                 }else{
 
-                    error_log(__LINE__ . ' rrs map NO $cache_rrs_map_output_method_ARRAY DATA resource_id[' . self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]] . ']. $cache_rrs_map_output_method_ARRAY[' . print_r(self::$cache_rrs_map_output_method_ARRAY, true) . '].');
+                    error_log(__LINE__ . ' rrs map NO $cache_rrs_map_output_method_ARRAY DATA resource_id[' . self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]] . ']. $cache_rrs_map_output_method_ARRAY[' . print_r(self::$cache_rrs_map_output_method_ARRAY, true) . '].');
 
                 }
 
@@ -4657,8 +4645,8 @@ class crnrstn_response_return_serialization_map {
                 error_log(__LINE__ . ' rrs map FORCE FALSE CACHE INIT UNTIL GET RIGHT DATA STRUCTURE FOR THE JOB. $output_method[' . $output_method . '].');
                 return false;
 
-                //if(isset(self::$cache_rrs_map_output_method_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]][$tmp_response_serial])){
-                if(isset(self::$cache_rrs_map_output_method_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]])){
+                //if(isset(self::$cache_rrs_map_output_method_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]][$tmp_response_serial])){
+                if(isset(self::$cache_rrs_map_output_method_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]])){
 
                     error_log(__LINE__. ' rrs map SUCCESSFUL CACHE MATCH ON [' . $output_method . '].');
                     return true;
@@ -4679,13 +4667,13 @@ class crnrstn_response_return_serialization_map {
                 //
                 // initialize_response_map_cache('return_file_byte_chunked_buffer_output', $output_mode, $filepath, $filename, $file_extension)
 
-                if(isset($this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial])){
+                if(isset($this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial])){
 
-                    //self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]
-                    //self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]
-                    if(isset(self::$cache_rrs_map_output_method_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]])){
+                    //self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]
+                    //self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]
+                    if(isset(self::$cache_rrs_map_output_method_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]])){
 
-                        error_log(__LINE__ . ' rrs map [' . $output_method . ']. IS ACTIVE FOR [' . self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]] . '].');
+                        error_log(__LINE__ . ' rrs map [' . $output_method . ']. IS ACTIVE FOR [' . self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]] . '].');
                         return true;
 
                     }
@@ -4703,7 +4691,7 @@ class crnrstn_response_return_serialization_map {
 
         }
 
-        //error_log(__LINE__ . ' rrs map NO SUCCESS CACHE MATCH ON [' . $output_method . ']. $this->oCRNRSTN->request_id[' . $this->oCRNRSTN->request_id . ']. serial string[' . print_r($this->oCRNRSTN->request_serialization_string_ARRAY, true). '].');
+        //error_log(__LINE__ . ' rrs map NO SUCCESS CACHE MATCH ON [' . $output_method . ']. self::$request_id[' . self::$request_id . ']. serial string[' . print_r($this->oCRNRSTN->request_serialization_string_ARRAY, true). '].');
         //error_log(__LINE__ . ' rrs map self::$cache_rrs_map_output_method_ARRAY[' . print_r(self::$cache_rrs_map_output_method_ARRAY, true) . ']. $cache_rrs_map_image_string_ARRAY[' . print_r(self::$cache_rrs_map_image_string_ARRAY, true) . '].');
         //error_log(__LINE__ . ' rrs map self::$request_current_fulfilled_ARRAY[' . print_r(self::$request_current_fulfilled_ARRAY, true) . '].');
         /*
@@ -4781,15 +4769,15 @@ class crnrstn_response_return_serialization_map {
 
                 //     initialize_request($request_ugc_val,     $asset_family,          $asset_meta_key,  $asset_meta_path, $asset_meta_ARRAY, $raw_output_mode = NULL, $output_mode = NULL){
                 $this->initialize_request($param0['filename'], $param0['asset_family'], $param0['asset_data_key'], NULL, $param0, $param0['raw_output_mode'], $output_mode);
-                self::$cache_rrs_map_file_extension_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]] = 'ico';
-                self::$cache_rrs_map_filepath_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]] = $param1;
-                self::$cache_rrs_map_image_string_ARRAY[$this->oCRNRSTN->request_id][CRNRSTN_FAVICON][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]] = $param2;
-                self::$cache_rrs_map_filename_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]] = $param0['filename'];
+                self::$cache_rrs_map_file_extension_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]] = 'ico';
+                self::$cache_rrs_map_filepath_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]] = $param1;
+                self::$cache_rrs_map_image_string_ARRAY[self::$request_id][CRNRSTN_FAVICON][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]] = $param2;
+                self::$cache_rrs_map_filename_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]] = $param0['filename'];
 
-//                self::$cache_rrs_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = $output_mode;
-//                self::$cache_rrs_map_output_method_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]] = $output_method;
-//                self::$cache_rrs_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = $output_mode;
-//                self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = $param0['raw_output_mode'];
+//                self::$cache_rrs_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = $output_mode;
+//                self::$cache_rrs_map_output_method_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]] = $output_method;
+//                self::$cache_rrs_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = $output_mode;
+//                self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = $param0['raw_output_mode'];
 
             break;
             case 'return_file_http_string':
@@ -4812,8 +4800,8 @@ class crnrstn_response_return_serialization_map {
                         //
                         // A MANUAL WRITE FOR INITIALIZATION SINCE HTML CACHE WAS REMOVED.
                         error_log(__LINE__ . ' rrs map A MANUAL WRITE FOR INITIALIZATION SINCE HTML CACHE WAS REMOVED. [return_image_html_wrapped].');
-                        self::$cache_rrs_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = $output_mode;
-                        self::$cache_rrs_map_output_method_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = 'return_image_html_wrapped';
+                        self::$cache_rrs_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = $output_mode;
+                        self::$cache_rrs_map_output_method_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = 'return_image_html_wrapped';
 
                         return NULL;
 
@@ -4851,12 +4839,12 @@ class crnrstn_response_return_serialization_map {
                             error_log(__LINE__ . ' rrs map FINISH UI_STR RETURN FOR RRS MAP. NEED FILEPATH NEXT...');
 
                             //rrs_map_filepath
-                            self::$cache_rrs_map_output_method_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = $output_method;
-                            self::$cache_rrs_map_image_string_ARRAY[$this->oCRNRSTN->request_id][self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]]][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = $param0;
+                            self::$cache_rrs_map_output_method_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = $output_method;
+                            self::$cache_rrs_map_image_string_ARRAY[self::$request_id][self::$request_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]]][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = $param0;
 
-                            self::$cache_rrs_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]];
-                            //self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]];
-                            error_log(__LINE__ . ' rrs map STORING RRS MAP CACHE IN CHANNEL [' . $channel . ']. $output_mode[' . self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] . ']. $param0[' . $param0 . ']. die();');
+                            self::$cache_rrs_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = self::$request_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]];
+                            //self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]];
+                            error_log(__LINE__ . ' rrs map STORING RRS MAP CACHE IN CHANNEL [' . $channel . ']. $output_mode[' . self::$request_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] . ']. $param0[' . $param0 . ']. die();');
 
                         break;
                         default:
@@ -4890,7 +4878,7 @@ class crnrstn_response_return_serialization_map {
 
                 error_log(__LINE__ . ' rrs map BASE64 UGC METHOD INDEX IS [' . $tmp_response_map_ugc_value . ']. die();');
 
-                //self::$cache_rrs_map_filepath_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]]['filepath_base64']
+                //self::$cache_rrs_map_filepath_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]]['filepath_base64']
                 //die();
                 //$tmp_response_serial = $param0.$param1.$param2.$param3.$param4.$param5.$param6.$param7.$param8.$param9;
 
@@ -4913,15 +4901,15 @@ class crnrstn_response_return_serialization_map {
                         break;
                         case CRNRSTN_CHANNEL_RUNTIME:
 
-                            //$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial] = $tmp_response_serial;
-                            error_log(__LINE__ . ' rrs map NEW CACHE $output_mode[' . $output_mode . ']. id[' . self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value] . ']. $output_method[' . $output_method . ']. $filepath_base64[' . $param0 . ']. $image_cache_string[' . $param10 . '].');
-                            self::$cache_rrs_map_output_method_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = $output_method;
-                            self::$cache_rrs_map_filepath_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]]['filepath_base64'] = $param0;
-                            self::$cache_rrs_map_image_string_ARRAY[$this->oCRNRSTN->request_id][$output_mode][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = $param10;
+                            //$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial] = $tmp_response_serial;
+                            error_log(__LINE__ . ' rrs map NEW CACHE $output_mode[' . $output_mode . ']. id[' . self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value] . ']. $output_method[' . $output_method . ']. $filepath_base64[' . $param0 . ']. $image_cache_string[' . $param10 . '].');
+                            self::$cache_rrs_map_output_method_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = $output_method;
+                            self::$cache_rrs_map_filepath_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]]['filepath_base64'] = $param0;
+                            self::$cache_rrs_map_image_string_ARRAY[self::$request_id][$output_mode][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = $param10;
                             //self::$cache_rrs_map_output_method_ARRAY[$output_mode][$tmp_response_map_ugc_value] = $output_method;
 
-                            self::$cache_rrs_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]];
-                            //self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]];
+                            self::$cache_rrs_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = self::$request_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]];
+                            //self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]];
 
                         break;
                         default:
@@ -4981,23 +4969,23 @@ class crnrstn_response_return_serialization_map {
 
                             //error_log(__LINE__ . ' rrs map NEW CACHE $output_method[' . $output_method . ']. $image_string[' . $param10 . ']. INDEX_OVERRIDE=tmp_response_serial[' . $tmp_response_serial . '].');
 
-                            if($tmp_response_serial == $this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]){
+                            if($tmp_response_serial == $this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]){
 
                                 error_log(__LINE__ . ' rrs map $tmp_response_serial REDUNDANT! DO NOT UPDATE!');
 
                             }else{
 
-                                error_log(__LINE__ . ' rrs map NOT REDUNDANT. UPDATE IS NECESSARY! $tmp_response_serial[' . $tmp_response_serial . ']. [' . $this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial] . '].');
+                                error_log(__LINE__ . ' rrs map NOT REDUNDANT. UPDATE IS NECESSARY! $tmp_response_serial[' . $tmp_response_serial . ']. [' . $this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial] . '].');
 
                             }
 
                             // NEED TO TRACK ON INDEX [$tmp_response_serial] SEPARATELY IF WE WANT TO LOAD RUNTIME OFF CACHE LIKE WE SAID WE DO.
-                            $this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial] = $tmp_response_serial;
-                            self::$cache_rrs_map_output_method_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = $output_method;
-                            self::$cache_rrs_map_image_string_ARRAY[$this->oCRNRSTN->request_id][self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]]][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = $param10;
+                            $this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial] = $tmp_response_serial;
+                            self::$cache_rrs_map_output_method_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = $output_method;
+                            self::$cache_rrs_map_image_string_ARRAY[self::$request_id][self::$request_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]]][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = $param10;
 
-                            self::$cache_rrs_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]];
-                            //self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]];
+                            self::$cache_rrs_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = self::$request_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]];
+                            //self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]];
 
                         break;
 
@@ -5037,14 +5025,14 @@ class crnrstn_response_return_serialization_map {
 
                             //error_log(__LINE__ . ' rrs map NOW TIME TO STORE RRS MAP CACHE IN CHANNEL [' . $channel . ']. die();');
 
-                            self::$cache_rrs_map_output_method_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]] = $output_method;
+                            self::$cache_rrs_map_output_method_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]] = $output_method;
                             error_log(__LINE__ . ' rrs map NEW CACHE map output_method[' . $output_method . ']. $output_mode[' . $output_mode . ']. ARRAY[' . print_r(self::$cache_rrs_map_output_method_ARRAY, true) . ']. $js_integer_constant[' . $param0 . ']. $css_integer_constant[' . $param1 . ']. BOOL $footer_html_output[' . $param2 . ']. BOOL $is_dev_mode[' . $param3 . ']. $image_string[' . $param0 . '].');
 
-                            self::$cache_rrs_map_str_output_const_alpha_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]] = $param0;
-                            self::$cache_rrs_map_str_output_const_beta_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]] = $param1;
+                            self::$cache_rrs_map_str_output_const_alpha_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]] = $param0;
+                            self::$cache_rrs_map_str_output_const_beta_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]] = $param1;
 
-                            self::$cache_rrs_map_str_output_footer_html_output_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]] = $this->oCRNRSTN->tidy_boolean($param2);
-                            self::$cache_rrs_map_str_output_is_dev_mode_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]] = $param3;
+                            self::$cache_rrs_map_str_output_footer_html_output_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]] = $this->oCRNRSTN->tidy_boolean($param2);
+                            self::$cache_rrs_map_str_output_is_dev_mode_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]] = $param3;
 
                         break;
 
@@ -5092,22 +5080,22 @@ class crnrstn_response_return_serialization_map {
 
                             */
 
-                            error_log(__LINE__ . ' rrs map return RAW RESOURCE [' . self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]] . '].');
+                            error_log(__LINE__ . ' rrs map return RAW RESOURCE [' . self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]] . '].');
                             error_log(__LINE__ . ' rrs map $cache_rrs_map_filepath_ARRAY[.');
                             error_log(__LINE__ . ' rrs map $cache_rrs_map_filename_ARRAY.');
                             //$tmp=strlen($tmtp=array());
                             error_log(__LINE__ . ' rrs map ADD TO CACHE $output_method[' . $output_method . ']. $param0[' . $param0 . ']. $param1[' . $param1 . ']. $param2[' . $param2 . ']. $param3[' . $param3 . '].');
                             //die();
 //
-//                            if(isset($this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial])){
+//                            if(isset($this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial])){
 //
 //                                self::$cache_rrs_map_output_method_ARRAY = $output_method;
 //                                self::$cache_rrs_map_filepath_ARRAY = $param3;
-//                                //self::$cache_rrs_map_str_output_footer_html_output_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]] = $this->oCRNRSTN->tidy_boolean($param1);
-//                                //self::$cache_rrs_map_str_output_is_dev_mode_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]] = $this->oCRNRSTN->tidy_boolean($param2);
+//                                //self::$cache_rrs_map_str_output_footer_html_output_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]] = $this->oCRNRSTN->tidy_boolean($param1);
+//                                //self::$cache_rrs_map_str_output_is_dev_mode_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]] = $this->oCRNRSTN->tidy_boolean($param2);
 //
-//                                self::$cache_rrs_map_output_mode_ARRAY = self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]];
-//                                //self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]];
+//                                self::$cache_rrs_map_output_mode_ARRAY = self::$request_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]];
+//                                //self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]];
 //                                error_log(__LINE__ . ' rrs map SET $cache_rrs_map_output_method_ARRAY [' . $channel . ']. $output_method[' . $output_method . ']. $param3['.$param3.']. [].');
 //
 //                            }
@@ -5152,13 +5140,13 @@ class crnrstn_response_return_serialization_map {
                             //error_log(__LINE__ . ' rrs map NOW TIME TO STORE RRS MAP CACHE IN CHANNEL [' . $channel . ']. die();');
                             error_log(__LINE__ . ' rrs map NEW CACHE $output_method[' . $output_method . ']. $const[' . $param0 . ']. BOOL $footer_html_output[' . $this->oCRNRSTN->tidy_boolean($param1) . ']. BOOL $is_dev_mode[' . $this->oCRNRSTN->tidy_boolean($param2) . '].');
 
-                            self::$cache_rrs_map_output_method_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]] = $output_method;
-                            self::$cache_rrs_map_str_output_const_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]] = $param0;
-                            self::$cache_rrs_map_str_output_footer_html_output_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]] = $this->oCRNRSTN->tidy_boolean($param1);
-                            self::$cache_rrs_map_str_output_is_dev_mode_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]] = $this->oCRNRSTN->tidy_boolean($param2);
+                            self::$cache_rrs_map_output_method_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]] = $output_method;
+                            self::$cache_rrs_map_str_output_const_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]] = $param0;
+                            self::$cache_rrs_map_str_output_footer_html_output_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]] = $this->oCRNRSTN->tidy_boolean($param1);
+                            self::$cache_rrs_map_str_output_is_dev_mode_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]] = $this->oCRNRSTN->tidy_boolean($param2);
 
-                            self::$cache_rrs_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]];
-                            //self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]];
+                            self::$cache_rrs_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = self::$request_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]];
+                            //self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]];
 
                         break;
 
@@ -5200,8 +5188,8 @@ class crnrstn_response_return_serialization_map {
                             error_log(__LINE__ . ' rrs map NOW TIME TO STORE RRS MAP CACHE IN CHANNEL [' . $channel . '].');
                             error_log(__LINE__ . ' rrs map NEW CACHE $output_method[' . $output_method . ']. $output_mode[' . $output_mode . ']. $filepath[' . $param0 . ']. $file_extension[' . $param2 . '].');
 
-                            self::$cache_rrs_map_output_method_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]] = $output_method;
-                            self::$cache_rrs_map_filepath_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]] = $param0;
+                            self::$cache_rrs_map_output_method_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]] = $output_method;
+                            self::$cache_rrs_map_filepath_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]] = $param0;
 
 //                            if($param1 !== ''){
 //
@@ -5211,16 +5199,16 @@ class crnrstn_response_return_serialization_map {
 //
 //                                }
 //                                error_log(__LINE__ . ' rrs map filename[' . $param1 . '].');
-//                                self::$cache_rrs_map_filename_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]] = $param1;
+//                                self::$cache_rrs_map_filename_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]] = $param1;
 //
 //                            }
 
-                            self::$cache_rrs_map_file_extension_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]] = $param2;
+                            self::$cache_rrs_map_file_extension_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]] = $param2;
                             //error_log(__LINE__ . ' rrs map NEW CACHE $output_method[' . $output_method . ']. $filepath[' . $param0 . ']. $filename[' . $param1 . ']. $file_extension[' . $param2 . ']. self::$cache_rrs_map_file_extension_ARRAY[' . print_r(self::$cache_rrs_map_file_extension_ARRAY, true).'].');
 
-                            $tmp_output_mode = self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]];
-                            self::$cache_rrs_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = $tmp_output_mode;
-                            self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]] = self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_map_ugc_value]];
+                            $tmp_output_mode = self::$request_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]];
+                            self::$cache_rrs_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = $tmp_output_mode;
+                            self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]] = self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_response_map_ugc_value]];
 
                         break;
 
@@ -5238,15 +5226,15 @@ class crnrstn_response_return_serialization_map {
 
         }
 
-        if(isset($this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial])){
+        if(isset($this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial])){
 
-            self::$request_current_fulfilled_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]] = 1;
-            self::$request_current_fulfilled_method_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]] = $output_method;
+            self::$request_current_fulfilled_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]] = 1;
+            self::$request_current_fulfilled_method_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]] = $output_method;
 
-            if(isset(self::$request_page_fulfilled_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]])){
+            if(isset(self::$request_page_fulfilled_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]])){
 
-                self::$request_page_fulfilled_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]] = 1;
-                self::$request_parent_fulfilled_method_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]] = $output_method;
+                self::$request_page_fulfilled_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]] = 1;
+                self::$request_parent_fulfilled_method_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]] = $output_method;
 
             }
 
@@ -5291,11 +5279,11 @@ class crnrstn_response_return_serialization_map {
 
                 //
                 // INITIALIZE RESOURCE ID.
-                if(isset(self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc])){
+                if(isset(self::$cache_id_ARRAY[self::$request_id][$tmp_salt_ugc])){
 
 
-                    $tmp_cache_id = self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc];
-                    $tmp_fulfillment_driver = self::$request_fulfillment_driver_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc] = CRNRSTN_CHANNEL_RUNTIME;
+                    $tmp_cache_id = self::$cache_id_ARRAY[self::$request_id][$tmp_salt_ugc];
+                    $tmp_fulfillment_driver = self::$request_fulfillment_driver_ARRAY[self::$request_id][$tmp_salt_ugc] = CRNRSTN_CHANNEL_RUNTIME;
                     error_log(__LINE__ . ' rrs map PROCESS RUNTIME ACCELERATE FOR $tmp_cache_id[' . $tmp_cache_id . ']. $tmp_salt_ugc[' . $tmp_salt_ugc . '].');
 
                 }
@@ -5306,41 +5294,41 @@ class crnrstn_response_return_serialization_map {
                 //
                 // FIRST TO FIRE ON $_GET FOR APPLICATION ACCELERATION.
                 // INITIALIZE CACHE ID.
-                if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_salt_ugc])){
+                if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_salt_ugc])){
 
-                    $tmp_cache_id = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_salt_ugc];
+                    $tmp_cache_id = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_salt_ugc];
 
-                    error_log(__LINE__ . ' rrs map ***** PROCESS SESSION ACCELERATE cache_id[' . $tmp_cache_id . ']. [' . $this->oCRNRSTN->wall_time() . ' seconds] FOR $tmp_salt_ugc[' . $tmp_salt_ugc . ']. SESSION[' . print_r($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'], true) . '].');
+                    error_log(__LINE__ . ' rrs map ***** PROCESS SESSION ACCELERATE cache_id[' . $tmp_cache_id . ']. [' . $this->oCRNRSTN->wall_time() . ' seconds] FOR $tmp_salt_ugc[' . $tmp_salt_ugc . ']. SESSION[' . print_r($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'], true) . '].');
 
                     self::$destruct_sync_inactive = true;
 
-                    self::$request_fulfillment_driver_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc] = CRNRSTN_CHANNEL_SESSION;
+                    self::$request_fulfillment_driver_ARRAY[self::$request_id][$tmp_salt_ugc] = CRNRSTN_CHANNEL_SESSION;
 
-                    if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['asset_family'][$tmp_cache_id])){
+                    if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['asset_family'][$tmp_cache_id])){
 
-                        $tmp_response_map_asset_meta_key = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['asset_meta_key'][$tmp_cache_id];
+                        $tmp_response_map_asset_meta_key = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['asset_meta_key'][$tmp_cache_id];
                         $tmp_response_map_request_ugc_value = $tmp_salt_ugc;
-                        $asset_family = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['asset_family'][$tmp_cache_id];
+                        $asset_family = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['asset_family'][$tmp_cache_id];
                         $tmp_response_map_asset_meta_path = '';
-                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['meta_path'][$tmp_cache_id])){
+                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['meta_path'][$tmp_cache_id])){
 
-                            $tmp_response_map_asset_meta_path = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['meta_path'][$tmp_cache_id];
+                            $tmp_response_map_asset_meta_path = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['meta_path'][$tmp_cache_id];
 
                         }
 
                         error_log(__LINE__ . ' rrs map $tmp_response_map_request_ugc_value[' . $tmp_response_map_request_ugc_value . '].');
 
 
-                        //$tmp_raw_output_mode = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['raw_output_mode'][$tmp_cache_id];
+                        //$tmp_raw_output_mode = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['raw_output_mode'][$tmp_cache_id];
 
 //                        //
 //                        // CACHE TTL CHECK.
-//                        $tmp_max_time = self::$session_map_cache_ttl + (int) $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['lastmodified'][$tmp_cache_id];
+//                        $tmp_max_time = self::$session_map_cache_ttl + (int) $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['lastmodified'][$tmp_cache_id];
 //                        $tmp_time = time();
 //
-//                        //if(($tmp_time < $tmp_max_time) && ($tmp_max_time > (int) $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['lastmodified'][$tmp_cache_id])){
+//                        //if(($tmp_time < $tmp_max_time) && ($tmp_max_time > (int) $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['lastmodified'][$tmp_cache_id])){
 //                        $tmp_delta = (int) $tmp_max_time - (int) $tmp_time;
-//                        error_log(__LINE__ . ' rrs map TTL[' . $tmp_delta . ']. self::$session_map_cache_ttl[' . self::$session_map_cache_ttl . ']. lastmodified[' . $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['lastmodified'][$tmp_cache_id] . '] $tmp_max_time[' . $tmp_max_time . ']. EXPIRE CACHE FOR $tmp_salt_ugc[' . $tmp_salt_ugc . ']. $tmp_raw_output_mode[' . $tmp_raw_output_mode . '].');
+//                        error_log(__LINE__ . ' rrs map TTL[' . $tmp_delta . ']. self::$session_map_cache_ttl[' . self::$session_map_cache_ttl . ']. lastmodified[' . $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['lastmodified'][$tmp_cache_id] . '] $tmp_max_time[' . $tmp_max_time . ']. EXPIRE CACHE FOR $tmp_salt_ugc[' . $tmp_salt_ugc . ']. $tmp_raw_output_mode[' . $tmp_raw_output_mode . '].');
 //
 //                        if((((int) $tmp_delta) * 1) > 0){
 //
@@ -5375,9 +5363,9 @@ class crnrstn_response_return_serialization_map {
                         //$this->config_add_resource(CRNRSTN_RESOURCE_ALL, '', $tmp_ARRAY, 'CRNRSTN::RESOURCE::REPORTING');
                         $tmp_max_asset = $this->oCRNRSTN->get_resource('mem_rpt_plaid_performance', 0, 'CRNRSTN::RESOURCE::REPORTING');
 
-                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_response_map_request_ugc_value])){
+                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_response_map_request_ugc_value])){
 
-                            $tmp_cnt = count($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_response_map_request_ugc_value]);
+                            $tmp_cnt = count($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_response_map_request_ugc_value]);
 
                         }
 
@@ -5390,7 +5378,7 @@ class crnrstn_response_return_serialization_map {
 
                             //
                             // WRITE CRNRSTN :: PLAID REPORTING TO SESSION.
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_response_map_request_ugc_value]['mem_report'][] = $mem_reports_ARRAY;
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_response_map_request_ugc_value]['mem_report'][] = $mem_reports_ARRAY;
 
                         }
 
@@ -5467,9 +5455,9 @@ class crnrstn_response_return_serialization_map {
 
 //                        //
 //                        // CACHE TTL CHECK.
-//                        $tmp_max_time = self::$session_map_cache_ttl + (int) $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['lastmodified'][$tmp_cache_id];
+//                        $tmp_max_time = self::$session_map_cache_ttl + (int) $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['lastmodified'][$tmp_cache_id];
 //                        $tmp_time = time();
-//                        if(($tmp_time > $tmp_max_time) && ($tmp_max_time > (int) $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['lastmodified'][$tmp_cache_id])){
+//                        if(($tmp_time > $tmp_max_time) && ($tmp_max_time > (int) $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['lastmodified'][$tmp_cache_id])){
 //
 //                            //error_log(__LINE__ . ' rrs map TTL EXPIRE CACHE FOR $tmp_salt_ugc[' . $tmp_salt_ugc . ']. $tmp_raw_output_mode[' . $tmp_raw_output_mode . '].');
 //                            //die();
@@ -5504,12 +5492,12 @@ class crnrstn_response_return_serialization_map {
 
                 //
                 // ARRAY ONLY POPULATED UPON INITIALIZATION OF OUTPUT CACHE.
-                if(isset(self::$cache_rrs_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][$tmp_cache_id])){
+                if(isset(self::$cache_rrs_map_output_mode_ARRAY[self::$request_id][$tmp_cache_id])){
 
-                    $output_mode = self::$cache_rrs_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][$tmp_cache_id];
-                    if(isset(self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][$tmp_cache_id])){
+                    $output_mode = self::$cache_rrs_map_output_mode_ARRAY[self::$request_id][$tmp_cache_id];
+                    if(isset(self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][$tmp_cache_id])){
 
-                        $raw_output_mode = self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][$tmp_cache_id];
+                        $raw_output_mode = self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][$tmp_cache_id];
 
                     }
 
@@ -5517,9 +5505,9 @@ class crnrstn_response_return_serialization_map {
 
                     //
                     // USE RAW (RESOURCE DEFAULT) OUTPUT MODE AS PRIMARY MODE IF NONE PROVIDED.
-                    if(isset(self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][$tmp_cache_id])){
+                    if(isset(self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][$tmp_cache_id])){
 
-                        $output_mode = $raw_output_mode = self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][$tmp_cache_id];
+                        $output_mode = $raw_output_mode = self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][$tmp_cache_id];
 
                     }
 
@@ -5544,17 +5532,17 @@ class crnrstn_response_return_serialization_map {
                         // RESOURCE CACHE INITIALIZATION CHECK.
                         //
                         // SETTING THIS ON MATCH OF SESSION MANAGED RESOURCE.
-                        if(isset(self::$request_fulfillment_driver_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc])){
+                        if(isset(self::$request_fulfillment_driver_ARRAY[self::$request_id][$tmp_salt_ugc])){
 
-                            switch(self::$request_fulfillment_driver_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc]){
+                            switch(self::$request_fulfillment_driver_ARRAY[self::$request_id][$tmp_salt_ugc]){
                                 case CRNRSTN_CHANNEL_RUNTIME:
 
-                                    if(isset(self::$cache_rrs_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc]])){
+                                    if(isset(self::$cache_rrs_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_salt_ugc]])){
                                     //if(isset(self::$cache_rrs_map_output_method_ARRAY[$output_mode][$tmp_salt_ugc])){
 
                                         //
                                         // RESPONSE RETURN APPLICATION ACCELERATION.
-                                        $url = self::$cache_rrs_map_image_string_ARRAY[$this->oCRNRSTN->request_id][$output_mode][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc]];
+                                        $url = self::$cache_rrs_map_image_string_ARRAY[self::$request_id][$output_mode][self::$cache_id_ARRAY[self::$request_id][$tmp_salt_ugc]];
                                         $tmp_return = $this->oCRNRSTN->return_file_http_string($url);
                                         error_log(__LINE__ . ' rrs map Application Acceleration [runtime] FIRE. RRS Map resource return. $tmp_return[' . $tmp_return . '].');
 
@@ -5562,9 +5550,9 @@ class crnrstn_response_return_serialization_map {
                                         // EXTRACT (FROM SYSTEM SETTINGS) THE MAXIMUM NUMBER OF ASSETS TO REPORT UPON.
                                         $tmp_max_asset = $this->oCRNRSTN->get_resource('mem_rpt_plaid_performance', 0, 'CRNRSTN::RESOURCE::REPORTING');
 
-                                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc])){
+                                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc])){
 
-                                            $tmp_cnt = count($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]);
+                                            $tmp_cnt = count($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]);
 
                                         }
 
@@ -5577,7 +5565,7 @@ class crnrstn_response_return_serialization_map {
 
                                             //
                                             // WRITE CRNRSTN :: PLAID REPORTING TO SESSION.
-                                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]['mem_report'][] = $mem_reports_ARRAY;
+                                            $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]['mem_report'][] = $mem_reports_ARRAY;
 
                                         }
 
@@ -5588,7 +5576,7 @@ class crnrstn_response_return_serialization_map {
                                 break;
                                 default:
                                     // NOTHING TO DO.
-                                    error_log(__LINE__ . ' rrs map MISSING SWITCH CASE [' . self::$request_fulfillment_driver_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc] . '].');
+                                    error_log(__LINE__ . ' rrs map MISSING SWITCH CASE [' . self::$request_fulfillment_driver_ARRAY[self::$request_id][$tmp_salt_ugc] . '].');
                                 break;
 
                             }
@@ -5691,9 +5679,9 @@ class crnrstn_response_return_serialization_map {
                         // $param2 = $request_family
                         // $param3 = $asset_meta_path
 
-                        if(isset(self::$request_fulfillment_driver_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc])){
+                        if(isset(self::$request_fulfillment_driver_ARRAY[self::$request_id][$tmp_salt_ugc])){
 
-                            switch(self::$request_fulfillment_driver_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc]){
+                            switch(self::$request_fulfillment_driver_ARRAY[self::$request_id][$tmp_salt_ugc]){
                                 case CRNRSTN_CHANNEL_SESSION:
                                     error_log(__LINE__ . ' rrs map TODO :: HOOK UP THIS SESSION CASE STATEMENT.');
                                 break;
@@ -5701,19 +5689,19 @@ class crnrstn_response_return_serialization_map {
 
                                     error_log(__LINE__ . ' rrs map TODO :: TESTING THIS RUNTIME CASE STATEMENT.');
 
-                                    if(isset(self::$request_asset_meta_path_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc]])){
+                                    if(isset(self::$request_asset_meta_path_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_salt_ugc]])){
 
-                                        $tmp_response_map_asset_meta_key = self::$request_asset_meta_key_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc]];
+                                        $tmp_response_map_asset_meta_key = self::$request_asset_meta_key_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_salt_ugc]];
                                         $tmp_response_map_request_ugc_value = $tmp_salt_ugc;
-                                        $asset_family = self::$request_family_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc]];
-                                        $tmp_response_map_asset_meta_path = self::$request_asset_meta_path_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc]];
-                                        $tmp_raw_output_mode = self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc]];
+                                        $asset_family = self::$request_family_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_salt_ugc]];
+                                        $tmp_response_map_asset_meta_path = self::$request_asset_meta_path_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_salt_ugc]];
+                                        $tmp_raw_output_mode = self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$tmp_salt_ugc]];
 
                                         //
                                         // CACHE TTL CHECK.
-                                        $tmp_max_time = self::$session_map_cache_ttl + (int) self::$cache_lastmodified_ARRAY[self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc]];
+                                        $tmp_max_time = self::$session_map_cache_ttl + (int) self::$cache_lastmodified_ARRAY[self::$cache_id_ARRAY[self::$request_id][$tmp_salt_ugc]];
                                         $tmp_time = time();
-                                        if(($tmp_time > $tmp_max_time) && ($tmp_max_time > (int) self::$cache_lastmodified_ARRAY[self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc]])){
+                                        if(($tmp_time > $tmp_max_time) && ($tmp_max_time > (int) self::$cache_lastmodified_ARRAY[self::$cache_id_ARRAY[self::$request_id][$tmp_salt_ugc]])){
 
                                             error_log(__LINE__ . ' rrs map TTL EXPIRE CACHE FOR $tmp_salt_ugc[' . $tmp_salt_ugc . ']. $tmp_raw_output_mode[' . $tmp_raw_output_mode . ']. die();');
                                             die();
@@ -5727,9 +5715,9 @@ class crnrstn_response_return_serialization_map {
                                         // EXTRACT (FROM SYSTEM SETTINGS) THE MAXIMUM NUMBER OF ASSETS TO REPORT UPON.
                                         $tmp_max_asset = $this->oCRNRSTN->get_resource('mem_rpt_plaid_performance', 0, 'CRNRSTN::RESOURCE::REPORTING');
                                         $tmp_cnt = 0;
-                                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc])){
+                                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc])){
 
-                                            $tmp_cnt = count($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]);
+                                            $tmp_cnt = count($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]);
 
                                         }
 
@@ -5742,7 +5730,7 @@ class crnrstn_response_return_serialization_map {
 
                                             //
                                             // WRITE CRNRSTN :: PLAID REPORTING TO SESSION.
-                                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]['mem_report'][] = $mem_reports_ARRAY;
+                                            $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]['mem_report'][] = $mem_reports_ARRAY;
 
                                         }
 
@@ -5753,7 +5741,7 @@ class crnrstn_response_return_serialization_map {
                                 break;
                                 default:
                                     // NOTHING TO DO.
-                                    error_log(__LINE__ . ' rrs map SWITCH DEFAULT CASE[' .  self::$request_fulfillment_driver_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc] . '].');
+                                    error_log(__LINE__ . ' rrs map SWITCH DEFAULT CASE[' .  self::$request_fulfillment_driver_ARRAY[self::$request_id][$tmp_salt_ugc] . '].');
 
                                 break;
 
@@ -5763,9 +5751,9 @@ class crnrstn_response_return_serialization_map {
 
 //                        //
 //                        // CACHE TTL CHECK.
-//                        $tmp_max_time = self::$session_map_cache_ttl + (int) $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['lastmodified'][$tmp_cache_id];
+//                        $tmp_max_time = self::$session_map_cache_ttl + (int) $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['lastmodified'][$tmp_cache_id];
 //                        $tmp_time = time();
-//                        if(($tmp_time > $tmp_max_time) && ($tmp_max_time > (int) $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['lastmodified'][$tmp_cache_id])){
+//                        if(($tmp_time > $tmp_max_time) && ($tmp_max_time > (int) $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['lastmodified'][$tmp_cache_id])){
 //
 //                            //error_log(__LINE__ . ' rrs map TTL EXPIRE CACHE FOR $tmp_salt_ugc[' . $tmp_salt_ugc . ']. $tmp_raw_output_mode[' . $tmp_raw_output_mode . '].');
 //                            //die();
@@ -5788,9 +5776,9 @@ class crnrstn_response_return_serialization_map {
                         error_log(__LINE__  . ' rrs map JS/CSS OUTPUT.');
                         die();
 
-                        if(isset(self::$request_fulfillment_driver_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc])){
+                        if(isset(self::$request_fulfillment_driver_ARRAY[self::$request_id][$tmp_salt_ugc])){
 
-                            switch(self::$request_fulfillment_driver_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc]){
+                            switch(self::$request_fulfillment_driver_ARRAY[self::$request_id][$tmp_salt_ugc]){
                                 case CRNRSTN_CHANNEL_SESSION:
 
                                     error_log(__LINE__ . ' rrs map SESSION DOES IT FOR [' . $tmp_salt_ugc . ']!');
@@ -5798,21 +5786,21 @@ class crnrstn_response_return_serialization_map {
                                 break;
                                 case CRNRSTN_CHANNEL_RUNTIME:
 
-                                    error_log(__LINE__ . ' rrs map return RAW RESOURCE [' . self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]] . '].');
+                                    error_log(__LINE__ . ' rrs map return RAW RESOURCE [' . self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]] . '].');
                                     error_log(__LINE__ . ' rrs map $cache_rrs_map_filepath_ARRAY[' . print_r(self::$cache_rrs_map_filepath_ARRAY, true) . '].');
                                     error_log(__LINE__ . ' rrs map $cache_rrs_map_filename_ARRAY[' . print_r(self::$cache_rrs_map_filename_ARRAY, true) . '].');
-                                    if(isset(self::$cache_rrs_map_filepath_ARRAY[$this->oCRNRSTN->request_id][$tmp_cache_id])){
+                                    if(isset(self::$cache_rrs_map_filepath_ARRAY[self::$request_id][$tmp_cache_id])){
 
-                                        $tmp_filepath = self::$cache_rrs_map_filepath_ARRAY[$this->oCRNRSTN->request_id][$tmp_cache_id];
-                                        $tmp_filename = self::$cache_rrs_map_filename_ARRAY[$this->oCRNRSTN->request_id][$tmp_cache_id];
-                                        $tmp_file_extension = self::$cache_rrs_map_file_extension_ARRAY[$this->oCRNRSTN->request_id][$tmp_cache_id];
-                                        $tmp_raw_output_mode = self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][$tmp_cache_id];
+                                        $tmp_filepath = self::$cache_rrs_map_filepath_ARRAY[self::$request_id][$tmp_cache_id];
+                                        $tmp_filename = self::$cache_rrs_map_filename_ARRAY[self::$request_id][$tmp_cache_id];
+                                        $tmp_file_extension = self::$cache_rrs_map_file_extension_ARRAY[self::$request_id][$tmp_cache_id];
+                                        $tmp_raw_output_mode = self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][$tmp_cache_id];
 
                                         //
                                         // CACHE TTL CHECK.
-                                        $tmp_max_time = (int) self::$session_map_cache_ttl + (int) self::$cache_lastmodified_ARRAY[$this->oCRNRSTN->request_id][$tmp_cache_id];
+                                        $tmp_max_time = (int) self::$session_map_cache_ttl + (int) self::$cache_lastmodified_ARRAY[self::$request_id][$tmp_cache_id];
                                         $tmp_time = time();
-                                        if(($tmp_time > $tmp_max_time) && ($tmp_max_time > (int) self::$cache_lastmodified_ARRAY[$this->oCRNRSTN->request_id][$tmp_cache_id])){
+                                        if(($tmp_time > $tmp_max_time) && ($tmp_max_time > (int) self::$cache_lastmodified_ARRAY[self::$request_id][$tmp_cache_id])){
 
                                             // error_log(__LINE__ . ' rrs map TTL EXPIRE CACHE FOR $tmp_salt_ugc[' . $tmp_salt_ugc . ']. $tmp_raw_output_mode[' . $tmp_raw_output_mode . '].');
                                             // die();
@@ -5830,7 +5818,7 @@ class crnrstn_response_return_serialization_map {
                                 default:
                                     // NOTHING TO DO.
 
-                                    error_log(__LINE__ . ' rrs map [' . self::$request_fulfillment_driver_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc] . '].');
+                                    error_log(__LINE__ . ' rrs map [' . self::$request_fulfillment_driver_ARRAY[self::$request_id][$tmp_salt_ugc] . '].');
 
                                 break;
 
@@ -5857,17 +5845,17 @@ class crnrstn_response_return_serialization_map {
                 switch($tmp_output_method){
                     case 'return_file_http_string':
 
-                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['output_mode'][$tmp_cache_id])){
+                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['output_mode'][$tmp_cache_id])){
 
-                            $output_mode = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['output_mode'][$tmp_cache_id];
+                            $output_mode = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['output_mode'][$tmp_cache_id];
 
                         }else{
 
                             //
                             // USE RAW (RESOURCE DEFAULT) OUTPUT MODE AS PRIMARY MODE IF NONE PROVIDED.
-                            if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['output_mode'][$tmp_cache_id])){
+                            if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['output_mode'][$tmp_cache_id])){
 
-                                $output_mode = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['output_mode'][$tmp_cache_id];
+                                $output_mode = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['output_mode'][$tmp_cache_id];
 
                             }
 
@@ -5887,16 +5875,16 @@ class crnrstn_response_return_serialization_map {
                         // RESOURCE CACHE INITIALIZATION CHECK.
                         //
                         // SETTING THIS ON MATCH OF SESSION MANAGED RESOURCE.
-                        if(isset(self::$request_fulfillment_driver_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc])){
+                        if(isset(self::$request_fulfillment_driver_ARRAY[self::$request_id][$tmp_salt_ugc])){
 
-                            switch(self::$request_fulfillment_driver_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc]){
+                            switch(self::$request_fulfillment_driver_ARRAY[self::$request_id][$tmp_salt_ugc]){
                                 case CRNRSTN_CHANNEL_SESSION:
 
-                                    if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['url'][$tmp_salt_ugc])){
+                                    if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['url'][$tmp_salt_ugc])){
 
                                         //
                                         // RESPONSE RETURN APPLICATION ACCELERATION.
-                                        $img_string = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['url'][$tmp_salt_ugc];
+                                        $img_string = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['url'][$tmp_salt_ugc];
                                         $tmp_return = $this->oCRNRSTN->return_file_http_string($img_string);
                                         error_log(__LINE__ . ' rrs map Application Acceleration [session] FIRE. RRS Map resource return. $tmp_return[' . $tmp_return . '].');
 
@@ -5904,9 +5892,9 @@ class crnrstn_response_return_serialization_map {
                                         // EXTRACT (FROM SYSTEM SETTINGS) THE MAXIMUM NUMBER OF ASSETS TO REPORT UPON.
                                         $tmp_max_asset = $this->oCRNRSTN->get_resource('mem_rpt_plaid_performance', 0, 'CRNRSTN::RESOURCE::REPORTING');
                                         $tmp_cnt = 0;
-                                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc])){
+                                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc])){
 
-                                            $tmp_cnt = count($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]);
+                                            $tmp_cnt = count($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]);
 
                                         }
 
@@ -5919,7 +5907,7 @@ class crnrstn_response_return_serialization_map {
 
                                             //
                                             // WRITE CRNRSTN :: PLAID REPORTING TO SESSION.
-                                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]['mem_report'][] = $mem_reports_ARRAY;
+                                            $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]['mem_report'][] = $mem_reports_ARRAY;
 
                                         }
 
@@ -5930,7 +5918,7 @@ class crnrstn_response_return_serialization_map {
                                 break;
                                 default:
                                     // NOTHING TO DO.
-                                    error_log(__LINE__ . ' rrs map DEFAULT [' . self::$request_fulfillment_driver_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc] . '] NOTHING TO DO? die();');
+                                    error_log(__LINE__ . ' rrs map DEFAULT [' . self::$request_fulfillment_driver_ARRAY[self::$request_id][$tmp_salt_ugc] . '] NOTHING TO DO? die();');
 
                                 break;
                             }
@@ -6035,27 +6023,27 @@ class crnrstn_response_return_serialization_map {
 
                         error_log(__LINE__ . ' rrs map TODO :: HOOK UP THIS SESSION CASE STATEMENT. WHAT\'CHA DOIN\' HERE? 1/3');
 
-                        if(isset(self::$request_fulfillment_driver_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc])){
+                        if(isset(self::$request_fulfillment_driver_ARRAY[self::$request_id][$tmp_salt_ugc])){
 
                             error_log(__LINE__ . ' rrs map TODO :: HOOK UP THIS SESSION CASE STATEMENT. WHAT\'CHA DOIN\' HERE? 2/3');
 
-                            switch(self::$request_fulfillment_driver_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc]){
+                            switch(self::$request_fulfillment_driver_ARRAY[self::$request_id][$tmp_salt_ugc]){
                                 case CRNRSTN_CHANNEL_SESSION:
 
                                     error_log(__LINE__ . ' rrs map TODO :: HOOK UP THIS SESSION CASE STATEMENT. WHAT\'CHA DOIN\' HERE? 3/3');
-                                    if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['meta_path'][$tmp_cache_id])){
+                                    if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['meta_path'][$tmp_cache_id])){
 
-                                        $tmp_response_map_asset_meta_key = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['asset_meta_key'][$tmp_cache_id];
+                                        $tmp_response_map_asset_meta_key = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['asset_meta_key'][$tmp_cache_id];
                                         $tmp_response_map_request_ugc_value = $tmp_salt_ugc;
-                                        $asset_family = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['asset_family'][$tmp_cache_id];
-                                        $tmp_response_map_asset_meta_path = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['meta_path'][$tmp_cache_id];
-                                        $tmp_raw_output_mode = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['raw_output_mode'][$tmp_cache_id];
+                                        $asset_family = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['asset_family'][$tmp_cache_id];
+                                        $tmp_response_map_asset_meta_path = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['meta_path'][$tmp_cache_id];
+                                        $tmp_raw_output_mode = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['raw_output_mode'][$tmp_cache_id];
 
                                         //
                                         // CACHE TTL CHECK.
-                                        $tmp_max_time = self::$session_map_cache_ttl + (int) $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['lastmodified'][$tmp_cache_id];
+                                        $tmp_max_time = self::$session_map_cache_ttl + (int) $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['lastmodified'][$tmp_cache_id];
                                         $tmp_time = time();
-                                        if(($tmp_time > $tmp_max_time) && ($tmp_max_time > (int) $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['lastmodified'][$tmp_cache_id])){
+                                        if(($tmp_time > $tmp_max_time) && ($tmp_max_time > (int) $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['lastmodified'][$tmp_cache_id])){
 
                                             //error_log(__LINE__ . ' rrs map TTL EXPIRE CACHE FOR $tmp_salt_ugc[' . $tmp_salt_ugc . ']. $tmp_raw_output_mode[' . $tmp_raw_output_mode . '].');
                                             //die();
@@ -6069,9 +6057,9 @@ class crnrstn_response_return_serialization_map {
                                         // EXTRACT (FROM SYSTEM SETTINGS) THE MAXIMUM NUMBER OF ASSETS TO REPORT UPON.
                                         $tmp_max_asset = $this->oCRNRSTN->get_resource('mem_rpt_plaid_performance', 0, 'CRNRSTN::RESOURCE::REPORTING');
                                         $tmp_cnt = 0;
-                                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc])){
+                                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc])){
 
-                                            $tmp_cnt = count($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]);
+                                            $tmp_cnt = count($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]);
 
                                         }
 
@@ -6084,7 +6072,7 @@ class crnrstn_response_return_serialization_map {
 
                                             //
                                             // WRITE CRNRSTN :: PLAID REPORTING TO SESSION.
-                                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]['mem_report'][] = $mem_reports_ARRAY;
+                                            $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_salt_ugc]['mem_report'][] = $mem_reports_ARRAY;
 
                                         }
 
@@ -6117,21 +6105,21 @@ class crnrstn_response_return_serialization_map {
                         // $param1 = $filename
                         // $param2 = $file_extension = NULL??
 
-                        if(isset(self::$request_fulfillment_driver_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc])){
+                        if(isset(self::$request_fulfillment_driver_ARRAY[self::$request_id][$tmp_salt_ugc])){
 
-                            switch(self::$request_fulfillment_driver_ARRAY[$this->oCRNRSTN->request_id][$tmp_salt_ugc]){
+                            switch(self::$request_fulfillment_driver_ARRAY[self::$request_id][$tmp_salt_ugc]){
                                 case CRNRSTN_CHANNEL_SESSION:
 
-                                    $tmp_filepath = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['rrs_map_filepath'][$tmp_cache_id];
-                                    $tmp_filename = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['rrs_map_filename'][$tmp_cache_id];
-                                    $tmp_file_extension = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['rrs_map_file_extension'][$tmp_cache_id];
-                                    $tmp_raw_output_mode = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['raw_output_mode'][$tmp_cache_id];
+                                    $tmp_filepath = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['rrs_map_filepath'][$tmp_cache_id];
+                                    $tmp_filename = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['rrs_map_filename'][$tmp_cache_id];
+                                    $tmp_file_extension = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['rrs_map_file_extension'][$tmp_cache_id];
+                                    $tmp_raw_output_mode = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['raw_output_mode'][$tmp_cache_id];
 
                                     //
                                     // CACHE TTL CHECK.
-                                    $tmp_max_time = self::$session_map_cache_ttl + (int) $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['lastmodified'][$tmp_cache_id];
+                                    $tmp_max_time = self::$session_map_cache_ttl + (int) $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['lastmodified'][$tmp_cache_id];
                                     $tmp_time = time();
-                                    if(($tmp_time > $tmp_max_time) && ($tmp_max_time > (int) $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['lastmodified'][$tmp_cache_id])){
+                                    if(($tmp_time > $tmp_max_time) && ($tmp_max_time > (int) $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['lastmodified'][$tmp_cache_id])){
 
                                         //error_log(__LINE__ . ' rrs map TTL EXPIRE CACHE FOR $tmp_salt_ugc[' . $tmp_salt_ugc . ']. $tmp_raw_output_mode[' . $tmp_raw_output_mode . '].');
                                         //die();
@@ -6148,9 +6136,9 @@ class crnrstn_response_return_serialization_map {
                                     // EXTRACT (FROM SYSTEM SETTINGS) THE MAXIMUM NUMBER OF ASSETS TO REPORT UPON.
                                     $tmp_max_asset = $this->oCRNRSTN->get_resource('mem_rpt_plaid_performance', 0, 'CRNRSTN::RESOURCE::REPORTING');
                                     $tmp_cnt = 0;
-                                    if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_ugc])){
+                                    if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_ugc])){
 
-                                        $tmp_cnt = count($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_ugc]);
+                                        $tmp_cnt = count($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_ugc]);
 
                                     }
 
@@ -6163,7 +6151,7 @@ class crnrstn_response_return_serialization_map {
 
                                         //
                                         // WRITE CRNRSTN :: PLAID REPORTING TO SESSION.
-                                        $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_ugc]['mem_report'][] = $mem_reports_ARRAY;
+                                        $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP_CACHE_REPORT']['rrs_map_report'][$tmp_ugc]['mem_report'][] = $mem_reports_ARRAY;
 
                                     }
 
@@ -6208,15 +6196,15 @@ class crnrstn_response_return_serialization_map {
         switch($channel){
             case CRNRSTN_CHANNEL_SESSION:
 
-                error_log(__LINE__ . ' rrs map $channel[' . $channel . '] asset_meta_path_ARRAY[' . print_r($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['meta_path'], true) . '].');
+                error_log(__LINE__ . ' rrs map $channel[' . $channel . '] asset_meta_path_ARRAY[' . print_r($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['meta_path'], true) . '].');
 
-                if(!isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['meta_path'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$salt_ugc_val]])){
+                if(!isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['meta_path'][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$salt_ugc_val]])){
 
                     return '';
 
                 }
 
-                return self::$request_asset_meta_path_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]];
+                return self::$request_asset_meta_path_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]];
 
             break;
             case CRNRSTN_CHANNEL_RUNTIME:
@@ -6224,11 +6212,11 @@ class crnrstn_response_return_serialization_map {
 
                 error_log(__LINE__ . ' rrs map $channel asset_meta_path_ARRAY[' . print_r(self::$request_asset_meta_path_ARRAY, true) . '].');
 
-                if(isset($this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial])){
+                if(isset($this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial])){
 
-                    if(isset(self::$request_asset_meta_path_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]])){
+                    if(isset(self::$request_asset_meta_path_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]])){
 
-                        return self::$request_asset_meta_path_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]];
+                        return self::$request_asset_meta_path_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]];
 
                     }
 
@@ -6244,15 +6232,15 @@ class crnrstn_response_return_serialization_map {
 
     public function return_response_map_asset_meta_key(){
 
-        if(isset($this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial])){
+        if(isset($this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial])){
 
-            if(!isset(self::$request_asset_meta_key_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]])){
+            if(!isset(self::$request_asset_meta_key_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]])){
 
                 return '';
 
             }
 
-            return self::$request_asset_meta_key_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]];
+            return self::$request_asset_meta_key_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]];
 
         }
 
@@ -6265,16 +6253,16 @@ class crnrstn_response_return_serialization_map {
 
         $tmp_init_map = false;
 
-        if(isset($this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial])){
+        if(isset($this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial])){
 
-            if(!isset(self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]])){
+            if(!isset(self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]])){
 
                 error_log(__LINE__ . ' rrs map MUST INITIALIZE RRS MAP.');
                 $tmp_init_map = true;
 
             }else{
 
-                return self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]];
+                return self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]];
 
             }
 
@@ -6310,9 +6298,9 @@ class crnrstn_response_return_serialization_map {
 
                         if(strlen($data_override) > 0){
 
-                            if($data_override !== self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]){
+                            if($data_override !== self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]){
 
-                                error_log(__LINE__ . ' rrs map MUST INITIALIZE OLD[' . self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]] . '] RRS MAP WITH [' . $data_override . '].');
+                                error_log(__LINE__ . ' rrs map MUST INITIALIZE OLD[' . self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]] . '] RRS MAP WITH [' . $data_override . '].');
                                 $tmp_init_map = true;
 
                             }
@@ -6331,7 +6319,7 @@ class crnrstn_response_return_serialization_map {
 
             if(isset($data_override)){
 
-                //self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial] = $data_override;
+                //self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial] = $data_override;
 
                 //
                 // FIRE RRS MAP LISTENER INITIALIZATION WITH OVERRIDE DATA.
@@ -6357,7 +6345,7 @@ class crnrstn_response_return_serialization_map {
 
         }
 
-        //return self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial];
+        //return self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial];
 
     }
 
@@ -6369,28 +6357,28 @@ class crnrstn_response_return_serialization_map {
         switch($channel){
             case CRNRSTN_CHANNEL_SESSION:
 
-                $tmp_cache_id = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$this->get_salt_ugc()];
-                if(!isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['asset_family'][$tmp_cache_id])){
+                $tmp_cache_id = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$this->get_salt_ugc()];
+                if(!isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['asset_family'][$tmp_cache_id])){
 
                     return '';
 
                 }
 
-                return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['asset_family'][$tmp_cache_id];
+                return $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['asset_family'][$tmp_cache_id];
 
             break;
             case CRNRSTN_CHANNEL_RUNTIME:
             default:
 
-                if(isset($this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial])){
+                if(isset($this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial])){
 
-                    if(!isset(self::$request_family_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]])){
+                    if(!isset(self::$request_family_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]])){
 
                         return '';
 
                     }
 
-                    return self::$request_family_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]];
+                    return self::$request_family_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]];
 
                 }
 
@@ -6417,7 +6405,7 @@ class crnrstn_response_return_serialization_map {
 
                             // $attribute == 'cache_id'
                             // CHECK SESSION.
-                            if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$attribute][$salt_ugc])){
+                            if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$attribute][$salt_ugc])){
 
                                 return true;
 
@@ -6428,7 +6416,7 @@ class crnrstn_response_return_serialization_map {
 
                             //
                             // CHECK RUNTIME.
-                            if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][$salt_ugc])){
+                            if(isset(self::$cache_ARRAY[self::$request_id][$attribute][$salt_ugc])){
 
                                 return true;
 
@@ -6447,7 +6435,7 @@ class crnrstn_response_return_serialization_map {
 
                     //
                     // CHECK RUNTIME AND SESSION.
-                    if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][$salt_ugc]) || (isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$attribute][$salt_ugc]))){
+                    if(isset(self::$cache_ARRAY[self::$request_id][$attribute][$salt_ugc]) || (isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$attribute][$salt_ugc]))){
 
                         return true;
 
@@ -6468,7 +6456,7 @@ class crnrstn_response_return_serialization_map {
 
                     //
                     // CHECK SESSION.
-                    if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$attribute][$this->oCRNRSTN->get_cache('cache_id', $salt_ugc, $channel)])){
+                    if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$attribute][$this->oCRNRSTN->get_cache('cache_id', $salt_ugc, $channel)])){
 
                         return true;
 
@@ -6479,7 +6467,7 @@ class crnrstn_response_return_serialization_map {
 
                     //
                     // CHECK RUNTIME.
-                    if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][$this->oCRNRSTN->get_cache('cache_id', $salt_ugc, $channel)])){
+                    if(isset(self::$cache_ARRAY[self::$request_id][$attribute][$this->oCRNRSTN->get_cache('cache_id', $salt_ugc, $channel)])){
 
                         return true;
 
@@ -6498,7 +6486,7 @@ class crnrstn_response_return_serialization_map {
 
             //
             // CHECK RUNTIME AND SESSION.
-            if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][$this->oCRNRSTN->get_cache('cache_id', $salt_ugc, 'runtime')]) || (isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$attribute][$this->oCRNRSTN->get_cache('cache_id', $salt_ugc, 'session')]))){
+            if(isset(self::$cache_ARRAY[self::$request_id][$attribute][$this->oCRNRSTN->get_cache('cache_id', $salt_ugc, 'runtime')]) || (isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$attribute][$this->oCRNRSTN->get_cache('cache_id', $salt_ugc, 'session')]))){
 
                 return true;
 
@@ -6522,18 +6510,18 @@ class crnrstn_response_return_serialization_map {
 
         }
 
-        if(isset($this->ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial])){
+        if(isset($this->ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial])){
 
-            return $this->ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial];
+            return $this->ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial];
 
         }
 
-        //$tmp_cache_id = self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][];
+        //$tmp_cache_id = self::$cache_ARRAY[self::$request_id]['cache_id'][];
         $tmp_cache_id = $this->get_cache('cache_id');
 
-        if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['filename'][$tmp_cache_id])){
+        if(isset(self::$cache_ARRAY[self::$request_id]['filename'][$tmp_cache_id])){
 
-            return self::$cache_ARRAY[$this->oCRNRSTN->request_id]['filename'][$tmp_cache_id];
+            return self::$cache_ARRAY[self::$request_id]['filename'][$tmp_cache_id];
 
         }
 
@@ -6571,14 +6559,14 @@ class crnrstn_response_return_serialization_map {
 
                     //
                     // IPADDRESS_ID :: IP ADDRESS KEY WITHIN MEMORY.
-                    if(!isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()][$DATA_ARCHITECTURE]['ipaddress_id'][$ip])){
+                    if(!isset($_SESSION['CRNRSTN_' . self::$config_serial][$DATA_ARCHITECTURE]['ipaddress_id'][$ip])){
 
                         $tmp_resource_id_active_ARRAY = array();
                         $tmp_resource_id_active_ARRAY[-1] = 1;
 
-                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()][$DATA_ARCHITECTURE]['ipaddress_id'])){
+                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial][$DATA_ARCHITECTURE]['ipaddress_id'])){
 
-                            foreach($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()][$DATA_ARCHITECTURE]['ipaddress_id'] as $ip => $res_id){
+                            foreach($_SESSION['CRNRSTN_' . self::$config_serial][$DATA_ARCHITECTURE]['ipaddress_id'] as $ip => $res_id){
 
                                 //
                                 // FLAG CURRENT "GAPPY TOOTH SMILE" RESOURCE IDS.
@@ -6595,7 +6583,7 @@ class crnrstn_response_return_serialization_map {
 
                             if(!isset($tmp_resource_id_active_ARRAY[$i])){
 
-                                // $_SESSIN['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()][$DATA_ARCHITECTURE]['ipaddress_id'][$ip] = $i;
+                                // $_SESSIN['CRNRSTN_' . self::$config_serial][$DATA_ARCHITECTURE]['ipaddress_id'][$ip] = $i;
                                 return $i;
 
                                 break;
@@ -6608,7 +6596,7 @@ class crnrstn_response_return_serialization_map {
 
                     //
                     // RETURN IPADDRESS_ID FOR EXISTING RESOURCE.
-                    return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()][$DATA_ARCHITECTURE]['ipaddress_id'][$ip];
+                    return $_SESSION['CRNRSTN_' . self::$config_serial][$DATA_ARCHITECTURE]['ipaddress_id'][$ip];
 
                 break;
                 case CRNRSTN_CHANNEL_RUNTIME:
@@ -6631,9 +6619,9 @@ class crnrstn_response_return_serialization_map {
                     //
                     // IPADDRESS_ID INITIALIZATION CHECK :: PRIMARY RESOURCE KEY WITHIN MEMORY.
                     // IF IT EXISTS, RETURN IPADDRESS_ID.
-                    if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['ipaddress_id'][$ip])){
+                    if(isset(self::$cache_ARRAY[self::$request_id]['ipaddress_id'][$ip])){
 
-                        return self::$cache_ARRAY[$this->oCRNRSTN->request_id]['ipaddress_id'][$ip];
+                        return self::$cache_ARRAY[self::$request_id]['ipaddress_id'][$ip];
 
                     }
 
@@ -6750,7 +6738,7 @@ class crnrstn_response_return_serialization_map {
             case CRNRSTN_CHANNEL_SESSION:
                 //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
 
-                if(!isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()][$DATA_ARCHITECTURE]['cache_id'][$ddo_memory_pointer])){
+                if(!isset($_SESSION['CRNRSTN_' . self::$config_serial][$DATA_ARCHITECTURE]['cache_id'][$ddo_memory_pointer])){
 
                     //
                     // CACHE_ID :: PRIMARY RESOURCE KEY WITHIN MEMORY.
@@ -6787,9 +6775,9 @@ class crnrstn_response_return_serialization_map {
 
                     //
                     // BUILD FLAGS OF USED CACHE ID.
-                    if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'])){
+                    if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'])){
 
-                        foreach($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'] as $res_data_key => $res_id){
+                        foreach($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'] as $res_data_key => $res_id){
 
                             $tmp_resource_id_active_ARRAY[$res_id] = 1;
 
@@ -6799,7 +6787,7 @@ class crnrstn_response_return_serialization_map {
 
                     //
                     // FIND FIRST AVAILABLE MEMORY LOCATION FOR CACHE ID, AND USE IT.
-                    if(!isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['PHP_INT_MAX_EXCEEDED_CACHE_ID'])){
+                    if(!isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['PHP_INT_MAX_EXCEEDED_CACHE_ID'])){
 
                         for($i = 0; $i < PHP_INT_MAX; $i++){
 
@@ -6812,9 +6800,9 @@ class crnrstn_response_return_serialization_map {
                                 //
                                 // INITIALIZE SESSION RESOURCE_BYTES :: CACHE DATA SIZE IN BYTES.
                                 // THIS WILL ALLOW FOR AGGREGATION OF resource_bytes.
-                                if(!isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['resource_bytes'][self::$channel_resource_id_ARRAY['cache_id'][$channel]])){
+                                if(!isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['resource_bytes'][self::$channel_resource_id_ARRAY['cache_id'][$channel]])){
 
-                                    $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['resource_bytes'][self::$channel_resource_id_ARRAY['cache_id'][$channel]] = 0;
+                                    $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['resource_bytes'][self::$channel_resource_id_ARRAY['cache_id'][$channel]] = 0;
 
                                     break;
 
@@ -6832,7 +6820,7 @@ class crnrstn_response_return_serialization_map {
 
                             //
                             // SPOIL FUTURE FIRES OF THE INTEGER DISCOVERY LOOP (ABOVE).
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['PHP_INT_MAX_EXCEEDED_CACHE_ID'] = 1;
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['PHP_INT_MAX_EXCEEDED_CACHE_ID'] = 1;
 
                             //
                             // GENERATE NEW CACHE_ID.
@@ -6864,9 +6852,9 @@ class crnrstn_response_return_serialization_map {
 
                             //
                             // INITIALIZE SESSION RESOURCE_BYTES :: CACHE DATA SIZE IN BYTES.
-                            if(!isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['resource_bytes'][self::$channel_resource_id_ARRAY['cache_id'][$channel]])){
+                            if(!isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['resource_bytes'][self::$channel_resource_id_ARRAY['cache_id'][$channel]])){
 
-                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['resource_bytes'][self::$channel_resource_id_ARRAY['cache_id'][$channel]] = 0;
+                                $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['resource_bytes'][self::$channel_resource_id_ARRAY['cache_id'][$channel]] = 0;
 
                             }
 
@@ -6886,9 +6874,9 @@ class crnrstn_response_return_serialization_map {
 
                 //
                 // IF IT EXISTS, RETURN CACHE_ID.
-                if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer])){
+                if(isset(self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer])){
 
-                    return self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer];
+                    return self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer];
 
                 }
 
@@ -6899,7 +6887,7 @@ class crnrstn_response_return_serialization_map {
                     //
                     // CACHE_ID INITIALIZATION CHECK :: PRIMARY RESOURCE KEY WITHIN MEMORY.
                     // GO AHEAD AND INITIALIZE IPADDRESS_ID HERE, AS WELL.
-                    if(!isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer])){
+                    if(!isset(self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer])){
 
                         self::$channel_resource_id_ARRAY['cache_id'][$channel] = -1;
 
@@ -7035,7 +7023,7 @@ class crnrstn_response_return_serialization_map {
                     //error_log(__LINE__ . ' rrs map PERMISSION GRANTED TO STORE DATA IN CHANNEL[' . $channel . '].');
                     /*
                     CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA
-                    OBJECT (DDO) SERVICES LAYER AUTHORIZATION
+                    OBJECT (MC-DDO) SERVICES LAYER AUTHORIZATION
                     PROFILES FOR DATA HANDLING.
                     -----
                     CRNRSTN_CHANNEL_ALL
@@ -7078,9 +7066,9 @@ class crnrstn_response_return_serialization_map {
 
                             //
                             // CHANNEL RESOURCE CACHE INDEX INITIALIZATION.
-                            if($this->rrs_map_get($this->oCRNRSTN->get_channel_config($channel, 'NAME') . '_cache_is_active') == true) {
+                            if($this->rrs_map_get($this->oCRNRSTN->get_channel_config($channel, 'NAME') . '_cache_is_active') == true){
 
-                                error_log(__LINE__ . ' rrs map STATE IS_ACTIVE=TRUE FOR CHANNEL[' . $channel . '].');
+                                error_log(__LINE__ . ' rrs map STATE IS_ACTIVE = TRUE FOR CHANNEL [' . $channel . '].');
                                 error_log(__LINE__ . ' rrs map PENDING $channel[' . $channel . '] CACHE DATA STRUCTURE INITIALIZATION $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $index[' . $index . ']. $data_authorization_profile[' . $data_authorization_profile . ']. $ttl[' . $ttl . '].');
                                 //die();
 
@@ -7098,11 +7086,11 @@ class crnrstn_response_return_serialization_map {
                                 // ONLY RUNTIME ASSIGNS THIS...AT LEAST FOR NOW.
                                 // THIS SHOULD HAPPEN ONE TIME FOR METHOD DRIVEN RESOURCE REQUESTS...RIGHT?
                                 // WAIT TO FINISH PLAID BEFORE DELETING THIS...Tuesday, May 23 2023 @ 0517 hrs.
-                                //$this->ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial] = $ddo_memory_pointer;
+                                //$this->ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial] = $ddo_memory_pointer;
 
                                 //
                                 // CACHE_ID :: PRIMARY RESOURCE KEY WITHIN MEMORY.
-                                if(!isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer])){
+                                if(!isset(self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer])){
 
                                     //
                                     // HERE IS WHERE CRNRSTN :: WRITES THE MEMORY ADDRESS TO THE INDEX HEADER
@@ -7113,14 +7101,14 @@ class crnrstn_response_return_serialization_map {
                                     // BE MY "CRAYOLA CRAYON YEAH-WE-ALL-GOT-OUT-OF-THE-MATRIX" APPLICATION OF THE
                                     // CONCEPT OF A LITERAL REAL LIFE MAILBOX THAT IS UNTO A MAILING ADDRESS...WHERE, SAID
                                     // MAILING ADDRESS IS LOCATED ON A HARD DISK...IN THE MATRIX).
-                                    self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer] = $this->cache_id(__FUNCTION__, $channel, $ddo_memory_pointer);
+                                    self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer] = $this->cache_id(__FUNCTION__, $channel, $ddo_memory_pointer);
                                     //error_log(__LINE__ . ' rrs map NEW RUNTIME CACHE_ID $ddo_memory_pointer[' . $ddo_memory_pointer . ']=[' . self::$runtime_cache_id . '].');
 
-                                    if(!isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['resource_bytes'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]])){
+                                    if(!isset(self::$cache_ARRAY[self::$request_id]['resource_bytes'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]])){
 
                                         //
                                         // INITIALIZE RUNTIME RESOURCE_BYTES :: CACHE DATA SIZE IN BYTES.
-                                        self::$cache_ARRAY[$this->oCRNRSTN->request_id]['resource_bytes'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]] = 0;
+                                        self::$cache_ARRAY[self::$request_id]['resource_bytes'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]] = 0;
 
                                     }
 
@@ -7140,34 +7128,34 @@ class crnrstn_response_return_serialization_map {
 
                                 //
                                 // IPADDRESS_ID :: IP ADDRESS KEY WITHIN MEMORY.
-                                if(!isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['ipaddress_id'][$tmp_ip])){
+                                if(!isset(self::$cache_ARRAY[self::$request_id]['ipaddress_id'][$tmp_ip])){
 
                                     //
                                     // A NEW RESOURCE ID FOR A NEW IP.
-                                    self::$cache_ARRAY[$this->oCRNRSTN->request_id]['ipaddress_id'][$tmp_ip] = $this->ipaddress_id(__FUNCTION__, $channel, $tmp_ip);
+                                    self::$cache_ARRAY[self::$request_id]['ipaddress_id'][$tmp_ip] = $this->ipaddress_id(__FUNCTION__, $channel, $tmp_ip);
 
                                 }
 
                                 //
                                 // JUST DO THIS HERE...INSTEAD OF MAKING n (n) METHOD CALLS LATER.
-                                self::$cache_ARRAY[$this->oCRNRSTN->request_id]['ttl'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][] = $this->oCRNRSTN->finalize_ttl_secs($ttl);
+                                self::$cache_ARRAY[self::$request_id]['ttl'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][] = $this->oCRNRSTN->finalize_ttl_secs($ttl);
 
                                 if(isset($tmp_delay_write_datecreated)){
 
                                     //
                                     // ONLY CREATE DATECREATED ON FIRST CACHE_ID INSERT.
                                     // NO UPDATES TO DATECREATED.
-                                    self::$cache_ARRAY[$this->oCRNRSTN->request_id]['datecreated'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]] = $tmp_delay_write_datecreated;
-                                    self::$cache_ARRAY[$this->oCRNRSTN->request_id]['createdby_client_ip'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]] = self::$cache_ARRAY[$this->oCRNRSTN->request_id]['ipaddress_id'][$tmp_ip];
+                                    self::$cache_ARRAY[self::$request_id]['datecreated'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]] = $tmp_delay_write_datecreated;
+                                    self::$cache_ARRAY[self::$request_id]['createdby_client_ip'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]] = self::$cache_ARRAY[self::$request_id]['ipaddress_id'][$tmp_ip];
 
                                 }
 
-                                self::$cache_ARRAY[$this->oCRNRSTN->request_id]['lastmodified'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][] = $tmp_delay_write_lastmodified;
-                                self::$cache_ARRAY[$this->oCRNRSTN->request_id]['modifiedby_client_ip'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][] = self::$cache_ARRAY[$this->oCRNRSTN->request_id]['ipaddress_id'][$tmp_ip];
-                                self::$cache_ARRAY[$this->oCRNRSTN->request_id]['asset_family'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]] = 'DDO';
+                                self::$cache_ARRAY[self::$request_id]['lastmodified'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][] = $tmp_delay_write_lastmodified;
+                                self::$cache_ARRAY[self::$request_id]['modifiedby_client_ip'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][] = self::$cache_ARRAY[self::$request_id]['ipaddress_id'][$tmp_ip];
+                                self::$cache_ARRAY[self::$request_id]['asset_family'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]] = 'DDO';
 
-                                $tmp_resource_count = count(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['lastmodified'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]]);
-                                self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_resource_counts'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]] = $tmp_resource_count;
+                                $tmp_resource_count = count(self::$cache_ARRAY[self::$request_id]['lastmodified'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]]);
+                                self::$cache_ARRAY[self::$request_id]['channel_resource_counts'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]] = $tmp_resource_count;
 
                             }
 
@@ -7181,34 +7169,34 @@ class crnrstn_response_return_serialization_map {
 
                                 //
                                 // CACHE_ID :: PRIMARY RESOURCE KEY WITHIN MEMORY.
-                                if(!isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer])){
+                                if(!isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer])){
 
-                                    $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer] = $this->cache_id(__FUNCTION__, $channel, $ddo_memory_pointer);
+                                    $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer] = $this->cache_id(__FUNCTION__, $channel, $ddo_memory_pointer);
 
                                 }
 
                                 //
                                 // IPADDRESS_ID :: IP ADDRESS KEY WITHIN MEMORY.
-                                if(!isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['ipaddress_id'][$tmp_ip])){
+                                if(!isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['ipaddress_id'][$tmp_ip])){
 
-                                    $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['ipaddress_id'][$tmp_ip] = $this->ipaddress_id(__FUNCTION__, $channel, $tmp_ip);
+                                    $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['ipaddress_id'][$tmp_ip] = $this->ipaddress_id(__FUNCTION__, $channel, $tmp_ip);
 
                                 }
 
                                 //
                                 // INITIALIZE SESSION RESOURCE_BYTES :: CACHE DATA SIZE IN BYTES.
-                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['resource_bytes'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]] = 0;
+                                $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['resource_bytes'][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]] = 0;
 
                                 //
                                 // JUST DO THIS HERE...INSTEAD OF MAKING SIX (6) METHOD CALLS LATER.
-                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['ttl'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][] = $this->oCRNRSTN->finalize_ttl_secs($ttl);
+                                $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['ttl'][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][] = $this->oCRNRSTN->finalize_ttl_secs($ttl);
 
                                 if(isset($tmp_delay_write_datecreated)){
 
-                                    $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['datecreated'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]] = $tmp_delay_write_datecreated;
+                                    $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['datecreated'][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]] = $tmp_delay_write_datecreated;
 
-                                    $tmp_ipaddress_id = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['ipaddress_id'][$tmp_ip];
-                                    $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['createdby_client_ip'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]] = $tmp_ipaddress_id;
+                                    $tmp_ipaddress_id = $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['ipaddress_id'][$tmp_ip];
+                                    $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['createdby_client_ip'][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]] = $tmp_ipaddress_id;
 
                                 }
 
@@ -7218,15 +7206,15 @@ class crnrstn_response_return_serialization_map {
 
                                 }
 
-                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['lastmodified'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][] = $tmp_delay_write_lastmodified;
+                                $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['lastmodified'][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][] = $tmp_delay_write_lastmodified;
 
-                                $tmp_ipaddress_id = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['ipaddress_id'][$tmp_ip];
-                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['modifiedby_client_ip'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][] = $tmp_ipaddress_id;
+                                $tmp_ipaddress_id = $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['ipaddress_id'][$tmp_ip];
+                                $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['modifiedby_client_ip'][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][] = $tmp_ipaddress_id;
 
-                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['asset_family'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]] = 'DDO';
+                                $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['asset_family'][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]] = 'DDO';
 
-                                $tmp_lastmodified = count($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['lastmodified'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]]);
-                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['channel_resource_counts'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]] = $tmp_lastmodified;
+                                $tmp_lastmodified = count($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['lastmodified'][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]]);
+                                $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['channel_resource_counts'][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]] = $tmp_lastmodified;
 
                             }
 
@@ -7285,7 +7273,7 @@ class crnrstn_response_return_serialization_map {
 
             if(!isset(self::$channel_resource_id_ARRAY['cache_id'][$channel])){
 
-                //$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]
+                //$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]
 
                 //
                 // TODO :: DO WE PUT THIS BEHIND CRNRSTN :: PLAID $_GET[] CHANNEL INITIALIZATION?
@@ -7304,23 +7292,23 @@ class crnrstn_response_return_serialization_map {
 
                         //
                         // CACHE_ID :: PRIMARY RESOURCE KEY WITHIN MEMORY.
-                        if(!isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$salt_ugc])){
+                        if(!isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$salt_ugc])){
 
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$salt_ugc] = $this->cache_id(__FUNCTION__, $channel, $salt_ugc);
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$salt_ugc] = $this->cache_id(__FUNCTION__, $channel, $salt_ugc);
 
                         }
 
                         //
                         // IPADDRESS_ID :: IP ADDRESS KEY WITHIN MEMORY.
-                        if(!isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['ipaddress_id'][$tmp_ip])){
+                        if(!isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['ipaddress_id'][$tmp_ip])){
 
-                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['ipaddress_id'][$tmp_ip] = $this->ipaddress_id(__FUNCTION__, $channel, $tmp_ip);
+                            $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['ipaddress_id'][$tmp_ip] = $this->ipaddress_id(__FUNCTION__, $channel, $tmp_ip);
 
                         }
 
                         //
                         // INITIALIZE SESSION RESOURCE_BYTES :: CACHE DATA SIZE IN BYTES.
-                        $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['resource_bytes'][self::$channel_resource_id_ARRAY['cache_id'][$channel]] = 0;
+                        $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['resource_bytes'][self::$channel_resource_id_ARRAY['cache_id'][$channel]] = 0;
 
                     }
 
@@ -7351,28 +7339,28 @@ class crnrstn_response_return_serialization_map {
                         // TODO :: MOVE THIS ARRAY TO $_GET[] CHANNEL. ONLY "RUNTIME" ASSIGNS THIS...AT LEAST FOR NOW.
                         // TODO :: LOOK AT HOW WE USE THIS! JUST SOME RANDOM GET UGC_KEY VALUE STUFF.
                         // TODO :: CRUSH THIS.
-                        $this->ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial] = $salt_ugc;
+                        $this->ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial] = $salt_ugc;
 
                         //
                         // CACHE_ID :: PRIMARY RESOURCE KEY WITHIN MEMORY.
-                        if(!isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$salt_ugc])){
+                        if(!isset(self::$cache_ARRAY[self::$request_id]['cache_id'][$salt_ugc])){
 
                             //error_log(__LINE__ . ' rrs map NEW RRS_MAP CACHE_ID $salt_ugc[' . $salt_ugc . ']. self::$runtime_cache_id[' . self::$runtime_cache_id . '].');
-                            self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$salt_ugc] = $this->cache_id(__FUNCTION__, 'runtime', $salt_ugc);
+                            self::$cache_ARRAY[self::$request_id]['cache_id'][$salt_ugc] = $this->cache_id(__FUNCTION__, 'runtime', $salt_ugc);
 
                         }
 
                         //
                         // IPADDRESS_ID :: IP ADDRESS KEY WITHIN MEMORY.
-                        if(!isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['ipaddress_id'][$tmp_ip])){
+                        if(!isset(self::$cache_ARRAY[self::$request_id]['ipaddress_id'][$tmp_ip])){
 
-                            self::$cache_ARRAY[$this->oCRNRSTN->request_id]['ipaddress_id'][$tmp_ip] = $this->ipaddress_id(__FUNCTION__, 'runtime', $tmp_ip);
+                            self::$cache_ARRAY[self::$request_id]['ipaddress_id'][$tmp_ip] = $this->ipaddress_id(__FUNCTION__, 'runtime', $tmp_ip);
 
                         }
 
                         //
                         // INITIALIZE RUNTIME RESOURCE_BYTES :: CACHE DATA SIZE IN BYTES.
-                        self::$cache_ARRAY[$this->oCRNRSTN->request_id]['resource_bytes'][self::$channel_resource_id_ARRAY['cache_id'][$channel]] = 0;
+                        self::$cache_ARRAY[self::$request_id]['resource_bytes'][self::$channel_resource_id_ARRAY['cache_id'][$channel]] = 0;
 
                     }
 
@@ -7428,27 +7416,27 @@ class crnrstn_response_return_serialization_map {
 
 //        error_log(__LINE__ . ' rrs map $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $channel[' . $channel . '].');
 //
-//        error_log(__LINE__ . ' rrs map $cache_ARRAY[' . print_r(self::$cache_ARRAY[$this->oCRNRSTN->request_id], true) . '].');
-//        error_log(__LINE__ . ' rrs map $cache_ARRAY[' . print_r($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO'], true) . '].');
+//        error_log(__LINE__ . ' rrs map $cache_ARRAY[' . print_r(self::$cache_ARRAY[self::$request_id], true) . '].');
+//        error_log(__LINE__ . ' rrs map $cache_ARRAY[' . print_r($_SESSION['CRNRSTN_' . self::$config_serial]['DDO'], true) . '].');
 //
-//        $this->oCRNRSTN->destruct_output = __LINE__ . ' rrs map $cache_ARRAY[' . print_r(self::$cache_ARRAY[$this->oCRNRSTN->request_id], true) . '].';
+//        $this->oCRNRSTN->destruct_output = __LINE__ . ' rrs map $cache_ARRAY[' . print_r(self::$cache_ARRAY[self::$request_id], true) . '].';
 //        die();
 
         switch($data_authorization_profile){
             case CRNRSTN_CHANNEL_SESSION:
                 //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
 
-                if(!isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer])){
+                if(!isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer])){
 
                     return 0;
 
                 }
 
-                $tmp_cache_id = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer];
+                $tmp_cache_id = $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer];
 
-                if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$ddo_memory_pointer])){
+                if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$ddo_memory_pointer])){
 
-                    return count($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_value'][$ddo_memory_pointer]);
+                    return count($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_value'][$ddo_memory_pointer]);
 
                 }
 
@@ -7456,17 +7444,17 @@ class crnrstn_response_return_serialization_map {
             case CRNRSTN_CHANNEL_RUNTIME:
                 //R :: RUNTIME.
 
-                if(!isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer])){
+                if(!isset(self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer])){
 
                     return 0;
 
                 }
 
-                $tmp_cache_id = self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer];
+                $tmp_cache_id = self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer];
 
-                if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['lastmodified'][$tmp_cache_id])){
+                if(isset(self::$cache_ARRAY[self::$request_id]['lastmodified'][$tmp_cache_id])){
 
-                    return count(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['lastmodified'][$tmp_cache_id]);
+                    return count(self::$cache_ARRAY[self::$request_id]['lastmodified'][$tmp_cache_id]);
 
                 }
 
@@ -7494,10 +7482,10 @@ class crnrstn_response_return_serialization_map {
 
         }
 
-//        error_log(__LINE__ . ' rrs map $channel[' . $channel . ']. count[' . count(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['data_value'][$ddo_memory_pointer]) . '].');
+//        error_log(__LINE__ . ' rrs map $channel[' . $channel . ']. count[' . count(self::$cache_ARRAY[self::$request_id]['data_value'][$ddo_memory_pointer]) . '].');
 //        die();
 
-        return count(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['data_value'][$ddo_memory_pointer]);
+        return count(self::$cache_ARRAY[self::$request_id]['data_value'][$ddo_memory_pointer]);
 
     }
 
@@ -7518,15 +7506,15 @@ class crnrstn_response_return_serialization_map {
                     //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
 
                     //error_log(__LINE__ . ' rrs map isset_config_cache $data_attribute[' . $data_attribute . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $channel[' .  $channel . '].');
-                    //if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer])){
+                    //if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer])){
 //                    error_log(__LINE__ . ' rrs map isset_config_cache [' . $channel . '] $ddo_memory_pointer[' . $ddo_memory_pointer . '].');
-//                    error_log(__LINE__ . ' rrs map isset_config_cache [' . $channel . '] $data_attribute[' . print_r($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()], true) . ']. die();');
+//                    error_log(__LINE__ . ' rrs map isset_config_cache [' . $channel . '] $data_attribute[' . print_r($_SESSION['CRNRSTN_' . self::$config_serial], true) . ']. die();');
 //
 //                    die();
 
-                    if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer])){
+                    if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer])){
 
-                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['lastmodified'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][$index])){
+                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['lastmodified'][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][$index])){
 
                             return true;
 
@@ -7554,13 +7542,13 @@ class crnrstn_response_return_serialization_map {
 
                     //
                     // JUST USE RUNTIME FOR NOW.
-                    //if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer])){
-                    if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer])){
+                    //if(isset(self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer])){
+                    if(isset(self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer])){
 
                         //error_log(__LINE__.  ' rrs map ISSET? $data_attribute[' . $data_attribute . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $channel[' .  $channel . '].');
 
-                        if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['lastmodified'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][$index])){
-                            //error_log(__LINE__ . ' rrs map RETURN TRUE $data_attribute[' . $data_attribute . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $channel[' . $channel . ']. cache[' . print_r(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'], true) . '].');
+                        if(isset(self::$cache_ARRAY[self::$request_id]['lastmodified'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][$index])){
+                            //error_log(__LINE__ . ' rrs map RETURN TRUE $data_attribute[' . $data_attribute . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $channel[' . $channel . ']. cache[' . print_r(self::$cache_ARRAY[self::$request_id]['cache_id'], true) . '].');
                             //error_log(__LINE__.  ' rrs map ISSET? $data_attribute[' . $data_attribute . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $channel[' .  $channel . '].');
 
                             return true;
@@ -7572,7 +7560,7 @@ class crnrstn_response_return_serialization_map {
                 break;
                 default:
 
-                    error_log(__LINE__ . ' rrs map AN UNUSED DEFAULT (SWITCH) HAS BEEN HIT. $channel[' . $channel . ']. $attribute[' . $attribute . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $index[' . $index . '].');
+                    error_log(__LINE__ . ' rrs map AN UNUSED DEFAULT (SWITCH) HAS BEEN HIT. $channel[' . $channel . ']. $data_attribute[' . $data_attribute . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $index[' . $index . '].');
 
                 break;
 
@@ -7591,11 +7579,11 @@ class crnrstn_response_return_serialization_map {
             switch($channel){
                 case CRNRSTN_CHANNEL_SESSION:
                     //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
-                    //if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer])){
+                    //if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer])){
 
-                    if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer])){
+                    if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer])){
 
-                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['lastmodified'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][$index])){
+                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['lastmodified'][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][$index])){
 
                             return true;
 
@@ -7623,12 +7611,12 @@ class crnrstn_response_return_serialization_map {
 
                     //
                     // JUST USE RUNTIME FOR NOW.
-                    //if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer])){
-                    if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer])){
+                    //if(isset(self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer])){
+                    if(isset(self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer])){
 
-                        if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['lastmodified'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][$index])){
+                        if(isset(self::$cache_ARRAY[self::$request_id]['lastmodified'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][$index])){
 
-                            //error_log(__LINE__ . ' rrs map RETURN TRUE $data_attribute[' . $data_attribute . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $channel[' . $channel . ']. cache[' . print_r(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'], true) . '].');
+                            //error_log(__LINE__ . ' rrs map RETURN TRUE $data_attribute[' . $data_attribute . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $channel[' . $channel . ']. cache[' . print_r(self::$cache_ARRAY[self::$request_id]['cache_id'], true) . '].');
                             return true;
 
                         }
@@ -7638,7 +7626,7 @@ class crnrstn_response_return_serialization_map {
                 break;
                 default:
 
-                    error_log(__LINE__ . ' rrs map AN UNUSED DEFAULT (SWITCH) HAS BEEN HIT. $channel[' . $channel . ']. $attribute[' . $attribute . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $index[' . $index . '].');
+                    error_log(__LINE__ . ' rrs map AN UNUSED DEFAULT (SWITCH) HAS BEEN HIT. $channel[' . $channel . ']. $data_attribute[' . $data_attribute . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $index[' . $index . '].');
 
                 break;
 
@@ -7695,9 +7683,9 @@ class crnrstn_response_return_serialization_map {
 
                             if(strlen((string) $index) > 0){
 
-                                if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer])){
+                                if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer])){
 
-                                    if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['lastmodified'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][$index])){
+                                    if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['lastmodified'][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][$index])){
 
                                         return true;
 
@@ -7707,9 +7695,9 @@ class crnrstn_response_return_serialization_map {
 
                             }else{
 
-                                if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer])){
+                                if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer])){
 
-                                    if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['lastmodified'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][0])){
+                                    if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['lastmodified'][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][0])){
 
                                         return true;
 
@@ -7721,9 +7709,9 @@ class crnrstn_response_return_serialization_map {
 
                         }else{
 
-                            if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer])){
+                            if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer])){
 
-                                if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['lastmodified'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][0])){
+                                if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['lastmodified'][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][0])){
 
                                     return true;
 
@@ -7755,9 +7743,9 @@ class crnrstn_response_return_serialization_map {
 
                             if(strlen((string) $index) > 0){
 
-                                if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer])){
+                                if(isset(self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer])){
 
-                                    if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['lastmodified'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][$index])){
+                                    if(isset(self::$cache_ARRAY[self::$request_id]['lastmodified'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][$index])){
 
                                         return true;
 
@@ -7767,9 +7755,9 @@ class crnrstn_response_return_serialization_map {
 
                             }else{
 
-                                if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer])){
+                                if(isset(self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer])){
 
-                                    if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['lastmodified'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][0])){
+                                    if(isset(self::$cache_ARRAY[self::$request_id]['lastmodified'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][0])){
 
                                         return true;
 
@@ -7781,9 +7769,9 @@ class crnrstn_response_return_serialization_map {
 
                         }else{
 
-                            if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer])){
+                            if(isset(self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer])){
 
-                                if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['lastmodified'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][0])){
+                                if(isset(self::$cache_ARRAY[self::$request_id]['lastmodified'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][0])){
 
                                     return true;
 
@@ -7813,9 +7801,9 @@ class crnrstn_response_return_serialization_map {
                         //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
                         $tmp_ip = $this->oCRNRSTN->client_ip();
 
-                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO'][$attribute][$tmp_ip])){
+                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO'][$attribute][$tmp_ip])){
 
-                            return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO'][$attribute][$tmp_ip];
+                            return $_SESSION['CRNRSTN_' . self::$config_serial]['DDO'][$attribute][$tmp_ip];
 
                         }
 
@@ -7839,9 +7827,9 @@ class crnrstn_response_return_serialization_map {
 
                         $tmp_ip = $this->oCRNRSTN->client_ip();
 
-                        if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][$tmp_ip])){
+                        if(isset(self::$cache_ARRAY[self::$request_id][$attribute][$tmp_ip])){
 
-                            return self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][$tmp_ip];
+                            return self::$cache_ARRAY[self::$request_id][$attribute][$tmp_ip];
 
                         }
 
@@ -7863,9 +7851,9 @@ class crnrstn_response_return_serialization_map {
                     case CRNRSTN_CHANNEL_SESSION:
                         //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
 
-                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['channel_bytes'][$channel])){
+                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['channel_bytes'][$channel])){
 
-                            return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['channel_bytes'][$channel];
+                            return $_SESSION['CRNRSTN_' . self::$config_serial]['channel_bytes'][$channel];
 
                         }
 
@@ -7887,9 +7875,9 @@ class crnrstn_response_return_serialization_map {
                     case CRNRSTN_CHANNEL_SSDTLA:
                         //S :: CRNRSTN :: SSDTLA PACKET (SOAP WRAPPED ENCRYPTED PSSDTLA PACKET. THE BROWSER WILL TALK LIKE A SERVER).
 
-                        if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][$channel])){
+                        if(isset(self::$cache_ARRAY[self::$request_id]['channel_bytes'][$channel])){
 
-                            return self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][$channel];
+                            return self::$cache_ARRAY[self::$request_id]['channel_bytes'][$channel];
 
                         }
 
@@ -7917,7 +7905,7 @@ class crnrstn_response_return_serialization_map {
 
 //                error_log(__LINE__ . ' rrs map READ DATA [' . $channel . '] $attribute[' . $attribute . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $data_type_family[' . $data_type_family . ']. $index[' . $index . '].');
 //                $this->oCRNRSTN->destruct_output .= __LINE__ . ' rrs map RUNTIME:
-//'. print_r(self::$cache_ARRAY[$this->oCRNRSTN->request_id], true);
+//'. print_r(self::$cache_ARRAY[self::$request_id], true);
 
                 //
                 // UPDATE CUMULATIVE CACHE BYTES BY CHANNEL.
@@ -7930,10 +7918,10 @@ class crnrstn_response_return_serialization_map {
 //                            error_log(__LINE__ . ' rrs map READ DATA [' . $channel . '] $attribute[' . $attribute . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $data_type_family[' . $data_type_family . ']. $index[' . $index . '].');
 //
 //                            $this->oCRNRSTN->destruct_output = 'SESSION:
-//' . print_r($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO'], true);
+//' . print_r($_SESSION['CRNRSTN_' . self::$config_serial]['DDO'], true);
 //                            $this->oCRNRSTN->destruct_output .= 'RUNTIME:
 //
-//'. print_r(self::$cache_ARRAY[$this->oCRNRSTN->request_id], true);
+//'. print_r(self::$cache_ARRAY[self::$request_id], true);
 //
 //                        }
 
@@ -7941,24 +7929,24 @@ class crnrstn_response_return_serialization_map {
 
                             if(strlen((string) $index) > 0){
 
-                                if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer])){
+                                if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer])){
 
-                                    if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO'][$attribute][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][$index])){
+                                    if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO'][$attribute][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][$index])){
 
                                         //
                                         // EXTRACT DATA TYPE.
-                                        //$tmp_type = self::$cache_ARRAY[$this->oCRNRSTN->request_id]['data_type'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][0];
-                                        $tmp_type = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_type'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][$index];
+                                        //$tmp_type = self::$cache_ARRAY[self::$request_id]['data_type'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][0];
+                                        $tmp_type = $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_type'][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][$index];
 
                                         //
-                                        // CRNRSTN :: DECOUPLED DATA OBJECT (DDO) DATA INPUT SERIALIZATION LAYER.
+                                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) DATA INPUT SERIALIZATION LAYER.
                                         if($tmp_result = $this->oCRNRSTN->is_resource_serialization_active($tmp_type, $channel)){
 
-                                            return unserialize($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO'][$attribute][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][$index]);
+                                            return unserialize($_SESSION['CRNRSTN_' . self::$config_serial]['DDO'][$attribute][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][$index]);
 
                                         }
 
-                                        return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO'][$attribute][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][$index];
+                                        return $_SESSION['CRNRSTN_' . self::$config_serial]['DDO'][$attribute][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][$index];
 
                                     }
 
@@ -7966,23 +7954,23 @@ class crnrstn_response_return_serialization_map {
 
                             }else{
 
-                                if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer])){
+                                if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer])){
 
-                                    if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO'][$attribute][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][0])){
+                                    if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO'][$attribute][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][0])){
 
                                         //
                                         // EXTRACT DATA TYPE.
-                                        $tmp_type = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_type'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][0];
+                                        $tmp_type = $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_type'][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][0];
 
                                         //
-                                        // CRNRSTN :: DECOUPLED DATA OBJECT (DDO) DATA INPUT SERIALIZATION LAYER.
+                                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) DATA INPUT SERIALIZATION LAYER.
                                         if($tmp_result = $this->oCRNRSTN->is_resource_serialization_active($tmp_type, $channel)){
 
-                                            return unserialize($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO'][$attribute][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][0]);
+                                            return unserialize($_SESSION['CRNRSTN_' . self::$config_serial]['DDO'][$attribute][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][0]);
 
                                         }
 
-                                        return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO'][$attribute][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][0];
+                                        return $_SESSION['CRNRSTN_' . self::$config_serial]['DDO'][$attribute][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][0];
 
                                     }
 
@@ -7994,24 +7982,24 @@ class crnrstn_response_return_serialization_map {
 
                             error_log(__LINE__ . ' rrs map READ DATA [' . $channel . '] $attribute[' . $attribute . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $data_type_family[' . $data_type_family . ']. $index[' . $index . '].');
 
-                            if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer])){
+                            if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer])){
 
-                                if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO'][$attribute][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][0])){
+                                if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO'][$attribute][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][0])){
 
                                     //
                                     // EXTRACT DATA TYPE.
-                                    $tmp_type = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['data_type'][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][0];
+                                    $tmp_type = $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['data_type'][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][0];
 
                                     //
-                                    // CRNRSTN :: DECOUPLED DATA OBJECT (DDO) DATA INPUT SERIALIZATION LAYER.
+                                    // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) DATA INPUT SERIALIZATION LAYER.
                                     if($tmp_result = $this->oCRNRSTN->is_resource_serialization_active($tmp_type, $channel)){
 
-                                        return unserialize($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO'][$attribute][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][0]);
+                                        return unserialize($_SESSION['CRNRSTN_' . self::$config_serial]['DDO'][$attribute][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][0]);
 
 
                                     }
 
-                                    return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO'][$attribute][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][0];
+                                    return $_SESSION['CRNRSTN_' . self::$config_serial]['DDO'][$attribute][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][0];
 
                                 }
 
@@ -8041,23 +8029,23 @@ class crnrstn_response_return_serialization_map {
 
                             if(strlen((string) $index) > 0){
 
-                                if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer])){
+                                if(isset(self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer])){
 
-                                    if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][$index])){
+                                    if(isset(self::$cache_ARRAY[self::$request_id][$attribute][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][$index])){
 
                                         //
                                         // EXTRACT DATA TYPE.
-                                        $tmp_type = self::$cache_ARRAY[$this->oCRNRSTN->request_id]['data_type'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][$index];
+                                        $tmp_type = self::$cache_ARRAY[self::$request_id]['data_type'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][$index];
 
                                         //
-                                        // CRNRSTN :: DECOUPLED DATA OBJECT (DDO) DATA INPUT SERIALIZATION LAYER.
+                                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) DATA INPUT SERIALIZATION LAYER.
                                         if($tmp_result = $this->oCRNRSTN->is_resource_serialization_active($tmp_type, $channel)){
 
-                                            return unserialize(self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][$index]);
+                                            return unserialize(self::$cache_ARRAY[self::$request_id][$attribute][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][$index]);
 
                                         }
 
-                                        return self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][$index];
+                                        return self::$cache_ARRAY[self::$request_id][$attribute][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][$index];
 
                                     }
 
@@ -8065,23 +8053,23 @@ class crnrstn_response_return_serialization_map {
 
                             }else{
 
-                                if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer])){
+                                if(isset(self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer])){
 
-                                    if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][0])){
+                                    if(isset(self::$cache_ARRAY[self::$request_id][$attribute][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][0])){
 
                                         //
                                         // EXTRACT DATA TYPE.
-                                        $tmp_type = self::$cache_ARRAY[$this->oCRNRSTN->request_id]['data_type'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][0];
+                                        $tmp_type = self::$cache_ARRAY[self::$request_id]['data_type'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][0];
 
                                         //
-                                        // CRNRSTN :: DECOUPLED DATA OBJECT (DDO) DATA INPUT SERIALIZATION LAYER.
+                                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) DATA INPUT SERIALIZATION LAYER.
                                         if($tmp_result = $this->oCRNRSTN->is_resource_serialization_active($tmp_type, $channel)){
 
-                                            return unserialize(self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][0]);
+                                            return unserialize(self::$cache_ARRAY[self::$request_id][$attribute][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][0]);
 
                                         }
 
-                                        return self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][0];
+                                        return self::$cache_ARRAY[self::$request_id][$attribute][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][0];
 
                                     }
 
@@ -8091,23 +8079,23 @@ class crnrstn_response_return_serialization_map {
 
                         }else{
 
-                            if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer])){
+                            if(isset(self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer])){
 
-                                if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][0])){
+                                if(isset(self::$cache_ARRAY[self::$request_id][$attribute][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][0])){
 
                                     //
                                     // EXTRACT DATA TYPE.
-                                    $tmp_type = self::$cache_ARRAY[$this->oCRNRSTN->request_id]['data_type'][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][0];
+                                    $tmp_type = self::$cache_ARRAY[self::$request_id]['data_type'][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][0];
 
                                     //
-                                    // CRNRSTN :: DECOUPLED DATA OBJECT (DDO) DATA INPUT SERIALIZATION LAYER.
+                                    // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) DATA INPUT SERIALIZATION LAYER.
                                     if($tmp_result = $this->oCRNRSTN->is_resource_serialization_active($tmp_type, $channel)){
 
-                                        return unserialize(self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][0]);
+                                        return unserialize(self::$cache_ARRAY[self::$request_id][$attribute][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][0]);
 
                                     }
 
-                                    return self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][0];
+                                    return self::$cache_ARRAY[self::$request_id][$attribute][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][0];
 
                                 }
 
@@ -8134,9 +8122,9 @@ class crnrstn_response_return_serialization_map {
                     case CRNRSTN_CHANNEL_SESSION:
                         //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
 
-                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()][$attribute][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]])){
+                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial][$attribute][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]])){
 
-                            return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()][$attribute][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]];
+                            return $_SESSION['CRNRSTN_' . self::$config_serial][$attribute][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]];
 
                         }
 
@@ -8160,9 +8148,9 @@ class crnrstn_response_return_serialization_map {
                     case CRNRSTN_CHANNEL_SSDTLA:
                         //S :: CRNRSTN :: SSDTLA PACKET (SOAP WRAPPED ENCRYPTED PSSDTLA PACKET. THE BROWSER WILL TALK LIKE A SERVER).
 
-                        if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]])){
+                        if(isset(self::$cache_ARRAY[self::$request_id][$attribute][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]])){
 
-                            return self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]];
+                            return self::$cache_ARRAY[self::$request_id][$attribute][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]];
 
                         }
 
@@ -8188,11 +8176,11 @@ class crnrstn_response_return_serialization_map {
                     case CRNRSTN_CHANNEL_SESSION:
                         //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
 
-                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer])){
+                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer])){
 
-                            if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()][$attribute][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][$index])){
+                            if(isset($_SESSION['CRNRSTN_' . self::$config_serial][$attribute][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][$index])){
 
-                                return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()][$attribute][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer]][$index];
+                                return $_SESSION['CRNRSTN_' . self::$config_serial][$attribute][$_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer]][$index];
 
                             }
 
@@ -8218,11 +8206,11 @@ class crnrstn_response_return_serialization_map {
                     case CRNRSTN_CHANNEL_SSDTLA:
                         //S :: CRNRSTN :: SSDTLA PACKET (SOAP WRAPPED ENCRYPTED PSSDTLA PACKET. THE BROWSER WILL TALK LIKE A SERVER).
 
-                        if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer])){
+                        if(isset(self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer])){
 
-                            if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][$index])){
+                            if(isset(self::$cache_ARRAY[self::$request_id][$attribute][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][$index])){
 
-                                return self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer]][$index];
+                                return self::$cache_ARRAY[self::$request_id][$attribute][self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer]][$index];
 
                             }
 
@@ -8251,11 +8239,11 @@ class crnrstn_response_return_serialization_map {
 
         if(!isset($ugc_key)){
 
-            //error_log(__LINE__ . ' rrs map cache['. print_r(self::$cache_ARRAY[$this->oCRNRSTN->request_id], true) .'] $attribute[' . $attribute . ']. $channel[' . $channel . ']. $ugc_key[' . $ugc_key . ']. $data[' . $data . '].');
+            //error_log(__LINE__ . ' rrs map cache['. print_r(self::$cache_ARRAY[self::$request_id], true) .'] $attribute[' . $attribute . ']. $channel[' . $channel . ']. $ugc_key[' . $ugc_key . ']. $data[' . $data . '].');
             //$ugc_key = $_GET[$this->oCRNRSTN->session_salt()];
-            if(isset($this->ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial])){
+            if(isset($this->ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial])){
 
-                $ugc_key = $this->ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial];
+                $ugc_key = $this->ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial];
 
             }
 
@@ -8264,20 +8252,20 @@ class crnrstn_response_return_serialization_map {
             if(strlen($ugc_key) < 1){
 
                 //$ugc_key = $_GET[$this->oCRNRSTN->session_salt()];
-                $ugc_key = $this->ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial];
+                $ugc_key = $this->ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial];
 
             }
 
         }
 
         /*
-        self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$salt_ugc] = self::$runtime_cache_id;
-        self::$cache_ARRAY[$this->oCRNRSTN->request_id]['ipaddress_id'][$this->oCRNRSTN->client_ip()] = $tmp_cnt;
-        self::$cache_ARRAY[$this->oCRNRSTN->request_id]['resource_bytes'][self::$runtime_cache_id] = 0;
+        self::$cache_ARRAY[self::$request_id]['cache_id'][$salt_ugc] = self::$runtime_cache_id;
+        self::$cache_ARRAY[self::$request_id]['ipaddress_id'][$this->oCRNRSTN->client_ip()] = $tmp_cnt;
+        self::$cache_ARRAY[self::$request_id]['resource_bytes'][self::$runtime_cache_id] = 0;
 
-        self::$session_cache_id = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$salt_ugc] = $i;
-        $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$ugc_key];
-        $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['ipaddress_id'][$this->oCRNRSTN->client_ip()] = $i;
+        self::$session_cache_id = $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$salt_ugc] = $i;
+        $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$ugc_key];
+        $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['ipaddress_id'][$this->oCRNRSTN->client_ip()] = $i;
 
         case 'cache_id'
         case 'ipaddress_id'
@@ -8305,9 +8293,9 @@ class crnrstn_response_return_serialization_map {
                     case CRNRSTN_CHANNEL_SESSION:
                         //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
 
-                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$attribute][$ugc_key])){
+                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$attribute][$ugc_key])){
 
-                            return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$attribute][$ugc_key];
+                            return $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$attribute][$ugc_key];
 
                         }
 
@@ -8329,9 +8317,9 @@ class crnrstn_response_return_serialization_map {
                     case CRNRSTN_CHANNEL_SSDTLA:
                         //S :: CRNRSTN :: SSDTLA PACKET (SOAP WRAPPED ENCRYPTED PSSDTLA PACKET. THE BROWSER WILL TALK LIKE A SERVER).
 
-                        if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][$ugc_key])){
+                        if(isset(self::$cache_ARRAY[self::$request_id][$attribute][$ugc_key])){
 
-                            return self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][$ugc_key];
+                            return self::$cache_ARRAY[self::$request_id][$attribute][$ugc_key];
 
                         }
 
@@ -8353,9 +8341,9 @@ class crnrstn_response_return_serialization_map {
                     case CRNRSTN_CHANNEL_SESSION:
                         //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
 
-                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$attribute][$tmp_ip])){
+                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$attribute][$tmp_ip])){
 
-                            return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$attribute][$tmp_ip];
+                            return $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$attribute][$tmp_ip];
 
                         }
 
@@ -8377,9 +8365,9 @@ class crnrstn_response_return_serialization_map {
                     case CRNRSTN_CHANNEL_SSDTLA:
                         //S :: CRNRSTN :: SSDTLA PACKET (SOAP WRAPPED ENCRYPTED PSSDTLA PACKET. THE BROWSER WILL TALK LIKE A SERVER).
 
-                        if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][$tmp_ip])){
+                        if(isset(self::$cache_ARRAY[self::$request_id][$attribute][$tmp_ip])){
 
-                            return self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][$tmp_ip];
+                            return self::$cache_ARRAY[self::$request_id][$attribute][$tmp_ip];
 
                         }
 
@@ -8412,11 +8400,11 @@ class crnrstn_response_return_serialization_map {
                     case CRNRSTN_CHANNEL_SESSION:
                         //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
 
-                        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$ugc_key])){
+                        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$ugc_key])){
 
-                            if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$attribute][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$ugc_key]])){
+                            if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$attribute][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$ugc_key]])){
 
-                                return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$attribute][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$ugc_key]];
+                                return $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$attribute][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$ugc_key]];
 
                             }
 
@@ -8440,11 +8428,11 @@ class crnrstn_response_return_serialization_map {
                     case CRNRSTN_CHANNEL_SSDTLA:
                         //S :: CRNRSTN :: SSDTLA PACKET (SOAP WRAPPED ENCRYPTED PSSDTLA PACKET. THE BROWSER WILL TALK LIKE A SERVER).
 
-                        if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ugc_key])){
+                        if(isset(self::$cache_ARRAY[self::$request_id]['cache_id'][$ugc_key])){
 
-                            if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ugc_key]])){
+                            if(isset(self::$cache_ARRAY[self::$request_id][$attribute][self::$cache_ARRAY[self::$request_id]['cache_id'][$ugc_key]])){
 
-                                return self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ugc_key]];
+                                return self::$cache_ARRAY[self::$request_id][$attribute][self::$cache_ARRAY[self::$request_id]['cache_id'][$ugc_key]];
 
                             }
 
@@ -8475,7 +8463,7 @@ class crnrstn_response_return_serialization_map {
 
         //error_log(' **checking cache_id integrity** @ ' . $lnum . ' ' . $method . ' rrs map.');
 
-        foreach(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'] as $tmp_key => $tmp_id){
+        foreach(self::$cache_ARRAY[self::$request_id]['cache_id'] as $tmp_key => $tmp_id){
 
             if(strlen($tmp_key) < 1){
 
@@ -8486,9 +8474,9 @@ class crnrstn_response_return_serialization_map {
 
         }
 
-        if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'])){
+        if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'])){
 
-            foreach($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'] as $tmp_key => $tmp_id){
+            foreach($_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'] as $tmp_key => $tmp_id){
 
                 if(strlen($tmp_key) < 1){
 
@@ -8503,7 +8491,7 @@ class crnrstn_response_return_serialization_map {
 
     }
 
-    public function channel_auth_data_reporting_sync($data, $data_key, $data_type_family, $channel, $data_authorization_profile, $cache_storage){
+    public function channel_authorization_data_reporting_sync($data, $data_key, $data_type_family, $channel, $data_authorization_profile, $cache_storage){
 
         if($this->oCRNRSTN->channel_access_is_authorized($channel, $data_authorization_profile) == true){
 
@@ -8561,10 +8549,10 @@ class crnrstn_response_return_serialization_map {
                     if(!isset($channel_override)){
 
                         // isset_config_cache()  // 'lastmodified'
-                        //error_log(__LINE__ . ' rrs map [PREPUSH] cache_id['. print_r(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['lastmodified'], true) . '].');
+                        //error_log(__LINE__ . ' rrs map [PREPUSH] cache_id['. print_r(self::$cache_ARRAY[self::$request_id]['lastmodified'], true) . '].');
 
-                        //error_log(__LINE__ . ' rrs map [PREPUSH] cache_id['. print_r(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'], true) . '].');
-                        //error_log(__LINE__ . ' rrs map [PREPUSH] data_value['. print_r(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['data_value'], true) . '].');
+                        //error_log(__LINE__ . ' rrs map [PREPUSH] cache_id['. print_r(self::$cache_ARRAY[self::$request_id]['cache_id'], true) . '].');
+                        //error_log(__LINE__ . ' rrs map [PREPUSH] data_value['. print_r(self::$cache_ARRAY[self::$request_id]['data_value'], true) . '].');
 
                         //
                         // ALL ACTIVE CHANNELS WITH BYTE CAPACITY RETURNED.
@@ -8616,11 +8604,11 @@ class crnrstn_response_return_serialization_map {
 
                         //
                         // Sunday, October 8, 2023 @ 0654 hrs.
-                        // CRNRSTN :: DECOUPLED DATA OBJECT (DDO) DATA INPUT SERIALIZATION LAYER.
+                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) DATA INPUT SERIALIZATION LAYER.
                         if(($tmp_result = $this->oCRNRSTN->is_resource_serialization_active($tmp_data_type, $channel) && !($tmp_data_is_serialized !== false))){
 
                             //
-                            // THIS ONLY FIRES ONCE...IF IT HAS TO FIRE AT ALL.
+                            // THIS ONLY FIRES ONCE...IF IT HAS TO FIRE AT ALL...THANK GOD.
                             $tmp_data_serialized = serialize($data);
                             $tmp_data_is_serialized = true;
 
@@ -8634,7 +8622,7 @@ class crnrstn_response_return_serialization_map {
 
                                     //$tmp_cache_id = self::$channel_resource_id_ARRAY['cache_id'][$channel];
                                     //$tmp_cache_id = $this->get_config_cache('cache_id', $ddo_memory_pointer, $data_type_family, NULL, $channel);
-                                    $tmp_cache_id = $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO']['cache_id'][$ddo_memory_pointer];
+                                    $tmp_cache_id = $_SESSION['CRNRSTN_' . self::$config_serial]['DDO']['cache_id'][$ddo_memory_pointer];
                                     //error_log(__LINE__  . ' rrs map CACHE WRITE $tmp_cache_id[' . $tmp_cache_id . ']. $attribute[' . $attribute . ']. $data[' . print_r($data, true) . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $index[' . $index . ']. $channel[' . $channel . '].');
 
                                     if(isset($index)){
@@ -8643,11 +8631,11 @@ class crnrstn_response_return_serialization_map {
 
                                             if($tmp_data_is_serialized == true){
 
-                                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO'][$attribute][$tmp_cache_id][$index] = $tmp_data_serialized;
+                                                $_SESSION['CRNRSTN_' . self::$config_serial]['DDO'][$attribute][$tmp_cache_id][$index] = $tmp_data_serialized;
 
                                             }else{
 
-                                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO'][$attribute][$tmp_cache_id][$index] = $data;
+                                                $_SESSION['CRNRSTN_' . self::$config_serial]['DDO'][$attribute][$tmp_cache_id][$index] = $data;
 
                                             }
 
@@ -8655,11 +8643,11 @@ class crnrstn_response_return_serialization_map {
 
                                             if($tmp_data_is_serialized == true){
 
-                                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO'][$attribute][$tmp_cache_id][] = $tmp_data_serialized;
+                                                $_SESSION['CRNRSTN_' . self::$config_serial]['DDO'][$attribute][$tmp_cache_id][] = $tmp_data_serialized;
 
                                             }else{
 
-                                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO'][$attribute][$tmp_cache_id][] = $data;
+                                                $_SESSION['CRNRSTN_' . self::$config_serial]['DDO'][$attribute][$tmp_cache_id][] = $data;
 
                                             }
 
@@ -8669,11 +8657,11 @@ class crnrstn_response_return_serialization_map {
 
                                         if($tmp_data_is_serialized == true){
 
-                                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO'][$attribute][$tmp_cache_id][] = $tmp_data_serialized;
+                                            $_SESSION['CRNRSTN_' . self::$config_serial]['DDO'][$attribute][$tmp_cache_id][] = $tmp_data_serialized;
 
                                         }else{
 
-                                            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['DDO'][$attribute][$tmp_cache_id][] = $data;
+                                            $_SESSION['CRNRSTN_' . self::$config_serial]['DDO'][$attribute][$tmp_cache_id][] = $data;
 
                                         }
 
@@ -8699,13 +8687,13 @@ class crnrstn_response_return_serialization_map {
 
                                     //$tmp_cache_id = self::$channel_resource_id_ARRAY['cache_id'][$channel];
                                     //$tmp_cache_id = $this->get_config_cache('cache_id', $ddo_memory_pointer, $data_type_family, NULL, $channel);
-                                    $tmp_cache_id = self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$ddo_memory_pointer];
+                                    $tmp_cache_id = self::$cache_ARRAY[self::$request_id]['cache_id'][$ddo_memory_pointer];
                                     //error_log(__LINE__  . ' rrs map CACHE WRITE $tmp_cache_id[' . $tmp_cache_id . ']. $attribute[' . $attribute . ']. $data[' . print_r($data, true) . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $index[' . $index . ']. $channel[' . $channel . '].');
 //                                    error_log(__LINE__ . ' rrs map $data_str_cum[' . $data . '].');
 //
 //                                    $this->oCRNRSTN->destruct_output = __LINE__ . ' rrs map
 //SESSION:
-//' . print_r($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()], true) . '
+//' . print_r($_SESSION['CRNRSTN_' . self::$config_serial], true) . '
 ///////////////////
 ///////////////////
 //RUNTIME:
@@ -8717,11 +8705,11 @@ class crnrstn_response_return_serialization_map {
 
                                             if($tmp_data_is_serialized == true){
 
-                                                self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][$tmp_cache_id][$index] = $tmp_data_serialized;
+                                                self::$cache_ARRAY[self::$request_id][$attribute][$tmp_cache_id][$index] = $tmp_data_serialized;
 
                                             }else{
 
-                                                self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][$tmp_cache_id][$index] = $data;
+                                                self::$cache_ARRAY[self::$request_id][$attribute][$tmp_cache_id][$index] = $data;
 
                                             }
 
@@ -8729,11 +8717,11 @@ class crnrstn_response_return_serialization_map {
 
                                             if($tmp_data_is_serialized == true){
 
-                                                self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][$tmp_cache_id][] = $tmp_data_serialized;
+                                                self::$cache_ARRAY[self::$request_id][$attribute][$tmp_cache_id][] = $tmp_data_serialized;
 
                                             }else{
 
-                                                self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][$tmp_cache_id][] = $data;
+                                                self::$cache_ARRAY[self::$request_id][$attribute][$tmp_cache_id][] = $data;
 
                                             }
 
@@ -8743,11 +8731,11 @@ class crnrstn_response_return_serialization_map {
 
                                         if($tmp_data_is_serialized == true){
 
-                                            self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][$tmp_cache_id][] = $tmp_data_serialized;
+                                            self::$cache_ARRAY[self::$request_id][$attribute][$tmp_cache_id][] = $tmp_data_serialized;
 
                                         }else{
 
-                                            self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][$tmp_cache_id][] = $data;
+                                            self::$cache_ARRAY[self::$request_id][$attribute][$tmp_cache_id][] = $data;
 
                                         }
 
@@ -8877,7 +8865,7 @@ class crnrstn_response_return_serialization_map {
                             case CRNRSTN_CHANNEL_SESSION:
                                 //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
 
-                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$attribute][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_ugc]] = $data;
+                                $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$attribute][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_ugc]] = $data;
 
                             break;
                             case CRNRSTN_CHANNEL_RUNTIME:
@@ -8897,7 +8885,7 @@ class crnrstn_response_return_serialization_map {
                             case CRNRSTN_CHANNEL_SSDTLA:
                                 //S :: CRNRSTN :: SSDTLA PACKET (SOAP WRAPPED ENCRYPTED PSSDTLA PACKET. THE BROWSER WILL TALK LIKE A SERVER).
 
-                                self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$tmp_ugc]] = $data;
+                                self::$cache_ARRAY[self::$request_id][$attribute][self::$cache_ARRAY[self::$request_id]['cache_id'][$tmp_ugc]] = $data;
 
                             break;
                             default:
@@ -8951,7 +8939,7 @@ class crnrstn_response_return_serialization_map {
                             case CRNRSTN_CHANNEL_SESSION:
                                 //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
 
-                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$attribute][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_ugc]] = $this->get_cache('ipaddress_id', $tmp_ugc,'session');
+                                $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$attribute][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_ugc]] = $this->get_cache('ipaddress_id', $tmp_ugc,'session');
 
                             break;
                             case CRNRSTN_CHANNEL_RUNTIME:
@@ -8971,9 +8959,9 @@ class crnrstn_response_return_serialization_map {
                             case CRNRSTN_CHANNEL_SSDTLA:
                                 //S :: CRNRSTN :: SSDTLA PACKET (SOAP WRAPPED ENCRYPTED PSSDTLA PACKET. THE BROWSER WILL TALK LIKE A SERVER).
 
-                                if(isset(self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$tmp_ugc])){
+                                if(isset(self::$cache_ARRAY[self::$request_id]['cache_id'][$tmp_ugc])){
 
-                                    self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$tmp_ugc]] = $this->get_cache('ipaddress_id', $tmp_ugc);
+                                    self::$cache_ARRAY[self::$request_id][$attribute][self::$cache_ARRAY[self::$request_id]['cache_id'][$tmp_ugc]] = $this->get_cache('ipaddress_id', $tmp_ugc);
 
                                 }
 
@@ -9024,7 +9012,7 @@ class crnrstn_response_return_serialization_map {
                             case CRNRSTN_CHANNEL_SESSION:
                                 //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
 
-                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$attribute][$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP']['cache_id'][$tmp_ugc]][] = $data;
+                                $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$attribute][$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP']['cache_id'][$tmp_ugc]][] = $data;
 
                             break;
                             case CRNRSTN_CHANNEL_RUNTIME:
@@ -9044,7 +9032,7 @@ class crnrstn_response_return_serialization_map {
                             case CRNRSTN_CHANNEL_SSDTLA:
                                 //S :: CRNRSTN :: SSDTLA PACKET (SOAP WRAPPED ENCRYPTED PSSDTLA PACKET. THE BROWSER WILL TALK LIKE A SERVER).
 
-                                self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute][self::$cache_ARRAY[$this->oCRNRSTN->request_id]['cache_id'][$tmp_ugc]][] = $data;
+                                self::$cache_ARRAY[self::$request_id][$attribute][self::$cache_ARRAY[self::$request_id]['cache_id'][$tmp_ugc]][] = $data;
 
                             break;
                             default:
@@ -9117,13 +9105,13 @@ class crnrstn_response_return_serialization_map {
                             break;
                             case CRNRSTN_CHANNEL_RUNTIME:
                                 //R :: RUNTIME.
-                                self::$cache_ARRAY[$this->oCRNRSTN->request_id][$attribute] = $data;
+                                self::$cache_ARRAY[self::$request_id][$attribute] = $data;
 
                             break;
                             case CRNRSTN_CHANNEL_SESSION:
                                 //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
 
-                                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][$attribute] = $data;
+                                $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][$attribute] = $data;
 
                             break;
                             default:
@@ -9152,11 +9140,11 @@ class crnrstn_response_return_serialization_map {
                     //
                     // NOTE: RESOURCE_ID IS ONLY FOR RUNTIME REFERENCE.
 
-                    //error_log(__LINE__ . ' rrs map $ugc_value[' . $ugc_value . ']. $cache_resource_id[' . $cache_resource_id . ']. $resource_id[' . self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value] . '].');
+                    //error_log(__LINE__ . ' rrs map $ugc_value[' . $ugc_value . ']. $cache_resource_id[' . $cache_resource_id . ']. $resource_id[' . self::$cache_id_ARRAY[self::$request_id][$ugc_value] . '].');
                     //error_log(__LINE__ . ' rrs map $cache_rrs_map_filename_ARRAY[' . print_r(self::$cache_rrs_map_filename_ARRAY, true) . '].');
                     error_log(__LINE__ . ' rrs map self::$request_asset_meta_key_ARRAY[' . print_r(self::$request_asset_meta_key_ARRAY,true) . '].');
 
-                    //$cache_merge_ARRAY[$this->oCRNRSTN->request_id]['rrs_map_output_method'][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]] = $this->cache_input_control(self::$cache_rrs_map_output_method_ARRAY, $channel, 'rrs_map_output_method', self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]);
+                    //$cache_merge_ARRAY[self::$request_id]['rrs_map_output_method'][self::$cache_id_ARRAY[self::$request_id][$ugc_value]] = $this->cache_input_control(self::$cache_rrs_map_output_method_ARRAY, $channel, 'rrs_map_output_method', self::$cache_id_ARRAY[self::$request_id][$ugc_value]);
 
                 break;
 
@@ -9406,9 +9394,9 @@ class crnrstn_response_return_serialization_map {
 
         //
         // RETURN SESSION RRS MAP APPLICATION ACCELERATION CACHE.
-        if($name == 'session_cache' && self::$session_cache_is_active == true && isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'])){
+        if($name == 'session_cache' && self::$session_cache_is_active == true && isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'])){
 
-            return $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'];
+            return $_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'];
 
         }
 
@@ -9416,13 +9404,13 @@ class crnrstn_response_return_serialization_map {
 
 //        //
 //        // CHECK FOR BASE64. TURNED OFF FOR A SEC...
-//        if(isset(self::$cache_rrs_map_filepath_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]]['filepath_base64'])){
+//        if(isset(self::$cache_rrs_map_filepath_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]]['filepath_base64'])){
 //
 //            //
 //            // BUILD AND RETURN BASE64 HTML STRING FROM CACHE.
-//            $tmp_image_html_str = self::$cache_rrs_map_image_string_ARRAY[$this->oCRNRSTN->request_id][$output_mode][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]];        //$this->return_response_map_ugc_value()
-//            //$tmp_filepath = self::$cache_rrs_map_filepath_ARRAY[$this->oCRNRSTN->request_id][$response_serial]['filepath_base64'];
-//            $tmp_filepath = self::$cache_rrs_map_filepath_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]]['filepath_base64'];
+//            $tmp_image_html_str = self::$cache_rrs_map_image_string_ARRAY[self::$request_id][$output_mode][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]];        //$this->return_response_map_ugc_value()
+//            //$tmp_filepath = self::$cache_rrs_map_filepath_ARRAY[self::$request_id][$response_serial]['filepath_base64'];
+//            $tmp_filepath = self::$cache_rrs_map_filepath_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]]['filepath_base64'];
 //
 //            //
 //            // LOAD BASE64 FILE.
@@ -9468,26 +9456,26 @@ class crnrstn_response_return_serialization_map {
                 //
                 // * where, $image_cache_string = '<img src="{CRNRSTN_SYS_BASE64}" ' . $tmp_width . $tmp_height . $tmp_alt . $tmp_title . '>';
 
-                //self::$cache_rrs_map_output_method_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_serial] = $output_method;
-                //self::$cache_rrs_map_filepath_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_serial]['filepath_base64'] = $param0;
-                //self::$cache_rrs_map_image_string_ARRAY[$this->oCRNRSTN->request_id][$tmp_response_serial]['image_string'] = $param10;
+                //self::$cache_rrs_map_output_method_ARRAY[self::$request_id][$tmp_response_serial] = $output_method;
+                //self::$cache_rrs_map_filepath_ARRAY[self::$request_id][$tmp_response_serial]['filepath_base64'] = $param0;
+                //self::$cache_rrs_map_image_string_ARRAY[self::$request_id][$tmp_response_serial]['image_string'] = $param10;
 
             break;
             case 'filepath':
 
-                $tmp_output = self::$cache_rrs_map_filepath_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]];
+                $tmp_output = self::$cache_rrs_map_filepath_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]];
 
             break;
             case 'filename':
 
-                $tmp_output = self::$cache_rrs_map_filename_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]];
+                $tmp_output = self::$cache_rrs_map_filename_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]];
 
             break;
             case 'file_ext':
 
-                if(isset(self::$cache_rrs_map_file_extension_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]])){
+                if(isset(self::$cache_rrs_map_file_extension_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]])){
 
-                    $tmp_output = self::$cache_rrs_map_file_extension_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]];
+                    $tmp_output = self::$cache_rrs_map_file_extension_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]];
 
                 }
 
@@ -9521,7 +9509,7 @@ class crnrstn_response_return_serialization_map {
         foreach(self::$channel_ARRAY as $index => $channel){
             /*
             CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA
-            OBJECT (DDO) SERVICES LAYER AUTHORIZATION
+            OBJECT (MC-DDO) SERVICES LAYER AUTHORIZATION
             PROFILES FOR DATA HANDLING.
             -----
             CRNRSTN_CHANNEL_ALL
@@ -9647,7 +9635,7 @@ class crnrstn_response_return_serialization_map {
 
 //    public function spooled_response_output(){
 //
-//        switch(self::$request_family_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]]){
+//        switch(self::$request_family_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]]){
 //            case 'module_key':
 //
 //                error_log(__LINE__ . ' rrs map is preventing asset return to allow support for deep link.');
@@ -11697,7 +11685,7 @@ class crnrstn_response_return_serialization_map {
             case 'css':
             case 'js':
 
-                self::$rrs_map_return_is_asset_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial][$request_ugc_val] = 1;
+                self::$rrs_map_return_is_asset_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial][$request_ugc_val] = 1;
 
                 $tmp_filename_ARRAY = explode('.', $request_ugc_val);
                 $file_extension = array_pop($tmp_filename_ARRAY);
@@ -11709,7 +11697,7 @@ class crnrstn_response_return_serialization_map {
             case 'system':
             case 'integrations':
 
-                self::$rrs_map_return_is_asset_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial][$request_ugc_val] = 1;
+                self::$rrs_map_return_is_asset_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial][$request_ugc_val] = 1;
 
             break;
             case 'meta':        // SOCIAL PREVIEW TAGS + SEO
@@ -11718,7 +11706,7 @@ class crnrstn_response_return_serialization_map {
 
                 //
                 // AS FAR AS ASSET RETURN IS CONCERNED...THESE ARE NOT YOUR AVERAGE BEAR.
-                self::$rrs_map_return_is_asset_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial][$request_ugc_val] = 0;
+                self::$rrs_map_return_is_asset_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial][$request_ugc_val] = 0;
 
             break;
 
@@ -11766,9 +11754,9 @@ class crnrstn_response_return_serialization_map {
 
         //
         // INITIALIZE MAP CACHE RESOURCE IDS.
-        if(!isset(self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val])){
+        if(!isset(self::$cache_id_ARRAY[self::$request_id][$request_ugc_val])){
 
-            self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val] = self::$channel_resource_id_ARRAY['cache_id']['runtime'];
+            self::$cache_id_ARRAY[self::$request_id][$request_ugc_val] = self::$channel_resource_id_ARRAY['cache_id']['runtime'];
             self::$channel_resource_id_ARRAY['cache_id']['runtime']++;
 
             if(!isset($this->oCRNRSTN->request_serial)){
@@ -11783,17 +11771,17 @@ class crnrstn_response_return_serialization_map {
 
             //
             // EXPOSE THIS NEW SERIAL TO THE CRNRSTN :: PLAID ARCHITECTURE.
-            $this->ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial] = $request_ugc_val;
+            $this->ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial] = $request_ugc_val;
             //error_log(__LINE__ . ' rrs map $request_ugc_val[' . $request_ugc_val . ']. $asset_family[' . $asset_family . ']. $asset_meta_key[' . $asset_meta_key . ']. $asset_meta_path[' . $asset_meta_path . ']. $request_asset_meta_key_ARRAY[' . print_r(self::$request_asset_meta_key_ARRAY, true) . ']. $raw_output_mode[' . $raw_output_mode . ']. $output_mode[' . $output_mode . ']. die();');
 
             //
             // THIS FORK ALLOWS $_GET AND METHOD_DRIVEN MAPPED RESOURCES TO BE MULTI-FORMAT SERIALIZED.
             // IS THIS THE BEST? ....NO!!!
             // WE COULD EASILY REDUCE TO JUST $this->oCRNRSTN->request_serial. AS WE CARE LESS ABOUT METHOD DRIVEN REQUESTS NOW. DO THIS!!
-            $this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial] = $this->oCRNRSTN->request_serial;
+            $this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial] = $this->oCRNRSTN->request_serial;
 
-            self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]] = $request_ugc_val;
-            self::$request_family_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val]] = $asset_family;
+            self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]] = $request_ugc_val;
+            self::$request_family_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$request_ugc_val]] = $asset_family;
 
             $tmp_ARRAY = array();
             $tmp_ARRAY['filename'] = $request_ugc_val;
@@ -11804,11 +11792,11 @@ class crnrstn_response_return_serialization_map {
 
             error_log(__LINE__ . ' rrs map $request_ugc_val[' . $request_ugc_val . ']. $asset_family[' . $asset_family . ']. $asset_meta_key[' . $asset_meta_key . ']. $asset_meta_path[' . $asset_meta_path . ']. $request_asset_meta_key_ARRAY[' . print_r(self::$request_asset_meta_key_ARRAY, true) . ']. $raw_output_mode[' . $raw_output_mode . ']. $output_mode[' . $output_mode . ']. die();');
 
-            $this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial] = $this->oCRNRSTN->request_serial;
-            self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]] = $request_ugc_val;
-            self::$request_asset_meta_key_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val]] = $asset_meta_key;
-            self::$request_family_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val]] = $asset_family;
-            //self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val]] = $output_mode;
+            $this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial] = $this->oCRNRSTN->request_serial;
+            self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]] = $request_ugc_val;
+            self::$request_asset_meta_key_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$request_ugc_val]] = $asset_meta_key;
+            self::$request_family_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$request_ugc_val]] = $asset_family;
+            //self::$request_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$request_ugc_val]] = $output_mode;
 
         }
 
@@ -11890,16 +11878,16 @@ class crnrstn_response_return_serialization_map {
         CONDITIONS FOR ASSET RETURN ::
         METHOD KEY IS SET.
 
-        self::$request_map_source_id_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial][$request_ugc_val]
+        self::$request_map_source_id_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial][$request_ugc_val]
 
         private static $request_map_output_mode_ARRAY = array();
         private static $cache_rrs_map_raw_output_mode_ARRAY = array();
 
         */
 
-        if(isset(self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]])){
+        if(isset(self::$request_map_output_mode_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]])){
 
-            //if(self::$request_map_source_id_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id]] == 'GET'){
+            //if(self::$request_map_source_id_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial][self::$salt_ugc_ARRAY[self::$request_id]] == 'GET'){
 
                 error_log(__LINE__ . ' rrs map RETURN $request_asset_meta_key_ARRAY[' . print_r(self::$request_asset_meta_key_ARRAY, true) . '].');
 
@@ -11915,14 +11903,14 @@ class crnrstn_response_return_serialization_map {
 
 
                 */
-                switch(self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]]){
+                switch(self::$request_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]]){
                     case CRNRSTN_JS:
                     case CRNRSTN_CSS:
 
                         $asset_family = $this->oCRNRSTN->return_crnrstn_asset_family();
                         $tmp_response_map_request_ugc_value = $this->get_salt_ugc();
                         $tmp_response_map_asset_meta_key = $this->oCRNRSTN->return_response_map_asset_meta_key();
-                        $tmp_response_map_asset_meta_path = $this->oCRNRSTN->return_response_map_asset_meta_path(self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]);
+                        $tmp_response_map_asset_meta_path = $this->oCRNRSTN->return_response_map_asset_meta_path(self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]);
                         error_log(__LINE__ . ' rrs map CRNRSTN_JS & CRNRSTN_CSS FIRE return_asset_data(). request_family[' . $asset_family . ']. ugc_value[' . $tmp_response_map_request_ugc_value . ']. method_key[' . $tmp_response_map_asset_meta_key . ']. meta_path[' . $tmp_response_map_asset_meta_path . '].');
 
                         die();
@@ -11931,8 +11919,8 @@ class crnrstn_response_return_serialization_map {
                     break;
                     default:
 
-                        error_log(__LINE__ . ' rrs map $request_asset_meta_key_ARRAY[' . self::$request_asset_meta_key_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]] . '].');
-                        return $this->oCRNRSTN->return_creative(self::$request_asset_meta_key_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]]);
+                        error_log(__LINE__ . ' rrs map $request_asset_meta_key_ARRAY[' . self::$request_asset_meta_key_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]] . '].');
+                        return $this->oCRNRSTN->return_creative(self::$request_asset_meta_key_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]]);
 
                     break;
 
@@ -12108,9 +12096,9 @@ class crnrstn_response_return_serialization_map {
 
     private function is_get_return_ready(){
 
-        if(isset(self::$rrs_map_page_is_asset_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]])){
+        if(isset(self::$rrs_map_page_is_asset_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]])){
 
-            if(self::$rrs_map_page_is_asset_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]] == 1){
+            if(self::$rrs_map_page_is_asset_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]] == 1){
 
                 return true;
 
@@ -12144,21 +12132,21 @@ class crnrstn_response_return_serialization_map {
             break;
             case 'rrs_map_filename':
 
-                $tmp_str = self::$cache_rrs_map_filename_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]];
+                $tmp_str = self::$cache_rrs_map_filename_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$ugc_value]];
 
             break;
             case 'rrs_map_filepath':
 
                 //
                 // NOTE THAT FILENAME AND UGC ARE MAPPED TO THE SAME CACHE LOCATION.
-                $tmp_str = self::$cache_rrs_map_filepath_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]];
+                $tmp_str = self::$cache_rrs_map_filepath_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$ugc_value]];
 
             break;
             case 'rrs_map_file_extension':
 
                 //
                 // NOTE THAT FILENAME AND UGC ARE MAPPED TO THE SAME CACHE LOCATION.
-                $tmp_str = self::$cache_rrs_map_file_extension_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]];
+                $tmp_str = self::$cache_rrs_map_file_extension_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$ugc_value]];
 
             break;
             default:
@@ -12180,28 +12168,28 @@ class crnrstn_response_return_serialization_map {
         // CURRENTLY, FAVICON MAPPING PRODUCES THE ONLY TOGGLE...WHERE WE SHOULD NOT USE FILENAME...BUT THE $_GET UGC.
         if($this->return_crnrstn_asset_family() == 'favicon'){
 
-            $ugc_value = self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]];
+            $ugc_value = self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]];
 
         }
 
         switch($attribute){
             case 'rrs_map_filename':
 
-                self::$cache_rrs_map_filename_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]] = $value;
+                self::$cache_rrs_map_filename_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$ugc_value]] = $value;
 
             break;
             case 'rrs_map_filepath':
 
                 //
                 // NOTE THAT FILENAME AND UGC ARE MAPPED TO THE SAME CACHE LOCATION.
-                self::$cache_rrs_map_filepath_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]] = $value;
+                self::$cache_rrs_map_filepath_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$ugc_value]] = $value;
 
             break;
             case 'rrs_map_file_extension':
 
                 //
                 // NOTE THAT FILENAME AND UGC ARE MAPPED TO THE SAME CACHE LOCATION.
-                self::$cache_rrs_map_file_extension_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$ugc_value]] = $value;
+                self::$cache_rrs_map_file_extension_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$ugc_value]] = $value;
 
             break;
             default:
@@ -12220,13 +12208,13 @@ class crnrstn_response_return_serialization_map {
         //die();
         /*
         CACHE HEADER (CACHE DATA STRUCTURE SUPPORTS MULTI-CHANNEL DRIVEN RUNTIME INITIALIZATION)
-        - DATECREATED                       self::$cache_datecreated_ARRAY[$this->oCRNRSTN->request_id][$channel]
-        - CREATEDBY_SESSIONID               self::$cache_createdby_sessionid_ARRAY[$this->oCRNRSTN->request_id][$channel]
-        - CREATEDBY_CLIENT_IP               self::$cache_createdby_client_ip_ARRAY[$this->oCRNRSTN->request_id][$channel]
-        - DATEMODIFIED                      self::$cache_lastmodified_ARRAY[$this->oCRNRSTN->request_id][$channel]
-        - MODIFIEDBY_SESSIONID              self::$cache_modifiedby_sessionid_ARRAY[$this->oCRNRSTN->request_id][$channel]
-        - MODIFIEDBY_CLIENT_IP              self::$cache_modifiedby_client_ip_ARRAY[$this->oCRNRSTN->request_id][$channel]
-        - CACHE SIZE (BYTES)                self::$cache_ARRAY[$this->oCRNRSTN->request_id]['channel_bytes'][$channel][$channel]
+        - DATECREATED                       self::$cache_datecreated_ARRAY[self::$request_id][$channel]
+        - CREATEDBY_SESSIONID               self::$cache_createdby_sessionid_ARRAY[self::$request_id][$channel]
+        - CREATEDBY_CLIENT_IP               self::$cache_createdby_client_ip_ARRAY[self::$request_id][$channel]
+        - DATEMODIFIED                      self::$cache_lastmodified_ARRAY[self::$request_id][$channel]
+        - MODIFIEDBY_SESSIONID              self::$cache_modifiedby_sessionid_ARRAY[self::$request_id][$channel]
+        - MODIFIEDBY_CLIENT_IP              self::$cache_modifiedby_client_ip_ARRAY[self::$request_id][$channel]
+        - CACHE SIZE (BYTES)                self::$cache_ARRAY[self::$request_id]['channel_bytes'][$channel][$channel]
 
         */
 
@@ -12271,22 +12259,22 @@ class crnrstn_response_return_serialization_map {
 
                     //error_log(__LINE__. ' rrs map AUTHORIZED TO STORE RRS MAP CACHE DATA IN CHANNEL [' . $channel . ']. $output_mode[' . $output_mode . '].');
 //
-//                    if(!isset(self::$cache_datecreated_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val]])){
+//                    if(!isset(self::$cache_datecreated_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$request_ugc_val]])){
 //
-//                        self::$cache_datecreated_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val]] = time();
-//                        self::$cache_createdby_client_ip_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val]] = $tmp_ip;
+//                        self::$cache_datecreated_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$request_ugc_val]] = time();
+//                        self::$cache_createdby_client_ip_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$request_ugc_val]] = $tmp_ip;
 //
 //                    }
 //
-//                    self::$cache_lastmodified_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val]] = time();
-//                    self::$cache_modifiedby_client_ip_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val]] = $tmp_ip;
-//                    self::$cache_rrs_map_raw_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val]] = $raw_output_mode;
-//                    self::$request_current_fulfilled_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial] = 0;
+//                    self::$cache_lastmodified_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$request_ugc_val]] = time();
+//                    self::$cache_modifiedby_client_ip_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$request_ugc_val]] = $tmp_ip;
+//                    self::$cache_rrs_map_raw_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$request_ugc_val]] = $raw_output_mode;
+//                    self::$request_current_fulfilled_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial] = 0;
 //
-//                    self::$request_map_output_mode_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val]] = $output_mode;
-//                    //self::$cache_rrs_map_filename_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val]] = $request_ugc_val;
+//                    self::$request_map_output_mode_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$request_ugc_val]] = $output_mode;
+//                    //self::$cache_rrs_map_filename_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$request_ugc_val]] = $request_ugc_val;
 
-                    //error_log(__LINE__ . ' rrs map MUST BE THE SAME!!! [' . self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]] . ']<-->[' . $request_ugc_val . '].');
+                    //error_log(__LINE__ . ' rrs map MUST BE THE SAME!!! [' . self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]] . ']<-->[' . $request_ugc_val . '].');
 
                 break;
                 default:
@@ -12301,7 +12289,7 @@ class crnrstn_response_return_serialization_map {
 
         //
         // TODO :: GET RID OF THE USE OF $rrs_map_page_is_asset_ARRAY FOR RETURN MGMT.
-        if(!isset(self::$rrs_map_page_is_asset_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial][$request_ugc_val])){
+        if(!isset(self::$rrs_map_page_is_asset_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial][$request_ugc_val])){
 
             $tmp_source = 0;
 
@@ -12330,9 +12318,9 @@ class crnrstn_response_return_serialization_map {
 
             }
 
-            self::$request_page_fulfilled_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial] = 0;
-            //self::$request_family_ARRAY[$this->oCRNRSTN->request_id] = $asset_family;
-            //self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id] = $request_ugc_val;
+            self::$request_page_fulfilled_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial] = 0;
+            //self::$request_family_ARRAY[self::$request_id] = $asset_family;
+            //self::$salt_ugc_ARRAY[self::$request_id] = $request_ugc_val;
 
             switch($asset_family){
                 case 'favicon':
@@ -12344,7 +12332,7 @@ class crnrstn_response_return_serialization_map {
 
                     //
                     // where $tmp_source = 0 or 1
-                    self::$rrs_map_page_is_asset_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial][$request_ugc_val] = $tmp_source;
+                    self::$rrs_map_page_is_asset_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial][$request_ugc_val] = $tmp_source;
                     //error_log(__LINE__ . ' rrs map *** $this->oCRNRSTN->request_serial[' . $this->oCRNRSTN->request_serial . ']. $rrs_map_page_is_asset_ARRAY[' . $request_ugc_val . ']=[' . $tmp_source . '], where 0 or 1 FOR RAW ASSET RETURN.');
                     //die();
 
@@ -12355,8 +12343,8 @@ class crnrstn_response_return_serialization_map {
 
                     //
                     // AS FAR AS ASSET RETURN IS CONCERNED...THESE ARE NOT YOUR AVERAGE BEAR.
-                    self::$rrs_map_page_is_asset_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial][$request_ugc_val] = 0;
-                    //error_log(__LINE__ . ' rrs map *** INVESTIGATE [' . $this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial] . ']. [' . self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id] . '].');
+                    self::$rrs_map_page_is_asset_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial][$request_ugc_val] = 0;
+                    //error_log(__LINE__ . ' rrs map *** INVESTIGATE [' . $this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial] . ']. [' . self::$salt_ugc_ARRAY[self::$request_id] . '].');
                     //die();
 
                 break;
@@ -12375,12 +12363,12 @@ class crnrstn_response_return_serialization_map {
         // DO WE INITIALIZE MAP FOR METHOD DRIVEN ASSET REQUEST?
         //error_log(__LINE__ . ' rrs map $asset_meta_key[' . $asset_meta_key . ']. $request_ugc_val[' . $request_ugc_val . ']. self::$cache_id_ARRAY[' . print_r(self::$cache_id_ARRAY,true) . '].');
 
-        //self::$request_asset_meta_key_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][self::$salt_ugc_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]]]]
-        if(!isset(self::$request_asset_meta_key_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val]])){
+        //self::$request_asset_meta_key_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][self::$salt_ugc_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]]]]
+        if(!isset(self::$request_asset_meta_key_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$request_ugc_val]])){
 
             //error_log(__LINE__ . ' rrs map $asset_meta_key[' . $asset_meta_key . '].');
-            //self::$request_asset_meta_key_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial]] = $asset_meta_key;
-            self::$request_asset_meta_key_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val]] = $asset_meta_key;
+            //self::$request_asset_meta_key_ARRAY[self::$request_id][$this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial]] = $asset_meta_key;
+            self::$request_asset_meta_key_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$request_ugc_val]] = $asset_meta_key;
 
             //error_log(__LINE__ . ' rrs map INITIALIZE return_response_map_asset_meta_key[' . $this->return_response_map_asset_meta_key() . ']. $request_asset_meta_key_ARRAY[' . print_r(self::$request_asset_meta_key_ARRAY, true) . ']. $request_ugc_val[' . $request_ugc_val . '].');
 
@@ -12398,10 +12386,10 @@ class crnrstn_response_return_serialization_map {
 
                 //
                 // DO WE INITIALIZE MAP FOR METHOD DRIVEN ASSET REQUEST?
-                if(!isset(self::$request_asset_meta_path_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val]])){
+                if(!isset(self::$request_asset_meta_path_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$request_ugc_val]])){
 
-                    //error_log(__LINE__ . ' rrs map $request_map_output_mode_ARRAY[' . print_r(self::$request_map_output_mode_ARRAY,true) . ']. $asset_meta_path[' . $asset_meta_path . ']. $request_ugc_val[' . $request_ugc_val . ']. $serial[' . $this->oCRNRSTN->request_serialization_string_ARRAY[$this->oCRNRSTN->request_id][$this->oCRNRSTN->request_serial] . '].');
-                    self::$request_asset_meta_path_ARRAY[$this->oCRNRSTN->request_id][self::$cache_id_ARRAY[$this->oCRNRSTN->request_id][$request_ugc_val]] = $asset_meta_path;
+                    //error_log(__LINE__ . ' rrs map $request_map_output_mode_ARRAY[' . print_r(self::$request_map_output_mode_ARRAY,true) . ']. $asset_meta_path[' . $asset_meta_path . ']. $request_ugc_val[' . $request_ugc_val . ']. $serial[' . $this->oCRNRSTN->request_serialization_string_ARRAY[self::$request_id][$this->oCRNRSTN->request_serial] . '].');
+                    self::$request_asset_meta_path_ARRAY[self::$request_id][self::$cache_id_ARRAY[self::$request_id][$request_ugc_val]] = $asset_meta_path;
                     //error_log(__LINE__ . ' rrs map $asset_meta_path[' . $asset_meta_path . ']. $request_ugc_val[' . $request_ugc_val . ']. $request_asset_meta_path_ARRAY[' . print_r(self::$request_asset_meta_path_ARRAY, true) . '].');
 
                 }
@@ -12422,7 +12410,7 @@ class crnrstn_response_return_serialization_map {
 
             //error_log(__LINE__ . ' rrs map __destruct() runtime cache[' . print_r(self::$cache_ARRAY, true) . '].');
             //error_log(__LINE__ . ' rrs map __destruct() RUNTIME cache[' . print_r(self::$cache_ARRAY, true) . '].');
-            //error_log(__LINE__ . ' rrs map __destruct() SESSION cache[' . print_r($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()], true) . '].');
+            //error_log(__LINE__ . ' rrs map __destruct() SESSION cache[' . print_r($_SESSION['CRNRSTN_' . self::$config_serial], true) . '].');
 
 //            echo '<html><body style="background-color: #131314;"><div style="padding: 20px 0 40px 10px;"><code style="font-family: Courier New, Courier, monospace; font-size: 10px; color: #1FA61F;"><pre>[' . $this->oCRNRSTN->return_micro_time() . '][rtime ' . $this->oCRNRSTN->wall_time() . ']
 //RUNTIME:
@@ -12447,12 +12435,12 @@ class crnrstn_response_return_serialization_map {
 
             $this->oCRNRSTN->destruct_output = '[' . $this->oCRNRSTN->wall_time() . ']
 [methd ' . trim(__METHOD__) . '()][lnum ' . __LINE__ . ']
-[req_id ' . $this->oCRNRSTN->request_id . ']';
+[req_id ' . self::$request_id . ']';
 
-            if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()])){
+            if(isset($_SESSION['CRNRSTN_' . self::$config_serial])){
 
                 $this->oCRNRSTN->destruct_output .= '$_SESSION:
-[' . print_r($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()], true) . '].';
+[' . print_r($_SESSION['CRNRSTN_' . self::$config_serial], true) . '].';
 
                 $this->oCRNRSTN->destruct_output .= '[' . __METHOD__ . '][lnum ' . __LINE__ . ']
 /////////////////

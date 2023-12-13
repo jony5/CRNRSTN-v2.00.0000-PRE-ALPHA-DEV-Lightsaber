@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -77,7 +77,6 @@
 #
 class crnrstn_user {
 
-    protected $oLogger;
     protected $oNUSOAP_BASE;
     public $oCRNRSTN;
     public $oCRNRSTN_ENV;
@@ -97,7 +96,7 @@ class crnrstn_user {
     protected $oCRNRSTN_UX;
     private static $oCRNRSTN_CSS_VALIDATOR;
 
-    public $config_serial_hash;
+    private static $config_serial;
     public $account_serial;
 
     private static $oLog_ProfileManager;
@@ -128,7 +127,6 @@ class crnrstn_user {
     public $ini_set_ARRAY = array();
     public $starttime;
 
-    public $log_silo_profile;
     public $env_key;
     public $env_key_hash;
 
@@ -154,38 +152,33 @@ class crnrstn_user {
         $this->env_key = $oCRNRSTN->return_env_key();
         $this->env_key_hash = $oCRNRSTN->return_env_key(true);
 
-        $this->config_serial_hash = $this->oCRNRSTN_ENV->config_serial_hash;
+        self::$config_serial = $this->oCRNRSTN->get_crnrstn('config_serial');
 
         $this->destruct_output = $oCRNRSTN_ENV->destruct_output;
 
-        $this->log_silo_profile = $oCRNRSTN_ENV->log_silo_profile;
         self::$oLog_ProfileManager = $oCRNRSTN_ENV->return_oLog_ProfileManager();
         self::$oLog_ProfileManager->sync_to_environment(NULL, $oCRNRSTN_ENV, $this);
 
         //
-        // INSTANTIATE LOGGER.
-        $this->oLogger = new crnrstn_logging(__CLASS__, $this);
-
-        //
-        // INSTANTIATE CRNRSTN :: SYSTEM EMAIL CONTENT HELPER CLASS.
+        // INSTANTIATE CRNRSTN :: SYSTEM EMAIL CONTENT HELPER  CLASS OBJECT.
         $this->oCRNRSTN_ASSET_MGR = $oCRNRSTN->oCRNRSTN_ASSET_MGR;
 
         //
-        // INSTANTIATE QUERY PROFILE MANAGER.
+        // INSTANTIATE THE CRNRSTN :: QUERY PROFILE MANAGER CLASS OBJECT.
         $this->oCRNRSTN_QPM = new crnrstn_query_profile_manager($this);
 
         //
-        // INSTANTIATE REDIRECT CONTROLLER.
+        // INSTANTIATE THE CRNRSTN :: REDIRECT CONTROLLER CLASS OBJECT.
         self::$oRedirectCntrlr = new crnrstn_redirect_controller($this);
 
         //
-        // INSTANTIATE PAGINATOR.
+        // INSTANTIATE THE CRNRSTN :: RESULTS PAGINATION CLASS OBJECT.
         self::$oPaginator = new crnrstn_results_paginator($this);
 
         self::$lang_content_ARRAY = $this->oCRNRSTN_ENV->return_lang_content_ARRAY();
 
         //
-        // INSTANTIATE UX MANAGER.
+        // INSTANTIATE THE CRNRSTN :: UX MANAGER CLASS OBJECT.
         $this->oCRNRSTN_UX = new crnrstn_ux_manager($this);
 
     }
@@ -596,7 +589,7 @@ class crnrstn_user {
 
         $output_type = trim(strtolower($output_type));
 
-        $active_log_silo_flag_ARRAY = $this->oLogger->return_active_log_silo_keys();
+        $active_log_silo_flag_ARRAY = $this->oCRNRSTN->return_active_log_silo_keys();
 
         switch($output_type){
             case 'print_r':
@@ -656,7 +649,7 @@ class crnrstn_user {
 //
 //        if(!isset(self::$formIntegrationPacket_ARRAY[$crnrstn_form_handle]['timestamp'])){
 //
-//            self::$formIntegrationPacket_ARRAY[$crnrstn_form_handle]['timestamp'] = $this->oLogger->returnMicroTime();
+//            self::$formIntegrationPacket_ARRAY[$crnrstn_form_handle]['timestamp'] = $this->oCRNRSTN->return_micro_time();
 //
 //        }
 //
@@ -1249,7 +1242,7 @@ class crnrstn_user {
 //
 //                }
 //
-//                $_SESSION['CRNRSTN_' . $this->config_serial_hash]['CRNRSTN_EXCEPTION_PREFIX'] = 'system_link_reset_jpeg_from_png() attempting to create image file ' . $crnrstn_jpg . ' from source: ' . $crnrstn_png . '. ';
+//                $_SESSION['CRNRSTN_' . self::$config_serial]['CRNRSTN_EXCEPTION_PREFIX'] = 'system_link_reset_jpeg_from_png() attempting to create image file ' . $crnrstn_jpg . ' from source: ' . $crnrstn_png . '. ';
 //
 //
 //                error_log(__LINE__ . ' user ' . __METHOD__ . ':: attempting to create image file ' . $crnrstn_jpg . ' from source: ' . $crnrstn_png . '. die();');
@@ -1607,7 +1600,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                         $tmp_validation_results = $tmp_validation_results_ARRAY['HTML_OUT'];
 
-                        $tmp_key = $this->generate_new_key(50);
+                        $tmp_key = $this->oCRNRSTN->generate_new_key(50);
 
                         $this->set_session_param('CRNRSTN_CSS_VALIDATION_RESP', $tmp_validation_results);
 
@@ -2146,7 +2139,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         $this->error_log('377 - returnResult=' . $soapClient->returnResult(), __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
-        $tmp_serial = $this->generate_new_key(10);
+        $tmp_serial = $this->oCRNRSTN->generate_new_key(10);
         $packet_delimiter = '[CRNRSTN200_' . $tmp_serial . ']';
 
         $tmp_email_packet_datum = $this->return_emailProxyIntegrationPacket($WCR_key_email_packet, $packet_delimiter);
@@ -2256,7 +2249,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         $this->print_r('[' . $SOAP_endpoint . '][' . $WSDL_cache_ttl . '][' . $nusoap_useCURL . ']', 'SEND CLIENT REQUEST', NULL, __LINE__, __METHOD__, __FILE__);
 
         //
-        // INSTANTIATE SOAP CLIENT
+        // INSTANTIATE A SOAP CLIENT CLASS OBJECT.
         $this->oSoapClient = new crnrstn_soap_client_manager($this, $SOAP_endpoint, $WSDL_cache_ttl, $nusoap_useCURL);
         $this->print_r('[' . gettype($this->oSoapClient) . '][' . get_class($this->oSoapClient) . '] [' . $SOAP_method . '][' . print_r($SOAP_request, true) . ']', 'SEND CLIENT REQUEST', NULL, __LINE__, __METHOD__, __FILE__);
         //$this->print_r('[' . $SOAP_method . '][' . print_r($SOAP_request, true) . ']', 'SEND CLIENT REQUEST', NULL, __LINE__, __METHOD__, __FILE__);
@@ -2764,7 +2757,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             //
             // RETURN FALSE.
@@ -2794,7 +2787,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             //
             // RETURN FALSE.
@@ -2824,7 +2817,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             //
             // RETURN FALSE.
@@ -2854,7 +2847,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             //
             // RETURN FALSE.
@@ -2884,7 +2877,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             //
             // RETURN FALSE.
@@ -2908,15 +2901,9 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function get_server_config_serial($output_format = 'hash'){
+    public function config_serial(){
 
-        if($output_format == 'hash'){
-
-            return $this->config_serial_hash;
-
-        }
-
-        return $this->oCRNRSTN->get_server_config_serial($output_format);
+        return $this->oCRNRSTN->get_crnrstn('config_serial');
 
     }
 
@@ -2933,7 +2920,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         switch($channel_constant){
             case CRNRSTN_UI_FORM_INTEGRATION_PACKET:
             case CRNRSTN_CHANNEL_SSDTLA:
-            case CRNRSTN_CHANNEL_FORM_INTEGRATIONS:
+            case CRNRSTN_CHANNEL_FORM:
 
                 $this->form_input_add($crnrstn_form_handle, 'crnrstn_session_salt', NULL, NULL, CRNRSTN_INPUT_REQUIRED);
                 $this->form_input_add($crnrstn_form_handle, 'crnrstn_pssdtlp_clear_text_bytes', NULL, NULL, CRNRSTN_INPUT_REQUIRED);
@@ -3204,7 +3191,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         $this->error_log('Begin execution of CRNRSTN :: Electrum operation.', __LINE__, __METHOD__, __FILE__,CRNRSTN_ELECTRUM);
 
-        $tmp_execution_serial = $this->generate_new_key(100);
+        $tmp_execution_serial = $this->oCRNRSTN->generate_new_key(100);
 
         $CRNRSTN_oELECTRUM->execute($tmp_execution_serial);
 
@@ -3575,7 +3562,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         if(!isset($email_experience_tracker)){
 
-            $email_experience_tracker = $this->generate_new_key(70);
+            $email_experience_tracker = $this->oCRNRSTN->generate_new_key(70);
 
         }
 
@@ -3874,7 +3861,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -4022,7 +4009,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -4210,7 +4197,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             if(!isset($field_input_name)){
 
-                $field_input_name = 'crnrstn_input_' . $this->generate_new_key(26);
+                $field_input_name = 'crnrstn_input_' . $this->oCRNRSTN->generate_new_key(26);
 
             }
 
@@ -4312,7 +4299,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -4466,7 +4453,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -4606,8 +4593,23 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         //$this->oCRNRSTN->input_data_value($tmp_version_mysqli, 'version_mysqli', NULL, 0, CRNRSTN_AUTHORIZE_RUNTIME, NULL);
 
         //
-        // CRNRSTN :: CONFIGURATION WILL INPUT CLEAN UGC DATA OR LOOK FOR
-        // GRACEFUL DEGRADATION TO A VANILLA DEFAULT. ON ERR, RETURNS NULL.
+        // THE CRNRSTN :: CONFIGURATION MANAGER WILL INPUT CLEAN UGC DATA
+        // OR LOOK FOR THE BEST AND MOST ELEGANT (PLEASE READ AS GRACEFUL)
+        // DEGRADATION PATHWAYS TO A VANILLA DEFAULT.
+        //
+        // ON CRITICAL ERR, $oCRNRSTN->config_ugc_input_clean_data() RETURNS
+        // NULL, AND A SYSTEM EXCEPTION IS THROWN. OTHERWISE, IF THE INPUT
+        // DATA IS NOT VALID BUT CAN BE OVERRIDDEN WITH A SETTINGS DEFAULT,
+        // AN ON THE FLY PATCH IS MADE, AND A SYSTEM NOTIFICATION WITH
+        // DETAILS ABOUT THE INTERNAL OVERRIDE IS QUIETLY CAPTURED.
+        //
+        // PLEASE NOTE: $oCRNRSTN->err_message_queue_retrieve() CAN RECEIVE
+        //              AN ERR MESSAGE OUTPUT OVERRIDE...AS INPUT. ALSO TO NOTE IS
+        //	            THAT ACCEPTABLE INPUT CAN INCLUDE DATA SUCH AS EMPTY STRING,
+        //	            SOAP ERROR OBJECT, OR EVEN AN OpenSSL v1.1.1 ENCRYPTED JSON
+        //	            PACKET CONTAINING SESSION META AND A CACHE EXPIRATION TTL.
+        //
+        //              NULL IS THE DEFAULT FOR ERR MESSAGE OUTPUT OVERRIDE.
         if(!($tmp_result = $this->oCRNRSTN->config_ugc_input_clean_data(__FUNCTION__ . '_string', $tmp_version_mysqli, 'version_mysqli', 'CRNRSTN::RESOURCE::CONFIGURATION', 0))){
 
             //
@@ -4729,7 +4731,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         if(!isset(self::$formIntegrationPacket_ARRAY[$crnrstn_form_handle]['timestamp'])){
 
-            self::$formIntegrationPacket_ARRAY[$crnrstn_form_handle]['timestamp'] = $this->oLogger->returnMicroTime();
+            self::$formIntegrationPacket_ARRAY[$crnrstn_form_handle]['timestamp'] = $this->oCRNRSTN->return_micro_time();
 
         }
 
@@ -4928,7 +4930,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         }catch(Exception $e){
 
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -4940,7 +4942,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         if(is_bool($application_acceleration)){
 
-            $tmp_request_serial = $this->generate_new_key(50);
+            $tmp_request_serial = $this->oCRNRSTN->generate_new_key(50);
 
             //
             // TRACK ON THIS AND KEY OFF OF IT TO ACTIVATE APPLICATION ACCELERATION
@@ -5267,7 +5269,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         }catch(Exception $e){
 
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -5376,7 +5378,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         }catch(Exception $e){
 
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -5439,7 +5441,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         }catch(Exception $e){
 
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -5461,7 +5463,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     public function return_micro_time(){
 
-        return $this->oLogger->returnMicroTime();
+        return $this->oCRNRSTN->return_micro_time();
 
     }
 
@@ -6041,7 +6043,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
             # {ERROR_OBJECT..e.g. $e}
             # {oCRNRSTN_USR}
             # INCIDENT LOCATION META (LINE, METHOD, FILE, NAMESPACE)
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -6081,7 +6083,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         }catch(Exception $e){
 
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -6137,7 +6139,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             }
 
-            $result_set_key = $tmp_lnum . $tmp_method . $this->generate_new_key(25);
+            $result_set_key = $tmp_lnum . $tmp_method . $this->oCRNRSTN->generate_new_key(25);
             $tmp_output = $result_set_key;
 
         }
@@ -6187,7 +6189,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         }catch(Exception $e){
 
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -6228,7 +6230,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -6261,8 +6263,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
-            //$this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__, CRNRSTN_LOG_EMAIL, 'j5@jony5.com');
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            //$this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__, CRNRSTN_LOG_EMAIL, 'j5@jony5.com');
 
             return false;
 
@@ -6295,7 +6297,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -6330,7 +6332,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -6363,7 +6365,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -6396,7 +6398,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -6437,7 +6439,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         }catch(Exception $e){
 
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -6499,7 +6501,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         }catch(Exception $e){
 
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -6593,23 +6595,68 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
     // SOURCE :: https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
     // COMMENT :: https://stackoverflow.com/a/13733588
     // AUTHOR :: Scott :: https://stackoverflow.com/users/1698153/scott
-    public function generate_new_key($len = 32, $char_selection = NULL){
+    public function generate_new_key($len = 32, $char_selection = NULL, $system_hashed_return = false, $algorithm_override = NULL, $binary_return = false, $runtime_acceleration = false, $session_acceleration_key = NULL){
 
         //
-        // SEND -1 AS $char_selection FOR USE OF *ALL* CHARACTERS IN RANDOM KEY
-        // GENERATION...ALL EXCEPT THE SEQUENCE \e ESCAPE KEY (ESC or 0x1B (27) in
-        // ASCII) AND NOT SPLITTING HAIRS CHOOSING BETWEEN SEQUENCE \n LINEFEED (LF or
-        // 0x0A (10) in ASCII) AND THE SEQUENCE \r CARRIAGE RETURN (CR or 0x0D
-        // (13) in ASCII)...AND ALSO SCREW BOTH \f FORM FEED (FF or 0x0C (12)
-        // in ASCII) AND \v VERTICAL TAB (VT or 0x0B (11) in ASCII) SEQUENCES.
+        // $char_selection = NULL [OR (int) 0]
+        //      $codeAlphabet = ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        //                      abcdefghijklmnopqrstuvwxyz
+        //                      0123456789
         //
-        // ALSO, CHECK OUT $char_selection=-2, AND $char_selection=-3.
-        // $char_selection=-3 IS THE NICEST(NO: QUOTES, COMMAS,...ETC.)...WITH
-        // THE MOST DISTINCT NUMBER OF CHARACTERS FOR A SERIAL, IMHO.
+        // $char_selection = '01'
+        //      $codeAlphabet = 01
+        //
+        // $char_selection = (int) -3
+        //      $codeAlphabet = ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        //                      abcdefghijklmnopqrstuvwxyz
+        //                      0123456789:+=_- )(*$#@!~.
+        //
+        // $char_selection = (int) -2
+        //      $codeAlphabet = ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        //                      abcdefghijklmnopqrstuvwxyz
+        //                      0123456789{}[]:+=_- )(*&%$#@!~?.
+        //
+        // $char_selection = (int) -1
+        //      $codeAlphabet = ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        //                      abcdefghijklmnopqrstuvwxyz
+        //                      0123456789{}[]:;\"\'|\\+=_- )(*&^%$#@!~
+        //                      `?/>.<,   '
+        //
+        // NOTE: $char_selection = -1 WILL USE *ALL* CHARACTERS ACROSS
+        //       ALL DIMENSIONS IN THE KNOWN ASCII UNIVERSE FOR SYSTEM
+        //       KEY GENERATION. THERE ARE SOME CHARACTER OMISSIONS TO
+        //       NOTE, HOWEVER. $char_selection = -1 EVOKES *ALL*
+        //       CHARACTERS EXCEPT:
+        //          - THE SEQUENCE \e ESCAPE KEY (ESC or 0x1B (27) in
+        //            ASCII), AND
+        //          - WE'RE NOT SPLITTING HAIRS CHOOSING BETWEEN
+        //            SEQUENCE \n LINEFEED (LF or 0x0A (10) in ASCII)
+        //            AND THE SEQUENCE \r CARRIAGE RETURN (CR or 0x0D
+        //            (13) in ASCII) AS I JUST LET THE PHPSTORM IDE
+        //            CHOOSE HOW TO CONVEY THE ENTER KEY TO TEXT, AND
+        //          - ALSO SCREW BOTH \f FORM FEED (FF or 0x0C (12) in
+        //            ASCII) AND \v VERTICAL TAB (VT or 0x0B (11) in
+        //            ASCII) SEQUENCES; WE DO NOT USE THESE CHARACTERS
+        //            FOR SYSTEM KEY GENERATION.
+        //
+        // NOTE: $char_selection = -3 PRODUCES A LITTLE MORE VARIATION IN
+        //       OUTPUT KEY (OVER $char_selection = NULL); IT HAS JUST A
+        //       FEW MORE CHARACTERS ADDED TO THE SET BEYOND THE PLAIN
+        //       ALPHA-NUMERIC ONES. -3 IS THE COOLEST...HOWEVER...BECAUSE
+        //       THESE NEW CHARACTERS WERE HAND SELECTED FOR BEING THE
+        //       NICEST (imho) TO WORK WITH AS DATA IN THE DATA
+        //       HANDLING WORLD.
+        //
+        //       TLDR; $char_selection = -3 PRODUCES CSV SAFE DATA. THE
+        //       OUTPUT HAS NO QUOTES, NO COMMAS, NO SEMI-COLONS...ETC.,
+        //       BUT IT HAS THE MOST DISTINCT NUMBER OF CHARACTERS FOR
+        //       THE STRONGEST POSSIBLE VARIATION IN SYSTEM KEY
+        //       GENERATION OUTPUT BY CRNRSTN ::
+        //
+        //       Wednesday, December 6, 2023 @ 2128 hrs.
         //
         // https://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.double
-
-        return $this->oCRNRSTN->generate_new_key($len, $char_selection);
+        return $this->oCRNRSTN->generate_new_key($len, $char_selection, $system_hashed_return, $algorithm_override, $binary_return, $runtime_acceleration, $session_acceleration_key);
 
     }
 
@@ -6644,11 +6691,11 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         try{
 
-            if($this->CRNRSTN_debug_mode() < 2){
+            if($this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode') < 2){
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
-                //throw new Exception('Unable to retrieve log trace data due to CRNRSTN being in configuration of CRNRSTN_debug_mode="' . $this->CRNRSTN_debug_mode().'"...which setting does not authorize resource allocation enabling aggregation of error log data in server memory.');
+                //throw new Exception('Unable to retrieve log trace data due to CRNRSTN being in configuration of CRNRSTN_debug_mode="' . $this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode').'"...which setting does not authorize resource allocation enabling aggregation of error log data in server memory.');
 
             }else{
 
@@ -6674,11 +6721,23 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                         case CRNRSTN_LOG_EMAIL:
                         case CRNRSTN_LOG_EMAIL_PROXY:
                         case CRNRSTN_LOG_FILE:
+                        case CRNRSTN_CHANNEL_FILE:
                         case CRNRSTN_LOG_SCREEN_TEXT:
                         case CRNRSTN_LOG_SCREEN:
                         case CRNRSTN_LOG_SCREEN_HTML:
                         case CRNRSTN_LOG_SCREEN_HTML_HIDDEN:
                         case CRNRSTN_LOG_DEFAULT:
+                        //case CRNRSTN_CHANNEL_GET:
+                        //case CRNRSTN_CHANNEL_POST:
+                        //case CRNRSTN_CHANNEL_COOKIE:
+                        //case CRNRSTN_CHANNEL_SESSION:
+                        case CRNRSTN_CHANNEL_DATABASE:
+                        case CRNRSTN_CHANNEL_SSDTLA:
+                        case CRNRSTN_CHANNEL_PSSDTLA:
+                        case CRNRSTN_CHANNEL_RUNTIME:
+                        case CRNRSTN_CHANNEL_SOAP:
+                        //case CRNRSTN_CHANNEL_ALL:
+                        //case CRNRSTN_CHANNEL_FORM:
                         break;
                         default:
 
@@ -6692,7 +6751,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 }
 
-                $this->oLogger->get_error_log_trace($output_profile, $output_profile_override_meta, $log_silo_profile, $line_num, $method, $file, $this);
+                $this->oCRNRSTN->get_error_log_trace($output_profile, $output_profile_override_meta, $log_silo_profile, $line_num, $method, $file, $this);
 
             }
 
@@ -6700,7 +6759,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -9752,7 +9811,7 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
 
@@ -10007,7 +10066,7 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
 
             curl_close($ch);
 
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -10054,7 +10113,7 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
 
             curl_close($ch);
 
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -10397,31 +10456,9 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
 
     }
 
-    public function catch_exception($exception_obj, $syslog_constant = LOG_DEBUG, $method = NULL, $namespace = NULL, $output_profile = NULL, $output_profile_override_meta = NULL, $wcr_override_pipe = NULL){
-
-        $tmp_err_trace_str = $this->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString());
-
-        if(strlen($tmp_err_trace_str)>0){
-
-            $this->error_log('PHP native exception output log trace received ::' . $tmp_err_trace_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
-
-        }
-
-        //
-        // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-        $tmp_return = $this->oLogger->catch_exception($exception_obj, $syslog_constant, $method, $namespace, $output_profile, $output_profile_override_meta, $wcr_override_pipe, $this);
-
-        if(is_array($tmp_return)){
-
-            return $tmp_return;
-
-        }
-
-    }
-
     public function CRNRSTN_debug_mode(){
 
-        return $this->oCRNRSTN_ENV->CRNRSTN_debug_mode();
+        return $this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode');
 
     }
 
@@ -10493,7 +10530,7 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
 
 //    public function hash_ddo_memory_pointer($resource_key, $data_type_family = 'CRNRSTN::RESOURCE', $env_key = NULL){
 //
-//        $tmp_dataset_prefix_str = $this->return_dataset_nomination_prefix('string', $this->config_serial_hash, $env_key, $data_type_family);
+//        $tmp_dataset_prefix_str = $this->return_dataset_nomination_prefix('string', self::$config_serial, $env_key, $data_type_family);
 //
 //        return $tmp_dataset_prefix_str . $resource_key;
 //
@@ -10941,7 +10978,7 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
 
                 if($tmp_original_serial_len != $key_length){
 
-                    return $this->generate_new_key($key_length, $key_string_chars);
+                    return $this->oCRNRSTN->generate_new_key($key_length, $key_string_chars);
 
                 }
 
@@ -11013,7 +11050,7 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
 
         }catch(Exception $e){
 
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -11043,7 +11080,7 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
 
         }
 
-        $tmp_sql_serial = $this->generate_new_key(25);
+        $tmp_sql_serial = $this->oCRNRSTN->generate_new_key(25);
         $this->load_query_profile('CRNRSTN_SYSTEM_SUPPORT_REQUEST', '!jesus_is_my_dear_lord!', 'VALUE_EXISTENCE_CHECK_' . $tmp_sql_serial);
         $this->add_database_query('VALUE_EXISTENCE_CHECK_' . $tmp_sql_serial, $tmp_query);
 
@@ -11093,7 +11130,7 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
 
         //
         //add_database_query() WILL SERIALIZE THE QUERY TO THE CONNECTION PROVIDED. CRNRSTN :: SUPPORTS n+1 MYSQLI DATABASE CONNECTIONS.
-        $tmp_query_serial = $this->generate_new_key(25);
+        $tmp_query_serial = $this->oCRNRSTN->generate_new_key(25);
         $this->load_query_profile('CRNRSTN_SYSTEM_SUPPORT_REQUEST', '!jesus_is_my_dear_lord!', 'SERIAL_UNIQUENESS_CHECK_' . $tmp_query_serial);
         $this->add_database_query('SERIAL_UNIQUENESS_CHECK_' . $tmp_query_serial, $tmp_query);
 
@@ -11132,7 +11169,7 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
         if($tmp_original_serial_len < $key_length){
 
             $tmp_padding_str_len = $key_length - $tmp_original_serial_len;
-            $tmp_padding_str = $this->generate_new_key($tmp_padding_str_len, $key_string_chars);
+            $tmp_padding_str = $this->oCRNRSTN->generate_new_key($tmp_padding_str_len, $key_string_chars);
 
             $tmp_string_out = $original_serial.$tmp_padding_str;
 
@@ -11160,7 +11197,7 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
 
                 //
                 // GENERATE NEW SERIAL
-                $tmp_string_out = $this->generate_new_key($tmp_padding_str_len, $key_string_chars);
+                $tmp_string_out = $this->oCRNRSTN->generate_new_key($tmp_padding_str_len, $key_string_chars);
 
             }else{
 
@@ -11273,7 +11310,7 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -11282,9 +11319,6 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
     }
 
     public function __get_url_content($url){
-
-        //$debugMode = 0;
-        //$oLogger = new crnrstn_logging($debugMode);
 
         $header=array(
             'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
@@ -11311,7 +11345,7 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
         curl_setopt($ch,CURLOPT_HTTPHEADER,$header);
 
         if( ! $data = curl_exec($ch)){
-            //$oLogger->captureNotice('[ERROR] CRON Fired CURL :: /_cron/bassdrive_sync/', LOG_CRIT, curl_error($ch));
+            //$this->oCRNRSTN->capture_notice('[ERROR] CRON Fired CURL :: /_cron/bassdrive_sync/', LOG_CRIT, curl_error($ch));
         }
 
         $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -11349,7 +11383,7 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -11359,9 +11393,7 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
 
     public function resource_filecache_version($file_path){
 
-        $file_cache_version_str = filesize($file_path) . '.' . filemtime($file_path).'.0';
-
-        return $file_cache_version_str;
+        return $this->oCRNRSTN->resource_filecache_version($file_path);
 
     }
 
@@ -11381,7 +11413,7 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 

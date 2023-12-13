@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -61,59 +61,26 @@
 #
 # # C # R # N # R # S # T # N # : : # # # #
 #
-/*
-DATA HANDLING ARCHITECTURES
------
-G :: HTTP $_GET REQUEST.
-P :: HTTP $_POST REQUEST.
-H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
-S :: CRNRSTN :: SSDTLA PACKET (SOAP WRAPPED ENCRYPTED PSSDTLA PACKET. THE BROWSER WILL TALK LIKE A SERVER).
-J :: CRNRSTN :: PSSDTLA PACKET (OPENSSL ENCRYPTED JSON OBJECT).
-C :: CARRIER PIGEON (AVIAN OF HOMING VARIANT)...OR BROWSER COOKIE...
-D :: DATABASE (MySQLi CONNECTION).
-R :: RUNTIME.
-O :: SIMPLE OBJECT ACCESS PROTOCOL (NuSOAP 0.9.5, SOAP 1.1).
-F :: SERVER LOCAL FILE SYSTEM.
+#  CLASS :: crnrstn_method_manager
+#  VERSION :: 1.00.0000
+#  DATE :: November 29, 2023 @ 0109 hrs.
+#  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
+#  URI :: 
+#  DESCRIPTION :: Manage all PHP and CRNRSTN :: system method definitions, meta, and operations.
+#  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
+#
+class crnrstn_method_manager {
 
-GPHSJCDROF
+    public $oCRNRSTN;
 
-//
-// CHANNEL CONSTANTS.
-CRNRSTN_CHANNEL_ALL, CRNRSTN_CHANNEL_RUNTIME, CRNRSTN_CHANNEL_DATABASE, CRNRSTN_CHANNEL_SSDTLA,
-CRNRSTN_CHANNEL_PSSDTLA, CRNRSTN_CHANNEL_SESSION, CRNRSTN_CHANNEL_COOKIE, CRNRSTN_CHANNEL_SOAP,
-CRNRSTN_CHANNEL_GET, CRNRSTN_CHANNEL_POST,  CRNRSTN_CHANNEL_FILE
+    public function __construct($oCRNRSTN){
 
-//
-// CRNRSTN :: INITIALIZE SECURITY PROFILES FOR MULTI-CHANNEL RESOURCE ACCESS [IPv4 and IPv6]
-$oCRNRSTN->initialize_ip_address_profile([environment-key], [channel-constant], [ip], [deny-access-boolean]);
+        $this->oCRNRSTN = $oCRNRSTN;
 
-// WITH [deny-access-boolean], false[*DEFAULT*] = EXCLUSIVE ACCESS (AUTHORIZED TO PROVIDED IP/IP RANGE) AND
-// true = DENY ACCESS (AUTHORIZED TO PROVIDED IP/IP RANGE).
-$this->init_ip_authorization_profile(CRNRSTN_RESOURCE_ALL, CRNRSTN_AUTHORIZE_ALL, '127.0.0.1');
+    }
 
-*/
+    public function __destruct(){
 
-//
-// THIS CRNRSTN :: 1.0.0 TECH SHOULD BE PROMOTED DOWN TO A LOWER LEVEL FOR
-// MULTI-CHANNEL SUPPORT AT THIS TIME. SAME METHOD NAMES. SAME INPUT PARAMS.
-// Monday, September 4th, 2023 1046 hrs.
-//
-// INITIALIZE SECURITY PROTOCOLS FOR RESOURCE ACCESS [IPv4 and IPv6]
-//
-// GRANT ACCESS
-// 
-# $this->oCRNRSTN_IPSECURITY_MGR->grantAccess([environment-key], [ip]);
-//$this->oCRNRSTN_IPSECURITY_MGR->grantAccess('LOCALHOST_PC','127.0.0.1');
-//$this->oCRNRSTN_IPSECURITY_MGR->grantAccess('LOCALHOST_MAC','192.168.172.1,192.168.172.135');
-#$this->oCRNRSTN_IPSECURITY_MGR->grantAccess('STAGE','FE80::230:80FF:FEF3:4701');
-#$this->oCRNRSTN_IPSECURITY_MGR->grantAccess('PREPROD','127.0.0.1, 127.*, 128.0.4.50-128.0.4.60, 129.*-130.50.*, 130.51.10.*');
-#$this->oCRNRSTN_IPSECURITY_MGR->grantAccess('PRODUCTION','127.0.0.1, 130.*, 128.0.4.50-129.0.*, 129.*-130.50.10.10, 130.51.10.*');
+    }
 
-//
-// DENY ACCESS
-//
-#$this->oCRNRSTN_IPSECURITY_MGR->denyAccess([environment-key], [ip]);
-#$this->oCRNRSTN_IPSECURITY_MGR->denyAccess('LOCALHOST_MAC','192.168.172.1');
-#$this->oCRNRSTN_IPSECURITY_MGR->denyAccess('LOCALHOST_PC','FE80::230:80FF:FEF3:4701');
-#$this->oCRNRSTN_IPSECURITY_MGR->denyAccess('PREPROD','127.0.0.1, 127.*, 128.0.4.50-128.0.4.60, 129.*-130.50.*, 130.51.10.*');
-#$this->oCRNRSTN_IPSECURITY_MGR->denyAccess('PRODUCTION','127.0.0.1, 130.*, 128.0.4.50-129.0.*, 129.*-130.50.10.10, 130.51.10.*');
+}

@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -73,13 +73,13 @@ $oSOAP_access_manager->init_soap_encryption_config('BLUEHOST_GITHUB', 'AES-192-O
 $oSOAP_access_manager = new crnrstn_soap_services_access_manager('LOCALHOST_MACBOOKTERMINAL', $CRNRSTN_NUSOAP_SVC_debugMode, $this);
 $oSOAP_access_manager->init_soap_encryption_config('LOCALHOST_MACBOOKTERMINAL', 'AES-256-CTR', 'EkN9{{WCOS2igN%G{6?@vWCv#c_&Fsic', 'ripemd256', OPENSSL_RAW_DATA);
 
-$oSOAP_access_manager = new crnrstn_soap_services_access_manager('LOCALHOST_PC_XP', $CRNRSTN_NUSOAP_SVC_debugMode, $this);
-$oSOAP_access_manager->init_soap_encryption_config('LOCALHOST_PC_XP', 'AES-256-CTR', 'n~]CbiPI&LoLn0_ }C.o~q}IQ%#k6u.(', 'ripemd256', OPENSSL_RAW_DATA);
+$oSOAP_access_manager = new crnrstn_soap_services_access_manager('LOCALHOST_PC', $CRNRSTN_NUSOAP_SVC_debugMode, $this);
+$oSOAP_access_manager->init_soap_encryption_config('LOCALHOST_PC', 'AES-256-CTR', 'n~]CbiPI&LoLn0_ }C.o~q}IQ%#k6u.(', 'ripemd256', OPENSSL_RAW_DATA);
 
 $oSOAP_access_manager = new crnrstn_soap_services_access_manager('LOCALHOST_CHAD_MACBOOKPRO', $CRNRSTN_NUSOAP_SVC_debugMode, $this);
 $oSOAP_access_manager->init_soap_encryption_config('LOCALHOST_CHAD_MACBOOKPRO', 'AES-256-CTR', 'GL2AL)t8g).550i3Rla3ZTncUFX7}:vn', 'ripemd256', OPENSSL_RAW_DATA);
 
-//case 'LOCALHOST_PC':              // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
+//case 'LOCALHOST_PC':              // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
 //
 // CREATE AND CONFIGURE SINGLE/GROUP ACCESS AUTHORIZATION KEY(S)
 $oAuth_single = $oSOAP_access_manager->generate_SOAPAuthKey('BLUEHOST_JONY5', 'ss~2j{P%DE3.=o)FUqO47&X*GtR~q}Fc');
@@ -96,7 +96,7 @@ $oAuth_single->update_permissions(CRNRSTN_RESOURCE_OPENSOURCE);
 //$oAuth_single->IP_denyAccess('111.111.111.112');
 $oAuth_single->override_soap_encryption_config('AES-256-CTR', 'sc@4wv(YzlC2HnO6i%.qqro3XVf58e=R', 'ripemd256', OPENSSL_RAW_DATA);
 
-$oAuth_single = $oSOAP_access_manager->generate_SOAPAuthKey('LOCALHOST_PC_XP', 'Ko+-(f@NfgqR@n}[Mde@!Fh5b&O:uCV]');
+$oAuth_single = $oSOAP_access_manager->generate_SOAPAuthKey('LOCALHOST_PC', 'Ko+-(f@NfgqR@n}[Mde@!Fh5b&O:uCV]');
 $oAuth_single->update_permissions(CRNRSTN_RESOURCE_OPENSOURCE);
 $oAuth_single->update_permissions(CRNRSTN_LOG_EMAIL);
 
@@ -121,14 +121,14 @@ $oAuth_single->update_permissions(CRNRSTN_LOG_EMAIL);
 $CRNRSTN_NUSOAP_SVC_debugMode = true;
 
 //
-// ADD USER ACCOUNT - LOCALHOST_PC_XP
-$oClient = $oSOAP_access_manager->addClient('LOCALHOST_PC_XP', '0364087231749672543475966333893875', '83g#k487fg5hY%@i4fs84jfmdld8!~lf;|Qkeiur84', $CRNRSTN_NUSOAP_SVC_debugMode);
+// ADD USER ACCOUNT - LOCALHOST_PC
+$oClient = $oSOAP_access_manager->addClient('LOCALHOST_PC', '0364087231749672543475966333893875', '83g#k487fg5hY%@i4fs84jfmdld8!~lf;|Qkeiur84', $CRNRSTN_NUSOAP_SVC_debugMode);
 $oClient->override_soap_encryption_config('AES-192-OFB', '5jfu8chH#5%BNufn49fn4k3nvn9mmN!)000m32N3jN#', 'sha256', OPENSSL_RAW_DATA);
 $oClient->activate_SOAP_method('mayItakeTheKingsHighway|returnCRNRSTN_UI_GLOBAL_SYNC');
 
 //
-// ADD USER ACCOUNT - LOCALHOST_PC_XP
-$oClient = $oSOAP_access_manager->addClient('LOCALHOST_PC_XP', '03856145387465910978456438', '7dj3m9d2m2d99dd2dm', $CRNRSTN_NUSOAP_SVC_debugMode);
+// ADD USER ACCOUNT - LOCALHOST_PC
+$oClient = $oSOAP_access_manager->addClient('LOCALHOST_PC', '03856145387465910978456438', '7dj3m9d2m2d99dd2dm', $CRNRSTN_NUSOAP_SVC_debugMode);
 //$oClient_044->override_soap_encryption_config('AES-192-OFB', '4$#HDBidjh7&$*tn4njfn3f7&&*(*', 'sha256', OPENSSL_RAW_DATA);
 $oClient->activate_SOAP_method('mayItakeTheKingsHighway|returnCRNRSTN_UI_GLOBAL_SYNC');
 $oClient->update_permissions(CRNRSTN_RESOURCE_OPENSOURCE);

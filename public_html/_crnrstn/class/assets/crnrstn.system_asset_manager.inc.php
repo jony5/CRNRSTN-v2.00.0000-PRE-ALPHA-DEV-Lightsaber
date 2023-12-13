@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -73,24 +73,10 @@
 #
 class crnrstn_system_asset_manager {
 
-    protected $oLogger;
     public $oCRNRSTN;
     public $oCRNRSTN_JS_CSS;
 
     protected $default_asset_mode;
-    //protected $asset_request_data_key;
-    //protected $asset_meta_path;
-
-    //protected $asset_request_asset_family;
-    //protected $asset_response_method_key;
-
-    /*
-    $this->oCRNRSTN->asset_response_method_key = NULL;
-    $this->crnrstn_asset_family = NULL;
-    $this->crnrstn_asset_meta_path = NULL;
-
-    */
-
     protected $output_mode_override;
     protected $system_file_serial;
     private static $method_request_mode;
@@ -110,10 +96,6 @@ class crnrstn_system_asset_manager {
         $this->oCRNRSTN = $oCRNRSTN;
 
         $this->oCRNRSTN_JS_CSS = new crnrstn_client_assets($oCRNRSTN);
-
-        //
-        // INSTANTIATE LOGGER
-        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
 
     }
 
@@ -531,7 +513,17 @@ class crnrstn_system_asset_manager {
                                         $tmp_filename = $resource_ARRAY['file_name'][0];
                                         $tmp_file_extension = $resource_ARRAY['file_ext'][0];
 
-                                        if($this->oCRNRSTN->rrs_map_get('map_cache_is_active')){
+                                        //
+                                        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA
+                                        // OBJECT (MC-DDO) SERVICES LAYER.
+                                        // # # C # R # N # R # S # T # N # : : # # # #
+                                        //
+                                        // PLEASE SEE,
+                                        //  $oCRNRSTN->set_channel_config($channel_constant, $attribute_name, $data);
+                                        //  $oCRNRSTN->get_channel_config($channel, $index_0 = NULL, $index_1 = NULL, $index_2 = NULL, $index_3 = NULL, $initialize = false);
+                                        //  $oCRNRSTN->isset_channel_config($channel_constant, $attribute_name, $return_type = CRNRSTN_BOOLEAN);
+                                        //  $oCRNRSTN->is_channel_active($channel_constant, $return_type = CRNRSTN_BOOLEAN)
+                                        if($this->oCRNRSTN->get_channel_config(NULL, 'map_cache_is_active') == true){
 
 
                                             $this->oCRNRSTN->initialize_cache('css', $tmp_filename, $this->oCRNRSTN->asset_meta_key('css', $tmp_filename), CRNRSTN_JS, $tmp_filepath, $tmp_file_extension);
@@ -569,7 +561,7 @@ class crnrstn_system_asset_manager {
                                         $tmp_filename = $resource_ARRAY['file_name'][0];
                                         $tmp_file_extension = $resource_ARRAY['file_ext'][0];
 
-                                        if($this->oCRNRSTN->rrs_map_get('map_cache_is_active')){
+                                        if($this->oCRNRSTN->get_channel_config(NULL, 'map_cache_is_active') == true){
 
                                             $this->oCRNRSTN->initialize_cache('css', $tmp_filename, $this->oCRNRSTN->asset_meta_key('css', $tmp_filename), CRNRSTN_JS, $tmp_filepath, $tmp_file_extension);
                                             //$this->oCRNRSTN->initialize_request($tmp_filename, 'css', CRNRSTN_JS, $this->oCRNRSTN->asset_meta_key('css', $tmp_filename));
@@ -612,7 +604,7 @@ class crnrstn_system_asset_manager {
                                         $tmp_filename = $resource_ARRAY['file_name'][0];
                                         $tmp_file_extension = $resource_ARRAY['file_ext'][0];
 
-                                        if($this->oCRNRSTN->rrs_map_get('map_cache_is_active')){
+                                        if($this->oCRNRSTN->get_channel_config(NULL, 'map_cache_is_active') == true){
 
                                             $this->oCRNRSTN->initialize_cache('css', $tmp_filename, $this->oCRNRSTN->asset_meta_key('css', $tmp_filename), CRNRSTN_CSS, $tmp_filepath, $tmp_file_extension);
                                             //$this->oCRNRSTN->initialize_request($tmp_filename, 'css', CRNRSTN_CSS, $this->oCRNRSTN->asset_meta_key('css', $tmp_filename));
@@ -649,7 +641,7 @@ class crnrstn_system_asset_manager {
                                         $tmp_filename = $resource_ARRAY['file_name'][0];
                                         $tmp_file_extension = $resource_ARRAY['file_ext'][0];
 
-                                        if($this->oCRNRSTN->rrs_map_get('map_cache_is_active')){
+                                        if($this->oCRNRSTN->get_channel_config(NULL, 'map_cache_is_active') == true){
 
                                             $this->oCRNRSTN->initialize_cache('css', $tmp_filename, $this->oCRNRSTN->asset_meta_key('css', $tmp_filename), CRNRSTN_CSS, $tmp_filepath, $tmp_file_extension);
                                             //$this->oCRNRSTN->initialize_request($tmp_filename, 'css', CRNRSTN_CSS, $this->oCRNRSTN->asset_meta_key('css', $tmp_filename));
@@ -699,7 +691,7 @@ class crnrstn_system_asset_manager {
                                         $tmp_filename = $resource_ARRAY['file_name'][0];
                                         $tmp_file_extension = $resource_ARRAY['file_ext'][0];
 
-                                        if($this->oCRNRSTN->rrs_map_get('map_cache_is_active')){
+                                        if($this->oCRNRSTN->get_channel_config(NULL, 'map_cache_is_active') == true){
 
                                             $this->oCRNRSTN->initialize_cache('js', $tmp_filename, $this->oCRNRSTN->asset_meta_key('css', $tmp_filename), CRNRSTN_CSS, $tmp_filepath, $tmp_file_extension);
                                             //$this->oCRNRSTN->initialize_request($tmp_filename, 'js', CRNRSTN_CSS, $this->oCRNRSTN->asset_meta_key('css', $tmp_filename));
@@ -737,7 +729,7 @@ class crnrstn_system_asset_manager {
                                         $tmp_filename = $resource_ARRAY['file_name'][0];
                                         $tmp_file_extension = $resource_ARRAY['file_ext'][0];
 
-                                        if($this->oCRNRSTN->rrs_map_get('map_cache_is_active')){
+                                        if($this->oCRNRSTN->get_channel_config(NULL, 'map_cache_is_active') == true){
 
                                             $this->oCRNRSTN->initialize_cache('js', $tmp_filename, $this->oCRNRSTN->asset_meta_key('css', $tmp_filename), CRNRSTN_CSS, $tmp_filepath, $tmp_file_extension);
                                             //$this->oCRNRSTN->initialize_request($tmp_filename, 'js', CRNRSTN_CSS, $this->oCRNRSTN->asset_meta_key('css', $tmp_filename));
@@ -783,7 +775,7 @@ class crnrstn_system_asset_manager {
                                         $tmp_filename = $resource_ARRAY['file_name'][0];
                                         $tmp_file_extension = $resource_ARRAY['file_ext'][0];
 
-                                        if($this->oCRNRSTN->rrs_map_get('map_cache_is_active')){
+                                        if($this->oCRNRSTN->get_channel_config(NULL, 'map_cache_is_active') == true){
 
                                             $this->oCRNRSTN->initialize_cache('js', $tmp_filename, $this->oCRNRSTN->asset_meta_key('css', $tmp_filename), CRNRSTN_JS, $tmp_filepath, $tmp_file_extension);
                                             //$this->oCRNRSTN->initialize_request($tmp_filename, 'js', CRNRSTN_JS, $this->oCRNRSTN->asset_meta_key('css', $tmp_filename));
@@ -820,7 +812,7 @@ class crnrstn_system_asset_manager {
                                         $tmp_filename = $resource_ARRAY['file_name'][0];
                                         $tmp_file_extension = $resource_ARRAY['file_ext'][0];
 
-                                        if($this->oCRNRSTN->rrs_map_get('map_cache_is_active')){
+                                        if($this->oCRNRSTN->get_channel_config(NULL, 'map_cache_is_active') == true){
 
                                             $this->oCRNRSTN->initialize_cache('js', $tmp_filename, $this->oCRNRSTN->asset_meta_key('css', $tmp_filename), CRNRSTN_JS, $tmp_filepath, $tmp_file_extension);
                                             //$this->oCRNRSTN->initialize_request($tmp_filename, 'js', CRNRSTN_JS, $this->oCRNRSTN->asset_meta_key('css', $tmp_filename));
@@ -1327,7 +1319,7 @@ class crnrstn_system_asset_manager {
 
         try{
 
-            $asset_mode_ARRAY = $this->oCRNRSTN->return_set_bits($this->oCRNRSTN->system_output_profile_constants(), true);
+            $asset_mode_ARRAY = $this->oCRNRSTN->return_set_bits($this->oCRNRSTN->system_output_profile_constants_ARRAY(), true);
 
             $tmp_str = '';
             $tmp_start_str = '';
@@ -3833,7 +3825,7 @@ class crnrstn_system_asset_manager {
 
         try{
 
-            $asset_mode_ARRAY = $this->oCRNRSTN->return_set_bits($this->oCRNRSTN->system_output_profile_constants(), true);
+            $asset_mode_ARRAY = $this->oCRNRSTN->return_set_bits($this->oCRNRSTN->system_output_profile_constants_ARRAY(), true);
 
             $tmp_str = '';
             $tmp_start_str = '';
@@ -11825,9 +11817,9 @@ class crnrstn_system_asset_manager {
                 $tmp_raw_output_mode = CRNRSTN_IMG;
 
             break;
-            case 'CONFIG_SET_CRNRSTN_AS_ERR_HANDLER_SOCIAL_META_PREVIEW':
+            case 'CONFIG_CUSTOM_ERROR_HANDLER_SOCIAL_META_PREVIEW':
 
-                $tmp_filename = 'config_set_crnrstn_as_err_handler';
+                $tmp_filename = 'config_custom_error_handler';
                 $tmp_width = 1280;
                 $tmp_height = 640;
                 $tmp_alt = '';
@@ -14680,7 +14672,7 @@ class crnrstn_system_asset_manager {
 
                     //
                     // $this->system_output_profile_constants = array(CRNRSTN_ASSET_MODE_PNG, CRNRSTN_ASSET_MODE_JPEG, CRNRSTN_ASSET_MODE_BASE64);
-                    $tmp_ASSET_MODE = $this->oCRNRSTN->return_set_bits($this->oCRNRSTN->system_output_profile_constants(), true);
+                    $tmp_ASSET_MODE = $this->oCRNRSTN->return_set_bits($this->oCRNRSTN->system_output_profile_constants_ARRAY(), true);
 
                     if(!isset($tmp_ASSET_MODE[0])){
 

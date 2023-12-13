@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -70,10 +70,10 @@
 #
 class crnrstn_logging_oprofile {
 
-    protected $oLogger;
+    public $oCRNRSTN;
+
     protected $oSoapClient;
     protected $oSoapDataTransportLayer;
-    private static $oCRNRSTN_n;
     protected $oLog_output_manager;
 
     public $logging_profile;
@@ -93,14 +93,12 @@ class crnrstn_logging_oprofile {
 
     public function __construct($logging_profile, $config_serial_hash, $profile_endpoint_criteria_ARRAY, $oCRNRSTN){
 
-        /**
-        TODO :: EXPIRE WCR DRIVEN CONTENT WITH ANY MODIFICATION OF THE SAME TO FORCE REFRESH
-         *       BEFORE FINAL OUTPUT.
-         */
+        //
+        // TODO :: EXPIRE $oCRNRSTN :: WILD CARD RESOURCE (WCR) DRIVEN CONTENT
+        //         WITH ANY MODIFICATION OF THE SAME TO FORCE REFRESH BEFORE
+        //         FINAL OUTPUT.
 
-        self::$oCRNRSTN_n = $oCRNRSTN;
-
-        $this->oLogger = new crnrstn_logging(__CLASS__, self::$oCRNRSTN_n);
+        $this->oCRNRSTN = $oCRNRSTN;
 
         $this->profile_endpoint_criteria_ARRAY = $profile_endpoint_criteria_ARRAY;
         $this->logging_profile = $logging_profile;
@@ -120,17 +118,17 @@ class crnrstn_logging_oprofile {
     //
     // SOURCE :: https://www.youtube.com/watch?v=u4-PGjwdARg
     // TITLE :: Arcade Fire - No Cars Go (BEST version ever - Pinkpop 2014)
-    private function no_cars_go_EMAIL_PROXY($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
+    private function no_cars_go_EMAIL_PROXY($oCRNRSTN, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
 
         $data_type_family = 'CRNRSTN::RESOURCE::EMAIL_COMM';
-        $tmp_data_tunnel_session_serial = $oCRNRSTN_n->generate_new_key();
-        $this->oSoapDataTransportLayer = new crnrstn_decoupled_data_object($oCRNRSTN_n, $tmp_data_tunnel_session_serial, 'SOAP_DTL_SERIAL');
+        $tmp_data_tunnel_session_serial = $oCRNRSTN->generate_new_key();
+        $this->oSoapDataTransportLayer = new crnrstn_decoupled_data_object($oCRNRSTN, $tmp_data_tunnel_session_serial, 'SOAP_DTL_SERIAL');
 
         $tmp_ISHTML = true;
         $tmp_exception_msg = $exception_obj->getMessage();
         $tmp_exception_linenum = $exception_obj->getLine();
 
-        $this->load_log_output_mgr($oCRNRSTN_n);
+        $this->load_log_output_mgr($oCRNRSTN);
 
         //
         // REMAIN STILL WHILE YOUR LIFE IS EXTRACTED
@@ -155,18 +153,18 @@ class crnrstn_logging_oprofile {
                             break;
                             case 'SMTP_AUTH':
 
-                                $this->oSoapDataTransportLayer->add((bool) $oCRNRSTN_n->tidy_boolean($attribute_content), $data_attribute, $data_type_family);
+                                $this->oSoapDataTransportLayer->add((bool) $oCRNRSTN->tidy_boolean($attribute_content), $data_attribute, $data_type_family);
 
                             break;
                             case 'SMTP_KEEPALIVE':
 
                                 //error_log(__LINE__ . ' env - adding to SSDTL...email SMTP_KEEPALIVE=' . $attribute_content);
-                                $this->oSoapDataTransportLayer->add((bool) $oCRNRSTN_n->tidy_boolean($attribute_content), $data_attribute, $data_type_family);
+                                $this->oSoapDataTransportLayer->add((bool) $oCRNRSTN->tidy_boolean($attribute_content), $data_attribute, $data_type_family);
 
                             break;
                             case 'SMTP_AUTOTLS':
 
-                                $this->oSoapDataTransportLayer->add((bool) $oCRNRSTN_n->tidy_boolean($attribute_content), $data_attribute, $data_type_family);
+                                $this->oSoapDataTransportLayer->add((bool) $oCRNRSTN->tidy_boolean($attribute_content), $data_attribute, $data_type_family);
 
                             break;
                             case 'SMTP_TIMEOUT':
@@ -176,12 +174,12 @@ class crnrstn_logging_oprofile {
                             break;
                             case 'DIBYA_SAHOO_SSL_CERT_BYPASS':
 
-                                $this->oSoapDataTransportLayer->add((bool) $oCRNRSTN_n->tidy_boolean($attribute_content), $data_attribute, $data_type_family);
+                                $this->oSoapDataTransportLayer->add((bool) $oCRNRSTN->tidy_boolean($attribute_content), $data_attribute, $data_type_family);
 
                             break;
                             case 'USE_SENDMAIL_OPTIONS':
 
-                                $this->oSoapDataTransportLayer->add((bool) $oCRNRSTN_n->tidy_boolean($attribute_content), $data_attribute, $data_type_family);
+                                $this->oSoapDataTransportLayer->add((bool) $oCRNRSTN->tidy_boolean($attribute_content), $data_attribute, $data_type_family);
 
                             break;
                             case 'WORDWRAP':
@@ -191,7 +189,7 @@ class crnrstn_logging_oprofile {
                             break;
                             case 'ISHTML':
 
-                                $tmp_ISHTML = (bool) $oCRNRSTN_n->tidy_boolean($attribute_content);
+                                $tmp_ISHTML = (bool) $oCRNRSTN->tidy_boolean($attribute_content);
 
                                 $this->oSoapDataTransportLayer->add((bool) $tmp_ISHTML, $data_attribute, $data_type_family);
 
@@ -230,7 +228,7 @@ class crnrstn_logging_oprofile {
 
                                         //
                                         // HOOOSTON...VE HAF PROBLEM!
-                                        $oCRNRSTN_n->error_log('The provided priority level of "' . $tmp_PRIORITY . '" is invalid; NORMAL priority has been applied. Options include, "HIGH" or 1, "NORMAL" or 3 and "LOW" or 5.', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                        $oCRNRSTN->error_log('The provided priority level of "' . $tmp_PRIORITY . '" is invalid; NORMAL priority has been applied. Options include, "HIGH" or 1, "NORMAL" or 3 and "LOW" or 5.', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
 
                                     break;
 
@@ -241,19 +239,19 @@ class crnrstn_logging_oprofile {
                             break;
                             case 'DUP_SUPPRESS':
 
-                                $this->oSoapDataTransportLayer->add((bool) $oCRNRSTN_n->tidy_boolean($attribute_content), $data_attribute, $data_type_family);
+                                $this->oSoapDataTransportLayer->add((bool) $oCRNRSTN->tidy_boolean($attribute_content), $data_attribute, $data_type_family);
 
                             break;
                             case 'ALLOW_EMPTY':
 
                                 //error_log(__LINE__ . ' env - adding to SSDTL...email ALLOW_EMPTY=' . $attribute_content);
-                                $this->oSoapDataTransportLayer->add((bool) $oCRNRSTN_n->tidy_boolean($attribute_content), $data_attribute, $data_type_family);
+                                $this->oSoapDataTransportLayer->add((bool) $oCRNRSTN->tidy_boolean($attribute_content), $data_attribute, $data_type_family);
 
                             break;
                             case 'TRY_OTHER_EMAIL_METHODS_ON_ERR':
 
-                                //error_log(__LINE__ . ' env - adding to SSDTL...TRY_OTHER_EMAIL_METHODS_ON_ERR=' . $oCRNRSTN_n->tidy_boolean($attribute_content));
-                                $this->oSoapDataTransportLayer->add((bool) $oCRNRSTN_n->tidy_boolean($attribute_content), $data_attribute, $data_type_family);
+                                //error_log(__LINE__ . ' env - adding to SSDTL...TRY_OTHER_EMAIL_METHODS_ON_ERR=' . $oCRNRSTN->tidy_boolean($attribute_content));
+                                $this->oSoapDataTransportLayer->add((bool) $oCRNRSTN->tidy_boolean($attribute_content), $data_attribute, $data_type_family);
 
                             break;
                             default:
@@ -282,24 +280,24 @@ class crnrstn_logging_oprofile {
         //for($i=0; $i<$tmp_recipient_email_cnt; $i++){
         // $tmp_email = $this->oSoapDataTransportLayer->preach('data_value', 'RECIPIENT_EMAIL', false, $i);
         // $tmp_name = $this->oSoapDataTransportLayer->preach('data_value', 'RECIPIENT_NAME', false, $i);
-        // error_log(__LINE__ .' env - ['.$tmp_name . '] ['.self::$oCRNRSTN_n->str_sanitize($tmp_email, 'email_private').']');
+        // error_log(__LINE__ .' env - ['.$tmp_name . '] ['.$this->oCRNRSTN->str_sanitize($tmp_email, 'email_private').']');
         //}
 
         //
         // CONSTANTS
-        $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
-        $tmp_log_constant_TEXT = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant);
+        $tmp_php_trace_TEXT = $oCRNRSTN->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
+        $tmp_log_constant_TEXT = $oCRNRSTN->return_log_priority_pretty($syslog_constant);
         $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('EMAIL_TEXT');
 
         if($tmp_ISHTML == true){
 
-            $tmp_php_trace_HTML = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'HTML');
-            $tmp_log_constant_HTML = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant, 'HTML');
+            $tmp_php_trace_HTML = $oCRNRSTN->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'HTML');
+            $tmp_log_constant_HTML = $oCRNRSTN->return_log_priority_pretty($syslog_constant, 'HTML');
             $tmp_crnrstn_trace_HTML = $this->oLog_output_manager->return_log_trace_output_str('EMAIL_HTML');
 
         }
 
-        switch(get_class($oCRNRSTN_n)){
+        switch(get_class($oCRNRSTN)){
             case 'crnrstn_user':
             case 'crnrstn_environment':
             case 'crnrstn':
@@ -308,23 +306,23 @@ class crnrstn_logging_oprofile {
                 // LOOP THROUGH N COUNT TO BUILD N CUSTOM EMAIL (SUBJECT, HTML, TEXT). AND STORE CONTENT WITHIN SOAP DTL.
                 for ($i = 0; $i < $tmp_recipient_email_cnt; $i++){
 
-                    $oCRNRSTN_GABRIEL = new crnrstn_messenger_from_north($i, 'mail', NULL, NULL, NULL, $oCRNRSTN_n);
+                    $oCRNRSTN_GABRIEL = new crnrstn_messenger_from_north($i, 'mail', NULL, NULL, NULL, $oCRNRSTN);
                     $tmp_email = $this->oSoapDataTransportLayer->preach('data_value', 'RECIPIENT_EMAIL', false, $i);
 
-                    //error_log(__LINE__ . ' env - building [' . $i . '] of [' . $tmp_recipient_email_cnt . '] message for ' . self::$oCRNRSTN_n->str_sanitize($tmp_email, 'email_private'));
+                    //error_log(__LINE__ . ' env - building [' . $i . '] of [' . $tmp_recipient_email_cnt . '] message for ' . $this->oCRNRSTN->str_sanitize($tmp_email, 'email_private'));
 
                     //
                     // PREPARE TEXT VERSION
                     $tmp_TEXT_Body = $oCRNRSTN_GABRIEL->return_CRNRSTN_SysMsgTEXTBody('EXCEPTION_NOTIFICATION::SOAP_TUNNEL');
-                    $tmp_TEXT_Body = $oCRNRSTN_n->proper_replace('{SYSTEM_LOG_INTEGER_CONSTANT}', $tmp_log_constant_TEXT, $tmp_TEXT_Body);
-                    $tmp_TEXT_Body = $oCRNRSTN_n->proper_replace('{MESSAGE}', $tmp_exception_msg, $tmp_TEXT_Body);
-                    $tmp_TEXT_Body = $oCRNRSTN_n->proper_replace('{LINE_NUM}', $tmp_exception_linenum, $tmp_TEXT_Body);
-                    $tmp_TEXT_Body = $oCRNRSTN_n->proper_replace('{METHOD}', $exception_method, $tmp_TEXT_Body);
-                    $tmp_TEXT_Body = $oCRNRSTN_n->proper_replace('{PHP_TRACE}', $tmp_php_trace_TEXT, $tmp_TEXT_Body);
-                    $tmp_TEXT_Body = $oCRNRSTN_n->proper_replace('{SYSTEM_TIME}', $exception_systemtime, $tmp_TEXT_Body);
-                    $tmp_TEXT_Body = $oCRNRSTN_n->proper_replace('{PROCESS_RUN_TIME}', $exception_runtime, $tmp_TEXT_Body);
-                    $tmp_TEXT_Body = $oCRNRSTN_n->proper_replace('{EMAIL}', $tmp_email, $tmp_TEXT_Body);
-                    $tmp_TEXT_Body = $oCRNRSTN_n->proper_replace('{LOG_TRACE}', $tmp_crnrstn_trace_TEXT, $tmp_TEXT_Body);
+                    $tmp_TEXT_Body = $oCRNRSTN->proper_replace('{SYSTEM_LOG_INTEGER_CONSTANT}', $tmp_log_constant_TEXT, $tmp_TEXT_Body);
+                    $tmp_TEXT_Body = $oCRNRSTN->proper_replace('{MESSAGE}', $tmp_exception_msg, $tmp_TEXT_Body);
+                    $tmp_TEXT_Body = $oCRNRSTN->proper_replace('{LINE_NUM}', $tmp_exception_linenum, $tmp_TEXT_Body);
+                    $tmp_TEXT_Body = $oCRNRSTN->proper_replace('{METHOD}', $exception_method, $tmp_TEXT_Body);
+                    $tmp_TEXT_Body = $oCRNRSTN->proper_replace('{PHP_TRACE}', $tmp_php_trace_TEXT, $tmp_TEXT_Body);
+                    $tmp_TEXT_Body = $oCRNRSTN->proper_replace('{SYSTEM_TIME}', $exception_systemtime, $tmp_TEXT_Body);
+                    $tmp_TEXT_Body = $oCRNRSTN->proper_replace('{PROCESS_RUN_TIME}', $exception_runtime, $tmp_TEXT_Body);
+                    $tmp_TEXT_Body = $oCRNRSTN->proper_replace('{EMAIL}', $tmp_email, $tmp_TEXT_Body);
+                    $tmp_TEXT_Body = $oCRNRSTN->proper_replace('{LOG_TRACE}', $tmp_crnrstn_trace_TEXT, $tmp_TEXT_Body);
 
                     $tmp_MESSAGE_SUBJECT = 'Exception Notification from ' . $_SERVER['SERVER_NAME'] . ' via CRNRSTN ::';
                     $this->oSoapDataTransportLayer->add($tmp_MESSAGE_SUBJECT, 'MESSAGE_SUBJECT', $data_type_family);
@@ -336,15 +334,15 @@ class crnrstn_logging_oprofile {
                         //
                         // PREPARE HTML VERSION
                         $tmp_HTML_Body = $oCRNRSTN_GABRIEL->return_CRNRSTN_SysMsgHTMLBody('EXCEPTION_NOTIFICATION::SOAP_TUNNEL');
-                        $tmp_HTML_Body = $oCRNRSTN_n->proper_replace('{SYSTEM_LOG_INTEGER_CONSTANT}', $tmp_log_constant_HTML, $tmp_HTML_Body);
-                        $tmp_HTML_Body = $oCRNRSTN_n->proper_replace('{MESSAGE}', $tmp_exception_msg, $tmp_HTML_Body);
-                        $tmp_HTML_Body = $oCRNRSTN_n->proper_replace('{LINE_NUM}', $tmp_exception_linenum, $tmp_HTML_Body);
-                        $tmp_HTML_Body = $oCRNRSTN_n->proper_replace('{METHOD}', $exception_method, $tmp_HTML_Body);
-                        $tmp_HTML_Body = $oCRNRSTN_n->proper_replace('{PHP_TRACE}', $tmp_php_trace_HTML, $tmp_HTML_Body);
-                        $tmp_HTML_Body = $oCRNRSTN_n->proper_replace('{SYSTEM_TIME}', $exception_systemtime, $tmp_HTML_Body);
-                        $tmp_HTML_Body = $oCRNRSTN_n->proper_replace('{PROCESS_RUN_TIME}', $exception_runtime, $tmp_HTML_Body);
-                        $tmp_HTML_Body = $oCRNRSTN_n->proper_replace('{EMAIL}', $tmp_email, $tmp_HTML_Body);
-                        $tmp_HTML_Body = $oCRNRSTN_n->proper_replace('{LOG_TRACE}', $tmp_crnrstn_trace_HTML, $tmp_HTML_Body);
+                        $tmp_HTML_Body = $oCRNRSTN->proper_replace('{SYSTEM_LOG_INTEGER_CONSTANT}', $tmp_log_constant_HTML, $tmp_HTML_Body);
+                        $tmp_HTML_Body = $oCRNRSTN->proper_replace('{MESSAGE}', $tmp_exception_msg, $tmp_HTML_Body);
+                        $tmp_HTML_Body = $oCRNRSTN->proper_replace('{LINE_NUM}', $tmp_exception_linenum, $tmp_HTML_Body);
+                        $tmp_HTML_Body = $oCRNRSTN->proper_replace('{METHOD}', $exception_method, $tmp_HTML_Body);
+                        $tmp_HTML_Body = $oCRNRSTN->proper_replace('{PHP_TRACE}', $tmp_php_trace_HTML, $tmp_HTML_Body);
+                        $tmp_HTML_Body = $oCRNRSTN->proper_replace('{SYSTEM_TIME}', $exception_systemtime, $tmp_HTML_Body);
+                        $tmp_HTML_Body = $oCRNRSTN->proper_replace('{PROCESS_RUN_TIME}', $exception_runtime, $tmp_HTML_Body);
+                        $tmp_HTML_Body = $oCRNRSTN->proper_replace('{EMAIL}', $tmp_email, $tmp_HTML_Body);
+                        $tmp_HTML_Body = $oCRNRSTN->proper_replace('{LOG_TRACE}', $tmp_crnrstn_trace_HTML, $tmp_HTML_Body);
 
                         $tmp_HTML_Body = trim($tmp_HTML_Body);
                         $this->oSoapDataTransportLayer->add($tmp_HTML_Body, 'MESSAGE_BODY_HTML', $data_type_family);
@@ -359,13 +357,13 @@ class crnrstn_logging_oprofile {
 
                 $SOAP_request = $this->oSoapDataTransportLayer->generate_SOAP_request_object('tunnelEncryptCalibrationRequest', NULL);
 
-                //self::$oCRNRSTN_n->print_r($SOAP_request, 'CLIENT REQUEST :: oTunnelEncryptionCalibrationRequest', NULL, __LINE__, __METHOD__, __FILE__);
+                //$this->oCRNRSTN->print_r($SOAP_request, 'CLIENT REQUEST :: oTunnelEncryptionCalibrationRequest', NULL, __LINE__, __METHOD__, __FILE__);
 
                 //
                 // SUBMIT SERVICES REQUEST [LIMIT OF 65535 bytes]
                 $tmp_response = $this->client_send_CRNRSTN_SOAP_REQUEST('tunnelEncryptCalibrationRequest', $SOAP_request[0], $SOAP_endpoint);
 
-                self::$oCRNRSTN_n->print_r($tmp_response, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest', NULL, __LINE__, __METHOD__, __FILE__);
+                $this->oCRNRSTN->print_r($tmp_response, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest', NULL, __LINE__, __METHOD__, __FILE__);
 
                 if($tmp_response['CRNRSTN_PACKET_IS_ENCRYPTED'] != 'TRUE'){
 
@@ -381,34 +379,34 @@ class crnrstn_logging_oprofile {
                     $tmp_SOAP_ENCRYPT_HMAC_ALG = $this->oSoapDataTransportLayer->preach('data_value', 'SOAP_ENCRYPT_HMAC_ALG');
                     $tmp_SOAP_ENCRYPT_OPTIONS = $this->oSoapDataTransportLayer->preach('data_value', 'SOAP_ENCRYPT_OPTIONS');
 
-                    $tmp_SOAP_SERVICES_AUTH_STATUS = self::$oCRNRSTN_n->data_decrypt($tmp_response['SOAP_SERVICES_AUTH_STATUS'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                    $tmp_SOAP_ENCRYPT_CIPHER_resp = self::$oCRNRSTN_n->data_decrypt($tmp_response['SOAP_ENCRYPT_CIPHER'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                    $tmp_SOAP_ENCRYPT_HMAC_ALG_resp = self::$oCRNRSTN_n->data_decrypt($tmp_response['SOAP_ENCRYPT_HMAC_ALG'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                    $tmp_SOAP_ENCRYPT_OPTIONS_resp = self::$oCRNRSTN_n->data_decrypt($tmp_response['SOAP_ENCRYPT_OPTIONS'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                    //$tmp_STATUS_CODE = self::$oCRNRSTN_n->data_decrypt($tmp_response['STATUS_CODE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                    //$tmp_STATUS_MESSAGE = self::$oCRNRSTN_n->data_decrypt($tmp_response['STATUS_MESSAGE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                    //$tmp_ISERROR_CODE = self::$oCRNRSTN_n->data_decrypt($tmp_response['ISERROR_CODE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                    //$tmp_ISERROR_MESSAGE = self::$oCRNRSTN_n->data_decrypt($tmp_response['ISERROR_MESSAGE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                    //$tmp_DATE_RECEIVED_SOAP_REQUEST = self::$oCRNRSTN_n->data_decrypt($tmp_response['DATE_RECEIVED_SOAP_REQUEST'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                    //$tmp_SERVER_NAME_SOAP_SERVER = self::$oCRNRSTN_n->data_decrypt($tmp_response['SERVER_NAME_SOAP_SERVER'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                    //$tmp_SERVER_ADDRESS_SOAP_SERVER = self::$oCRNRSTN_n->data_decrypt($tmp_response['SERVER_ADDRESS_SOAP_SERVER'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                    //$tmp_DATE_CREATED_SOAP_RESPONSE = self::$oCRNRSTN_n->data_decrypt($tmp_response['DATE_CREATED_SOAP_RESPONSE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                    $tmp_SOAP_SERVICES_AUTH_STATUS = $this->oCRNRSTN->data_decrypt($tmp_response['SOAP_SERVICES_AUTH_STATUS'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                    $tmp_SOAP_ENCRYPT_CIPHER_resp = $this->oCRNRSTN->data_decrypt($tmp_response['SOAP_ENCRYPT_CIPHER'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                    $tmp_SOAP_ENCRYPT_HMAC_ALG_resp = $this->oCRNRSTN->data_decrypt($tmp_response['SOAP_ENCRYPT_HMAC_ALG'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                    $tmp_SOAP_ENCRYPT_OPTIONS_resp = $this->oCRNRSTN->data_decrypt($tmp_response['SOAP_ENCRYPT_OPTIONS'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                    //$tmp_STATUS_CODE = $this->oCRNRSTN->data_decrypt($tmp_response['STATUS_CODE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                    //$tmp_STATUS_MESSAGE = $this->oCRNRSTN->data_decrypt($tmp_response['STATUS_MESSAGE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                    //$tmp_ISERROR_CODE = $this->oCRNRSTN->data_decrypt($tmp_response['ISERROR_CODE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                    //$tmp_ISERROR_MESSAGE = $this->oCRNRSTN->data_decrypt($tmp_response['ISERROR_MESSAGE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                    //$tmp_DATE_RECEIVED_SOAP_REQUEST = $this->oCRNRSTN->data_decrypt($tmp_response['DATE_RECEIVED_SOAP_REQUEST'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                    //$tmp_SERVER_NAME_SOAP_SERVER = $this->oCRNRSTN->data_decrypt($tmp_response['SERVER_NAME_SOAP_SERVER'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                    //$tmp_SERVER_ADDRESS_SOAP_SERVER = $this->oCRNRSTN->data_decrypt($tmp_response['SERVER_ADDRESS_SOAP_SERVER'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                    //$tmp_DATE_CREATED_SOAP_RESPONSE = $this->oCRNRSTN->data_decrypt($tmp_response['DATE_CREATED_SOAP_RESPONSE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
 
                     /*
 
                     NEED TO UPDATE PARAMETER ORDER TO THE NEW BEFORE RUNNING THIS
-                    self::$oCRNRSTN_n->print_r($tmp_SOAP_SERVICES_AUTH_STATUS, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: SOAP_SERVICES_AUTH_STATUS');
-                    self::$oCRNRSTN_n->print_r($tmp_SOAP_ENCRYPT_CIPHER_resp, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: SOAP_ENCRYPT_CIPHER');
-                    self::$oCRNRSTN_n->print_r($tmp_SOAP_ENCRYPT_HMAC_ALG_resp, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: SOAP_ENCRYPT_HMAC_ALG');
-                    self::$oCRNRSTN_n->print_r($tmp_SOAP_ENCRYPT_OPTIONS_resp, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: SOAP_ENCRYPT_OPTIONS');
-                    self::$oCRNRSTN_n->print_r($tmp_STATUS_CODE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: STATUS_CODE');
-                    self::$oCRNRSTN_n->print_r($tmp_STATUS_MESSAGE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: STATUS_MESSAGE');
-                    self::$oCRNRSTN_n->print_r($tmp_ISERROR_CODE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: ISERROR_CODE');
-                    self::$oCRNRSTN_n->print_r($tmp_ISERROR_MESSAGE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: ISERROR_MESSAGE');
-                    self::$oCRNRSTN_n->print_r($tmp_DATE_RECEIVED_SOAP_REQUEST, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: DATE_RECEIVED_SOAP_REQUEST');
-                    self::$oCRNRSTN_n->print_r($tmp_SERVER_NAME_SOAP_SERVER, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: SERVER_NAME_SOAP_SERVER');
-                    self::$oCRNRSTN_n->print_r($tmp_SERVER_ADDRESS_SOAP_SERVER, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: SERVER_ADDRESS_SOAP_SERVER');
-                    self::$oCRNRSTN_n->print_r($tmp_DATE_CREATED_SOAP_RESPONSE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: DATE_CREATED_SOAP_RESPONSE');
+                    $this->oCRNRSTN->print_r($tmp_SOAP_SERVICES_AUTH_STATUS, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: SOAP_SERVICES_AUTH_STATUS');
+                    $this->oCRNRSTN->print_r($tmp_SOAP_ENCRYPT_CIPHER_resp, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: SOAP_ENCRYPT_CIPHER');
+                    $this->oCRNRSTN->print_r($tmp_SOAP_ENCRYPT_HMAC_ALG_resp, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: SOAP_ENCRYPT_HMAC_ALG');
+                    $this->oCRNRSTN->print_r($tmp_SOAP_ENCRYPT_OPTIONS_resp, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: SOAP_ENCRYPT_OPTIONS');
+                    $this->oCRNRSTN->print_r($tmp_STATUS_CODE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: STATUS_CODE');
+                    $this->oCRNRSTN->print_r($tmp_STATUS_MESSAGE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: STATUS_MESSAGE');
+                    $this->oCRNRSTN->print_r($tmp_ISERROR_CODE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: ISERROR_CODE');
+                    $this->oCRNRSTN->print_r($tmp_ISERROR_MESSAGE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: ISERROR_MESSAGE');
+                    $this->oCRNRSTN->print_r($tmp_DATE_RECEIVED_SOAP_REQUEST, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: DATE_RECEIVED_SOAP_REQUEST');
+                    $this->oCRNRSTN->print_r($tmp_SERVER_NAME_SOAP_SERVER, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: SERVER_NAME_SOAP_SERVER');
+                    $this->oCRNRSTN->print_r($tmp_SERVER_ADDRESS_SOAP_SERVER, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: SERVER_ADDRESS_SOAP_SERVER');
+                    $this->oCRNRSTN->print_r($tmp_DATE_CREATED_SOAP_RESPONSE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE :: tunnelEncryptCalibrationRequest :: DATE_CREATED_SOAP_RESPONSE');
                     */
 
                     if($tmp_SOAP_SERVICES_AUTH_STATUS == 'AUTHORIZATION GRANTED'){
@@ -430,15 +428,15 @@ class crnrstn_logging_oprofile {
                         'SOAP_ENCRYPT_OPTIONS' => array( 'name' => 'SOAP_ENCRYPT_OPTIONS', 'type' => 'xsd:string' )
                          * */
 
-                        self::$oCRNRSTN_n->print_r($SOAP_endpoint, '', NULL, __LINE__, __METHOD__, __FILE__);
+                        $this->oCRNRSTN->print_r($SOAP_endpoint, '', NULL, __LINE__, __METHOD__, __FILE__);
 
                         //
                         // SUBMIT SERVICES REQUEST [LIMIT OF 65535 bytes]
                         $tmp_response = $this->client_send_CRNRSTN_SOAP_REQUEST('mayItakeTheKingsHighway', $SOAP_request[0], $SOAP_endpoint);
 
-                        //self::$oCRNRSTN_n->print_r($SOAP_request, 'CLIENT REQUEST :: mayItakeTheKingsHighway', NULL, __LINE__, __METHOD__, __FILE__);
-                        //self::$oCRNRSTN_n->print_r($this->returnClientRequest(), 'CLIENT REQUEST :: oKingsHighwayAuthRequest', NULL, __LINE__, __METHOD__, __FILE__);
-                        self::$oCRNRSTN_n->print_r($tmp_response, 'SERVER RESPONSE :: mayItakeTheKingsHighway', NULL, __LINE__, __METHOD__, __FILE__);
+                        //$this->oCRNRSTN->print_r($SOAP_request, 'CLIENT REQUEST :: mayItakeTheKingsHighway', NULL, __LINE__, __METHOD__, __FILE__);
+                        //$this->oCRNRSTN->print_r($this->returnClientRequest(), 'CLIENT REQUEST :: oKingsHighwayAuthRequest', NULL, __LINE__, __METHOD__, __FILE__);
+                        $this->oCRNRSTN->print_r($tmp_response, 'SERVER RESPONSE :: mayItakeTheKingsHighway', NULL, __LINE__, __METHOD__, __FILE__);
 
                         $tmp_CRNRSTN_PACKET_IS_ENCRYPTED = $tmp_response['CRNRSTN_PACKET_IS_ENCRYPTED'];
                         if($tmp_CRNRSTN_PACKET_IS_ENCRYPTED != 'TRUE'){
@@ -459,52 +457,52 @@ class crnrstn_logging_oprofile {
 
                             //
                             // DECRYPT SOAP OBJECT
-                            //$tmp_CRNRSTN_SOAP_SVC_AUTH_KEY = self::$oCRNRSTN_n->data_decrypt($tmp_response['CRNRSTN_SOAP_SVC_AUTH_KEY'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                            //$tmp_CRNRSTN_SOAP_SVC_USERNAME = self::$oCRNRSTN_n->data_decrypt($tmp_response['CRNRSTN_SOAP_SVC_USERNAME'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                            self::$oCRNRSTN_n->print_r('SOAP_SERVICES_AUTH_STATUS = ' . $tmp_response['SOAP_SERVICES_AUTH_STATUS'] . ' [' . $tmp_SOAP_ENCRYPT_CIPHER_resp . '] [' . $tmp_SOAP_ENCRYPT_SECRET_KEY_resp . '][' . $this->oSoapDataTransportLayer->soap_encrypt_secret_key . ']', 'SERVER RESPONSE DECRYPT :: mayItakeTheKingsHighway', NULL, __LINE__, __METHOD__, __FILE__);
+                            //$tmp_CRNRSTN_SOAP_SVC_AUTH_KEY = $this->oCRNRSTN->data_decrypt($tmp_response['CRNRSTN_SOAP_SVC_AUTH_KEY'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                            //$tmp_CRNRSTN_SOAP_SVC_USERNAME = $this->oCRNRSTN->data_decrypt($tmp_response['CRNRSTN_SOAP_SVC_USERNAME'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                            $this->oCRNRSTN->print_r('SOAP_SERVICES_AUTH_STATUS = ' . $tmp_response['SOAP_SERVICES_AUTH_STATUS'] . ' [' . $tmp_SOAP_ENCRYPT_CIPHER_resp . '] [' . $tmp_SOAP_ENCRYPT_SECRET_KEY_resp . '][' . $this->oSoapDataTransportLayer->soap_encrypt_secret_key . ']', 'SERVER RESPONSE DECRYPT :: mayItakeTheKingsHighway', NULL, __LINE__, __METHOD__, __FILE__);
                             //error_log(__LINE__ .' env data_decrypt(1/2) ['.$tmp_SOAP_ENCRYPT_CIPHER_resp.']['.$tmp_SOAP_ENCRYPT_SECRET_KEY_resp.']['.$tmp_SOAP_ENCRYPT_HMAC_ALG_resp.']['.$tmp_SOAP_ENCRYPT_OPTIONS_resp.']');
-                            $tmp_SOAP_SERVICES_AUTH_STATUS = self::$oCRNRSTN_n->data_decrypt($tmp_response['SOAP_SERVICES_AUTH_STATUS'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
+                            $tmp_SOAP_SERVICES_AUTH_STATUS = $this->oCRNRSTN->data_decrypt($tmp_response['SOAP_SERVICES_AUTH_STATUS'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                             //error_log(__LINE__ .' env data_decrypt(2/2) ['.$tmp_SOAP_ENCRYPT_CIPHER_resp.']['.$tmp_SOAP_ENCRYPT_SECRET_KEY_resp.']['.$tmp_SOAP_ENCRYPT_HMAC_ALG_resp.']['.$tmp_SOAP_ENCRYPT_OPTIONS_resp.']');
 
-                            self::$oCRNRSTN_n->print_r('SOAP_SERVICES_AUTH_STATUS = '.$tmp_SOAP_SERVICES_AUTH_STATUS, 'SERVER RESPONSE DECRYPT :: mayItakeTheKingsHighway', NULL, __LINE__, __METHOD__, __FILE__);
-                            //$tmp_SOAP_ENCRYPT_CIPHER_resp = self::$oCRNRSTN_n->data_decrypt($tmp_response['SOAP_ENCRYPT_CIPHER'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                            //$tmp_SOAP_ENCRYPT_SECRET_KEY_resp = self::$oCRNRSTN_n->data_decrypt($tmp_response['SOAP_ENCRYPT_SECRET_KEY'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                            //$tmp_SOAP_ENCRYPT_HMAC_ALG_resp = self::$oCRNRSTN_n->data_decrypt($tmp_response['SOAP_ENCRYPT_HMAC_ALG'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                            //$tmp_SOAP_ENCRYPT_OPTIONS_resp = self::$oCRNRSTN_n->data_decrypt($tmp_response['SOAP_ENCRYPT_OPTIONS'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                            $this->oCRNRSTN->print_r('SOAP_SERVICES_AUTH_STATUS = '.$tmp_SOAP_SERVICES_AUTH_STATUS, 'SERVER RESPONSE DECRYPT :: mayItakeTheKingsHighway', NULL, __LINE__, __METHOD__, __FILE__);
+                            //$tmp_SOAP_ENCRYPT_CIPHER_resp = $this->oCRNRSTN->data_decrypt($tmp_response['SOAP_ENCRYPT_CIPHER'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                            //$tmp_SOAP_ENCRYPT_SECRET_KEY_resp = $this->oCRNRSTN->data_decrypt($tmp_response['SOAP_ENCRYPT_SECRET_KEY'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                            //$tmp_SOAP_ENCRYPT_HMAC_ALG_resp = $this->oCRNRSTN->data_decrypt($tmp_response['SOAP_ENCRYPT_HMAC_ALG'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                            //$tmp_SOAP_ENCRYPT_OPTIONS_resp = $this->oCRNRSTN->data_decrypt($tmp_response['SOAP_ENCRYPT_OPTIONS'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
 
-                            //$tmp_STATUS_CODE = self::$oCRNRSTN_n->data_decrypt($tmp_response['STATUS_CODE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                            //$tmp_STATUS_MESSAGE = self::$oCRNRSTN_n->data_decrypt($tmp_response['STATUS_MESSAGE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                            //$tmp_ISERROR_CODE = self::$oCRNRSTN_n->data_decrypt($tmp_response['ISERROR_CODE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                            //$tmp_ISERROR_MESSAGE = self::$oCRNRSTN_n->data_decrypt($tmp_response['ISERROR_MESSAGE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                            //$tmp_DATE_RECEIVED_SOAP_REQUEST = self::$oCRNRSTN_n->data_decrypt($tmp_response['DATE_RECEIVED_SOAP_REQUEST'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                            //$tmp_SERVER_NAME_SOAP_SERVER = self::$oCRNRSTN_n->data_decrypt($tmp_response['SERVER_NAME_SOAP_SERVER'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                            //$tmp_SERVER_ADDRESS_SOAP_SERVER = self::$oCRNRSTN_n->data_decrypt($tmp_response['SERVER_ADDRESS_SOAP_SERVER'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                            //$tmp_DATE_CREATED_SOAP_RESPONSE = self::$oCRNRSTN_n->data_decrypt($tmp_response['DATE_CREATED_SOAP_RESPONSE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                            //$tmp_SERVER_NAME_SOAP_CLIENT = self::$oCRNRSTN_n->data_decrypt($tmp_response['SERVER_NAME_SOAP_CLIENT'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                            //$tmp_SERVER_ADDRESS_SOAP_CLIENT = self::$oCRNRSTN_n->data_decrypt($tmp_response['SERVER_ADDRESS_SOAP_CLIENT'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                            //$tmp_STATUS_CODE = $this->oCRNRSTN->data_decrypt($tmp_response['STATUS_CODE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                            //$tmp_STATUS_MESSAGE = $this->oCRNRSTN->data_decrypt($tmp_response['STATUS_MESSAGE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                            //$tmp_ISERROR_CODE = $this->oCRNRSTN->data_decrypt($tmp_response['ISERROR_CODE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                            //$tmp_ISERROR_MESSAGE = $this->oCRNRSTN->data_decrypt($tmp_response['ISERROR_MESSAGE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                            //$tmp_DATE_RECEIVED_SOAP_REQUEST = $this->oCRNRSTN->data_decrypt($tmp_response['DATE_RECEIVED_SOAP_REQUEST'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                            //$tmp_SERVER_NAME_SOAP_SERVER = $this->oCRNRSTN->data_decrypt($tmp_response['SERVER_NAME_SOAP_SERVER'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                            //$tmp_SERVER_ADDRESS_SOAP_SERVER = $this->oCRNRSTN->data_decrypt($tmp_response['SERVER_ADDRESS_SOAP_SERVER'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                            //$tmp_DATE_CREATED_SOAP_RESPONSE = $this->oCRNRSTN->data_decrypt($tmp_response['DATE_CREATED_SOAP_RESPONSE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                            //$tmp_SERVER_NAME_SOAP_CLIENT = $this->oCRNRSTN->data_decrypt($tmp_response['SERVER_NAME_SOAP_CLIENT'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                            //$tmp_SERVER_ADDRESS_SOAP_CLIENT = $this->oCRNRSTN->data_decrypt($tmp_response['SERVER_ADDRESS_SOAP_CLIENT'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
 
                             /*
                              DO NOT RUN UNTIL BRINGING INPUT PARAM ORDER INTO TO NEW SEQUENCE
-                            self::$oCRNRSTN_n->print_r($tmp_CRNRSTN_SOAP_SVC_AUTH_KEY, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: CRNRSTN_SOAP_SVC_AUTH_KEY');
-                            self::$oCRNRSTN_n->print_r($tmp_CRNRSTN_SOAP_SVC_USERNAME, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: CRNRSTN_SOAP_SVC_USERNAME');
-                            self::$oCRNRSTN_n->print_r($tmp_SOAP_SERVICES_AUTH_STATUS, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: SOAP_SERVICES_AUTH_STATUS');
-                            self::$oCRNRSTN_n->print_r($tmp_SOAP_ENCRYPT_CIPHER_resp, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: SOAP_ENCRYPT_CIPHER');
-                            self::$oCRNRSTN_n->print_r($tmp_SOAP_ENCRYPT_SECRET_KEY_resp, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: SOAP_ENCRYPT_SECRET_KEY');
-                            self::$oCRNRSTN_n->print_r($tmp_SOAP_ENCRYPT_HMAC_ALG_resp, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: SOAP_ENCRYPT_HMAC_ALG');
-                            self::$oCRNRSTN_n->print_r($tmp_SOAP_ENCRYPT_OPTIONS_resp, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: SOAP_ENCRYPT_OPTIONS');
-                            self::$oCRNRSTN_n->print_r($tmp_STATUS_CODE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: STATUS_CODE');
-                            self::$oCRNRSTN_n->print_r($tmp_STATUS_MESSAGE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: STATUS_MESSAGE');
-                            self::$oCRNRSTN_n->print_r($tmp_ISERROR_CODE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: ISERROR_CODE');
-                            self::$oCRNRSTN_n->print_r($tmp_ISERROR_MESSAGE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: ISERROR_MESSAGE');
-                            self::$oCRNRSTN_n->print_r($tmp_DATE_RECEIVED_SOAP_REQUEST, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: DATE_RECEIVED_SOAP_REQUEST');
-                            self::$oCRNRSTN_n->print_r($tmp_SERVER_NAME_SOAP_SERVER, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: SERVER_NAME_SOAP_SERVER');
-                            self::$oCRNRSTN_n->print_r($tmp_SERVER_ADDRESS_SOAP_SERVER, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: SERVER_ADDRESS_SOAP_SERVER');
-                            self::$oCRNRSTN_n->print_r($tmp_DATE_CREATED_SOAP_RESPONSE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: DATE_CREATED_SOAP_RESPONSE');
-                            self::$oCRNRSTN_n->print_r($tmp_SERVER_NAME_SOAP_CLIENT, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: SERVER_NAME_SOAP_CLIENT');
-                            self::$oCRNRSTN_n->print_r($tmp_SERVER_ADDRESS_SOAP_CLIENT, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: SERVER_ADDRESS_SOAP_CLIENT');
+                            $this->oCRNRSTN->print_r($tmp_CRNRSTN_SOAP_SVC_AUTH_KEY, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: CRNRSTN_SOAP_SVC_AUTH_KEY');
+                            $this->oCRNRSTN->print_r($tmp_CRNRSTN_SOAP_SVC_USERNAME, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: CRNRSTN_SOAP_SVC_USERNAME');
+                            $this->oCRNRSTN->print_r($tmp_SOAP_SERVICES_AUTH_STATUS, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: SOAP_SERVICES_AUTH_STATUS');
+                            $this->oCRNRSTN->print_r($tmp_SOAP_ENCRYPT_CIPHER_resp, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: SOAP_ENCRYPT_CIPHER');
+                            $this->oCRNRSTN->print_r($tmp_SOAP_ENCRYPT_SECRET_KEY_resp, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: SOAP_ENCRYPT_SECRET_KEY');
+                            $this->oCRNRSTN->print_r($tmp_SOAP_ENCRYPT_HMAC_ALG_resp, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: SOAP_ENCRYPT_HMAC_ALG');
+                            $this->oCRNRSTN->print_r($tmp_SOAP_ENCRYPT_OPTIONS_resp, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: SOAP_ENCRYPT_OPTIONS');
+                            $this->oCRNRSTN->print_r($tmp_STATUS_CODE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: STATUS_CODE');
+                            $this->oCRNRSTN->print_r($tmp_STATUS_MESSAGE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: STATUS_MESSAGE');
+                            $this->oCRNRSTN->print_r($tmp_ISERROR_CODE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: ISERROR_CODE');
+                            $this->oCRNRSTN->print_r($tmp_ISERROR_MESSAGE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: ISERROR_MESSAGE');
+                            $this->oCRNRSTN->print_r($tmp_DATE_RECEIVED_SOAP_REQUEST, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: DATE_RECEIVED_SOAP_REQUEST');
+                            $this->oCRNRSTN->print_r($tmp_SERVER_NAME_SOAP_SERVER, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: SERVER_NAME_SOAP_SERVER');
+                            $this->oCRNRSTN->print_r($tmp_SERVER_ADDRESS_SOAP_SERVER, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: SERVER_ADDRESS_SOAP_SERVER');
+                            $this->oCRNRSTN->print_r($tmp_DATE_CREATED_SOAP_RESPONSE, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: DATE_CREATED_SOAP_RESPONSE');
+                            $this->oCRNRSTN->print_r($tmp_SERVER_NAME_SOAP_CLIENT, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: SERVER_NAME_SOAP_CLIENT');
+                            $this->oCRNRSTN->print_r($tmp_SERVER_ADDRESS_SOAP_CLIENT, __LINE__, __METHOD__, __FILE__, NULL, 'SERVER RESPONSE - APPROVED FOR KING\'S HIGHWAY :: SERVER_ADDRESS_SOAP_CLIENT');
                             */
 
-                            self::$oCRNRSTN_n->print_r($tmp_SOAP_SERVICES_AUTH_STATUS, 'SERVER RESPONSE :: mayItakeTheKingsHighway', NULL, __LINE__, __METHOD__, __FILE__);
+                            $this->oCRNRSTN->print_r($tmp_SOAP_SERVICES_AUTH_STATUS, 'SERVER RESPONSE :: mayItakeTheKingsHighway', NULL, __LINE__, __METHOD__, __FILE__);
                             if($tmp_SOAP_SERVICES_AUTH_STATUS == 'AUTHORIZATION GRANTED'){
 
                                 //
@@ -515,7 +513,7 @@ class crnrstn_logging_oprofile {
 
                                 $SOAP_request = $this->oSoapDataTransportLayer->generate_SOAP_request_object('takeTheKingsHighway', $tmp_response);
 
-                                //self::$oCRNRSTN_n->print_r($SOAP_request, 'CLIENT REQUEST :: takeTheKingsHighway', NULL, __LINE__, __METHOD__, __FILE__);
+                                //$this->oCRNRSTN->print_r($SOAP_request, 'CLIENT REQUEST :: takeTheKingsHighway', NULL, __LINE__, __METHOD__, __FILE__);
 
                                 error_log(__LINE__ . ' env - READY TO takeTheKingsHighway TO SERVER.');
 
@@ -528,7 +526,7 @@ class crnrstn_logging_oprofile {
 
                                     $tmp_cur = 1 + $ii;
                                     $tmp_response = $this->client_send_CRNRSTN_SOAP_REQUEST('takeTheKingsHighway', $SOAP_request[$ii], $SOAP_endpoint);
-                                    self::$oCRNRSTN_n->print_r($tmp_response, 'CLIENT - SERVER RESPONSE :: takeTheKingsHighway ' . $tmp_cur . ' of ' . $tmp_request_cnt, NULL, __LINE__, __METHOD__, __FILE__);
+                                    $this->oCRNRSTN->print_r($tmp_response, 'CLIENT - SERVER RESPONSE :: takeTheKingsHighway ' . $tmp_cur . ' of ' . $tmp_request_cnt, NULL, __LINE__, __METHOD__, __FILE__);
 
                                 }
 
@@ -541,12 +539,12 @@ class crnrstn_logging_oprofile {
                     }else{
 
                         error_log(__LINE__ . ' env - authorization NOT granted...');
-                        $tmp_STATUS_CODE = self::$oCRNRSTN_n->data_decrypt($tmp_response['STATUS_CODE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                        $tmp_STATUS_MESSAGE = self::$oCRNRSTN_n->data_decrypt($tmp_response['STATUS_MESSAGE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                        $tmp_ISERROR_CODE = self::$oCRNRSTN_n->data_decrypt($tmp_response['ISERROR_CODE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
-                        $tmp_ISERROR_MESSAGE = self::$oCRNRSTN_n->data_decrypt($tmp_response['ISERROR_MESSAGE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                        $tmp_STATUS_CODE = $this->oCRNRSTN->data_decrypt($tmp_response['STATUS_CODE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                        $tmp_STATUS_MESSAGE = $this->oCRNRSTN->data_decrypt($tmp_response['STATUS_MESSAGE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                        $tmp_ISERROR_CODE = $this->oCRNRSTN->data_decrypt($tmp_response['ISERROR_CODE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                        $tmp_ISERROR_MESSAGE = $this->oCRNRSTN->data_decrypt($tmp_response['ISERROR_MESSAGE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
 
-                        self::$oCRNRSTN_n->error_log('CRNRSTN :: SOAP Services proxy error. Error Code: ' . $tmp_ISERROR_CODE . ' :: Error Message: ' . $tmp_ISERROR_MESSAGE . ' :: Status Code: ' . $tmp_STATUS_CODE . ' :: Status Message: ' . $tmp_STATUS_MESSAGE, __LINE__, __METHOD__, __FILE__, 'CRNRSTN_SOAP_SERVICES');
+                        $this->oCRNRSTN->error_log('CRNRSTN :: SOAP Services proxy error. Error Code: ' . $tmp_ISERROR_CODE . ' :: Error Message: ' . $tmp_ISERROR_MESSAGE . ' :: Status Code: ' . $tmp_STATUS_CODE . ' :: Status Message: ' . $tmp_STATUS_MESSAGE, __LINE__, __METHOD__, __FILE__, 'CRNRSTN_SOAP_SERVICES');
 
                     }
 
@@ -571,14 +569,16 @@ class crnrstn_logging_oprofile {
     //
     // SOURCE :: https://www.youtube.com/watch?v=83KR_UBWdPI
     // TITLE :: Arcade Fire - No Cars Go
-    private function no_cars_go_EMAIL($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
+    //
+    // 2020[?] SOURCE NEEDED FOR THIS PRE-LIGHTSABER COMMENT.
+    private function no_cars_go_EMAIL($oCRNRSTN, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
 
         $tmp_exception_msg = $exception_obj->getMessage();
         $tmp_exception_linenum = $exception_obj->getLine();
 
         error_log(__LINE__ . ' env no_cars_go_EMAIL() [' . $exception_method . '][' . $syslog_constant . ']' . $tmp_exception_output_str . ' ' . $tmp_exception_msg . ' ' . $tmp_exception_linenum);
 
-        $this->load_log_output_mgr($oCRNRSTN_n);
+        $this->load_log_output_mgr($oCRNRSTN);
 
         $tmp_sent_suppression = array();
         $config_data_ARRAY = array();
@@ -790,11 +790,11 @@ class crnrstn_logging_oprofile {
 
                                 //error_log(__LINE__ . ' env die() preach [' . $oDDO->count($data_attribute) . '] SMTP_KEEPALIVE=' . $oDDO->preach('type', $data_attribute));
 
-                                $tmp_SMTP_KEEPALIVE = (bool) $oCRNRSTN_n->tidy_boolean($oDDO->preach('data_value', $data_attribute));
+                                $tmp_SMTP_KEEPALIVE = (bool) $oCRNRSTN->tidy_boolean($oDDO->preach('data_value', $data_attribute));
 
                             }else{
 
-                                $tmp_SMTP_KEEPALIVE = (bool) $oCRNRSTN_n->tidy_boolean($oDDO);
+                                $tmp_SMTP_KEEPALIVE = (bool) $oCRNRSTN->tidy_boolean($oDDO);
 
                             }
 
@@ -805,11 +805,11 @@ class crnrstn_logging_oprofile {
 
                                 //error_log(__LINE__ . ' env die() preach [' . $oDDO->count($data_attribute) . '] DUP_SUPPRESS=' . $oDDO->preach('type', $data_attribute));
 
-                                $tmp_DUP_SUPPRESS = (bool) $oCRNRSTN_n->tidy_boolean($oDDO->preach('data_value', $data_attribute));
+                                $tmp_DUP_SUPPRESS = (bool) $oCRNRSTN->tidy_boolean($oDDO->preach('data_value', $data_attribute));
 
                             }else{
 
-                                $tmp_DUP_SUPPRESS = (bool) $oCRNRSTN_n->tidy_boolean($oDDO);
+                                $tmp_DUP_SUPPRESS = (bool) $oCRNRSTN->tidy_boolean($oDDO);
 
                             }
 
@@ -818,11 +818,11 @@ class crnrstn_logging_oprofile {
 
                             if(is_object($oDDO)){
 
-                                $tmp_ALLOW_EMPTY = (bool) $oCRNRSTN_n->tidy_boolean($oDDO->preach('data_value', $data_attribute));
+                                $tmp_ALLOW_EMPTY = (bool) $oCRNRSTN->tidy_boolean($oDDO->preach('data_value', $data_attribute));
 
                             }else{
 
-                                $tmp_ALLOW_EMPTY = (bool) $oCRNRSTN_n->tidy_boolean($oDDO);
+                                $tmp_ALLOW_EMPTY = (bool) $oCRNRSTN->tidy_boolean($oDDO);
 
                             }
 
@@ -833,11 +833,11 @@ class crnrstn_logging_oprofile {
 
                                 //error_log(__LINE__ . ' env die() preach [' . $oDDO->count($data_attribute) . '] ISHTML=' . $oDDO->preach('type', $data_attribute));
 
-                                $tmp_isHTML = (bool) $oCRNRSTN_n->tidy_boolean($oDDO->preach('data_value', $data_attribute));
+                                $tmp_isHTML = (bool) $oCRNRSTN->tidy_boolean($oDDO->preach('data_value', $data_attribute));
 
                             }else{
 
-                                $tmp_isHTML = (bool) $oCRNRSTN_n->tidy_boolean($oDDO);
+                                $tmp_isHTML = (bool) $oCRNRSTN->tidy_boolean($oDDO);
 
                             }
 
@@ -905,7 +905,7 @@ class crnrstn_logging_oprofile {
 
                                     //
                                     // HOOOSTON...VE HAF PROBLEM!
-                                    $oCRNRSTN_n->error_log('The provided priority level of "' . $priority . '" is invalid; NORMAL priority has been applied. Options include, "HIGH" or 1, "NORMAL" or 3 and "LOW" or 5.', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                    $oCRNRSTN->error_log('The provided priority level of "' . $priority . '" is invalid; NORMAL priority has been applied. Options include, "HIGH" or 1, "NORMAL" or 3 and "LOW" or 5.', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
 
                                 break;
 
@@ -985,11 +985,11 @@ class crnrstn_logging_oprofile {
 
                                 //error_log(__LINE__ . ' env die() preach [' . $oDDO->count($data_attribute) . '] SMTP_AUTOTLS=' . $oDDO->preach('type', $data_attribute));
 
-                                $tmp_SMTP_AUTOTLS = (bool) $oCRNRSTN_n->tidy_boolean($oDDO->preach('data_value', $data_attribute));
+                                $tmp_SMTP_AUTOTLS = (bool) $oCRNRSTN->tidy_boolean($oDDO->preach('data_value', $data_attribute));
 
                             }else{
 
-                                $tmp_SMTP_AUTOTLS = (bool) $oCRNRSTN_n->tidy_boolean($oDDO);
+                                $tmp_SMTP_AUTOTLS = (bool) $oCRNRSTN->tidy_boolean($oDDO);
 
                             }
 
@@ -1000,11 +1000,11 @@ class crnrstn_logging_oprofile {
 
                                 //error_log(__LINE__ . ' env die() preach [' . $oDDO->count($data_attribute) . '] SMTP_AUTH=' . $oDDO->preach('type', $data_attribute));
 
-                                $tmp_SMTP_AUTH = (bool) $oCRNRSTN_n->tidy_boolean($oDDO->preach('data_value', $data_attribute));
+                                $tmp_SMTP_AUTH = (bool) $oCRNRSTN->tidy_boolean($oDDO->preach('data_value', $data_attribute));
 
                             }else{
 
-                                $tmp_SMTP_AUTH = (bool) $oCRNRSTN_n->tidy_boolean($oDDO);
+                                $tmp_SMTP_AUTH = (bool) $oCRNRSTN->tidy_boolean($oDDO);
 
                             }
 
@@ -1080,11 +1080,11 @@ class crnrstn_logging_oprofile {
 
                                 //error_log(__LINE__ . ' env die() preach [' . $oDDO->count($data_attribute) . '] USE_SENDMAIL_OPTIONS=' . $oDDO->preach('type', $data_attribute));
 
-                                $tmp_USE_SENDMAIL_OPTIONS = (bool) $oCRNRSTN_n->tidy_boolean($oDDO->preach('data_value', $data_attribute));
+                                $tmp_USE_SENDMAIL_OPTIONS = (bool) $oCRNRSTN->tidy_boolean($oDDO->preach('data_value', $data_attribute));
 
                             }else{
 
-                                $tmp_USE_SENDMAIL_OPTIONS = (bool) $oCRNRSTN_n->tidy_boolean($oDDO);
+                                $tmp_USE_SENDMAIL_OPTIONS = (bool) $oCRNRSTN->tidy_boolean($oDDO);
 
                             }
 
@@ -1095,11 +1095,11 @@ class crnrstn_logging_oprofile {
 
                                 //error_log(__LINE__ . ' env die() preach DIBYA_SAHOO_SSL_CERT_BYPASS [' . $oDDO->count($data_attribute) . ']  DIBYA_SAHOO_SSL_CERT_BYPASS=' . $oDDO->preach('type', $data_attribute));
 
-                                $tmp_DIBYA_SAHOO_SSL_CERT_BYPASS = (bool) $oCRNRSTN_n->tidy_boolean($oDDO->preach('data_value', $data_attribute));
+                                $tmp_DIBYA_SAHOO_SSL_CERT_BYPASS = (bool) $oCRNRSTN->tidy_boolean($oDDO->preach('data_value', $data_attribute));
 
                             }else{
 
-                                $tmp_DIBYA_SAHOO_SSL_CERT_BYPASS = (bool) $oCRNRSTN_n->tidy_boolean($oDDO);
+                                $tmp_DIBYA_SAHOO_SSL_CERT_BYPASS = (bool) $oCRNRSTN->tidy_boolean($oDDO);
 
                             }
 
@@ -1108,11 +1108,11 @@ class crnrstn_logging_oprofile {
 
                             if(is_object($oDDO)){
 
-                                $tmp_TRY_OTHER_EMAIL_METHODS_ON_ERR = (bool) $oCRNRSTN_n->tidy_boolean($oDDO->preach('data_value', $data_attribute));
+                                $tmp_TRY_OTHER_EMAIL_METHODS_ON_ERR = (bool) $oCRNRSTN->tidy_boolean($oDDO->preach('data_value', $data_attribute));
 
                             }else{
 
-                                $tmp_TRY_OTHER_EMAIL_METHODS_ON_ERR = (bool) $oCRNRSTN_n->tidy_boolean($oDDO);
+                                $tmp_TRY_OTHER_EMAIL_METHODS_ON_ERR = (bool) $oCRNRSTN->tidy_boolean($oDDO);
 
                             }
 
@@ -1127,13 +1127,13 @@ class crnrstn_logging_oprofile {
         }
 
         //$tmp_config_version_cnt = sizeof($config_data_ARRAY);
-        error_log(__LINE__ . ' env class to send email = ' . get_class($oCRNRSTN_n));
+        error_log(__LINE__ . ' env class to send email = ' . get_class($oCRNRSTN));
         //error_log(__LINE__ . ' $tmp_config_version_cnt=' . $tmp_config_version_cnt);
         //for($config_vs=0; $config_vs < $tmp_config_version_cnt; $config_vs++){
 
-        $tmp_oGabriel_serial = $oCRNRSTN_n->generate_new_key(50);
+        $tmp_oGabriel_serial = $oCRNRSTN->generate_new_key(50);
 
-        switch(get_class($oCRNRSTN_n)){
+        switch(get_class($oCRNRSTN)){
             case 'crnrstn_user':
             case 'crnrstn_environment':
             case 'crnrstn':
@@ -1152,9 +1152,9 @@ class crnrstn_logging_oprofile {
 
                         }
 
-                        $oCRNRSTN_GABRIEL = new crnrstn_messenger_from_north($tmp_oGabriel_serial, $tmp_EMAIL_PROTOCOL, $tmp_SMTP_USERNAME, $tmp_SMTP_PASSWORD, $tmp_SMTP_PORT_OUTGOING, $oCRNRSTN_n);
+                        $oCRNRSTN_GABRIEL = new crnrstn_messenger_from_north($tmp_oGabriel_serial, $tmp_EMAIL_PROTOCOL, $tmp_SMTP_USERNAME, $tmp_SMTP_PASSWORD, $tmp_SMTP_PORT_OUTGOING, $oCRNRSTN);
 
-                        $crnrstn_phpmailer = new \PHPMailer\crnrstn_PHPMailer\crnrstn_PHPMailer($oCRNRSTN_n);
+                        $crnrstn_phpmailer = new \PHPMailer\crnrstn_PHPMailer\crnrstn_PHPMailer($oCRNRSTN);
                         $crnrstn_phpmailer->Mailer = strtolower($tmp_EMAIL_PROTOCOL);  // "mail", "qmail", "sendmail", or "smtp".
 
                         $crnrstn_phpmailer->Priority = $tmp_PRIORITY;
@@ -1280,15 +1280,15 @@ class crnrstn_logging_oprofile {
 
                         //
                         // CONSTANTS
-                        $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
-                        $tmp_log_constant_TEXT = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant);
+                        $tmp_php_trace_TEXT = $oCRNRSTN->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
+                        $tmp_log_constant_TEXT = $oCRNRSTN->return_log_priority_pretty($syslog_constant);
                         $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('EMAIL_TEXT');
                         $crnrstn_phpmailer->Subject = 'Exception Notification from ' . $_SERVER['SERVER_NAME'] . ' via CRNRSTN ::';
 
                         if($tmp_isHTML == true){
 
-                            $tmp_php_trace_HTML = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'HTML');
-                            $tmp_log_constant_HTML = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant, 'HTML');
+                            $tmp_php_trace_HTML = $oCRNRSTN->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'HTML');
+                            $tmp_log_constant_HTML = $oCRNRSTN->return_log_priority_pretty($syslog_constant, 'HTML');
                             $tmp_crnrstn_trace_HTML = $this->oLog_output_manager->return_log_trace_output_str('EMAIL_HTML');
 
                         }
@@ -1303,21 +1303,21 @@ class crnrstn_logging_oprofile {
 
                         }
 
-                        error_log(__LINE__ . ' env - Adding Recipient:' . $tmp_name . ' ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private'));
+                        error_log(__LINE__ . ' env - Adding Recipient:' . $tmp_name . ' ' . $oCRNRSTN->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private'));
                         $crnrstn_phpmailer->AddAddress($tmp_RECIPIENT_EMAIL[$i], $tmp_name);
 
                         //
                         // PREPARE TEXT VERSION
                         $tmp_TEXT_Body = $oCRNRSTN_GABRIEL->return_CRNRSTN_SysMsgTEXTBody('EXCEPTION_NOTIFICATION');
-                        $tmp_TEXT_Body = $oCRNRSTN_n->proper_replace('{SYSTEM_LOG_INTEGER_CONSTANT}', $tmp_log_constant_TEXT, $tmp_TEXT_Body);
-                        $tmp_TEXT_Body = $oCRNRSTN_n->proper_replace('{MESSAGE}', $tmp_exception_msg, $tmp_TEXT_Body);
-                        $tmp_TEXT_Body = $oCRNRSTN_n->proper_replace('{LINE_NUM}', $tmp_exception_linenum, $tmp_TEXT_Body);
-                        $tmp_TEXT_Body = $oCRNRSTN_n->proper_replace('{METHOD}', $exception_method, $tmp_TEXT_Body);
-                        $tmp_TEXT_Body = $oCRNRSTN_n->proper_replace('{PHP_TRACE}', $tmp_php_trace_TEXT, $tmp_TEXT_Body);
-                        $tmp_TEXT_Body = $oCRNRSTN_n->proper_replace('{SYSTEM_TIME}', $exception_systemtime, $tmp_TEXT_Body);
-                        $tmp_TEXT_Body = $oCRNRSTN_n->proper_replace('{PROCESS_RUN_TIME}', $exception_runtime, $tmp_TEXT_Body);
-                        $tmp_TEXT_Body = $oCRNRSTN_n->proper_replace('{EMAIL}', $tmp_RECIPIENT_EMAIL[$i], $tmp_TEXT_Body);
-                        $tmp_TEXT_Body = $oCRNRSTN_n->proper_replace('{LOG_TRACE}', $tmp_crnrstn_trace_TEXT, $tmp_TEXT_Body);
+                        $tmp_TEXT_Body = $oCRNRSTN->proper_replace('{SYSTEM_LOG_INTEGER_CONSTANT}', $tmp_log_constant_TEXT, $tmp_TEXT_Body);
+                        $tmp_TEXT_Body = $oCRNRSTN->proper_replace('{MESSAGE}', $tmp_exception_msg, $tmp_TEXT_Body);
+                        $tmp_TEXT_Body = $oCRNRSTN->proper_replace('{LINE_NUM}', $tmp_exception_linenum, $tmp_TEXT_Body);
+                        $tmp_TEXT_Body = $oCRNRSTN->proper_replace('{METHOD}', $exception_method, $tmp_TEXT_Body);
+                        $tmp_TEXT_Body = $oCRNRSTN->proper_replace('{PHP_TRACE}', $tmp_php_trace_TEXT, $tmp_TEXT_Body);
+                        $tmp_TEXT_Body = $oCRNRSTN->proper_replace('{SYSTEM_TIME}', $exception_systemtime, $tmp_TEXT_Body);
+                        $tmp_TEXT_Body = $oCRNRSTN->proper_replace('{PROCESS_RUN_TIME}', $exception_runtime, $tmp_TEXT_Body);
+                        $tmp_TEXT_Body = $oCRNRSTN->proper_replace('{EMAIL}', $tmp_RECIPIENT_EMAIL[$i], $tmp_TEXT_Body);
+                        $tmp_TEXT_Body = $oCRNRSTN->proper_replace('{LOG_TRACE}', $tmp_crnrstn_trace_TEXT, $tmp_TEXT_Body);
 
                         $crnrstn_phpmailer->AltBody = $tmp_TEXT_Body;
 
@@ -1326,15 +1326,15 @@ class crnrstn_logging_oprofile {
                             //
                             // PREPARE HTML VERSION
                             $tmp_HTML_Body = $oCRNRSTN_GABRIEL->return_CRNRSTN_SysMsgHTMLBody('EXCEPTION_NOTIFICATION');
-                            $tmp_HTML_Body = $oCRNRSTN_n->proper_replace('{SYSTEM_LOG_INTEGER_CONSTANT}', $tmp_log_constant_HTML, $tmp_HTML_Body);
-                            $tmp_HTML_Body = $oCRNRSTN_n->proper_replace('{MESSAGE}', $tmp_exception_msg, $tmp_HTML_Body);
-                            $tmp_HTML_Body = $oCRNRSTN_n->proper_replace('{LINE_NUM}', $tmp_exception_linenum, $tmp_HTML_Body);
-                            $tmp_HTML_Body = $oCRNRSTN_n->proper_replace('{METHOD}', $exception_method, $tmp_HTML_Body);
-                            $tmp_HTML_Body = $oCRNRSTN_n->proper_replace('{PHP_TRACE}', $tmp_php_trace_HTML, $tmp_HTML_Body);
-                            $tmp_HTML_Body = $oCRNRSTN_n->proper_replace('{SYSTEM_TIME}', $exception_systemtime, $tmp_HTML_Body);
-                            $tmp_HTML_Body = $oCRNRSTN_n->proper_replace('{PROCESS_RUN_TIME}', $exception_runtime, $tmp_HTML_Body);
-                            $tmp_HTML_Body = $oCRNRSTN_n->proper_replace('{EMAIL}', $tmp_RECIPIENT_EMAIL[$i], $tmp_HTML_Body);
-                            $tmp_HTML_Body = $oCRNRSTN_n->proper_replace('{LOG_TRACE}', $tmp_crnrstn_trace_HTML, $tmp_HTML_Body);
+                            $tmp_HTML_Body = $oCRNRSTN->proper_replace('{SYSTEM_LOG_INTEGER_CONSTANT}', $tmp_log_constant_HTML, $tmp_HTML_Body);
+                            $tmp_HTML_Body = $oCRNRSTN->proper_replace('{MESSAGE}', $tmp_exception_msg, $tmp_HTML_Body);
+                            $tmp_HTML_Body = $oCRNRSTN->proper_replace('{LINE_NUM}', $tmp_exception_linenum, $tmp_HTML_Body);
+                            $tmp_HTML_Body = $oCRNRSTN->proper_replace('{METHOD}', $exception_method, $tmp_HTML_Body);
+                            $tmp_HTML_Body = $oCRNRSTN->proper_replace('{PHP_TRACE}', $tmp_php_trace_HTML, $tmp_HTML_Body);
+                            $tmp_HTML_Body = $oCRNRSTN->proper_replace('{SYSTEM_TIME}', $exception_systemtime, $tmp_HTML_Body);
+                            $tmp_HTML_Body = $oCRNRSTN->proper_replace('{PROCESS_RUN_TIME}', $exception_runtime, $tmp_HTML_Body);
+                            $tmp_HTML_Body = $oCRNRSTN->proper_replace('{EMAIL}', $tmp_RECIPIENT_EMAIL[$i], $tmp_HTML_Body);
+                            $tmp_HTML_Body = $oCRNRSTN->proper_replace('{LOG_TRACE}', $tmp_crnrstn_trace_HTML, $tmp_HTML_Body);
 
                             $crnrstn_phpmailer->Body = $tmp_HTML_Body;
 
@@ -1348,26 +1348,26 @@ class crnrstn_logging_oprofile {
 
                             if($tmp_TRY_OTHER_EMAIL_METHODS_ON_ERR == true){
 
-                                $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to secondary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to secondary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
+                                $oCRNRSTN->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to secondary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to secondary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
 
                                 $crnrstn_phpmailer = $this->next_mail_protocol_option($crnrstn_phpmailer);
                                 if(!($crnrstn_phpmailer->Send() == true)){
 
-                                    $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to tertiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                    error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to tertiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
+                                    $oCRNRSTN->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to tertiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                    error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to tertiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
 
                                     $crnrstn_phpmailer = $this->next_mail_protocol_option($crnrstn_phpmailer);
                                     if(!($crnrstn_phpmailer->Send() == true)){
 
-                                        $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to quatiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                        error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to quatiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
+                                        $oCRNRSTN->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to quatiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                        error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to quatiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
 
                                         $crnrstn_phpmailer = $this->next_mail_protocol_option($crnrstn_phpmailer);
                                         if(!($crnrstn_phpmailer->Send() == true)){
 
-                                            $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to pentiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                            error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to pentiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
+                                            $oCRNRSTN->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to pentiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                            error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to pentiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
 
                                             $crnrstn_phpmailer = $this->next_mail_protocol_option($crnrstn_phpmailer);
                                             if(!($crnrstn_phpmailer->Send() == true)){
@@ -1401,14 +1401,14 @@ class crnrstn_logging_oprofile {
                                                 // St. Petersburg State University,
                                                 // Dept. of Computational Mathematics
 
-                                                $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Attempting final graceful degradation...hexapolynomial in nature...albeit CRNRSTN :: has, at this point, already measured and found to be wanting the fifth (5th) and final email send use case of the four (4) official and available protocols for things of this nature per /crnrstn_PHPMailer/. TLDR; ...an empty string will now be sent as the mailer protocol, and the results for which what one would hope...could only be the best. ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                                error_log(__LINE__ . 'An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Attempting final graceful degradation...hexapolynomial in nature...albeit CRNRSTN :: has, at this point, already measured and found to be wanting the fifth (5th) and final email send use case of the four (4) official and available protocols for things of this nature per /crnrstn_PHPMailer/. TLDR; ...an empty string will now be sent as the mailer protocol, and the results for which what one would hope...could only be the best. ' . $crnrstn_phpmailer->ErrorInfo);
+                                                $oCRNRSTN->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Attempting final graceful degradation...hexapolynomial in nature...albeit CRNRSTN :: has, at this point, already measured and found to be wanting the fifth (5th) and final email send use case of the four (4) official and available protocols for things of this nature per /crnrstn_PHPMailer/. TLDR; ...an empty string will now be sent as the mailer protocol, and the results for which what one would hope...could only be the best. ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                                error_log(__LINE__ . 'An error was experienced while attempting to send an email to ' . $oCRNRSTN->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Attempting final graceful degradation...hexapolynomial in nature...albeit CRNRSTN :: has, at this point, already measured and found to be wanting the fifth (5th) and final email send use case of the four (4) official and available protocols for things of this nature per /crnrstn_PHPMailer/. TLDR; ...an empty string will now be sent as the mailer protocol, and the results for which what one would hope...could only be the best. ' . $crnrstn_phpmailer->ErrorInfo);
 
                                                 $crnrstn_phpmailer = $this->next_mail_protocol_option($crnrstn_phpmailer);
                                                 if(!$crnrstn_phpmailer->Send()){
 
-                                                    $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                                    error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo);
+                                                    $oCRNRSTN->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                                    error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo);
 
                                                 }
 
@@ -1418,26 +1418,26 @@ class crnrstn_logging_oprofile {
 
                                     }else{
 
-                                        error_log(__LINE__ . ' - A SUCCESS was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '.');
+                                        error_log(__LINE__ . ' - A SUCCESS was experienced while attempting to send an email to ' . $oCRNRSTN->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '.');
 
                                     }
 
                                 }else{
 
-                                    error_log(__LINE__ . ' - A SUCCESS was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '.');
+                                    error_log(__LINE__ . ' - A SUCCESS was experienced while attempting to send an email to ' . $oCRNRSTN->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '.');
 
                                 }
 
                             }else{
 
-                                $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to '.$oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo);
+                                $oCRNRSTN->error_log('An error was experienced while attempting to send an email to '.$oCRNRSTN->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo);
 
                             }
 
                         }else{
 
-                            error_log(__LINE__ . ' - A SUCCESS was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '.');
+                            error_log(__LINE__ . ' - A SUCCESS was experienced while attempting to send an email to ' . $oCRNRSTN->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '.');
 
                         }
 
@@ -1470,9 +1470,14 @@ class crnrstn_logging_oprofile {
 
     }
 
-    private function no_cars_go_FILE($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
+    //
+    // SOURCE :: https://www.youtube.com/watch?v=83KR_UBWdPI
+    // TITLE :: Arcade Fire - No Cars Go
+    //
+    // Saturday, December 2, 2023 @ 0614 hrs.
+    private function no_cars_go_FILE($oCRNRSTN, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
 
-        $this->load_log_output_mgr($oCRNRSTN_n);
+        $this->load_log_output_mgr($oCRNRSTN);
 
         $tmp_LOCAL_DIR_FILEPATH = array();
         $tmp_LOCAL_MKDIR_MODE = array();
@@ -1530,19 +1535,19 @@ class crnrstn_logging_oprofile {
 
         }
 
-        switch(get_class($oCRNRSTN_n)){
+        switch(get_class($oCRNRSTN)){
             case 'crnrstn_user':
             case 'crnrstn_environment':
             case 'crnrstn':
 
                 //
                 // CONSTANTS
-                $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
-                $tmp_log_constant_TEXT = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant);
+                $tmp_php_trace_TEXT = $oCRNRSTN->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
+                $tmp_log_constant_TEXT = $oCRNRSTN->return_log_priority_pretty($syslog_constant);
                 $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('FILE', 0);
 
                 //$tmp_config_version_cnt = sizeof($config_data_ARRAY);
-                //error_log(__LINE__ . ' env class to log to file is ' . get_class($oCRNRSTN_n) . ' and the logging object profile integer type is ' . $this->logging_profile);
+                //error_log(__LINE__ . ' env class to log to file is ' . get_class($oCRNRSTN) . ' and the logging object profile integer type is ' . $this->logging_profile);
 
                 $tmp_log_output = $tmp_crnrstn_trace_TEXT . '
 ' . $tmp_php_trace_TEXT . '
@@ -1554,11 +1559,11 @@ class crnrstn_logging_oprofile {
 
                     if(isset($tmp_LOCAL_MKDIR_MODE[$key])){
 
-                        $this->output_to_local_file($oCRNRSTN_n, $tmp_log_output, $log_filepath, $tmp_LOCAL_MKDIR_MODE[$key]);
+                        $this->output_to_local_file($oCRNRSTN, $tmp_log_output, $log_filepath, $tmp_LOCAL_MKDIR_MODE[$key]);
 
                     }else{
 
-                        $this->output_to_local_file($oCRNRSTN_n, $tmp_log_output, $log_filepath);
+                        $this->output_to_local_file($oCRNRSTN, $tmp_log_output, $log_filepath);
 
                     }
 
@@ -1572,9 +1577,14 @@ class crnrstn_logging_oprofile {
 
     }
 
-    private function no_cars_go_LOG_FILE_FTP($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
+    //
+    // SOURCE :: https://www.youtube.com/watch?v=83KR_UBWdPI
+    // TITLE :: Arcade Fire - No Cars Go
+    //
+    // Saturday, December 2, 2023 @ 0614 hrs.
+    private function no_cars_go_LOG_FILE_FTP($oCRNRSTN, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
 
-        $this->load_log_output_mgr($oCRNRSTN_n);
+        $this->load_log_output_mgr($oCRNRSTN);
 
         $tmp_val_tunnel_ARRAY = array();
 
@@ -1655,19 +1665,19 @@ class crnrstn_logging_oprofile {
 
         //
         // READY TO CREATE FILE AND SEND VIA CRNRSTN :: ELECTRUM
-        switch(get_class($oCRNRSTN_n)){
+        switch(get_class($oCRNRSTN)){
             case 'crnrstn_user':
             case 'crnrstn_environment':
             case 'crnrstn':
 
                 //
                 // CONSTANTS
-                $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
-                $tmp_log_constant_TEXT = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant);
+                $tmp_php_trace_TEXT = $oCRNRSTN->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
+                $tmp_log_constant_TEXT = $oCRNRSTN->return_log_priority_pretty($syslog_constant);
                 $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('FILE', 0);
 
                 //$tmp_config_version_cnt = sizeof($config_data_ARRAY);
-                error_log(__LINE__ . ' env class to log to FTP_FILE is ' . get_class($oCRNRSTN_n) . ' and the logging object profile integer type is ' . $this->logging_profile);
+                error_log(__LINE__ . ' env class to log to FTP_FILE is ' . get_class($oCRNRSTN) . ' and the logging object profile integer type is ' . $this->logging_profile);
 
                 $tmp_log_output = $tmp_crnrstn_trace_TEXT . '
 ' . $tmp_php_trace_TEXT . '
@@ -1677,7 +1687,7 @@ class crnrstn_logging_oprofile {
                 // CHECK FILE SPECIFIC ARRAY AND PUSH TO ALL.
                 foreach($tmp_val_tunnel_ARRAY as $config_ver => $attribute_array){
 
-                    $this->output_to_file_ftp($oCRNRSTN_n, $tmp_log_output, $attribute_array);
+                    $this->output_to_file_ftp($oCRNRSTN, $tmp_log_output, $attribute_array);
 
                 }
 
@@ -1689,61 +1699,75 @@ class crnrstn_logging_oprofile {
 
     }
 
-    private function no_cars_go_SCREEN_HTML($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
+    //
+    // SOURCE :: https://www.youtube.com/watch?v=83KR_UBWdPI
+    // TITLE :: Arcade Fire - No Cars Go
+    //
+    // Saturday, December 2, 2023 @ 0614 hrs.
+    private function no_cars_go_SCREEN_HTML($oCRNRSTN, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
 
-        $this->load_log_output_mgr($oCRNRSTN_n);
+        $this->load_log_output_mgr($oCRNRSTN);
 
         //
         // CONSTANTS
-        $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
-        $tmp_log_constant_TEXT = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant);
+        $tmp_php_trace_TEXT = $oCRNRSTN->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
+        $tmp_log_constant_TEXT = $oCRNRSTN->return_log_priority_pretty($syslog_constant);
         $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('FILE', 0);
 
         $tmp_log_output = $tmp_crnrstn_trace_TEXT . '
 ' . $tmp_php_trace_TEXT . '
 ';
-        error_log(__LINE__ . ' env no_cars_go_SCREEN_HTML() [' . get_class($oCRNRSTN_n) . '] self class=' . get_class(self::$oCRNRSTN_n));
+        error_log(__LINE__ . ' env no_cars_go_SCREEN_HTML() [' . get_class($oCRNRSTN) . '] self class=' . get_class($this->oCRNRSTN));
 //die();
-        $oCRNRSTN_n->destruct_output .= $oCRNRSTN_n->print_r_str($tmp_log_output, $tmp_log_constant_TEXT, NULL, __LINE__, __METHOD__, __FILE__);
-        self::$oCRNRSTN_n = $oCRNRSTN_n;
+        $oCRNRSTN->destruct_output .= $oCRNRSTN->print_r_str($tmp_log_output, $tmp_log_constant_TEXT, NULL, __LINE__, __METHOD__, __FILE__);
+        $this->oCRNRSTN = $oCRNRSTN;
 
         return true;
 
     }
 
-    private function no_cars_go_SCREEN_TEXT($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
+    //
+    // SOURCE :: https://www.youtube.com/watch?v=83KR_UBWdPI
+    // TITLE :: Arcade Fire - No Cars Go
+    //
+    // Saturday, December 2, 2023 @ 0617 hrs.
+    private function no_cars_go_SCREEN_TEXT($oCRNRSTN, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
 
-        $this->load_log_output_mgr($oCRNRSTN_n);
+        $this->load_log_output_mgr($oCRNRSTN);
 
         //
         // CONSTANTS
-        $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
-        $tmp_log_constant_TEXT = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant);
+        $tmp_php_trace_TEXT = $oCRNRSTN->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
+        $tmp_log_constant_TEXT = $oCRNRSTN->return_log_priority_pretty($syslog_constant);
         $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('SCREEN_TEXT', 74);
 
         $tmp_log_output = $tmp_crnrstn_trace_TEXT . '
 ' . $tmp_php_trace_TEXT . '
 ';
 
-        $oCRNRSTN_n->destruct_output .= $tmp_log_output;
+        $oCRNRSTN->destruct_output .= $tmp_log_output;
 
         return true;
 
     }
+    //
+    // SOURCE :: https://www.youtube.com/watch?v=83KR_UBWdPI
+    // TITLE :: Arcade Fire - No Cars Go
+    //
+    // Saturday, December 2, 2023 @ 0618 hrs.
+    private function no_cars_go_SCREEN_HTML_HIDDEN($oCRNRSTN, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
 
-    private function no_cars_go_SCREEN_HTML_HIDDEN($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
+        $this->load_log_output_mgr($oCRNRSTN);
 
-        $this->load_log_output_mgr($oCRNRSTN_n);
-
-        switch(get_class($oCRNRSTN_n)){
+        switch(get_class($oCRNRSTN)){
             case 'crnrstn_user':
             case 'crnrstn_environment':
             case 'crnrstn':
 
                 //
                 // CONSTANTS
-                $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
-                $tmp_log_constant_TEXT = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant);
+                $tmp_php_trace_TEXT = $oCRNRSTN->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
+                $tmp_log_constant_TEXT = $oCRNRSTN->return_log_priority_pretty($syslog_constant);
                 $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('FILE', 0);
 
                 $tmp_log_output = $tmp_crnrstn_trace_TEXT . '
@@ -1755,7 +1779,7 @@ class crnrstn_logging_oprofile {
 -->
 ';
 
-                $oCRNRSTN_n->destruct_output .= $tmp_hidden_html;
+                $oCRNRSTN->destruct_output .= $tmp_hidden_html;
 
                 break;
 
@@ -1765,19 +1789,24 @@ class crnrstn_logging_oprofile {
 
     }
 
-    private function no_cars_go_DEFAULT($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
+    //
+    // SOURCE :: https://www.youtube.com/watch?v=83KR_UBWdPI
+    // TITLE :: Arcade Fire - No Cars Go
+    //
+    // Saturday, December 2, 2023 @ 0618 hrs.
+    private function no_cars_go_DEFAULT($oCRNRSTN, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
 
-        $this->load_log_output_mgr($oCRNRSTN_n);
+        $this->load_log_output_mgr($oCRNRSTN);
 
-        switch(get_class($oCRNRSTN_n)){
+        switch(get_class($oCRNRSTN)){
             case 'crnrstn_user':
             case 'crnrstn_environment':
             case 'crnrstn':
 
                 //
                 // CONSTANTS
-                $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
-                $tmp_log_constant_TEXT = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant);
+                $tmp_php_trace_TEXT = $oCRNRSTN->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
+                $tmp_log_constant_TEXT = $oCRNRSTN->return_log_priority_pretty($syslog_constant);
                 $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('ERROR_LOG', 0);
 
                 error_log($tmp_crnrstn_trace_TEXT);
@@ -1791,7 +1820,7 @@ class crnrstn_logging_oprofile {
 
     }
 
-    private function output_to_file_ftp($oCRNRSTN_n, $tmp_log_output, $attribute_array){
+    private function output_to_file_ftp($oCRNRSTN, $tmp_log_output, $attribute_array){
 
         //error_log(__LINE__ . ' env output_to_file_ftp [' . $tmp_log_output . ']]');
 
@@ -1833,16 +1862,16 @@ class crnrstn_logging_oprofile {
 
         // self::$crnrstn_tmp_dir
 
-        switch(get_class($oCRNRSTN_n)){
+        switch(get_class($oCRNRSTN)){
             case 'crnrstn':
 
-                if($tmp_crnrstn_tmp_dir == $oCRNRSTN_n->return_tmp()){
+                if($tmp_crnrstn_tmp_dir == $oCRNRSTN->return_tmp()){
 
                     error_log(__LINE__ . ' env Ready to write to /tmp ....the error log file for FTP delivery (See wind_cloud_fire line 3088 area).');
 
-                    $file_source_path = $this->output_to_local_file($oCRNRSTN_n, $tmp_log_output, $tmp_crnrstn_tmp_dir);
+                    $file_source_path = $this->output_to_local_file($oCRNRSTN, $tmp_log_output, $tmp_crnrstn_tmp_dir);
 
-                    error_log(__LINE__ . ' env Completed write of file [' . $file_source_path . '][' . $oCRNRSTN_n->format_bytes(filesize($file_source_path)) . ']');
+                    error_log(__LINE__ . ' env Completed write of file [' . $file_source_path . '][' . $oCRNRSTN->format_bytes(filesize($file_source_path)) . ']');
 
                 }else{
 
@@ -1861,18 +1890,18 @@ class crnrstn_logging_oprofile {
 
         $ftp_stream_target = NULL;
 
-//        if(self::$oCRNRSTN_n->file_local_send_by_ftp($ftp_stream_target, $file_source_path, $oEndpoint_serial_SOURCE, $oEndpoint_serial_DESTINATION, $oElectrum_STATS)){
+//        if($this->oCRNRSTN->file_local_send_by_ftp($ftp_stream_target, $file_source_path, $oEndpoint_serial_SOURCE, $oEndpoint_serial_DESTINATION, $oElectrum_STATS)){
 //
 //            //if($this->fileMove_DIR_DF($dest_ftp_stream, $dest_FTP_ROOT_DIR_PATH, $this->DESTINATION_FILE_PATH, $SOURCE_filePath)){
 //
 //            $this->is_transferred = true;
 //
-//            //self::$oCRNRSTN_USR->error_log('oWheel TMP file write TO FTP SUCCESS. REMOVE TMP FILE.', __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
+//            //$this->oCRNRSTN_USR->error_log('oWheel TMP file write TO FTP SUCCESS. REMOVE TMP FILE.', __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
 //
 //        }else{
 //
 //            $error = error_get_last();
-//            self::$oCRNRSTN_n->error_log('oWheel fileMove_DF() ERROR :: '.$error['message'], __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
+//            $this->oCRNRSTN->error_log('oWheel fileMove_DF() ERROR :: '.$error['message'], __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
 //
 //        }
 
@@ -1880,7 +1909,7 @@ class crnrstn_logging_oprofile {
 
     }
 
-    private function output_to_local_file($oCRNRSTN_n, $str, $file_path, $mkdir_permissons_mode = 775){
+    private function output_to_local_file($oCRNRSTN, $str, $file_path, $mkdir_permissons_mode = 775){
 
         if(is_dir($file_path)){
 
@@ -1898,7 +1927,7 @@ class crnrstn_logging_oprofile {
 
                 //
                 // CRNRSTN :: CANNOT WRITE LOG FILE DUE TO END POINT NOT VALID
-                self::$oCRNRSTN_n->error_log('Unable to write data to local directory file, ' . $file_path . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY_FILE);
+                $this->oCRNRSTN->error_log('Unable to write data to local directory file, ' . $file_path . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY_FILE);
 
                 return false;
 
@@ -1912,7 +1941,7 @@ class crnrstn_logging_oprofile {
 
             if(!($this->validate_DIR_endpoint('DESTINATION', $tmp_sniffed_dir, $mkdir_permissons_mode) == true)){
 
-                self::$oCRNRSTN_n->error_log('Unable to write data to local directory file, ' . $file_path . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY_FILE);
+                $this->oCRNRSTN->error_log('Unable to write data to local directory file, ' . $file_path . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY_FILE);
 
                 return false;
 
@@ -1933,7 +1962,7 @@ class crnrstn_logging_oprofile {
 
             //
             // MODIFY DIRECTORY PERMISSIONS
-            self::$oCRNRSTN_n->error_log('CRNRSTN :: Unable to locate the provided path and/or open/create file for write only (i.e. append) at filepath="' . $file_path . '".', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY_FILE);
+            $this->oCRNRSTN->error_log('CRNRSTN :: Unable to locate the provided path and/or open/create file for write only (i.e. append) at filepath="' . $file_path . '".', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY_FILE);
 
             return false;
 
@@ -1958,7 +1987,7 @@ class crnrstn_logging_oprofile {
 
                         //
                         // HOOOSTON...VE HAF PROBLEM!
-                        self::$oCRNRSTN_n->error_log('CRNRSTN :: has experienced permissions related errors attempting to read from the source directory, ' . $dir_path . '.');
+                        $this->oCRNRSTN->error_log('CRNRSTN :: has experienced permissions related errors attempting to read from the source directory, ' . $dir_path . '.');
 
                     }
 
@@ -1966,7 +1995,7 @@ class crnrstn_logging_oprofile {
 
                     //
                     // HOOOSTON...VE HAF PROBLEM!
-                    self::$oCRNRSTN_n->error_log('CRNRSTN :: has experienced errors attempting to find the source directory, ' . $dir_path . ', within the local file system.');
+                    $this->oCRNRSTN->error_log('CRNRSTN :: has experienced errors attempting to find the source directory, ' . $dir_path . ', within the local file system.');
 
                 }
 
@@ -1991,12 +2020,12 @@ class crnrstn_logging_oprofile {
                         // ATTEMPT TO CHANGE PERMISSIONS AND CHECK AGAIN
                         // BEFORE COMPLETELY GIVING UP
                         $tmp_current_perms = substr(decoct( fileperms($dir_path) ), 2);
-                        $tmp_config_serial_hash = self::$oCRNRSTN_n->config_serial_hash;
+                        $tmp_config_serial_hash = $this->oCRNRSTN->config_serial_hash;
 
-                        self::$oCRNRSTN_n->err_message_queue_push(NULL, 'CRNRSTN :: has experienced permissions related error as the destination directory, ' . $dir_path . ' (' . $tmp_current_perms . '), is NOT writable to ' . $permissions_chmod . ', and furthermore ');
+                        $this->oCRNRSTN->err_message_queue_push(NULL, 'CRNRSTN :: has experienced permissions related error as the destination directory, ' . $dir_path . ' (' . $tmp_current_perms . '), is NOT writable to ' . $permissions_chmod . ', and furthermore ');
                         if(chmod($dir_path, $permissions_chmod)){
 
-                            self::$oCRNRSTN_n->err_message_queue_clear();
+                            $this->oCRNRSTN->err_message_queue_clear();
                             return true;
 
                         }else{
@@ -2005,7 +2034,7 @@ class crnrstn_logging_oprofile {
 
                             //
                             // HOOOSTON...VE HAF PROBLEM!
-                            self::$oCRNRSTN_n->error_log('CRNRSTN :: has experienced permissions related error as the destination directory, ' . $dir_path . ', is NOT writable with current permissions as ' . $tmp_current_perms . '.');
+                            $this->oCRNRSTN->error_log('CRNRSTN :: has experienced permissions related error as the destination directory, ' . $dir_path . ', is NOT writable with current permissions as ' . $tmp_current_perms . '.');
 
                         }
 
@@ -2016,13 +2045,13 @@ class crnrstn_logging_oprofile {
                     //
                     // ATTEMPT TO MAKE DIRECTORY
                     // BEFORE COMPLETELY GIVING UP
-                    if(!self::$oCRNRSTN_n->mkdir_r($dir_path, $permissions_chmod)){
+                    if(!$this->oCRNRSTN->mkdir_r($dir_path, $permissions_chmod)){
 
                         $permissions_chmod = octdec( str_pad($permissions_chmod,4,'0',STR_PAD_LEFT) );
 
                         //
                         // HOOOSTON...VE HAF PROBLEM!
-                        self::$oCRNRSTN_n->error_log('CRNRSTN :: has experienced error as the destination directory, ' . $dir_path . ', does NOT exist, and it could NOT be created as ' . $permissions_chmod . '.');
+                        $this->oCRNRSTN->error_log('CRNRSTN :: has experienced error as the destination directory, ' . $dir_path . ', does NOT exist, and it could NOT be created as ' . $permissions_chmod . '.');
 
                     }else{
 
@@ -2043,38 +2072,40 @@ class crnrstn_logging_oprofile {
     //
     // SOURCE :: https://www.youtube.com/watch?v=83KR_UBWdPI
     // TITLE :: Arcade Fire - No Cars Go
-    public function no_cars_tification_go($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
+    //
+    // 2020[?] MORE ACCURATE SOURCE NEEDED FOR THIS PRE-LIGHTSABER COMMENT.
+    public function no_cars_tification_go($oCRNRSTN, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
 
         switch($this->logging_profile){
             case CRNRSTN_LOG_SCREEN:
             case CRNRSTN_LOG_SCREEN_HTML:
 
-                return $this->no_cars_go_SCREEN_HTML($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj);
+                return $this->no_cars_go_SCREEN_HTML($oCRNRSTN, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj);
 
             break;
             case CRNRSTN_LOG_SCREEN_TEXT:
 
-                return $this->no_cars_go_SCREEN_TEXT($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj);
+                return $this->no_cars_go_SCREEN_TEXT($oCRNRSTN, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj);
 
             break;
             case CRNRSTN_LOG_SCREEN_HTML_HIDDEN:
 
-                return $this->no_cars_go_SCREEN_HTML_HIDDEN($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj);
+                return $this->no_cars_go_SCREEN_HTML_HIDDEN($oCRNRSTN, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj);
 
             break;
             case CRNRSTN_LOG_EMAIL:
 
                 //
                 // DEFAULT CRNRSTN CONFIGURATION - RECOMMENDATION FOR CONFIG PRIORITY ::
-                // EMAIL_PRIMARY = [n] USER SELECTION
-                // EMAIL_SECONDARY = SENDMAIL (NO AUTHENTICATION) WITH CRNRSTN WCR CONFIGURATION
-                // EMAIL_TERTIARY = MAIL (NO AUTHENTICATION) WITH CRNRSTN WCR CONFIGURATION
-                // *EMAIL_QUATIARY = QMAIL (NO AUTHENTICATION) WITH CRNRSTN WCR CONFIGURATION
-                // *EMAIL_PENTIARY = UNAUTHENTICATED SMTP WITH CRNRSTN WCR CONFIGURATION
-                // *EMAIL_HEXAPOLYNOMIALLY = NULL MODE FIRE
+                // EMAIL_PRIMARY            = [n] USER SELECTION
+                // EMAIL_SECONDARY          = SENDMAIL (NO AUTHENTICATION) WITH CRNRSTN WCR CONFIGURATION
+                // EMAIL_TERTIARY           = MAIL (NO AUTHENTICATION) WITH CRNRSTN WCR CONFIGURATION
+                // *EMAIL_QUATIARY          = QMAIL (NO AUTHENTICATION) WITH CRNRSTN WCR CONFIGURATION
+                // *EMAIL_PENTIARY          = UNAUTHENTICATED SMTP WITH CRNRSTN WCR CONFIGURATION
+                // *EMAIL_HEXAPOLYNOMIALLY  = NULL MODE FIRE
                 // * UNTESTED
 
-                return $this->no_cars_go_EMAIL($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj);
+                return $this->no_cars_go_EMAIL($oCRNRSTN, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj);
 
             break;
             case CRNRSTN_LOG_EMAIL_PROXY:
@@ -2128,37 +2159,56 @@ class crnrstn_logging_oprofile {
                 $this->profile_endpoint_criteria_ARRAY[$log_profile_key]['DUP_SUPPRESS'] = 1;
                  * */
                 //error_log(__LINE__ . ' env - would run no_cars_go_EMAIL_PROXY() now for :: ' . $tmp_exception_output_str);
-                //$tmp_resp = $this->no_cars_go_EMAIL_PROXY($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj);
+                //$tmp_resp = $this->no_cars_go_EMAIL_PROXY($oCRNRSTN, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj);
                 //error_log(__LINE__ . ' env - no_cars_go_EMAIL_PROXY return=[' . $tmp_resp . ']');
                 //die();
 
-                return $this->no_cars_go_EMAIL_PROXY($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj);
+                return $this->no_cars_go_EMAIL_PROXY($oCRNRSTN, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj);
 
             break;
             case CRNRSTN_LOG_FILE:
+            case CRNRSTN_CHANNEL_FILE:
 
-                return $this->no_cars_go_FILE($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj);
+                return $this->no_cars_go_FILE($oCRNRSTN, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj);
 
             break;
             case CRNRSTN_LOG_FILE_FTP:
 
-                return $this->no_cars_go_LOG_FILE_FTP($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj);
+                return $this->no_cars_go_LOG_FILE_FTP($oCRNRSTN, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj);
 
             break;
             case CRNRSTN_LOG_DEFAULT:
+            //case CRNRSTN_CHANNEL_GET:
+            //case CRNRSTN_CHANNEL_POST:
+            //case CRNRSTN_CHANNEL_COOKIE:
+            //case CRNRSTN_CHANNEL_SESSION:
+            case CRNRSTN_LOG_DATABASE:
+            case CRNRSTN_LOG_SSDTLA:
+            case CRNRSTN_LOG_PSSDTLA:
+            case CRNRSTN_LOG_SOAP:
+            //
+            //case CRNRSTN_CHANNEL_ALL:
+            //case CRNRSTN_CHANNEL_FORM:
             default:
 
-                //error_log(__LINE__ . ' env ABOUT TO TRY TO no_cars_go_DEFAULT()...');
+                //
+                // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA
+                // OBJECT (MC-DDO) CHANNEL INTEGRATIONS.
+                //
+                // LET'S STRENGTHEN AND ENRICH THE CRNRSTN ::
+                // SOAP SERVICES LOGGING SERVICES LAYER.
+                //
+                // Saturday, December 2, 2023 @ 2023 hrs.
+                error_log(__LINE__ . ' ' . __METHOD__ . ' CRNRSTN :: LOGGING SERVICES OUT [' . $this->oCRNRSTN->return_int_const_profile($this->logging_profile, CRNRSTN_STRING) . '|' . $this->oCRNRSTN->return_int_const_profile($this->logging_profile, CRNRSTN_INTEGER) . '].');
+                $this->oCRNRSTN->error_log('CRNRSTN :: LOGGING SERVICES OUT [' . $this->oCRNRSTN->return_int_const_profile($this->logging_profile, CRNRSTN_STRING) . '|' . $this->oCRNRSTN->return_int_const_profile($this->logging_profile, CRNRSTN_INTEGER) . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                 //
-                // NATIVE PHP ERROR LOGGING
-                return $this->no_cars_go_DEFAULT($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj);
+                // NATIVE PHP ERROR LOGGING.
+                return $this->no_cars_go_DEFAULT($oCRNRSTN, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj);
 
             break;
 
         }
-
-        return false;
 
     }
 
@@ -2174,13 +2224,13 @@ class crnrstn_logging_oprofile {
         $nusoap_useCURL = $this->oSoapDataTransportLayer->preach('data_value', 'NUSOAP_USECURL');
 
         //
-        // INSTANTIATE SOAP CLIENT
-        $this->oSoapClient = new crnrstn_soap_client_manager(self::$oCRNRSTN_n, $SOAP_endpoint, $WSDL_cache_ttl, $nusoap_useCURL);
+        // INSTANTIATE A SOAP CLIENT MANAGER CLASS OBJECT.
+        $this->oSoapClient = new crnrstn_soap_client_manager($this->oCRNRSTN, $SOAP_endpoint, $WSDL_cache_ttl, $nusoap_useCURL);
 
         //return $this->oSoapClient->sendRequest_SOAP($SOAP_method, $SOAP_request);
-        self::$oCRNRSTN_n->print_r($SOAP_request, 'SEND CLIENT REQUEST :: ' . $SOAP_method, NULL, __LINE__, __METHOD__, __FILE__);
+        $this->oCRNRSTN->print_r($SOAP_request, 'SEND CLIENT REQUEST :: ' . $SOAP_method, NULL, __LINE__, __METHOD__, __FILE__);
         $tmp_resp = $this->oSoapClient->sendRequest_SOAP($SOAP_method, $SOAP_request);
-        self::$oCRNRSTN_n->print_r($tmp_resp, 'OUTPUT SERVER RESPONSE :: ' . $SOAP_method, NULL, __LINE__, __METHOD__, __FILE__);
+        $this->oCRNRSTN->print_r($tmp_resp, 'OUTPUT SERVER RESPONSE :: ' . $SOAP_method, NULL, __LINE__, __METHOD__, __FILE__);
 
         $tmp_title = 'Description: ' . $SOAP_method . ' returnError output.';
         $tmp_err = $this->oSoapClient->returnError();
@@ -2188,9 +2238,9 @@ class crnrstn_logging_oprofile {
         $tmp_arr[] = $tmp_title;
         $tmp_arr[] = $tmp_err;
 
-        self::$oCRNRSTN_n->print_r($tmp_arr, 'SERVER RESPONSE :: ' . $SOAP_method . ' oSoapClient->returnError', NULL, __LINE__, __METHOD__, __FILE__);
-        //self::$oCRNRSTN_n->print_r($this->oSoapClient->returnClientResponse(), 'SERVER RESPONSE :: ' . $SOAP_method . ' oSoapClient->returnClientResponse', NULL, __LINE__, __METHOD__, __FILE__);
-        //self::$oCRNRSTN_n->print_r($this->oSoapClient->returnClientGetDebug(), 'SERVER RESPONSE :: ' . $SOAP_method . ' oSoapClient->returnClientGetDebug', NULL, __LINE__, __METHOD__, __FILE__);
+        $this->oCRNRSTN->print_r($tmp_arr, 'SERVER RESPONSE :: ' . $SOAP_method . ' oSoapClient->returnError', NULL, __LINE__, __METHOD__, __FILE__);
+        //$this->oCRNRSTN->print_r($this->oSoapClient->returnClientResponse(), 'SERVER RESPONSE :: ' . $SOAP_method . ' oSoapClient->returnClientResponse', NULL, __LINE__, __METHOD__, __FILE__);
+        //$this->oCRNRSTN->print_r($this->oSoapClient->returnClientGetDebug(), 'SERVER RESPONSE :: ' . $SOAP_method . ' oSoapClient->returnClientGetDebug', NULL, __LINE__, __METHOD__, __FILE__);
 
         return $tmp_resp;
         //die();
@@ -2345,7 +2395,7 @@ class crnrstn_logging_oprofile {
 
         //
         // I AM EMAIL PROFILE. RECEIVE EMAIL DATA.
-        #$oWCR->add_attribute('RECIPIENTS_EMAIL_PIPED', 'Jonathan J5 Harris c00000101@gmail.com|jharris@eVifweb.com');
+        #$oWCR->add_attribute('RECIPIENTS_EMAIL_PIPED', 'Jonathan J5 Harris J00000101@gmail.com|jharris@eVifweb.com');
         #$oWCR->add_attribute('RECIPIENTS_NAME_PIPED', '|Jonathan J5 Harris');
         //error_log(__LINE__ . ' - I AM EMAIL PROFILE. RECEIVE EMAIL DATA. ' . $oDDO);
         if(is_object($oDDO)){
@@ -2368,7 +2418,7 @@ class crnrstn_logging_oprofile {
             switch($param_key){
                 case 'RECIPIENTS_EMAIL_PIPED':
 
-                    //error_log(__LINE__ . ' env - storing RECIPIENT_EMAIL [' . $this->wcr_profiles_cnt . '][' . $param_key . '][' . self::$oCRNRSTN_n->str_sanitize($tmp_email_name_ARRAY['email'][$i], 'email_private') . ']');
+                    //error_log(__LINE__ . ' env - storing RECIPIENT_EMAIL [' . $this->wcr_profiles_cnt . '][' . $param_key . '][' . $this->oCRNRSTN->str_sanitize($tmp_email_name_ARRAY['email'][$i], 'email_private') . ']');
                     $this->profile_endpoint_data_ARRAY[$this->wcr_profiles_cnt]['RECIPIENT_EMAIL'][] = $tmp_email_name_ARRAY['email'][$i];
                     $this->profile_endpoint_set_flag_ARRAY[$this->wcr_profiles_cnt]['RECIPIENT_EMAIL'][] = 1;
 
@@ -2423,7 +2473,7 @@ class crnrstn_logging_oprofile {
                 break;
                 case 'REPLYTO_EMAIL_PIPED':
 
-                    //error_log(__LINE__ . ' env - storing REPLYTO_EMAIL_PIPED [' . $this->wcr_profiles_cnt . '][' . $param_key . '][' . self::$oCRNRSTN_n->str_sanitize($tmp_email_name_ARRAY['email'][$i], 'email_private') . ']');
+                    //error_log(__LINE__ . ' env - storing REPLYTO_EMAIL_PIPED [' . $this->wcr_profiles_cnt . '][' . $param_key . '][' . $this->oCRNRSTN->str_sanitize($tmp_email_name_ARRAY['email'][$i], 'email_private') . ']');
                     $this->profile_endpoint_data_ARRAY[$this->wcr_profiles_cnt]['REPLYTO_EMAIL'][] = $tmp_email_name_ARRAY['email'][$i];
                     $this->profile_endpoint_set_flag_ARRAY[$this->wcr_profiles_cnt]['REPLYTO_EMAIL'][] = 1;
 
@@ -2555,7 +2605,7 @@ class crnrstn_logging_oprofile {
                 //
                 // WCR DATA CAN BE DDO_OBJECT, INT, DOUBLE, STRING
                 $tmp_wcr_data = $oWCR->get_attribute($WCR_key, $param_key);
-                self::$oCRNRSTN_n->error_log('We have received CRNRSTN_RESOURCE_OPENSOURCE DATA ' . $param_key . '=[' . print_r($tmp_wcr_data, true) . '] from wcr=' . $WCR_key . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_RESOURCE_OPENSOURCE);
+                $this->oCRNRSTN->error_log('We have received CRNRSTN_RESOURCE_OPENSOURCE DATA ' . $param_key . '=[' . print_r($tmp_wcr_data, true) . '] from wcr=' . $WCR_key . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_RESOURCE_OPENSOURCE);
 
                 //error_log(__LINE__ . ' ' . __METHOD__ . ' env STORING OBJECT [' . $param_key . ']=' . print_r($tmp_wcr_data, true));
                 $this->profile_endpoint_data_ARRAY[$this->wcr_profiles_cnt][strtoupper($param_key)][] = $tmp_wcr_data;
@@ -2746,6 +2796,41 @@ class crnrstn_logging_oprofile {
             case CRNRSTN_LOG_SCREEN:
             case CRNRSTN_LOG_SCREEN_HTML:
             case CRNRSTN_LOG_SCREEN_HTML_HIDDEN:
+            //case CRNRSTN_CHANNEL_GET:
+            //case CRNRSTN_CHANNEL_POST:
+            //case CRNRSTN_CHANNEL_COOKIE:
+            //case CRNRSTN_CHANNEL_SESSION:
+            case CRNRSTN_LOG_DATABASE:
+            case CRNRSTN_LOG_SSDTLA:
+            case CRNRSTN_LOG_PSSDTLA:
+            case CRNRSTN_LOG_SOAP:
+            //case CRNRSTN_CHANNEL_FILE:
+            //case CRNRSTN_CHANNEL_ALL:
+            //case CRNRSTN_CHANNEL_FORM:
+
+                /*
+                CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA
+                OBJECT (MC-DDO) CHANNEL INTEGRATIONS TO
+                STRENGTHEN AND ENRICH THE
+                CRNRSTN :: SOAP SERVICES LOGGING
+                SERVICES LAYER.
+
+                CRNRSTN_CHANNEL_GET
+                CRNRSTN_CHANNEL_POST
+                CRNRSTN_CHANNEL_COOKIE
+                CRNRSTN_CHANNEL_SESSION
+                CRNRSTN_CHANNEL_DATABASE
+                CRNRSTN_CHANNEL_SSDTLA
+                CRNRSTN_CHANNEL_PSSDTLA
+                CRNRSTN_CHANNEL_RUNTIME
+                CRNRSTN_CHANNEL_SOAP
+                CRNRSTN_CHANNEL_FILE
+                CRNRSTN_CHANNEL_ALL
+                CRNRSTN_CHANNEL_FORM
+
+                Saturday, December 2, 2023 @ 1948 hrs.
+
+                */
 
                 //$this->isValid = true;
 
@@ -2878,9 +2963,9 @@ class crnrstn_logging_oprofile {
 
                         //
                         // NO EMAIL DATA IN THIS DATA!
-                        if(is_object(self::$oCRNRSTN_n)){
+                        if(is_object($this->oCRNRSTN)){
 
-                            self::$oCRNRSTN_n->error_log('The provided ' . $profile_key . ' data "' . $data . '" does not contain an email address, and it will be ignored.', __LINE__, __METHOD__, __FILE__,CRNRSTN_SETTINGS_CRNRSTN);
+                            $this->oCRNRSTN->error_log('The provided ' . $profile_key . ' data "' . $data . '" does not contain an email address, and it will be ignored.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                         }
 
@@ -2903,13 +2988,13 @@ class crnrstn_logging_oprofile {
 
     public function load_CRNRSTN_ENV($oCRNRSTN_ENV){
 
-        self::$oCRNRSTN_n = $oCRNRSTN_ENV;
+        $this->oCRNRSTN = $oCRNRSTN_ENV;
 
     }
 
-    private function load_log_output_mgr($oCRNRSTN_n){
+    private function load_log_output_mgr($oCRNRSTN){
 
-        $this->oLog_output_manager = new crnrstn_log_output_manager($oCRNRSTN_n);
+        $this->oLog_output_manager = new crnrstn_log_output_manager($oCRNRSTN);
 
     }
 

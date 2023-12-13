@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -71,10 +71,9 @@
 #
 class crnrstn_user_authorization_manager {
 
-    protected $oLogger;
-    public $oCRNRSTN_USR;
-    protected $oUSER_ACCOUNT;
+    public $oCRNRSTN;
 
+    protected $oUSER_ACCOUNT;
     protected $serial;
     protected $login_attempt_cnt = 0;
     //protected $max_seconds_inactive = 900;
@@ -83,22 +82,18 @@ class crnrstn_user_authorization_manager {
     protected $is_expired = false;
     protected $log_sys_notice_ARRAY = array();
 
-    public function __construct($oCRNRSTN_USR){
+    public function __construct($oCRNRSTN){
 
-        $this->oCRNRSTN_USR = $oCRNRSTN_USR;
-        $this->serial = $this->oCRNRSTN_USR->generate_new_key(10);
+        $this->oCRNRSTN = $oCRNRSTN;
+        $this->serial = $this->oCRNRSTN->generate_new_key();
 
-        //
-        // INSTANTIATE LOGGER
-        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_USR);
-
-        //$this->max_seconds_inactive = $this->oCRNRSTN_USR->account_max_secs_inactive();
+        //$this->max_seconds_inactive = $this->oCRNRSTN->account_max_secs_inactive();
 
     }
 
     public function refresh_modified_date(){
 
-        $this->last_modified_date = $this->oCRNRSTN_USR->return_micro_time();
+        $this->last_modified_date = $this->oCRNRSTN->return_micro_time();
 
     }
 
@@ -156,7 +151,7 @@ class crnrstn_user_authorization_manager {
 //        switch($meta_type){
 //            case 'max':
 //
-//                return $this->oCRNRSTN_USR->return_login_attempts('max');
+//                return $this->oCRNRSTN->return_login_attempts('max');
 //
 //            break;
 //            case 'remaining':
@@ -247,8 +242,8 @@ class crnrstn_user_authorization_manager {
 
     public function sync_session_signin($oCRNRSN_ADMIN){
 
-        $this->oCRNRSTN_USR->set_session_param('CRNRSTN_AUTHORIZED_ACCOUNT_STATUS', 'AUTH_ACTIVE');
-        $this->oCRNRSTN_USR->set_session_param('CRNRSTN_AUTHORIZED_ACCOUNT', $oCRNRSN_ADMIN);
+        $this->oCRNRSTN->set_session_param('CRNRSTN_AUTHORIZED_ACCOUNT_STATUS', 'AUTH_ACTIVE');
+        $this->oCRNRSTN->set_session_param('CRNRSTN_AUTHORIZED_ACCOUNT', $oCRNRSN_ADMIN);
 
         return true;
 
@@ -256,14 +251,14 @@ class crnrstn_user_authorization_manager {
 
     public function sync_session_signout($oCRNRSN_ADMIN){
 
-        $this->oCRNRSTN_USR->set_session_param('CRNRSTN_AUTHORIZED_ACCOUNT_STATUS', 'LOGGED_OUT');
-        return $this->oCRNRSTN_USR->set_session_param('CRNRSTN_AUTHORIZED_ACCOUNT', 0);
+        $this->oCRNRSTN->set_session_param('CRNRSTN_AUTHORIZED_ACCOUNT_STATUS', 'LOGGED_OUT');
+        return $this->oCRNRSTN->set_session_param('CRNRSTN_AUTHORIZED_ACCOUNT', 0);
 
     }
 
 //    public function return_login_attempts_remaining(){
 //
-//        $tmp_max_login = $this->oCRNRSTN_USR->return_login_attempts('max');
+//        $tmp_max_login = $this->oCRNRSTN->return_login_attempts('max');
 //
 //        return $tmp_max_login - $this->login_attempt_cnt;
 //
@@ -271,7 +266,7 @@ class crnrstn_user_authorization_manager {
 
     public function init_auth_session(){
 
-        $this->oCRNRSTN_USR->set_session_param('CRNRSTN_AUTHORIZED_ACCOUNT', $this);
+        $this->oCRNRSTN->set_session_param('CRNRSTN_AUTHORIZED_ACCOUNT', $this);
 
     }
 
@@ -320,7 +315,7 @@ class crnrstn_user_authorization_manager {
 
     private function monitor_inactivity(){
 
-        if($this->oCRNRSTN_USR->account_get_resource('max_seconds_inactive') < $this->oCRNRSTN_USR->elapsed_from_current(strtotime($this->last_modified_date))){
+        if($this->oCRNRSTN->account_get_resource('max_seconds_inactive') < $this->oCRNRSTN->elapsed_from_current(strtotime($this->last_modified_date))){
 
             return false;
 
@@ -334,8 +329,8 @@ class crnrstn_user_authorization_manager {
 
     private function monitor_ip_address(){
 
-        $tmp_sess_ip = $this->oCRNRSTN_USR->account_get_resource('session_ip_address');
-        $tmp_curr_ip = $this->oCRNRSTN_USR->client_ip();
+        $tmp_sess_ip = $this->oCRNRSTN->account_get_resource('session_ip_address');
+        $tmp_curr_ip = $this->oCRNRSTN->client_ip();
 
         error_log(__LINE__ . ' user class[' . get_class() . '] monitor_ip_address [' . $tmp_sess_ip . '] == [' . $tmp_curr_ip . ']');
 
@@ -367,16 +362,16 @@ class crnrstn_user_authorization_manager {
 
          */
 
-        $tmp_email = $this->oCRNRSTN_USR->get_http_resource('crnrstn_auth_e');
+        $tmp_email = $this->oCRNRSTN->get_http_resource('crnrstn_auth_e');
 
-        $tmp_pwd_hash = $this->hash($this->oCRNRSTN_USR->get_http_resource('crnrstn_auth_pwd'));
+        $tmp_pwd_hash = $this->hash($this->oCRNRSTN->get_http_resource('crnrstn_auth_pwd'));
 
-        $tmp_crnrstn_country_iso_code = $this->oCRNRSTN_USR->get_http_resource('crnrstn_country_iso_code');
-        $tmp_crnrstn_php_sessionid = $this->oCRNRSTN_USR->get_http_resource('crnrstn_php_sessionid');
+        $tmp_crnrstn_country_iso_code = $this->oCRNRSTN->get_http_resource('crnrstn_country_iso_code');
+        $tmp_crnrstn_php_sessionid = $this->oCRNRSTN->get_http_resource('crnrstn_php_sessionid');
 
         //
         // PROVIDE STORED ADMIN AUTH PARAMS
-        $tmp_oAdmin_ARRAY = $this->oCRNRSTN_USR->return_admin_ARRAY();
+        $tmp_oAdmin_ARRAY = $this->oCRNRSTN->return_admin_ARRAY();
         $tmp_array = array();
         $tmp_return_oADMIN = false;
 
@@ -384,7 +379,7 @@ class crnrstn_user_authorization_manager {
 
             if($oCRNRSTN_ADMIN->is_valid($tmp_email, $tmp_pwd_hash)){
 
-                $this->oCRNRSTN_USR->account_serial = $oCRNRSTN_ADMIN->account_get_resource('serial');
+                $this->oCRNRSTN->account_serial = $oCRNRSTN_ADMIN->account_get_resource('serial');
 
                 $oCRNRSTN_ADMIN->is_logged_in(true);
 

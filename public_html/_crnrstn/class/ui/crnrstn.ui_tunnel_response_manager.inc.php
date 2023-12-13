@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -70,9 +70,9 @@
 #
 class crnrstn_ui_tunnel_response_manager {
 
-    protected $oLogger;
     public $oCRNRSTN;
 
+    private static $config_serial;
     private static $social_lnk_cnt = 0;
     private static $lifestyle_image_return_cnt = 8;
 
@@ -88,12 +88,10 @@ class crnrstn_ui_tunnel_response_manager {
         $this->oCRNRSTN = $oCRNRSTN;
 
         //
-        // INSTANTIATE LOGGER
-        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
-
-        //
         // INITIALIZE INTERACT UI MODULE KEYS
         $this->init_interact_ui_module_keys();
+
+        self::$config_serial = $this->oCRNRSTN->get_crnrstn('config_serial');
 
         //
         // DOES NOT HOOK INTO LIGHTSABER CORRECTLY.
@@ -625,7 +623,7 @@ class crnrstn_ui_tunnel_response_manager {
             case CRNRSTN_CHANNEL_SSDTLA:
             case CRNRSTN_CHANNEL_ALL:
             case CRNRSTN_CHANNEL_SESSION:
-            case CRNRSTN_CHANNEL_FORM_INTEGRATIONS:
+            case CRNRSTN_CHANNEL_FORM:
             case CRNRSTN_CHANNEL_PSSDTLA:
 
                 //$tmp_crnrstn_session = $this->oCRNRSTN->return_form_submitted_value('crnrstn_session');
@@ -2344,18 +2342,18 @@ class crnrstn_ui_tunnel_response_manager {
 
         */
 
-        //$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][0]['rrs_map_report'][$tmp_fulfillment_driver][$tmp_resource_id]['resource_runtime'][] = $this->oCRNRSTN->wall_time();
+        //$_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][0]['rrs_map_report'][$tmp_fulfillment_driver][$tmp_resource_id]['resource_runtime'][] = $this->oCRNRSTN->wall_time();
 
         $tmp_channel_report_str = '';
 
         $tmp_channel_ARRAY = $this->oCRNRSTN->return_cache_channels();
         foreach($tmp_channel_ARRAY as $index => $channel){
 
-            if(isset($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][0]['rrs_map_report'][$channel])){
+            if(isset($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][0]['rrs_map_report'][$channel])){
 
-                error_log(__LINE__ . ' ui tunnel [' . $channel . '][' . print_r($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][0]['rrs_map_report'][$channel], true).'].');
+                error_log(__LINE__ . ' ui tunnel [' . $channel . '][' . print_r($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][0]['rrs_map_report'][$channel], true).'].');
 
-                $tmp_channel_report_str .= $channel . ' has data ' . count($_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_hash()]['RRS_MAP'][0]['rrs_map_report'][$channel]) . ' elements.
+                $tmp_channel_report_str .= $channel . ' has data ' . count($_SESSION['CRNRSTN_' . self::$config_serial]['RRS_MAP'][0]['rrs_map_report'][$channel]) . ' elements.
         ';
 
             }
@@ -2392,6 +2390,7 @@ class crnrstn_ui_tunnel_response_manager {
         508 => 'Loop Detected', 509 => 'Bandwidth Limit Exceeded', 510 => 'Not Extended',
         511 => 'Network Authentication Required', 598 => 'Network read timeout error',
         599 => 'Network connect timeout error');
+
         */
 
         $tmp_target_element = 'null';
@@ -2455,7 +2454,7 @@ class crnrstn_ui_tunnel_response_manager {
         $tmp_client_auth_key = $this->oCRNRSTN->return_form_submitted_value('crnrstn_session_client_auth_key');
 
         $tmp_CRNRSTN_UI_INTERACT = $this->return_interact_ui_ux_profile('xml');
-        //error_log(__LINE__ . ' ui tunnel XML RETURN $tmp_CRNRSTN_UI_INTERACT=[' . $tmp_CRNRSTN_UI_INTERACT . '] [' . $this->oCRNRSTN->request_id . '].');
+        //error_log(__LINE__ . ' ui tunnel XML RETURN $tmp_CRNRSTN_UI_INTERACT=[' . $tmp_CRNRSTN_UI_INTERACT . '] [' . $this->oCRNRSTN->get_crnrstn('request_id') . '].');
 
         //
         // GENERATE NEW PSEUDO SOAP DATA TUNNEL LAYER PACKET IF ANY PACKET DATA (I.E. CHECKSUMS) CHANGED AND

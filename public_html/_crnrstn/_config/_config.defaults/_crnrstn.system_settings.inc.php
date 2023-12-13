@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -138,7 +138,42 @@ $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'system_file_active_attributes_
 // CRNRSTN :: INTERACT UI DOM CSS UNIT OF LENGTH.
 $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'default_css_unit_length', 'px', 'CRNRSTN::RESOURCE::DEFAULT_UNIT_CSS');
 
-error_log(__LINE__ . ' settings loading..."GPHSJCDRO".');
+//
+// CRNRSTN :: DEBUG MODE.
+// WHERE crnrstn_debug_mode = (int) CRNRSTN_DEBUG_OFF, CRNRSTN_DEBUG_NATIVE_ERR_LOG, OR CRNRSTN_DEBUG_AGGREGATION_ON.
+$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'crnrstn_debug_mode', NULL, 'CRNRSTN::RESOURCE::DEBUG_MODE');
+
+//
+// CRNRSTN :: PHPMAILER DEBUG MODE.
+// WHERE phpmailer_debug_mode = (int) CRNRSTN_PHPMAILER_DEBUG_OFF, CRNRSTN_PHPMAILER_DEBUG_CLIENT,
+// CRNRSTN_PHPMAILER_DEBUG_SERVER, CRNRSTN_PHPMAILER_DEBUG_CONNECTION, OR CRNRSTN_PHPMAILER_DEBUG_LOWLEVEL.
+$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'phpmailer_debug_mode', NULL, 'CRNRSTN::RESOURCE::DEBUG_MODE');
+
+//
+// CRNRSTN :: LOGGING OUTPUT PROFILE.
+// WHERE crnrstn_logging_output_profile = (int) CRNRSTN_LOG_EMAIL, CRNRSTN_LOG_EMAIL_PROXY, CRNRSTN_LOG_FILE,
+// CRNRSTN_CHANNEL_FILE, CRNRSTN_LOG_FILE_FTP, CRNRSTN_LOG_SCREEN_TEXT, CRNRSTN_LOG_SCREEN, CRNRSTN_LOG_SCREEN_HTML,
+// CRNRSTN_LOG_SCREEN_HTML_HIDDEN, CRNRSTN_LOG_DEFAULT, CRNRSTN_LOG_ELECTRUM, CRNRSTN_LOG_DATABASE, CRNRSTN_LOG_SSDTLA,
+// CRNRSTN_LOG_PSSDTLA, OR CRNRSTN_LOG_SOAP.
+$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'system_logging_output_profile', CRNRSTN_LOG_DEFAULT, 'CRNRSTN::RESOURCE::LOGGING');
+
+//
+// CRNRSTN :: CUSTOM ERROR HANDLING.
+//      Common Values for error reporting:
+//          E_ALL (Show all errors, warnings and notices including coding standards.)
+//  	    E_ALL & ~E_NOTICE (Show all errors, except for notices)
+//          E_ALL & ~E_NOTICE & ~E_STRICT (Show all errors, except for notices and coding standards warnings.)
+//  	    E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR (Show only errors)
+//
+//      Default Value:          E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED
+//      Development Value:      E_ALL
+//      Production Value:       E_ALL & ~E_DEPRECATED & ~E_STRICT
+//
+//      SEE ALSO, $err_reporting_profile FOR $oCRNRSTN->config_add_environment()
+//      IN CRNRSTN :: CONFIGURATION, _crnrstn.config.inc.php.
+//
+// Thursday, December 7, 2023 @ 0038 hrs.
+$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'custom_error_reporting_profile', NULL, 'CRNRSTN::RESOURCE::CUSTOM_ERROR_HANDLING');
 
 //
 // CRNRSTN :: CONFIGURATION SETTINGS.
@@ -184,8 +219,8 @@ $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'get_channel_system_parameter_s
 // CRNRSTN :: SYSTEM HTTP/HTTPS GET CHANNEL PARAMETER
 // EXCLUSIONS. INITIALIZE CRNRSTN :: WITH ALL $_GET[]
 // DATA PARAMETERS THAT SHOULD BYPASS TRANSLATION INTO
-// THE CRNRSTN :: DECOUPLED DATA OBJET (DDO)
-// SERVICES LAYER.
+// THE CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJET
+// (MC-DDO) SERVICES LAYER.
 $tmp_get_channel_system_parameter_exclusions_ARRAY = array(); //array('cache_bust' => 'cache_bust');  WHERE, &cache_bust=1234567
 $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'get_channel_system_parameter_exclusions_ARRAY', $tmp_get_channel_system_parameter_exclusions_ARRAY, 'CRNRSTN::RESOURCE::GET_CHANNEL_PARAMS');
 

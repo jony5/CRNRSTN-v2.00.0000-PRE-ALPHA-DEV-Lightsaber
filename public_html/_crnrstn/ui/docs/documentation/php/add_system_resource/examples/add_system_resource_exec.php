@@ -6,18 +6,18 @@ $fruit = array('apple', 'orange', 'tomato');
 $veggies = NULL;
 
 //
-// STORE THE DATA WITH A KEY TO ACCESS THE DATA FROM
-// THE CRNRSTN :: DECOUPLED DATA OBJECT (DDO).
+// STORE THE DATA WITH A KEY TO ACCESS THE DATA...WHICH KEY WAS RECEIVED
+// FROM THE CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) RETURN.
 $ddo_key_FRUIT = $this->oCRNRSTN->add_resource('potentially_fruit', $fruit);
 $ddo_key_VEGGIES = $this->oCRNRSTN->add_resource('surely_not_fruit', $veggies);
 
 //
-// THE SYSTEM POINTER TO THE DATA STORAGE LOCATION
+// THE SYSTEM POINTER TO THE DATA STORAGE LOCATION.
 $tmp_html_out .= 'DDO key [FRUIT]: <span style="font-size: 70%;">' . $ddo_key_FRUIT . '</span><br><br>';
 $tmp_html_out .= 'DDO key [VEGGIES]: <span style="font-size: 70%;">' . $ddo_key_VEGGIES . '</span><br><br>';
 
 //
-// EXTRACT THE SYSTEM RESOURCE
+// EXTRACT THE SYSTEM RESOURCE.
 $system_fruit = $this->oCRNRSTN->get_resource('potentially_fruit');
 $system_veggies = $this->oCRNRSTN->get_resource('surely_not_fruit');
 

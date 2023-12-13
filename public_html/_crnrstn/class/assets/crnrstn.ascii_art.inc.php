@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -82,8 +82,8 @@
 #
 class crnrstn_ascii_art {
 
-    protected $oLogger;
     public $oCRNRSTN;
+    private static $config_serial;
 
     private static $CRNRSTN_ascii_name = 'CRNRSTN%20%3A%3A';
     private static $ascii_family_key;
@@ -105,23 +105,21 @@ class crnrstn_ascii_art {
         // CRNRSTN ::
         $this->oCRNRSTN = $oCRNRSTN;
 
-        //
-        // INSTANTIATE LOGGER.
-        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
+        self::$config_serial = $this->oCRNRSTN->get_crnrstn('config_serial');
 
         //
         // LOCAL ASCII ID'S.
         self::$art_id_ARRAY = array(
-                                'Isometric2' => 'http://patorjk.com/software/taag/#p=display&f=Isometric2&t=',
-                                'Isometric3' => 'http://patorjk.com/software/taag/#p=display&f=Isometric3&t=',
-                                'Doh' => 'http://patorjk.com/software/taag/#p=display&f=Doh&t=',
-                                'Banner3' => 'http://patorjk.com/software/taag/#p=display&f=Banner3&t=',
-                                'Block' => 'http://patorjk.com/software/taag/#p=display&f=Block&t=',
-                                'Impossible' => 'http://patorjk.com/software/taag/#p=display&f=Impossible&t=',
-                                'Modular' => 'http://patorjk.com/software/taag/#p=display&f=Modular&t=',
-                                'Fire Font' => 'http://patorjk.com/software/taag/#p=display&f=Fire%20Font-k&t=',
-                                'Flower Power' => 'http://patorjk.com/software/taag/#p=display&f=Flower%20Power&t=',
-                                'Big' => 'http://patorjk.com/software/taag/#p=display&f=Big&t=CRNRSTN%20%3A%3A'
+                                'Isometric2'    => 'http://patorjk.com/software/taag/#p=display&f=Isometric2&t=',
+                                'Isometric3'    => 'http://patorjk.com/software/taag/#p=display&f=Isometric3&t=',
+                                'Doh'           => 'http://patorjk.com/software/taag/#p=display&f=Doh&t=',
+                                'Banner3'       => 'http://patorjk.com/software/taag/#p=display&f=Banner3&t=',
+                                'Block'         => 'http://patorjk.com/software/taag/#p=display&f=Block&t=',
+                                'Impossible'    => 'http://patorjk.com/software/taag/#p=display&f=Impossible&t=',
+                                'Modular'       => 'http://patorjk.com/software/taag/#p=display&f=Modular&t=',
+                                'Fire Font'     => 'http://patorjk.com/software/taag/#p=display&f=Fire%20Font-k&t=',
+                                'Flower Power'  => 'http://patorjk.com/software/taag/#p=display&f=Flower%20Power&t=',
+                                'Big'           => 'http://patorjk.com/software/taag/#p=display&f=Big&t=CRNRSTN%20%3A%3A'
 
                             );
 
@@ -147,12 +145,18 @@ class crnrstn_ascii_art {
         $tmp_str = '';
         $tmp_display_missing_cnt = 0;
 
+        //
+        // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA
+        // OBJECT (MC-DDO) SERVICES LAYER.
+        // # # C # R # N # R # S # T # N # : : # # # #
+        // CRNRSTN :: UGC DATA INPUT [BOOLEAN]
+        // APPLY CHANNEL SETTINGS TO RRS MAP OBJECT.
         //$this->oCRNRSTN->set_channel_config($channel_constant, $attribute_name, $data);
         //$this->oCRNRSTN->get_channel_config($channel_constant, $attribute_name);
         //$this->oCRNRSTN->isset_channel_config($channel_constant, $attribute_name);
 
         //
-        // GET ALL CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (DDO)
+        // GET ALL CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO)
         // SYSTEM CHANNELS.
         $tmp_master_channels_ARRAY = $this->oCRNRSTN->return_master_channels_ARRAY();
 
@@ -184,7 +188,7 @@ class crnrstn_ascii_art {
                     //
                     // INITIALIZE SYSTEM ASCII ART HASH.
                     $tmp_art_hash = -1;
-                    self::$ascii_ARRAY[$this->oCRNRSTN->config_serial_hash()][self::$ascii_family_key]['ART'][$tmp_channel_int]['HASH'] = $tmp_art_hash;
+                    self::$ascii_ARRAY[self::$config_serial][self::$ascii_family_key]['ART'][$tmp_channel_int]['HASH'] = $tmp_art_hash;
 
                     //
                     // INCREMENT MISSING ASCII ART COUNT.
@@ -219,7 +223,7 @@ class crnrstn_ascii_art {
 # LAST MODIFIED                      ::
 # CREATIVE SOURCE                    :: <a href="' . $url_base . strtoupper($this->oCRNRSTN->get_channel_config($channel_constant, 'NAME')) . '" target="_blank" style="color:#0066CC;">' . $url_base . strtoupper($this->oCRNRSTN->get_channel_config($channel_constant, 'NAME')) . '</a>
 #
-# CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (DDO)
+# CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO)
 # SERVICES LAYER PERFORMANCE REPORT
 #
 #
@@ -250,7 +254,7 @@ class crnrstn_ascii_art {
                     //
                     // INITIALIZE SYSTEM ASCII ART HASH.
                     $tmp_art_hash = $this->oCRNRSTN->hash($artwork_name . $tmp_str);
-                    self::$ascii_ARRAY[$this->oCRNRSTN->config_serial_hash()][self::$ascii_family_key]['ART'][$tmp_channel_int]['HASH'] = $tmp_art_hash;
+                    self::$ascii_ARRAY[self::$config_serial][self::$ascii_family_key]['ART'][$tmp_channel_int]['HASH'] = $tmp_art_hash;
 
                     //
                     // BUILD #WINNING ASCII ART OUTPUT.
@@ -283,7 +287,7 @@ class crnrstn_ascii_art {
 # LAST MODIFIED                      ::
 # CREATIVE SOURCE                    :: <a href="' . $url_base . strtoupper($this->oCRNRSTN->get_channel_config($channel_constant, 'NAME')) . '" target="_blank" style="color:#0066CC;">' . $url_base . strtoupper($this->oCRNRSTN->get_channel_config($channel_constant, 'NAME')) . '</a>
 #
-# CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (DDO)
+# CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO)
 # SERVICES LAYER PERFORMANCE REPORT
 #
 #
@@ -334,7 +338,7 @@ class crnrstn_ascii_art {
                 //
                 // INITIALIZE SYSTEM ASCII ART HASH.
                 $tmp_art_hash = -1;
-                self::$ascii_ARRAY[$this->oCRNRSTN->config_serial_hash()][self::$ascii_family_key]['ART'][self::$channel_reporting_meta_ARRAY[$channel_char]['CHANNEL_DATA']['channel_int']]['HASH'] = $tmp_art_hash;
+                self::$ascii_ARRAY[self::$config_serial][self::$ascii_family_key]['ART'][self::$channel_reporting_meta_ARRAY[$channel_char]['CHANNEL_DATA']['channel_int']]['HASH'] = $tmp_art_hash;
 
                 //
                 // INCREMENT MISSING ASCII ART COUNT.
@@ -369,7 +373,7 @@ class crnrstn_ascii_art {
 # LAST MODIFIED                      ::
 # CREATIVE SOURCE                    :: <a href="' . $url_base . self::$CRNRSTN_ascii_name . '" target="_blank" style="color:#0066CC;">' . $url_base . self::$CRNRSTN_ascii_name . '</a>
 #
-# CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (DDO)
+# CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO)
 # SERVICES LAYER PERFORMANCE REPORT
 #
 #
@@ -400,7 +404,7 @@ class crnrstn_ascii_art {
                 //
                 // INITIALIZE SYSTEM ASCII ART HASH.
                 $tmp_art_hash = $this->oCRNRSTN->hash($artwork_name . $tmp_str);
-                self::$ascii_ARRAY[$this->oCRNRSTN->config_serial_hash()][self::$ascii_family_key]['ART'][self::$channel_reporting_meta_ARRAY[$channel_char]['CHANNEL_DATA']['channel_int']]['HASH'] = $tmp_art_hash;
+                self::$ascii_ARRAY[self::$config_serial][self::$ascii_family_key]['ART'][self::$channel_reporting_meta_ARRAY[$channel_char]['CHANNEL_DATA']['channel_int']]['HASH'] = $tmp_art_hash;
 
                 //
                 // BUILD #WINNING ASCII ART OUTPUT.
@@ -433,7 +437,7 @@ class crnrstn_ascii_art {
 # LAST MODIFIED                      ::
 # CREATIVE SOURCE                    :: <a href="' . $url_base . self::$CRNRSTN_ascii_name . '" target="_blank" style="color:#0066CC;">' . $url_base . self::$CRNRSTN_ascii_name . '</a>
 #
-# CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (DDO)
+# CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO)
 # SERVICES LAYER PERFORMANCE REPORT
 #
 #
@@ -695,7 +699,7 @@ class crnrstn_ascii_art {
 
                         //
                         // $_GET[] CHANNEL ASCII.
-                        self::$ascii_ARRAY[$this->oCRNRSTN->config_serial_hash()][self::$ascii_family_key]['ART'][self::$multi_channel_int][$content_type] = $this->art($content_type);
+                        self::$ascii_ARRAY[self::$config_serial][self::$ascii_family_key]['ART'][self::$multi_channel_int][$content_type] = $this->art($content_type);
                         // Wednesday, November 22, 2023 0135 hrs.
 
                     break;
@@ -741,7 +745,7 @@ class crnrstn_ascii_art {
 
         //
         // RETURN ASCII ART HTML OR TEXT ARRAY.
-        return self::$ascii_ARRAY[$this->oCRNRSTN->config_serial_hash()][self::$ascii_family_key]['ART'][self::$multi_channel_int][$content_type];
+        return self::$ascii_ARRAY[self::$config_serial][self::$ascii_family_key]['ART'][self::$multi_channel_int][$content_type];
 
     }
 
@@ -763,7 +767,7 @@ class crnrstn_ascii_art {
         self::$multi_channel_int = $this->oCRNRSTN->get_channel_config($channel_char, 'SOURCEID', CRNRSTN_INTEGER);
         self::$is_HTML = $is_HTML;
         self::$ascii_selection = $selection_override;
-        self::$ascii_count_ARRAY[$this->oCRNRSTN->config_serial_hash()][self::$ascii_family_key][self::$multi_channel_int] = 0;
+        self::$ascii_count_ARRAY[self::$config_serial][self::$ascii_family_key][self::$multi_channel_int] = 0;
 
         switch(self::$ascii_family_key){
             case DDO_MULTI_CHANNEL:
@@ -784,7 +788,7 @@ class crnrstn_ascii_art {
                 switch(self::$multi_channel_int){
                     case CRNRSTN_CHANNEL_GET:
 
-                        self::$ascii_count_ARRAY[$this->oCRNRSTN->config_serial_hash()][self::$ascii_family_key][self::$multi_channel_int] = $this->return_ascii_count();
+                        self::$ascii_count_ARRAY[self::$config_serial][self::$ascii_family_key][self::$multi_channel_int] = $this->return_ascii_count();
 
                     break;
                     case CRNRSTN_CHANNEL_POST:
@@ -850,7 +854,7 @@ class crnrstn_ascii_art {
 
         //
         // INITIALIZATION RETURN FOR ACCELERATION
-        // OF MULI-CHANNEL RESOURCE MANAGEMENT.
+        // OF MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) RESOURCE MANAGEMENT.
         $tmp_channel_ARRAY['CHAR'] = 'G';
         if($index_0 == 'CHAR'){
 

@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -69,16 +69,11 @@
 #  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
 class crnrstn_database_sql_silo {
 
-    protected $oLogger;
     public $oCRNRSTN;
 
 	public function __construct($oCRNRSTN){
 
         $this->oCRNRSTN = $oCRNRSTN;
-
-		// 
-		// INSTANTIATE LOGGER.
-		$this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
 
 	}
 
@@ -172,7 +167,7 @@ class crnrstn_database_sql_silo {
                         `crnrstn_global_bassdrive_log_processed`.`ISACTIVE`,
                         `crnrstn_global_bassdrive_log_processed`.`NOTE`,
                         `crnrstn_global_bassdrive_log_processed`.`DATEMODIFIED`
-                    FROM `crnrstn_global_bassdrive_log_processed` 
+                    FROM `crnrstn_global_bassdrive_log_processed`
                     WHERE `crnrstn_global_bassdrive_log_processed`.`ISACTIVE` = 1;';
 
     }
@@ -184,7 +179,7 @@ class crnrstn_database_sql_silo {
                         `crnrstn_global_bassdrive_log`.`STREAM_RELAY_JSON`,
                         `crnrstn_global_bassdrive_log`.`DATEMODIFIED`
                     FROM `crnrstn_global_bassdrive_log`
-                    WHERE `crnrstn_global_bassdrive_log`.`ISACTIVE` = 1 
+                    WHERE `crnrstn_global_bassdrive_log`.`ISACTIVE` = 1
                     AND `crnrstn_global_bassdrive_log`.`PROCESSING_STATE` = "NEW"
                     OR `crnrstn_global_bassdrive_log`.`PROCESSING_STATE` = "RELOAD"
                     ORDER BY DATEMODIFIED DESC LIMIT 1;';
@@ -297,7 +292,7 @@ class crnrstn_database_sql_silo {
                             `cia00_lang_packs`.`COPY_PADDING_TOP_PX`,
                             `cia00_lang_packs`.`DATEMODIFIED`,
                             `cia00_lang_packs`.`DATECREATED`
-                        FROM `cia00_lang_packs`  
+                        FROM `cia00_lang_packs`
                         WHERE `cia00_lang_packs`.`ISACTIVE`="1";';
 
     }
@@ -337,10 +332,10 @@ class crnrstn_database_sql_silo {
             // $tmp_userid = $oCRNRSTN_USR->get_session_param('USER_ID');
             $tmp_userid = $this->oCRNRSTN->get_resource('err_reporting_profile', 0, 'CRNRSTN::RESOURCE::CONFIGURATION');
 
-            $query = 'UPDATE `sessions` SET `sessions`.`DATEMODIFIED`="' . $ts.'" 
+            $query = 'UPDATE `sessions` SET `sessions`.`DATEMODIFIED`="' . $ts.'"
                     WHERE `sessions`.`SESSIONID`="' . $mysqli->real_escape_string(session_id()) . '" AND 
                     `sessions`.`SESSIONID_CRC32`="' . $this->oCRNRSTN->hash(session_id(), 'crc32') . '" AND
-                    `sessions`.`USERID`="' . $mysqli->real_escape_string($tmp_userid).'" AND 
+                    `sessions`.`USERID`="' . $mysqli->real_escape_string($tmp_userid).'" AND
                     `sessions`.`USERID_CRC32`="' . $this->oCRNRSTN->hash($tmp_userid, 'crc32').'" LIMIT 1;';
         }
 

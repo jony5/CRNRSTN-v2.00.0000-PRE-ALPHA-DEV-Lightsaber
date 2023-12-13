@@ -1950,7 +1950,7 @@ CREATE TABLE `sys_messages` (
 		$crnrstn_mailer->From = "jharris@evifweb.com";	
 		$crnrstn_mailer->FromName = "Jonathan Harris";
 		$crnrstn_mailer->addReplyTo("jharris@evifweb.com", "Jonathan Harris");
-		$crnrstn_mailer->AddAddress("c00000101@gmail.com", "J5");
+		$crnrstn_mailer->AddAddress("J00000101@gmail.com", "J5");
 		$crnrstn_mailer->Subject = $subj;
 		$crnrstn_mailer->Body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

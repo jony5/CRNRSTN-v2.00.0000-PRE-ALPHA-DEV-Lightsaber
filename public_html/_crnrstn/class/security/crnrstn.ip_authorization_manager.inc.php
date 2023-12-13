@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -349,8 +349,6 @@
 #
 class crnrstn_ip_authorization_manager {
 
-    protected $oLogger;
-
     public $oCRNRSTN;
     public $oSESSION_MGR;
 
@@ -380,10 +378,6 @@ class crnrstn_ip_authorization_manager {
 		//
 		// GET CURRENT IP ADDRESS.
 		self::$clientIpAddress = $this->oCRNRSTN->return_ip();
-
-        //
-        // INSTANTIATE LOGGER
-        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
 		
 	}
 
@@ -506,9 +500,9 @@ class crnrstn_ip_authorization_manager {
 	}
 	
 	public function grantAccessWKey($env_key_hash, $ip){
-		# $oCRNRSTN->grantExclusiveAccess('LOCALHOST_PC','127.0.0.1');          // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
-		# $oCRNRSTN->grantExclusiveAccess('LOCALHOST_PC','127.*');              // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
-		# $oCRNRSTN->grantExclusiveAccess('LOCALHOST_PC','127.0.0.1, 127.*, 128.0.4.50-128.0.4.60, 129.*-130.50.*, 130.51.10.*');       // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
+		# $oCRNRSTN->grantExclusiveAccess('LOCALHOST_PC','127.0.0.1');          // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
+		# $oCRNRSTN->grantExclusiveAccess('LOCALHOST_PC','127.*');              // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
+		# $oCRNRSTN->grantExclusiveAccess('LOCALHOST_PC','127.0.0.1, 127.*, 128.0.4.50-128.0.4.60, 129.*-130.50.*, 130.51.10.*');       // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
 		#
 		# IPV4
 		# '127.0.0.1', 										# STATIC DEFINE
@@ -779,10 +773,10 @@ class crnrstn_ip_authorization_manager {
 	}
 
 	public function grantAccess($ip){
-		# $oCRNRSTN->grantExclusiveAccess('LOCALHOST_PC','127.0.0.1');              // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
-		# $oCRNRSTN->grantExclusiveAccess('LOCALHOST_PC','127.*');                  // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
-		# $oCRNRSTN->grantExclusiveAccess('LOCALHOST_PC','127.');                   // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
-		# $oCRNRSTN->grantExclusiveAccess('LOCALHOST_PC','127.0.0.1, 127.*, 128.0.4.50-128.0.4.60, 129.*-130.50.*, 130.51.10.*');       // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
+		# $oCRNRSTN->grantExclusiveAccess('LOCALHOST_PC','127.0.0.1');              // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
+		# $oCRNRSTN->grantExclusiveAccess('LOCALHOST_PC','127.*');                  // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
+		# $oCRNRSTN->grantExclusiveAccess('LOCALHOST_PC','127.');                   // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
+		# $oCRNRSTN->grantExclusiveAccess('LOCALHOST_PC','127.0.0.1, 127.*, 128.0.4.50-128.0.4.60, 129.*-130.50.*, 130.51.10.*');       // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
 		#
 		# IPV4
 		# '127.0.0.1', 										# STATIC DEFINE
@@ -1060,10 +1054,10 @@ class crnrstn_ip_authorization_manager {
 	}
 
 	public function denyAccessWKey($env_key_hash, $ip){
-		# $oCRNRSTN->denyAccess('LOCALHOST_PC','127.0.0.1');                // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
-		# $oCRNRSTN->denyAccess('LOCALHOST_PC','127.*');                    // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
-		# $oCRNRSTN->denyAccess('LOCALHOST_PC','127.');                     // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
-		# $oCRNRSTN->denyAccess('LOCALHOST_PC','127.0.0.1, FE80::230:80FF:FEF3:4701, 128.0.4.50-128.0.4.60, 129.*-130.50.*, 130.51.*');     // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
+		# $oCRNRSTN->denyAccess('LOCALHOST_PC','127.0.0.1');                // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
+		# $oCRNRSTN->denyAccess('LOCALHOST_PC','127.*');                    // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
+		# $oCRNRSTN->denyAccess('LOCALHOST_PC','127.');                     // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
+		# $oCRNRSTN->denyAccess('LOCALHOST_PC','127.0.0.1, FE80::230:80FF:FEF3:4701, 128.0.4.50-128.0.4.60, 129.*-130.50.*, 130.51.*');     // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
 		#
 		# IPV4
         # FORMAT NOT ALLOWED-->'126.1.0.0/255.255.0.0', 	# RANGE SLASH
@@ -1326,10 +1320,10 @@ class crnrstn_ip_authorization_manager {
 
 	// PREVIOUSLY denyAccess($env_key, $ip)
 	public function denyIPAccess($env_key_hash, $ip){
-		# $oCRNRSTN->denyAccess('LOCALHOST_PC','127.0.0.1');                // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
-		# $oCRNRSTN->denyAccess('LOCALHOST_PC','127.*');                    // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
-		# $oCRNRSTN->denyAccess('LOCALHOST_PC','127.');                     // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
-		# $oCRNRSTN->denyAccess('LOCALHOST_PC','127.0.0.1, FE80::230:80FF:FEF3:4701, 128.0.4.50-128.0.4.60, 129.*-130.50.*, 130.51.*');         // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
+		# $oCRNRSTN->denyAccess('LOCALHOST_PC','127.0.0.1');                // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
+		# $oCRNRSTN->denyAccess('LOCALHOST_PC','127.*');                    // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
+		# $oCRNRSTN->denyAccess('LOCALHOST_PC','127.');                     // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
+		# $oCRNRSTN->denyAccess('LOCALHOST_PC','127.0.0.1, FE80::230:80FF:FEF3:4701, 128.0.4.50-128.0.4.60, 129.*-130.50.*, 130.51.*');         // TOSHIBA M100 [eVifweb] :: RADIOHEAD LAPTOP.
 		#
 		# IPV4
         # FORMAT NOT ALLOWED-->'126.1.0.0/255.255.0.0', 	# RANGE SLASH

@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -65,16 +65,16 @@
 #  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
 #  VERSION :: 1.00.0000
 #  DATE :: Monday, October 26, 2020 @ 2054hrs
-#  DESCRIPTION ::
+#  DESCRIPTION :: Object manager for CRNRSTN :: LOGGING WEB SERVICES LAYER.
 #  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
 #
 class crnrstn_logging_oprofile_manager {
 
-    protected $oLogger;
+    public $oCRNRSTN;
 
     protected $env_key;
     protected $resource_key;
-    protected $config_serial_hash;
+    private static $config_serial;
 
     protected $oLog_profiles_ARRAY = array();
     protected $log_profiles_ARRAY = array();
@@ -84,16 +84,18 @@ class crnrstn_logging_oprofile_manager {
 
     public function __construct($sys_logging_profile_pack, $oCRNRSTN){
 
+        $this->oCRNRSTN = $oCRNRSTN;
+
         /*
-        $sys_logging_profile_pack['sys_logging_profile_ARRAY'] = ARRAY[self::$oCRNRSTN_n->hash($this->config_serial_hash)][self::$resource_key];
-        $sys_logging_profile_pack['sys_logging_meta_ARRAY'] = ARRAY[self::$oCRNRSTN_n->hash($this->config_serial_hash)][self::$resource_key];
-        $sys_logging_profile_pack['sys_logging_wcr_ARRAY'] = ARRAY[self::$oCRNRSTN_n->hash($this->config_serial_hash)][CRNRSTN_LOG_ALL];
+        $sys_logging_profile_pack['sys_logging_profile_ARRAY'] = ARRAY[$this->oCRNRSTN->hash(self::$config_serial)][self::$resource_key];
+        $sys_logging_profile_pack['sys_logging_meta_ARRAY'] = ARRAY[$this->oCRNRSTN->hash(self::$config_serial)][self::$resource_key];
+        $sys_logging_profile_pack['sys_logging_wcr_ARRAY'] = ARRAY[$this->oCRNRSTN->hash(self::$config_serial)][CRNRSTN_LOG_ALL];
         */
 
-        $this->config_serial_hash = $oCRNRSTN->get_server_config_serial('hash');
+        self::$config_serial = $this->oCRNRSTN->get_crnrstn('config_serial');
 
         // HOLD ON A SEC FOR THIS. Thursday, May 25, 2023 @ 1450 hrs.
-        //$this->oCRNRSTN_WCR_ARRAY = $oCRNRSTN->return_wcr_ARRAY(); //oCRNRSTN_WCR_ARRAY;
+        //$this->oCRNRSTN_WCR_ARRAY = $this->oCRNRSTN->return_wcr_ARRAY(); //oCRNRSTN_WCR_ARRAY;
         $this->oCRNRSTN_WCR_ARRAY  = array();
 
         $this->build_sys_wcr_profile_criteria();
@@ -102,11 +104,9 @@ class crnrstn_logging_oprofile_manager {
 
         $this->logging_profile_pack = $sys_logging_profile_pack;
 
-        $this->spool_up_logging_profiles($oCRNRSTN);
+        $this->spool_up_logging_profiles();
 
-        $this->oLogger = new crnrstn_logging(__CLASS__, $oCRNRSTN);
-
-        // $oCRNRSTN->oLog_output_ARRAY[] = $oCRNRSTN->error_log('Instantiating logging output profile manager within this environment.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+        // $this->oCRNRSTN->oLog_output_ARRAY[] = $this->oCRNRSTN->error_log('Instantiating logging output profile manager within this environment.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
     }
 
@@ -140,31 +140,29 @@ class crnrstn_logging_oprofile_manager {
 
     }
 
-    public function notification_go($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
+    //
+    // SOURCE :: https://www.youtube.com/watch?v=83KR_UBWdPI
+    // TITLE :: Arcade Fire - No Cars Go
+    //
+    // Saturday, December 2, 2023 @ 0620 hrs.
+    public function notification_go($tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj){
 
         foreach($this->oLog_profiles_ARRAY as $key => $oLog_profile){
 
-            switch(get_class($oCRNRSTN_n)){
-                case 'crnrstn_user':
-                case 'crnrstn_environment':
-                case 'crnrstn':
+            if($this->oCRNRSTN->is_bit_set($oLog_profile->logging_profile) == true){
 
-                    if($oCRNRSTN_n->is_bit_set($oLog_profile->logging_profile) == true){
+                //
+                // SOURCE :: https://www.youtube.com/watch?v=83KR_UBWdPI
+                // TITLE :: Arcade Fire - No Cars Go
+                //
+                // 2020[?] MORE ACCURATE SOURCE NEEDED FOR THIS PRE-LIGHTSABER COMMENT.
+                if(!$oLog_profile->no_cars_tification_go($this->oCRNRSTN, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj)){
 
-                        //
-                        // SOURCE :: https://www.youtube.com/watch?v=83KR_UBWdPI
-                        // TITLE :: Arcade Fire - No Cars Go
-                        if(!$oLog_profile->no_cars_tification_go($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $exception_method, $exception_runtime, $exception_systemtime, $exception_obj)){
+                    error_log('Error processing the following message through logging profile (int) ' . $oLog_profile->logging_profile . '. :: ' . $tmp_exception_output_str);
 
-                            error_log('Error processing the following message through logging profile (int) ' . $oLog_profile->logging_profile . '. :: ' . $tmp_exception_output_str);
+                    die();
 
-                            die();
-
-                        }
-
-                    }
-
-                break;
+                }
 
             }
 
@@ -177,7 +175,7 @@ class crnrstn_logging_oprofile_manager {
         $this->profile_endpoint_criteria_ARRAY = array();
 
         //
-        // EMAIL
+        // EMAIL.
         $log_profile_key = CRNRSTN_LOG_EMAIL;
         $this->profile_endpoint_criteria_ARRAY[$log_profile_key]['EMAIL_PROTOCOL'] = 1;
         $this->profile_endpoint_criteria_ARRAY[$log_profile_key]['TRY_OTHER_EMAIL_METHODS_ON_ERR'] = 1;
@@ -216,7 +214,7 @@ class crnrstn_logging_oprofile_manager {
         $this->profile_endpoint_criteria_ARRAY[$log_profile_key]['DUP_SUPPRESS'] = 1;
 
         //
-        // EMAIL_PROXY
+        // EMAIL_PROXY.
         $log_profile_key = CRNRSTN_LOG_EMAIL_PROXY;
         $this->profile_endpoint_criteria_ARRAY[$log_profile_key]['CRNRSTN_SOAP_SVC_AUTH_KEY'] = 1;
         $this->profile_endpoint_criteria_ARRAY[$log_profile_key]['CRNRSTN_SOAP_SVC_USERNAME'] = 1;
@@ -269,14 +267,14 @@ class crnrstn_logging_oprofile_manager {
         $this->profile_endpoint_criteria_ARRAY[$log_profile_key]['DUP_SUPPRESS'] = 1;
 
         //
-        // FILE
+        // FILE.
         $log_profile_key = CRNRSTN_LOG_FILE;
         //$this->profile_endpoint_criteria_ARRAY[$log_profile_key]['LOCAL_DIR_PATH'] = 1;
         $this->profile_endpoint_criteria_ARRAY[$log_profile_key]['LOCAL_DIR_FILEPATH'] = 1;
         $this->profile_endpoint_criteria_ARRAY[$log_profile_key]['LOCAL_MKDIR_MODE'] = 1;
 
         //
-        // FTP
+        // FTP.
         $log_profile_key = CRNRSTN_LOG_FILE_FTP;
         $this->profile_endpoint_criteria_ARRAY[$log_profile_key]['FTP_SERVER'] = 1;
         $this->profile_endpoint_criteria_ARRAY[$log_profile_key]['FTP_USERNAME'] = 1;
@@ -291,7 +289,7 @@ class crnrstn_logging_oprofile_manager {
         $this->profile_endpoint_criteria_ARRAY[$log_profile_key]['FTP_MKDIR_MODE'] = 1;
 
         //
-        // OPEN_SOURCE
+        // OPEN_SOURCE.
         $log_profile_key = CRNRSTN_RESOURCE_OPENSOURCE;
         $this->profile_endpoint_criteria_ARRAY[$log_profile_key]['CRNRSTN_SOAP_SVC_AUTH_KEY'] = 1;
         $this->profile_endpoint_criteria_ARRAY[$log_profile_key]['CRNRSTN_SOAP_SVC_USERNAME'] = 1;
@@ -321,7 +319,7 @@ class crnrstn_logging_oprofile_manager {
     private function is_WCR_key($sys_logging_wcr_ARRAY, $str){
 
         //if(isset($this->oCRNRSTN_WCR_ARRAY)){
-        // error_log('2448 env - is_WCR_key() TEST NEW !!ARRAY FORK AGAINST ARRAY sizeof>0, where sizeof='.sizeof($this->oCRNRSTN_WCR_ARRAY[self::$oCRNRSTN_n->hash($this->config_serial_hash)]));
+        // error_log('2448 env - is_WCR_key() TEST NEW !!ARRAY FORK AGAINST ARRAY sizeof>0, where sizeof='.sizeof($this->oCRNRSTN_WCR_ARRAY[$this->oCRNRSTN->hash(self::$config_serial)]));
 
         //
         // TODO :: CAN WE PUT THIS ARRAY TRICK EVERYWHERE IT IS APPROPRIATE? IS IT FASTER THAN -->{ if(count() > 0)...?
@@ -450,9 +448,9 @@ class crnrstn_logging_oprofile_manager {
 
         /*
         init_profile_pack_ARRAY ::
-        $init_profile_pack['sys_logging_profile_ARRAY'] = self::$sys_logging_profile_ARRAY[self::$oCRNRSTN_n->hash($this->config_serial_hash)][CRNRSTN_LOG_ALL];
-        $init_profile_pack['sys_logging_meta_ARRAY'] = self::$sys_logging_meta_ARRAY[self::$oCRNRSTN_n->hash($this->config_serial_hash)][CRNRSTN_LOG_ALL];
-        $init_profile_pack['sys_logging_wcr_ARRAY'] = $this->oCRNRSTN_WCR_ARRAY[self::$oCRNRSTN_n->hash($this->config_serial_hash)][CRNRSTN_LOG_ALL];
+        $init_profile_pack['sys_logging_profile_ARRAY'] = self::$system_logging_output_profile_ARRAY[$this->oCRNRSTN->hash(self::$config_serial)][CRNRSTN_LOG_ALL];
+        $init_profile_pack['sys_logging_meta_ARRAY'] = self::$sys_logging_meta_ARRAY[$this->oCRNRSTN->hash(self::$config_serial)][CRNRSTN_LOG_ALL];
+        $init_profile_pack['sys_logging_wcr_ARRAY'] = $this->oCRNRSTN_WCR_ARRAY[$this->oCRNRSTN->hash(self::$config_serial)][CRNRSTN_LOG_ALL];
         */
 
         if(isset($init_profile_pack['sys_logging_meta_ARRAY'])){
@@ -658,7 +656,7 @@ class crnrstn_logging_oprofile_manager {
             foreach($this->oLog_profiles_ARRAY as $key => $oLog_profile){
 
                 //
-                // LOAD CRNRSTN :: OBJ INTO EACH LOGGING PROFILE OBJECT
+                // LOAD CRNRSTN :: OBJ INTO EACH LOGGING PROFILE OBJECT.
                 $oLog_profile->load_CRNRSTN_ENV($oCRNRSTN);
 
                 $tmp_array[] = $oLog_profile;
@@ -685,11 +683,11 @@ class crnrstn_logging_oprofile_manager {
 
     }
 
-    private function spool_up_logging_profiles($oCRNRSTN){
+    private function spool_up_logging_profiles(){
 
         foreach($this->log_profiles_ARRAY as $key => $profile){
 
-            $tmp_oLoggingProfile = new crnrstn_logging_oprofile($profile, $this->config_serial_hash, $this->profile_endpoint_criteria_ARRAY, $oCRNRSTN);
+            $tmp_oLoggingProfile = new crnrstn_logging_oprofile($profile, self::$config_serial, $this->profile_endpoint_criteria_ARRAY, $this->oCRNRSTN);
 
             $this->oLog_profiles_ARRAY[] = $tmp_oLoggingProfile;
 
@@ -698,11 +696,11 @@ class crnrstn_logging_oprofile_manager {
     }
 
     /*
-    private function objectify_profiles($oCRNRSTN){
+    private function objectify_profiles(){
 
         foreach($this->log_profiles_ARRAY as $key => $profile){
 
-            $tmp_oLoggingProfile = new crnrstn_logging_oprofile($profile, $this->config_serial_hash, $oCRNRSTN);
+            $tmp_oLoggingProfile = new crnrstn_logging_oprofile($profile, self::$config_serial, $this->oCRNRSTN);
 
             switch($profile){
                 case 'DEFAULT':

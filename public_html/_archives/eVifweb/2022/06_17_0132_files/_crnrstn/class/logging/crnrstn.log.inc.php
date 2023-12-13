@@ -6,7 +6,7 @@
 #  Copyright (C) 2012-2018 eVifweb Development
 #  VERSION :: 1.0.1
 #  RELEASE DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#  AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#  AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #  URI :: http://crnrstn.evifweb.com/
 #  OVERVIEW :: CRNRSTN is an open source PHP class library that facilitates the operation of an application within multiple server
 #		environments (e.g. localhost, stage, preprod, and production). With this tool, data and functionality with

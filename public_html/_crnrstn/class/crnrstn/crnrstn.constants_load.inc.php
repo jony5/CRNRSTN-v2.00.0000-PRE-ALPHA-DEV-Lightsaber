@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -84,7 +84,9 @@ _crnrstn/class/assets/crnrstn.system_asset_manager.inc.php [FOR ADDING FRAMEWORK
 if(isset($crnrstn_initialize_bits)){
 
     $CRNRSTN_CONSTANTS_ARRAY = array('CRNRSTN_DEBUG_OFF', 'CRNRSTN_DEBUG_NATIVE_ERR_LOG', 'CRNRSTN_CLIENT_SSDTLA_DEBUG',
-    'CRNRSTN_DEBUG_AGGREGATION_ON', 'CRNRSTN_HTML_COMMENTS_SILENT_GOLD', 'CRNRSTN_HTML_COMMENTS_NONE',
+    'CRNRSTN_DEBUG_AGGREGATION_ON', 'CRNRSTN_PHPMAILER_DEBUG_OFF', 'CRNRSTN_PHPMAILER_DEBUG_CLIENT',
+    'CRNRSTN_PHPMAILER_DEBUG_SERVER', 'CRNRSTN_PHPMAILER_DEBUG_CONNECTION', 'CRNRSTN_PHPMAILER_DEBUG_LOWLEVEL',
+    'CRNRSTN_HTML_COMMENTS_SILENT_GOLD', 'CRNRSTN_HTML_COMMENTS_NONE',
     'CRNRSTN_HTML_COMMENTS_CDN_STABILITY_CONTROL_ENABLED', 'CRNRSTN_HTML_COMMENTS_ENLARGED_PHYLACTERIES',
     'CRNRSTN_HTML_COMMENTS_FULL', 'CRNRSTN_LOG_ALL', 'CRNRSTN_STRING', 'CRNRSTN_INT', 'CRNRSTN_INTEGER', 'CRNRSTN_BOOL',
     'CRNRSTN_BOOLEAN', 'CRNRSTN_FLOAT', 'CRNRSTN_DOUBLE', 'CRNRSTN_ARRAY', 'CRNRSTN_OBJECT', 'CRNRSTN_RESOURCE',
@@ -103,21 +105,23 @@ if(isset($crnrstn_initialize_bits)){
     'CRNRSTN_BARNEY_FTP', 'CRNRSTN_BARNEY_ELECTRUM', 'CRNRSTN_BARNEY_GABRIEL', 'CRNRSTN_BARNEY_DISK', 'CRNRSTN_SOAP',
     'CRNRSTN_SOAP_SERVER', 'CRNRSTN_SOAP_CLIENT', 'CRNRSTN_PROXY_KINGS_HIGHWAY', 'CRNRSTN_PROXY_EMAIL',
     'CRNRSTN_PROXY_ELECTRUM', 'CRNRSTN_PROXY_AUTHENTICATE', 'CRNRSTN_LOG_EMAIL', 'CRNRSTN_LOG_EMAIL_PROXY',
-    'CRNRSTN_LOG_FILE', 'CRNRSTN_LOG_FILE_PROXY', 'CRNRSTN_LOG_FILE_FTP', 'CRNRSTN_LOG_SCREEN_TEXT',
-    'CRNRSTN_LOG_SCREEN', 'CRNRSTN_LOG_SCREEN_HTML', 'CRNRSTN_LOG_SCREEN_HTML_HIDDEN', 'CRNRSTN_LOG_DEFAULT',
-    'CRNRSTN_LOG_DEFAULT_PROXY', 'CRNRSTN_LOG_ELECTRUM', 'CRNRSTN_UI_PHPNIGHT', 'CRNRSTN_UI_DARKNIGHT',
-    'CRNRSTN_UI_PHP', 'CRNRSTN_UI_GREYSKY', 'CRNRSTN_UI_HTML', 'CRNRSTN_UI_DAYLIGHT', 'CRNRSTN_UI_FEATHER',
-    'CRNRSTN_UI_GLASS_LIGHT_COPY', 'CRNRSTN_UI_GLASS_DARK_COPY', 'CRNRSTN_UI_WOOD', 'CRNRSTN_UI_TERMINAL',
-    'CRNRSTN_UI_RANDOM', 'CRNRSTN_CHANNEL_DESKTOP', 'CRNRSTN_CHANNEL_TABLET', 'CRNRSTN_CHANNEL_MOBILE',
-    'CRNRSTN_ICY_BITMASK', 'CRNRSTN_SOAP_DATA_TUNNEL', 'CRNRSTN_UI_SOAP_DATA_TUNNEL', 'CRNRSTN_ASSET_MODE_BASE64',
-    'CRNRSTN_ASSET_MODE_PNG', 'CRNRSTN_ASSET_MODE_JPEG', 'CRNRSTN_IMG', 'CRNRSTN_STRING', 'CRNRSTN_BASE64',
-    'CRNRSTN_CSS', 'CRNRSTN_JS', 'CRNRSTN_BASE64_PNG', 'CRNRSTN_BASE64_JPEG', 'CRNRSTN_BASE64_GIF', 'CRNRSTN_PNG',
-    'CRNRSTN_JPEG', 'CRNRSTN_GIF','CRNRSTN_FAVICON', 'CRNRSTN_HTML', 'CRNRSTN_UI_INTERACT', 'CRNRSTN_CSS_MAIN_MOBILE',
-    'CRNRSTN_CSS_MAIN_TABLET', 'CRNRSTN_CSS_MAIN_DESKTOP', 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID',
-    'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM', 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL',
-    'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL', 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL',
-    'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL_RTL','CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL_RTL',
-    'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL_RTL',
+    'CRNRSTN_LOG_FILE', 'CRNRSTN_LOG_FILE_PROXY', 'CRNRSTN_LOG_FILE_FTP', 'CRNRSTN_LOG_FILE_FTP_PROXY',
+    'CRNRSTN_LOG_SCREEN_TEXT', 'CRNRSTN_LOG_SCREEN', 'CRNRSTN_LOG_SCREEN_HTML', 'CRNRSTN_LOG_SCREEN_HTML_HIDDEN',
+    'CRNRSTN_LOG_DEFAULT', 'CRNRSTN_LOG_DEFAULT_PROXY', 'CRNRSTN_LOG_ELECTRUM', 'CRNRSTN_LOG_ELECTRUM_PROXY',
+    'CRNRSTN_LOG_DATABASE', 'CRNRSTN_LOG_DATABASE_PROXY', 'CRNRSTN_LOG_SSDTLA', 'CRNRSTN_LOG_SSDTLA_PROXY',
+    'CRNRSTN_LOG_PSSDTLA', 'CRNRSTN_LOG_PSSDTLA_PROXY', 'CRNRSTN_LOG_SOAP', 'CRNRSTN_UI_PHPNIGHT',
+    'CRNRSTN_UI_DARKNIGHT', 'CRNRSTN_UI_PHP', 'CRNRSTN_UI_GREYSKY', 'CRNRSTN_UI_HTML', 'CRNRSTN_UI_DAYLIGHT',
+    'CRNRSTN_UI_FEATHER', 'CRNRSTN_UI_GLASS_LIGHT_COPY', 'CRNRSTN_UI_GLASS_DARK_COPY', 'CRNRSTN_UI_WOOD',
+    'CRNRSTN_UI_TERMINAL', 'CRNRSTN_UI_RANDOM', 'CRNRSTN_CHANNEL_DESKTOP', 'CRNRSTN_CHANNEL_TABLET',
+    'CRNRSTN_CHANNEL_MOBILE', 'CRNRSTN_ICY_BITMASK', 'CRNRSTN_SOAP_DATA_TUNNEL', 'CRNRSTN_UI_SOAP_DATA_TUNNEL',
+    'CRNRSTN_ASSET_MODE_BASE64', 'CRNRSTN_ASSET_MODE_PNG', 'CRNRSTN_ASSET_MODE_JPEG', 'CRNRSTN_IMG', 'CRNRSTN_STRING',
+    'CRNRSTN_BASE64', 'CRNRSTN_CSS', 'CRNRSTN_JS', 'CRNRSTN_BASE64_PNG', 'CRNRSTN_BASE64_JPEG', 'CRNRSTN_BASE64_GIF',
+    'CRNRSTN_PNG', 'CRNRSTN_JPEG', 'CRNRSTN_GIF','CRNRSTN_FAVICON', 'CRNRSTN_HTML', 'CRNRSTN_UI_INTERACT',
+    'CRNRSTN_CSS_MAIN_MOBILE', 'CRNRSTN_CSS_MAIN_TABLET', 'CRNRSTN_CSS_MAIN_DESKTOP',
+    'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID', 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM',
+    'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL', 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL',
+    'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL', 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL_RTL',
+    'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL_RTL', 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL_RTL',
     'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_RTL', 'CRNRSTN_CSS_FRAMEWORK_FOUNDATION',
     'CRNRSTN_CSS_FRAMEWORK_FOUNDATION_6', 'CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE',
     'CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE_8_0_0', 'CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM',
@@ -149,10 +153,10 @@ if(isset($crnrstn_initialize_bits)){
     'CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_ESM_UNPKG', 'CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_UMD_PAGECDN',
     'CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_ESM_PAGECDN', 'CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_UMD_CDNJS',
     'CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_ESM_CDNJS', 'CRNRSTN_UI_FORM_INTEGRATION_PACKET',
-    'CRNRSTN_UI_COOKIE_PREFERENCE', 'CRNRSTN_UI_COOKIE_YESNO', 'CRNRSTN_UI_COOKIE_NOTICE', 'CRNRSTN_CHANNEL_RUNTIME',
-    'CRNRSTN_CHANNEL_ALL', 'CRNRSTN_CHANNEL_DATABASE', 'CRNRSTN_CHANNEL_SSDTLA', 'CRNRSTN_CHANNEL_PSSDTLA',
+    'CRNRSTN_UI_COOKIE_PREFERENCE', 'CRNRSTN_UI_COOKIE_YESNO', 'CRNRSTN_UI_COOKIE_NOTICE', 'CRNRSTN_CHANNEL_ALL',
+    'CRNRSTN_CHANNEL_RUNTIME', 'CRNRSTN_CHANNEL_DATABASE', 'CRNRSTN_CHANNEL_SSDTLA', 'CRNRSTN_CHANNEL_PSSDTLA',
     'CRNRSTN_CHANNEL_SESSION', 'CRNRSTN_CHANNEL_COOKIE', 'CRNRSTN_CHANNEL_SOAP', 'CRNRSTN_CHANNEL_GET',
-    'CRNRSTN_CHANNEL_POST', 'CRNRSTN_CHANNEL_FILE', 'CRNRSTN_CHANNEL_FORM_INTEGRATIONS',
+    'CRNRSTN_CHANNEL_POST', 'CRNRSTN_CHANNEL_FILE', 'CRNRSTN_CHANNEL_FORM',
     'CRNRSTN_AUTHORIZE_RUNTIME', 'CRNRSTN_AUTHORIZE_ALL', 'CRNRSTN_AUTHORIZE_DATABASE', 'CRNRSTN_AUTHORIZE_SSDTLA',
     'CRNRSTN_AUTHORIZE_PSSDTLA', 'CRNRSTN_AUTHORIZE_SESSION', 'CRNRSTN_AUTHORIZE_COOKIE', 'CRNRSTN_AUTHORIZE_SOAP',
     'CRNRSTN_AUTHORIZE_GET', 'CRNRSTN_AUTHORIZE_ISUSERNAME', 'CRNRSTN_AUTHORIZE_ISEMAIL', 'CRNRSTN_AUTHORIZE_POST',
@@ -197,11 +201,17 @@ if(isset($crnrstn_initialize_bits)){
     @define('CRNRSTN_DEBUG_NATIVE_ERR_LOG', (int) crnrstn_constants_init('CRNRSTN_DEBUG_NATIVE_ERR_LOG'));
     @define('CRNRSTN_DEBUG_AGGREGATION_ON', (int) crnrstn_constants_init('CRNRSTN_DEBUG_AGGREGATION_ON'));
     @define('CRNRSTN_CLIENT_SSDTLA_DEBUG', (int) crnrstn_constants_init('CRNRSTN_CLIENT_SSDTLA_DEBUG'));
+    @define('CRNRSTN_PHPMAILER_DEBUG_OFF', (int) crnrstn_constants_init('CRNRSTN_PHPMAILER_DEBUG_OFF'));
+    @define('CRNRSTN_PHPMAILER_DEBUG_CLIENT', (int) crnrstn_constants_init('CRNRSTN_PHPMAILER_DEBUG_CLIENT'));
+    @define('CRNRSTN_PHPMAILER_DEBUG_SERVER', (int) crnrstn_constants_init('CRNRSTN_PHPMAILER_DEBUG_SERVER'));
+    @define('CRNRSTN_PHPMAILER_DEBUG_CONNECTION', (int) crnrstn_constants_init('CRNRSTN_PHPMAILER_DEBUG_CONNECTION'));
+    @define('CRNRSTN_PHPMAILER_DEBUG_LOWLEVEL', (int) crnrstn_constants_init('CRNRSTN_PHPMAILER_DEBUG_LOWLEVEL'));
     @define('CRNRSTN_HTML_COMMENTS_SILENT_GOLD', (int) crnrstn_constants_init('CRNRSTN_HTML_COMMENTS_SILENT_GOLD'));
     @define('CRNRSTN_HTML_COMMENTS_NONE', (int) crnrstn_constants_init('CRNRSTN_HTML_COMMENTS_NONE'));
     @define('CRNRSTN_HTML_COMMENTS_CDN_STABILITY_CONTROL_ENABLED', (int) crnrstn_constants_init('CRNRSTN_HTML_COMMENTS_CDN_STABILITY_CONTROL_ENABLED'));
     @define('CRNRSTN_HTML_COMMENTS_ENLARGED_PHYLACTERIES', (int) crnrstn_constants_init('CRNRSTN_HTML_COMMENTS_ENLARGED_PHYLACTERIES'));
     @define('CRNRSTN_HTML_COMMENTS_FULL', (int) crnrstn_constants_init('CRNRSTN_HTML_COMMENTS_FULL'));
+    @define('CRNRSTN_LOG_NONE', (int) crnrstn_constants_init('CRNRSTN_LOG_NONE'));
     @define('CRNRSTN_LOG_ALL', (int) crnrstn_constants_init('CRNRSTN_LOG_ALL'));
     @define('CRNRSTN_STRING', (int) crnrstn_constants_init('CRNRSTN_STRING'));
     @define('CRNRSTN_INT', (int) crnrstn_constants_init('CRNRSTN_INT'));
@@ -218,12 +228,13 @@ if(isset($crnrstn_initialize_bits)){
     @define('CRNRSTN_NULL', (int) crnrstn_constants_init('CRNRSTN_NULL'));
     @define('CRNRSTN_MIXED', (int) crnrstn_constants_init('CRNRSTN_MIXED'));
     @define('CRNRSTN_IS_HTML', (int) crnrstn_constants_init('CRNRSTN_IS_HTML'));
-    @define('CRNRSTN_LOG_NONE', (int) crnrstn_constants_init('CRNRSTN_LOG_NONE'));
+
     @define('CRNRSTN_LOG_EMAIL', (int) crnrstn_constants_init('CRNRSTN_LOG_EMAIL'));
     @define('CRNRSTN_LOG_EMAIL_PROXY', (int) crnrstn_constants_init('CRNRSTN_LOG_EMAIL_PROXY'));
     @define('CRNRSTN_LOG_FILE', (int) crnrstn_constants_init('CRNRSTN_LOG_FILE'));
     @define('CRNRSTN_LOG_FILE_PROXY', (int) crnrstn_constants_init('CRNRSTN_LOG_FILE_PROXY'));
     @define('CRNRSTN_LOG_FILE_FTP', (int) crnrstn_constants_init('CRNRSTN_LOG_FILE_FTP'));
+    @define('CRNRSTN_LOG_FILE_FTP_PROXY', (int) crnrstn_constants_init('CRNRSTN_LOG_FILE_FTP_PROXY'));
     @define('CRNRSTN_LOG_SCREEN_TEXT', (int) crnrstn_constants_init('CRNRSTN_LOG_SCREEN_TEXT'));
     @define('CRNRSTN_LOG_SCREEN', (int) crnrstn_constants_init('CRNRSTN_LOG_SCREEN'));
     @define('CRNRSTN_LOG_SCREEN_HTML', (int) crnrstn_constants_init('CRNRSTN_LOG_SCREEN_HTML'));
@@ -231,6 +242,14 @@ if(isset($crnrstn_initialize_bits)){
     @define('CRNRSTN_LOG_DEFAULT', (int) crnrstn_constants_init('CRNRSTN_LOG_DEFAULT'));
     @define('CRNRSTN_LOG_DEFAULT_PROXY', (int) crnrstn_constants_init('CRNRSTN_LOG_DEFAULT_PROXY'));
     @define('CRNRSTN_LOG_ELECTRUM', (int) crnrstn_constants_init('CRNRSTN_LOG_ELECTRUM'));
+    @define('CRNRSTN_LOG_ELECTRUM_PROXY', (int) crnrstn_constants_init('CRNRSTN_LOG_ELECTRUM_PROXY'));
+    @define('CRNRSTN_LOG_DATABASE', (int) crnrstn_constants_init('CRNRSTN_LOG_DATABASE'));
+    @define('CRNRSTN_LOG_DATABASE_PROXY', (int) crnrstn_constants_init('CRNRSTN_LOG_DATABASE_PROXY'));
+    @define('CRNRSTN_LOG_SSDTLA', (int) crnrstn_constants_init('CRNRSTN_LOG_SSDTLA'));
+    @define('CRNRSTN_LOG_SSDTLA_PROXY', (int) crnrstn_constants_init('CRNRSTN_LOG_SSDTLA_PROXY'));
+    @define('CRNRSTN_LOG_PSSDTLA', (int) crnrstn_constants_init('CRNRSTN_LOG_PSSDTLA'));
+    @define('CRNRSTN_LOG_PSSDTLA_PROXY', (int) crnrstn_constants_init('CRNRSTN_LOG_PSSDTLA_PROXY'));
+    @define('CRNRSTN_LOG_SOAP', (int) crnrstn_constants_init('CRNRSTN_LOG_SOAP'));
     @define('CRNRSTN_AUTHORIZED_ACCOUNT', (int) crnrstn_constants_init('CRNRSTN_AUTHORIZED_ACCOUNT'));
     @define('CRNRSTN_AUTHORIZED_IP', (int) crnrstn_constants_init('CRNRSTN_AUTHORIZED_IP'));
     @define('CRNRSTN_INTEGER_LENGTH', (int) crnrstn_constants_init('CRNRSTN_INTEGER_LENGTH'));
@@ -413,7 +432,7 @@ if(isset($crnrstn_initialize_bits)){
     @define('CRNRSTN_CHANNEL_GET', (int) crnrstn_constants_init('CRNRSTN_CHANNEL_GET'));
     @define('CRNRSTN_CHANNEL_POST', (int) crnrstn_constants_init('CRNRSTN_CHANNEL_POST'));
     @define('CRNRSTN_CHANNEL_FILE', (int) crnrstn_constants_init('CRNRSTN_CHANNEL_FILE'));
-    @define('CRNRSTN_CHANNEL_FORM_INTEGRATIONS', (int) crnrstn_constants_init('CRNRSTN_CHANNEL_FORM_INTEGRATIONS'));
+    @define('CRNRSTN_CHANNEL_FORM', (int) crnrstn_constants_init('CRNRSTN_CHANNEL_FORM'));
     @define('CRNRSTN_AUTHORIZE_ALL', (int) crnrstn_constants_init('CRNRSTN_AUTHORIZE_ALL'));
     @define('CRNRSTN_AUTHORIZE_RUNTIME', (int) crnrstn_constants_init('CRNRSTN_AUTHORIZE_RUNTIME'));
     @define('CRNRSTN_AUTHORIZE_DATABASE', (int) crnrstn_constants_init('CRNRSTN_AUTHORIZE_DATABASE'));

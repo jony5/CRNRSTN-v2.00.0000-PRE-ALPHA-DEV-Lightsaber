@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -66,46 +66,52 @@
 require(CRNRSTN_ROOT . '/_crnrstn/_crnrstn.classdefinitions.inc.php' );
 
 /**
- * $CRNRSTN_debug_mode
- * DESCRIPTION :: The master debug mode control variable for the CRNRSTN Suite ::
+ * $CRNRSTN_debug_mode      [PLEASE NOTE THAT CRNRSTN :: LOGGING IS CURRENTLY DOWN AND/OR GOING THROUGH LIGHTSABER ON-BOARDING. 	// Tuesday, December 12, 2023 @ 2009 hrs.]
+ * DESCRIPTION :: The master debug mode control variable for CRNRSTN ::
  * OPTIONS ::
- * * $CRNRSTN_debug_mode = 0 = CRNRSTN_DEBUG_OFF
- * * $CRNRSTN_debug_mode = 1 = CRNRSTN_DEBUG_NATIVE_ERR_LOG
- * * $CRNRSTN_debug_mode = 2 = CRNRSTN_DEBUG_AGGREGATION_ON
+ *      $CRNRSTN_debug_mode     [0] CRNRSTN_DEBUG_OFF
+ *      $CRNRSTN_debug_mode     [1] CRNRSTN_DEBUG_NATIVE_ERR_LOG
+ *      $CRNRSTN_debug_mode     [2] CRNRSTN_DEBUG_AGGREGATION_ON
  *
- * DETAIL ::
- # $CRNRSTN_debug_mode = 0 = CRNRSTN_DEBUG_OFF
- * DESCRIPTION :: Turns all error trace logging off.
- * NOTE :: Minimal memory and additional processing overhead performance requirements
- *  can be expected.
+ * DETAILS ::
  *
- # $CRNRSTN_debug_mode = 1 = CRNRSTN_DEBUG_NATIVE_ERR_LOG
- * DESCRIPTION :: 100% error trace logging that will be sent to the
- *  default error logging location via PHP native error_log(). No log data is aggregated
- *  for delayed output via method invocation; $oCRNRSTN_USR->get_error_log_trace() will
- *  have no log data to return. Please note that ALL log silo data will be in the output
- *  unless n+1 pipe delimited silo key(s) are provided to the CRNRSTN :: constructor. In
- *  this case, only error trace log data aligning to the provided silo key(s) (or the '*'
- *  silo key...same as NULL) will be sent to the PHP native error_log() method for output.
- *  This would be useful if one desires to inspect trace logs for a particular section of
- *  the application that possesses its own unique silo key. Log silo that are keyed with
- *  a '*' character...which also includes NULL log silo parameter...will ALWAYS be traced
- *  for error_log() output.
- * NOTE :: Minimal memory & some additional processing overhead performance requirements
- *  can be expected.
+ * TLDR;
+ *      CRNRSTN_DEBUG_OFF [0]
+ *      CRNRSTN_DEBUG_NATIVE_ERR_LOG [1]
+ *      CRNRSTN_DEBUG_AGGREGATION_ON [2]
  *
- # $CRNRSTN_debug_mode = 2 = CRNRSTN_DEBUG_AGGREGATION_ON
- * DESCRIPTION :: 100% error trace logging with rolling aggregation TO THE END of the running
- *  process. Provides controlled (invoked by method only) access to aggregated (and always
- *  chronologically presented) trace log data for any pipe delimited log silo key(s) passed to
- *  CRNRSTN :: method(s) for log output. See methods such as $oCRNRSTN_USR->get_error_log_trace().
- *  If ANY piped silo key(s) have been provided to the CRNRSTN :: constructor, only that/those
- *  key(s) will be aggregated (and hence, available for output), and all other keyed log silo
- *  data will be ignored. This does not pertain to silo key of '*'...which also includes NULL
- *  log silo parameter; i.e. '*' log silo trace data will ALWAYS be aggregated and/or returned.
- *  Any aggregated log trace data will also be appended to any CRNRSTN :: system exception
- *  notification...e.g. EMAIL or write to custom FILE output.
- * NOTE :: Maximum additional memory and processing overhead requirements can be expected.
+ #      $CRNRSTN_debug_mode = 0 = CRNRSTN_DEBUG_OFF
+ *      DESCRIPTION :: Turns all error trace logging off. This is the default.
+ *      NOTE :: Minimal memory and additional processing overhead performance requirements
+ *              can be expected.
+ *
+ #      $CRNRSTN_debug_mode = 1 = CRNRSTN_DEBUG_NATIVE_ERR_LOG
+ *      DESCRIPTION :: 100% error trace logging that will be sent to the
+ *                default error logging location via PHP native error_log(). No log data is aggregated
+ *                for delayed output via method invocation; $oCRNRSTN_USR->get_error_log_trace() will
+ *                have no log data to return. Please note that ALL log silo data will be in the output
+ *                unless n+1 pipe delimited silo key(s) are provided to the CRNRSTN :: constructor. In
+ *                this case, only error trace log data aligning to the provided silo key(s) (or the '*'
+ *                silo key...same as NULL) will be sent to the PHP native error_log() method for output.
+ *                This would be useful if one desires to inspect trace logs for a particular section of
+ *                the application that possesses its own unique silo key. Log silo that are keyed with
+ *                a '*' character...which also includes NULL log silo parameter...will ALWAYS be traced
+ *                for error_log() output.
+ *      NOTE :: Minimal memory & some additional processing overhead performance requirements
+ *              can be expected.
+ *
+ #      $CRNRSTN_debug_mode = 2 = CRNRSTN_DEBUG_AGGREGATION_ON
+ *      DESCRIPTION :: 100% error trace logging with rolling aggregation TO THE END of the running
+ *                process. Provides controlled (invoked by method only) access to aggregated (and always
+ *                chronologically presented) trace log data for any pipe delimited log silo key(s) passed to
+ *                CRNRSTN :: method(s) for log output. See methods such as $oCRNRSTN_USR->get_error_log_trace().
+ *                If ANY piped silo key(s) have been provided to the CRNRSTN :: constructor, only that/those
+ *                key(s) will be aggregated (and hence, available for output), and all other keyed log silo
+ *                data will be ignored. This does not pertain to silo key of '*'...which also includes NULL
+ *                log silo parameter; i.e. '*' log silo trace data will ALWAYS be aggregated and/or returned.
+ *                Any aggregated log trace data will also be appended to any CRNRSTN :: system exception
+ *                notification...e.g. EMAIL or write to custom FILE output.
+ *      NOTE :: Maximum additional memory and processing overhead requirements can be expected.
  *
  * TLDR;
  * CRNRSTN_DEBUG_OFF
@@ -119,115 +125,230 @@ $CRNRSTN_debug_mode = CRNRSTN_DEBUG_OFF;
 
 /**
  * $PHPMAILER_debug_mode
- * DESCRIPTION :: Debug output level for PHPMAILER - A full-featured email creation and transfer
- *  class for PHP which has been refactored into CRNRSTN :: and which debug output is bubbled up
- *  through the CRNRSTN :: error trace logging layer.
+ * DESCRIPTION :: Debug output level for PHPMAILER - PHPMailer is a full-featured email creation and transfer class
+ *                for PHP which has been refactored into CRNRSTN :: The debug output for PHPMailer is bubbled up
+ *                through the CRNRSTN :: SOAP SERVICES LOGGING SERVICES LAYER which provides multiple log touch points
+ *                for an enriched debugging/log trace experience.
  *
  * OPTIONS ::
- * * self::DEBUG_OFF (`0`) No debug output, default
- * * self::DEBUG_CLIENT (`1`) Client commands
- * * self::DEBUG_SERVER (`2`) Client commands and server responses
- * * self::DEBUG_CONNECTION (`3`) As DEBUG_SERVER plus connection status
- * * self::DEBUG_LOWLEVEL (`4`) Low-level data output, all messages (including exposure of usernames and passwords!!)
+ *      CRNRSTN_PHPMAILER_DEBUG_OFF         [0] No debug output, default
+ *      CRNRSTN_PHPMAILER_DEBUG_CLIENT      [1] Client commands
+ *      CRNRSTN_PHPMAILER_DEBUG_SERVER      [2] Client commands and server responses
+ *      CRNRSTN_PHPMAILER_DEBUG_CONNECTION  [3] As DEBUG_SERVER plus connection status
+ *      CRNRSTN_PHPMAILER_DEBUG_LOWLEVEL    [4] Low-level data output, all messages (including exposure of usernames and passwords!!)
  *
  * @var int
  *
- * !!CAUTION :: $PHPMAILER_debug_mode = 4 WILL expose all SMTP usernames and passwords to CRNRSTN :: EXCEPTION HANDLING
- * SERVICES LAYER which includes browser accessible output modes of SCREEN_TEXT, SCREEN or SCREEN_HTML, and SCREEN_HTML_HIDDEN!!
+ * !!CAUTION :: $PHPMAILER_debug_mode = CRNRSTN_PHPMAILER_DEBUG_LOWLEVEL WILL expose all SMTP usernames
+ *              and passwords to CRNRSTN :: EXCEPTION HANDLING SERVICES LAYER which includes browser
+ *              accessible output modes of SCREEN_TEXT, SCREEN or SCREEN_HTML, and SCREEN_HTML_HIDDEN.
+ * !!
  */
-$PHPMAILER_debug_mode = 0;   // !!NEVER PROMOTE 4 TO PRODUCTION IP!! BEST NOT TO USE 4 AT ALL...imho.
+$PHPMAILER_debug_mode = CRNRSTN_PHPMAILER_DEBUG_OFF;   // !!NEVER PROMOTE CRNRSTN_PHPMAILER_DEBUG_LOWLEVEL TO PRODUCTION IP!! BEST NOT TO USE CRNRSTN_PHPMAILER_DEBUG_LOWLEVEL AT ALL...imho.
 
 /**
- * $CRNRSTN_config_serial
+ * $CRNRSTN_config_salt
  * OPTIONS ::
- * * This should be a unique and custom string.
+ *  This optional string should be unique.
  *
- * DESCRIPTION :: Serialize this configuration of CRNRSTN :: If multiple CRNRSTN :: config
- *  files are running within this environment (e.g. n+1 micro-sites at the same IP) make
- *  this value unique for each configuration file in order to prevent SESSION resource
- *  contention for any site-to-site traffic in the form of array value overwrites (unless
- *  ALL config resources are EXACTLY the same site to site...which is unlikely). Should
- *  this value change during an active session, CRNRSTN :: will need to perform a complete
- *  reset resulting in a re-execution of environmental detection and a reacquisition of
- *  all resource definitions. This will result in a minor spike to processing overhead
- *  within a sufficiently highly trafficked environment. Also, please note that ANY
- *  changes to this configuration file will result in the same...a full reset for the
- *  CRNRSTN :: environmental detection layer and resource definitions.
+ * DESCRIPTION :: Specify an optional serialization salt for this configuration of CRNRSTN :: (1) if multiple
+ * 			      CRNRSTN :: config files are running within this environment, e.g. n+1 micro-sites at the
+ *                same IP, or (2) if this file will be called by n+1 different processes.
  *
  * @var string
  */
-$CRNRSTN_config_serial = '';
-
-/**
- *
- * THIS SHOULD GET A RE-WRITE. TL;DR
- *
- * $CRNRSTN_log_silo_profile
- * DESCRIPTION :: To limit ALL error log trace activity across the entire application to
- *  hand selected CRNRSTN error log silo key(s), include the desired key(s) within a pipe
- *  delimited string to the CRNRSTN :: constructor as the $CRNRSTN_log_silo_profile
- *  parameter. Only the provided keys will be processed. If an exclusion profile for
- *  CRNRSTN error log silo output is desired, prefix any log silo key with '~' in order
- *  to exclude that key from error log trace output across the entire application.
- *
- *  When critical areas of an application need to be monitored in the background for
- *  exception error log trace or bubbled to the surface during real-time development and QA,
- *  the CRNRSTN Suite :: has a properly robust error_log() method which allows for the
- *  strategic placement of "meta-data rich" application run-time log trace comments
- *  throughout the code base. Due to the limitations of reviewing error logs via file
- *  traversal within a terminal, it can be desired to effectively trim back error log
- *  trace output from all areas of an application which are NOT under review. This would
- *  leave error log trace data from the area(s) of interest front and center for more
- *  ready review through a terminal, for example. Enter stage left...CRNRSTN :: Log Silos.
- *  By passing, as a parameter, a relevant-to-the-purpose-at-hand key at the end of each
- *  invocation of the $oCRNRSTN_USR->error_log() method (such as, e.g., 'USER_SIGNIN' for
- *  all error log trace relevant to user login use cases within an application), one can
- *  effectively drive the logging trace profile of the entire application from the
- *  CRNRSTN :: constructor and/or any method within CRNRSTN :: (such as
- *  $oCRNRSTN_USR->get_error_log_trace()) which exposes log trace data by including just
- *  the silo key(s) of interest...or excluding via prefix of a '~' silo key(s) from
- *  perhaps more verbose sections of the application which effectively bloat the error
- *  log trace data and are cumbersome to dig through in order to find the relatively
- *  scant trace data currently under investigation.
- *
- * @var integer         // DOCUMENTATION (IN CODE) IT'S LIKE..."WELCOME TO 5 YEARS AGO!" NEEDS A SOLID GO.
- */
-
-$CRNRSTN_logging_profile = CRNRSTN_LOG_ALL;
+$CRNRSTN_config_salt = '';
 
 //
-// INSTANTIATE AN INSTANCE OF CRNRSTN ::
-$oCRNRSTN = new crnrstn(__FILE__, $CRNRSTN_config_serial, $CRNRSTN_debug_mode, $PHPMAILER_debug_mode, $CRNRSTN_logging_profile);
+// TL;DR
+//
+// $CRNRSTN_log_silo_profile
+//
+// THIS KIT WILL BE MORE IDEAL WHEN ONE CAN:
+//      (1) LOG INTO CRNRSTN :: AS ADMIN,
+//      (2) SEARCH FOR LOG SILOS (SEE, $log_silo_key
+//          IN $oCRNRSTN->error_log()), AND
+//      (3) RUNTIME REVIEW ANY OF THESE LOGS
+//          GENERATED BY ANY PAGE ON ANY CRNRSTN ::
+//	        CONFIGURED SERVER ENVIRONMENT THROUGH A
+//          SESSION MANAGED FLOATING DOM WIDGET,
+//          <IFRAME>, OR FULL-SCREEN DEDICATED
+//          BROWSER POP-UP WINDOW REAL-TIME-AJAX
+//          SERVER ACTIVITY MONITOR...WHICH SAID
+//          BROWSER IS SENT AS DISPLAY OUTPUT TO A
+//          PERMANENTLY MOUNTED 32" 6K APPLE RETINA
+//          DISPLAY AT THE OFFICE.
+//
+// DEV NOTE: IN THE HEAT OF CRNRSTN :: LIGHTSABER
+//          DEVELOPMENT, IT IS JUST NOT IDEAL TO HAVE
+//          TO CONSTANTLY BE CHANGING SOME DUMB GLOBAL
+//          CONFIG VALUE WHEN I JUST NEED TO SEE ONE SILLY
+//          ERROR LOG IN SOME OLD...BUT NOW UPDATED (AND
+//          THEREFORE, NOW I WILL BE NEEDING TO UPDATE THE
+//          CONFIG FILE FOR "THAT ONE SPECIFIC ERROR LOG" FROM
+//          YESTERDAY...AGAIN) METHOD.
+//
+// Saturday, November 2, 2023 @ 2250 hrs.
+//
+//
+// HERE ARE SOME LOG SILOS CURRENTLY IN USE
+// IN CRNRSTN :: ERROR_LOG() OUTPUT METHOD
+// CALLS (SOME USES MAY BE COMMENTED OUT):
+// -----
+// $CRNRSTN_log_silo_profile = CRNRSTN_RESOURCE_OPENSOURCE;
+// $CRNRSTN_log_silo_profile = CRNRSTN_BARNEY
+// $CRNRSTN_log_silo_profile = CRNRSTN_BARNEY_FILE;
+// $CRNRSTN_log_silo_profile = CRNRSTN_ELECTRUM;
+// $CRNRSTN_log_silo_profile = CRNRSTN_GABRIEL;
+// $CRNRSTN_log_silo_profile = CRNRSTN_SETTINGS_CRNRSTN;
+// $CRNRSTN_log_silo_profile = CRNRSTN_SETTINGS_WORDPRESS;
+// $CRNRSTN_log_silo_profile = CRNRSTN_DATABASE_CONNECTION;
+// $CRNRSTN_log_silo_profile = CRNRSTN_DATABASE_QUERY;
+// $CRNRSTN_log_silo_profile = CRNRSTN_LOG_NONE;
+//
+// PLEASE NOTE: I HAD TO STOP TRYING TO APPLY INTELLIGENT
+//              AND STRUCTURED CRNRSTN :: LOGGING CODES
+//              TO MY DEVELOPER ERROR LOGS A FEW
+//              YEARS AGO ON ACCOUNT OF THE HEAVY BURDEN
+//              COMMANDED BY TOO MUCH NEW STUFF THAT WAS
+//              STILL IN FLUX, BUT WAS ALSO PARTIALLY OR
+//              EVEN ALMOST 100% ROLLED OUT, MY BRO.
+//
+//              AS BOTH CHANGING THE WHEELS ON A MOVING
+//              CAR AND EXPECTING TOP TIER MULTI-CLASS
+//              RACING PIT STOP PERFORMANCE WITH THE
+//              HAPPY IMSA OFFICIAL STANDING JUST RIGHT
+//              THERE ARE...OR SHOULD BE CONSIDERED TO
+//              BE...MUTUALLY EXCLUSIVE; AS I AM
+//              ONE PERSON...
+//
+//              ...WELL, I'LL JUST USE A GLOBALLY DEFINED
+//              INTEGER, CRNRSTN_SETTINGS_CRNRSTN, FOR ALL
+//              $oCRNRSTN->error_log() CALLS atm, AND WE
+//              CAN STRENGTHEN THE INTERNAL LOG SILO
+//              (EFFECTIVELY "ZONE REPORTING") OF CRNRSTN ::
+//              AT ANOTHER TIME.
+//
+//              Saturday, December 2, 2023 @ 2205 hrs.
+
+/**
+ * $CRNRSTN_log_silo_profile  	[PLEASE NOTE THAT CRNRSTN :: LOGGING IS CURRENTLY DOWN AND/OR GOING THROUGH LIGHTSABER ON-BOARDING. 	// Tuesday, December 12, 2023 @ 1911 hrs.]
+ * DESCRIPTION :: To limit ALL error log trace activity across the entire application to
+ *                hand selected CRNRSTN error log silo key(s), include the desired key(s) within a pipe
+ *                delimited string to the CRNRSTN :: constructor as the $CRNRSTN_log_silo_profile
+ *                parameter. Only the provided key(s)? will be processed. If an exclusion profile for
+ *                CRNRSTN :: error log silo output is desired, prefix any log silo key with '~' in order
+ *                to exclude that key from error log trace output across the entire application.
+ *
+ *                When critical areas of an application need to be monitored in the background for
+ *                exception error log trace or bubbled to the surface during real-time development and QA,
+ *                CRNRSTN :: has a properly robust error_log() method which allows for the
+ *                strategic placement of "meta-data rich" application run-time log trace comments
+ *                throughout the code base. Due to the limitations of reviewing error logs via file
+ *                traversal within a terminal, it can be desired to effectively trim back error log
+ *                trace output from all areas of an application which are NOT under review. This would
+ *                leave error log trace data from the area(s) of interest front and center for more
+ *                ready review through a terminal, for example. Enter stage left...CRNRSTN :: Log Silos.
+ *                By passing, as a parameter, a relevant-to-the-purpose-at-hand key at the end of each
+ *                invocation of the $oCRNRSTN->error_log() method (such as, e.g., 'USER_SIGNIN' for
+ *                all error log trace relevant to user login use cases within an application), one can
+ *                effectively drive the logging trace profile of the entire application from the
+ *                CRNRSTN :: constructor and/or any method within CRNRSTN :: (such as
+ *                $oCRNRSTN->get_error_log_trace()) which exposes log trace data by including just
+ *                the silo key(s) of interest...or excluding via prefix of a '~' silo key(s) from
+ *                perhaps more verbose sections of the application which effectively bloat the error
+ *                log trace data and are cumbersome to dig through in order to find the relatively
+ *                scant trace data currently under investigation.
+ *
+ * @var integer
+ */
+$CRNRSTN_log_silo_profile = CRNRSTN_LOG_ALL;
+
+/**
+ * $file_mod_config_reset
+ *
+ * WHERE,
+ *     public function __construct(
+ *                                  $config_filepath,
+ *                                  $CRNRSTN_config_salt,
+ *                                  $CRNRSTN_debug_mode = 0,
+ *                                  $PHPMAILER_debug_mode = 0,
+ *                                  $CRNRSTN_log_silo_profile = CRNRSTN_LOG_ALL,
+ *                                  $file_mod_config_reset = true
+ *                                )
+ *
+ * SEE $file_mod_config_reset (true by default) in $oCRNRSTN->__construct() to affect $_SESSION[]-TO-
+ * FILE configuration binding. When set to true, if this config file changes or is modified during an
+ * active session, CRNRSTN :: will perform a complete session rebuild at the next request. This "new"
+ * request will effectively by-pass all application acceleration cache, and it will also result in a
+ * full re-articulation of CRNRSTN :: environmental detection and then a re-acquisition of all
+ * resource definitions and configurations.
+ *
+ * $file_mod_config_reset = true (and if the config file should change), will result in a minor
+ * "1st page load session init" spike to server processing overhead within a sufficiently highly
+ * trafficked environment as the active sessions are rebuilt at next client request. This request
+ * will probably be a browser generated AJAX request with an XHR XML document response supporting the
+ * CRNRSTN :: PSSDTLA OR CRNRSTN :: SSDTLA.
+ *
+ * @var boolean
+ *
+ */
+
+//
+// INSTANTIATE AN INSTANCE OF THE CRNRSTN :: CLASS OBJECT.
+$oCRNRSTN = new crnrstn(__FILE__, $CRNRSTN_config_salt, $CRNRSTN_debug_mode, $PHPMAILER_debug_mode, $CRNRSTN_log_silo_profile);
 
 /*
 REFERENCE OF ERROR LEVEL CONSTANTS
-http://php.net/error-reporting
+https://www.php.net/manual/en/errorfunc.constants.php
 
-The error level constants are always available as part of the PHP core.
-E_ALL             - All errors and warnings (includes E_STRICT as of PHP 6.0.0)
-E_ERROR           - fatal run-time errors
-E_RECOVERABLE_ERROR - almost fatal run-time errors
-E_WARNING         - run-time warnings (non-fatal errors)
-E_PARSE           - compile-time parse errors
-E_NOTICE          - run-time notices (these are warnings which often result
-                    from a bug in your code, but it's possible that it was
-                    intentional (e.g., using an uninitialized variable and
-                    relying on the fact it's automatically initialized to an
-                    empty string)
-E_STRICT          - run-time notices, enable to have PHP suggest changes
-                    to your code which will ensure the best interoperability
-                    and forward compatibility of your code
-E_CORE_ERROR      - fatal errors that occur during PHP's initial startup
-E_CORE_WARNING    - warnings (non-fatal errors) that occur during PHP's
-                    initial startup
-E_COMPILE_ERROR   - fatal compile-time errors
-E_COMPILE_WARNING - compile-time warnings (non-fatal errors)
-E_USER_ERROR      - user-generated error message
-E_USER_WARNING    - user-generated warning message
-E_USER_NOTICE     - user-generated notice message
-E_DEPRECATED      - warn about code that will not work in future versions
-                    of PHP
-E_USER_DEPRECATED - user-generated deprecation warnings
+The constants below are always available as part of the PHP core.
+1	    E_ERROR (int)	            Fatal run-time errors. These indicate errors that
+                                    can not be recovered from, such as a memory
+                                    allocation problem. Execution of the script
+                                    is halted.
+2	    E_WARNING (int)	            Run-time warnings (non-fatal errors). Execution
+                                    of the script is not halted.
+4	    E_PARSE (int)	            Compile-time parse errors. Parse errors should
+                                    only be generated by the parser.
+8	    E_NOTICE (int)	            Run-time notices. Indicate that the script
+                                    encountered something that could indicate an error,
+                                    but could also happen in the normal course of
+                                    running a script.
+16	    E_CORE_ERROR (int)	        Fatal errors that occur during PHP's initial
+                                    startup. This is like an E_ERROR, except it is
+                                    generated by the core of PHP.
+32	    E_CORE_WARNING (int)	    Warnings (non-fatal errors) that occur during PHP's
+                                    initial startup. This is like an E_WARNING, except
+                                    it is generated by the core of PHP.
+64	    E_COMPILE_ERROR (int)	    Fatal compile-time errors. This is like an E_ERROR,
+                                    except it is generated by the Zend Scripting Engine.
+128	    E_COMPILE_WARNING (int)	    Compile-time warnings (non-fatal errors). This is
+                                    like an E_WARNING, except it is generated by the
+                                    Zend Scripting Engine.
+256	    E_USER_ERROR (int)	        User-generated error message. This is like an E_ERROR,
+                                    except it is generated in PHP code by using the PHP
+                                    function trigger_error().
+512	    E_USER_WARNING (int)	    User-generated warning message. This is like an
+                                    E_WARNING, except it is generated in PHP code by using
+                                    the PHP function trigger_error().
+1024	E_USER_NOTICE (int)	        User-generated notice message. This is like an E_NOTICE,
+                                    except it is generated in PHP code by using the PHP
+                                    function trigger_error().
+2048	E_STRICT (int)	            Enable to have PHP suggest changes to your code which
+                                    will ensure the best interoperability and forward
+                                    compatibility of your code.
+4096	E_RECOVERABLE_ERROR (int)	Catchable fatal error. It indicates that a probably
+                                    dangerous error occurred, but did not leave the Engine
+                                    in an unstable state. If the error is not caught by a
+                                    user defined handle (see also set_error_handler()), the
+                                    application aborts as it was an E_ERROR.
+8192	E_DEPRECATED (int)	        Run-time notices. Enable this to receive warnings about
+                                    code that will not work in future versions.
+16384	E_USER_DEPRECATED (int)	    User-generated warning message. This is like an
+                                    E_DEPRECATED, except it is generated in PHP code by
+                                    using the PHP function trigger_error().
+32767	E_ALL (int)	                All errors, warnings, and notices.
 
 Common Values for error reporting:
   	E_ALL (Show all errors, warnings and notices including coding standards.)
@@ -241,87 +362,101 @@ Production Value: E_ALL & ~E_DEPRECATED & ~E_STRICT
 
 */
 
-/*
+/**
  * $oCRNRSTN->config_add_environment()
- * DESCRIPTION :: Key an environment to enable CRNRSTN :: detection and resource configuration.
+ * DESCRIPTION :: Define a server environment to CRNRSTN :: by providing a custom key. This value  will be used
+ *  			  throughout the CRNRSTN :: configuration file to support environmental detection and resource configuration.
  *
  * @param   string $env_key is a custom user-defined value representing a specific environment within
- * which this application will be running (such as 'localhost_PC' or 'PREPROD-02-AKAMAI') and which key
- * will be used throughout this configuration process.
+ *                 which this application will be running (such as 'localhost_PC' or 'PREPROD-02-AKAMAI')
+ *                 and which key will be used throughout this configuration process.
  *
- * @param error level constant integer(s) profiles $errorReporting will allow for configuration
- * of the error reporting profile for the specified application development/hosting environment.
+ * @param   integer $debug_mode_override
+ *                  DESCRIPTION :: The master debug mode control variable for CRNRSTN ::
+ *                  OPTIONS ::
+ *                      CRNRSTN_DEBUG_OFF                                       [0]
+ *                      CRNRSTN_DEBUG_NATIVE_ERR_LOG                            [1]
+ *                      CRNRSTN_DEBUG_AGGREGATION_ON                            [2]
+ *
+ * @param   integer error level constant integer(s) profiles $errorReporting will allow for configuration
+ *                  of the error reporting profile for the specified application development/hosting environment.
  *
  * @param   integer $system_html_comments_mode manages the content format of HTML and TEXT
- * comments in CRNRSTN :: system output. The system predefined integer constant options for
- * this include:
- *      CRNRSTN_HTML_COMMENTS_NONE (no comments)
- *      CRNRSTN_HTML_COMMENTS_SILENT_GOLD (alias of CRNRSTN_HTML_COMMENTS_NONE)
- *      CRNRSTN_HTML_COMMENTS_CDN_STABILITY_CONTROL_ENABLED (no timestamps in comments)
- *      CRNRSTN_HTML_COMMENTS_ENLARGED_PHYLACTERIES (alias of CRNRSTN_HTML_COMMENTS_FULL)
- *      CRNRSTN_HTML_COMMENTS_FULL (this is the default)
+ *                  comments in CRNRSTN :: system output. The system predefined integer constant options for
+ *                  this will include:
+ *                      CRNRSTN_HTML_COMMENTS_NONE                              (no comments)
+ *                      CRNRSTN_HTML_COMMENTS_SILENT_GOLD                       (alias of CRNRSTN_HTML_COMMENTS_NONE)
+ *                      CRNRSTN_HTML_COMMENTS_CDN_STABILITY_CONTROL_ENABLED     (no timestamps in comments)
+ *                      CRNRSTN_HTML_COMMENTS_ENLARGED_PHYLACTERIES             (alias of CRNRSTN_HTML_COMMENTS_FULL)
+ *                      CRNRSTN_HTML_COMMENTS_FULL                              (this is the default)
  *
- *      Thursday September 7, 2023 @ 0643 hrs
+ *                  Thursday September 7, 2023 @ 0643 hrs.
  *
- * @return	boolean TRUE or FALSE
+ * EXAMPLE ::
+ *              $oCRNRSTN->config_add_environment('LOCALHOST_PC', E_ALL);                   // TOSHIBA M100 [eVifweb, HARDWARE (XAMPP/XP PRO, SP2) CIRCA 2005] :: RADIOHEAD LAPTOP.
+ *              NOTE: E_ALL will bubble up all errors, warnings, and notices (including coding standards) from the
+ *                    server environment...which said output can then be handled in accordance with the error handling
+ *                    profile as is configured in CRNRSTN :: for the running environment.
  *
- * Example ::
- * $oCRNRSTN->config_add_environment('LOCALHOST_PC', E_ALL);    // TOSHIBA M100 [eVifweb, HARDWARE (XAMPP/XP PRO, SP3) CIRCA 2005] :: RADIOHEAD.
- * NOTE: E_ALL will bubble up all errors, warnings and notices (including coding standards) from the
- * server environment...which said output can then be handled in accordance with the error handling
- * profile as is configured in CRNRSTN :: for the running environment.
+ *              $system_html_comments_mode HAS BEEN IMPLEMENTED, BUT IT IS NOT YET TESTED. Thursday September 7, 2023 @ 0736 hrs.
+ *              TODO :: REMOVE THIS TODO WHEN ALL OF THE ABOVE $system_html_comments_mode OPTIONS ARE TESTED.
  *
- * $system_html_comments_mode HAS BEEN IMPLEMENTED, BUT IT IS NOT YET TESTED. Thursday September 7, 2023 @ 0736 hrs
- * TODO :: REMOVE THIS TODO WHEN ALL OF THE ABOVE $system_html_comments_mode OPTIONS ARE TESTED.
+ * @return boolean
+ *
  */
-$oCRNRSTN->config_add_environment('BLUEHOST_JONY5', E_ALL & ~E_NOTICE & ~E_STRICT);
-$oCRNRSTN->config_add_environment('BLUEHOST_EVIFWEB', E_ALL & ~E_NOTICE & ~E_STRICT, CRNRSTN_HTML_COMMENTS_NONE);
-$oCRNRSTN->config_add_environment('LOCALHOST_CHAD_MACBOOKPRO', E_ALL);
-$oCRNRSTN->config_add_environment('LOCALHOST_PC_XP', E_ALL);
 
 //
-// ENVIRONMENTAL DETECTION.
+// CRNRSTN :: SERVER ENVIRONMENT KEY AND ERROR PROFILE INITIALIZATION.
+$oCRNRSTN->config_add_environment('BLUEHOST_JONY5', E_ALL & ~E_NOTICE & ~E_STRICT, CRNRSTN_DEBUG_OFF);
+$oCRNRSTN->config_add_environment('BLUEHOST_EVIFWEB', E_ALL & ~E_NOTICE & ~E_STRICT, CRNRSTN_DEBUG_OFF, CRNRSTN_HTML_COMMENTS_NONE);
+$oCRNRSTN->config_add_environment('LOCALHOST_CHAD_MACBOOKPRO', E_ALL, CRNRSTN_DEBUG_OFF);
+$oCRNRSTN->config_add_environment('LOCALHOST_PC', E_ALL);
+
+//
+// CRNRSTN :: SERVER ENVIRONMENT DETECTION.
 $oCRNRSTN->config_detect_environment('BLUEHOST_JONY5', 'SERVER_NAME', 'lightsaber.crnrstn.jony5.com');
 $oCRNRSTN->config_detect_environment('BLUEHOST_EVIFWEB', 'SERVER_NAME', 'lightsaber.crnrstn.evifweb.com');
 $oCRNRSTN->config_detect_environment('LOCALHOST_CHAD_MACBOOKPRO', 'SERVER_NAME', '172.16.225.139', 1);
 
 //
-// ENVIRONMENTAL DETECTION DEMONSTRATION OF CASE REQUIRING MORE THAN ONE (1) $_SERVER[] MATCH TO
-// POSITIVELY DETECT THE RUNNING ENVIRONMENT.
-$oCRNRSTN->config_detect_environment('LOCALHOST_PC_XP', 'SERVER_NAME', '172.16.225.138', 4);
-$oCRNRSTN->config_detect_environment('LOCALHOST_PC_XP', 'SERVER_ADDR', '172.16.225.138', 4);
-$oCRNRSTN->config_detect_environment('LOCALHOST_PC_XP', 'SERVER_PORT', '80', 4);
-$oCRNRSTN->config_detect_environment('LOCALHOST_PC_XP', 'SERVER_PROTOCOL', 'HTTP/1.1', 4);
+// CRNRSTN :: SERVER ENVIRONMENT DETECTION DEMONSTRATION OF CASE REQUIRING
+// MORE THAN ONE (1) $_SERVER[] MATCH TO POSITIVELY DETECT THE RUNNING ENVIRONMENT.
+$oCRNRSTN->config_detect_environment('LOCALHOST_PC', 'SERVER_NAME', 'localhost', 4);                    // TOSHIBA M100 [eVifweb, HARDWARE (XAMPP/XP PRO, SP2) CIRCA 2005] :: RADIOHEAD LAPTOP.
+$oCRNRSTN->config_detect_environment('LOCALHOST_PC', 'SERVER_ADDR', '127.0.0.1', 4);
+$oCRNRSTN->config_detect_environment('LOCALHOST_PC', 'SERVER_PORT', '80', 4);
+$oCRNRSTN->config_detect_environment('LOCALHOST_PC', 'SERVER_PROTOCOL', 'HTTP/1.1', 4);
 
 /*
 //
 // THE CRNRSTN :: RESOURCE AUTHORIZATION PROFILE SETS A DEFAULT
-// DATA HANDLNG BEHAVIOR FOR DATA THAT IS RECEIVED INTO THE SYSTEM
-// THROUGH THE USE OF CERTAIN METHODS. THIS HAS EFFECT, FOR
-// EXAMPLE, WITH THE FOLLOWING METHODS:
+// DATA HANDLING BEHAVIOR FOR DATA THAT IS RECEIVED INTO THE SYSTEM
+// THROUGH THE USE OF CERTAIN METHODS. THIS HAS EFFECT,...I.E.,
+// WITH THE FOLLOWING METHODS:
 //      - $oCRNRSTN->config_add_resource(),
-//      - $oCRNRSTN->add_resource(), 
-//      - $oCRNRSTN->get_resource_count(), AND
-//      - $oCRNRSTN->get_resource()
+//      - $oCRNRSTN->add_resource(),
+//      - $oCRNRSTN->get_resource_count(),
+//      - $oCRNRSTN->isset_resource(), AND
+//      - $oCRNRSTN->get_resource().
 //
 // FOR AFFECTING DATA HANDLING POLICES OF THE CRNRSTN :: MULTI-
-// CHANNEL DECOUPLED DATA OBJECT (DDO) SERVICES LAYER.
-CRNRSTN :: RESOURCE AUTHORIZATION PROFILE INTEGER CONSTANTS.
------
-CRNRSTN_AUTHORIZE_ALL
-CRNRSTN_AUTHORIZE_GET
-CRNRSTN_AUTHORIZE_POST
-CRNRSTN_AUTHORIZE_COOKIE
-CRNRSTN_AUTHORIZE_SESSION
-CRNRSTN_AUTHORIZE_DATABASE
-CRNRSTN_AUTHORIZE_SSDTLA
-CRNRSTN_AUTHORIZE_PSSDTLA
-CRNRSTN_AUTHORIZE_RUNTIME
-CRNRSTN_AUTHORIZE_SOAP
-CRNRSTN_AUTHORIZE_FILE
-
-FOR CRNRSTN :: CHANNEL CONFIGURATONS,
-PLEASE SEE $oCRNRSTN->get_channel_config(CRNRSTN_AUTHORIZE_SOAP);
+// CHANNEL DECOUPLED DATA OBJECT (MC-DDO) SERVICES LAYER, HERE
+// ARE THE CRNRSTN :: RESOURCE AUTHORIZATION PROFILE
+// INTEGER CONSTANTS.
+// -----
+// CRNRSTN_AUTHORIZE_ALL
+// CRNRSTN_AUTHORIZE_GET
+// CRNRSTN_AUTHORIZE_POST
+// CRNRSTN_AUTHORIZE_COOKIE
+// CRNRSTN_AUTHORIZE_SESSION
+// CRNRSTN_AUTHORIZE_DATABASE
+// CRNRSTN_AUTHORIZE_SSDTLA
+// CRNRSTN_AUTHORIZE_PSSDTLA
+// CRNRSTN_AUTHORIZE_RUNTIME
+// CRNRSTN_AUTHORIZE_SOAP
+// CRNRSTN_AUTHORIZE_FILE
+//
+// FOR CRNRSTN :: CHANNEL CONFIGURATIONS,
+// PLEASE SEE, E.G., $oCRNRSTN->get_channel_config(CRNRSTN_AUTHORIZE_SOAP);
 
 */
 $oCRNRSTN->config_data_authorization_profile(CRNRSTN_RESOURCE_ALL, CRNRSTN_AUTHORIZE_RUNTIME);
@@ -340,27 +475,27 @@ $oCRNRSTN->config_load_system_settings(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_c
 
 //
 // MEMORY USE MANAGEMENT.
-// CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (DDO) SERVICES
+// CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) SERVICES
 // LAYER INITIALIZATION STACK FOR APPLICATION ACCELERATION AND THE
 // ESTABLISHMENT OF DATA HANDLING PROFILE PERFORMANCE BOUNDARIES.
 //
-// NEED CRNRSTN :: MULTI-CHANNEL CONFIGURATION INFO?
-// PLEASE SEE $oCRNRSTN->get_channel_config(CRNRSTN_CHANNEL_SOAP);
+// NEED CRNRSTN :: MC-DDO INFO?
+// PLEASE SEE, E.G., $oCRNRSTN->get_channel_config(CRNRSTN_CHANNEL_SOAP);
 //
-// NEED CRNRSTN :: MULTI-CHANNEL CHANNEL PERFORMANCE REPORTING?
-// PLEASE SEE $oCRNRSTN->channel_report($channel_constant, $report_id);                  // WHERE, $channel_constant = CRNRSTN_CHANNEL_SOAP AND $report_id = (int) 0, 1, 2, 3, 4, OR 5;
-// PLEASE SEE $oCRNRSTN->channel_report($channel_constant_ARRAY, $report_id_ARRAY);      // WHERE, $channel_constant_ARRRAY = array(CRNRSTN_CHANNEL_GET, CRNRSTN_CHANNEL_POST, CRNRSTN_CHANNEL_SOAP) AND $report_id = array(0, 1, 2, 5)
-// TRY, $oCRNRSTN->lightweight_page_return($oCRNRSTN->channel_report($channel_ARRAY, $report_id_ARRAY));
-$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_GET, '2 MB', -1);                    // INCLUDES CRNRSTN :: PLAID $_GET[] DATA FOR REPORTING.
-$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_POST, $oCRNRSTN->file_upload_max_size(false), -1, false);
-$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_COOKIE, '2 MB', 300, false);
-$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_SESSION, '2 MB', 12);                // CRNRSTN :: PLAID ACTIVE CHANNEL.
-$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_DATABASE, -1, -1, false);
-$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_SSDTLA, -1, 60, false);
-$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_PSSDTLA, -1, 60, false);             // NOTE: THIS WILL CRASH THE CRNRSTN :: PSSDTLA RIGHT NOW.
-$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_RUNTIME, -1, -1);                    // CRNRSTN :: PLAID ACTIVE CHANNEL.
-$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_SOAP, 65535, -1, false);             // 65,535 IS THE LARGEST NUMBER THAT CAN BE HELD IN A 16 BIT UNSIGNED INTEGER.
-$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_FILE, -1, -1, false);
+// NEED CRNRSTN :: MC-DDO PERFORMANCE REPORTING?
+//      PLEASE SEE, $oCRNRSTN->channel_report($channel_constant, $report_id);                                            // WHERE, $channel_constant = CRNRSTN_CHANNEL_SOAP AND $report_id = (int) 0, 1, 2, 3, 4, OR 5;
+//      PLEASE SEE, $oCRNRSTN->channel_report($channel_constant_ARRAY, $report_id_ARRAY);                                // WHERE, $channel_constant_ARRAY = array(CRNRSTN_CHANNEL_GET, CRNRSTN_CHANNEL_POST, CRNRSTN_CHANNEL_SOAP) AND $report_id = array(0, 1, 2, 5)
+//      TRY, $oCRNRSTN->lightweight_page_return($oCRNRSTN->channel_report($channel_ARRAY, $report_id_ARRAY));
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_GET, '2 MB', -1);      // INCLUDES CRNRSTN :: PLAID $_GET[] DATA FOR REPORTING.
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_POST, $oCRNRSTN->file_upload_max_size(false), -1);
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_COOKIE, '2 MB', 300);
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_SESSION, '2 MB', 12);  // CRNRSTN :: PLAID ACTIVE CHANNEL.
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_DATABASE, -1, -1);
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_SSDTLA, -1, 60);
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_PSSDTLA, -1, 60);
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_RUNTIME, -1, -1);      // CRNRSTN :: PLAID ACTIVE CHANNEL.
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_SOAP, 65535, -1);      // 65,535 IS THE LARGEST NUMBER THAT CAN BE HELD IN A 16 BIT UNSIGNED INTEGER.
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_FILE, -1, -1);
 
 /**
  * $oCRNRSTN->config_init_http()
@@ -379,18 +514,18 @@ $oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_FILE, -1, -
 $oCRNRSTN->config_init_http('BLUEHOST_JONY5', 'https://lightsaber.crnrstn.jony5.com/', CRNRSTN_ROOT, '_crnrstn');
 $oCRNRSTN->config_init_http('BLUEHOST_EVIFWEB', 'https://lightsaber.crnrstn.evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
 $oCRNRSTN->config_init_http('LOCALHOST_CHAD_MACBOOKPRO', 'http://172.16.225.139/evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
-$oCRNRSTN->config_init_http('LOCALHOST_PC_XP', 'http://172.16.225.138/evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
+$oCRNRSTN->config_init_http('LOCALHOST_PC', 'http://172.16.225.138/evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
 
 /**
  * $oCRNRSTN->config_init_sys_resp_return_profile($env_key = CRNRSTN_RESOURCE_ALL, $system_asset_mode = CRNRSTN_ASSET_MODE_BASE64)
  * DESCRIPTION :: Configure the HTML email image handling profile for CRNRSTN :: system notifications.
  * OPTIONS ::
- * CRNRSTN_ASSET_MODE_PNG:      ALL CRNRSTN :: system images load the PNG versions of the file.
- * CRNRSTN_ASSET_MODE_JPEG:     ALL CRNRSTN :: system images load the JPG version of the file.
- * CRNRSTN_ASSET_MODE_BASE64:   ALL CRNRSTN :: system images and all CRNRSTN :: integrated 3rd
- *                              party JS Frameworks and CSS Frameworks load as embedded BASE64,
- *                              SCRIPT, and STYLE tags...respectively...within the HTML. This
- *                              makes mobile and tablet FAAAASST!
+ *    CRNRSTN_ASSET_MODE_PNG:      All CRNRSTN :: system images load the PNG versions of the file.
+ *    CRNRSTN_ASSET_MODE_JPEG:     All CRNRSTN :: system images load the JPG version of the file.
+ *    CRNRSTN_ASSET_MODE_BASE64:   All CRNRSTN :: system images and all CRNRSTN :: integrated 3rd
+ *                                 party JS Frameworks and CSS Frameworks load as embedded BASE64,
+ *                                 SCRIPT, and STYLE tags...respectively...within the HTML. This
+ *                                 makes mobile and tablet FAAAASST!
  *
  * NOTE: Please note that any one-off system image method call within the application can
  * override these global configuration asset mode settings for BASE64, PNG, JPEG, or GIF
@@ -403,11 +538,14 @@ $oCRNRSTN->config_init_sys_resp_return_profile(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASS
 
 //
 // CRNRSTN :: SYSTEM INTEGRATIONS.
-// PROVIDE SETTING OVERRIDES FOR CRNRSTN :: DISK VOLUME MANAGEMENT TO
-// AFFECT LOCAL STORAGE OF CRNRSTN :: CREATED FILES CONTAINING
-// ASSET META AND BASE64 ENCODED VERSIONS OF WEBSITE INTEGRATION FILES
-// THAT ARE SEAMLESSLY MANAGED BY CRNRSTN ::
+// PROVIDE SETTING OVERRIDES FOR CRNRSTN :: DISK VOLUME MANAGEMENT
+// IN ORDER TO AFFECT PERFORMANCE OF LOCAL STORAGE FILE WRITE FOR CRNRSTN ::
 //
+// PHP FILES CONTAINING BASE64 SYSTEM META, BASE64 ENCODED VERSIONS OF WEBSITE INTEGRATION FILES,
+// AND BASIC APPLICATION CACHE FILES THAT ARE SEAMLESSLY MANAGED BY CRNRSTN :: ARE SOME
+// RESOURCES THAT WOULD BE AFFECTED.
+//
+// Saturday, December 2, 2023 @ 2333 hrs.
 // config_init_file_system_integrations(CRNRSTN_RESOURCE_ALL, $disk_write_authorization = true, $disk_percent_full_warning_override = 70, $disk_percent_full_max_override = 80);
 $oCRNRSTN->config_init_file_system_integrations(CRNRSTN_RESOURCE_ALL, true);
 
@@ -431,7 +569,7 @@ returned to this authenticated user, alone.
 $oCRNRSTN->config_init_js_css_minimization('BLUEHOST_JONY5');
 $oCRNRSTN->config_init_js_css_minimization('BLUEHOST_EVIFWEB', false);
 $oCRNRSTN->config_init_js_css_minimization('LOCALHOST_CHAD_MACBOOKPRO', false);
-$oCRNRSTN->config_init_js_css_minimization('LOCALHOST_PC_XP', false);
+$oCRNRSTN->config_init_js_css_minimization('LOCALHOST_PC', false);
 
 //
 // CRNRSTN :: SYSTEM ASSET MAPPING
@@ -481,11 +619,44 @@ $oCRNRSTN->config_load_system_overrides(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_
 
 $tmp_channel_ARRAY = $oCRNRSTN->get_channel_config('soap');
 
-$oCRNRSTN->destruct_output .= '<pre><code>[' . $oCRNRSTN->return_micro_time()  . '] [lnum ' .  __LINE__ . '] [rtime ' . $oCRNRSTN->wall_time() . '] [file ' . __FILE__  . '] 
+$oCRNRSTN->destruct_output .= '<pre><code>[' . $oCRNRSTN->return_micro_time()  . '] [lnum ' .  __LINE__ . '] [rtime ' . $oCRNRSTN->wall_time() . '] [file ' . __FILE__  . '] config file
 C<span style="color:#F90000;">R</span>NRSTN :: MULTI-CHANNEL [' . $tmp_channel_ARRAY['DESCRIPTION'] . '] PROFILE <br><br>// # # C # R # N # R # S # T # N # : : # # # #<br><br>' . print_r($tmp_channel_ARRAY, true) . ']</code></pre>';
 
-error_log(__LINE__ . ' config STOPPED AFTER [config_load_system_overrides()] [rtime ' . $oCRNRSTN->wall_time() . '].');
-die();
+
+/**
+ * $oCRNRSTN->config_custom_error_handler()
+ * DESCRIPTION :: Customize the error handling profile for CRNRSTN :: to absorb between 0% and 100% of
+ *  all PHP error/throws from E_ERROR to E_USER_DEPRECATED and everything in between. This profile will
+ *  overwrite (on a per environment basis) whatever was established through the call of
+ *  $oCRNRSTN->init_CRNRSTN_errHandle_embryonic(), where the error handling during the initialization or embryonic
+ *  stage of CRNRSTN :: would have been configured.
+ *
+ * @param   string $env_key is a custom user-defined value representing a specific environment within
+ * which this application will be running (such as 'localhost_PC' or 'PREPROD-02-AKAMAI') and which key
+ * will be used throughout this configuration process.
+ *
+ * @param   boolean $isActive where value of TRUE (or NULL) will give CRNRSTN :: and the current configuration of
+ * its error log trace handling jurisdiction over all levels of error, from E_ERROR to E_USER_DEPRECATED. This
+ * effectively makes everything an exception. Passing value of false indicates that CRNRSTN :: is to only handle
+ * properly thrown exceptions. In this case, all error levels will be handled by PHP natively.
+ *
+ * @param   int $err_reporting_profile error level constant integer(s) profile data will allow for configuration
+ * of the error level constants that should (or should not) be handled by native PHP...and, therefore
+ * will define...with specificity...the jurisdiction of CRNRSTN :: with respect to throw/error handling.
+ * Fine tune what CRNRSTN :: error log trace and exception handling will process by providing the desired profile
+ * of error level integer constants as this parameter. Feel free to use bit flips, and not (&amp; ~), etc.
+ *
+ * @return	boolean TRUE
+ *
+ * Example ::
+ * $oCRNRSTN->config_custom_error_handler('LOCALHOST_PC', true, ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
+ * The above gives E_NOTICE, E_STRICT, AND E_DEPRECATED throws to native PHP for handling. All else
+ * will go through CRNRSTN :: and can be sent as CRNRSTN :: system EMAIL notification if desired.
+ */
+$oCRNRSTN->config_custom_error_handler('BLUEHOST_JONY5');
+$oCRNRSTN->config_custom_error_handler('BLUEHOST_EVIFWEB');
+$oCRNRSTN->config_custom_error_handler('LOCALHOST_CHAD_MACBOOKPRO', false);
+$oCRNRSTN->config_custom_error_handler('LOCALHOST_PC');
 
 //
 // FLAGS FOR USER INTERFACE THEME STYLES.
@@ -536,41 +707,6 @@ $oCRNRSTN->config_include_system_resources(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . 
 //
 // INITIALIZE SUPPORT FOR WORDPRESS CONFIGURATION(S)
 $oCRNRSTN->config_include_wordpress(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.wp.secure/_crnrstn.wp_config.inc.php');
-
-/**
- * $oCRNRSTN->config_set_crnrstn_as_err_handler()
- * DESCRIPTION :: Customize the error handling profile for CRNRSTN :: to absorb between 0% and 100% of
- *  all PHP error/throws from E_ERROR to E_USER_DEPRECATED and everything in between. This profile will
- *  overwrite (on a per environment basis) whatever was established through the call of
- *  $oCRNRSTN->init_CRNRSTN_errHandle_embryonic(), where the error handling during the initialization or embryonic
- *  stage of CRNRSTN :: would have been configured.
- *
- * @param   string $env_key is a custom user-defined value representing a specific environment within
- * which this application will be running (such as 'localhost_PC' or 'PREPROD-02-AKAMAI') and which key
- * will be used throughout this configuration process.
- *
- * @param   boolean $isActive where value of TRUE (or NULL) will give CRNRSTN :: and the current configuration of
- * its error log trace handling jurisdiction over all levels of error, from E_ERROR to E_USER_DEPRECATED. This
- * effectively makes everything an exception. Passing value of false indicates that CRNRSTN :: is to only handle
- * properly thrown exceptions. In this case, all error levels will be handled by PHP natively.
- *
- * @param   int $error_types_profile error level constant integer(s) profile data will allow for configuration
- * of the error level constants that should (or should not) be handled by native PHP...and, therefore
- * will define...with specificity...the jurisdiction of CRNRSTN :: with respect to throw/error handling.
- * Fine tune what CRNRSTN :: error log trace and exception handling will process by providing the desired profile
- * of error level integer constants as this parameter. Feel free to use bit flips, and not (&amp; ~), etc.
- *
- * @return	boolean TRUE
- *
- * Example ::
- * $oCRNRSTN->config_set_crnrstn_as_err_handler('LOCALHOST_PC', true, ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
- * The above gives E_NOTICE, E_STRICT, AND E_DEPRECATED throws to native PHP for handling. All else
- * will go through CRNRSTN :: and can be sent as CRNRSTN :: system EMAIL notification if desired.
- */
-$oCRNRSTN->config_set_crnrstn_as_err_handler('BLUEHOST_JONY5');
-$oCRNRSTN->config_set_crnrstn_as_err_handler('BLUEHOST_EVIFWEB');
-$oCRNRSTN->config_set_crnrstn_as_err_handler('LOCALHOST_CHAD_MACBOOKPRO', false);
-$oCRNRSTN->config_set_crnrstn_as_err_handler('LOCALHOST_PC_XP');
 
 /*
 CRNRSTN_ASSET_MAPPING
@@ -638,14 +774,35 @@ CRNRSTN_ASSET_MAPPING_PROXY
  * Example ::
  * $oCRNRSTN->config_init_logging('BLUEHOST', CRNRSTN_LOG_SCREEN & CRNRSTN_LOG_DEFAULT & CRNRSTN_LOG_FILE_FTP & CRNRSTN_LOG_SCREEN,'email01@email.com,email02@email.com||/var/log/_dev_debug_output/custom_error.log|','CRNRSTN::INTEGRATIONS|||');
  */
+//
+// CRNRSTN :: SOAP SERVICES LOGGING SERVICES LAYER.
+// INTEGER CONSTANTS TO AFFECT SYSTEM LOGGING OUTPUT PROFILE.
+// -----
+// CRNRSTN_LOG_SCREEN
+// CRNRSTN_LOG_SCREEN_HTML
+// CRNRSTN_LOG_SCREEN_TEXT
+// CRNRSTN_LOG_SCREEN_HTML_HIDDEN
+// CRNRSTN_LOG_EMAIL
+// CRNRSTN_LOG_EMAIL_PROXY
+// CRNRSTN_LOG_FILE
+// CRNRSTN_CHANNEL_FILE
+// CRNRSTN_LOG_FILE_FTP
+// CRNRSTN_LOG_DEFAULT
+// CRNRSTN_CHANNEL_DATABASE
+// CRNRSTN_CHANNEL_SSDTLA
+// CRNRSTN_CHANNEL_PSSDTLA
+// CRNRSTN_CHANNEL_RUNTIME
+// CRNRSTN_CHANNEL_SOAP
+//
+// Saturday, December 2, 2023 @ 2359 hrs.
 $oCRNRSTN->config_init_logging('BLUEHOST_JONY5', CRNRSTN_LOG_DEFAULT,'CRNRSTN::INTEGRATIONS');
 $oCRNRSTN->config_init_logging('BLUEHOST_EVIFWEB', CRNRSTN_LOG_DEFAULT,'CRNRSTN::INTEGRATIONS');
-//$oCRNRSTN->config_init_logging('LOCALHOST_MACBOOKTERMINAL',CRNRSTN_LOG_EMAIL,'j5@jony5.com, c00000101@gmail.com');
-//$oCRNRSTN->config_init_logging('LOCALHOST_MACBOOKTERMINAL',CRNRSTN_LOG_EMAIL,'CRNRSTN::INTEGRATIONS');
+//$oCRNRSTN->config_init_logging('LOCALHOST_MACBOOKTERMINAL', CRNRSTN_LOG_EMAIL, 'j5@jony5.com, j00000101@gmail.com');  // SHOULD GRACEFULLY REQUIRE (OR BECOME) THE SYSTEM ADMIN EMAIL AUTHENTICATION LOOP TO BE CHECKED.
+//$oCRNRSTN->config_init_logging('LOCALHOST_MACBOOKTERMINAL', CRNRSTN_LOG_EMAIL, 'CRNRSTN::INTEGRATIONS');
 //$oCRNRSTN->config_init_logging('LOCALHOST_MACBOOKTERMINAL', CRNRSTN_LOG_FILE, 'CRNRSTN::INTEGRATIONS');
 //$oCRNRSTN->config_init_logging('LOCALHOST_MACBOOKTERMINAL', CRNRSTN_LOG_SCREEN);
-//$oCRNRSTN->config_init_logging('LOCALHOST_PC_XP', CRNRSTN_LOG_SCREEN_HTML);
-$oCRNRSTN->config_init_logging('LOCALHOST_PC_XP', CRNRSTN_LOG_DEFAULT);
+//$oCRNRSTN->config_init_logging('LOCALHOST_PC', CRNRSTN_LOG_SCREEN_HTML);
+$oCRNRSTN->config_init_logging('LOCALHOST_PC', CRNRSTN_LOG_DEFAULT);
 $oCRNRSTN->config_init_logging('LOCALHOST_CHAD_MACBOOKPRO', CRNRSTN_LOG_DEFAULT);
 
 //$oCRNRSTN->config_init_logging('LOCALHOST_MACBOOKTERMINAL',CRNRSTN_LOG_SCREEN_TEXT);

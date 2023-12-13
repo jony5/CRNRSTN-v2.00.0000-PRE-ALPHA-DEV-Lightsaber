@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -145,7 +145,7 @@
 #
 #  CLASS :: crnrstn_log
 #  VERSION :: 1.00.0000
-#  DATE :: Monday, August 31, 2020 @ 0246hrs
+#  DATE :: Monday, August 31, 2020 @ 0246hrs.
 #  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
 #  URI :: 
 #  DESCRIPTION ::
@@ -153,33 +153,70 @@
 #
 class crnrstn_log {
 
-    private static $oCRNRSTN_n;
-    protected $watch_key;
-    protected $transaction_time;
-    protected $silo_key_profile;
-    protected $run_time;
-    protected $run_file;
-    protected $class_method;
-    protected $line_number;
-    protected $message;
-    protected $is_devoted_to_destruction = false;
-    protected $log_toTextStr_processed_ARRAY = array();
+    public $oCRNRSTN;
 
-    public function __construct($oCRNRSTN_USR, $transactionTime, $log_silo_key_profile = CRNRSTN_LOG_ALL){
+    private static $serial;
+    private static $watch_key;
+    private static $transaction_time;
+    private static $silo_profile_ARRAY = array();
+    private static $run_time;
+    private static $run_file;
+    private static $class_method;
+    private static $line_number;
+    private static $message;
+    private static $is_devoted_to_destruction = false;
+    private static $log_toTextStr_processed_ARRAY = array();
 
-        # $oCRNRSTN_n can be $oCRNRSTN or $oCRNRSTN_ENV or $oCRNRSTN_USR
-        self::$oCRNRSTN_n = $oCRNRSTN_USR;
-        $this->transaction_time = $transactionTime;
-        $this->silo_key_profile = $log_silo_key_profile;
-        $tmp_serial = self::$oCRNRSTN_n->generate_new_key(26);
-        $this->watch_key = $this->transaction_time.$tmp_serial;
-        self::$oCRNRSTN_n->elapsed_delta_time($this->watch_key);
+    public function __construct($oCRNRSTN, $transaction_time, $log_silo_profile = NULL){
+
+        $this->oCRNRSTN = $oCRNRSTN;
+
+        self::$transaction_time = $transaction_time;
+        self::$serial = $this->oCRNRSTN->generate_new_key(64, NULL, true);
+        self::$watch_key = self::$transaction_time . '::' . self::$serial;
+
+        if(!isset($log_silo_profile)){
+
+            self::$silo_profile_ARRAY = array(CRNRSTN_LOG_ALL => CRNRSTN_LOG_ALL);
+
+        }else{
+
+            $tmp_type = $this->oCRNRSTN->gettype($log_silo_profile, CRNRSTN_INTEGER);
+            switch($tmp_type){
+                case CRNRSTN_INT:
+                case CRNRSTN_INTEGER:
+
+                    self::$silo_profile_ARRAY = array($log_silo_profile => 1);
+
+                break;
+                case CRNRSTN_STRING:
+
+                    self::$silo_profile_ARRAY = array($log_silo_profile => 1);
+
+                break;
+                default:
+
+                    self::$silo_profile_ARRAY = array(strval($log_silo_profile) => 1);
+
+                break;
+
+            }
+
+        }
+
+        $this->oCRNRSTN->elapsed_delta_time(self::$watch_key);
 
     }
 
-    public function expireLogData($oCRNRSTN_USR, $ttl){
+    public function serial(){
 
-        if($ttl<0){
+        return self::$serial;
+
+    }
+
+    public function expireLogData($oCRNRSTN, $ttl){
+
+        if($ttl < 0){
 
             $this->__destruct();
 
@@ -187,9 +224,9 @@ class crnrstn_log {
 
             //
             // COMPARE OBJECT WATCH SERIALIZATION TO TTL AND DESTROY IF BEYOND TTL
-            if($oCRNRSTN_USR->elapsed_delta_time($this->watch_key) > (double) $ttl){
+            if($oCRNRSTN->elapsed_delta_time(self::$watch_key) > (double) $ttl){
 
-                $this->is_devoted_to_destruction = true;
+                self::$is_devoted_to_destruction = true;
                 $this->__destruct();
 
             }
@@ -198,18 +235,18 @@ class crnrstn_log {
 
     }
 
-    public function get_siloKeyProfile(){
+    public function return_silo_profile_array(){
 
-        return $this->silo_key_profile;
+        return self::$silo_profile_ARRAY;
 
     }
 
     //public function toTextConversion($addBreakChar=NULL, $line_wrap=145, $isVisTransactionTime=true){
     public function toTextConversion($break_char = NULL, $output_type = 'ERROR_LOG', $line_wrap = 125, $isVisTransactionTime = true){
 
-        if(isset($this->log_toTextStr_processed_ARRAY[$output_type])){
+        if(isset(self::$log_toTextStr_processed_ARRAY[$output_type])){
 
-            return $this->log_toTextStr_processed_ARRAY[$output_type];
+            return self::$log_toTextStr_processed_ARRAY[$output_type];
 
         }else{
 
@@ -336,8 +373,17 @@ class crnrstn_log {
 
                 }
 
-                $oChunkRestrictData = self::$oCRNRSTN_n->chunkPageData($tmp_out_raw, $line_wrap);
+                $oChunkRestrictData = $this->oCRNRSTN->chunkPageData($tmp_out_raw, $line_wrap);
 
+                //
+                // CRNRSTN_LOG_EMAIL, CRNRSTN_LOG_EMAIL_PROXY, CRNRSTN_LOG_FILE, CRNRSTN_LOG_FILE_PROXY,
+                // CRNRSTN_LOG_FILE_FTP, CRNRSTN_LOG_FILE_FTP_PROXY, CRNRSTN_LOG_SCREEN_TEXT, CRNRSTN_LOG_SCREEN,
+                // CRNRSTN_LOG_SCREEN_HTML, CRNRSTN_LOG_SCREEN_HTML_HIDDEN, CRNRSTN_LOG_DEFAULT,
+                // CRNRSTN_LOG_DEFAULT_PROXY, CRNRSTN_LOG_ELECTRUM, CRNRSTN_LOG_ELECTRUM_PROXY, CRNRSTN_LOG_DATABASE,
+                // CRNRSTN_LOG_DATABASE_PROXY, CRNRSTN_LOG_SSDTLA, CRNRSTN_LOG_SSDTLA_PROXY, CRNRSTN_LOG_PSSDTLA,
+                // CRNRSTN_LOG_PSSDTLA_PROXY, CRNRSTN_LOG_SOAP
+                //
+                // Wednesday, December 6, 2023 @ 0201 hrs.
                 switch($output_type){
                     case 'HTML':
 
@@ -375,7 +421,7 @@ class crnrstn_log {
 
             }
 
-            $this->log_toTextStr_processed_ARRAY[$output_type] = $tmp_out_processed;
+            self::$log_toTextStr_processed_ARRAY[$output_type] = $tmp_out_processed;
 
         }
 
@@ -385,21 +431,21 @@ class crnrstn_log {
 
     public function get_transactionTime(){
 
-        return $this->transaction_time;
+        return self::$transaction_time;
 
     }
 
     public function set_runTime($str){
 
-        $this->run_time = $str;
+        self::$run_time = $str;
 
     }
 
     public function get_runTime(){
 
-        if(isset($this->run_time)){
+        if(isset(self::$run_time)){
 
-            return $this->run_time;
+            return self::$run_time;
 
         }else{
 
@@ -413,7 +459,7 @@ class crnrstn_log {
 
         if(isset($str)){
 
-            $this->run_file = $str;
+            self::$run_file = $str;
 
         }
 
@@ -421,9 +467,9 @@ class crnrstn_log {
 
     public function get_runFile(){
 
-        if(isset($this->run_file)){
+        if(isset(self::$run_file)){
 
-            return $this->run_file;
+            return self::$run_file;
 
         }else{
 
@@ -433,20 +479,21 @@ class crnrstn_log {
 
     }
 
-    public function set_classMethod($str=NULL){
+    public function set_classMethod($str = NULL){
 
         if(isset($str)){
 
-            $this->class_method = $str;
+            self::$class_method = $str;
 
         }
+
     }
 
     public function get_classMethod(){
 
-        if(isset($this->class_method)){
+        if(isset(self::$class_method)){
 
-            return $this->class_method;
+            return self::$class_method;
 
         }else{
 
@@ -456,11 +503,11 @@ class crnrstn_log {
 
     }
 
-    public function set_lineNumber($str=NULL){
+    public function set_lineNumber($str = NULL){
 
         if(isset($str)){
 
-            $this->line_number = $str;
+            self::$line_number = $str;
 
         }
 
@@ -468,9 +515,9 @@ class crnrstn_log {
 
     public function get_lineNumber(){
 
-        if(isset($this->line_number)){
+        if(isset(self::$line_number)){
 
-            return $this->line_number;
+            return self::$line_number;
 
         }else{
 
@@ -480,17 +527,17 @@ class crnrstn_log {
 
     }
 
-    public function set_logMsg($str=''){
+    public function set_logMsg($str = ''){
 
-        $this->message = $str;
+        self::$message = $str;
 
     }
 
     public function get_logMsg(){
 
-        if(isset($this->message)){
+        if(isset(self::$message)){
 
-            return $this->message;
+            return self::$message;
 
         }else{
 

@@ -129,7 +129,7 @@ $tmp_str = '/*
 
     -----    
     CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA 
-    OBJECT (DDO) SERVICES LAYER AUTHORIZATION 
+    OBJECT (MC-DDO) SERVICES LAYER AUTHORIZATION 
     PROFILES FOR DATA HANDLING.
     -----
     CRNRSTN_AUTHORIZE_ALL
@@ -155,7 +155,7 @@ $oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: CODE NOTES. crnrstn::', $tmp_theme_styl
 
 $oCRNRSTN->print_r('$this->env_key = $oCRNRSTN->env_key(\'hash\');', 'crnrstn::env_key()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$oCRNRSTN->print_r('$this->config_serial_hash = $oCRNRSTN->get_server_config_serial(\'hash\');', 'crnrstn::get_server_config_serial()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r('self::$config_serial = $oCRNRSTN->get_crnrstn(\'config_serial\');', 'crnrstn::config_serial()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 
 $tmp_str = '$tmp_data_key = \'crnrstn_pssdtl_packet\';
@@ -233,10 +233,10 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 }';
 $oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_system_asset_manager::system_base64_write()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$tmp_str = '$_SESSION[\'CRNRSTN_\' . $this->oCRNRSTN->get_server_config_serial(\'hash\')][\'CRNRSTN_EXCEPTION_PREFIX\'] = __CLASS__ . \'::\' . __METHOD__ . \'() attempted to fopen \' . $tmp_filepath . \' after the write permissions to related to same were first chmod to \' . str_pad($permissions_chmod, \'4\', \'0\', STR_PAD_LEFT) . \'. An attempt to open was again made, but \';
+$tmp_str = '$_SESSION[\'CRNRSTN_\' . $this->oCRNRSTN->get_crnrstn(\'config_serial\')][\'CRNRSTN_EXCEPTION_PREFIX\'] = __CLASS__ . \'::\' . __METHOD__ . \'() attempted to fopen \' . $tmp_filepath . \' after the write permissions to related to same were first chmod to \' . str_pad($permissions_chmod, \'4\', \'0\', STR_PAD_LEFT) . \'. An attempt to open was again made, but \';
 if($resource_file = fopen($tmp_filepath, \'w\')){
 
-    $_SESSION[\'CRNRSTN_\'. $this->oCRNRSTN->get_server_config_serial(\'hash\')][\'CRNRSTN_EXCEPTION_PREFIX\'] = \'\';
+    $_SESSION[\'CRNRSTN_\'. $this->oCRNRSTN->config_serial(\'hash\')][\'CRNRSTN_EXCEPTION_PREFIX\'] = \'\';
 
     fwrite($resource_file, $tmp_data_str_out);
     fclose($resource_file);
@@ -293,7 +293,7 @@ $oCRNRSTN->system_base64_integrate(CRNRSTN_ROOT . '/_crnrstn/demo/common/imgs/j5
 //    <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
 //        <br>// ' . $oCRNRSTN->multi_lang_content_return('PLEASE_ENTER_A_CONFIG_SERIAL') . '
 //        <br>// ' . $oCRNRSTN->multi_lang_content_return('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 141].' . '
-//        <br>$CRNRSTN_config_serial = \'' . $oCRNRSTN->generate_new_key(64, -3) . '\';
+//        <br>$CRNRSTN_config_salt = \'' . $oCRNRSTN->generate_new_key(64, -3) . '\';
 //        <br>// <a href="#"  style="font-family:Courier New, Courier, monospace; color: #0066CC;">' . $oCRNRSTN->multi_lang_content_return('CLICK_HERE') . '</a> to copy the 64 ' . $oCRNRSTN->multi_lang_content_return('TO_COPY_THE_CHAR_SERIAL_TO_CLIPBOARD') . '.
 //        <br>
 //

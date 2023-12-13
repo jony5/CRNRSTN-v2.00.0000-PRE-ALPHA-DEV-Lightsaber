@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -153,13 +153,16 @@
 #
 class crnrstn_logging {
 
+    public $oCRNRSTN;
+    private static $config_serial;
+
     protected $oLog_output_manager;
-    private static $oCRNRSTN_n;
     public $emailDataElements = array();
     public $msg_delivery_status;
 
+    private static $mem_salt;
     protected $oLog_ProfileManager;
-    protected $CRNRSTN_debug_mode = 0;
+    private static $CRNRSTN_debug_mode = 0;
     protected $starttime;
     protected $parent_class;
     public $log_output = '';
@@ -173,22 +176,111 @@ class crnrstn_logging {
     protected $tmp_starttime_ARRAY;
     protected $tmp_precise_timestamp;
 
-    // DO WE EVER TAKE THE DEFAULT HERE? COULD THAT EVER HAPPEN WITHIN THE CURRENT ARCHITECTURE? Wednesday, August 17, 2022 @ 0408 hrs
-    public function __construct($parent_class, $oCRNRSTN = NULL){
+    private static $system_error_message_serialization_ARRAY = array();
+    private static $system_error_message_channel_map_ARRAY = array();
+    private static $system_error_message_queue_ARRAY = array();
+
+    private static $output_profile_ARRAY = array();
+
+    public function __construct($parent_class, $oCRNRSTN){
 
         $log_silo_profile = CRNRSTN_SETTINGS_CRNRSTN;
+        $this->oCRNRSTN = $oCRNRSTN;
 
-        if(isset($oCRNRSTN)){
+        //
+        // A WORKING BUT UNTESTED DATA STRUCTURE
+        // THAT DEMONSTRATES SUPPORT FOR INTEGER
+        // CONSTANT AND BITWISE COMBINATION
+        // DRIVEN CRNRSTN :: LOGGING PROFILES.
+        //
+        // Wednesday, December 6, 2023 @ 0613 hrs.
+        self::$output_profile_ARRAY['OUTPUT_PROFILE'][CRNRSTN_INTEGER] = array(CRNRSTN_LOG_SOAP => CRNRSTN_LOG_SOAP,
+        CRNRSTN_LOG_EMAIL => CRNRSTN_LOG_EMAIL, CRNRSTN_LOG_EMAIL_PROXY => CRNRSTN_LOG_EMAIL_PROXY,
+        CRNRSTN_LOG_FILE => CRNRSTN_LOG_FILE, CRNRSTN_CHANNEL_FILE => CRNRSTN_CHANNEL_FILE,
+        CRNRSTN_LOG_FILE_FTP => CRNRSTN_LOG_FILE_FTP, CRNRSTN_LOG_SCREEN_TEXT => CRNRSTN_LOG_SCREEN_TEXT,
+        CRNRSTN_LOG_SCREEN => CRNRSTN_LOG_SCREEN, CRNRSTN_LOG_SCREEN_HTML => CRNRSTN_LOG_SCREEN_HTML,
+        CRNRSTN_LOG_SCREEN_HTML_HIDDEN => CRNRSTN_LOG_SCREEN_HTML_HIDDEN, CRNRSTN_LOG_DEFAULT => CRNRSTN_LOG_DEFAULT,
+        CRNRSTN_LOG_ELECTRUM => CRNRSTN_LOG_ELECTRUM, CRNRSTN_LOG_DATABASE => CRNRSTN_LOG_DATABASE,
+        CRNRSTN_LOG_SSDTLA => CRNRSTN_LOG_SSDTLA, CRNRSTN_LOG_PSSDTLA => CRNRSTN_LOG_PSSDTLA,
+        CRNRSTN_LOG_EMAIL & CRNRSTN_LOG_DEFAULT => CRNRSTN_LOG_EMAIL & CRNRSTN_LOG_DEFAULT,
+        CRNRSTN_LOG_EMAIL_PROXY & CRNRSTN_LOG_DEFAULT => CRNRSTN_LOG_EMAIL_PROXY & CRNRSTN_LOG_DEFAULT,
+        CRNRSTN_LOG_FILE & CRNRSTN_LOG_DEFAULT => CRNRSTN_LOG_FILE & CRNRSTN_LOG_DEFAULT,
+        CRNRSTN_CHANNEL_FILE & CRNRSTN_LOG_DEFAULT => CRNRSTN_CHANNEL_FILE & CRNRSTN_LOG_DEFAULT,
+        CRNRSTN_LOG_FILE_FTP & CRNRSTN_LOG_DEFAULT => CRNRSTN_LOG_FILE_FTP & CRNRSTN_LOG_DEFAULT,
+        CRNRSTN_LOG_SCREEN_TEXT & CRNRSTN_LOG_DEFAULT => CRNRSTN_LOG_SCREEN_TEXT & CRNRSTN_LOG_DEFAULT,
+        CRNRSTN_LOG_SCREEN & CRNRSTN_LOG_DEFAULT => CRNRSTN_LOG_SCREEN & CRNRSTN_LOG_DEFAULT,
+        CRNRSTN_LOG_SCREEN_HTML & CRNRSTN_LOG_DEFAULT => CRNRSTN_LOG_SCREEN_HTML & CRNRSTN_LOG_DEFAULT,
+        CRNRSTN_LOG_SCREEN_HTML_HIDDEN & CRNRSTN_LOG_DEFAULT => CRNRSTN_LOG_SCREEN_HTML_HIDDEN & CRNRSTN_LOG_DEFAULT,
+        CRNRSTN_LOG_ELECTRUM & CRNRSTN_LOG_DEFAULT => CRNRSTN_LOG_ELECTRUM & CRNRSTN_LOG_DEFAULT,
+        CRNRSTN_LOG_DATABASE & CRNRSTN_LOG_DEFAULT => CRNRSTN_LOG_DATABASE & CRNRSTN_LOG_DEFAULT,
+        CRNRSTN_LOG_SSDTLA & CRNRSTN_LOG_DEFAULT => CRNRSTN_LOG_SSDTLA & CRNRSTN_LOG_DEFAULT,
+        CRNRSTN_LOG_PSSDTLA & CRNRSTN_LOG_DEFAULT => CRNRSTN_LOG_PSSDTLA & CRNRSTN_LOG_DEFAULT,
+        CRNRSTN_LOG_SOAP & CRNRSTN_LOG_DEFAULT => CRNRSTN_LOG_SOAP & CRNRSTN_LOG_DEFAULT,
+        CRNRSTN_LOG_EMAIL & CRNRSTN_LOG_DATABASE => CRNRSTN_LOG_EMAIL & CRNRSTN_LOG_DATABASE,
+        CRNRSTN_LOG_EMAIL_PROXY & CRNRSTN_LOG_DATABASE => CRNRSTN_LOG_EMAIL_PROXY & CRNRSTN_LOG_DATABASE,
+        CRNRSTN_LOG_FILE & CRNRSTN_LOG_DATABASE => CRNRSTN_LOG_FILE & CRNRSTN_LOG_DATABASE,
+        CRNRSTN_CHANNEL_FILE & CRNRSTN_LOG_DATABASE => CRNRSTN_CHANNEL_FILE & CRNRSTN_LOG_DATABASE,
+        CRNRSTN_LOG_FILE_FTP & CRNRSTN_LOG_DATABASE => CRNRSTN_LOG_FILE_FTP & CRNRSTN_LOG_DATABASE,
+        CRNRSTN_LOG_SCREEN_TEXT & CRNRSTN_LOG_DATABASE => CRNRSTN_LOG_SCREEN_TEXT & CRNRSTN_LOG_DATABASE,
+        CRNRSTN_LOG_SCREEN & CRNRSTN_LOG_DATABASE => CRNRSTN_LOG_SCREEN & CRNRSTN_LOG_DATABASE,
+        CRNRSTN_LOG_SCREEN_HTML & CRNRSTN_LOG_DATABASE => CRNRSTN_LOG_SCREEN_HTML & CRNRSTN_LOG_DATABASE,
+        CRNRSTN_LOG_SCREEN_HTML_HIDDEN & CRNRSTN_LOG_DATABASE => CRNRSTN_LOG_SCREEN_HTML_HIDDEN & CRNRSTN_LOG_DATABASE,
+        CRNRSTN_LOG_ELECTRUM & CRNRSTN_LOG_DATABASE => CRNRSTN_LOG_ELECTRUM & CRNRSTN_LOG_DATABASE,
+        CRNRSTN_LOG_DATABASE & CRNRSTN_LOG_DATABASE => CRNRSTN_LOG_DATABASE & CRNRSTN_LOG_DATABASE,
+        CRNRSTN_LOG_SSDTLA & CRNRSTN_LOG_DATABASE => CRNRSTN_LOG_SSDTLA & CRNRSTN_LOG_DATABASE,
+        CRNRSTN_LOG_PSSDTLA & CRNRSTN_LOG_DATABASE => CRNRSTN_LOG_PSSDTLA & CRNRSTN_LOG_DATABASE,
+        CRNRSTN_LOG_SOAP & CRNRSTN_LOG_DATABASE => CRNRSTN_LOG_SOAP & CRNRSTN_LOG_DATABASE);
 
-            $log_silo_profile = $oCRNRSTN->log_silo_profile;
+        self::$output_profile_ARRAY['OUTPUT_PROFILE'][CRNRSTN_STRING] = array(
+        'CRNRSTN_LOG_EMAIL' => CRNRSTN_LOG_EMAIL, 'CRNRSTN_LOG_EMAIL_PROXY' => CRNRSTN_LOG_EMAIL_PROXY,
+        'CRNRSTN_LOG_FILE' => CRNRSTN_LOG_FILE, 'CRNRSTN_CHANNEL_FILE' => CRNRSTN_CHANNEL_FILE,
+        'CRNRSTN_LOG_FILE_FTP' => CRNRSTN_LOG_FILE_FTP, 'CRNRSTN_LOG_SCREEN_TEXT' => CRNRSTN_LOG_SCREEN_TEXT,
+        'CRNRSTN_LOG_SCREEN' => CRNRSTN_LOG_SCREEN, 'CRNRSTN_LOG_SCREEN_HTML' => CRNRSTN_LOG_SCREEN_HTML,
+        'CRNRSTN_LOG_SCREEN_HTML_HIDDEN' => CRNRSTN_LOG_SCREEN_HTML_HIDDEN,
+        'CRNRSTN_LOG_DEFAULT' => CRNRSTN_LOG_DEFAULT, 'CRNRSTN_LOG_ELECTRUM' => CRNRSTN_LOG_ELECTRUM,
+        'CRNRSTN_LOG_DATABASE' => CRNRSTN_LOG_DATABASE, 'CRNRSTN_LOG_SSDTLA' => CRNRSTN_LOG_SSDTLA,
+        'CRNRSTN_LOG_PSSDTLA' => CRNRSTN_LOG_PSSDTLA, 'CRNRSTN_LOG_SOAP' => CRNRSTN_LOG_SOAP,
+        'CRNRSTN_LOG_EMAIL & CRNRSTN_LOG_DEFAULT' => CRNRSTN_LOG_EMAIL & CRNRSTN_LOG_DEFAULT,
+        'CRNRSTN_LOG_EMAIL_PROXY & CRNRSTN_LOG_DEFAULT' => CRNRSTN_LOG_EMAIL_PROXY & CRNRSTN_LOG_DEFAULT,
+        'CRNRSTN_LOG_FILE & CRNRSTN_LOG_DEFAULT' => CRNRSTN_LOG_FILE & CRNRSTN_LOG_DEFAULT,
+        'CRNRSTN_CHANNEL_FILE & CRNRSTN_LOG_DEFAULT' => CRNRSTN_CHANNEL_FILE & CRNRSTN_LOG_DEFAULT,
+        'CRNRSTN_LOG_FILE_FTP & CRNRSTN_LOG_DEFAULT' => CRNRSTN_LOG_FILE_FTP & CRNRSTN_LOG_DEFAULT,
+        'CRNRSTN_LOG_SCREEN_TEXT & CRNRSTN_LOG_DEFAULT' => CRNRSTN_LOG_SCREEN_TEXT & CRNRSTN_LOG_DEFAULT,
+        'CRNRSTN_LOG_SCREEN & CRNRSTN_LOG_DEFAULT' => CRNRSTN_LOG_SCREEN & CRNRSTN_LOG_DEFAULT,
+        'CRNRSTN_LOG_SCREEN_HTML & CRNRSTN_LOG_DEFAULT' => CRNRSTN_LOG_SCREEN_HTML & CRNRSTN_LOG_DEFAULT,
+        'CRNRSTN_LOG_SCREEN_HTML_HIDDEN & CRNRSTN_LOG_DEFAULT' => CRNRSTN_LOG_SCREEN_HTML_HIDDEN & CRNRSTN_LOG_DEFAULT,
+        'CRNRSTN_LOG_ELECTRUM & CRNRSTN_LOG_DEFAULT' => CRNRSTN_LOG_ELECTRUM & CRNRSTN_LOG_DEFAULT,
+        'CRNRSTN_LOG_DATABASE & CRNRSTN_LOG_DEFAULT' => CRNRSTN_LOG_DATABASE & CRNRSTN_LOG_DEFAULT,
+        'CRNRSTN_LOG_SSDTLA & CRNRSTN_LOG_DEFAULT' => CRNRSTN_LOG_SSDTLA & CRNRSTN_LOG_DEFAULT,
+        'CRNRSTN_LOG_PSSDTLA & CRNRSTN_LOG_DEFAULT' => CRNRSTN_LOG_PSSDTLA & CRNRSTN_LOG_DEFAULT,
+        'CRNRSTN_LOG_SOAP & CRNRSTN_LOG_DEFAULT' => CRNRSTN_LOG_SOAP & CRNRSTN_LOG_DEFAULT,
+        'CRNRSTN_LOG_EMAIL & CRNRSTN_LOG_DATABASE' => CRNRSTN_LOG_EMAIL & CRNRSTN_LOG_DATABASE,
+        'CRNRSTN_LOG_EMAIL_PROXY & CRNRSTN_LOG_DATABASE' => CRNRSTN_LOG_EMAIL_PROXY & CRNRSTN_LOG_DATABASE,
+        'CRNRSTN_LOG_FILE & CRNRSTN_LOG_DATABASE' => CRNRSTN_LOG_FILE & CRNRSTN_LOG_DATABASE,
+        'CRNRSTN_CHANNEL_FILE & CRNRSTN_LOG_DATABASE' => CRNRSTN_CHANNEL_FILE & CRNRSTN_LOG_DATABASE,
+        'CRNRSTN_LOG_FILE_FTP & CRNRSTN_LOG_DATABASE' => CRNRSTN_LOG_FILE_FTP & CRNRSTN_LOG_DATABASE,
+        'CRNRSTN_LOG_SCREEN_TEXT & CRNRSTN_LOG_DATABASE' => CRNRSTN_LOG_SCREEN_TEXT & CRNRSTN_LOG_DATABASE,
+        'CRNRSTN_LOG_SCREEN & CRNRSTN_LOG_DATABASE' => CRNRSTN_LOG_SCREEN & CRNRSTN_LOG_DATABASE,
+        'CRNRSTN_LOG_SCREEN_HTML & CRNRSTN_LOG_DATABASE' => CRNRSTN_LOG_SCREEN_HTML & CRNRSTN_LOG_DATABASE,
+        'CRNRSTN_LOG_SCREEN_HTML_HIDDEN & CRNRSTN_LOG_DATABASE' => CRNRSTN_LOG_SCREEN_HTML_HIDDEN & CRNRSTN_LOG_DATABASE,
+        'CRNRSTN_LOG_ELECTRUM & CRNRSTN_LOG_DATABASE' => CRNRSTN_LOG_ELECTRUM & CRNRSTN_LOG_DATABASE,
+        'CRNRSTN_LOG_DATABASE & CRNRSTN_LOG_DATABASE' => CRNRSTN_LOG_DATABASE & CRNRSTN_LOG_DATABASE,
+        'CRNRSTN_LOG_SSDTLA & CRNRSTN_LOG_DATABASE' => CRNRSTN_LOG_SSDTLA & CRNRSTN_LOG_DATABASE,
+        'CRNRSTN_LOG_PSSDTLA & CRNRSTN_LOG_DATABASE' => CRNRSTN_LOG_PSSDTLA & CRNRSTN_LOG_DATABASE,
+        'CRNRSTN_LOG_SOAP & CRNRSTN_LOG_DATABASE' => CRNRSTN_LOG_SOAP & CRNRSTN_LOG_DATABASE);
 
-        }
+        self::$mem_salt = $this->oCRNRSTN->salt(32, '01');
 
-        // CAN BE *oCRNRSTN, oCRNRSTN_ENV, or oCRNRSTN_USR
-        //error_log(__LINE__ . ' ' . __CLASS__ . '->' . __METHOD__ . ':: logging $parent_class=[' . $parent_class . '] $oCRNRSTN=>'. get_class($oCRNRSTN));
-        self::$oCRNRSTN_n = $oCRNRSTN;
+//        if(isset($oCRNRSTN)){
+//
+//            //$log_silo_profile = $oCRNRSTN->log_silo_profile;
+//            $log_silo_profile = $oCRNRSTN->get_crnrstn('log_silo_profile');
+//
+//        }
 
-        $this->tmp_starttime = self::$oCRNRSTN_n->starttime;
+        error_log(__LINE__ . ' ' . __METHOD__ . ':: object owner[' . $parent_class . '] log object mem_salt[' . self::$mem_salt . '].');
+
+        $this->tmp_starttime = $this->oCRNRSTN->starttime;
         $this->parent_class = $parent_class;
         $this->tmp_starttime_ARRAY = explode('.', $this->tmp_starttime);
         $this->tmp_precise_timestamp = date('Y-m-d H:i:s', $this->tmp_starttime_ARRAY[0]);
@@ -201,15 +293,11 @@ class crnrstn_logging {
 
         //error_log(__LINE__ . ' log [' . print_r($this->tmp_starttime_ARRAY, true) . '].');
 
-        $this->oLog_ProfileManager = self::$oCRNRSTN_n->return_oLog_ProfileManager();
-
-        // LET'S SEE IF WE GET NULL TROUBLES (BARNEY TOWN).
-        $this->CRNRSTN_debug_mode = (int) self::$oCRNRSTN_n->CRNRSTN_debug_mode();
+        $this->oLog_ProfileManager = $this->oCRNRSTN->return_oLog_ProfileManager();
 
         $this->log_silo_profile = $log_silo_profile;
 
         /*
-
         $tmp_log_silo_array = explode('|', $this->log_silo_profile);
 
         $tmp_log_silo_cnt = sizeof($tmp_log_silo_array);
@@ -252,6 +340,985 @@ class crnrstn_logging {
 
     }
 
+    public function set_crnrstn_logging($name, $value = NULL, $index_0 = NULL, $index_1 = NULL, $index_2 = NULL, $index_3 = NULL){
+
+        switch($name){
+            case 'config_serial':
+
+                self::$config_serial = $value;
+
+            break;
+            default:
+
+                error_log(__LINE__ . ' ' . __METHOD__ . ' Unknown SWITCH CASE received [' . $name . '].');
+                $this->error_log('Unknown SWITCH CASE received [' . $name . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+            break;
+
+        }
+
+    }
+
+    public function is_valid_output_profile($output_profile_constant){
+
+        if(!is_numeric($output_profile_constant)){
+
+            if(isset(self::$output_profile_ARRAY['OUTPUT_PROFILE'][CRNRSTN_STRING][$output_profile_constant])){
+
+                return true;
+
+            }
+
+        }else{
+
+            if(isset(self::$output_profile_ARRAY['OUTPUT_PROFILE'][CRNRSTN_INTEGER][$output_profile_constant])){
+
+                return true;
+
+            }
+
+        }
+
+        return false;
+
+    }
+
+    public function system_message_channel_constant($message_serial, $index = NULL){
+
+        die();
+
+        //
+        // WHAT CHANNEL IS THE SYSTEM MESSAGE BEING STORED IN?
+        //$tmp_channel_int = $this->system_message_channel_constant($message_serial);
+        self::$system_error_message_serialization_ARRAY['CRNRSTN_ERROR_PREFIX_' . self::$config_serial][$message_serial][$tmp_err_message_memory_serial] = '';
+        self::$system_error_message_channel_map_ARRAY['CRNRSTN_ERROR_PREFIX_' . self::$config_serial][$message_serial][$tmp_err_message_memory_serial] = '';
+
+        return CRNRSTN_CHANNEL_SESSION;
+
+    }
+
+    public function err_message_queue_retrieve($message_override, $message_serial, $index){
+
+
+        if(isset($message_override)){
+
+            return $message_override;
+
+        }
+
+        if(!isset($message_serial)){
+
+            $message_serial = 'SYSTEM_ID';
+
+        }
+
+        //
+        // WHAT CHANNEL IS THE SYSTEM MESSAGE BEING STORED IN?
+        $tmp_channel_int = $this->system_message_channel_constant($message_serial, $index);
+
+        $tmp_err_message_memory_serial =  $this->oCRNRSTN->system_message_memory_serial();
+
+        switch($tmp_channel_int){
+            case CRNRSTN_CHANNEL_SESSION:
+
+                $_SESSION['CRNRSTN_ERROR_PREFIX_' . self::$config_serial]['CRNRSTN_EXCEPTION_PREFIX'][$message_serial] = $message_override;
+
+                return count($_SESSION['CRNRSTN_ERROR_PREFIX_' . self::$config_serial]['CRNRSTN_EXCEPTION_PREFIX']);
+
+            break;
+            case CRNRSTN_CHANNEL_RUNTIME:
+            default:
+                //case CRNRSTN_CHANNEL_GET:
+                //case CRNRSTN_CHANNEL_POST:
+                //case CRNRSTN_CHANNEL_COOKIE:
+                //case CRNRSTN_CHANNEL_DATABASE:    // <-- IT WILL BE SOOO NICE WHEN THIS ONE IS DONE. IT SHOULD BE THE DEFAULT...imho.
+                //case CRNRSTN_CHANNEL_SSDTLA:      // <-- IT WILL BE SOOO NICE WHEN THIS ONE IS DONE. WE GET CLIENT (BROWSER) STORAGE OF GLOBALLY ACCESSIBLE AND SERIALIZED BY KEY ERROR MESSAGES.
+                //case CRNRSTN_CHANNEL_PSSDTLA:     // <-- IT WILL BE SOOO NICE WHEN THIS ONE IS DONE. WE GET CLIENT (BROWSER) STORAGE OF GLOBALLY ACCESSIBLE AND SERIALIZED BY KEY ERROR MESSAGES.
+                //case CRNRSTN_CHANNEL_SOAP:
+                //case CRNRSTN_CHANNEL_FILE:
+                //case CRNRSTN_CHANNEL_FORM:        // <-- IT WILL BE SOOO NICE WHEN <FORM INTEGRATIONS> IS DONE.   // Tuesday, December 5, 2023 @ 0646 hrs.
+
+                self::$system_error_message_queue_ARRAY['CRNRSTN_ERROR_PREFIX_' . self::$config_serial]['CRNRSTN_EXCEPTION_PREFIX'][$message_serial][] = $tmp_err_message_memory_serial;
+
+                self::$system_error_message_serialization_ARRAY['CRNRSTN_ERROR_PREFIX_' . self::$config_serial][$message_serial][$tmp_err_message_memory_serial] = '';
+                self::$system_error_message_channel_map_ARRAY['CRNRSTN_ERROR_PREFIX_' . self::$config_serial][$message_serial][$tmp_err_message_memory_serial] = '';
+
+                return count(self::$system_error_message_serialization_ARRAY['CRNRSTN_ERROR_PREFIX_' . self::$config_serial]);
+
+            break;
+
+
+        }
+
+        if(!isset($_SESSION['CRNRSTN_ERROR_PREFIX_' . self::$config_serial]['CRNRSTN_EXCEPTION_PREFIX'])){
+
+            if(isset($message_override)){
+
+                return $message_override;
+
+            }
+
+        }else{
+
+            //
+            // THERE CAN POTENTIALLY BE MORE THAN ONE KIND OF ERROR MESSAGE.
+            if(isset($_SESSION['CRNRSTN_ERROR_PREFIX_' . self::$config_serial]['CRNRSTN_EXCEPTION_PREFIX'][$message_serial])){
+
+                return $_SESSION['CRNRSTN_ERROR_PREFIX_' . self::$config_serial]['CRNRSTN_EXCEPTION_PREFIX'][$message_serial];
+
+            }
+
+            return $_SESSION['CRNRSTN_ERROR_PREFIX_' . self::$config_serial]['CRNRSTN_EXCEPTION_PREFIX']['CRNRSTN_ERR_DEFAULT'];
+
+        }
+
+        //
+        // IS_EXCEPTION IS SUPPORT FOR CUSTOM EXCEPTION
+        // HANDLING MESSAGES AND BEHAVIOR...INCLUDING
+        // RETURNING A PREFIX FOR NATIVE PHP ERROR
+        // MESSAGING SUPPORT (E.G., MKDIR(), FOPEN(),...).
+        if($is_exception == true){
+
+            return 'There was an error, but the CRNRSTN :: error message queue is empty. We know, however, that ';
+
+        }
+
+        return '';
+
+    }
+
+    public function err_message_queue_push($message_serial, $message, $data_authorization_profile){
+
+        if(!isset($message_serial)){
+
+            $message_serial = 'SYSTEM_ID';
+
+        }
+
+        /*
+        private static $system_error_message_serialization_ARRAY = array();
+        private static $system_error_message_channel_map_ARRAY = array();
+
+        private static $system_error_message_queue_ARRAY = array();
+        $_SESSION['CRNRSTN_ERROR_PREFIX_' . self::$config_serial]['CRNRSTN_EXCEPTION_PREFIX']['CRNRSTN_ERR_DEFAULT'] = $message;
+
+        */
+
+        $tmp_log_silo_profile_ARRAY = $this->oCRNRSTN->get_crnrstn('log_silo_profile');
+        $tmp_oLog = new crnrstn_log($this->oCRNRSTN, $this->oCRNRSTN->get_micro_time(), $tmp_log_silo_profile_ARRAY);
+
+//        if(is_object($oCRNRSTN)){
+//
+//            $this->starttime = $oCRNRSTN->starttime;
+//
+//            $tmp_oLog->set_runTime($oCRNRSTN->wall_time());
+//
+//        }
+//
+//        $tmp_oLog->set_runFile($file);
+//
+//        $tmp_oLog->set_classMethod($method);
+//
+//        $tmp_oLog->set_lineNumber($line_num);
+//
+//        $tmp_str = $str . '';
+//
+//        $tmp_oLog->set_logMsg($tmp_str);
+//
+//        return $tmp_oLog;
+
+        //
+        // GENERATE SYSTEM MESSAGE SERIALIZATION SALT FOR INTERNAL
+        // STORAGE AND RETRIEVAL OF THE MESSAGE.
+        $tmp_err_message_memory_serial = $tmp_oLog->serial();
+
+        $tmp_channel_int = $this->oCRNRSTN->get_channel_config($data_authorization_profile, 'SOURCEID', CRNRSTN_INTEGER);
+        switch($tmp_channel_int){
+            case CRNRSTN_CHANNEL_SESSION:
+
+                $_SESSION['CRNRSTN_ERROR_PREFIX_' . self::$config_serial]['CRNRSTN_EXCEPTION_PREFIX'][$message_serial][] = $message;
+
+                return count($_SESSION['CRNRSTN_ERROR_PREFIX_' . self::$config_serial]['CRNRSTN_EXCEPTION_PREFIX'][$message_serial]);
+
+            break;
+            case CRNRSTN_CHANNEL_RUNTIME:
+            default:
+                //case CRNRSTN_CHANNEL_GET:
+                //case CRNRSTN_CHANNEL_POST:
+                //case CRNRSTN_CHANNEL_COOKIE:
+                //case CRNRSTN_CHANNEL_DATABASE:    // <-- IT WILL BE SOOO NICE WHEN THIS ONE IS DONE. IT SHOULD BE THE DEFAULT...imho.
+                //case CRNRSTN_CHANNEL_SSDTLA:      // <-- IT WILL BE SOOO NICE WHEN THIS ONE IS DONE. WE GET CLIENT (BROWSER) STORAGE OF GLOBALLY ACCESSIBLE AND SERIALIZED BY KEY ERROR MESSAGES.
+                //case CRNRSTN_CHANNEL_PSSDTLA:     // <-- IT WILL BE SOOO NICE WHEN THIS ONE IS DONE. WE GET CLIENT (BROWSER) STORAGE OF GLOBALLY ACCESSIBLE AND SERIALIZED BY KEY ERROR MESSAGES.
+                //case CRNRSTN_CHANNEL_SOAP:
+                //case CRNRSTN_CHANNEL_FILE:
+                //case CRNRSTN_CHANNEL_FORM:        // <-- IT WILL BE SOOO NICE WHEN <FORM INTEGRATIONS> IS DONE.   // Tuesday, December 5, 2023 @ 0646 hrs.
+
+                self::$system_error_message_queue_ARRAY['CRNRSTN_ERROR_PREFIX_' . self::$config_serial]['CRNRSTN_EXCEPTION_PREFIX'][$message_serial][] = $tmp_err_message_memory_serial;
+
+                self::$system_error_message_serialization_ARRAY['CRNRSTN_ERROR_PREFIX_' . self::$config_serial][$message_serial][$tmp_err_message_memory_serial] = '';
+                self::$system_error_message_channel_map_ARRAY['CRNRSTN_ERROR_PREFIX_' . self::$config_serial][$message_serial][$tmp_err_message_memory_serial] = '';
+
+                return count(self::$system_error_message_serialization_ARRAY['CRNRSTN_ERROR_PREFIX_' . self::$config_serial][$message_serial]);
+
+            break;
+
+        }
+
+    }
+
+    public function err_message_queue_clear($message_serial, $index = NULL){
+
+        if(!isset($message_serial)){
+
+            $message_serial = 'SYSTEM_ID';
+
+        }
+
+        array_splice(self::$system_error_message_queue_ARRAY['CRNRSTN_ERROR_PREFIX_' . self::$config_serial]['CRNRSTN_EXCEPTION_PREFIX'][$message_serial], 0);
+
+        return count(self::$system_error_message_queue_ARRAY['CRNRSTN_ERROR_PREFIX_' . self::$config_serial]['CRNRSTN_EXCEPTION_PREFIX'][$message_serial]);
+
+    }
+
+    public function get_err_message_count($message_serial){
+
+        if(!isset($message_serial)){
+
+            $message_serial = 'SYSTEM_ID';
+
+        }
+
+        return count(self::$system_error_message_queue_ARRAY['CRNRSTN_ERROR_PREFIX_' . self::$config_serial]['CRNRSTN_EXCEPTION_PREFIX'][$message_serial]);
+
+    }
+
+    private function logging_config($logging_output_profile, $index_0, $index_1, $index_2, $index_3){
+
+        if(isset($index_0) && isset($index_1) && isset($index_2) && isset($index_3)){
+
+            if(isset($logging_output_profile[$index_0][$index_1][$index_2][$index_3])){
+
+                return $logging_output_profile[$index_0][$index_1][$index_2][$index_3];
+
+            }
+
+        }
+
+        if(isset($index_0) && isset($index_1) && isset($index_2)){
+
+            if(isset($logging_output_profile[$index_0][$index_1][$index_2])){
+
+                return $logging_output_profile[$index_0][$index_1][$index_2];
+
+            }
+
+        }
+
+        if(isset($index_0) && isset($index_1)){
+
+            if(isset($logging_output_profile[$index_0][$index_1])){
+
+                return $logging_output_profile[$index_0][$index_1];
+
+            }
+
+        }
+
+        if(isset($index_0)){
+
+            if(isset($logging_output_profile[$index_0])){
+
+                return $logging_output_profile[$index_0];
+
+            }
+
+        }
+
+        //
+        // RETURN THE ENTIRE LOGGING PROFILE ARRAY, I GUESS.
+        //
+        // Sunday, December 3, 2023 0747 hrs.
+        return $logging_output_profile;
+
+    }
+
+    public function get_system_logging_config($logging_output_profile, $index_0, $index_1, $index_2, $index_3){
+
+        //
+        // CRNRSTN_LOG_SCREEN
+        // CRNRSTN_LOG_SCREEN_HTML
+        // CRNRSTN_LOG_SCREEN_TEXT
+        // CRNRSTN_LOG_SCREEN_HTML_HIDDEN
+        // CRNRSTN_LOG_EMAIL
+        // CRNRSTN_LOG_EMAIL_PROXY
+        // CRNRSTN_LOG_FILE
+        // CRNRSTN_CHANNEL_FILE
+        // CRNRSTN_LOG_FILE_FTP
+        // CRNRSTN_LOG_DEFAULT
+        // CRNRSTN_LOG_ELECTRUM
+        // CRNRSTN_CHANNEL_DATABASE
+        // CRNRSTN_CHANNEL_SSDTLA
+        // CRNRSTN_CHANNEL_PSSDTLA
+        // CRNRSTN_CHANNEL_RUNTIME
+        // CRNRSTN_CHANNEL_SOAP
+        //
+        //    self::$system_log_output_profile_constants_ARRAY = array(
+        //    CRNRSTN_LOG_EMAIL => 'CRNRSTN_LOG_EMAIL',
+        //    CRNRSTN_LOG_EMAIL_PROXY => 'CRNRSTN_LOG_EMAIL_PROXY',
+        //    CRNRSTN_LOG_FILE => 'CRNRSTN_LOG_FILE',
+        //    CRNRSTN_CHANNEL_FILE => 'CRNRSTN_CHANNEL_FILE',
+        //    CRNRSTN_LOG_FILE_FTP => 'CRNRSTN_LOG_FILE_FTP',
+        //    CRNRSTN_LOG_SCREEN_TEXT => 'CRNRSTN_LOG_SCREEN_TEXT',
+        //    CRNRSTN_LOG_SCREEN => 'CRNRSTN_LOG_SCREEN',
+        //    CRNRSTN_LOG_SCREEN_HTML => 'CRNRSTN_LOG_SCREEN_HTML',
+        //    CRNRSTN_LOG_SCREEN_HTML_HIDDEN => 'CRNRSTN_LOG_SCREEN_HTML_HIDDEN',
+        //    CRNRSTN_LOG_DEFAULT => 'CRNRSTN_LOG_DEFAULT',
+        //    CRNRSTN_LOG_ELECTRUM => 'CRNRSTN_LOG_ELECTRUM',
+        //    CRNRSTN_CHANNEL_DATABASE => 'CRNRSTN_CHANNEL_DATABASE',
+        //    CRNRSTN_CHANNEL_SSDTLA => 'CRNRSTN_CHANNEL_SSDTLA',
+        //    CRNRSTN_CHANNEL_PSSDTLA => 'CRNRSTN_CHANNEL_PSSDTLA',
+        //    CRNRSTN_CHANNEL_SOAP => 'CRNRSTN_CHANNEL_SOAP');
+
+        try{
+
+            if(is_array($logging_output_profile)){
+
+                return $this->logging_config($logging_output_profile, $index_0, $index_1, $index_2, $index_3);
+
+            }
+
+            //
+            // GET CHANNEL META DATA.
+            switch($logging_output_profile){
+                case CRNRSTN_LOG_EMAIL:
+                case 'CRNRSTN_LOG_EMAIL':
+                case 'crnrstn_log_email':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_LOG_EMAIL;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_LOG_EMAIL';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                                                    'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: EMAIL LOGGING',
+                                                    'TEXT' => 'CRNRSTN :: EMAIL LOGGING'
+                                                );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                                                            'HTML' => 'RETURN C<span style="color:#F00;">R</span>NRSTN :: EMAIL LOGGING OUTPUT.',
+                                                            'TEXT' => 'RETURN CRNRSTN :: EMAIL LOGGING OUTPUT.'
+                                                        );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                case CRNRSTN_LOG_EMAIL_PROXY:
+                case 'CRNRSTN_LOG_EMAIL_PROXY':
+                case 'crnrstn_log_email_proxy':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_LOG_EMAIL_PROXY;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_LOG_EMAIL_PROXY';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                                                    'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: EMAIL (PROXY) LOGGING',
+                                                    'TEXT' => 'CRNRSTN :: EMAIL (PROXY) LOGGING'
+                                                );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                                                            'HTML' => 'RETURN C<span style="color:#F00;">R</span>NRSTN :: EMAIL LOGGING OUTPUT BY PROXY ON TOP OF A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' POWERED SOAP SERVICES LAYER THAT WAS DEVELOPED BY e<span style="color:#F00;">V</span>ifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.',
+                                                            'TEXT' => 'RETURN CRNRSTN :: EMAIL LOGGING OUTPUT BY PROXY ON TOP OF A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' POWERED SOAP SERVICES LAYER THAT WAS DEVELOPED BY eVifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.'
+                                                        );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                case CRNRSTN_LOG_FILE:
+                case 'CRNRSTN_LOG_FILE':
+                case 'crnrstn_log_file':
+                case CRNRSTN_CHANNEL_FILE:
+                case 'CRNRSTN_CHANNEL_FILE':
+                case 'crnrstn_channel_file':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_LOG_FILE;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_LOG_FILE';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                                                    'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: FILE LOGGING',
+                                                    'TEXT' => 'CRNRSTN :: FILE LOGGING'
+                                                );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                                                            'HTML' => 'RETURN C<span style="color:#F00;">R</span>NRSTN :: FILE LOGGING OUTPUT.',
+                                                            'TEXT' => 'RETURN CRNRSTN :: FILE LOGGING OUTPUT.'
+                                                        );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                case CRNRSTN_LOG_FILE_PROXY:
+                case 'CRNRSTN_LOG_FILE_PROXY':
+                case 'crnrstn_log_file_proxy':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_LOG_FILE_PROXY;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_LOG_FILE_PROXY';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                                                    'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: FILE (PROXY) LOGGING.',
+                                                    'TEXT' => 'CRNRSTN :: FILE (PROXY) LOGGING.'
+                                                );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                                                            'HTML' => 'RETURN C<span style="color:#F00;">R</span>NRSTN :: FILE LOGGING OUTPUT BY PROXY ON TOP OF A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' POWERED SOAP SERVICES LAYER THAT WAS DEVELOPED BY e<span style="color:#F00;">V</span>ifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.',
+                                                            'TEXT' => 'RETURN CRNRSTN :: FILE LOGGING OUTPUT BY PROXY ON TOP OF A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' POWERED SOAP SERVICES LAYER THAT WAS DEVELOPED BY eVifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.'
+                                                        );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                case CRNRSTN_LOG_FILE_FTP:
+                case 'CRNRSTN_LOG_FILE_FTP':
+                case 'crnrstn_log_file_ftp':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_LOG_FILE_FTP;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_LOG_FILE_FTP';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                                                    'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: FTP/SFTP LOGGING',
+                                                    'TEXT' => 'CRNRSTN :: FTP/SFTP LOGGING'
+                                                );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                                                            'HTML' => 'SEND LOGGING OUTPUT TO A C<span style="color:#F00;">R</span>NRSTN :: FTP/SFTP LOGGING ENDPOINT.',
+                                                            'TEXT' => 'SEND LOGGING OUTPUT TO A CRNRSTN :: FTP/SFTP LOGGING ENDPOINT.'
+                                                        );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                case CRNRSTN_LOG_FILE_FTP_PROXY:
+                case 'CRNRSTN_LOG_FILE_FTP_PROXY':
+                case 'crnrstn_log_file_ftp_proxy':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_LOG_FILE_FTP_PROXY;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_LOG_FILE_FTP_PROXY';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                                                    'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: FTP/SFTP (PROXY) LOGGING',
+                                                    'TEXT' => 'CRNRSTN :: FTP/SFTP (PROXY) LOGGING'
+                                                );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                                                            'HTML' => 'SEND LOGGING OUTPUT TO A C<span style="color:#F00;">R</span>NRSTN :: FTP/SFTP LOGGING ENDPOINT BY PROXY ON TOP OF A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' POWERED SOAP SERVICES LAYER THAT WAS DEVELOPED BY e<span style="color:#F00;">V</span>ifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.',
+                                                            'TEXT' => 'SEND LOGGING OUTPUT TO A CRNRSTN :: FTP/SFTP LOGGING ENDPOINT BY PROXY ON TOP OF A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' POWERED SOAP SERVICES LAYER THAT WAS DEVELOPED BY eVifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.'
+                                                        );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                case CRNRSTN_LOG_SCREEN_TEXT:
+                case 'CRNRSTN_LOG_SCREEN_TEXT':
+                case 'crnrstn_log_screen_text':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_LOG_SCREEN_TEXT;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_LOG_SCREEN_TEXT';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                        'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: SCREEN TEXT LOGGING',
+                        'TEXT' => 'CRNRSTN :: SCREEN TEXT LOGGING'
+                    );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                        'HTML' => 'RETURN C<span style="color:#F00;">R</span>NRSTN :: SCREEN TEXT LOGGING OUTPUT.',
+                        'TEXT' => 'RETURN CRNRSTN :: SCREEN TEXT LOGGING OUTPUT.'
+                    );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                case CRNRSTN_LOG_SCREEN:
+                case 'CRNRSTN_LOG_SCREEN':
+                case 'crnrstn_log_screen':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_LOG_SCREEN;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_LOG_SCREEN';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                                                    'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: SCREEN OUTPUT LOGGING',
+                                                    'TEXT' => 'CRNRSTN :: SCREEN OUTPUT LOGGING'
+                                                );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                                                            'HTML' => 'RETURN C<span style="color:#F00;">R</span>NRSTN :: SCREEN LOGGING OUTPUT.',
+                                                            'TEXT' => 'RETURN CRNRSTN :: SCREEN LOGGING OUTPUT.'
+                                                        );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                case CRNRSTN_LOG_SCREEN_HTML:
+                case 'CRNRSTN_LOG_SCREEN_HTML':
+                case 'crnrstn_log_screen_html':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_LOG_SCREEN_HTML;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_LOG_SCREEN_HTML';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                                                    'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: SCREEN &lt;HTML&gt; LOGGING',
+                                                    'TEXT' => 'CRNRSTN :: SCREEN <HTML> LOGGING'
+                                                );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                                                            'HTML' => 'RETURN C<span style="color:#F00;">R</span>NRSTN :: SCREEN &lt;HTML&gt; LOGGING OUTPUT.',
+                                                            'TEXT' => 'RETURN CRNRSTN :: SCREEN <HTML> LOGGING OUTPUT.'
+                                                        );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                case CRNRSTN_LOG_SCREEN_HTML_HIDDEN:
+                case 'CRNRSTN_LOG_SCREEN_HTML_HIDDEN':
+                case 'crnrstn_log_screen_html_hidden':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_LOG_SCREEN_HTML_HIDDEN;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_LOG_SCREEN_HTML_HIDDEN';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                                                    'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: SCREEN &lt;!-- [HIDDEN HTML] --&gt; LOGGING',
+                                                    'TEXT' => 'CRNRSTN :: SCREEN <!-- [HIDDEN HTML] --> LOGGING'
+                                                );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                                                            'HTML' => 'RETURN C<span style="color:#F00;">R</span>NRSTN :: SCREEN &lt;!-- [HIDDEN HTML] --&gt; LOGGING OUTPUT.',
+                                                            'TEXT' => 'RETURN CRNRSTN :: SCREEN <!-- [HIDDEN HTML] --> LOGGING OUTPUT.'
+                                                        );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                case CRNRSTN_LOG_DEFAULT:
+                case 'CRNRSTN_LOG_DEFAULT':
+                case 'crnrstn_log_default':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_LOG_DEFAULT;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_LOG_DEFAULT';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                                                    'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: NATIVE PHP ERROR_LOG()',
+                                                    'TEXT' => 'CRNRSTN :: NATIVE PHP ERROR_LOG()'
+                                                );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                                                            'HTML' => 'RETURN C<span style="color:#F00;">R</span>NRSTN :: NATIVE PHP ERROR_LOG() LOGGING OUTPUT FORMATTED FOR READABILITY AND SLIGHTLY ENRICHED BY e<span style="color:#F00;">V</span>ifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.',
+                                                            'TEXT' => 'RETURN CRNRSTN :: NATIVE PHP ERROR_LOG() LOGGING OUTPUT FORMATTED FOR READABILITY AND SLIGHTLY ENRICHED BY eVifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.'
+                                                        );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                case CRNRSTN_LOG_DEFAULT_PROXY:
+                case 'CRNRSTN_LOG_DEFAULT_PROXY':
+                case 'crnrstn_log_default_proxy':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_LOG_DEFAULT_PROXY;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_LOG_DEFAULT_PROXY';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                                                    'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: NATIVE PHP ERROR_LOG (PROXY)',
+                                                    'TEXT' => 'CRNRSTN :: NATIVE PHP ERROR_LOG (PROXY)'
+                                                );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                                                            'HTML' => 'RETURN C<span style="color:#F00;">R</span>NRSTN :: NATIVE PHP ERROR_LOG() LOGGING THAT IS FORMATTED FOR READABILITY AND SLIGHTLY ENRICHED BY e<span style="color:#F00;">V</span>ifweb. THIS OUTPUT IS DELIVERED BY PROXY ON TOP OF A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' POWERED SOAP SERVICES LAYER THAT WAS DEVELOPED BY e<span style="color:#F00;">V</span>ifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.',
+                                                            'TEXT' => 'RETURN CRNRSTN :: NATIVE PHP ERROR_LOG() LOGGING THAT IS FORMATTED FOR READABILITY AND SLIGHTLY ENRICHED BY eVifweb. THIS OUTPUT IS DELIVERED BY PROXY ON TOP OF A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' POWERED SOAP SERVICES LAYER THAT WAS DEVELOPED BY eVifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.'
+                                                        );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                case CRNRSTN_LOG_ELECTRUM:
+                case 'CRNRSTN_LOG_ELECTRUM':
+                case 'crnrstn_log_electrum':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_LOG_ELECTRUM;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_LOG_ELECTRUM';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                                                    'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: ELECTRUM LOGGING',
+                                                    'TEXT' => 'CRNRSTN :: ELECTRUM LOGGING'
+                                                );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                                                            'HTML' => 'PRODUCE C<span style="color:#F00;">R</span>NRSTN :: ELECTRUM LOGGING OUTPUT. THIS OUTPUT IS DELIVERED BY PROXY ON TOP OF A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' POWERED SOAP SERVICES LAYER THAT WAS DEVELOPED BY e<span style="color:#F00;">V</span>ifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.',
+                                                            'TEXT' => 'PRODUCE CRNRSTN :: ELECTRUM LOGGING OUTPUT. THIS OUTPUT IS DELIVERED BY PROXY ON TOP OF A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' POWERED SOAP SERVICES LAYER THAT WAS DEVELOPED BY eVifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.'
+                                                        );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                case CRNRSTN_LOG_ELECTRUM_PROXY:
+                case 'CRNRSTN_LOG_ELECTRUM_PROXY':
+                case 'crnrstn_log_electrum_proxy':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_LOG_ELECTRUM_PROXY;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_LOG_ELECTRUM_PROXY';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                                                    'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: ELECTRUM LOGGING (PROXY)',
+                                                    'TEXT' => 'CRNRSTN :: ELECTRUM LOGGING (PROXY)'
+                                                );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                                                            'HTML' => 'PRODUCE C<span style="color:#F00;">R</span>NRSTN :: ELECTRUM LOGGING OUTPUT BY PROXY ON TOP OF A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' POWERED SOAP SERVICES LAYER THAT WAS DEVELOPED BY e<span style="color:#F00;">V</span>ifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.',
+                                                            'TEXT' => 'PRODUCE CRNRSTN :: ELECTRUM LOGGING OUTPUT BY PROXY ON TOP OF A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' POWERED SOAP SERVICES LAYER THAT WAS DEVELOPED BY eVifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.'
+                                                        );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                case CRNRSTN_LOG_DATABASE:
+                case 'CRNRSTN_LOG_DATABASE':
+                case 'crnrstn_log_database':
+                case CRNRSTN_CHANNEL_DATABASE:
+                case 'CRNRSTN_CHANNEL_DATABASE':
+                case 'crnrstn_channel_database':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_CHANNEL_DATABASE;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_CHANNEL_DATABASE';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                                                    'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: DATABASE LOGGING',
+                                                    'TEXT' => 'CRNRSTN :: DATABASE LOGGING'
+                                                );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                                                            'HTML' => 'RETURN C<span style="color:#F00;">R</span>NRSTN :: DATABASE LOGGING OUTPUT.',
+                                                            'TEXT' => 'RETURN CRNRSTN :: DATABASE LOGGING OUTPUT.'
+                                                        );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                case CRNRSTN_LOG_DATABASE_PROXY:
+                case 'CRNRSTN_LOG_DATABASE_PROXY':
+                case 'crnrstn_log_database_proxy':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_LOG_DATABASE_PROXY;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_LOG_DATABASE_PROXY';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                                                    'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: DATABASE LOGGING (PROXY)',
+                                                    'TEXT' => 'CRNRSTN :: DATABASE LOGGING (PROXY)'
+                                                );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                                                'HTML' => 'RETURN C<span style="color:#F00;">R</span>NRSTN :: DATABASE LOGGING OUTPUT BY PROXY ON TOP OF A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' POWERED SOAP SERVICES LAYER THAT WAS DEVELOPED BY e<span style="color:#F00;">V</span>ifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.',
+                                                'TEXT' => 'RETURN CRNRSTN :: DATABASE LOGGING OUTPUT BY PROXY ON TOP OF A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' POWERED SOAP SERVICES LAYER THAT WAS DEVELOPED BY eVifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.'
+                                            );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                case CRNRSTN_CHANNEL_SSDTLA:
+                case 'CRNRSTN_CHANNEL_SSDTLA':
+                case 'crnrstn_channel_ssdtla':
+                case CRNRSTN_LOG_SSDTLA:
+                case 'CRNRSTN_LOG_SSDTLA':
+                case 'crnrstn_log_ssdtla':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_LOG_SSDTLA;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_LOG_SSDTLA';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                                                    'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: SSDTLA LOGGING',
+                                                    'TEXT' => 'CRNRSTN :: SSDTLA LOGGING'
+                                                );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                                                            'HTML' => 'RETURN LOGGING OUTPUT ON TOP OF THE C<span style="color:#F00;">R</span>NRSTN :: 
+SOAP SERVICES DATA TUNNEL LAYER (SSDTL). PLEASE NOTE THAT THE ENCRYPTED SSDTLA DATA 
+PACKET THAT IS STORED IN THE BROWSER DOM VIA &lt;FORM&gt; HIDDEN INPUT IS 
+ACTUALLY JUST A C<span style="color:#F00;">R</span>NRSTN :: PSEUDO-SOAP SERVICES DATA TUNNEL LAYER ARCHITECTURE (PSSDTLA) 
+DATA PACKET (I.E. AN OpenSSL v' . $this->oCRNRSTN->version_openssl() . ' ENCRYPTED JSON OBJECT).
+ 
+THE PRIMARY AND SIGNIFICANT DIFFERENCE BETWEEN THE C<span style="color:#F00;">R</span>NRSTN :: SSDTLA DATA PACKET AND THE SLIGHTLY SIMPLER C<span style="color:#F00;">R</span>NRSTN :: PSSDTLA PACKET (AN ENCRYPTED 
+JSON OBJECT) IS THAT THE C<span style="color:#F00;">R</span>NRSTN :: SSDTLA TAKES THE ENCRYPTED JSON OBJECT AND THEN ENCAPSULATES OR WRAPS IT WITHIN A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' 
+POWERED SOAP OBJECT BEFORE STORING IT AS STATIC DATA AT THE BROWSER IN THE BUILD OF THE PAGE HTML OR THROUGH oC<span style="color:#F00;">R</span>NRSTN_JS WHEN A NEW SOAP 
+REQUEST (A FRESH SSDTLA PACKET) IS RETURNED BY THE C<span style="color:#F00;">R</span>NRSTN :: SSDTLA ITSELF TO THE BROWSER IN AN &lt;XML&gt; DOCUMENT RESPONSE TO AN 
+AJAX DRIVEN XHR REQUEST. 
+
+BEHOLD BOTH THE BEAUTY, POWER, AND SIMPLICITY OF SOAP; THE C<span style="color:#F00;">R</span>NRSTN :: SSDTLA, 
+DEVELOPED BY e<span style="color:#F00;">V</span>ifweb, HAS EVERY BROWSER TALKING TO THE SERVER LIKE IT IS A SERVER 
+FOR REQUEST AUTHENTICATION AT THE SOAP SERVICES SERVER ENDPOINT AND REQUEST SERIALIZATION FOR UI/UX PROCESS 
+SYNCHRONIZATION AND MEMORY (CACHE) MANAGEMENT AT THE SOAP CLIENT SERVER...THE BROWSER.
+
+THE STRATEGIC VALUE OF THE C<span style="color:#F00;">R</span>NRSTN :: SOAP SERVICES DATA TUNNEL LAYER WILL HAVE 
+ARRIVED, AT LEAST IN PART, WHEN THE BROWSER\'S SSDTLA SOAP PACKET CAN BE PROXIED TO AN ACTIVE SESSION AT ANY ORIGIN OR DOMAIN CONTROLLING 
+SERVER IN SUPPORT OF THE SESSION AUTHENTICATION SERVICES LAYER BEHIND A C<span style="color:#F00;">R</span>NRSTN :: MESSENGER SESSION AT ANY EDGE SERVER.
+
+C<span style="color:#F00;">R</span>NRSTN :: MESSENGER COULD EASILY BECOME THE DEFINITIVE AND MIT LICENSED FUNCTIONAL 
+AND SPIRITUAL REPLACEMENT FOR WHAT WAS ONCE YAHOO INSTANT MESSENGER.
+
+THE C<span style="color:#F00;">R</span>NRSTN :: SSDTLA IS A HARDENED DATA HANDLING 
+ARCHITECTURE THAT IS PROTECTED BY OpenSSL v' . $this->oCRNRSTN->version_openssl() . ' ENCRYPTION TECHNOLOGY AND 
+DEVELOPED BY eVifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.',
+                                                            'TEXT' => 'RETURN LOGGING OUTPUT ON TOP OF THE CRNRSTN :: 
+SOAP SERVICES DATA TUNNEL LAYER (SSDTL). PLEASE NOTE THAT THE ENCRYPTED SSDTLA DATA 
+PACKET THAT IS STORED IN THE BROWSER DOM VIA &lt;FORM&gt; HIDDEN INPUT IS 
+ACTUALLY JUST A CRNRSTN :: PSEUDO-SOAP SERVICES DATA TUNNEL LAYER ARCHITECTURE (PSSDTLA) 
+DATA PACKET (I.E. AN OpenSSL v' . $this->oCRNRSTN->version_openssl() . ' ENCRYPTED JSON OBJECT).
+ 
+THE PRIMARY AND SIGNIFICANT DIFFERENCE BETWEEN THE CRNRSTN :: SSDTLA DATA PACKET AND THE SLIGHTLY SIMPLER CRNRSTN :: PSSDTLA PACKET (AN ENCRYPTED 
+JSON OBJECT) IS THAT THE SSDTLA TAKES THE ENCRYPTED JSON OBJECT AND THEN ENCAPSULATES OR WRAPS IT WITHIN A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' 
+POWERED SOAP OBJECT BEFORE STORING IT AS STATIC DATA AT THE BROWSER IN THE BUILD OF THE PAGE HTML OR THROUGH oCRNRSTN_JS WHEN A NEW SOAP 
+REQUEST (A FRESH SSDTLA PACKET) IS RETURNED BY THE SSDTLA ITSELF TO THE BROWSER IN AN &lt;XML&gt; DOCUMENT RESPONSE TO AN 
+AJAX DRIVEN XHR REQUEST. 
+
+BEHOLD BOTH THE BEAUTY, POWER, AND SIMPLICITY OF SOAP; THE CRNRSTN :: SSDTLA, 
+DEVELOPED BY eVifweb, HAS EVERY BROWSER TALKING TO THE SERVER LIKE IT IS A SERVER 
+FOR REQUEST AUTHENTICATION AT THE SOAP SERVICES SERVER ENDPOINT AND REQUEST SERIALIZATION FOR UI/UX PROCESS 
+SYNCHRONIZATION AND MEMORY (CACHE) MANAGEMENT AT THE SOAP CLIENT SERVER...THE BROWSER.
+
+THE STRATEGIC VALUE OF THE CRNRSTN :: SOAP SERVICES DATA TUNNEL LAYER WILL HAVE 
+ARRIVED, AT LEAST IN PART, WHEN THE BROWSER\'S SSDTLA SOAP PACKET CAN BE PROXIED TO AN ACTIVE SESSION AT ANY ORIGIN OR DOMAIN CONTROLLING 
+SERVER IN SUPPORT OF THE SESSION AUTHENTICATION SERVICES LAYER BEHIND A CRNRSTN :: MESSENGER SESSION AT ANY EDGE SERVER.
+
+CRNRSTN :: MESSENGER COULD EASILY BECOME THE DEFINITIVE AND MIT LICENSED FUNCTIONAL 
+AND SPIRITUAL REPLACEMENT FOR WHAT WAS ONCE YAHOO INSTANT MESSENGER.
+
+THE CRNRSTN :: SSDTLA IS A HARDENED DATA HANDLING 
+ARCHITECTURE THAT IS PROTECTED BY OpenSSL v' . $this->oCRNRSTN->version_openssl() . ' ENCRYPTION TECHNOLOGY AND 
+DEVELOPED BY eVifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.'
+                                                );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                case CRNRSTN_LOG_SSDTLA_PROXY:
+                case 'CRNRSTN_LOG_SSDTLA_PROXY':
+                case 'crnrstn_log_ssdtla_proxy':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_LOG_SSDTLA_PROXY;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_LOG_SSDTLA_PROXY';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                                                    'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: SSDTLA LOGGING (PROXY)',
+                                                    'TEXT' => 'CRNRSTN :: SSDTLA LOGGING (PROXY)'
+                                                );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                                                            'HTML' => 'RETURN LOGGING OUTPUT ON TOP OF THE C<span style="color:#F00;">R</span>NRSTN :: SOAP SERVICES 
+DATA TUNNEL LAYER (SSDTL) LOGGING OUTPUT BY PROXY ON TOP OF A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' POWERED 
+SOAP SERVICES LAYER THAT WAS DEVELOPED BY e<span style="color:#F00;">V</span>ifweb UNDER THE LATEST VERSION OF THE 
+MIT LICENSE. PLEASE NOTE THAT THE ENCRYPTED SSDTLA DATA PACKET THAT IS STORED IN THE BROWSER DOM VIA &lt;FORM&gt; HIDDEN INPUT IS 
+ACTUALLY JUST A C<span style="color:#F00;">R</span>NRSTN :: PSEUDO-SOAP SERVICES DATA TUNNEL LAYER ARCHITECTURE (PSSDTLA) 
+DATA PACKET (I.E. AN OpenSSL v' . $this->oCRNRSTN->version_openssl() . ' ENCRYPTED JSON OBJECT).
+ 
+THE PRIMARY AND SIGNIFICANT DIFFERENCE BETWEEN THE C<span style="color:#F00;">R</span>NRSTN :: SSDTLA DATA PACKET AND THE SLIGHTLY SIMPLER C<span style="color:#F00;">R</span>NRSTN :: PSSDTLA PACKET (AN ENCRYPTED 
+JSON OBJECT) IS THAT THE C<span style="color:#F00;">R</span>NRSTN :: SSDTLA TAKES THE ENCRYPTED JSON OBJECT AND THEN ENCAPSULATES OR WRAPS IT WITHIN A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' 
+POWERED SOAP OBJECT BEFORE STORING IT AS STATIC DATA AT THE BROWSER IN THE BUILD OF THE PAGE HTML OR THROUGH oC<span style="color:#F00;">R</span>NRSTN_JS WHEN A NEW SOAP 
+REQUEST (A FRESH SSDTLA PACKET) IS RETURNED BY THE C<span style="color:#F00;">R</span>NRSTN :: SSDTLA ITSELF TO THE BROWSER IN AN &lt;XML&gt; DOCUMENT RESPONSE TO AN 
+AJAX DRIVEN XHR REQUEST. 
+
+BEHOLD BOTH THE BEAUTY, POWER, AND SIMPLICITY OF SOAP; THE C<span style="color:#F00;">R</span>NRSTN :: SSDTLA, 
+DEVELOPED BY e<span style="color:#F00;">V</span>ifweb, HAS EVERY BROWSER TALKING TO THE SERVER LIKE IT IS A SERVER 
+FOR REQUEST AUTHENTICATION AT THE SOAP SERVICES SERVER ENDPOINT AND REQUEST SERIALIZATION FOR UI/UX PROCESS 
+SYNCHRONIZATION AND MEMORY (CACHE) MANAGEMENT AT THE SOAP CLIENT SERVER...THE BROWSER.
+
+THE STRATEGIC VALUE OF THE C<span style="color:#F00;">R</span>NRSTN :: SOAP SERVICES DATA TUNNEL LAYER WILL HAVE 
+ARRIVED, AT LEAST IN PART, WHEN THE BROWSER\'S SSDTLA SOAP PACKET CAN BE PROXIED TO AN ACTIVE SESSION AT ANY ORIGIN OR DOMAIN CONTROLLING 
+SERVER IN SUPPORT OF THE SESSION AUTHENTICATION SERVICES LAYER BEHIND A C<span style="color:#F00;">R</span>NRSTN :: MESSENGER SESSION AT ANY EDGE SERVER.
+
+C<span style="color:#F00;">R</span>NRSTN :: MESSENGER COULD EASILY BECOME THE DEFINITIVE AND MIT LICENSED FUNCTIONAL 
+AND SPIRITUAL REPLACEMENT FOR WHAT WAS ONCE YAHOO INSTANT MESSENGER.
+
+THE C<span style="color:#F00;">R</span>NRSTN :: SSDTLA IS A HARDENED DATA HANDLING 
+ARCHITECTURE THAT IS PROTECTED BY OpenSSL v' . $this->oCRNRSTN->version_openssl() . ' ENCRYPTION TECHNOLOGY AND 
+DEVELOPED BY eVifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.',
+                                                            'TEXT' => 'RETURN LOGGING OUTPUT ON TOP OF THE CRNRSTN :: SOAP SERVICES 
+DATA TUNNEL LAYER (SSDTL) LOGGING OUTPUT BY PROXY ON TOP OF A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' POWERED SOAP 
+SERVICES LAYER THAT WAS DEVELOPED BY eVifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.
+
+PLEASE NOTE THAT THE ENCRYPTED SSDTLA DATA PACKET THAT IS STORED IN THE BROWSER DOM VIA &lt;FORM&gt; HIDDEN INPUT IS 
+ACTUALLY JUST A CRNRSTN :: PSEUDO-SOAP SERVICES DATA TUNNEL LAYER ARCHITECTURE (PSSDTLA) 
+DATA PACKET (I.E. AN OpenSSL v' . $this->oCRNRSTN->version_openssl() . ' ENCRYPTED JSON OBJECT).
+ 
+THE PRIMARY AND SIGNIFICANT DIFFERENCE BETWEEN THE CRNRSTN :: SSDTLA DATA PACKET AND THE SLIGHTLY SIMPLER CRNRSTN :: PSSDTLA PACKET (AN ENCRYPTED 
+JSON OBJECT) IS THAT THE SSDTLA TAKES THE ENCRYPTED JSON OBJECT AND THEN ENCAPSULATES OR WRAPS IT WITHIN A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' 
+POWERED SOAP OBJECT BEFORE STORING IT AS STATIC DATA AT THE BROWSER IN THE BUILD OF THE PAGE HTML OR THROUGH oCRNRSTN_JS WHEN A NEW SOAP 
+REQUEST (A FRESH SSDTLA PACKET) IS RETURNED BY THE SSDTLA ITSELF TO THE BROWSER IN AN &lt;XML&gt; DOCUMENT RESPONSE TO AN 
+AJAX DRIVEN XHR REQUEST. 
+
+BEHOLD BOTH THE BEAUTY, POWER, AND SIMPLICITY OF SOAP; THE CRNRSTN :: SSDTLA, 
+DEVELOPED BY eVifweb, HAS EVERY BROWSER TALKING TO THE SERVER LIKE IT IS A SERVER 
+FOR REQUEST AUTHENTICATION AT THE SOAP SERVICES SERVER ENDPOINT AND REQUEST SERIALIZATION FOR UI/UX PROCESS 
+SYNCHRONIZATION AND MEMORY (CACHE) MANAGEMENT AT THE SOAP CLIENT SERVER...THE BROWSER.
+
+THE STRATEGIC VALUE OF THE CRNRSTN :: SOAP SERVICES DATA TUNNEL LAYER WILL HAVE 
+ARRIVED, AT LEAST IN PART, WHEN THE BROWSER\'S SSDTLA SOAP PACKET CAN BE PROXIED TO AN ACTIVE SESSION AT ANY ORIGIN OR DOMAIN CONTROLLING 
+SERVER IN SUPPORT OF THE SESSION AUTHENTICATION SERVICES LAYER BEHIND A CRNRSTN :: MESSENGER SESSION AT ANY EDGE SERVER.
+
+CRNRSTN :: MESSENGER COULD EASILY BECOME THE DEFINITIVE AND MIT LICENSED FUNCTIONAL 
+AND SPIRITUAL REPLACEMENT FOR WHAT WAS ONCE YAHOO INSTANT MESSENGER.
+
+THE CRNRSTN :: SSDTLA IS A HARDENED DATA HANDLING 
+ARCHITECTURE THAT IS PROTECTED BY OpenSSL v' . $this->oCRNRSTN->version_openssl() . ' ENCRYPTION TECHNOLOGY AND 
+DEVELOPED BY eVifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.'
+                                                        );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                case CRNRSTN_CHANNEL_PSSDTLA:
+                case 'CRNRSTN_CHANNEL_PSSDTLA':
+                case 'crnrstn_channel_pssdtla':
+                case CRNRSTN_LOG_PSSDTLA:
+                case 'CRNRSTN_LOG_PSSDTLA':
+                case 'crnrstn_log_pssdtla':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_CHANNEL_PSSDTLA;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_CHANNEL_PSSDTLA';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                                                    'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: PSSDTLA LOGGING',
+                                                    'TEXT' => 'CRNRSTN :: PSSDTLA LOGGING'
+                                                );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                                                            'HTML' => 'RETURN LOGGING OUTPUT ON TOP OF THE C<span style="color:#F00;">R</span>NRSTN :: PSEUDO-SOAP SERVICES DATA TUNNEL LAYER (PSSDTL). THE C<span style="color:#F00;">R</span>NRSTN :: PSSDTLA IS A HARDENED DATA HANDLING ARCHITECTURE THAT IS PROTECTED BY OpenSSL v' . $this->oCRNRSTN->version_openssl() . ' ENCRYPTION (OF A JSON OBJECT) TECHNOLOGY AND DEVELOPED BY e<span style="color:#F00;">V</span>ifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.',
+                                                            'TEXT' => 'RETURN LOGGING OUTPUT ON TOP OF THE CRNRSTN :: PSEUDO-SOAP SERVICES DATA TUNNEL LAYER (PSSDTL). THE CRNRSTN :: PSSDTLA IS A HARDENED DATA HANDLING ARCHITECTURE THAT IS PROTECTED BY OpenSSL v' . $this->oCRNRSTN->version_openssl() . ' ENCRYPTION (OF A JSON OBJECT) TECHNOLOGY AND DEVELOPED BY eVifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.'
+                                                        );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                case CRNRSTN_LOG_PSSDTLA_PROXY:
+                case 'CRNRSTN_LOG_PSSDTLA_PROXY':
+                case 'crnrstn_log_pssdtla_proxy':
+
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_INTEGER] = CRNRSTN_LOG_PSSDTLA_PROXY;
+                    $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_LOG_PSSDTLA_PROXY';
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['NAME'] = array(
+                                                    'HTML' => 'C<span style="color:#F00;">R</span>NRSTN :: PSSDTLA LOGGING (PROXY)',
+                                                    'TEXT' => 'CRNRSTN :: PSSDTLA LOGGING (PROXY)'
+                                                );
+                    $tmp_channel_ARRAY['DESCRIPTION'] = array(
+                                                            'HTML' => 'RETURN LOGGING OUTPUT THROUGH THE C<span style="color:#F00;">R</span>NRSTN :: PSEUDO-SOAP SERVICES DATA TUNNEL LAYER (PSSDTL) LOGGING OUTPUT BY PROXY ON TOP OF A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' POWERED SOAP SERVICES LAYER DEVELOPED BY e<span style="color:#F00;">V</span>ifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.',
+                                                            'TEXT' => 'RETURN LOGGING OUTPUT THROUGH THE CRNRSTN :: PSEUDO-SOAP SERVICES DATA TUNNEL LAYER (PSSDTL) LOGGING OUTPUT BY PROXY ON TOP OF A NuSOAP v' . $this->oCRNRSTN->version_soap() . ' POWERED SOAP SERVICES LAYER DEVELOPED BY eVifweb UNDER THE LATEST VERSION OF THE MIT LICENSE.'
+                                                        );
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = -1;
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = '-1';
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL);
+                    $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_STRING] = array('CRNRSTN_AUTHORIZE_ALL' => CRNRSTN_AUTHORIZE_ALL);
+
+                break;
+                default:
+
+                    //
+                    // THIS IS CRNRSTN :: CONFIGURATION UGC SETTINGS INPUT DATA
+                    // THAT WILL STILL REQUIRE INPUT VALIDATION.
+                    $tmp_output_profile = $this->oCRNRSTN->get_resource('system_logging_output_profile', 0, 'CRNRSTN::RESOURCE::LOGGING');
+
+                    if(!is_numeric($tmp_output_profile)){
+
+                        $tmp_int = $this->oCRNRSTN->get_system_logging_config($tmp_output_profile, CRNRSTN_INTEGER);
+
+                        if(!($this->oCRNRSTN->isset_crnrstn('system_log_output_profile_constants_ARRAY', $tmp_int) == true)){
+
+                            //
+                            // THIS IS A STATIC HARD CODE OF,
+                            // self::$system_default_logging_output_profile = CRNRSTN_LOG_DEFAULT,
+                            // IN THE CRNRSTN :: __CONSTRUCTOR().
+                            //
+                            // Sunday, December 3, 2023 @ 0501 hrs.
+                            $tmp_int = $this->oCRNRSTN->get_crnrstn('system_default_logging_output_profile');
+
+                            //
+                            // JUST IN CASE, A STRING VALUE IS EVER PROVIDED
+                            // TO THE CRNRSTN :: __CONSTRUCTOR().
+                            if(!is_numeric($tmp_int)){
+
+                                $tmp_int = $this->oCRNRSTN->get_system_logging_config($tmp_int, CRNRSTN_INTEGER);
+
+                                if(!($this->oCRNRSTN->isset_crnrstn('system_log_output_profile_constants_ARRAY', $tmp_int) == true)){
+
+                                    //
+                                    // Sunday, December 3, 2023 @ 0504 hrs.
+                                    $tmp_int = CRNRSTN_LOG_DEFAULT;
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                    $tmp_err_str = 'CRNRSTN :: could not apply the CRNRSTN :: SOAP SERVICES LOGGING SERVICES LAYER log initialization profile, (' .
+                        $this->oCRNRSTN->gettype($logging_output_profile) . ') ' . strval($logging_output_profile) . ', which was the value that was provided as method input to this environment. The will be manually set to ' . $this->oCRNRSTN->get_system_logging_config($tmp_int, CRNRSTN_STRING).'[' . $tmp_int . ']. ' .
+                        $this->oCRNRSTN->data_report($logging_output_profile, 'CRNRSTN :: MC-DDO INPUT DATA REPORT');
+
+                    $this->oCRNRSTN->error_log($tmp_err_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                    return $this->get_system_logging_config($tmp_int, $index_0, $index_1, $index_2, $index_3);
+
+                break;
+
+            }
+
+            return $this->get_system_logging_config($tmp_channel_ARRAY, $index_0, $index_1, $index_2, $index_3);
+
+        }catch(Exception $e){
+
+            //
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+            //
+            // RETURN EMPTY STRING.
+            return '';
+
+        }
+
+    }
+
     public function return_active_log_silo_keys(){
 
         return $this->active_log_silo_flag_ARRAY;
@@ -275,13 +1342,7 @@ class crnrstn_logging {
 
     }
 
-    private function load_log_output_mgr($oCRNRSTN_n){
-
-        $this->oLog_output_manager = new crnrstn_log_output_manager($oCRNRSTN_n);
-
-    }
-
-    public function catch_exception($exception_obj, $syslog_constant, $exception_method, $namespace, $profile_override_pipe, $endpoint_override_pipe, $wcr_override_pipe, $oCRNRSTN_n){
+    public function catch_exception($exception_obj, $syslog_constant, $exception_method, $namespace, $profile_override_pipe, $endpoint_override_pipe, $wcr_override_pipe){
 
         /*
         # syslog()
@@ -320,97 +1381,37 @@ class crnrstn_logging {
         123 - getCode=0
         124 - getFile=/var/www/html/crnrstn_v2/_crnrstn/class/environment/crnrstn.environment.inc.php
         125 - getLine=403
-        126 - getTraceAsString=#0 /var/www/html/crnrstn_v2/_crnrstn/class/user/crnrstn.user.inc.php(6063): crnrstn_environment->getServerArrayVar('CLOWN_TOWN', Object(crnrstn_user))\n#1 /var/www/html/crnrstn_v2/common/inc/footer/footer.inc.php(591): crnrstn_user->get_SERVER_param('CLOWN_TOWN')\n#2 /var/www/html/crnrstn_v2/index.php(132): include_once('/var/www/html/c...')\n#3 {main}
+        126 - getTraceAsString=#0 /var/www/html/crnrstn_v2/_crnrstn/class/user/crnrstn.user.inc.php(6063): crnrstn_environment->getServerArrayVar('CLOWN_TOWN', Object(crnrstn_user))\n#1 /var/www/html/crnrstn_v2/common/inc/footer/footer.inc.php(591): crnrstn_user->get_SERVER_param('CLOWN_TOWN')\n#2 /var/www/html/crnrstn_v2/index.php(132): include_once('/var/www/html/c..')\n#3 {main}
 
         */
 
-        $tmp_class_name = get_class($oCRNRSTN_n);
+        //
+        // CRNRSTN :: DEEP EMBRYONIC STATE.
+        //$oCRNRSTN = $oCRNRSTN;
 
-        switch($tmp_class_name){
-            case 'crnrstn':
+        //$init_profile_pack_ARRAY['sys_logging_profile_ARRAY'] = $array[crc32($this->config_serial)][CRNRSTN_LOG_ALL][];
+        //$init_profile_pack_ARRAY['sys_logging_meta_ARRAY'] = $array[crc32($this->config_serial)][CRNRSTN_LOG_ALL][];
+        //$init_profile_pack_ARRAY['sys_logging_wcr_ARRAY'] = $array[crc32($this->config_serial)][CRNRSTN_LOG_ALL][]
 
-                //
-                // CRNRSTN :: DEEP EMBRYONIC STATE
-                //$oCRNRSTN = $oCRNRSTN_n;
+        $init_profile_pack_ARRAY = $this->oCRNRSTN->return_sys_logging_init_profile_pack();
 
-                //$init_profile_pack_ARRAY['sys_logging_profile_ARRAY'] = $array[crc32($this->config_serial)][CRNRSTN_LOG_ALL][];
-                //$init_profile_pack_ARRAY['sys_logging_meta_ARRAY'] = $array[crc32($this->config_serial)][CRNRSTN_LOG_ALL][];
-                //$init_profile_pack_ARRAY['sys_logging_wcr_ARRAY'] = $array[crc32($this->config_serial)][CRNRSTN_LOG_ALL][]
+        $this->oLog_ProfileManager = new crnrstn_logging_oprofile_manager($init_profile_pack_ARRAY, $this->oCRNRSTN);
 
-                $init_profile_pack_ARRAY = $oCRNRSTN_n->return_sys_logging_init_profile_pack();
+        //error_log(__LINE__ .' log '.get_class().'::  init_profile_pack_ARRAY size='.print_r($init_profile_pack_ARRAY, true));
+        //die();
 
-                $this->oLog_ProfileManager = new crnrstn_logging_oprofile_manager($init_profile_pack_ARRAY, $oCRNRSTN_n);
+        $this->oLog_ProfileManager->sync_to_environment($this->oCRNRSTN);
 
-                //error_log(__LINE__ .' log '.get_class().'::  init_profile_pack_ARRAY size='.print_r($init_profile_pack_ARRAY, true));
-                //die();
-
-                $this->oLog_ProfileManager->sync_to_environment($oCRNRSTN_n);
-
-                // DO WE NEED TO CALL THIS AFTER CONSTRUCTOR RECEIVES SAME ARRAY?
-                $this->oLog_ProfileManager->consume_init_profile_pack($init_profile_pack_ARRAY);
-
-            break;
-            case 'crnrstn_user':
-
-                $oCRNRSTN_ENV = $oCRNRSTN_n->return_oCRNRSTN_ENV();
-
-                //
-                // ALWAYS GET FRESH LOGGING PROFILE. CAN CHANGE BEFORE METHOD CALL...RIGHT?
-                $init_profile_pack_ARRAY = array();
-                $init_profile_pack_ARRAY['sys_logging_profile_ARRAY'] = $oCRNRSTN_ENV->return_sys_logging_profile();
-                $init_profile_pack_ARRAY['sys_logging_meta_ARRAY'] = $oCRNRSTN_ENV->return_sys_logging_meta();
-
-                if(isset($oCRNRSTN_n->oCRNRSTN_WCR_ARRAY[$oCRNRSTN_n->hash($oCRNRSTN_n->get_server_config_serial())])){
-
-                    $init_profile_pack_ARRAY['sys_logging_wcr_ARRAY'] = $oCRNRSTN_ENV->oCRNRSTN_WCR_ARRAY[$oCRNRSTN_ENV->hash($oCRNRSTN_ENV->get_server_config_serial())][CRNRSTN_LOG_ALL];
-
-                }
-
-                $this->oLog_ProfileManager = $oCRNRSTN_n->return_oLog_ProfileManager();
-
-                $this->oLog_ProfileManager->consume_init_profile_pack($init_profile_pack_ARRAY);
-
-            break; // DO NOT BREAK.
-            case 'crnrstn_environment':
-
-                //
-                // ALWAYS GET FRESH LOGGING PROFILE. CAN CHANGE BEFORE METHOD CALL...RIGHT?
-                $init_profile_pack_ARRAY = array();
-                $init_profile_pack_ARRAY['sys_logging_profile_ARRAY'] = $oCRNRSTN_n->return_sys_logging_profile();
-                $init_profile_pack_ARRAY['sys_logging_meta_ARRAY'] = $oCRNRSTN_n->return_sys_logging_meta();
-                //$init_profile_pack_ARRAY['sys_logging_wcr_ARRAY'] = $oCRNRSTN_n->oCRNRSTN_WCR_ARRAY[$oCRNRSTN_n->crcINT($oCRNRSTN_n->config_serial_crc)][CRNRSTN_LOG_ALL];
-
-                if(isset($oCRNRSTN_n->oCRNRSTN_WCR_ARRAY[$oCRNRSTN_n->hash($oCRNRSTN_n->get_server_config_serial())])){
-
-                    $init_profile_pack_ARRAY['sys_logging_wcr_ARRAY'] = $oCRNRSTN_n->oCRNRSTN_WCR_ARRAY[$oCRNRSTN_n->hash($oCRNRSTN_n->get_server_config_serial())][CRNRSTN_LOG_ALL];
-
-                }
-
-                $this->oLog_ProfileManager = $oCRNRSTN_n->return_oLog_ProfileManager();
-
-//              error_log(__LINE__ .' log '.get_class().'::  pack + sys_logging_wcr_ARRAY='.print_r($init_profile_pack_ARRAY, true));
-//              die();
-
-                $this->oLog_ProfileManager->consume_init_profile_pack($init_profile_pack_ARRAY);
-
-            break;
-
-            //
-            // MATURE DEVELOPMENT
-            default :
-
-
-            break;
-
-        }
+        //
+        // DO WE NEED TO CALL THIS AFTER CONSTRUCTOR RECEIVES SAME ARRAY?
+        $this->oLog_ProfileManager->consume_init_profile_pack($init_profile_pack_ARRAY);
 
         $tmp_exception_msg = $exception_obj->getMessage();
         $tmp_exception_linenum = $exception_obj->getLine();
-        $tmp_exception_runtime = $oCRNRSTN_n->wall_time();
-        $tmp_exception_systemtime = $oCRNRSTN_n->return_micro_time();
+        $tmp_exception_runtime = $this->oCRNRSTN->wall_time();
+        $tmp_exception_systemtime = $this->oCRNRSTN->return_micro_time();
 
         $exception_method_trim = trim($exception_method);
-        //error_log(__LINE__ .' my class in logger catch_exception is '.get_class($oCRNRSTN_n).' $exception_method_trim=' . $exception_method_trim.' $tmp_exception_msg=' . $tmp_exception_msg);
 
         if(isset($exception_method_trim)){
 
@@ -436,7 +1437,231 @@ class crnrstn_logging {
 
         }
 
-        $oCRNRSTN_n->error_log('[rtime ' . $tmp_exception_runtime.' secs] [' . $method . ' ' . $tmp_exception_method . '] [lnum ' . $tmp_exception_linenum.'] ' . $tmp_exception_msg, __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
+        $this->oCRNRSTN->error_log('[rtime ' . $tmp_exception_runtime . ' secs] [' . $method . ' ' . $tmp_exception_method . '] [lnum ' . $tmp_exception_linenum . '] ' . $tmp_exception_msg, __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
+
+        $tmp_exception_output_str = $tmp_exception_systemtime . ' [rtime ' . $tmp_exception_runtime.' secs] [' . $method . ' ' . $tmp_exception_method . '] [lnum ' . $tmp_exception_linenum . '] ' . $tmp_exception_msg;
+
+        switch($tmp_source_method){
+            case 'crnrstn_soa_endpoint_request_manager::takeTheKingsHighway':
+
+                $tmp_pos_SOAP_req = strpos($tmp_exception_msg,'a SOAP request '); //a SOAP request
+
+                if($tmp_pos_SOAP_req !== false){
+
+                    $tmp_array = array(
+                        'CRNRSTN_PACKET_IS_ENCRYPTED'       => 'FALSE',
+                        'CRNRSTN_SOAP_SVC_USERNAME'         => $_SESSION['CRNRSTN_SOAP_SVC_USERNAME'],
+                        'SOAP_SERVICES_AUTH_STATUS'         => 'ACCESS DENIED',
+                        'STATUS_CODE'                       => '406',
+                        'STATUS_MESSAGE'                    => 'The CRNRSTN :: SOAP Services Layer understood the client request, but is unwilling to accept it due to the following reason. ' . $tmp_exception_output_str,
+                        'ISERROR_CODE'                      => '406',
+                        'ISERROR_MESSAGE'                   => '406 Not Acceptable.',
+                        'DATE_RECEIVED_SOAP_REQUEST'        => $this->tmp_precise_timestamp,
+                        'SERVER_NAME_SOAP_SERVER'           => $_SERVER['SERVER_NAME'],
+                        'SERVER_ADDRESS_SOAP_SERVER'        => $_SERVER['SERVER_ADDR'],
+                        'SOAP_OPERATION_RUNTIME_SECONDS'    => $tmp_exception_runtime,
+                        'DATE_CREATED_SOAP_RESPONSE'        => $this->oCRNRSTN->return_micro_time(),
+                        'SERVER_NAME_SOAP_CLIENT'           => $_SERVER['SERVER_NAME'],
+                        'SERVER_ADDRESS_SOAP_CLIENT'        => $_SERVER['SERVER_ADDR']
+
+                    );
+
+                }else{
+
+                    $tmp_array = array(
+                        'CRNRSTN_PACKET_IS_ENCRYPTED'       => 'FALSE',
+                        'CRNRSTN_SOAP_SVC_USERNAME'         => $_SESSION['CRNRSTN_SOAP_SVC_USERNAME'],
+                        'SOAP_SERVICES_AUTH_STATUS'         => 'ACCESS DENIED',
+                        'STATUS_CODE'                       => '406',
+                        'STATUS_MESSAGE'                    => 'The CRNRSTN :: SOAP Services Layer understood the client request, but is unwilling to accept it due to the following reason. ' . $tmp_exception_output_str,
+                        'ISERROR_CODE'                      => '406',
+                        'ISERROR_MESSAGE'                   => '406 Not Acceptable.',
+                        'DATE_RECEIVED_SOAP_REQUEST'        => $this->tmp_precise_timestamp,
+                        'SERVER_NAME_SOAP_SERVER'           => $_SERVER['SERVER_NAME'],
+                        'SERVER_ADDRESS_SOAP_SERVER'        => $_SERVER['SERVER_ADDR'],
+                        'SOAP_OPERATION_RUNTIME_SECONDS'    => $tmp_exception_runtime,
+                        'DATE_CREATED_SOAP_RESPONSE'        => $this->oCRNRSTN->return_micro_time(),
+                        'SERVER_NAME_SOAP_CLIENT'           => $_SERVER['SERVER_NAME'],
+                        'SERVER_ADDRESS_SOAP_CLIENT'        => $_SERVER['SERVER_ADDR']
+
+                    );
+
+                }
+
+                return $tmp_array;
+
+            break;
+            default:
+
+                //$tmp_exception_method = $exception_method . '()';
+                //$method = 'methd';
+
+            break;
+
+        }
+
+        $this->oLog_ProfileManager->notification_go($tmp_exception_output_str, $syslog_constant, $tmp_exception_method, $tmp_exception_runtime, $tmp_exception_systemtime, $exception_obj);
+
+        return NULL;
+
+    }
+
+    public function __________catch_exception($exception_obj, $syslog_constant, $exception_method, $namespace, $profile_override_pipe, $endpoint_override_pipe, $wcr_override_pipe){
+
+        /*
+        # syslog()
+        # SYSLOG priority is a combination of the facility and the level. Possible values
+        # are (in descending order):
+        # Constant		Description
+        # LOG_EMERG		system is unusable.
+        # LOG_ALERT		action must be taken immediately
+        # LOG_CRIT		critical conditions
+        # LOG_ERR		error conditions
+        # LOG_WARNING	warning conditions
+        # LOG_NOTICE	normal, but significant, condition
+        # LOG_INFO		informational message
+        # LOG_DEBUG		debug-level message
+
+        Exception $e
+        final public getMessage ( void ) : string
+        final public getPrevious ( void ) : Throwable
+        final public getCode ( void ) : mixed
+        final public getFile ( void ) : string
+        final public getLine ( void ) : int
+        final public getTrace ( void ) : array
+        final public getTraceAsString ( void ) : string
+        public __toString ( void ) : string
+        final private __clone ( void ) : void
+
+        $this->error_log('121 - getMessage=' . $exception_obj->getMessage());
+        $this->error_log('122 - getPrevious=' . $exception_obj->getPrevious());
+        $this->error_log('123 - getCode=' . $exception_obj->getCode());
+        $this->error_log('124 - getFile=' . $exception_obj->getFile());
+        $this->error_log('125 - getLine=' . $exception_obj->getLine());
+        $this->error_log('126 - getTraceAsString=' . $exception_obj->getTraceAsString());
+
+        121 - getMessage=The requested _SERVER super global parameter [CLOWN_TOWN] cannot be found.
+        122 - getPrevious=
+        123 - getCode=0
+        124 - getFile=/var/www/html/crnrstn_v2/_crnrstn/class/environment/crnrstn.environment.inc.php
+        125 - getLine=403
+        126 - getTraceAsString=#0 /var/www/html/crnrstn_v2/_crnrstn/class/user/crnrstn.user.inc.php(6063): crnrstn_environment->getServerArrayVar('CLOWN_TOWN', Object(crnrstn_user))\n#1 /var/www/html/crnrstn_v2/common/inc/footer/footer.inc.php(591): crnrstn_user->get_SERVER_param('CLOWN_TOWN')\n#2 /var/www/html/crnrstn_v2/index.php(132): include_once('/var/www/html/c..')\n#3 {main}
+
+        */
+
+        $tmp_class_name = get_class($oCRNRSTN);
+
+        switch($tmp_class_name){
+            case 'crnrstn':
+
+                //
+                // CRNRSTN :: DEEP EMBRYONIC STATE
+                //$oCRNRSTN = $oCRNRSTN;
+
+                //$init_profile_pack_ARRAY['sys_logging_profile_ARRAY'] = $array[crc32($this->config_serial)][CRNRSTN_LOG_ALL][];
+                //$init_profile_pack_ARRAY['sys_logging_meta_ARRAY'] = $array[crc32($this->config_serial)][CRNRSTN_LOG_ALL][];
+                //$init_profile_pack_ARRAY['sys_logging_wcr_ARRAY'] = $array[crc32($this->config_serial)][CRNRSTN_LOG_ALL][]
+
+                $init_profile_pack_ARRAY = $oCRNRSTN->return_sys_logging_init_profile_pack();
+
+                $this->oLog_ProfileManager = new crnrstn_logging_oprofile_manager($init_profile_pack_ARRAY, $this->oCRNRSTN);
+
+                //error_log(__LINE__ .' log '.get_class().'::  init_profile_pack_ARRAY size='.print_r($init_profile_pack_ARRAY, true));
+                //die();
+
+                $this->oLog_ProfileManager->sync_to_environment($oCRNRSTN);
+
+                // DO WE NEED TO CALL THIS AFTER CONSTRUCTOR RECEIVES SAME ARRAY?
+                $this->oLog_ProfileManager->consume_init_profile_pack($init_profile_pack_ARRAY);
+
+            break;
+            case 'crnrstn_user':
+
+//                $oCRNRSTN_ENV = $oCRNRSTN->return_oCRNRSTN_ENV();
+//
+//                //
+//                // ALWAYS GET FRESH LOGGING PROFILE. CAN CHANGE BEFORE METHOD CALL...RIGHT?
+//                $init_profile_pack_ARRAY = array();
+//                $init_profile_pack_ARRAY['sys_logging_profile_ARRAY'] = $oCRNRSTN_ENV->return_sys_logging_profile();
+//                $init_profile_pack_ARRAY['sys_logging_meta_ARRAY'] = $oCRNRSTN_ENV->return_sys_logging_meta();
+//
+//                if(isset($oCRNRSTN->oCRNRSTN_WCR_ARRAY[$oCRNRSTN->hash($oCRNRSTN->get_crnrstn('config_serial'))])){
+//
+//                    $init_profile_pack_ARRAY['sys_logging_wcr_ARRAY'] = $oCRNRSTN_ENV->oCRNRSTN_WCR_ARRAY[$oCRNRSTN_ENV->hash($oCRNRSTN->get_crnrstn('config_serial'))][CRNRSTN_LOG_ALL];
+//
+//                }
+//
+//                $this->oLog_ProfileManager = $oCRNRSTN->return_oLog_ProfileManager();
+//
+//                $this->oLog_ProfileManager->consume_init_profile_pack($init_profile_pack_ARRAY);
+
+            break; // DO NOT BREAK.
+            case 'crnrstn_environment':
+
+//                //
+//                // ALWAYS GET FRESH LOGGING PROFILE. CAN CHANGE BEFORE METHOD CALL...RIGHT?
+//                $init_profile_pack_ARRAY = array();
+//                $init_profile_pack_ARRAY['sys_logging_profile_ARRAY'] = $oCRNRSTN->return_sys_logging_profile();
+//                $init_profile_pack_ARRAY['sys_logging_meta_ARRAY'] = $oCRNRSTN->return_sys_logging_meta();
+//                //$init_profile_pack_ARRAY['sys_logging_wcr_ARRAY'] = $oCRNRSTN->oCRNRSTN_WCR_ARRAY[$oCRNRSTN->crcINT($oCRNRSTN->config_serial_crc)][CRNRSTN_LOG_ALL];
+//
+//                if(isset($oCRNRSTN->oCRNRSTN_WCR_ARRAY[$oCRNRSTN->hash($oCRNRSTN->get_crnrstn('config_serial'))])){
+//
+//                    $init_profile_pack_ARRAY['sys_logging_wcr_ARRAY'] = $oCRNRSTN->oCRNRSTN_WCR_ARRAY[$oCRNRSTN->hash($oCRNRSTN->get_crnrstn('config_serial'))][CRNRSTN_LOG_ALL];
+//
+//                }
+//
+//                $this->oLog_ProfileManager = $oCRNRSTN->return_oLog_ProfileManager();
+//
+////              error_log(__LINE__ .' log '.get_class().'::  pack + sys_logging_wcr_ARRAY='.print_r($init_profile_pack_ARRAY, true));
+////              die();
+//
+//                $this->oLog_ProfileManager->consume_init_profile_pack($init_profile_pack_ARRAY);
+
+                break;
+
+            //
+            // MATURE DEVELOPMENT
+            default :
+
+
+                break;
+
+        }
+
+        $tmp_exception_msg = $exception_obj->getMessage();
+        $tmp_exception_linenum = $exception_obj->getLine();
+        $tmp_exception_runtime = $oCRNRSTN->wall_time();
+        $tmp_exception_systemtime = $oCRNRSTN->return_micro_time();
+
+        $exception_method_trim = trim($exception_method);
+        //error_log(__LINE__ .' my class in logger catch_exception is '.get_class($oCRNRSTN).' $exception_method_trim=' . $exception_method_trim.' $tmp_exception_msg=' . $tmp_exception_msg);
+
+        if(isset($exception_method_trim)){
+
+            if($exception_method_trim == ''){
+
+                $tmp_source_method = '';
+                $tmp_exception_method = $exception_obj->getFile();
+                $method = 'file';
+
+            }else{
+
+                $tmp_source_method = $exception_method_trim;
+                $tmp_exception_method = $exception_method_trim . '()';
+                $method = 'methd';
+
+            }
+
+        }else{
+
+            $tmp_source_method = '';
+            $tmp_exception_method = $exception_obj->getFile();
+            $method = 'file';
+
+        }
+
+        $oCRNRSTN->error_log('[rtime ' . $tmp_exception_runtime.' secs] [' . $method . ' ' . $tmp_exception_method . '] [lnum ' . $tmp_exception_linenum.'] ' . $tmp_exception_msg, __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
 
         $tmp_exception_output_str = $tmp_exception_systemtime.' [rtime ' . $tmp_exception_runtime.' secs] [' . $method . ' ' . $tmp_exception_method . '] [lnum ' . $tmp_exception_linenum.'] ' . $tmp_exception_msg;
 
@@ -483,7 +1708,7 @@ class crnrstn_logging {
                         'SERVER_NAME_SOAP_SERVER' => $_SERVER['SERVER_NAME'],
                         'SERVER_ADDRESS_SOAP_SERVER' => $_SERVER['SERVER_ADDR'],
                         'SOAP_OPERATION_RUNTIME_SECONDS' => $tmp_exception_runtime,
-                        'DATE_CREATED_SOAP_RESPONSE' => self::$oCRNRSTN_n->return_micro_time(),
+                        'DATE_CREATED_SOAP_RESPONSE' => $this->oCRNRSTN->return_micro_time(),
                         'SERVER_NAME_SOAP_CLIENT' => $_SERVER['SERVER_NAME'],
                         'SERVER_ADDRESS_SOAP_CLIENT' => $_SERVER['SERVER_ADDR']
                     );
@@ -502,7 +1727,7 @@ class crnrstn_logging {
                         'SERVER_NAME_SOAP_SERVER' => $_SERVER['SERVER_NAME'],
                         'SERVER_ADDRESS_SOAP_SERVER' => $_SERVER['SERVER_ADDR'],
                         'SOAP_OPERATION_RUNTIME_SECONDS' => $tmp_exception_runtime,
-                        'DATE_CREATED_SOAP_RESPONSE' => self::$oCRNRSTN_n->return_micro_time(),
+                        'DATE_CREATED_SOAP_RESPONSE' => $this->oCRNRSTN->return_micro_time(),
                         'SERVER_NAME_SOAP_CLIENT' => $_SERVER['SERVER_NAME'],
                         'SERVER_ADDRESS_SOAP_CLIENT' => $_SERVER['SERVER_ADDR']
                     );
@@ -522,31 +1747,31 @@ class crnrstn_logging {
 
         }
 
-        $this->oLog_ProfileManager->notification_go($oCRNRSTN_n, $tmp_exception_output_str, $syslog_constant, $tmp_exception_method, $tmp_exception_runtime, $tmp_exception_systemtime, $exception_obj);
+        $this->oLog_ProfileManager->notification_go($tmp_exception_output_str, $syslog_constant, $tmp_exception_method, $tmp_exception_runtime, $tmp_exception_systemtime, $exception_obj);
 
         return NULL;
 
     }
 
-    public function error_log($str, $line_num, $method, $file, $log_silo_key, $oCRNRSTN_n){
+    public function error_log($str, $line_num, $method, $file, $log_silo_profile){
 
-        // $oCRNRSTN_n CAN BE $oCRNRSTN_USR, $oCRNRSTN_ENV, or $oCRNRSTN
         //error_log(__LINE__ . ' log ' . __METHOD__ . ' $this->CRNRSTN_debug_mode=['  . $this->CRNRSTN_debug_mode . ']');
-        switch($this->CRNRSTN_debug_mode){
-            case 1:
+        switch($this->oCRNRSTN->get_crnrstn('CRNRSTN_debug_mode')){
+            case CRNRSTN_DEBUG_NATIVE_ERR_LOG:
 
-                //if(($oCRNRSTN_n->oCRNRSTN_BITFLIP_MGR->oCRNRSTN_BITWISE->read($log_silo_key) || $oCRNRSTN_n->oCRNRSTN_BITFLIP_MGR->oCRNRSTN_BITWISE->read(CRNRSTN_LOG_ALL) && !$oCRNRSTN_n->oCRNRSTN_BITFLIP_MGR->oCRNRSTN_BITWISE->read(CRNRSTN_LOG_NONE))){
-                if((($oCRNRSTN_n->is_bit_set($log_silo_key) == true) || ($oCRNRSTN_n->is_bit_set(CRNRSTN_LOG_ALL) == true) && !($oCRNRSTN_n->is_bit_set(CRNRSTN_LOG_NONE) == true))){
+                if($this->log_silo_resource_authorized($log_silo_profile) !== false){
+                //if(($this->oCRNRSTN->oCRNRSTN_BITFLIP_MGR->oCRNRSTN_BITWISE->read($log_silo_profile) || $this->oCRNRSTN->oCRNRSTN_BITFLIP_MGR->oCRNRSTN_BITWISE->read(CRNRSTN_LOG_ALL) && !$this->oCRNRSTN->oCRNRSTN_BITFLIP_MGR->oCRNRSTN_BITWISE->read(CRNRSTN_LOG_NONE))){
+                //if((($this->oCRNRSTN->is_bit_set($log_silo_profile) == true) || ($this->oCRNRSTN->is_bit_set(CRNRSTN_LOG_ALL) == true) && !($this->oCRNRSTN->is_bit_set(CRNRSTN_LOG_NONE) == true))){
 
                     if($method != 'crnrstn_logging::catch_exception'){
 
-                        $tmp_str = "[rtime " . $oCRNRSTN_n->wall_time() . ' secs]';
+                        $tmp_str = "[rtime " . $this->oCRNRSTN->wall_time() . ' secs]';
 
                         if(!isset($method) || $method==''){
 
                             if(isset($file)){
 
-                                $tmp_str .= ' [file ' . $file.']';
+                                $tmp_str .= ' [file ' . $file . ']';
 
                             }
 
@@ -558,7 +1783,7 @@ class crnrstn_logging {
 
                         if(isset($line_num)){
 
-                            $tmp_str .= ' [lnum ' . $line_num.']';
+                            $tmp_str .= ' [lnum ' . $line_num . ']';
 
                         }
 
@@ -575,22 +1800,19 @@ class crnrstn_logging {
                 }
 
             break;
-            case 2:
+            case CRNRSTN_DEBUG_AGGREGATION_ON:
 
                 //
-                // LOG AGGREGATION WITHIN CRNRSTN + SILO SUPPORT
-                if((($oCRNRSTN_n->is_bit_set($log_silo_key) == true) || ($oCRNRSTN_n->is_bit_set(CRNRSTN_LOG_ALL) == true) && !($oCRNRSTN_n->is_bit_set(CRNRSTN_LOG_NONE) == true))){
+                // LOG AGGREGATION WITHIN CRNRSTN + SILO SUPPORT.
+                if($this->log_silo_resource_authorized($log_silo_profile) !== false){
+                //if((($this->oCRNRSTN->is_bit_set($log_silo_profile) == true) || ($this->oCRNRSTN->is_bit_set(CRNRSTN_LOG_ALL) == true) && !($this->oCRNRSTN->is_bit_set(CRNRSTN_LOG_NONE) == true))){
 
-                    $this->active_log_silo_flag_ARRAY[$log_silo_key] = 1;
-                    $tmp_oLog = new crnrstn_log($oCRNRSTN_n, $this->getmicrotime(), $log_silo_key);
+                    $this->active_log_silo_flag_ARRAY[$log_silo_profile] = 1;
+                    $tmp_oLog = new crnrstn_log($this->oCRNRSTN, $this->oCRNRSTN->get_micro_time(), $log_silo_profile);
 
-                    if(is_object($oCRNRSTN_n)){
+                    $this->starttime = $this->oCRNRSTN->starttime;
 
-                        $this->starttime = $oCRNRSTN_n->starttime;
-
-                        $tmp_oLog->set_runTime($oCRNRSTN_n->wall_time());
-
-                    }
+                    $tmp_oLog->set_runTime($this->oCRNRSTN->wall_time());
 
                     $tmp_oLog->set_runFile($file);
 
@@ -607,14 +1829,75 @@ class crnrstn_logging {
                 }
 
             break;
+            case CRNRSTN_DEBUG_OFF:
             default:
-                // 0
+                //SILENCE IS GOLDEN.
+                //$CRNRSTN_debug_mode     [0] CRNRSTN_DEBUG_OFF
 
             break;
 
         }
 
         return NULL;
+
+    }
+
+    private function log_silo_resource_authorized($log_silo_profile){
+
+        $tmp_profile_is_authorized = false;
+        $tmp_is_log_none = false;
+        $tmp_is_log_all = false;
+
+        if($this->oCRNRSTN->isset_crnrstn('CRNRSTN_log_silo_profile') == true){
+
+            $tmp_log_silo_ARRAY = $this->oCRNRSTN->get_crnrstn('CRNRSTN_log_silo_profile');
+
+            foreach($tmp_log_silo_ARRAY as $silo_index => $tmp_silo_profile){
+
+                switch($tmp_silo_profile){
+                    case 'CRNRSTN_LOG_NONE':
+                    case CRNRSTN_LOG_NONE:
+
+                        $tmp_is_log_none = true;
+
+                        //
+                        // CRNRSTN_LOG_NONE CONFIGURATION SHUTS
+                        // DOWN ALL CRNRSTN :: LOGGING OUTPUT.
+                        //
+                        // Wednesday, December 6, 2023 @ 0834 hrs.
+                        break 1;
+
+                    break;
+                    case 'CRNRSTN_LOG_ALL':
+                    case CRNRSTN_LOG_ALL:
+
+                        $tmp_is_log_all = true;
+
+                    break;
+
+                }
+
+                if($log_silo_profile == $tmp_silo_profile){
+
+                    $tmp_profile_is_authorized = true;
+
+                }
+
+            }
+
+        }
+
+        if($tmp_is_log_none == false){
+
+            if($tmp_profile_is_authorized == true || $tmp_is_log_all == true){
+
+                return true;
+
+            }
+
+        }
+
+        return $tmp_profile_is_authorized;
 
     }
 
@@ -625,10 +1908,10 @@ class crnrstn_logging {
 		$tmp_key = "";
 
 		//
-		//error_log('839 - CRNRSTN_CONFIG_SERIAL_HASH=' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']);
-		if(isset($_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'])){
-			$tmp_key = $_SESSION['CRNRSTN_'.crc32($_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'])]['CRNRSTN_ENV_KEY_CRC'];
-			$tmp_configserial = $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'];
+		//error_log('839 - CRNRSTN_CONFIG_SERIALIZATION_HASH=' . $_SESSION['CRNRSTN_CONFIG_SERIALIZATION_HASH']);
+		if(isset($_SESSION['CRNRSTN_CONFIG_SERIALIZATION_HASH'])){
+			$tmp_key = $_SESSION['CRNRSTN_'.crc32($_SESSION['CRNRSTN_CONFIG_SERIALIZATION_HASH'])]['CRNRSTN_ENV_KEY_CRC'];
+			$tmp_configserial = $_SESSION['CRNRSTN_CONFIG_SERIALIZATION_HASH'];
 
 			switch($logPriority){
 				case 0:
@@ -858,13 +2141,15 @@ class crnrstn_logging {
             $tmp_oLog_authorized_ARRAY = array();
             $tmp_oLog_cnt = sizeof($oLog_possible_output_ARRAY);
 
-            for($i=0; $i<$tmp_oLog_cnt; $i++){
+            for($i = 0; $i < $tmp_oLog_cnt; $i++){
 
                 $tmp_oLog = $oLog_possible_output_ARRAY[$i];
 
                 if(is_object($tmp_oLog)){
 
-                    $tmp_oLog_silo_key = $tmp_oLog->get_siloKeyProfile();
+                    $tmp_oLog_silo_key = $tmp_oLog->return_silo_profile_array();
+
+                    error_log(__LINE__ . ' logging $tmp_oLog_silo_key[' . print_r($tmp_oLog_silo_key, true) . '].');
 
                     if((isset($tmp_silo_auth_ARRAY[$tmp_oLog_silo_key]) || $full_out) && !isset($silo_negation_ARRAY[$tmp_oLog_silo_key])){
 
@@ -873,15 +2158,18 @@ class crnrstn_logging {
                         $tmp_oLog_authorized_ARRAY[] = $tmp_oLog;
 
                     }
+
                 }
+
             }
+
         }
 
         return $tmp_oLog_authorized_ARRAY;
 
     }
 
-    private function prepare_oLogOut($channel, $log_silo_keys_pipe, $line_num, $method, $file, $logSource, $oLog_output_ARRAY, $oCRNRSTN_USR){
+    private function prepare_oLogOut($channel, $log_silo_profiles_pipe, $line_num, $method, $file, $logSource, $oLog_output_ARRAY, $oCRNRSTN_USR){
 
         $tmp_request_source = $this->return_requestSourceStr($line_num, $method, $file, $logSource);
 
@@ -895,7 +2183,7 @@ class crnrstn_logging {
             die();
 
             $tmp_silo_negation_ARRAY = array();
-            $tmp_silo_ARRAY = explode('|', $log_silo_keys_pipe);
+            $tmp_silo_ARRAY = explode('|', $log_silo_profiles_pipe);
             $tmp_authorized_silo_cnt = sizeof($tmp_silo_ARRAY);
 
             if(in_array('*', $tmp_silo_ARRAY) || ($tmp_authorized_silo_cnt == 1 && $tmp_silo_ARRAY[0] == '') || $tmp_authorized_silo_cnt == 0){
@@ -962,7 +2250,7 @@ class crnrstn_logging {
 
                         //
                         // WE HAVE A VALID LOG FOR WHICH TO PREPARE OUTPUT
-                        //$tmp_silo_key = $tmp_oLog->get_siloKeyProfile();
+                        //$tmp_silo_key = $tmp_oLog->return_silo_profile_array();
                         $tmp_transactionTime = $tmp_oLog->get_transactionTime();
                         $tmp_runTime = $tmp_oLog->get_runTime();
 
@@ -1096,6 +2384,7 @@ class crnrstn_logging {
 
             break;
             case CRNRSTN_LOG_FILE:
+            case CRNRSTN_CHANNEL_FILE:
 
                 $tmp_log_to_errorlog_array = array();
                 $tmp_log_to_errorlog_array['text'] = 'BEGIN LOG OUTPUT OF ACTIVITY FROM [' . $channel . '] REQUESTING SOURCE :: ' . $tmp_request_source.'
@@ -1108,9 +2397,10 @@ class crnrstn_logging {
                     $tmp_oLog = $tmp_auth_oLog_ARRAY[$i];
 
                     if(is_object($tmp_oLog)){
+
                         //
                         // WE HAVE A VALID LOG FOR WHICH TO PREPARE OUTPUT
-                        //$tmp_silo_key = $tmp_oLog->get_siloKeyProfile();
+                        //$tmp_silo_key = $tmp_oLog->return_silo_profile_array();
                         $tmp_transactionTime = $tmp_oLog->get_transactionTime();
                         $tmp_runTime = $tmp_oLog->get_runTime();
 
@@ -1130,6 +2420,7 @@ class crnrstn_logging {
                         $tmp_runTime_ARRAY['text'] = ' [rtime ' . $tmp_runTime.']';
 
                         if(isset($tmp_classMethod_raw)){
+
                             if($tmp_classMethod_raw != ''){
 
                                 $tmp_classMethodFile_ARRAY['text'] = ' [methd ' . $tmp_classMethod_raw.']';
@@ -1137,6 +2428,7 @@ class crnrstn_logging {
                             }else{
 
                                 if(isset($tmp_runFile_raw)){
+
                                     if($tmp_runFile_raw != ''){
 
                                         $tmp_classMethodFile_ARRAY['text'] = ' [file ' . $tmp_runFile_raw.']';
@@ -1214,6 +2506,7 @@ class crnrstn_logging {
                             $tmp_logMsg_ARRAY['text'];
 
                     }
+
                 }
 
                 $tmp_log_to_errorlog_array['text'] .= 'END LOG OUTPUT OF ACTIVITY FROM [' . $channel . '] REQUESTING SOURCE :: ' . $tmp_request_source.'
@@ -1237,7 +2530,7 @@ class crnrstn_logging {
                     if(is_object($tmp_oLog)){
                         //
                         // WE HAVE A VALID LOG FOR WHICH TO PREPARE OUTPUT
-                        //$tmp_silo_key = $tmp_oLog->get_siloKeyProfile();
+                        //$tmp_silo_key = $tmp_oLog->return_silo_profile_array();
                         $tmp_transactionTime = $tmp_oLog->get_transactionTime();
                         $tmp_runTime = $tmp_oLog->get_runTime();
 
@@ -1365,7 +2658,7 @@ class crnrstn_logging {
 
                         //
                         // WE HAVE A VALID LOG FOR WHICH TO PREPARE OUTPUT
-                        //$tmp_silo_key = $tmp_oLog->get_siloKeyProfile();
+                        //$tmp_silo_key = $tmp_oLog->return_silo_profile_array();
                         $tmp_transactionTime = $tmp_oLog->get_transactionTime();
                         $tmp_runTime = $tmp_oLog->get_runTime();
 
@@ -1385,16 +2678,18 @@ class crnrstn_logging {
                         $tmp_runTime_ARRAY['html'] = ' [rtime ' . $tmp_runTime.']';
 
                         if(isset($tmp_classMethod_raw)){
+
                             if($tmp_classMethod_raw != ''){
 
-                                $tmp_classMethodFile_ARRAY['html'] = ' [methd ' . $tmp_classMethod_raw.']';
+                                $tmp_classMethodFile_ARRAY['html'] = ' [methd ' . $tmp_classMethod_raw . ']';
 
                             }else{
 
                                 if(isset($tmp_runFile_raw)){
+
                                     if($tmp_runFile_raw != ''){
 
-                                        $tmp_classMethodFile_ARRAY['html'] = ' [file ' . $tmp_runFile_raw.']';
+                                        $tmp_classMethodFile_ARRAY['html'] = ' [file ' . $tmp_runFile_raw . ']';
 
                                     }else{
 
@@ -1416,7 +2711,7 @@ class crnrstn_logging {
 
                                 if($tmp_runFile_raw != ''){
 
-                                    $tmp_classMethodFile_ARRAY['html'] = ' [file ' . $tmp_runFile_raw.']';
+                                    $tmp_classMethodFile_ARRAY['html'] = ' [file ' . $tmp_runFile_raw . ']';
 
                                 }else{
 
@@ -1436,7 +2731,7 @@ class crnrstn_logging {
 
                             if($tmp_lineNumber_raw != ''){
 
-                                $tmp_lineNumber_ARRAY['html'] = ' [lnum ' . $tmp_lineNumber_raw.']';
+                                $tmp_lineNumber_ARRAY['html'] = ' [lnum ' . $tmp_lineNumber_raw . ']';
 
                             }else{
 
@@ -1452,7 +2747,7 @@ class crnrstn_logging {
 
                         if(isset($tmp_logMsg_raw)){
 
-                            $tmp_logMsg_ARRAY['html'] = ' ' . $tmp_logMsg_raw.'<br>';
+                            $tmp_logMsg_ARRAY['html'] = ' ' . $tmp_logMsg_raw . '<br>';
 
                         }else{
 
@@ -1460,17 +2755,17 @@ class crnrstn_logging {
 
                         }
 
-                        $tmp_log_to_screen_array['html'] .= '<div style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; padding-left:10px; line-height: 17px;">'.
-                            $tmp_transactionTime_ARRAY['html'].
-                            $tmp_runTime_ARRAY['html'].
-                            $tmp_classMethodFile_ARRAY['html'].
-                            $tmp_lineNumber_ARRAY['html'].
-                            $tmp_logMsg_ARRAY['html'].'</div>';
+                        $tmp_log_to_screen_array['html'] .= '<div style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; padding-left:10px; line-height: 17px;">' .
+                            $tmp_transactionTime_ARRAY['html'] .
+                            $tmp_runTime_ARRAY['html'] .
+                            $tmp_classMethodFile_ARRAY['html'] .
+                            $tmp_lineNumber_ARRAY['html'] .
+                            $tmp_logMsg_ARRAY['html'] . '</div>';
 
                     }
                 }
 
-                $tmp_log_to_screen_array['html'] .= '<div style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: bold; padding:0 0 5px 5px; line-height: 15px;">END LOG OUTPUT OF ACTIVITY FROM [' . $channel . '] REQUESTING SOURCE :: ' . $tmp_request_source.'</div>';
+                $tmp_log_to_screen_array['html'] .= '<div style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: bold; padding:0 0 5px 5px; line-height: 15px;">END LOG OUTPUT OF ACTIVITY FROM [' . $channel . '] REQUESTING SOURCE :: ' . $tmp_request_source . '</div>';
                 return $tmp_log_to_screen_array;
 
             break;
@@ -1478,18 +2773,19 @@ class crnrstn_logging {
 
                 $tmp_log_to_html_hidden_array = array();
                 $tmp_log_to_html_hidden_array['text'] = '';
-                $tmp_log_to_html_hidden_array['text'] .= 'BEGIN LOG OUTPUT OF ACTIVITY FROM [' . $channel . '] REQUESTING SOURCE :: ' . $tmp_request_source.'
+                $tmp_log_to_html_hidden_array['text'] .= 'BEGIN LOG OUTPUT OF ACTIVITY FROM [' . $channel . '] REQUESTING SOURCE :: ' . $tmp_request_source . '
 ';
 
                 $tmp_log_cnt = sizeof($tmp_auth_oLog_ARRAY);
-                for($i=0; $i<$tmp_log_cnt; $i++){
+                for($i = 0; $i < $tmp_log_cnt; $i++){
 
                     $tmp_oLog = $tmp_auth_oLog_ARRAY[$i];
 
                     if(is_object($tmp_oLog)){
+
                         //
                         // WE HAVE A VALID LOG FOR WHICH TO PREPARE OUTPUT
-                        //$tmp_silo_key = $tmp_oLog->get_siloKeyProfile();
+                        //$tmp_silo_key = $tmp_oLog->return_silo_profile_array();
                         $tmp_transactionTime = $tmp_oLog->get_transactionTime();
                         $tmp_runTime = $tmp_oLog->get_runTime();
 
@@ -1506,19 +2802,20 @@ class crnrstn_logging {
 
                         $tmp_transactionTime_ARRAY['text'] = $tmp_transactionTime;
 
-                        $tmp_runTime_ARRAY['text'] = ' [rtime ' . $tmp_runTime.']';
+                        $tmp_runTime_ARRAY['text'] = ' [rtime ' . $tmp_runTime . ']';
 
                         if(isset($tmp_classMethod_raw)){
                             if($tmp_classMethod_raw != ''){
 
-                                $tmp_classMethodFile_ARRAY['text'] = ' [methd ' . $tmp_classMethod_raw.']';
+                                $tmp_classMethodFile_ARRAY['text'] = ' [methd ' . $tmp_classMethod_raw . ']';
 
                             }else{
 
                                 if(isset($tmp_runFile_raw)){
+
                                     if($tmp_runFile_raw != ''){
 
-                                        $tmp_classMethodFile_ARRAY['text'] = ' [file ' . $tmp_runFile_raw.']';
+                                        $tmp_classMethodFile_ARRAY['text'] = ' [file ' . $tmp_runFile_raw . ']';
 
                                     }else{
 
@@ -1539,7 +2836,7 @@ class crnrstn_logging {
                             if(isset($tmp_runFile_raw)){
                                 if($tmp_runFile_raw != ''){
 
-                                    $tmp_classMethodFile_ARRAY['text'] = ' [file ' . $tmp_runFile_raw.']';
+                                    $tmp_classMethodFile_ARRAY['text'] = ' [file ' . $tmp_runFile_raw . ']';
 
                                 }else{
 
@@ -1559,7 +2856,7 @@ class crnrstn_logging {
 
                             if($tmp_lineNumber_raw != ''){
 
-                                $tmp_lineNumber_ARRAY['text'] = ' [lnum ' . $tmp_lineNumber_raw.']';
+                                $tmp_lineNumber_ARRAY['text'] = ' [lnum ' . $tmp_lineNumber_raw . ']';
 
                             }else{
 
@@ -1574,7 +2871,7 @@ class crnrstn_logging {
 
                         if(isset($tmp_logMsg_raw)){
 
-                            $tmp_logMsg_ARRAY['text'] = ' ' . $tmp_logMsg_raw.'
+                            $tmp_logMsg_ARRAY['text'] = ' ' . $tmp_logMsg_raw . '
 ';
 
                         }else{
@@ -1584,27 +2881,39 @@ class crnrstn_logging {
 
                         }
 
-                        $tmp_log_to_html_hidden_array['text'] .= $tmp_transactionTime_ARRAY['text'].
-                            $tmp_runTime_ARRAY['text'].
-                            $tmp_classMethodFile_ARRAY['text'].
-                            $tmp_lineNumber_ARRAY['text'].
+                        $tmp_log_to_html_hidden_array['text'] .= $tmp_transactionTime_ARRAY['text'] .
+                            $tmp_runTime_ARRAY['text'] .
+                            $tmp_classMethodFile_ARRAY['text'] .
+                            $tmp_lineNumber_ARRAY['text'] .
                             $tmp_logMsg_ARRAY['text'];
 
                     }
+
                 }
 
-                $tmp_log_to_html_hidden_array['text'] .= 'END LOG OUTPUT OF ACTIVITY FROM [' . $channel . '] REQUESTING SOURCE :: ' . $tmp_request_source.'
+                $tmp_log_to_html_hidden_array['text'] .= 'END LOG OUTPUT OF ACTIVITY FROM [' . $channel . '] REQUESTING SOURCE :: ' . $tmp_request_source . '
 ';
 
                 return $tmp_log_to_html_hidden_array;
 
             break;
+            //case CRNRSTN_CHANNEL_GET:
+            //case CRNRSTN_CHANNEL_POST:
+            //case CRNRSTN_CHANNEL_COOKIE:
+            //case CRNRSTN_CHANNEL_SESSION:
+            case CRNRSTN_CHANNEL_DATABASE:
+            case CRNRSTN_CHANNEL_SSDTLA:
+            case CRNRSTN_CHANNEL_PSSDTLA:
+            case CRNRSTN_CHANNEL_RUNTIME:
+            case CRNRSTN_CHANNEL_SOAP:
+            //case CRNRSTN_CHANNEL_ALL:
+            //case CRNRSTN_CHANNEL_FORM:
             default:
 
                 //
                 // DEFAULT
                 $tmp_log_cnt = sizeof($tmp_auth_oLog_ARRAY);
-                if($tmp_log_cnt<1){
+                if($tmp_log_cnt < 1){
 
                     return NULL;
 
@@ -1612,18 +2921,18 @@ class crnrstn_logging {
 
                 $tmp_log_to_errorlog_array = array();
                 $tmp_log_to_errorlog_array['text'] = '';
-                $tmp_log_to_errorlog_array['text'] .= 'BEGIN LOG OUTPUT OF ACTIVITY FROM [' . $channel . '] REQUESTING SOURCE :: ' . $tmp_request_source.'
+                $tmp_log_to_errorlog_array['text'] .= 'BEGIN LOG OUTPUT OF ACTIVITY FROM [' . $channel . '] REQUESTING SOURCE :: ' . $tmp_request_source . '
 ';
 
                 $tmp_log_cnt = sizeof($tmp_auth_oLog_ARRAY);
-                for($i=0; $i<$tmp_log_cnt; $i++){
+                for($i = 0; $i < $tmp_log_cnt; $i++){
 
                     $tmp_oLog = $tmp_auth_oLog_ARRAY[$i];
 
                     if(is_object($tmp_oLog)){
                         //
                         // WE HAVE A VALID LOG FOR WHICH TO PREPARE OUTPUT
-                        //$tmp_silo_key = $tmp_oLog->get_siloKeyProfile();
+                        //$tmp_silo_key = $tmp_oLog->return_silo_profile_array();
                         $tmp_transactionTime = $tmp_oLog->get_transactionTime();
                         $tmp_runTime = $tmp_oLog->get_runTime();
 
@@ -1640,13 +2949,13 @@ class crnrstn_logging {
 
                         $tmp_transactionTime_ARRAY['text'] = $tmp_transactionTime;
 
-                        $tmp_runTime_ARRAY['text'] = ' [rtime ' . $tmp_runTime.']';
+                        $tmp_runTime_ARRAY['text'] = ' [rtime ' . $tmp_runTime . ']';
 
                         if(isset($tmp_classMethod_raw)){
 
                             if($tmp_classMethod_raw != ''){
 
-                                $tmp_classMethodFile_ARRAY['text'] = ' [methd ' . $tmp_classMethod_raw.']';
+                                $tmp_classMethodFile_ARRAY['text'] = ' [methd ' . $tmp_classMethod_raw . ']';
 
                             }else{
 
@@ -1722,10 +3031,10 @@ class crnrstn_logging {
 
                         }
 
-                        $tmp_log_to_errorlog_array['text'] .= $tmp_transactionTime_ARRAY['text'].
-                            $tmp_runTime_ARRAY['text'].
-                            $tmp_classMethodFile_ARRAY['text'].
-                            $tmp_lineNumber_ARRAY['text'].
+                        $tmp_log_to_errorlog_array['text'] .= $tmp_transactionTime_ARRAY['text'] .
+                            $tmp_runTime_ARRAY['text'] .
+                            $tmp_classMethodFile_ARRAY['text'] .
+                            $tmp_lineNumber_ARRAY['text'] .
                             $tmp_logMsg_ARRAY['text'];
 
                     }
@@ -1767,6 +3076,8 @@ class crnrstn_logging {
 
                 break;
                 case CRNRSTN_LOG_FILE:
+                case CRNRSTN_CHANNEL_FILE:
+
                     # $tmp_output_log_ARRAY['text']
                     //$output_profile_override_meta;
                     $oCRNRSTN_USR->error_log('error_LogTrace() action to take on profile[' . $output_profile . ']', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_NONE);
@@ -1774,15 +3085,15 @@ class crnrstn_logging {
                     if(isset($output_profile_override_meta)){
 
                         $tmp_minimum_bytes_required = strlen($tmp_output_log_ARRAY['text']);
-                        if(!self::$oCRNRSTN_n->grant_permissions_fwrite($output_profile_override_meta, $tmp_minimum_bytes_required)){
+                        if(!$this->oCRNRSTN->grant_permissions_fwrite($output_profile_override_meta, $tmp_minimum_bytes_required)){
 
                             //
                             // HOOOSTON...VE HAF PROBLEM!
-                            self::$oCRNRSTN_n->error_log('WARNING. Disk space exceeds ' . self::$oCRNRSTN_n->get_disk_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write [' . $output_profile_override_meta . '] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                            $this->oCRNRSTN->error_log('WARNING. Disk space exceeds ' . $this->oCRNRSTN->get_disk_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write [' . $output_profile_override_meta . '] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-                            self::$oCRNRSTN_n->print_r('WARNING. Disk space exceeds ' . self::$oCRNRSTN_n->get_disk_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write [' . $output_profile_override_meta . '] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                            $this->oCRNRSTN->print_r('WARNING. Disk space exceeds ' . $this->oCRNRSTN->get_disk_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write [' . $output_profile_override_meta . '] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
-                            throw new Exception('WARNING. Disk space exceeds ' . self::$oCRNRSTN_n->get_disk_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write [' . $output_profile_override_meta . '] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.');
+                            throw new Exception('WARNING. Disk space exceeds ' . $this->oCRNRSTN->get_disk_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write [' . $output_profile_override_meta . '] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.');
 
                         }
 
@@ -1806,8 +3117,8 @@ class crnrstn_logging {
                         if(1 == 2){
 
 
-                            //$tmp_key = $_SESSION['CRNRSTN_'.crc32($_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'])]['CRNRSTN_ENV_KEY_CRC'];
-                            //$tmp_configserial = $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'];
+                            //$tmp_key = $_SESSION['CRNRSTN_'.crc32($_SESSION['CRNRSTN_CONFIG_SERIALIZATION_HASH'])]['CRNRSTN_ENV_KEY_CRC'];
+                            //$tmp_configserial = $_SESSION['CRNRSTN_CONFIG_SERIALIZATION_HASH'];
 
                             $tmp_log_profile = $oCRNRSTN_USR->return_loggingProfile();
                             $tmp_endpoint_profile = $oCRNRSTN_USR->return_endpointProfile(); //$_SESSION["CRNRSTN_".crc32($tmp_configserial)]["CRNRSTN_".$tmp_key]["_CRNRSTN_LOG_ENDPOINT"];
@@ -1883,6 +3194,17 @@ class crnrstn_logging {
 -->
 ');
                 break;
+                //case CRNRSTN_CHANNEL_GET:
+                //case CRNRSTN_CHANNEL_POST:
+                //case CRNRSTN_CHANNEL_COOKIE:
+                //case CRNRSTN_CHANNEL_SESSION:
+                case CRNRSTN_CHANNEL_DATABASE:
+                case CRNRSTN_CHANNEL_SSDTLA:
+                case CRNRSTN_CHANNEL_PSSDTLA:
+                case CRNRSTN_CHANNEL_RUNTIME:
+                case CRNRSTN_CHANNEL_SOAP:
+                //case CRNRSTN_CHANNEL_ALL:
+                //case CRNRSTN_CHANNEL_FORM:
                 default:
                     //
                     // DEFAULT
@@ -1947,8 +3269,8 @@ class crnrstn_logging {
 
                     }else{
 
-                        $tmp_key = $_SESSION['CRNRSTN_'.crc32($_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'])]['CRNRSTN_ENV_KEY_CRC'];
-                        $tmp_configserial = $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'];
+                        $tmp_key = $_SESSION['CRNRSTN_'.crc32($_SESSION['CRNRSTN_CONFIG_SERIALIZATION_HASH'])]['CRNRSTN_ENV_KEY_CRC'];
+                        $tmp_configserial = $_SESSION['CRNRSTN_CONFIG_SERIALIZATION_HASH'];
 
                         $tmp_file_path = $_SESSION["CRNRSTN_".crc32($tmp_configserial)]["CRNRSTN_".$tmp_key]["_CRNRSTN_LOG_ENDPOINT"];
 
@@ -2017,8 +3339,8 @@ class crnrstn_logging {
 
             $tmp_log_output_ARRAY = $this->compile_log_output($oLog_output_ARRAY, $output_profile, $logSource);
 
-            $this->emailDataElements['subject'] = 'CRNRSTN Suite :: logging notification captured on ' . $_SERVER['SERVER_NAME'];
-            $this->emailDataElements['text'] = 'This is a triggered logging notification from the CRNRSTN Suite ::
+            $this->emailDataElements['subject'] = 'CRNRSTN :: logging notification captured on ' . $_SERVER['SERVER_NAME'];
+            $this->emailDataElements['text'] = 'This is a triggered logging notification from CRNRSTN ::
 
     Information about this notice:
     - - - - - - - - - - - - - - - - - - - -
@@ -2108,9 +3430,9 @@ class crnrstn_logging {
 
     private function wall_time(){
 
-        if(isset($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_START_TIME'])){
+        if(isset($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIALIZATION_HASH']]['CRNRSTN_START_TIME'])){
 
-            $this->starttime = $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_START_TIME'];
+            $this->starttime = $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIALIZATION_HASH']]['CRNRSTN_START_TIME'];
 
         }
 
@@ -2133,4 +3455,5 @@ class crnrstn_logging {
     public function __destruct(){
 
     }
+
 }

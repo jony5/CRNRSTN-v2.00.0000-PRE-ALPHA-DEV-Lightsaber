@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -85,7 +85,6 @@
 #
 class crnrstn_wheel_high_awesome_eyes {
 
-    protected $oLogger;
     public $oCRNRSTN_USR;
 
     protected $timestamp_nom;
@@ -141,7 +140,7 @@ class crnrstn_wheel_high_awesome_eyes {
         $this->queue_length = $total_wheels_count;
         $this->exclusion_check_result = $exclusion_check_result;
 
-        if(!$this->exclusion_check_result['not_excluded'] && $exclusion_check_result['pattern']!=''){
+        if(!$this->exclusion_check_result['not_excluded'] && $exclusion_check_result['pattern'] != ''){
 
             //
             // ASSET EXCLUDED
@@ -164,10 +163,6 @@ class crnrstn_wheel_high_awesome_eyes {
         $exclusion_check_result['pattern'] = $nomination_pattern;
         $exclusion_check_result['asset_meta'] = $filePath;
         */
-
-        //
-        // INSTANTIATE LOGGER
-        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_USR);
 
         $this->execution_serial = $execution_serial;
         $this->serial = $this->oCRNRSTN_USR->generate_new_key(100);

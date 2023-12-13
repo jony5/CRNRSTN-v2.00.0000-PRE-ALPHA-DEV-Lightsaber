@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -71,16 +71,11 @@
 #
 class crnrstn_link_manager {
 
-    protected $oLogger;
     public $oCRNRSTN;
 
     public function __construct($oCRNRSTN){
 
         $this->oCRNRSTN = $oCRNRSTN;
-
-        //
-        // INSTANTIATE LOGGER
-        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
 
     }
 
@@ -124,7 +119,7 @@ class crnrstn_link_manager {
 
     }
 
-    public function get_link_data($url, $unit_test = false, $to_plaid = false){
+    public function get_link_data($data_type, $url, $unit_test = false, $to_plaid = false){
 
         $tmp_url = '';
         $tmp_url_ARRAY = array();
@@ -150,8 +145,9 @@ class crnrstn_link_manager {
             //    RUNTIME INTILIZRTAIONC PROIFLES
             //    PHP.INI PROFILES WITHIN THE ADMINISTRATIVE
             //    MANAGEMENT SECTION OF CRNRSTN :: LIGHTSABER.
-            $tmp_data_type_ARRAY = $this->gettype($url, CRNRSTN_ARRAY);
+            $tmp_data_type_ARRAY = $this->oCRNRSTN->gettype($url, CRNRSTN_ARRAY);
             switch($tmp_data_type_ARRAY[CRNRSTN_INTEGER]){
+                case CRNRSTN_INT:
                 case CRNRSTN_INTEGER:
 
                     /*
@@ -285,7 +281,7 @@ class crnrstn_link_manager {
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'This option enables the URL-aware fopen wrappers that enable accessing URL object like files. Default wrappers are provided for the access of ' . $this->return_crnrstn_text_link('remote files', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.remote-files.php') . ' using the ftp or http protocol, some extensions like ' . $this->return_crnrstn_text_link('zlib', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.zlib.php') . ' may register additional wrappers.',
+                                                        'HTML' => 'This option enables the URL-aware fopen wrappers that enable accessing URL object like files. Default wrappers are provided for the access of ' . $this->oCRNRSTN->return_crnrstn_text_link('remote files', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.remote-files.php') . ' using the ftp or http protocol, some extensions like ' . $this->oCRNRSTN->return_crnrstn_text_link('zlib', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.zlib.php') . ' may register additional wrappers.',
                                                         'TEXT' => 'This option enables the URL-aware fopen wrappers that enable accessing URL object like files. Default wrappers are provided for the access of remote files using the ftp or http protocol, some extensions like zlib may register additional wrappers.'
                         )));
 
@@ -303,7 +299,7 @@ class crnrstn_link_manager {
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'As long as allow_url_fopen is enabled in php.ini, you can use HTTP and FTP URLs with most of the functions that take a filename as a parameter. In addition, URLs can be used with the ' . $this->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ', ' . $this->return_crnrstn_text_link('include_once', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include-once.php') . ', ' . $this->return_crnrstn_text_link('require', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.require.php') . ' and ' . $this->return_crnrstn_text_link('require_once', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.require-once.php') . ' statements (allow_url_include must be enabled for these). ' . $this->return_crnrstn_text_link('See Supported Protocols and Wrappers', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/wrappers.php') . ' for more information about the protocols supported by PHP.
+                                                        'HTML' => 'As long as allow_url_fopen is enabled in php.ini, you can use HTTP and FTP URLs with most of the functions that take a filename as a parameter. In addition, URLs can be used with the ' . $this->oCRNRSTN->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('include_once', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include-once.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('require', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.require.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('require_once', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.require-once.php') . ' statements (allow_url_include must be enabled for these). ' . $this->oCRNRSTN->return_crnrstn_text_link('See Supported Protocols and Wrappers', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/wrappers.php') . ' for more information about the protocols supported by PHP.
 
 For example, you can use this to open a file on a remote web server, parse the output for the data you want, and then use that data in a database query, or simply to output it in a style matching the rest of your website.',
                                                         'TEXT' => 'As long as allow_url_fopen is enabled in php.ini, you can use HTTP and FTP URLs with most of the functions that take a filename as a parameter. In addition, URLs can be used with the include, include_once, require and require_once statements (allow_url_include must be enabled for these). See Supported Protocols and Wrappers for more information about the protocols supported by PHP.
@@ -326,36 +322,36 @@ For example, you can use this to open a file on a remote web server, parse the o
                                                     'en' =>
                                                         array(
                                                         'HTML' => 'Table of Contents
-' . $this->return_crnrstn_text_link('deflate_add', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.deflate-add.php') . ' — Incrementally deflate data
-' . $this->return_crnrstn_text_link('deflate_init', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.deflate-init.php') . ' — Initialize an incremental deflate context
-' . $this->return_crnrstn_text_link('gzclose', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzclose.php') . ' — Close an open gz-file pointer
-' . $this->return_crnrstn_text_link('gzcompress', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzcompress.php') . ' — Compress a string
-' . $this->return_crnrstn_text_link('gzdecode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzdecode.php') . ' — Decodes a gzip compressed string
-' . $this->return_crnrstn_text_link('gzdeflate', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzdeflate.php') . ' — Deflate a string
-' . $this->return_crnrstn_text_link('gzencode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzencode.php') . ' — Create a gzip compressed string
-' . $this->return_crnrstn_text_link('gzeof', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzeof.php') . ' — Test for EOF on a gz-file pointer
-' . $this->return_crnrstn_text_link('gzfile', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzfile.php') . ' — Read entire gz-file into an array
-' . $this->return_crnrstn_text_link('gzgetc', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzgetc.php') . ' — Get character from gz-file pointer
-' . $this->return_crnrstn_text_link('gzgets', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzgets.php') . ' — Get line from file pointer
-' . $this->return_crnrstn_text_link('gzgetss', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzgetss.php') . ' — Get line from gz-file pointer and strip HTML tags
-' . $this->return_crnrstn_text_link('gzinflate', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzinflate.php') . ' — Inflate a deflated string
-' . $this->return_crnrstn_text_link('gzopen', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzopen.php') . ' — Open gz-file
-' . $this->return_crnrstn_text_link('gzpassthru', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzpassthru.php') . ' — Output all remaining data on a gz-file pointer
-' . $this->return_crnrstn_text_link('gzputs', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzputs.php') . ' — Alias of gzwrite
-' . $this->return_crnrstn_text_link('gzread', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzread.php') . ' — Binary-safe gz-file read
-' . $this->return_crnrstn_text_link('gzrewind', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzrewind.php') . ' — Rewind the position of a gz-file pointer
-' . $this->return_crnrstn_text_link('gzseek', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzseek.php') . ' — Seek on a gz-file pointer
-' . $this->return_crnrstn_text_link('gztell', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gztell.php') . ' — Tell gz-file pointer read/write position
-' . $this->return_crnrstn_text_link('gzuncompress', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzuncompress.php') . ' — Uncompress a compressed string
-' . $this->return_crnrstn_text_link('gzwrite', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzwrite.php') . ' — Binary-safe gz-file write
-' . $this->return_crnrstn_text_link('inflate_add', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.inflate-add.php') . ' — Incrementally inflate encoded data
-' . $this->return_crnrstn_text_link('inflate_get_read_len', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.inflate-get-read-len.php') . ' — Get number of bytes read so far
-' . $this->return_crnrstn_text_link('inflate_get_status', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.inflate-get-status.php') . ' — Get decompression status
-' . $this->return_crnrstn_text_link('inflate_init', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.inflate-init.php') . ' — Initialize an incremental inflate context
-' . $this->return_crnrstn_text_link('readgzfile', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.readgzfile.php') . ' — Output a gz-file
-' . $this->return_crnrstn_text_link('zlib_decode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.zlib-decode.php') . ' — Uncompress any raw/gzip/zlib encoded data
-' . $this->return_crnrstn_text_link('zlib_encode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.zlib-encode.php') . ' — Compress data with the specified encoding
-' . $this->return_crnrstn_text_link('zlib_get_coding_type', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.zlib-get-coding-type.php') . ' — Returns the coding type used for output compression',
+' . $this->oCRNRSTN->return_crnrstn_text_link('deflate_add', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.deflate-add.php') . ' — Incrementally deflate data
+' . $this->oCRNRSTN->return_crnrstn_text_link('deflate_init', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.deflate-init.php') . ' — Initialize an incremental deflate context
+' . $this->oCRNRSTN->return_crnrstn_text_link('gzclose', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzclose.php') . ' — Close an open gz-file pointer
+' . $this->oCRNRSTN->return_crnrstn_text_link('gzcompress', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzcompress.php') . ' — Compress a string
+' . $this->oCRNRSTN->return_crnrstn_text_link('gzdecode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzdecode.php') . ' — Decodes a gzip compressed string
+' . $this->oCRNRSTN->return_crnrstn_text_link('gzdeflate', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzdeflate.php') . ' — Deflate a string
+' . $this->oCRNRSTN->return_crnrstn_text_link('gzencode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzencode.php') . ' — Create a gzip compressed string
+' . $this->oCRNRSTN->return_crnrstn_text_link('gzeof', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzeof.php') . ' — Test for EOF on a gz-file pointer
+' . $this->oCRNRSTN->return_crnrstn_text_link('gzfile', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzfile.php') . ' — Read entire gz-file into an array
+' . $this->oCRNRSTN->return_crnrstn_text_link('gzgetc', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzgetc.php') . ' — Get character from gz-file pointer
+' . $this->oCRNRSTN->return_crnrstn_text_link('gzgets', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzgets.php') . ' — Get line from file pointer
+' . $this->oCRNRSTN->return_crnrstn_text_link('gzgetss', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzgetss.php') . ' — Get line from gz-file pointer and strip HTML tags
+' . $this->oCRNRSTN->return_crnrstn_text_link('gzinflate', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzinflate.php') . ' — Inflate a deflated string
+' . $this->oCRNRSTN->return_crnrstn_text_link('gzopen', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzopen.php') . ' — Open gz-file
+' . $this->oCRNRSTN->return_crnrstn_text_link('gzpassthru', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzpassthru.php') . ' — Output all remaining data on a gz-file pointer
+' . $this->oCRNRSTN->return_crnrstn_text_link('gzputs', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzputs.php') . ' — Alias of gzwrite
+' . $this->oCRNRSTN->return_crnrstn_text_link('gzread', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzread.php') . ' — Binary-safe gz-file read
+' . $this->oCRNRSTN->return_crnrstn_text_link('gzrewind', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzrewind.php') . ' — Rewind the position of a gz-file pointer
+' . $this->oCRNRSTN->return_crnrstn_text_link('gzseek', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzseek.php') . ' — Seek on a gz-file pointer
+' . $this->oCRNRSTN->return_crnrstn_text_link('gztell', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gztell.php') . ' — Tell gz-file pointer read/write position
+' . $this->oCRNRSTN->return_crnrstn_text_link('gzuncompress', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzuncompress.php') . ' — Uncompress a compressed string
+' . $this->oCRNRSTN->return_crnrstn_text_link('gzwrite', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.gzwrite.php') . ' — Binary-safe gz-file write
+' . $this->oCRNRSTN->return_crnrstn_text_link('inflate_add', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.inflate-add.php') . ' — Incrementally inflate encoded data
+' . $this->oCRNRSTN->return_crnrstn_text_link('inflate_get_read_len', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.inflate-get-read-len.php') . ' — Get number of bytes read so far
+' . $this->oCRNRSTN->return_crnrstn_text_link('inflate_get_status', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.inflate-get-status.php') . ' — Get decompression status
+' . $this->oCRNRSTN->return_crnrstn_text_link('inflate_init', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.inflate-init.php') . ' — Initialize an incremental inflate context
+' . $this->oCRNRSTN->return_crnrstn_text_link('readgzfile', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.readgzfile.php') . ' — Output a gz-file
+' . $this->oCRNRSTN->return_crnrstn_text_link('zlib_decode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.zlib-decode.php') . ' — Uncompress any raw/gzip/zlib encoded data
+' . $this->oCRNRSTN->return_crnrstn_text_link('zlib_encode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.zlib-encode.php') . ' — Compress data with the specified encoding
+' . $this->oCRNRSTN->return_crnrstn_text_link('zlib_get_coding_type', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.zlib-get-coding-type.php') . ' — Returns the coding type used for output compression',
                                                         'TEXT' => 'Table of Contents
 deflate_add — Incrementally deflate data
 deflate_init — Initialize an incremental deflate context
@@ -403,7 +399,7 @@ zlib_get_coding_type — Returns the coding type used for output compression'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'This option allows the use of URL-aware fopen wrappers with the following functions: ' . $this->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ', ' . $this->return_crnrstn_text_link('include_once', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include-once.php') . ', ' . $this->return_crnrstn_text_link('require', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.require.php') . ', ' . $this->return_crnrstn_text_link('require_once', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.require-once.php') . '.',
+                                                        'HTML' => 'This option allows the use of URL-aware fopen wrappers with the following functions: ' . $this->oCRNRSTN->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('include_once', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include-once.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('require', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.require.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('require_once', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.require-once.php') . '.',
                                                         'TEXT' => 'This option allows the use of URL-aware fopen wrappers with the following functions: include, include_once, require, require_once.'
                         )));
 
@@ -425,17 +421,17 @@ zlib_get_coding_type — Returns the coding type used for output compression'
                                                         array(
                                                         'HTML' => 'The include expression includes and evaluates the specified file.
 
-The documentation below also applies to ' . $this->return_crnrstn_text_link('require', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.require.php') . '.
+The documentation below also applies to ' . $this->oCRNRSTN->return_crnrstn_text_link('require', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.require.php') . '.
 
-Files are included based on the file path given or, if none is given, the ' . $this->return_crnrstn_text_link('include_path', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.include-path') . ' specified. If the file isn\'t found in the ' . $this->return_crnrstn_text_link('include_path', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.include-path') . ', include will finally check in the calling script\'s own directory and the current working directory before failing. The include construct will emit an E_WARNING if it cannot find a file; this is different behavior from ' . $this->return_crnrstn_text_link('require', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.require.php') . ', which will emit an E_ERROR.
+Files are included based on the file path given or, if none is given, the ' . $this->oCRNRSTN->return_crnrstn_text_link('include_path', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.include-path') . ' specified. If the file isn\'t found in the ' . $this->oCRNRSTN->return_crnrstn_text_link('include_path', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.include-path') . ', include will finally check in the calling script\'s own directory and the current working directory before failing. The include construct will emit an E_WARNING if it cannot find a file; this is different behavior from ' . $this->oCRNRSTN->return_crnrstn_text_link('require', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.require.php') . ', which will emit an E_ERROR.
 
 Note that both include and require raise additional E_WARNINGs, if the file cannot be accessed, before raising the final E_WARNING or E_ERROR, respectively.
 
 If a path is defined — whether absolute (starting with a drive letter or \ on Windows, or / on Unix/Linux systems) or relative to the current directory (starting with . or ..) — the include_path will be ignored altogether. For example, if a filename begins with ../, the parser will look in the parent directory to find the requested file.
 
-For more information on how PHP handles including files and the include path, see the documentation for ' . $this->return_crnrstn_text_link('include_path', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.include-path') . '.
+For more information on how PHP handles including files and the include path, see the documentation for ' . $this->oCRNRSTN->return_crnrstn_text_link('include_path', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.include-path') . '.
 
-When a file is included, the code it contains inherits the ' . $this->return_crnrstn_text_link('variable scope', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.variables.scope.php') . ' of the line on which the include occurs. Any variables available at that line in the calling file will be available within the called file, from that point forward. However, all functions and classes defined in the included file have the global scope.',
+When a file is included, the code it contains inherits the ' . $this->oCRNRSTN->return_crnrstn_text_link('variable scope', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.variables.scope.php') . ' of the line on which the include occurs. Any variables available at that line in the calling file will be available within the called file, from that point forward. However, all functions and classes defined in the included file have the global scope.',
                                                         'TEXT' => 'The include expression includes and evaluates the specified file.
 
 The documentation below also applies to require.
@@ -467,11 +463,11 @@ When a file is included, the code it contains inherits the variable scope of the
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The include_once statement includes and evaluates the specified file during the execution of the script. This is a behavior similar to the ' . $this->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ' statement, with the only difference being that if the code from a file has already been included, it will not be included again, and include_once returns true. As the name suggests, the file will be included just once.
+                                                        'HTML' => 'The include_once statement includes and evaluates the specified file during the execution of the script. This is a behavior similar to the ' . $this->oCRNRSTN->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ' statement, with the only difference being that if the code from a file has already been included, it will not be included again, and include_once returns true. As the name suggests, the file will be included just once.
 
 include_once may be used in cases where the same file might be included and evaluated more than once during a particular execution of a script, so in this case it may help avoid problems such as function redefinitions, variable value reassignments, etc.
 
-See the ' . $this->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ' documentation for information about how this function works.',
+See the ' . $this->oCRNRSTN->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ' documentation for information about how this function works.',
                                                         'TEXT' => 'The include_once statement includes and evaluates the specified file during the execution of the script. This is a behavior similar to the include statement, with the only difference being that if the code from a file has already been included, it will not be included again, and include_once returns true. As the name suggests, the file will be included just once.
 
 include_once may be used in cases where the same file might be included and evaluated more than once during a particular execution of a script, so in this case it may help avoid problems such as function redefinitions, variable value reassignments, etc.
@@ -495,9 +491,9 @@ See the include documentation for information about how this function works.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'require is identical to ' . $this->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ' except upon failure it will also produce a fatal E_COMPILE_ERROR level error. In other words, it will halt the script whereas ' . $this->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ' only emits a warning (E_WARNING) which allows the script to continue.
+                                                        'HTML' => 'require is identical to ' . $this->oCRNRSTN->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ' except upon failure it will also produce a fatal E_COMPILE_ERROR level error. In other words, it will halt the script whereas ' . $this->oCRNRSTN->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ' only emits a warning (E_WARNING) which allows the script to continue.
 
-See the ' . $this->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ' documentation for how this works.',
+See the ' . $this->oCRNRSTN->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ' documentation for how this works.',
                                                         'TEXT' => 'require is identical to include except upon failure it will also produce a fatal E_COMPILE_ERROR level error. In other words, it will halt the script whereas include only emits a warning (E_WARNING) which allows the script to continue.
 
 See the include documentation for how this works.'
@@ -519,9 +515,9 @@ See the include documentation for how this works.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The require_once expression is identical to ' . $this->return_crnrstn_text_link('require', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.require.php') . ' except PHP will check if the file has already been included, and if so, not include (require) it again.
+                                                        'HTML' => 'The require_once expression is identical to ' . $this->oCRNRSTN->return_crnrstn_text_link('require', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.require.php') . ' except PHP will check if the file has already been included, and if so, not include (require) it again.
 
-See the ' . $this->return_crnrstn_text_link('include_once', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include-once.php') . ' documentation for information about the _once behaviour, and how it differs from its non _once siblings.',
+See the ' . $this->oCRNRSTN->return_crnrstn_text_link('include_once', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include-once.php') . ' documentation for information about the _once behaviour, and how it differs from its non _once siblings.',
                                                         'TEXT' => 'The require_once expression is identical to require except PHP will check if the file has already been included, and if so, not include (require) it again.
 
 See the include_once documentation for information about the _once behaviour, and how it differs from its non _once siblings.'
@@ -629,9 +625,9 @@ assert() will check that the expectation given in assertion holds. If not, and t
                                                         array(
                                                         'HTML' => 'When set to 1, assertion code will be generated and executed (development mode). When set to 0, assertion code will be generated but it will be skipped (not executed) at runtime. When set to -1, assertion code will not be generated, making the assertions zero-cost (production mode).
 
-If a process is started in production mode, ' . $this->return_crnrstn_text_link('zend.assertions', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.zend.assertions') . ' cannot be changed at runtime, since the code for assertions was not generated.
+If a process is started in production mode, ' . $this->oCRNRSTN->return_crnrstn_text_link('zend.assertions', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.zend.assertions') . ' cannot be changed at runtime, since the code for assertions was not generated.
 
-If a process is started in development mode, ' . $this->return_crnrstn_text_link('zend.assertions', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.zend.assertions') . ' cannot be set to -1 at runtime.',
+If a process is started in development mode, ' . $this->oCRNRSTN->return_crnrstn_text_link('zend.assertions', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.zend.assertions') . ' cannot be set to -1 at runtime.',
                                                         'TEXT' => 'When set to 1, assertion code will be generated and executed (development mode). When set to 0, assertion code will be generated but it will be skipped (not executed) at runtime. When set to -1, assertion code will not be generated, making the assertions zero-cost (production mode).
 
 If a process is started in production mode, zend.assertions cannot be changed at runtime, since the code for assertions was not generated.
@@ -707,7 +703,7 @@ If a process is started in development mode, zend.assertions cannot be set to -1
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'AssertionError is thrown when an assertion made via ' . $this->return_crnrstn_text_link('assert', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.assert.php') . ' fails.',
+                                                        'HTML' => 'AssertionError is thrown when an assertion made via ' . $this->oCRNRSTN->return_crnrstn_text_link('assert', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.assert.php') . ' fails.',
                                                         'TEXT' => 'AssertionError is thrown when an assertion made via assert() fails.'
                     )));
 
@@ -745,7 +741,7 @@ If a process is started in development mode, zend.assertions cannot be set to -1
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Sets which PHP errors are reported. The error_reporting() function sets the ' . $this->return_crnrstn_text_link('error_reporting', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.error-reporting') . ' directive at runtime. PHP has many levels of errors, using this function sets that level for the duration (runtime) of your script. If the optional error_level is not set, error_reporting() will just return the current error reporting level.',
+                                                        'HTML' => 'Sets which PHP errors are reported. The error_reporting() function sets the ' . $this->oCRNRSTN->return_crnrstn_text_link('error_reporting', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.error-reporting') . ' directive at runtime. PHP has many levels of errors, using this function sets that level for the duration (runtime) of your script. If the optional error_level is not set, error_reporting() will just return the current error reporting level.',
                                                         'TEXT' => 'Sets which PHP errors are reported. The error_reporting() function sets the error_reporting directive at runtime. PHP has many levels of errors, using this function sets that level for the duration (runtime) of your script. If the optional error_level is not set, error_reporting() will just return the current error reporting level.'
                     )));
 
@@ -799,9 +795,9 @@ If a process is started in development mode, zend.assertions cannot be set to -1
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Specifies a list of directories where the ' . $this->return_crnrstn_text_link('require', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.require.php') . ', ' . $this->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ', ' . $this->return_crnrstn_text_link('fopen', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.fopen.php') . ', ' . $this->return_crnrstn_text_link('file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.file.php') . ', ' . $this->return_crnrstn_text_link('readfile', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.readfile.php') . ' and ' . $this->return_crnrstn_text_link('file_get_contents', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.file-get-contents.php') . ' functions look for files. The format is like the system\'s PATH environment variable: a list of directories separated with a colon in Unix or semicolon in Windows.
+                                                        'HTML' => 'Specifies a list of directories where the ' . $this->oCRNRSTN->return_crnrstn_text_link('require', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.require.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('fopen', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.fopen.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.file.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('readfile', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.readfile.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('file_get_contents', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.file-get-contents.php') . ' functions look for files. The format is like the system\'s PATH environment variable: a list of directories separated with a colon in Unix or semicolon in Windows.
 
-PHP considers each entry in the include path separately when looking for files to include. It will check the first path, and if it doesn\'t find it, check the next path, until it either locates the included file or returns with an E_WARNING or an E_ERROR. You may modify or set your include path at runtime using ' . $this->return_crnrstn_text_link('set_include_path', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.set-include-path.php') . '.',
+PHP considers each entry in the include path separately when looking for files to include. It will check the first path, and if it doesn\'t find it, check the next path, until it either locates the included file or returns with an E_WARNING or an E_ERROR. You may modify or set your include path at runtime using ' . $this->oCRNRSTN->return_crnrstn_text_link('set_include_path', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.set-include-path.php') . '.',
                                                         'TEXT' => 'Specifies a list of directories where the require, include, fopen(), file(), readfile() and file_get_contents() functions look for files. The format is like the system\'s PATH environment variable: a list of directories separated with a colon in Unix or semicolon in Windows.
 
 PHP considers each entry in the include path separately when looking for files to include. It will check the first path, and if it doesn\'t find it, check the next path, until it either locates the included file or returns with an E_WARNING or an E_ERROR. You may modify or set your include path at runtime using set_include_path().'
@@ -823,7 +819,7 @@ PHP considers each entry in the include path separately when looking for files t
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Output a message and terminate the current script. Terminates execution of the script. ' . $this->return_crnrstn_text_link('Shutdown functions', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.register-shutdown-function.php') . ' and ' . $this->return_crnrstn_text_link('object destructors', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.oop5.decon.php#language.oop5.decon.destructor') . ' will always be executed even if exit is called.
+                                                        'HTML' => 'Output a message and terminate the current script. Terminates execution of the script. ' . $this->oCRNRSTN->return_crnrstn_text_link('Shutdown functions', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.register-shutdown-function.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('object destructors', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.oop5.decon.php#language.oop5.decon.destructor') . ' will always be executed even if exit is called.
 
 exit is a language construct and it can be called without parentheses if no status is passed.',
                                                         'TEXT' => 'Output a message and terminate the current script.Terminates execution of the script. Shutdown functions and object destructors will always be executed even if exit is called.
@@ -885,7 +881,7 @@ exit is a language construct and it can be called without parentheses if no stat
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Reads an entire file into an array. You can use ' . $this->return_crnrstn_text_link('file_get_contents', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.file-get-contents.php') . ' to return the contents of a file as a string.',
+                                                        'HTML' => 'Reads an entire file into an array. You can use ' . $this->oCRNRSTN->return_crnrstn_text_link('file_get_contents', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.file-get-contents.php') . ' to return the contents of a file as a string.',
                                                         'TEXT' => 'Reads an entire file into an array. You can use file_get_contents() to return the contents of a file as a string.'
                     )));
 
@@ -1402,7 +1398,7 @@ Table of Contents
 
    HTTP has been in use by the World-Wide Web global information
    initiative since 1990. This specification defines the protocol
-   referred to as &quot;HTTP/1.1&quot;, and is an update to ' . $this->return_crnrstn_text_link('RFC 2068', 'INTERNET_FAQS_ARCHIVE_LOGO)', 'http://www.faqs.org/rfcs/rfc2068.html') . ' [33].
+   referred to as &quot;HTTP/1.1&quot;, and is an update to ' . $this->oCRNRSTN->return_crnrstn_text_link('RFC 2068', 'INTERNET_FAQS_ARCHIVE_LOGO)', 'http://www.faqs.org/rfcs/rfc2068.html') . ' [33].
 
 Table of Contents
 
@@ -2145,7 +2141,7 @@ PHP will automatically detect methods that accept parameters by reference, and w
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'When this is turned on (the default), constants found in auto-loaded type libraries when instatiating ' . $this->return_crnrstn_text_link('COM', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/class.com.php') . ' objects will be registered case sensitively. See ' . $this->return_crnrstn_text_link('com_load_typelib', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.com-load-typelib.php') . ' for more details.',
+                                                        'HTML' => 'When this is turned on (the default), constants found in auto-loaded type libraries when instatiating ' . $this->oCRNRSTN->return_crnrstn_text_link('COM', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/class.com.php') . ' objects will be registered case sensitively. See ' . $this->oCRNRSTN->return_crnrstn_text_link('com_load_typelib', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.com-load-typelib.php') . ' for more details.',
                                                         'TEXT' => 'When this is turned on (the default), constants found in auto-loaded type libraries when instatiating COM objects will be registered case sensitively. See com_load_typelib() for more details.'
                     )));
 
@@ -2183,11 +2179,11 @@ PHP will automatically detect methods that accept parameters by reference, and w
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Loads a type-library and registers its constants in the engine, as though they were defined using ' . $this->return_crnrstn_text_link('define', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.define.php') . '.
+                                                        'HTML' => 'Loads a type-library and registers its constants in the engine, as though they were defined using ' . $this->oCRNRSTN->return_crnrstn_text_link('define', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.define.php') . '.
 
-Note that it is much more efficient to use the ' . $this->return_crnrstn_text_link('com.typelib-file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/com.configuration.php#ini.com.typelib-file') . ' php.ini setting to pre-load and register the constants, although not so flexible.
+Note that it is much more efficient to use the ' . $this->oCRNRSTN->return_crnrstn_text_link('com.typelib-file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/com.configuration.php#ini.com.typelib-file') . ' php.ini setting to pre-load and register the constants, although not so flexible.
 
-If ' . $this->return_crnrstn_text_link('com.autoregister-typelib', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/com.configuration.php#ini.com.autoregister-typelib') . ' is turned on, then PHP will attempt to automatically register the constants associated with a COM object when you instantiate it. This depends on the interfaces provided by the COM object itself, and may not always be possible.',
+If ' . $this->oCRNRSTN->return_crnrstn_text_link('com.autoregister-typelib', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/com.configuration.php#ini.com.autoregister-typelib') . ' is turned on, then PHP will attempt to automatically register the constants associated with a COM object when you instantiate it. This depends on the interfaces provided by the COM object itself, and may not always be possible.',
                                                         'TEXT' => 'Loads a type-library and registers its constants in the engine, as though they were defined using define().
 
 Note that it is much more efficient to use the com.typelib-file php.ini setting to pre-load and register the constants, although not so flexible.
@@ -2281,7 +2277,7 @@ If com.autoregister-typelib is turned on, then PHP will attempt to automatically
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The default latitude ranging from 0 at the equator, to +90 northward, and -90 southward. This is only used by ' . $this->return_crnrstn_text_link('date_sunrise', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-sunrise.php') . ' and ' . $this->return_crnrstn_text_link('date_sunset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-sunset.php') . '.',
+                                                        'HTML' => 'The default latitude ranging from 0 at the equator, to +90 northward, and -90 southward. This is only used by ' . $this->oCRNRSTN->return_crnrstn_text_link('date_sunrise', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-sunrise.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('date_sunset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-sunset.php') . '.',
                                                         'TEXT' => 'The default latitude ranging from 0 at the equator, to +90 northward, and -90 southward. This is only used by date_sunrise() and date_sunset().'
                     )));
 
@@ -2299,7 +2295,7 @@ If com.autoregister-typelib is turned on, then PHP will attempt to automatically
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The default longitude ranging from 0 at the prime meridian to +180 eastward and −180 westward. This is only used by ' . $this->return_crnrstn_text_link('date_sunrise', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-sunrise.php') . ' and ' . $this->return_crnrstn_text_link('date_sunset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-sunset.php') . '.',
+                                                        'HTML' => 'The default longitude ranging from 0 at the prime meridian to +180 eastward and −180 westward. This is only used by ' . $this->oCRNRSTN->return_crnrstn_text_link('date_sunrise', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-sunrise.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('date_sunset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-sunset.php') . '.',
                                                         'TEXT' => 'The default longitude ranging from 0 at the prime meridian to +180 eastward and −180 westward. This is only used by date_sunrise() and date_sunset().'
                     )));
 
@@ -2319,7 +2315,7 @@ If com.autoregister-typelib is turned on, then PHP will attempt to automatically
                                                         array(
                                                         'HTML' => 'The default sunrise zenith.
 
-The default value is 90°50\'. The additional 50\' is due to two components: the Sun\'s radius, which is 16\', and the atmospheric refraction, which is 34\'. This is only used by ' . $this->return_crnrstn_text_link('date_sunrise', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-sunrise.php') . ' and ' . $this->return_crnrstn_text_link('date_sunset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-sunset.php') . '.',
+The default value is 90°50\'. The additional 50\' is due to two components: the Sun\'s radius, which is 16\', and the atmospheric refraction, which is 34\'. This is only used by ' . $this->oCRNRSTN->return_crnrstn_text_link('date_sunrise', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-sunrise.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('date_sunset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-sunset.php') . '.',
                                                         'TEXT' => 'The default sunrise zenith.
 
 The default value is 90°50\'. The additional 50\' is due to two components: the Sun\'s radius, which is 16\', and the atmospheric refraction, which is 34\'. This is only used by date_sunrise() and date_sunset().'
@@ -2339,7 +2335,7 @@ The default value is 90°50\'. The additional 50\' is due to two components: the
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The default sunset zenith. This is only used by ' . $this->return_crnrstn_text_link('date_sunrise', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-sunrise.php') . ' and ' . $this->return_crnrstn_text_link('date_sunset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-sunset.php') . '.',
+                                                        'HTML' => 'The default sunset zenith. This is only used by ' . $this->oCRNRSTN->return_crnrstn_text_link('date_sunrise', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-sunrise.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('date_sunset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-sunset.php') . '.',
                                                         'TEXT' => 'The default sunset zenith. This is only used by date_sunrise() and date_sunset().'
                     )));
 
@@ -2379,9 +2375,9 @@ The default value is 90°50\'. The additional 50\' is due to two components: the
                                                         array(
                                                         'HTML' => 'Gets the default timezone used by all date/time functions in a script. In order of preference, this function returns the default timezone by:
 
-Reading the timezone set using the ' . $this->return_crnrstn_text_link('date_default_timezone_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-default-timezone-get.php') . ' function (if any)
+Reading the timezone set using the ' . $this->oCRNRSTN->return_crnrstn_text_link('date_default_timezone_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-default-timezone-get.php') . ' function (if any)
 
-Reading the value of the ' . $this->return_crnrstn_text_link('date.timezone', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/datetime.configuration.php#ini.date.timezone') . ' ini option (if set)
+Reading the value of the ' . $this->oCRNRSTN->return_crnrstn_text_link('date.timezone', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/datetime.configuration.php#ini.date.timezone') . ' ini option (if set)
 
 If none of the above succeed, date_default_timezone_get() will return a default timezone of UTC.',
                                                         'TEXT' => 'Gets the default timezone used by all date/time functions in a script. In order of preference, this function returns the default timezone by:
@@ -2407,20 +2403,20 @@ If none of the above succeed, date_default_timezone_get() will return a default 
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => $this->return_crnrstn_text_link('Africa', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.africa.php') .'
-' . $this->return_crnrstn_text_link('America', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.america.php') . '
-' . $this->return_crnrstn_text_link('Antarctica', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.antarctica.php') . '
-' . $this->return_crnrstn_text_link('Arctic', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.arctic.php') . '
-' . $this->return_crnrstn_text_link('Asia', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.asia.php') . '
-' . $this->return_crnrstn_text_link('Atlantic', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.atlantic.php') . '
-' . $this->return_crnrstn_text_link('Australia', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.australia.php') . '
-' . $this->return_crnrstn_text_link('Europe', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.europe.php') . '
-' . $this->return_crnrstn_text_link('Indian', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.indian.php') . '
-' . $this->return_crnrstn_text_link('Pacific', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.pacific.php') . '
-' . $this->return_crnrstn_text_link('Pacific', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.others.php') . '
-Here you\'ll find the complete list of timezones supported by PHP, which are meant to be used with e.g. ' . $this->return_crnrstn_text_link('date_default_timezone_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-default-timezone-set.php') . '.
+                                                        'HTML' => $this->oCRNRSTN->return_crnrstn_text_link('Africa', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.africa.php') .'
+' . $this->oCRNRSTN->return_crnrstn_text_link('America', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.america.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('Antarctica', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.antarctica.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('Arctic', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.arctic.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('Asia', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.asia.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('Atlantic', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.atlantic.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('Australia', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.australia.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('Europe', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.europe.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('Indian', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.indian.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('Pacific', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.pacific.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('Pacific', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/timezones.others.php') . '
+Here you\'ll find the complete list of timezones supported by PHP, which are meant to be used with e.g. ' . $this->oCRNRSTN->return_crnrstn_text_link('date_default_timezone_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.date-default-timezone-set.php') . '.
 
-The latest version of the timezone database can be installed via ' . $this->return_crnrstn_text_link('PECL\'s »&nbsp;timezonedb', 'PHP_ELLIPSE', 'https://pecl.php.net/get/timezonedb') . '.',
+The latest version of the timezone database can be installed via ' . $this->oCRNRSTN->return_crnrstn_text_link('PECL\'s »&nbsp;timezonedb', 'PHP_ELLIPSE', 'https://pecl.php.net/get/timezonedb') . '.',
                                                         'TEXT' => 'Africa
 America
 Antarctica
@@ -2509,9 +2505,9 @@ The latest version of the timezone database can be installed via PECL\'s » time
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => '&quot;UTF-8&quot; is the default value and its value is used as the default character encoding for ' . $this->return_crnrstn_text_link('htmlentities', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.htmlentities.php') . ', ' . $this->return_crnrstn_text_link('html_entity_decode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.html-entity-decode.php') . ' and ' . $this->return_crnrstn_text_link('htmlspecialchars', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.htmlspecialchars.php') . ' if the encoding parameter is omitted. The value of default_charset will also be used to set the default character set for ' . $this->return_crnrstn_text_link('iconv', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/book.iconv.php') . ' functions if the ' . $this->return_crnrstn_text_link('iconv.input_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/iconv.configuration.php#ini.iconv.input-encoding') . ', ' . $this->return_crnrstn_text_link('iconv.output_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/iconv.configuration.php#ini.iconv.output-encoding') . ' and ' . $this->return_crnrstn_text_link('iconv.internal_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/iconv.configuration.php#ini.iconv.internal-encoding') . ' configuration options are unset, and for ' . $this->return_crnrstn_text_link('mbstring', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/book.mbstring.php') . ' functions if the ' . $this->return_crnrstn_text_link('mbstring.http_input', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mbstring.configuration.php#ini.mbstring.http-input') . ' ' . $this->return_crnrstn_text_link('mbstring.http_output', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mbstring.configuration.php#ini.mbstring.http-output') . ' ' . $this->return_crnrstn_text_link('mbstring.internal_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mbstring.configuration.php#ini.mbstring.internal-encoding') . ' configuration option is unset.
+                                                        'HTML' => '&quot;UTF-8&quot; is the default value and its value is used as the default character encoding for ' . $this->oCRNRSTN->return_crnrstn_text_link('htmlentities', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.htmlentities.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('html_entity_decode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.html-entity-decode.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('htmlspecialchars', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.htmlspecialchars.php') . ' if the encoding parameter is omitted. The value of default_charset will also be used to set the default character set for ' . $this->oCRNRSTN->return_crnrstn_text_link('iconv', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/book.iconv.php') . ' functions if the ' . $this->oCRNRSTN->return_crnrstn_text_link('iconv.input_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/iconv.configuration.php#ini.iconv.input-encoding') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('iconv.output_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/iconv.configuration.php#ini.iconv.output-encoding') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('iconv.internal_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/iconv.configuration.php#ini.iconv.internal-encoding') . ' configuration options are unset, and for ' . $this->oCRNRSTN->return_crnrstn_text_link('mbstring', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/book.mbstring.php') . ' functions if the ' . $this->oCRNRSTN->return_crnrstn_text_link('mbstring.http_input', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mbstring.configuration.php#ini.mbstring.http-input') . ' ' . $this->oCRNRSTN->return_crnrstn_text_link('mbstring.http_output', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mbstring.configuration.php#ini.mbstring.http-output') . ' ' . $this->oCRNRSTN->return_crnrstn_text_link('mbstring.internal_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mbstring.configuration.php#ini.mbstring.internal-encoding') . ' configuration option is unset.
 
-All versions of PHP will use this value as the charset within the default Content-Type header sent by PHP if the header isn\'t overridden by a call to ' . $this->return_crnrstn_text_link('header', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.header.php') . '.
+All versions of PHP will use this value as the charset within the default Content-Type header sent by PHP if the header isn\'t overridden by a call to ' . $this->oCRNRSTN->return_crnrstn_text_link('header', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.header.php') . '.
 
 Setting default_charset to an empty value is not recommended.',
                                                         'TEXT' => '"UTF-8" is the default value and its value is used as the default character encoding for htmlentities(), html_entity_decode() and htmlspecialchars() if the encoding parameter is omitted. The value of default_charset will also be used to set the default character set for iconv functions if the iconv.input_encoding, iconv.output_encoding and iconv.internal_encoding configuration options are unset, and for mbstring functions if the mbstring.http_input mbstring.http_output mbstring.internal_encoding configuration option is unset.
@@ -2537,9 +2533,9 @@ Setting default_charset to an empty value is not recommended.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Convert all applicable characters to HTML entities. This function is identical to ' . $this->return_crnrstn_text_link('htmlspecialchars', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.htmlspecialchars.php') . ' in all ways, except with htmlentities(), all characters which have HTML character entity equivalents are translated into these entities. The ' . $this->return_crnrstn_text_link('get_html_translation_table', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.get-html-translation-table.php') . ' function can be used to return the translation table used dependent upon the provided flags constants.
+                                                        'HTML' => 'Convert all applicable characters to HTML entities. This function is identical to ' . $this->oCRNRSTN->return_crnrstn_text_link('htmlspecialchars', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.htmlspecialchars.php') . ' in all ways, except with htmlentities(), all characters which have HTML character entity equivalents are translated into these entities. The ' . $this->oCRNRSTN->return_crnrstn_text_link('get_html_translation_table', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.get-html-translation-table.php') . ' function can be used to return the translation table used dependent upon the provided flags constants.
 
-If you want to decode instead (the reverse) you can use ' . $this->return_crnrstn_text_link('html_entity_decode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.html-entity-decode.php') . '.',
+If you want to decode instead (the reverse) you can use ' . $this->oCRNRSTN->return_crnrstn_text_link('html_entity_decode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.html-entity-decode.php') . '.',
                                                         'TEXT' => 'Convert all applicable characters to HTML entities. This function is identical to htmlspecialchars() in all ways, except with htmlentities(), all characters which have HTML character entity equivalents are translated into these entities. The get_html_translation_table() function can be used to return the translation table used dependent upon the provided flags constants.
 
 If you want to decode instead (the reverse) you can use html_entity_decode().'
@@ -2561,7 +2557,7 @@ If you want to decode instead (the reverse) you can use html_entity_decode().'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Convert HTML entities to their corresponding characters. html_entity_decode() is the opposite of ' . $this->return_crnrstn_text_link('htmlentities', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.htmlentities.php') . ' in that it converts HTML entities in the string to their corresponding characters.
+                                                        'HTML' => 'Convert HTML entities to their corresponding characters. html_entity_decode() is the opposite of ' . $this->oCRNRSTN->return_crnrstn_text_link('htmlentities', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.htmlentities.php') . ' in that it converts HTML entities in the string to their corresponding characters.
 
 More precisely, this function decodes all the entities (including all numeric entities) that a) are necessarily valid for the chosen document type — i.e., for XML, this function does not decode named entities that might be defined in some DTD — and b) whose character or characters are in the coded character set associated with the chosen encoding and are permitted in the chosen document type. All other entities are left as is.',
                                                         'TEXT' => 'Convert HTML entities to their corresponding characters. html_entity_decode() is the opposite of htmlentities() in that it converts HTML entities in the string to their corresponding characters.
@@ -2585,9 +2581,9 @@ More precisely, this function decodes all the entities (including all numeric en
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Convert special characters to HTML entities. Certain characters have special significance in HTML, and should be represented by HTML entities if they are to preserve their meanings. This function returns a string with these conversions made. If you require all input substrings that have associated named entities to be translated, use ' . $this->return_crnrstn_text_link('htmlentities', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.htmlentities.php') . ' instead.
+                                                        'HTML' => 'Convert special characters to HTML entities. Certain characters have special significance in HTML, and should be represented by HTML entities if they are to preserve their meanings. This function returns a string with these conversions made. If you require all input substrings that have associated named entities to be translated, use ' . $this->oCRNRSTN->return_crnrstn_text_link('htmlentities', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.htmlentities.php') . ' instead.
 
-If the input string passed to this function and the final document share the same character set, this function is sufficient to prepare input for inclusion in most contexts of an HTML document. If, however, the input can represent characters that are not coded in the final document character set and you wish to retain those characters (as numeric or named entities), both this function and ' . $this->return_crnrstn_text_link('htmlentities', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.htmlentities.php') . ' (which only encodes substrings that have named entity equivalents) may be insufficient. You may have to use ' . $this->return_crnrstn_text_link('mb_encode_numericentity', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-encode-numericentity.php') . ' instead.',
+If the input string passed to this function and the final document share the same character set, this function is sufficient to prepare input for inclusion in most contexts of an HTML document. If, however, the input can represent characters that are not coded in the final document character set and you wish to retain those characters (as numeric or named entities), both this function and ' . $this->oCRNRSTN->return_crnrstn_text_link('htmlentities', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.htmlentities.php') . ' (which only encodes substrings that have named entity equivalents) may be insufficient. You may have to use ' . $this->oCRNRSTN->return_crnrstn_text_link('mb_encode_numericentity', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-encode-numericentity.php') . ' instead.',
                                                         'TEXT' => 'Convert special characters to HTML entities. Certain characters have special significance in HTML, and should be represented by HTML entities if they are to preserve their meanings. This function returns a string with these conversions made. If you require all input substrings that have associated named entities to be translated, use htmlentities() instead.
 
 If the input string passed to this function and the final document share the same character set, this function is sufficient to prepare input for inclusion in most contexts of an HTML document. If, however, the input can represent characters that are not coded in the final document character set and you wish to retain those characters (as numeric or named entities), both this function and htmlentities() (which only encodes substrings that have named entity equivalents) may be insufficient. You may have to use mb_encode_numericentity() instead.'
@@ -2607,7 +2603,7 @@ If the input string passed to this function and the final document share the sam
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'This module contains an interface to iconv character set conversion facility. With this module, you can turn a string represented by a local character set into the one represented by another character set, which may be the Unicode character set. Supported character sets depend on the iconv implementation of your system. Note that the iconv function on some systems may not work as you expect. In such case, it\'d be a good idea to install the ' . $this->return_crnrstn_text_link('»&nbsp;GNU libiconv', 'GNU_LOGO', 'https://www.php.net/manual/en/function.htmlentities.php') . ' library. It will most likely end up with more consistent results.
+                                                        'HTML' => 'This module contains an interface to iconv character set conversion facility. With this module, you can turn a string represented by a local character set into the one represented by another character set, which may be the Unicode character set. Supported character sets depend on the iconv implementation of your system. Note that the iconv function on some systems may not work as you expect. In such case, it\'d be a good idea to install the ' . $this->oCRNRSTN->return_crnrstn_text_link('»&nbsp;GNU libiconv', 'GNU_LOGO', 'https://www.php.net/manual/en/function.htmlentities.php') . ' library. It will most likely end up with more consistent results.
 
 This extension comes with various utility functions that help you to write multilingual scripts. Let\'s have a look at the following sections to explore the new features.',
                                                         'TEXT' => 'This module contains an interface to iconv character set conversion facility. With this module, you can turn a string represented by a local character set into the one represented by another character set, which may be the Unicode character set. Supported character sets depend on the iconv implementation of your system. Note that the iconv function on some systems may not work as you expect. In such case, it\'d be a good idea to install the » GNU libiconv library. It will most likely end up with more consistent results.
@@ -2647,7 +2643,7 @@ This extension comes with various utility functions that help you to write multi
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'PHP 5.6 and later users should leave this empty and set ' . $this->return_crnrstn_text_link('output_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.output-encoding') . ' instead. This feature has been DEPRECATED as of PHP 5.6.0. Relying on this feature is highly discouraged.',
+                                                        'HTML' => 'PHP 5.6 and later users should leave this empty and set ' . $this->oCRNRSTN->return_crnrstn_text_link('output_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.output-encoding') . ' instead. This feature has been DEPRECATED as of PHP 5.6.0. Relying on this feature is highly discouraged.',
                                                         'TEXT' => 'PHP 5.6 and later users should leave this empty and set output_encoding instead. This feature has been DEPRECATED as of PHP 5.6.0. Relying on this feature is highly discouraged.'
                     )));
 
@@ -2665,7 +2661,7 @@ This extension comes with various utility functions that help you to write multi
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'PHP 5.6 and later users should leave this empty and set ' . $this->return_crnrstn_text_link('default_charset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.default-charset') . ' instead. This feature has been DEPRECATED as of PHP 5.6.0. Relying on this feature is highly discouraged.',
+                                                        'HTML' => 'PHP 5.6 and later users should leave this empty and set ' . $this->oCRNRSTN->return_crnrstn_text_link('default_charset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.default-charset') . ' instead. This feature has been DEPRECATED as of PHP 5.6.0. Relying on this feature is highly discouraged.',
                                                         'TEXT' => 'PHP 5.6 and later users should leave this empty and set default_charset instead. This feature has been DEPRECATED as of PHP 5.6.0. Relying on this feature is highly discouraged.'
                     )));
 
@@ -2687,7 +2683,7 @@ This extension comes with various utility functions that help you to write multi
 
 When you manipulate (trim, split, splice, etc.) strings encoded in a multibyte encoding, you need to use special functions since two or more consecutive bytes may represent a single character in such encoding schemes. Otherwise, if you apply a non-multibyte-aware string function to the string, it probably fails to detect the beginning or ending of the multibyte character and ends up with a corrupted garbage string that most likely loses its original meaning.
 
-mbstring provides multibyte specific string functions that help you deal with multibyte encodings in PHP. In addition to that, mbstring handles character encoding conversion between the possible encoding pairs. mbstring is designed to handle Unicode-based encodings such as UTF-8 and UCS-2 and many single-byte encodings for convenience (listed in ' . $this->return_crnrstn_text_link('Supported Character Encodings', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mbstring.supported-encodings.php') . ').',
+mbstring provides multibyte specific string functions that help you deal with multibyte encodings in PHP. In addition to that, mbstring handles character encoding conversion between the possible encoding pairs. mbstring is designed to handle Unicode-based encodings such as UTF-8 and UCS-2 and many single-byte encodings for convenience (listed in ' . $this->oCRNRSTN->return_crnrstn_text_link('Supported Character Encodings', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mbstring.supported-encodings.php') . ').',
                                                         'TEXT' => 'While there are many languages in which every necessary character can be represented by a one-to-one mapping to an 8-bit value, there are also several languages which require so many characters for written communication that they cannot be contained within the range a mere byte can code (A byte is made up of eight bits. Each bit can contain only two distinct values, one or zero. Because of this, a byte can only represent 256 unique values (two to the power of eight)). Multibyte character encoding schemes were developed to express more than 256 characters in the regular bytewise coding system.
 
 When you manipulate (trim, split, splice, etc.) strings encoded in a multibyte encoding, you need to use special functions since two or more consecutive bytes may represent a single character in such encoding schemes. Otherwise, if you apply a non-multibyte-aware string function to the string, it probably fails to detect the beginning or ending of the multibyte character and ends up with a corrupted garbage string that most likely loses its original meaning.
@@ -2711,7 +2707,7 @@ mbstring provides multibyte specific string functions that help you deal with mu
                                                         array(
                                                         'HTML' => 'Defines the default HTTP input character encoding.
 
-Users should leave this empty and set ' . $this->return_crnrstn_text_link('default_charset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.default-charset') . ' instead. This deprecated feature will certainly be removed in the future.',
+Users should leave this empty and set ' . $this->oCRNRSTN->return_crnrstn_text_link('default_charset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.default-charset') . ' instead. This deprecated feature will certainly be removed in the future.',
                                                         'TEXT' => 'Defines the default HTTP input character encoding.
 
 Users should leave this empty and set default_charset instead. This deprecated feature will certainly be removed in the future.'
@@ -2733,7 +2729,7 @@ Users should leave this empty and set default_charset instead. This deprecated f
                                                         array(
                                                         'HTML' => 'Defines the default HTTP output character encoding (output will be converted from the internal encoding to the HTTP output encoding upon output).
 
-Users should leave this empty and set ' . $this->return_crnrstn_text_link('default_charset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.default-charset') . ' instead. This deprecated feature will certainly be removed in the future.',
+Users should leave this empty and set ' . $this->oCRNRSTN->return_crnrstn_text_link('default_charset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.default-charset') . ' instead. This deprecated feature will certainly be removed in the future.',
                                                         'TEXT' => 'Defines the default HTTP output character encoding (output will be converted from the internal encoding to the HTTP output encoding upon output).
 
 Users should leave this empty and set default_charset instead. This deprecated feature will certainly be removed in the future.'
@@ -2755,7 +2751,7 @@ Users should leave this empty and set default_charset instead. This deprecated f
                                                         array(
                                                         'HTML' => 'Defines the default internal character encoding.
 
-Users should leave this empty and set ' . $this->return_crnrstn_text_link('default_charset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.default-charset') . ' instead. This deprecated feature will certainly be removed in the future.',
+Users should leave this empty and set ' . $this->oCRNRSTN->return_crnrstn_text_link('default_charset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.default-charset') . ' instead. This deprecated feature will certainly be removed in the future.',
                                                         'TEXT' => 'Defines the default internal character encoding.
 
 Users should leave this empty and set default_charset instead. This deprecated feature will certainly be removed in the future.'
@@ -2775,9 +2771,9 @@ Users should leave this empty and set default_charset instead. This deprecated f
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Send a raw HTTP header. header() is used to send a raw HTTP header. See the ' . $this->return_crnrstn_text_link('»&nbsp;HTTP/1.1 specification', 'INTERNET_FAQS_ARCHIVE_LOGO', 'http://www.faqs.org/rfcs/rfc2616') . ' for more information on HTTP headers.
+                                                        'HTML' => 'Send a raw HTTP header. header() is used to send a raw HTTP header. See the ' . $this->oCRNRSTN->return_crnrstn_text_link('»&nbsp;HTTP/1.1 specification', 'INTERNET_FAQS_ARCHIVE_LOGO', 'http://www.faqs.org/rfcs/rfc2616') . ' for more information on HTTP headers.
 
-Remember that header() must be called before any actual output is sent, either by normal HTML tags, blank lines in a file, or from PHP. It is a very common error to read code with ' . $this->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ', or ' . $this->return_crnrstn_text_link('require', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.require.php') . ', functions, or another file access function, and have spaces or empty lines that are output before header() is called. The same problem exists when using a single PHP/HTML file.',
+Remember that header() must be called before any actual output is sent, either by normal HTML tags, blank lines in a file, or from PHP. It is a very common error to read code with ' . $this->oCRNRSTN->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ', or ' . $this->oCRNRSTN->return_crnrstn_text_link('require', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.require.php') . ', functions, or another file access function, and have spaces or empty lines that are output before header() is called. The same problem exists when using a single PHP/HTML file.',
                                                         'TEXT' => 'Send a raw HTTP header. header() is used to send a raw HTTP header. See the » HTTP/1.1 specification for more information on HTTP headers.
 
 Remember that header() must be called before any actual output is sent, either by normal HTML tags, blank lines in a file, or from PHP. It is a very common error to read code with include, or require, functions, or another file access function, and have spaces or empty lines that are output before header() is called. The same problem exists when using a single PHP/HTML file.'
@@ -2923,9 +2919,9 @@ Remember that header() must be called before any actual output is sent, either b
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'PHP comes standard with many functions and constructs. There are also functions that require specific PHP extensions compiled in, otherwise fatal &quot;undefined function&quot; errors will appear. For example, to use ' . $this->return_crnrstn_text_link('image', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.image.php') . ' functions such as ' . $this->return_crnrstn_text_link('imagecreatetruecolor', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.imagecreatetruecolor.php') . ', PHP must be compiled with GD support. Or, to use ' . $this->return_crnrstn_text_link('mysqli_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mysqli-connect.php') . ', PHP must be compiled with ' . $this->return_crnrstn_text_link('MySQLi', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/book.mysqli.php') . ' support. There are many core functions that are included in every version of PHP, such as the ' . $this->return_crnrstn_text_link('string', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.strings.php') . ' and ' . $this->return_crnrstn_text_link('variable', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.var.php') . ' functions. A call to ' . $this->return_crnrstn_text_link('phpinfo', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.phpinfo.php') . ' or ' . $this->return_crnrstn_text_link('get_loaded_extensions', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.get-loaded-extensions.php') . ' will show which extensions are loaded into PHP. Also note that many extensions are enabled by default and that the PHP manual is split up by extension. See the ' . $this->return_crnrstn_text_link('configuration', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/configuration.php') . ', ' . $this->return_crnrstn_text_link('installation', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/install.php') . ', and individual extension chapters, for information on how to set up PHP.
+                                                        'HTML' => 'PHP comes standard with many functions and constructs. There are also functions that require specific PHP extensions compiled in, otherwise fatal &quot;undefined function&quot; errors will appear. For example, to use ' . $this->oCRNRSTN->return_crnrstn_text_link('image', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.image.php') . ' functions such as ' . $this->oCRNRSTN->return_crnrstn_text_link('imagecreatetruecolor', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.imagecreatetruecolor.php') . ', PHP must be compiled with GD support. Or, to use ' . $this->oCRNRSTN->return_crnrstn_text_link('mysqli_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mysqli-connect.php') . ', PHP must be compiled with ' . $this->oCRNRSTN->return_crnrstn_text_link('MySQLi', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/book.mysqli.php') . ' support. There are many core functions that are included in every version of PHP, such as the ' . $this->oCRNRSTN->return_crnrstn_text_link('string', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.strings.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('variable', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.var.php') . ' functions. A call to ' . $this->oCRNRSTN->return_crnrstn_text_link('phpinfo', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.phpinfo.php') . ' or ' . $this->oCRNRSTN->return_crnrstn_text_link('get_loaded_extensions', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.get-loaded-extensions.php') . ' will show which extensions are loaded into PHP. Also note that many extensions are enabled by default and that the PHP manual is split up by extension. See the ' . $this->oCRNRSTN->return_crnrstn_text_link('configuration', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/configuration.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('installation', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/install.php') . ', and individual extension chapters, for information on how to set up PHP.
 
-Reading and understanding a function\'s prototype is explained within the manual section titled ' . $this->return_crnrstn_text_link('how to read a function definition', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/about.prototypes.php') . '. It\'s important to realize what a function returns or if a function works directly on a passed in value. For example, ' . $this->return_crnrstn_text_link('str_replace', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.str-replace.php') . ' will return the modified string while ' . $this->return_crnrstn_text_link('usort', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.usort.php') . ' works on the actual passed in variable itself. Each manual page also has specific information for each function like information on function parameters, behavior changes, return values for both success and failure, and availability information. Knowing these important (yet often subtle) differences is crucial for writing correct PHP code.',
+Reading and understanding a function\'s prototype is explained within the manual section titled ' . $this->oCRNRSTN->return_crnrstn_text_link('how to read a function definition', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/about.prototypes.php') . '. It\'s important to realize what a function returns or if a function works directly on a passed in value. For example, ' . $this->oCRNRSTN->return_crnrstn_text_link('str_replace', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.str-replace.php') . ' will return the modified string while ' . $this->oCRNRSTN->return_crnrstn_text_link('usort', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.usort.php') . ' works on the actual passed in variable itself. Each manual page also has specific information for each function like information on function parameters, behavior changes, return values for both success and failure, and availability information. Knowing these important (yet often subtle) differences is crucial for writing correct PHP code.',
                                                         'TEXT' => 'PHP comes standard with many functions and constructs. There are also functions that require specific PHP extensions compiled in, otherwise fatal "undefined function" errors will appear. For example, to use image functions such as imagecreatetruecolor(), PHP must be compiled with GD support. Or, to use mysqli_connect(), PHP must be compiled with MySQLi support. There are many core functions that are included in every version of PHP, such as the string and variable functions. A call to phpinfo() or get_loaded_extensions() will show which extensions are loaded into PHP. Also note that many extensions are enabled by default and that the PHP manual is split up by extension. See the configuration, installation, and individual extension chapters, for information on how to set up PHP.
 
 Reading and understanding a function\'s prototype is explained within the manual section titled how to read a function definition. It\'s important to realize what a function returns or if a function works directly on a passed in value. For example, str_replace() will return the modified string while usort() works on the actual passed in variable itself. Each manual page also has specific information for each function like information on function parameters, behavior changes, return values for both success and failure, and availability information. Knowing these important (yet often subtle) differences is crucial for writing correct PHP code.'
@@ -2949,7 +2945,7 @@ Reading and understanding a function\'s prototype is explained within the manual
 
 Function names follow the same rules as other labels in PHP. A valid function name starts with a letter or underscore, followed by any number of letters, numbers, or underscores. As a regular expression, it would be expressed thus: ^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$.
 
-See also the ' . $this->return_crnrstn_text_link('Userland Naming Guide', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/userlandnaming.php') . '.',
+See also the ' . $this->oCRNRSTN->return_crnrstn_text_link('Userland Naming Guide', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/userlandnaming.php') . '.',
                                                         'TEXT' => 'Any valid PHP code may appear inside a function, even other functions and class definitions.
 
 Function names follow the same rules as other labels in PHP. A valid function name starts with a letter or underscore, followed by any number of letters, numbers, or underscores. As a regular expression, it would be expressed thus: ^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$.
@@ -3079,7 +3075,7 @@ This is a feature to support your development since it makes it easy to lookup a
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'PHP\'s &quot;root directory&quot; on the server. Only used if non-empty. If PHP was not compiled with FORCE_REDIRECT, you should set doc_root if you are running PHP as a CGI under any web server (other than IIS). The alternative is to use the ' . $this->return_crnrstn_text_link('cgi.force_redirect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.cgi.force-redirect') . ' configuration below.',
+                                                        'HTML' => 'PHP\'s &quot;root directory&quot; on the server. Only used if non-empty. If PHP was not compiled with FORCE_REDIRECT, you should set doc_root if you are running PHP as a CGI under any web server (other than IIS). The alternative is to use the ' . $this->oCRNRSTN->return_crnrstn_text_link('cgi.force_redirect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.cgi.force-redirect') . ' configuration below.',
                                                         'TEXT' => 'PHP\'s "root directory" on the server. Only used if non-empty. If PHP was not compiled with FORCE_REDIRECT, you should set doc_root if you are running PHP as a CGI under any web server (other than IIS). The alternative is to use the cgi.force_redirect configuration below.'
                     )));
 
@@ -3097,9 +3093,9 @@ This is a feature to support your development since it makes it easy to lookup a
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'This directive allows to turn dynamic loading of PHP extensions with ' . $this->return_crnrstn_text_link('dl', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.dl.php') . ' on and off.
+                                                        'HTML' => 'This directive allows to turn dynamic loading of PHP extensions with ' . $this->oCRNRSTN->return_crnrstn_text_link('dl', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.dl.php') . ' on and off.
 
-The main reason for turning dynamic loading off is security. With dynamic loading, it\'s possible to ignore all ' . $this->return_crnrstn_text_link('open_basedir', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.open-basedir') . ' restrictions. The default is to allow dynamic loading.',
+The main reason for turning dynamic loading off is security. With dynamic loading, it\'s possible to ignore all ' . $this->oCRNRSTN->return_crnrstn_text_link('open_basedir', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.open-basedir') . ' restrictions. The default is to allow dynamic loading.',
                                                         'TEXT' => 'This directive allows to turn dynamic loading of PHP extensions with dl() on and off.
 
 The main reason for turning dynamic loading off is security. With dynamic loading, it\'s possible to ignore all open_basedir restrictions. The default is to allow dynamic loading.'
@@ -3123,7 +3119,7 @@ The main reason for turning dynamic loading off is security. With dynamic loadin
                                                         array(
                                                         'HTML' => 'Loads a PHP extension at runtime. Loads the PHP extension given by the parameter extension_filename.
 
-Use ' . $this->return_crnrstn_text_link('extension_loaded', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.extension-loaded.php') . ' to test whether a given extension is already available or not. This works on both built-in extensions and dynamically loaded ones (either through php.ini or dl()).
+Use ' . $this->oCRNRSTN->return_crnrstn_text_link('extension_loaded', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.extension-loaded.php') . ' to test whether a given extension is already available or not. This works on both built-in extensions and dynamically loaded ones (either through php.ini or dl()).
 
 This function is only available for the CLI and embed SAPIs, and the CGI SAPI when run from the command line.',
                                                         'TEXT' => 'Loads a PHP extension at runtime. Loads the PHP extension given by the parameter extension_filename.
@@ -3147,7 +3143,7 @@ This function is only available for the CLI and embed SAPIs, and the CGI SAPI wh
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Disabling this option causes ' . $this->return_crnrstn_text_link('$_POST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.post.php') . ' and ' . $this->return_crnrstn_text_link('$_FILES', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.files.php') . ' not to be populated. The only way to read postdata will then be through the ' . $this->return_crnrstn_text_link('php://input', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/wrappers.php.php') . ' stream wrapper. This can be useful to proxy requests or to process the POST data in a memory efficient fashion.',
+                                                        'HTML' => 'Disabling this option causes ' . $this->oCRNRSTN->return_crnrstn_text_link('$_POST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.post.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('$_FILES', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.files.php') . ' not to be populated. The only way to read postdata will then be through the ' . $this->oCRNRSTN->return_crnrstn_text_link('php://input', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/wrappers.php.php') . ' stream wrapper. This can be useful to proxy requests or to process the POST data in a memory efficient fashion.',
                                                         'TEXT' => 'Disabling this option causes $_POST and $_FILES not to be populated. The only way to read postdata will then be through the php://input stream wrapper. This can be useful to proxy requests or to process the POST data in a memory efficient fashion.'
                     )));
 
@@ -3185,7 +3181,7 @@ This function is only available for the CLI and embed SAPIs, and the CGI SAPI wh
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'HTTP File Upload variables. An associative array of items uploaded to the current script via the HTTP POST method. The structure of this array is outlined in the ' . $this->return_crnrstn_text_link('POST method uploads', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.file-upload.post-method.php') . ' section.',
+                                                        'HTML' => 'HTTP File Upload variables. An associative array of items uploaded to the current script via the HTTP POST method. The structure of this array is outlined in the ' . $this->oCRNRSTN->return_crnrstn_text_link('POST method uploads', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.file-upload.post-method.php') . ' section.',
                                                         'TEXT' => 'HTTP File Upload variables. An associative array of items uploaded to the current script via the HTTP POST method. The structure of this array is outlined in the POST method uploads section.'
                     )));
 
@@ -3212,16 +3208,16 @@ php://stdin, php://stdout and php://stderr allow direct access to the correspond
 php://stdin is read-only, whereas php://stdout and php://stderr are write-only.
 
 php://input
-php://input is a read-only stream that allows you to read raw data from the request body. php://input is not available in POST requests with enctype=&quot;multipart/form-data&quot; if ' . $this->return_crnrstn_text_link('enable_post_data_reading', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.enable-post-data-reading') . ' option is enabled.
+php://input is a read-only stream that allows you to read raw data from the request body. php://input is not available in POST requests with enctype=&quot;multipart/form-data&quot; if ' . $this->oCRNRSTN->return_crnrstn_text_link('enable_post_data_reading', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.enable-post-data-reading') . ' option is enabled.
 
 php://output
-php://output is a write-only stream that allows you to write to the output buffer mechanism in the same way as ' . $this->return_crnrstn_text_link('print', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.print.php') . ' and ' . $this->return_crnrstn_text_link('echo', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.echo.php') . '.
+php://output is a write-only stream that allows you to write to the output buffer mechanism in the same way as ' . $this->oCRNRSTN->return_crnrstn_text_link('print', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.print.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('echo', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.echo.php') . '.
 
 php://fd
 php://fd allows direct access to the given file descriptor. For example, php://fd/3 refers to file descriptor 3.
 
 php://memory and php://temp
-php://memory and php://temp are read-write streams that allow temporary data to be stored in a file-like wrapper. One difference between the two is that php://memory will always store its data in memory, whereas php://temp will use a temporary file once the amount of data stored hits a predefined limit (the default is 2 MB). The location of this temporary file is determined in the same way as the ' . $this->return_crnrstn_text_link('sys_get_temp_dir', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.sys-get-temp-dir.php') . ' function.
+php://memory and php://temp are read-write streams that allow temporary data to be stored in a file-like wrapper. One difference between the two is that php://memory will always store its data in memory, whereas php://temp will use a temporary file once the amount of data stored hits a predefined limit (the default is 2 MB). The location of this temporary file is determined in the same way as the ' . $this->oCRNRSTN->return_crnrstn_text_link('sys_get_temp_dir', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.sys-get-temp-dir.php') . ' function.
 
 The memory limit of php://temp can be controlled by appending /maxmemory:NN, where NN is the maximum amount of data to keep in memory before using a temporary file, in bytes.
 
@@ -3229,7 +3225,7 @@ Caution
 Some PHP extensions may require a standard IO stream, and may attempt to cast a given stream to a standard IO stream. This cast can fail for memory streams as it requires the C fopencookie() function to be available. This C function is not available on Windows.
 
 php://filter
-php://filter is a kind of meta-wrapper designed to permit the application of ' . $this->return_crnrstn_text_link('filters', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/filters.php') . ' to a stream at the time of opening. This is useful with all-in-one file functions such as ' . $this->return_crnrstn_text_link('readfile', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.readfile.php') . ', ' . $this->return_crnrstn_text_link('file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.file.php') . ', and ' . $this->return_crnrstn_text_link('file_get_contents', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.file-get-contents.php') . ' where there is otherwise no opportunity to apply a filter to the stream prior the contents being read.
+php://filter is a kind of meta-wrapper designed to permit the application of ' . $this->oCRNRSTN->return_crnrstn_text_link('filters', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/filters.php') . ' to a stream at the time of opening. This is useful with all-in-one file functions such as ' . $this->oCRNRSTN->return_crnrstn_text_link('readfile', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.readfile.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.file.php') . ', and ' . $this->oCRNRSTN->return_crnrstn_text_link('file_get_contents', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.file-get-contents.php') . ' where there is otherwise no opportunity to apply a filter to the stream prior the contents being read.
 
 The php://filter target takes the following parameters as part of its path. Multiple filter chains can be specified on one path. Please refer to the examples for specifics on using these parameters.',
                                                         'TEXT' => 'PHP provides a number of miscellaneous I/O streams that allow access to PHP\'s own input and output streams, the standard input, output and error file descriptors, in-memory and disk-backed temporary file streams, and filters that can manipulate other file resources as they are read from and written to.
@@ -3312,7 +3308,7 @@ The php://filter target takes the following parameters as part of its path. Mult
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Name of the file where script errors should be logged. The file should be writable by the web server\'s user. If the special value syslog is used, the errors are sent to the system logger instead. On Unix, this means syslog(3) and on Windows it means the event log. See also: ' . $this->return_crnrstn_text_link('syslog', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.syslog.php') . '. If this directive is not set, errors are sent to the SAPI error logger. For example, it is an error log in Apache or stderr in CLI. See also ' . $this->return_crnrstn_text_link('error_log', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.error-log.php') . '.',
+                                                        'HTML' => 'Name of the file where script errors should be logged. The file should be writable by the web server\'s user. If the special value syslog is used, the errors are sent to the system logger instead. On Unix, this means syslog(3) and on Windows it means the event log. See also: ' . $this->oCRNRSTN->return_crnrstn_text_link('syslog', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.syslog.php') . '. If this directive is not set, errors are sent to the SAPI error logger. For example, it is an error log in Apache or stderr in CLI. See also ' . $this->oCRNRSTN->return_crnrstn_text_link('error_log', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.error-log.php') . '.',
                                                         'TEXT' => 'Name of the file where script errors should be logged. The file should be writable by the web server\'s user. If the special value syslog is used, the errors are sent to the system logger instead. On Unix, this means syslog(3) and on Windows it means the event log. See also: syslog(). If this directive is not set, errors are sent to the SAPI error logger. For example, it is an error log in Apache or stderr in CLI. See also error_log().'
                     )));
 
@@ -3374,7 +3370,7 @@ For information on setting up a user defined log handler, see the syslog.conf (5
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'File mode for the file described set in ' . $this->return_crnrstn_text_link('error_log', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.error-log') . '.',
+                                                        'HTML' => 'File mode for the file described set in ' . $this->oCRNRSTN->return_crnrstn_text_link('error_log', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.error-log') . '.',
                                                         'TEXT' => 'File mode for the file described set in error_log.'
                     )));
 
@@ -3410,7 +3406,7 @@ For information on setting up a user defined log handler, see the syslog.conf (5
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Set the error reporting level. The parameter is either an integer representing a bit field, or named constants. The error_reporting levels and constants are described in ' . $this->return_crnrstn_text_link('Predefined Constants', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.constants.php') . ', and in php.ini. To set at runtime, use the ' . $this->return_crnrstn_text_link('error_reporting', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.error-reporting.php') . ' function. See also the ' . $this->return_crnrstn_text_link('display_errors', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.display-errors') . ' directive.
+                                                        'HTML' => 'Set the error reporting level. The parameter is either an integer representing a bit field, or named constants. The error_reporting levels and constants are described in ' . $this->oCRNRSTN->return_crnrstn_text_link('Predefined Constants', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.constants.php') . ', and in php.ini. To set at runtime, use the ' . $this->oCRNRSTN->return_crnrstn_text_link('error_reporting', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.error-reporting.php') . ' function. See also the ' . $this->oCRNRSTN->return_crnrstn_text_link('display_errors', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.display-errors') . ' directive.
 
 The default value is E_ALL.
 
@@ -3626,11 +3622,11 @@ The above values (either numerical or symbolic) are used to build up a bitmask t
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The timeout period for waiting for the data, when using the ' . $this->return_crnrstn_text_link('expect_expectl', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.expect-expectl.php') . ' function.
+                                                        'HTML' => 'The timeout period for waiting for the data, when using the ' . $this->oCRNRSTN->return_crnrstn_text_link('expect_expectl', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.expect-expectl.php') . ' function.
 
 A value of &quot;-1&quot; disables a timeout from occurring.
 
-A value of &quot;0&quot; causes the ' . $this->return_crnrstn_text_link('expect_expectl', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.expect-expectl.php') . ' function to return immediately.',
+A value of &quot;0&quot; causes the ' . $this->oCRNRSTN->return_crnrstn_text_link('expect_expectl', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.expect-expectl.php') . ' function to return immediately.',
                                                         'TEXT' => 'The timeout period for waiting for the data, when using the expect_expectl() function.
 
 A value of "-1" disables a timeout from occurring.
@@ -3696,7 +3692,7 @@ If match is provided, then it is filled with the result of search. The matched s
                                                         array(
                                                         'HTML' => 'Name of the file, where the output from the spawned process will be written. If this file doesn\'t exist, it will be created.
 
-If this configuration is not empty, the output is written regardless of the value of ' . $this->return_crnrstn_text_link('expect.loguser', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/expect.configuration.php#ini.expect.loguser') . '.',
+If this configuration is not empty, the output is written regardless of the value of ' . $this->oCRNRSTN->return_crnrstn_text_link('expect.loguser', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/expect.configuration.php#ini.expect.loguser') . '.',
                                                         'TEXT' => 'Name of the file, where the output from the spawned process will be written. If this file doesn\'t exist, it will be created.
 
 If this configuration is not empty, the output is written regardless of the value of expect.loguser.'
@@ -3770,7 +3766,7 @@ If this configuration is not empty, the output is written regardless of the valu
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'In what directory PHP should look for dynamically loadable extensions. It is recommended to specify an absolute path. See also: ' . $this->return_crnrstn_text_link('enable_dl', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/info.configuration.php#ini.enable-dl') . ', and ' . $this->return_crnrstn_text_link('dl', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.dl.php') . '.',
+                                                        'HTML' => 'In what directory PHP should look for dynamically loadable extensions. It is recommended to specify an absolute path. See also: ' . $this->oCRNRSTN->return_crnrstn_text_link('enable_dl', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/info.configuration.php#ini.enable-dl') . ', and ' . $this->oCRNRSTN->return_crnrstn_text_link('dl', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.dl.php') . '.',
                                                         'TEXT' => 'In what directory PHP should look for dynamically loadable extensions. It is recommended to specify an absolute path. See also: enable_dl, and dl().'
                     )));
 
@@ -3824,7 +3820,7 @@ If this configuration is not empty, the output is written regardless of the valu
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Whether or not to allow HTTP ' . $this->return_crnrstn_text_link('file uploads', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.file-upload.php') . '. See also the ' . $this->return_crnrstn_text_link('upload_max_filesize', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.upload-max-filesize') . ', ' . $this->return_crnrstn_text_link('upload_tmp_dir', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.upload-tmp-dir') . ', and ' . $this->return_crnrstn_text_link('post_max_size', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.post-max-size') . ' directives.',
+                                                        'HTML' => 'Whether or not to allow HTTP ' . $this->oCRNRSTN->return_crnrstn_text_link('file uploads', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.file-upload.php') . '. See also the ' . $this->oCRNRSTN->return_crnrstn_text_link('upload_max_filesize', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.upload-max-filesize') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('upload_tmp_dir', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.upload-tmp-dir') . ', and ' . $this->oCRNRSTN->return_crnrstn_text_link('post_max_size', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.post-max-size') . ' directives.',
                                                         'TEXT' => 'Whether or not to allow HTTP file uploads. See also the upload_max_filesize, upload_tmp_dir, and post_max_size directives.'
                     )));
 
@@ -3843,12 +3839,12 @@ If this configuration is not empty, the output is written regardless of the valu
                                                     'en' =>
                                                         array(
                                                         'HTML' => 'Table of Contents
-' . $this->return_crnrstn_text_link('POST method uploads', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.file-upload.post-method.php') . '
-' . $this->return_crnrstn_text_link('Error Messages Explained', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.file-upload.errors.php') . '
-' . $this->return_crnrstn_text_link('Common Pitfalls', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.file-upload.common-pitfalls.php') . '
-' . $this->return_crnrstn_text_link('Uploading multiple files', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.file-upload.multiple.php') . '
-' . $this->return_crnrstn_text_link('PUT method support', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.file-upload.put-method.php') . '
-' . $this->return_crnrstn_text_link('See Also', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.file-upload.errors.seealso.php'),
+' . $this->oCRNRSTN->return_crnrstn_text_link('POST method uploads', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.file-upload.post-method.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('Error Messages Explained', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.file-upload.errors.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('Common Pitfalls', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.file-upload.common-pitfalls.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('Uploading multiple files', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.file-upload.multiple.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('PUT method support', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.file-upload.put-method.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('See Also', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.file-upload.errors.seealso.php'),
                                                         'TEXT' => 'Table of Contents
 POST method uploads
 Error Messages Explained
@@ -3874,9 +3870,9 @@ See Also'
                                                         array(
                                                         'HTML' => 'The maximum size of an uploaded file.
 
-' . $this->return_crnrstn_text_link('post_max_size', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.post-max-size') . ' must be larger than this value.
+' . $this->oCRNRSTN->return_crnrstn_text_link('post_max_size', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.post-max-size') . ' must be larger than this value.
 
-When an int is used, the value is measured in bytes. Shorthand notation, as described in ' . $this->return_crnrstn_text_link('this FAQ', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/faq.using.php#faq.using.shorthandbytes') . ', may also be used.',
+When an int is used, the value is measured in bytes. Shorthand notation, as described in ' . $this->oCRNRSTN->return_crnrstn_text_link('this FAQ', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/faq.using.php#faq.using.shorthandbytes') . ', may also be used.',
                                                         'TEXT' => 'The maximum size of an uploaded file.
 
 post_max_size must be larger than this value.
@@ -3900,7 +3896,7 @@ When an int is used, the value is measured in bytes. Shorthand notation, as desc
                                                         array(
                                                         'HTML' => 'The temporary directory used for storing files when doing file upload. Must be writable by whatever user PHP is running as. If not specified PHP will use the system\'s default.
 
-If the directory specified here is not writable, PHP falls back to the system default temporary directory. If ' . $this->return_crnrstn_text_link('open_basedir', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.open-basedir') . ' is on, then the system default directory must be allowed for an upload to succeed.',
+If the directory specified here is not writable, PHP falls back to the system default temporary directory. If ' . $this->oCRNRSTN->return_crnrstn_text_link('open_basedir', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.open-basedir') . ' is on, then the system default directory must be allowed for an upload to succeed.',
                                                         'TEXT' => 'The temporary directory used for storing files when doing file upload. Must be writable by whatever user PHP is running as. If not specified PHP will use the system\'s default.
 
 If the directory specified here is not writable, PHP falls back to the system default temporary directory. If open_basedir is on, then the system default directory must be allowed for an upload to succeed.'
@@ -3920,7 +3916,7 @@ If the directory specified here is not writable, PHP falls back to the system de
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Sets max size of post data allowed. This setting also affects file upload. To upload large files, this value must be larger than ' . $this->return_crnrstn_text_link('upload_max_filesize', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.upload-max-filesize') . '. Generally speaking, ' . $this->return_crnrstn_text_link('memory_limit', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.memory-limit') . ' should be larger than post_max_size. When an int is used, the value is measured in bytes. Shorthand notation, as described in ' . $this->return_crnrstn_text_link('this FAQ', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/faq.using.php#faq.using.shorthandbytes') . ', may also be used. If the size of post data is greater than post_max_size, the ' . $this->return_crnrstn_text_link('$_POST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.post.php') . ' and ' . $this->return_crnrstn_text_link('$_FILES', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.files.php') . ' ' . $this->return_crnrstn_text_link('superglobals', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.variables.superglobals.php') . ' are empty. This can be tracked in various ways, e.g. by passing the ' . $this->return_crnrstn_text_link('$_GET', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.get.php') . ' variable to the script processing the data, i.e. &lt;form action=&quot;edit.php?processed=1&quot;&gt;, and then checking if ' . $this->return_crnrstn_text_link('$_GET[\'processed\']', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.get.php') . ' is set.
+                                                        'HTML' => 'Sets max size of post data allowed. This setting also affects file upload. To upload large files, this value must be larger than ' . $this->oCRNRSTN->return_crnrstn_text_link('upload_max_filesize', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.upload-max-filesize') . '. Generally speaking, ' . $this->oCRNRSTN->return_crnrstn_text_link('memory_limit', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.memory-limit') . ' should be larger than post_max_size. When an int is used, the value is measured in bytes. Shorthand notation, as described in ' . $this->oCRNRSTN->return_crnrstn_text_link('this FAQ', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/faq.using.php#faq.using.shorthandbytes') . ', may also be used. If the size of post data is greater than post_max_size, the ' . $this->oCRNRSTN->return_crnrstn_text_link('$_POST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.post.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('$_FILES', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.files.php') . ' ' . $this->oCRNRSTN->return_crnrstn_text_link('superglobals', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.variables.superglobals.php') . ' are empty. This can be tracked in various ways, e.g. by passing the ' . $this->oCRNRSTN->return_crnrstn_text_link('$_GET', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.get.php') . ' variable to the script processing the data, i.e. &lt;form action=&quot;edit.php?processed=1&quot;&gt;, and then checking if ' . $this->oCRNRSTN->return_crnrstn_text_link('$_GET[\'processed\']', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.get.php') . ' is set.
 
 PHP allows shortcuts for byte values, including K (kilo), M (mega) and G (giga). PHP will do the conversions automatically if you use any of these. Be careful not to exceed the 32 bit signed integer limit (if you\'re using 32bit versions) as it will cause your script to fail.',
                                                         'TEXT' => 'Sets max size of post data allowed. This setting also affects file upload. To upload large files, this value must be larger than upload_max_filesize. Generally speaking, memory_limit should be larger than post_max_size. When an int is used, the value is measured in bytes. Shorthand notation, as described in this FAQ, may also be used. If the size of post data is greater than post_max_size, the $_POST and $_FILES superglobals are empty. This can be tracked in various ways, e.g. by passing the $_GET variable to the script processing the data, i.e. <form action="edit.php?processed=1">, and then checking if $_GET[\'processed\'] is set.
@@ -3942,11 +3938,11 @@ PHP allows shortcuts for byte values, including K (kilo), M (mega) and G (giga).
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Filter all ' . $this->return_crnrstn_text_link('$_GET', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.get.php') . ', ' . $this->return_crnrstn_text_link('$_POST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.post.php') . ', ' . $this->return_crnrstn_text_link('$_COOKIE', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.cookies.php') . ', ' . $this->return_crnrstn_text_link('$_REQUEST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.request.php') . ' and ' . $this->return_crnrstn_text_link('$_SERVER', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.server.php') . ' data by this filter. Original data can be accessed through ' . $this->return_crnrstn_text_link('filter_input', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.filter-input.php') . '.
+                                                        'HTML' => 'Filter all ' . $this->oCRNRSTN->return_crnrstn_text_link('$_GET', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.get.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('$_POST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.post.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('$_COOKIE', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.cookies.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('$_REQUEST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.request.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('$_SERVER', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.server.php') . ' data by this filter. Original data can be accessed through ' . $this->oCRNRSTN->return_crnrstn_text_link('filter_input', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.filter-input.php') . '.
 
-Accepts the name of the filter you like to use by default. See the existing ' . $this->return_crnrstn_text_link('filter list', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/filter.filters.php') . ' for the list of the filter names.
+Accepts the name of the filter you like to use by default. See the existing ' . $this->oCRNRSTN->return_crnrstn_text_link('filter list', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/filter.filters.php') . ' for the list of the filter names.
 
-Be careful about the default flags for the default filters. You should explicitly set them to the value you want. For example, to configure the default filter to behave exactly like ' . $this->return_crnrstn_text_link('htmlspecialchars', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.htmlspecialchars.php') . ' you need to set them default flags to 0 as shown below.
+Be careful about the default flags for the default filters. You should explicitly set them to the value you want. For example, to configure the default filter to behave exactly like ' . $this->oCRNRSTN->return_crnrstn_text_link('htmlspecialchars', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.htmlspecialchars.php') . ' you need to set them default flags to 0 as shown below.
 
 Example #1 Configuring the default filter to act like htmlspecialchars
 
@@ -4019,7 +4015,7 @@ filter.default_flags = 0'
                                                         array(
                                                         'HTML' => 'HTTP Request variables.
 
-An associative array that by default contains the contents of ' . $this->return_crnrstn_text_link('$_GET', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.get.php') . ', ' . $this->return_crnrstn_text_link('$_POST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.post.php') . ' and ' . $this->return_crnrstn_text_link('$_COOKIE', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.cookies.php') . '.',
+An associative array that by default contains the contents of ' . $this->oCRNRSTN->return_crnrstn_text_link('$_GET', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.get.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('$_POST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.post.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('$_COOKIE', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.cookies.php') . '.',
                                                         'TEXT' => 'HTTP Request variables.
 
 An associative array that by default contains the contents of $_GET, $_POST and $_COOKIE.'
@@ -4040,9 +4036,9 @@ An associative array that by default contains the contents of $_GET, $_POST and 
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Server and execution environment information. $_SERVER is an array containing information such as headers, paths, and script locations. The entries in this array are created by the web server, therefore there is no guarantee that every web server will provide any of these; servers may omit some, or provide others not listed here. However, most of these variables are accounted for in the ' . $this->return_crnrstn_text_link('»&nbsp;CGI/1.1 specification', 'INTERNET_FAQS_ARCHIVE_LOGO', 'http://www.faqs.org/rfcs/rfc3875') . ', and are likely to be defined.
+                                                        'HTML' => 'Server and execution environment information. $_SERVER is an array containing information such as headers, paths, and script locations. The entries in this array are created by the web server, therefore there is no guarantee that every web server will provide any of these; servers may omit some, or provide others not listed here. However, most of these variables are accounted for in the ' . $this->oCRNRSTN->return_crnrstn_text_link('»&nbsp;CGI/1.1 specification', 'INTERNET_FAQS_ARCHIVE_LOGO', 'http://www.faqs.org/rfcs/rfc3875') . ', and are likely to be defined.
 
-When running PHP on the ' . $this->return_crnrstn_text_link('command line', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.commandline.php') . ' most of these entries will not be available or have any meaning.
+When running PHP on the ' . $this->oCRNRSTN->return_crnrstn_text_link('command line', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.commandline.php') . ' most of these entries will not be available or have any meaning.
 
 In addition to the elements listed below, PHP will create additional elements with values from request headers. These entries will be named HTTP_ followed by the header name, capitalized and with underscores instead of hyphens. For example, the Accept-Language header would be available as $_SERVER[\'HTTP_ACCEPT_LANGUAGE\'].',
                                                         'TEXT' => 'Server and execution environment information. $_SERVER is an array containing information such as headers, paths, and script locations. The entries in this array are created by the web server, therefore there is no guarantee that every web server will provide any of these; servers may omit some, or provide others not listed here. However, most of these variables are accounted for in the » CGI/1.1 specification, and are likely to be defined.
@@ -4087,10 +4083,10 @@ In addition to the elements listed below, PHP will create additional elements wi
                                                     'en' =>
                                                         array(
                                                         'HTML' => 'Table of Contents
-' . $this->return_crnrstn_text_link('Validate filters', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/filter.filters.validate.php') . '
-' . $this->return_crnrstn_text_link('Sanitize filters', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/filter.filters.sanitize.php') . '
-' . $this->return_crnrstn_text_link('Other filters', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/filter.filters.misc.php') . '
-' . $this->return_crnrstn_text_link('Filter flags', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/filter.filters.flags.php'),
+' . $this->oCRNRSTN->return_crnrstn_text_link('Validate filters', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/filter.filters.validate.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('Sanitize filters', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/filter.filters.sanitize.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('Other filters', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/filter.filters.misc.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('Filter flags', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/filter.filters.flags.php'),
                                                         'TEXT' => 'Table of Contents
 Validate filters
 Sanitize filters
@@ -4112,7 +4108,7 @@ Filter flags'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Default flags to apply when the default filter is set. This is set to FILTER_FLAG_NO_ENCODE_QUOTES by default for backwards compatibility reasons. See the ' . $this->return_crnrstn_text_link('flag list', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/filter.filters.flags.php') . ' for the list of all the flag names.',
+                                                        'HTML' => 'Default flags to apply when the default filter is set. This is set to FILTER_FLAG_NO_ENCODE_QUOTES by default for backwards compatibility reasons. See the ' . $this->oCRNRSTN->return_crnrstn_text_link('flag list', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/filter.filters.flags.php') . ' for the list of all the flag names.',
                                                         'TEXT' => 'Default flags to apply when the default filter is set. This is set to FILTER_FLAG_NO_ENCODE_QUOTES by default for backwards compatibility reasons. See the flag list for the list of all the flag names.'
                     )));
 
@@ -4170,7 +4166,7 @@ Filter flags'
 
 See also the exif configuration directives.
 
-Image functions are very memory intensive. Be sure to set ' . $this->return_crnrstn_text_link('memory_limit', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.memory-limit') . ' high enough, if you are using the bundled version of the GD library.',
+Image functions are very memory intensive. Be sure to set ' . $this->oCRNRSTN->return_crnrstn_text_link('memory_limit', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.memory-limit') . ' high enough, if you are using the bundled version of the GD library.',
                                                         'TEXT' => 'Ignore warnings (but not errors) created by libjpeg(-turbo). PHP 7.1.0 - The default of gd.jpeg_ignore_warning has been changed from 0 to 1.
 
 See also the exif configuration directives.
@@ -4194,7 +4190,7 @@ Image functions are very memory intensive. Be sure to set memory_limit high enou
                                                         array(
                                                         'HTML' => 'The behaviour of these functions is affected by settings in php.ini.
 
-Exif supports automatically conversion for Unicode and JIS character encodings of user comments when module ' . $this->return_crnrstn_text_link('mbstring', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.mbstring.php') . ' is available. This is done by first decoding the comment using the specified characterset. The result is then encoded with another characterset which should match your HTTP output.',
+Exif supports automatically conversion for Unicode and JIS character encodings of user comments when module ' . $this->oCRNRSTN->return_crnrstn_text_link('mbstring', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.mbstring.php') . ' is available. This is done by first decoding the comment using the specified characterset. The result is then encoded with another characterset which should match your HTTP output.',
                                                         'TEXT' => 'The behaviour of these functions is affected by settings in php.ini.
 
 Exif supports automatically conversion for Unicode and JIS character encodings of user comments when module mbstring is available. This is done by first decoding the comment using the specified characterset. The result is then encoded with another characterset which should match your HTTP output.'
@@ -4216,8 +4212,8 @@ Exif supports automatically conversion for Unicode and JIS character encodings o
                                                         array(
                                                         'HTML' => 'This sets the maximum amount of memory in bytes that a script is allowed to allocate. This helps prevent poorly written scripts for eating up all available memory on a server. Note that to have no memory limit, set this directive to -1.
 
-When an int is used, the value is measured in bytes. Shorthand notation, as described in ' . $this->return_crnrstn_text_link('this FAQ', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/faq.using.php#faq.using.shorthandbytes') . ', may also be used.
-See also: ' . $this->return_crnrstn_text_link('max_execution_time', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/info.configuration.php#ini.max-execution-time') . '.',
+When an int is used, the value is measured in bytes. Shorthand notation, as described in ' . $this->oCRNRSTN->return_crnrstn_text_link('this FAQ', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/faq.using.php#faq.using.shorthandbytes') . ', may also be used.
+See also: ' . $this->oCRNRSTN->return_crnrstn_text_link('max_execution_time', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/info.configuration.php#ini.max-execution-time') . '.',
                                                         'TEXT' => 'This sets the maximum amount of memory in bytes that a script is allowed to allocate. This helps prevent poorly written scripts for eating up all available memory on a server. Note that to have no memory limit, set this directive to -1.
 
 When an int is used, the value is measured in bytes. Shorthand notation, as described in this FAQ, may also be used.
@@ -4239,9 +4235,9 @@ See also: max_execution_time.'
                                                     'en' =>
                                                         array(
                                                         'HTML' => 'Where a configuration setting may be set
-These modes determine when and where a PHP directive may or may not be set, and each directive within the manual refers to one of these modes. For example, some settings may be set within a PHP script using ' . $this->return_crnrstn_text_link('ini_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-set.php') . ', whereas others may require php.ini or httpd.conf.
+These modes determine when and where a PHP directive may or may not be set, and each directive within the manual refers to one of these modes. For example, some settings may be set within a PHP script using ' . $this->oCRNRSTN->return_crnrstn_text_link('ini_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-set.php') . ', whereas others may require php.ini or httpd.conf.
 
-For example, the ' . $this->return_crnrstn_text_link('output_buffering', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/outcontrol.configuration.php#ini.output-buffering') . ' setting is PHP_INI_PERDIR therefore it may not be set using ' . $this->return_crnrstn_text_link('ini_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-set.php') . '. However, the ' . $this->return_crnrstn_text_link('display_errors', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.display-errors') . ' directive is PHP_INI_ALL therefore it may be set anywhere, including with ' . $this->return_crnrstn_text_link('ini_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-set.php') . '.',
+For example, the ' . $this->oCRNRSTN->return_crnrstn_text_link('output_buffering', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/outcontrol.configuration.php#ini.output-buffering') . ' setting is PHP_INI_PERDIR therefore it may not be set using ' . $this->oCRNRSTN->return_crnrstn_text_link('ini_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-set.php') . '. However, the ' . $this->oCRNRSTN->return_crnrstn_text_link('display_errors', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.display-errors') . ' directive is PHP_INI_ALL therefore it may be set anywhere, including with ' . $this->oCRNRSTN->return_crnrstn_text_link('ini_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-set.php') . '.',
                                                         'TEXT' => 'Where a configuration setting may be set
 These modes determine when and where a PHP directive may or may not be set, and each directive within the manual refers to one of these modes. For example, some settings may be set within a PHP script using ini_set(), whereas others may require php.ini or httpd.conf.
 
@@ -4312,7 +4308,7 @@ Colors for Syntax Highlighting mode. Anything that\'s acceptable in <font color=
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'If enabled, error messages will include HTML tags. The format for HTML errors produces clickable messages that direct the user to a page describing the error or function in causing the error. These references are affected by ' . $this->return_crnrstn_text_link('docref_root', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.docref-root') . ' and ' . $this->return_crnrstn_text_link('docref_ext', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.docref-ext') . '.
+                                                        'HTML' => 'If enabled, error messages will include HTML tags. The format for HTML errors produces clickable messages that direct the user to a page describing the error or function in causing the error. These references are affected by ' . $this->oCRNRSTN->return_crnrstn_text_link('docref_root', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.docref-root') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('docref_ext', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.docref-ext') . '.
 
 If disabled, error message will be solely plain text.',
                                                         'TEXT' => 'If enabled, error messages will include HTML tags. The format for HTML errors produces clickable messages that direct the user to a page describing the error or function in causing the error. These references are affected by docref_root and docref_ext.
@@ -4334,7 +4330,7 @@ If disabled, error message will be solely plain text.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Whether to allow ' . $this->return_crnrstn_text_link('persistent connections', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ibase.configuration.php#ini.ibase.allow-persistent') . ' to Firebird/InterBase.',
+                                                        'HTML' => 'Whether to allow ' . $this->oCRNRSTN->return_crnrstn_text_link('persistent connections', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ibase.configuration.php#ini.ibase.allow-persistent') . ' to Firebird/InterBase.',
                                                         'TEXT' => 'Whether to allow persistent connections to Firebird/InterBase.'
                     )));
 
@@ -4566,11 +4562,11 @@ If disabled, error message will be solely plain text.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'This option overrides i5 ' . $this->return_crnrstn_text_link('db2_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-connect.php') . ' full open and close in the PHP application. When ibm_db2.i5_all_pconnect = 1, all db2 connections become persistent (' . $this->return_crnrstn_text_link('db2_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-pconnect.php') . '). On i5/OS, ' . $this->return_crnrstn_text_link('db2_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-pconnect.php') . ' performs dramatically better with lower machine stress over ' . $this->return_crnrstn_text_link('db2_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-connect.php') . '. This is a convenience override of ' . $this->return_crnrstn_text_link('db2_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-connect.php') . ' to evoke ' . $this->return_crnrstn_text_link('db2_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-pconnect.php') . ' without PHP source code changes.
+                                                        'HTML' => 'This option overrides i5 ' . $this->oCRNRSTN->return_crnrstn_text_link('db2_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-connect.php') . ' full open and close in the PHP application. When ibm_db2.i5_all_pconnect = 1, all db2 connections become persistent (' . $this->oCRNRSTN->return_crnrstn_text_link('db2_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-pconnect.php') . '). On i5/OS, ' . $this->oCRNRSTN->return_crnrstn_text_link('db2_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-pconnect.php') . ' performs dramatically better with lower machine stress over ' . $this->oCRNRSTN->return_crnrstn_text_link('db2_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-connect.php') . '. This is a convenience override of ' . $this->oCRNRSTN->return_crnrstn_text_link('db2_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-connect.php') . ' to evoke ' . $this->oCRNRSTN->return_crnrstn_text_link('db2_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-pconnect.php') . ' without PHP source code changes.
 
-0 ' . $this->return_crnrstn_text_link('db2_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-connect.php') . ' default full open and close
+0 ' . $this->oCRNRSTN->return_crnrstn_text_link('db2_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-connect.php') . ' default full open and close
 
-1 ' . $this->return_crnrstn_text_link('db2_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-connect.php') . ' override to ' . $this->return_crnrstn_text_link('db2_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-pconnect.php') . ' for persistent connection only',
+1 ' . $this->oCRNRSTN->return_crnrstn_text_link('db2_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-connect.php') . ' override to ' . $this->oCRNRSTN->return_crnrstn_text_link('db2_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-pconnect.php') . ' for persistent connection only',
                                                                         'TEXT' => 'This option overrides i5 db2_connect() full open and close in the PHP application. When ibm_db2.i5_all_pconnect = 1, all db2 connections become persistent (db2_pconnect()). On i5/OS, db2_pconnect() performs dramatically better with lower machine stress over db2_connect(). This is a convenience override of db2_connect() to evoke db2_pconnect() without PHP source code changes.
 
 0 db2_connect() default full open and close
@@ -4616,9 +4612,9 @@ If disabled, error message will be solely plain text.'
                                                         array(
                                                         'HTML' => 'Returns a persistent connection to an IBM DB2 Universal Database, IBM Cloudscape, or Apache Derby database.
 
-For more information on persistent connections, refer to ' . $this->return_crnrstn_text_link('Persistent Database Connections', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.persistent-connections.php') . '.
+For more information on persistent connections, refer to ' . $this->oCRNRSTN->return_crnrstn_text_link('Persistent Database Connections', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.persistent-connections.php') . '.
 
-Calling ' . $this->return_crnrstn_text_link('db2_close', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-close.php') . ' on a persistent connection always returns true, but the underlying DB2 client connection remains open and waiting to serve the next matching db2_pconnect() request.
+Calling ' . $this->oCRNRSTN->return_crnrstn_text_link('db2_close', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.db2-close.php') . ' on a persistent connection always returns true, but the underlying DB2 client connection remains open and waiting to serve the next matching db2_pconnect() request.
 
 Users running version 1.9.0 or later of ibm_db2 should be aware that the extension will perform a transaction rollback on persistent connections at the end of a request, thus ending the transaction. This prevents the transaction block from carrying over to the next request which uses that connection if script execution ends before the transaction block does.',
                                                         'TEXT' => 'Returns a persistent connection to an IBM DB2 Universal Database, IBM Cloudscape, or Apache Derby database.
@@ -4756,7 +4752,7 @@ This option is ignored on Windows operating systems.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Do not log repeated messages. Repeated errors must occur in the same file on the same line unless ' . $this->return_crnrstn_text_link('ignore_repeated_source', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.ignore-repeated-source') . ' is set true.',
+                                                        'HTML' => 'Do not log repeated messages. Repeated errors must occur in the same file on the same line unless ' . $this->oCRNRSTN->return_crnrstn_text_link('ignore_repeated_source', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.ignore-repeated-source') . ' is set true.',
                                                         'TEXT' => 'Do not log repeated messages. Repeated errors must occur in the same file on the same line unless ignore_repeated_source is set true.'
                     )));
 
@@ -4794,7 +4790,7 @@ This option is ignored on Windows operating systems.'
                                                         array(
                                                         'HTML' => 'false by default. If changed to true scripts will not be terminated after a client has aborted their connection.
 
-See also ' . $this->return_crnrstn_text_link('ignore_user_abort', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ignore-user-abort.php') . '.',
+See also ' . $this->oCRNRSTN->return_crnrstn_text_link('ignore_user_abort', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ignore-user-abort.php') . '.',
                                                         'TEXT' => 'false by default. If changed to true scripts will not be terminated after a client has aborted their connection.
 
 See also ignore_user_abort().'
@@ -4838,11 +4834,11 @@ See also ignore_user_abort().'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'false by default. Changing this to true tells PHP to tell the output layer to flush itself automatically after every output block. This is equivalent to calling the PHP function ' . $this->return_crnrstn_text_link('flush', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.flush.php') . ' after each and every call to ' . $this->return_crnrstn_text_link('print', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.print.php') . ' or ' . $this->return_crnrstn_text_link('echo', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.echo.php') . ' and each and every HTML block.
+                                                        'HTML' => 'false by default. Changing this to true tells PHP to tell the output layer to flush itself automatically after every output block. This is equivalent to calling the PHP function ' . $this->oCRNRSTN->return_crnrstn_text_link('flush', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.flush.php') . ' after each and every call to ' . $this->oCRNRSTN->return_crnrstn_text_link('print', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.print.php') . ' or ' . $this->oCRNRSTN->return_crnrstn_text_link('echo', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.echo.php') . ' and each and every HTML block.
 
 When using PHP within an web environment, turning this option on has serious performance implications and is generally recommended for debugging purposes only. This value defaults to true when operating under the CLI SAPI.
 
-See also ' . $this->return_crnrstn_text_link('ob_implicit_flush', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-implicit-flush.php') . '.',
+See also ' . $this->oCRNRSTN->return_crnrstn_text_link('ob_implicit_flush', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-implicit-flush.php') . '.',
                                                         'TEXT' => 'false by default. Changing this to true tells PHP to tell the output layer to flush itself automatically after every output block. This is equivalent to calling the PHP function flush() after each and every call to print or echo and each and every HTML block.
 
 When using PHP within an web environment, turning this option on has serious performance implications and is generally recommended for debugging purposes only. This value defaults to true when operating under the CLI SAPI.
@@ -4868,7 +4864,7 @@ See also ob_implicit_flush().'
                                                         array(
                                                         'HTML' => 'Flushes the system write buffers of PHP and whatever backend PHP is using (CGI, a web server, etc). This attempts to push current output all the way to the browser with a few caveats.
 
-flush() may not be able to override the buffering scheme of your web server and it has no effect on any client-side buffering in the browser. It also doesn\'t affect PHP\'s userspace output buffering mechanism. This means ' . $this->return_crnrstn_text_link('ob_flush', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-flush.php') . ' should be called before flush() to flush the output buffers if they are in use.
+flush() may not be able to override the buffering scheme of your web server and it has no effect on any client-side buffering in the browser. It also doesn\'t affect PHP\'s userspace output buffering mechanism. This means ' . $this->oCRNRSTN->return_crnrstn_text_link('ob_flush', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-flush.php') . ' should be called before flush() to flush the output buffers if they are in use.
 
 Several servers, especially on Win32, will still buffer the output from your script until it terminates before transmitting the results to the browser.
 
@@ -4910,7 +4906,7 @@ Some versions of Microsoft Internet Explorer will only start to display the page
 
 print is not a function but a language construct. Its argument is the expression following the print keyword, and is not delimited by parentheses.
 
-The major differences to ' . $this->return_crnrstn_text_link('echo', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.echo.php') . ' are that print only accepts a single argument and always returns 1.',
+The major differences to ' . $this->oCRNRSTN->return_crnrstn_text_link('echo', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.echo.php') . ' are that print only accepts a single argument and always returns 1.',
                                                         'TEXT' => 'Output a string. Outputs expression.
 
 print is not a function but a language construct. Its argument is the expression following the print keyword, and is not delimited by parentheses.
@@ -4940,12 +4936,12 @@ echo is not a function but a language construct. Its arguments are a list of exp
 
 echo also has a shortcut syntax, where you can immediately follow the opening tag with an equals sign. This syntax is available even with the short_open_tag configuration setting disabled.
 
-The major differences to ' . $this->return_crnrstn_text_link('print', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.print.php') . ' are that echo accepts multiple arguments and doesn\'t have a return value.',
+The major differences to ' . $this->oCRNRSTN->return_crnrstn_text_link('print', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.print.php') . ' are that echo accepts multiple arguments and doesn\'t have a return value.',
                                                         'TEXT' => 'Output one or more strings. Outputs one or more expressions, with no additional newlines or spaces.
 
 echo is not a function but a language construct. Its arguments are a list of expressions following the echo keyword, separated by commas, and not delimited by parentheses. Unlike some other language constructs, echo does not have any return value, so it cannot be used in the context of an expression.
 
-echo also has a shortcut syntax, where you can immediately follow the opening tag with an equals sign. This syntax is available even with the ' . $this->return_crnrstn_text_link('short_open_tag', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.short-open-tag') . ' configuration setting disabled.
+echo also has a shortcut syntax, where you can immediately follow the opening tag with an equals sign. This syntax is available even with the ' . $this->oCRNRSTN->return_crnrstn_text_link('short_open_tag', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.short-open-tag') . ' configuration setting disabled.
 
 The major differences to print are that echo accepts multiple arguments and doesn\'t have a return value.'
                     )));
@@ -4966,7 +4962,7 @@ The major differences to print are that echo accepts multiple arguments and does
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Turn implicit flush on/off. ob_implicit_flush() will turn implicit flushing on or off. Implicit flushing will result in a flush operation after every output call, so that explicit calls to ' . $this->return_crnrstn_text_link('flush', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.flush.php') . ' will no longer be needed.',
+                                                        'HTML' => 'Turn implicit flush on/off. ob_implicit_flush() will turn implicit flushing on or off. Implicit flushing will result in a flush operation after every output call, so that explicit calls to ' . $this->oCRNRSTN->return_crnrstn_text_link('flush', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.flush.php') . ' will no longer be needed.',
                                                         'TEXT' => 'Turn implicit flush on/off. ob_implicit_flush() will turn implicit flushing on or off. Implicit flushing will result in a flush operation after every output call, so that explicit calls to flush() will no longer be needed.'
                     )));
 
@@ -5026,7 +5022,7 @@ The major differences to print are that echo accepts multiple arguments and does
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Reads entire file into a string. This function is similar to ' . $this->return_crnrstn_text_link('file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.file.php') . ', except that file_get_contents() returns the file in a string, starting at the specified offset up to length bytes. On failure, file_get_contents() will return false.
+                                                        'HTML' => 'Reads entire file into a string. This function is similar to ' . $this->oCRNRSTN->return_crnrstn_text_link('file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.file.php') . ', except that file_get_contents() returns the file in a string, starting at the specified offset up to length bytes. On failure, file_get_contents() will return false.
 
 file_get_contents() is the preferred way to read the contents of a file into a string. It will use memory mapping techniques if supported by your OS to enhance performance.',
                                                         'TEXT' => 'Reads entire file into a string. This function is similar to file(), except that file_get_contents() returns the file in a string, starting at the specified offset up to length bytes. On failure, file_get_contents() will return false.
@@ -5050,7 +5046,7 @@ file_get_contents() is the preferred way to read the contents of a file into a s
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Sets the include_path configuration option. Sets the ' . $this->return_crnrstn_text_link('include_path', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.include-path') . ' configuration option for the duration of the script.',
+                                                        'HTML' => 'Sets the include_path configuration option. Sets the ' . $this->oCRNRSTN->return_crnrstn_text_link('include_path', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.include-path') . ' configuration option for the duration of the script.',
                                                         'TEXT' => 'Sets the include_path configuration option. Sets the include_path configuration option for the duration of the script.'
                     )));
 
@@ -5068,7 +5064,7 @@ file_get_contents() is the preferred way to read the contents of a file into a s
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The locale that will be used in intl functions when none is specified (either by omitting the corresponding argument or by passing NULL). These are ICU locales, not system locales. The built-in ICU locales and their data can be explored at ' . $this->return_crnrstn_text_link('»&nbsp;http://demo.icu-project.org/icu-bin/locexp', 'PHP_ELLIPSE', 'http://demo.icu-project.org/icu-bin/locexp') . '.
+                                                        'HTML' => 'The locale that will be used in intl functions when none is specified (either by omitting the corresponding argument or by passing NULL). These are ICU locales, not system locales. The built-in ICU locales and their data can be explored at ' . $this->oCRNRSTN->return_crnrstn_text_link('»&nbsp;http://demo.icu-project.org/icu-bin/locexp', 'PHP_ELLIPSE', 'http://demo.icu-project.org/icu-bin/locexp') . '.
 
 The default value is empty, which forces the usage of ICU\'s default locale. Once set, the ini setting cannot be reset to this default value. It is not recommended that this default be relied on, as its effective value depends on the server\'s environment.',
                                                         'TEXT' => 'The locale that will be used in intl functions when none is specified (either by omitting the corresponding argument or by passing NULL). These are ICU locales, not system locales. The built-in ICU locales and their data can be explored at » http://demo.icu-project.org/icu-bin/locexp.
@@ -5112,7 +5108,7 @@ The default value is empty, which forces the usage of ICU\'s default locale. Onc
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The type of the error messages generated when an error occurs in ICU functions. This is a ' . $this->return_crnrstn_text_link('PHP error level', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.constants.php') . ', such as E_WARNING. It can be set to 0 in order to inhibit the messages. This does not affect the return values indicating error or the values returned by ' . $this->return_crnrstn_text_link('intl_get_error_code', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.intl-get-error-code.php') . ' or by the class specific methods for retrieving error codes and messages.
+                                                        'HTML' => 'The type of the error messages generated when an error occurs in ICU functions. This is a ' . $this->oCRNRSTN->return_crnrstn_text_link('PHP error level', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.constants.php') . ', such as E_WARNING. It can be set to 0 in order to inhibit the messages. This does not affect the return values indicating error or the values returned by ' . $this->oCRNRSTN->return_crnrstn_text_link('intl_get_error_code', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.intl-get-error-code.php') . ' or by the class specific methods for retrieving error codes and messages.
 
 The default value is 0.',
                                                         'TEXT' => 'The type of the error messages generated when an error occurs in ICU functions. This is a PHP error level, such as E_WARNING. It can be set to 0 in order to inhibit the messages. This does not affect the return values indicating error or the values returned by intl_get_error_code() or by the class specific methods for retrieving error codes and messages.
@@ -5154,7 +5150,7 @@ The default value is 0.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'If set to true, an exception will be raised whenever an error occurs in an intl function. The exception will be of type ' . $this->return_crnrstn_text_link('IntlException', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/class.intlexception.php') . '. This is possibly in addition to the error message generated due to ' . $this->return_crnrstn_text_link('intl.error_level', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/intl.configuration.php#ini.intl.error-level') . '.
+                                                        'HTML' => 'If set to true, an exception will be raised whenever an error occurs in an intl function. The exception will be of type ' . $this->oCRNRSTN->return_crnrstn_text_link('IntlException', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/class.intlexception.php') . '. This is possibly in addition to the error message generated due to ' . $this->oCRNRSTN->return_crnrstn_text_link('intl.error_level', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/intl.configuration.php#ini.intl.error-level') . '.
 
 The default value is false.',
                                                         'TEXT' => 'If set to true, an exception will be raised whenever an error occurs in an intl function. The exception will be of type IntlException. This is possibly in addition to the error message generated due to intl.error_level.
@@ -5212,7 +5208,7 @@ The default value is false.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Tells whether script error messages should be logged to the server\'s error log or ' . $this->return_crnrstn_text_link('error_log', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.error-log') . '. This option is thus server-specific.
+                                                        'HTML' => 'Tells whether script error messages should be logged to the server\'s error log or ' . $this->oCRNRSTN->return_crnrstn_text_link('error_log', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.error-log') . '. This option is thus server-specific.
 
 You\'re strongly advised to use error logging in place of error displaying on production web sites.',
                                                         'TEXT' => 'Tells whether script error messages should be logged to the server\'s error log or error_log. This option is thus server-specific.
@@ -5234,9 +5230,9 @@ You\'re strongly advised to use error logging in place of error displaying on pr
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Set the maximum length of log_errors in bytes. In ' . $this->return_crnrstn_text_link('error_log', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.error-log') . ' information about the source is added. The default is 1024 and 0 allows to not apply any maximum length at all. This length is applied to logged errors, displayed errors and also to ' . $this->return_crnrstn_text_link('$php_errormsg', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.phperrormsg.php') . ', but not to explicitly called functions such as ' . $this->return_crnrstn_text_link('error_log', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.error-log.php') . '.
+                                                        'HTML' => 'Set the maximum length of log_errors in bytes. In ' . $this->oCRNRSTN->return_crnrstn_text_link('error_log', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.error-log') . ' information about the source is added. The default is 1024 and 0 allows to not apply any maximum length at all. This length is applied to logged errors, displayed errors and also to ' . $this->oCRNRSTN->return_crnrstn_text_link('$php_errormsg', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.phperrormsg.php') . ', but not to explicitly called functions such as ' . $this->oCRNRSTN->return_crnrstn_text_link('error_log', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.error-log.php') . '.
 
-When an int is used, the value is measured in bytes. Shorthand notation, as described in ' . $this->return_crnrstn_text_link('this FAQ', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/faq.using.php#faq.using.shorthandbytes') . ', may also be used.',
+When an int is used, the value is measured in bytes. Shorthand notation, as described in ' . $this->oCRNRSTN->return_crnrstn_text_link('this FAQ', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/faq.using.php#faq.using.shorthandbytes') . ', may also be used.',
                                                         'TEXT' => 'Set the maximum length of log_errors in bytes. In error_log information about the source is added. The default is 1024 and 0 allows to not apply any maximum length at all. This length is applied to logged errors, displayed errors and also to $php_errormsg, but not to explicitly called functions such as error_log().
 
 When an int is used, the value is measured in bytes. Shorthand notation, as described in this FAQ, may also be used.'
@@ -5258,11 +5254,11 @@ When an int is used, the value is measured in bytes. Shorthand notation, as desc
                                                         array(
                                                         'HTML' => 'The previous error message. This feature has been DEPRECATED as of PHP 7.2.0. Relying on this feature is highly discouraged.
 
-Use ' . $this->return_crnrstn_text_link('error_get_last', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.error-get-last.php') . ' instead.
+Use ' . $this->oCRNRSTN->return_crnrstn_text_link('error_get_last', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.error-get-last.php') . ' instead.
 
-$php_errormsg is a variable containing the text of the last error message generated by PHP. This variable will only be available within the scope in which the error occurred, and only if the ' . $this->return_crnrstn_text_link('track_errors', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.track-errors') . ' configuration option is turned on (it defaults to off).
+$php_errormsg is a variable containing the text of the last error message generated by PHP. This variable will only be available within the scope in which the error occurred, and only if the ' . $this->oCRNRSTN->return_crnrstn_text_link('track_errors', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.track-errors') . ' configuration option is turned on (it defaults to off).
 
-If a user defined error handler (' . $this->return_crnrstn_text_link('set_error_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.set-error-handler.php') . ' is set $php_errormsg is only set if the error handler returns false.',
+If a user defined error handler (' . $this->oCRNRSTN->return_crnrstn_text_link('set_error_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.set-error-handler.php') . ' is set $php_errormsg is only set if the error handler returns false.',
                                                         'TEXT' => 'The previous error message. This feature has been DEPRECATED as of PHP 7.2.0. Relying on this feature is highly discouraged.
 
 Use error_get_last() instead.
@@ -5287,7 +5283,7 @@ If a user defined error handler (set_error_handler()) is set $php_errormsg is on
                                                     'en' =>
                                                         array(
                                                         'HTML' => 'A few PHP directives may also take on shorthand byte values, as opposed to only int byte values. What are all the available shorthand byte options?
-The available options are K (for Kilobytes), M (for Megabytes) and G (for Gigabytes), and are all case-insensitive. Anything else assumes bytes. 1M equals one Megabyte or 1048576 bytes. 1K equals one Kilobyte or 1024 bytes. These shorthand notations may be used in php.ini and in the ' . $this->return_crnrstn_text_link('ini_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-set.php') . ' function. Note that the numeric value is cast to int; for instance, 0.5M is interpreted as 0.
+The available options are K (for Kilobytes), M (for Megabytes) and G (for Gigabytes), and are all case-insensitive. Anything else assumes bytes. 1M equals one Megabyte or 1048576 bytes. 1K equals one Kilobyte or 1024 bytes. These shorthand notations may be used in php.ini and in the ' . $this->oCRNRSTN->return_crnrstn_text_link('ini_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-set.php') . ' function. Note that the numeric value is cast to int; for instance, 0.5M is interpreted as 0.
 
 Note: kilobyte versus kibibyte
 The PHP notation describes one kilobyte as equalling 1024 bytes, whereas the IEC standard considers this to be a kibibyte instead. Summary: k and K = 1024 bytes.',
@@ -5330,7 +5326,7 @@ The PHP notation describes one kilobyte as equalling 1024 bytes, whereas the IEC
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The path to a log file that will log all ' . $this->return_crnrstn_text_link('mail', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mail.php') . ' calls. Log entries include the full path of the script, line number, To address and headers.',
+                                                        'HTML' => 'The path to a log file that will log all ' . $this->oCRNRSTN->return_crnrstn_text_link('mail', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mail.php') . ' calls. Log entries include the full path of the script, line number, To address and headers.',
                                                         'TEXT' => 'The path to a log file that will log all mail() calls. Log entries include the full path of the script, line number, To address and headers.'
                     )));
 
@@ -5368,9 +5364,9 @@ The PHP notation describes one kilobyte as equalling 1024 bytes, whereas the IEC
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'This sets the maximum time in seconds a script is allowed to run before it is terminated by the parser. This helps prevent poorly written scripts from tying up the server. The default setting is 30. When running PHP from the ' . $this->return_crnrstn_text_link('command line', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.commandline.php') . ' the default setting is 0.
+                                                        'HTML' => 'This sets the maximum time in seconds a script is allowed to run before it is terminated by the parser. This helps prevent poorly written scripts from tying up the server. The default setting is 30. When running PHP from the ' . $this->oCRNRSTN->return_crnrstn_text_link('command line', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.commandline.php') . ' the default setting is 0.
 
-On non Windows systems, the maximum execution time is not affected by system calls, stream operations etc. Please see the ' . $this->return_crnrstn_text_link('set_time_limit', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.set-time-limit.php') . ' function for more details.
+On non Windows systems, the maximum execution time is not affected by system calls, stream operations etc. Please see the ' . $this->oCRNRSTN->return_crnrstn_text_link('set_time_limit', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.set-time-limit.php') . ' function for more details.
 
 Your web server can have other timeout configurations that may also interrupt PHP execution. Apache has a Timeout directive and IIS has a CGI timeout function. Both default to 300 seconds. See your web server documentation for specific details.',
                                                         'TEXT' => 'This sets the maximum time in seconds a script is allowed to run before it is terminated by the parser. This helps prevent poorly written scripts from tying up the server. The default setting is 30. When running PHP from the command line the default setting is 0.
@@ -5420,7 +5416,7 @@ When called, set_time_limit() restarts the timeout counter from zero. In other w
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Sets the max nesting depth of ' . $this->return_crnrstn_text_link('input variables', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.variables.external.php') . ' (i.e. ' . $this->return_crnrstn_text_link('$_GET', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.get.php') . ', ' . $this->return_crnrstn_text_link('$_POST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.post.php') . '.)',
+                                                        'HTML' => 'Sets the max nesting depth of ' . $this->oCRNRSTN->return_crnrstn_text_link('input variables', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.variables.external.php') . ' (i.e. ' . $this->oCRNRSTN->return_crnrstn_text_link('$_GET', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.get.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('$_POST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.post.php') . '.)',
                                                         'TEXT' => 'Sets the max nesting depth of input variables (i.e. $_GET, $_POST.)'
                     )));
 
@@ -5456,13 +5452,13 @@ Example #2 Accessing data from a simple POST HTML form
 echo $_POST[\'username\'];
 echo $_REQUEST[\'username\'];
 ?&gt;
-Using a GET form is similar except you\'ll use the appropriate GET predefined variable instead. GET also applies to the QUERY_STRING (the information after the \'?\' in a URL). So, for example, http://www.example.com/test.php?id=3 contains GET data which is accessible with ' . $this->return_crnrstn_text_link('$_GET[\'id\']', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.get.php') . '. See also ' . $this->return_crnrstn_text_link('$_REQUEST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.request.php') . '.
+Using a GET form is similar except you\'ll use the appropriate GET predefined variable instead. GET also applies to the QUERY_STRING (the information after the \'?\' in a URL). So, for example, http://www.example.com/test.php?id=3 contains GET data which is accessible with ' . $this->oCRNRSTN->return_crnrstn_text_link('$_GET[\'id\']', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.get.php') . '. See also ' . $this->oCRNRSTN->return_crnrstn_text_link('$_REQUEST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.request.php') . '.
 
 Note:
 
 Dots and spaces in variable names are converted to underscores. For example &lt;input name=&quot;a.b&quot; /&gt; becomes $_REQUEST[&quot;a_b&quot;].
 
-PHP also understands arrays in the context of form variables (see the ' . $this->return_crnrstn_text_link('related faq', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/faq.html.php') . '). You may, for example, group related variables together, or use this feature to retrieve values from a multiple select input. For example, let\'s post a form to itself and upon submission display the data:
+PHP also understands arrays in the context of form variables (see the ' . $this->oCRNRSTN->return_crnrstn_text_link('related faq', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/faq.html.php') . '). You may, for example, group related variables together, or use this feature to retrieve values from a multiple select input. For example, let\'s post a form to itself and upon submission display the data:
 
 Example #3 More complex form variables
 
@@ -5548,7 +5544,7 @@ Note: If an external variable name begins with a valid array syntax, trailing ch
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'How many ' . $this->return_crnrstn_text_link('input variables', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.variables.external.php') . ' may be accepted (limit is applied to $_GET, $_POST and $_COOKIE superglobal separately). Use of this directive mitigates the possibility of denial of service attacks which use hash collisions. If there are more input variables than specified by this directive, an E_WARNING is issued, and further input variables are truncated from the request.',
+                                                        'HTML' => 'How many ' . $this->oCRNRSTN->return_crnrstn_text_link('input variables', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.variables.external.php') . ' may be accepted (limit is applied to $_GET, $_POST and $_COOKIE superglobal separately). Use of this directive mitigates the possibility of denial of service attacks which use hash collisions. If there are more input variables than specified by this directive, an E_WARNING is issued, and further input variables are truncated from the request.',
                                                         'TEXT' => 'How many input variables may be accepted (limit is applied to $_GET, $_POST and $_COOKIE superglobal separately). Use of this directive mitigates the possibility of denial of service attacks which use hash collisions. If there are more input variables than specified by this directive, an E_WARNING is issued, and further input variables are truncated from the request.'
                     )));
 
@@ -5566,7 +5562,7 @@ Note: If an external variable name begins with a valid array syntax, trailing ch
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'This sets the maximum time in seconds a script is allowed to parse input data, like POST and GET. Timing begins at the moment PHP is invoked at the server and ends when execution begins. The default setting is -1, which means that ' . $this->return_crnrstn_text_link('max_execution_time', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/info.configuration.php#ini.max-execution-time') . ' is used instead. Set to 0 to allow unlimited time.',
+                                                        'HTML' => 'This sets the maximum time in seconds a script is allowed to parse input data, like POST and GET. Timing begins at the moment PHP is invoked at the server and ends when execution begins. The default setting is -1, which means that ' . $this->oCRNRSTN->return_crnrstn_text_link('max_execution_time', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/info.configuration.php#ini.max-execution-time') . ' is used instead. Set to 0 to allow unlimited time.',
                                                         'TEXT' => 'This sets the maximum time in seconds a script is allowed to parse input data, like POST and GET. Timing begins at the moment PHP is invoked at the server and ends when execution begins. The default setting is -1, which means that max_execution_time is used instead. Set to 0 to allow unlimited time.'
                     )));
 
@@ -5602,7 +5598,7 @@ Note: If an external variable name begins with a valid array syntax, trailing ch
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Defines default character code detection order. See also ' . $this->return_crnrstn_text_link('mb_detect_order', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-detect-order.php') . '.',
+                                                        'HTML' => 'Defines default character code detection order. See also ' . $this->oCRNRSTN->return_crnrstn_text_link('mb_detect_order', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-detect-order.php') . '.',
                                                         'TEXT' => 'Defines default character code detection order. See also mb_detect_order().'
                     )));
 
@@ -5640,7 +5636,7 @@ Note: If an external variable name begins with a valid array syntax, trailing ch
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Defines character to substitute for invalid character encoding. See ' . $this->return_crnrstn_text_link('mb_substitute_character', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-substitute-character.php') . ' for supported values.',
+                                                        'HTML' => 'Defines character to substitute for invalid character encoding. See ' . $this->oCRNRSTN->return_crnrstn_text_link('mb_substitute_character', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-substitute-character.php') . ' for supported values.',
                                                         'TEXT' => 'Defines character to substitute for invalid character encoding. See mb_substitute_character() for supported values.'
                     )));
 
@@ -5662,7 +5658,7 @@ Note: If an external variable name begins with a valid array syntax, trailing ch
                                                         array(
                                                         'HTML' => 'Set/Get substitution character. Specifies a substitution character when input character encoding is invalid or character code does not exist in output character encoding. Invalid characters may be substituted &quot;none&quot; (no output), string or int value (Unicode character code value).
 
-This setting affects ' . $this->return_crnrstn_text_link('mb_convert_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-convert-encoding.php') . ', ' . $this->return_crnrstn_text_link('mb_convert_variables', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-convert-variables.php') . ', ' . $this->return_crnrstn_text_link('mb_output_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-output-handler.php') . ', and ' . $this->return_crnrstn_text_link('mb_send_mail', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-send-mail.php') . '.',
+This setting affects ' . $this->oCRNRSTN->return_crnrstn_text_link('mb_convert_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-convert-encoding.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('mb_convert_variables', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-convert-variables.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('mb_output_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-output-handler.php') . ', and ' . $this->oCRNRSTN->return_crnrstn_text_link('mb_send_mail', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-send-mail.php') . '.',
                                                         'TEXT' => 'Set/Get substitution character. Specifies a substitution character when input character encoding is invalid or character code does not exist in output character encoding. Invalid characters may be substituted "none" (no output), string or int value (Unicode character code value).
 
 This setting affects mb_convert_encoding(), mb_convert_variables(), mb_output_handler(), and mb_send_mail().'
@@ -5684,7 +5680,7 @@ This setting affects mb_convert_encoding(), mb_convert_variables(), mb_output_ha
                                                         array(
                                                         'HTML' => 'This feature has been DEPRECATED as of PHP 7.2.0, and REMOVED as of PHP 8.0.0. Relying on this feature is highly discouraged.
 
-Overloads a set of single byte functions by the mbstring counterparts. See ' . $this->return_crnrstn_text_link('Function overloading', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mbstring.overload.php') . ' for more information.
+Overloads a set of single byte functions by the mbstring counterparts. See ' . $this->oCRNRSTN->return_crnrstn_text_link('Function overloading', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mbstring.overload.php') . ' for more information.
 
 This setting can only be changed from the php.ini file.',
                                                         'TEXT' => 'This feature has been DEPRECATED as of PHP 7.2.0, and REMOVED as of PHP 8.0.0. Relying on this feature is highly discouraged.
@@ -5710,11 +5706,11 @@ This setting can only be changed from the php.ini file.'
                                                         array(
                                                         'HTML' => 'This feature has been DEPRECATED as of PHP 7.2.0, and REMOVED as of PHP 8.0.0. Relying on this feature is highly discouraged.
 
-You might often find it difficult to get an existing PHP application to work in a given multibyte environment. This happens because most PHP applications out there are written with the standard string functions such as ' . $this->return_crnrstn_text_link('substr', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.substr.php') . ', which are known to not properly handle multibyte-encoded strings.
+You might often find it difficult to get an existing PHP application to work in a given multibyte environment. This happens because most PHP applications out there are written with the standard string functions such as ' . $this->oCRNRSTN->return_crnrstn_text_link('substr', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.substr.php') . ', which are known to not properly handle multibyte-encoded strings.
 
-mbstring supports a \'function overloading\' feature which enables you to add multibyte awareness to such an application without code modification by overloading multibyte counterparts on the standard string functions. For example, ' . $this->return_crnrstn_text_link('mb_substr', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-substr.php') . ' is called instead of ' . $this->return_crnrstn_text_link('substr', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.substr.php') . ' if function overloading is enabled. This feature makes it easy to port applications that only support single-byte encodings to a multibyte environment in many cases.
+mbstring supports a \'function overloading\' feature which enables you to add multibyte awareness to such an application without code modification by overloading multibyte counterparts on the standard string functions. For example, ' . $this->oCRNRSTN->return_crnrstn_text_link('mb_substr', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-substr.php') . ' is called instead of ' . $this->oCRNRSTN->return_crnrstn_text_link('substr', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.substr.php') . ' if function overloading is enabled. This feature makes it easy to port applications that only support single-byte encodings to a multibyte environment in many cases.
 
-To use function overloading, set mbstring.func_overload in php.ini to a positive value that represents a combination of bitmasks specifying the categories of functions to be overloaded. It should be set to 1 to overload the ' . $this->return_crnrstn_text_link('mail', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mail.php') . ' function. 2 for string functions, 4 for regular expression functions. For example, if it is set to 7, mail, strings and regular expression functions will be overloaded. The list of overloaded functions are shown below.',
+To use function overloading, set mbstring.func_overload in php.ini to a positive value that represents a combination of bitmasks specifying the categories of functions to be overloaded. It should be set to 1 to overload the ' . $this->oCRNRSTN->return_crnrstn_text_link('mail', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mail.php') . ' function. 2 for string functions, 4 for regular expression functions. For example, if it is set to 7, mail, strings and regular expression functions will be overloaded. The list of overloaded functions are shown below.',
                                                         'TEXT' => 'This feature has been DEPRECATED as of PHP 7.2.0, and REMOVED as of PHP 8.0.0. Relying on this feature is highly discouraged.
 
 You might often find it difficult to get an existing PHP application to work in a given multibyte environment. This happens because most PHP applications out there are written with the standard string functions such as substr(), which are known to not properly handle multibyte-encoded strings.
@@ -5774,7 +5770,7 @@ To use function overloading, set mbstring.func_overload in php.ini to a positive
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Enables strict encoding detection. See ' . $this->return_crnrstn_text_link('mb_detect_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-detect-encoding.php') . ' for a description and examples.',
+                                                        'HTML' => 'Enables strict encoding detection. See ' . $this->oCRNRSTN->return_crnrstn_text_link('mb_detect_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-detect-encoding.php') . ' for a description and examples.',
                                                         'TEXT' => 'Enables strict encoding detection. See mb_detect_encoding() for a description and examples.'
                     )));
 
@@ -5824,9 +5820,9 @@ This function is most useful with multibyte encodings, where not all sequences o
 
 This setting only takes effect when linking against oniguruma >= 6.8.0.
 
-According to the ' . $this->return_crnrstn_text_link('»&nbsp;HTML 4.01 specification', 'SOCIAL_W3C_HQ', 'http://www.w3.org/TR/REC-html40/interact/forms.html#adef-accept-charset') . ', Web browsers are allowed to encode a form being submitted with a character encoding different from the one used for the page. See ' . $this->return_crnrstn_text_link('mb_http_input', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-http-input.php') . ' to detect character encoding used by browsers.
+According to the ' . $this->oCRNRSTN->return_crnrstn_text_link('»&nbsp;HTML 4.01 specification', 'SOCIAL_W3C_HQ', 'http://www.w3.org/TR/REC-html40/interact/forms.html#adef-accept-charset') . ', Web browsers are allowed to encode a form being submitted with a character encoding different from the one used for the page. See ' . $this->oCRNRSTN->return_crnrstn_text_link('mb_http_input', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-http-input.php') . ' to detect character encoding used by browsers.
 
-Although popular browsers are capable of giving a reasonably accurate guess to the character encoding of a given HTML document, it would be better to set the charset parameter in the Content-Type HTTP header to the appropriate value by ' . $this->return_crnrstn_text_link('header', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.header.php') . ' or ' . $this->return_crnrstn_text_link('default_charset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.sect.data-handling') . ' ini setting.',
+Although popular browsers are capable of giving a reasonably accurate guess to the character encoding of a given HTML document, it would be better to set the charset parameter in the Content-Type HTTP header to the appropriate value by ' . $this->oCRNRSTN->return_crnrstn_text_link('header', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.header.php') . ' or ' . $this->oCRNRSTN->return_crnrstn_text_link('default_charset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.sect.data-handling') . ' ini setting.',
                                                         'TEXT' => 'Limits the amount of backtracking that may be performed during one mbregex match.
 
 This setting only takes effect when linking against oniguruma >= 6.8.0.
@@ -5869,11 +5865,11 @@ Although popular browsers are capable of giving a reasonably accurate guess to t
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'accept-charset = ' . $this->return_crnrstn_text_link('charset list', 'SOCIAL_W3C_HQ', 'https://www.w3.org/TR/REC-html40/types.html#type-charset') . ' ' . $this->return_crnrstn_text_link('[CI]', 'SOCIAL_W3C_HQ', 'https://www.w3.org/TR/REC-html40/types.html#case-insensitive') . '
+                                                        'HTML' => 'accept-charset = ' . $this->oCRNRSTN->return_crnrstn_text_link('charset list', 'SOCIAL_W3C_HQ', 'https://www.w3.org/TR/REC-html40/types.html#type-charset') . ' ' . $this->oCRNRSTN->return_crnrstn_text_link('[CI]', 'SOCIAL_W3C_HQ', 'https://www.w3.org/TR/REC-html40/types.html#case-insensitive') . '
 
-This attribute specifies the list of ' . $this->return_crnrstn_text_link('character encodings', 'SOCIAL_W3C_HQ', 'https://www.w3.org/TR/REC-html40/charset.html#doc-char-set') . ' for input data that is accepted by the server processing this form. The value is a space- and/or comma-delimited list of ' . $this->return_crnrstn_text_link('charset', 'SOCIAL_W3C_HQ', 'https://www.w3.org/TR/REC-html40/types.html#type-charset') . ' values. The client must interpret this list as an exclusive-or list, i.e., the server is able to accept any single character encoding per entity received.
+This attribute specifies the list of ' . $this->oCRNRSTN->return_crnrstn_text_link('character encodings', 'SOCIAL_W3C_HQ', 'https://www.w3.org/TR/REC-html40/charset.html#doc-char-set') . ' for input data that is accepted by the server processing this form. The value is a space- and/or comma-delimited list of ' . $this->oCRNRSTN->return_crnrstn_text_link('charset', 'SOCIAL_W3C_HQ', 'https://www.w3.org/TR/REC-html40/types.html#type-charset') . ' values. The client must interpret this list as an exclusive-or list, i.e., the server is able to accept any single character encoding per entity received.
 
-The default value for this attribute is the reserved string &quot;UNKNOWN&quot;. User agents may interpret this value as the character encoding that was used to transmit the document containing this ' . $this->return_crnrstn_text_link('FORM', 'SOCIAL_W3C_HQ', 'https://www.w3.org/TR/REC-html40/interact/forms.html#edef-FORM') . ' element.',
+The default value for this attribute is the reserved string &quot;UNKNOWN&quot;. User agents may interpret this value as the character encoding that was used to transmit the document containing this ' . $this->oCRNRSTN->return_crnrstn_text_link('FORM', 'SOCIAL_W3C_HQ', 'https://www.w3.org/TR/REC-html40/interact/forms.html#edef-FORM') . ' element.',
                                                         'TEXT' => 'accept-charset = charset list [CI]
 
 This attribute specifies the list of character encodings for input data that is accepted by the server processing this form. The value is a space- and/or comma-delimited list of charset values. The client must interpret this list as an exclusive-or list, i.e., the server is able to accept any single character encoding per entity received.
@@ -5918,21 +5914,21 @@ The default value for this attribute is the reserved string "UNKNOWN". User agen
                                                         'HTML' => 'Data Handling Configuration Options
 
 Name                        Default         Changeable  Changelog
-' . $this->return_crnrstn_text_link('arg_separator.output', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.arg-separator.output') . '        &quot;&&quot;             PHP_INI_ALL
-' . $this->return_crnrstn_text_link('arg_separator.input', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.arg-separator.input') . '         &quot;&&quot;             PHP_INI_PERDIR
-' . $this->return_crnrstn_text_link('variables_order', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.variables-order') . '             &quot;EGPCS&quot;         PHP_INI_PERDIR
-' . $this->return_crnrstn_text_link('request_order', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.request-order') . '               &quot;&quot;              PHP_INI_PERDIR
-' . $this->return_crnrstn_text_link('auto_globals_jit', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.auto-globals-jit') . '            &quot;1&quot;             PHP_INI_PERDIR
-' . $this->return_crnrstn_text_link('register_argc_argv', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.register-argc-argv') . '          &quot;1&quot;             PHP_INI_PERDIR
-' . $this->return_crnrstn_text_link('enable_post_data_reading', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.enable-post-data-reading') . '    &quot;1&quot;             PHP_INI_PERDIR
-' . $this->return_crnrstn_text_link('post_max_size', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.post-max-size') . '               &quot;8M&quot;            PHP_INI_PERDIR
-' . $this->return_crnrstn_text_link('auto_prepend_file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.auto-prepend-file') . '           NULL            PHP_INI_PERDIR
-' . $this->return_crnrstn_text_link('auto_append_file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.auto-append-file') . '            NULL            PHP_INI_PERDIR
-' . $this->return_crnrstn_text_link('default_mimetype', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.default-mimetype') . '            &quot;text/html&quot;     PHP_INI_ALL
-' . $this->return_crnrstn_text_link('default_charset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.default-charset') . '             &quot;UTF-8&quot;         PHP_INI_ALL
-' . $this->return_crnrstn_text_link('input_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.input-encoding') . '              &quot;&quot;              PHP_INI_ALL
-' . $this->return_crnrstn_text_link('output_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.output-encoding') . '             &quot;&quot;              PHP_INI_ALL
-' . $this->return_crnrstn_text_link('internal_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.internal-encoding') . '           &quot;&quot;              PHP_INI_ALL',
+' . $this->oCRNRSTN->return_crnrstn_text_link('arg_separator.output', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.arg-separator.output') . '        &quot;&&quot;             PHP_INI_ALL
+' . $this->oCRNRSTN->return_crnrstn_text_link('arg_separator.input', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.arg-separator.input') . '         &quot;&&quot;             PHP_INI_PERDIR
+' . $this->oCRNRSTN->return_crnrstn_text_link('variables_order', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.variables-order') . '             &quot;EGPCS&quot;         PHP_INI_PERDIR
+' . $this->oCRNRSTN->return_crnrstn_text_link('request_order', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.request-order') . '               &quot;&quot;              PHP_INI_PERDIR
+' . $this->oCRNRSTN->return_crnrstn_text_link('auto_globals_jit', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.auto-globals-jit') . '            &quot;1&quot;             PHP_INI_PERDIR
+' . $this->oCRNRSTN->return_crnrstn_text_link('register_argc_argv', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.register-argc-argv') . '          &quot;1&quot;             PHP_INI_PERDIR
+' . $this->oCRNRSTN->return_crnrstn_text_link('enable_post_data_reading', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.enable-post-data-reading') . '    &quot;1&quot;             PHP_INI_PERDIR
+' . $this->oCRNRSTN->return_crnrstn_text_link('post_max_size', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.post-max-size') . '               &quot;8M&quot;            PHP_INI_PERDIR
+' . $this->oCRNRSTN->return_crnrstn_text_link('auto_prepend_file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.auto-prepend-file') . '           NULL            PHP_INI_PERDIR
+' . $this->oCRNRSTN->return_crnrstn_text_link('auto_append_file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.auto-append-file') . '            NULL            PHP_INI_PERDIR
+' . $this->oCRNRSTN->return_crnrstn_text_link('default_mimetype', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.default-mimetype') . '            &quot;text/html&quot;     PHP_INI_ALL
+' . $this->oCRNRSTN->return_crnrstn_text_link('default_charset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.default-charset') . '             &quot;UTF-8&quot;         PHP_INI_ALL
+' . $this->oCRNRSTN->return_crnrstn_text_link('input_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.input-encoding') . '              &quot;&quot;              PHP_INI_ALL
+' . $this->oCRNRSTN->return_crnrstn_text_link('output_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.output-encoding') . '             &quot;&quot;              PHP_INI_ALL
+' . $this->oCRNRSTN->return_crnrstn_text_link('internal_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.internal-encoding') . '           &quot;&quot;              PHP_INI_ALL',
                                                         'TEXT' => 'Data Handling Configuration Options
 
 Name                        Default         Changeable  Changelog
@@ -5967,7 +5963,7 @@ internal_encoding           &quot;&quot;              PHP_INI_ALL'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The directory that contains the algorithms. Defaults to the directories compiled within libmcrypt, which is typically /usr/local/lib/libmcrypt. See ' . $this->return_crnrstn_text_link('mcrypt_list_algorithms', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mcrypt-list-algorithms.php') . ' for additional details.',
+                                                        'HTML' => 'The directory that contains the algorithms. Defaults to the directories compiled within libmcrypt, which is typically /usr/local/lib/libmcrypt. See ' . $this->oCRNRSTN->return_crnrstn_text_link('mcrypt_list_algorithms', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mcrypt-list-algorithms.php') . ' for additional details.',
                                                         'TEXT' => 'The directory that contains the algorithms. Defaults to the directories compiled within libmcrypt, which is typically /usr/local/lib/libmcrypt. See mcrypt_list_algorithms() for additional details.'
                     )));
 
@@ -6005,7 +6001,7 @@ internal_encoding           &quot;&quot;              PHP_INI_ALL'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The directory that contains the modes. Defaults to the directories compiled within libmcrypt, which is typically /usr/local/lib/libmcrypt. See ' . $this->return_crnrstn_text_link('mcrypt_list_modes', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mcrypt-list-modes.php') . ' for additional details.',
+                                                        'HTML' => 'The directory that contains the modes. Defaults to the directories compiled within libmcrypt, which is typically /usr/local/lib/libmcrypt. See ' . $this->oCRNRSTN->return_crnrstn_text_link('mcrypt_list_modes', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mcrypt-list-modes.php') . ' for additional details.',
                                                         'TEXT' => 'The directory that contains the modes. Defaults to the directories compiled within libmcrypt, which is typically /usr/local/lib/libmcrypt. See mcrypt_list_modes() for additional details.'
                     )));
 
@@ -6263,7 +6259,7 @@ Gets the list of all supported modes in the lib_dir parameter.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Whether to allow ' . $this->return_crnrstn_text_link('persistent connections', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.persistent-connections.php') . ' to MySQL.',
+                                                        'HTML' => 'Whether to allow ' . $this->oCRNRSTN->return_crnrstn_text_link('persistent connections', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.persistent-connections.php') . ' to MySQL.',
                                                         'TEXT' => 'Whether to allow persistent connections to MySQL.'
                     )));
 
@@ -6371,7 +6367,7 @@ Gets the list of all supported modes in the lib_dir parameter.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The default server host to use when connecting to the database server if no other host is specified. Doesn\'t apply in ' . $this->return_crnrstn_text_link('SQL safe mode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.sql.safe-mode') . '.',
+                                                        'HTML' => 'The default server host to use when connecting to the database server if no other host is specified. Doesn\'t apply in ' . $this->oCRNRSTN->return_crnrstn_text_link('SQL safe mode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.sql.safe-mode') . '.',
                                                         'TEXT' => 'The default server host to use when connecting to the database server if no other host is specified. Doesn\'t apply in SQL safe mode.'
                     )));
 
@@ -6411,7 +6407,7 @@ This feature has been REMOVED as of PHP 7.2.0.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The default user name to use when connecting to the database server if no other name is specified. Doesn\'t apply in ' . $this->return_crnrstn_text_link('SQL safe mode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.sql.safe-mode') . '.',
+                                                        'HTML' => 'The default user name to use when connecting to the database server if no other name is specified. Doesn\'t apply in ' . $this->oCRNRSTN->return_crnrstn_text_link('SQL safe mode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.sql.safe-mode') . '.',
                                                         'TEXT' => 'The default user name to use when connecting to the database server if no other name is specified. Doesn\'t apply in SQL safe mode.'
                     )));
 
@@ -6429,7 +6425,7 @@ This feature has been REMOVED as of PHP 7.2.0.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The default password to use when connecting to the database server if no other password is specified. Doesn\'t apply in ' . $this->return_crnrstn_text_link('SQL safe mode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.sql.safe-mode') . '.',
+                                                        'HTML' => 'The default password to use when connecting to the database server if no other password is specified. Doesn\'t apply in ' . $this->oCRNRSTN->return_crnrstn_text_link('SQL safe mode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.sql.safe-mode') . '.',
                                                         'TEXT' => 'The default password to use when connecting to the database server if no other password is specified. Doesn\'t apply in SQL safe mode.'
                     )));
 
@@ -6506,7 +6502,7 @@ Users cannot set MYSQL_OPT_READ_TIMEOUT through an API call or runtime configura
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Enable the ability to create persistent connections using ' . $this->return_crnrstn_text_link('mysqli_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mysqli-connect.php') . '.',
+                                                        'HTML' => 'Enable the ability to create persistent connections using ' . $this->oCRNRSTN->return_crnrstn_text_link('mysqli_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mysqli-connect.php') . '.',
                                                         'TEXT' => 'Enable the ability to create persistent connections using mysqli_connect().'
                     )));
 
@@ -6526,9 +6522,9 @@ Users cannot set MYSQL_OPT_READ_TIMEOUT through an API call or runtime configura
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Alias of ' . $this->return_crnrstn_text_link('mysqli::__construct()', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.construct.php') . '. This function is an alias of: ' . $this->return_crnrstn_text_link('mysqli::__construct()', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.construct.php') . '
+                                                        'HTML' => 'Alias of ' . $this->oCRNRSTN->return_crnrstn_text_link('mysqli::__construct()', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.construct.php') . '. This function is an alias of: ' . $this->oCRNRSTN->return_crnrstn_text_link('mysqli::__construct()', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.construct.php') . '
 
-If mysqli exception mode is not enabled and a connection fails, then mysqli_connect() returns false instead of an object. The ' . $this->return_crnrstn_text_link('mysqli_connect_error', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.connect-error.php') . ' function can be used to fetch the connection error.',
+If mysqli exception mode is not enabled and a connection fails, then mysqli_connect() returns false instead of an object. The ' . $this->oCRNRSTN->return_crnrstn_text_link('mysqli_connect_error', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.connect-error.php') . ' function can be used to fetch the connection error.',
                                                         'TEXT' => 'Alias of mysqli::__construct(). This function is an alias of: mysqli::__construct()
 
 If mysqli exception mode is not enabled and a connection fails, then mysqli_connect() returns false instead of an object. The mysqli_connect_error() function can be used to fetch the connection error.'
@@ -6714,9 +6710,9 @@ This php.ini setting had been ignored by the mysqlnd driver, and was removed as 
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Enables the collection of various client statistics which can be accessed through ' . $this->return_crnrstn_text_link('mysqli_get_client_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mysqli-get-client-stats.php') . ', ' . $this->return_crnrstn_text_link('mysqli_get_connection_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.get-connection-stats.php') . ', and are shown in mysqlnd section of the output of the ' . $this->return_crnrstn_text_link('phpinfo', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.phpinfo.php') . ' function as well.
+                                                        'HTML' => 'Enables the collection of various client statistics which can be accessed through ' . $this->oCRNRSTN->return_crnrstn_text_link('mysqli_get_client_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mysqli-get-client-stats.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('mysqli_get_connection_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.get-connection-stats.php') . ', and are shown in mysqlnd section of the output of the ' . $this->oCRNRSTN->return_crnrstn_text_link('phpinfo', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.phpinfo.php') . ' function as well.
 
-This configuration setting enables all ' . $this->return_crnrstn_text_link('MySQL Native Driver', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqlnd.stats.php') . ' statistics except those relating to memory management.',
+This configuration setting enables all ' . $this->oCRNRSTN->return_crnrstn_text_link('MySQL Native Driver', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqlnd.stats.php') . ' statistics except those relating to memory management.',
                                                         'TEXT' => 'Enables the collection of various client statistics which can be accessed through mysqli_get_client_stats(), mysqli_get_connection_stats(), and are shown in mysqlnd section of the output of the phpinfo() function as well.
 
 This configuration setting enables all MySQL Native Driver statistics except those relating to memory management.'
@@ -6740,7 +6736,7 @@ This configuration setting enables all MySQL Native Driver statistics except tho
                                                         array(
                                                         'HTML' => 'Returns client per-process statistics. Returns client per-process statistics.
 
-Available only with ' . $this->return_crnrstn_text_link('mysqlnd', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/book.mysqlnd.php') . '.',
+Available only with ' . $this->oCRNRSTN->return_crnrstn_text_link('mysqlnd', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/book.mysqlnd.php') . '.',
                                                         'TEXT' => 'Returns client per-process statistics. Returns client per-process statistics.
 
 Available only with mysqlnd.'
@@ -6783,7 +6779,7 @@ Available only with mysqlnd.'
                                                         array(
                                                         'HTML' => 'Outputs information about PHP\'s configuration Outputs a large amount of information about the current state of PHP. This includes information about PHP compilation options and extensions, the PHP version, server information and environment (if compiled as a module), the PHP environment, OS version information, paths, master and local values of configuration options, HTTP headers, and the PHP License.
 
-Because every system is setup differently, phpinfo() is commonly used to check ' . $this->return_crnrstn_text_link('configuration settings', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/configuration.php') . ' and for available ' . $this->return_crnrstn_text_link('predefined variables', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.variables.predefined.php') . ' on a given system.
+Because every system is setup differently, phpinfo() is commonly used to check ' . $this->oCRNRSTN->return_crnrstn_text_link('configuration settings', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/configuration.php') . ' and for available ' . $this->oCRNRSTN->return_crnrstn_text_link('predefined variables', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.variables.predefined.php') . ' on a given system.
 
 phpinfo() is also a valuable debugging tool as it contains all EGPCS (Environment, GET, POST, Cookie, Server) data.',
                                                         'TEXT' => 'Outputs information about PHP\'s configuration Outputs a large amount of information about the current state of PHP. This includes information about PHP compilation options and extensions, the PHP version, server information and environment (if compiled as a module), the PHP environment, OS version information, paths, master and local values of configuration options, HTTP headers, and the PHP License.
@@ -6818,24 +6814,24 @@ Connection statistics
 
 If you are using the mysqli extension, these statistics can be obtained through two API calls:
 
-' . $this->return_crnrstn_text_link('mysqli_get_client_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mysqli-get-client-stats.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('mysqli_get_client_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mysqli-get-client-stats.php') . '
 
-' . $this->return_crnrstn_text_link('mysqli_get_connection_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.get-connection-stats.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('mysqli_get_connection_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.get-connection-stats.php') . '
 
 
 Statistics are aggregated among all extensions that use MySQL Native Driver. For example, when compiling both ext/mysql and ext/mysqli against MySQL Native Driver, both function calls of ext/mysql and ext/mysqli will change the statistics. There is no way to find out how much a certain API call of any extension that has been compiled against MySQL Native Driver has impacted a certain statistic. You can configure the PDO MySQL Driver, ext/mysql and ext/mysqli to optionally use the MySQL Native Driver. When doing so, all three extensions will change the statistics.
 
 Accessing Client Statistics
 
-To access client statistics, you need to call ' . $this->return_crnrstn_text_link('mysqli_get_client_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mysqli-get-client-stats.php') . '. The function call does not require any parameters.
+To access client statistics, you need to call ' . $this->oCRNRSTN->return_crnrstn_text_link('mysqli_get_client_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mysqli-get-client-stats.php') . '. The function call does not require any parameters.
 
 The function returns an associative array that contains the name of the statistic as the key and the statistical data as the value.
 
-Client statistics can also be accessed by calling the ' . $this->return_crnrstn_text_link('phpinfo', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.phpinfo.php') . ' function.
+Client statistics can also be accessed by calling the ' . $this->oCRNRSTN->return_crnrstn_text_link('phpinfo', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.phpinfo.php') . ' function.
 
 Accessing Connection Statistics
 
-To access connection statistics call ' . $this->return_crnrstn_text_link('mysqli_get_connection_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.get-connection-stats.php') . '. This takes the database connection handle as the parameter.
+To access connection statistics call ' . $this->oCRNRSTN->return_crnrstn_text_link('mysqli_get_connection_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.get-connection-stats.php') . '. This takes the database connection handle as the parameter.
 
 The function returns an associative array that contains the name of the statistic as the key and the statistical data as the value.
 
@@ -6845,11 +6841,11 @@ Result sets can be buffered or unbuffered. Using default settings, ext/mysql and
 
 Unbuffered result sets on the other hand are kept much longer on the server. If you want to reduce memory consumption on the client, but increase load on the server, use unbuffered results. If you experience a high server load and the figures for unbuffered result sets are high, you should consider moving the load to the clients. Clients typically scale better than servers. Load does not only refer to memory buffers - the server also needs to keep other resources open, for example file handles and threads, before a result set can be freed.
 
-Prepared Statements use unbuffered result sets by default. However, you can use ' . $this->return_crnrstn_text_link('mysqli_stmt_store_result', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli-stmt.store-result.php') . ' to enable buffered result sets.
+Prepared Statements use unbuffered result sets by default. However, you can use ' . $this->oCRNRSTN->return_crnrstn_text_link('mysqli_stmt_store_result', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli-stmt.store-result.php') . ' to enable buffered result sets.
 
 Statistics returned by MySQL Native Driver
 
-The following tables show a list of statistics returned by the ' . $this->return_crnrstn_text_link('mysqli_get_client_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mysqli-get-client-stats.php') . ' and ' . $this->return_crnrstn_text_link('mysqli_get_connection_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.get-connection-stats.php') . ' functions.',
+The following tables show a list of statistics returned by the ' . $this->oCRNRSTN->return_crnrstn_text_link('mysqli_get_client_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mysqli-get-client-stats.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('mysqli_get_connection_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.get-connection-stats.php') . ' functions.',
                                                         'TEXT' => 'Using Statistical Data
 
 MySQL Native Driver contains support for gathering statistics on the communication between the client and the server. The statistics gathered are of two main types:
@@ -6908,9 +6904,9 @@ The following tables show a list of statistics returned by the mysqli_get_client
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Enable the collection of various memory statistics which can be accessed through ' . $this->return_crnrstn_text_link('mysqli_get_client_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mysqli-get-client-stats.php') . ', ' . $this->return_crnrstn_text_link('mysqli_get_connection_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.get-connection-stats.php') . ', and are shown in mysqlnd section of the output of the ' . $this->return_crnrstn_text_link('phpinfo', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.phpinfo.php') . ' function as well.
+                                                        'HTML' => 'Enable the collection of various memory statistics which can be accessed through ' . $this->oCRNRSTN->return_crnrstn_text_link('mysqli_get_client_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mysqli-get-client-stats.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('mysqli_get_connection_stats', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.get-connection-stats.php') . ', and are shown in mysqlnd section of the output of the ' . $this->oCRNRSTN->return_crnrstn_text_link('phpinfo', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.phpinfo.php') . ' function as well.
 
-This configuration setting enables the memory management statistics within the overall set of ' . $this->return_crnrstn_text_link('MySQL Native Driver statistics', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqlnd.stats.php') . '.',
+This configuration setting enables the memory management statistics within the overall set of ' . $this->oCRNRSTN->return_crnrstn_text_link('MySQL Native Driver statistics', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqlnd.stats.php') . '.',
                                                         'TEXT' => 'Enable the collection of various memory statistics which can be accessed through mysqli_get_client_stats(), mysqli_get_connection_stats(), and are shown in mysqlnd section of the output of the phpinfo() function as well.
 
 This configuration setting enables the memory management statistics within the overall set of MySQL Native Driver statistics.'
@@ -7154,7 +7150,7 @@ The value can also be set using mysqli_options(link, MYSQLI_OPT_NET_READ_BUFFER_
                                                         array(
                                                         'HTML' => 'SHA-256 Authentication Plugin related. File with the MySQL server public RSA key.
 
-Clients can either omit setting a public RSA key, specify the key through this PHP configuration setting or set the key at runtime using ' . $this->return_crnrstn_text_link('mysqli_options', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.options.php') . '. If not public RSA key file is given by the client, then the key will be exchanged as part of the standard SHA-256 Authentication Plugin authentication procedure.',
+Clients can either omit setting a public RSA key, specify the key through this PHP configuration setting or set the key at runtime using ' . $this->oCRNRSTN->return_crnrstn_text_link('mysqli_options', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.options.php') . '. If not public RSA key file is given by the client, then the key will be exchanged as part of the standard SHA-256 Authentication Plugin authentication procedure.',
                                                         'TEXT' => 'SHA-256 Authentication Plugin related. File with the MySQL server public RSA key.
 
 Clients can either omit setting a public RSA key, specify the key through this PHP configuration setting or set the key at runtime using mysqli_options(). If not public RSA key file is given by the client, then the key will be exchanged as part of the standard SHA-256 Authentication Plugin authentication procedure.'
@@ -7180,7 +7176,7 @@ Clients can either omit setting a public RSA key, specify the key through this P
 
 This function may be called multiple times to set several options.
 
-mysqli_options() should be called after ' . $this->return_crnrstn_text_link('mysqli_init', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.init.php') . ' and before ' . $this->return_crnrstn_text_link('mysqli_real_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.real-connect.php') . '.',
+mysqli_options() should be called after ' . $this->oCRNRSTN->return_crnrstn_text_link('mysqli_init', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.init.php') . ' and before ' . $this->oCRNRSTN->return_crnrstn_text_link('mysqli_real_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.real-connect.php') . '.',
                                                         'TEXT' => 'Set options. Used to set extra connect options and affect behavior for a connection.
 
 This function may be called multiple times to set several options.
@@ -7220,7 +7216,7 @@ mysqli_options() should be called after mysqli_init() and before mysqli_real_con
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Enforce copying result sets from the internal result set buffers into PHP variables instead of using the default reference and copy-on-write logic. Please, see the ' . $this->return_crnrstn_text_link('memory management implementation notes', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqlnd.memory.php') . ' for further details.
+                                                        'HTML' => 'Enforce copying result sets from the internal result set buffers into PHP variables instead of using the default reference and copy-on-write logic. Please, see the ' . $this->oCRNRSTN->return_crnrstn_text_link('memory management implementation notes', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqlnd.memory.php') . ' for further details.
 
 Copying result sets instead of having PHP variables reference them allows releasing the memory occupied for the PHP variables earlier. Depending on the user API code, the actual database quries and the size of their result sets this may reduce the memory footprint of mysqlnd.
 
@@ -7259,7 +7255,7 @@ The following notes are intended as an introduction and summary to users interes
 
 Memory management functions used
 
-All memory allocation and deallocation is done using the PHP memory management functions. Therefore, the memory consumption of mysqlnd can be tracked using PHP API calls, such as ' . $this->return_crnrstn_text_link('memory_get_usage', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.memory-get-usage.php') . '. Because memory is allocated and released using the PHP memory management, the changes may not immediately become visible at the operating system level. The PHP memory management acts as a proxy which may delay releasing memory towards the system. Due to this, comparing the memory usage of the MySQL Native Driver and the MySQL Client Library is difficult. The MySQL Client Library is using the operating system memory management calls directly, hence the effects can be observed immediately at the operating system level.
+All memory allocation and deallocation is done using the PHP memory management functions. Therefore, the memory consumption of mysqlnd can be tracked using PHP API calls, such as ' . $this->oCRNRSTN->return_crnrstn_text_link('memory_get_usage', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.memory-get-usage.php') . '. Because memory is allocated and released using the PHP memory management, the changes may not immediately become visible at the operating system level. The PHP memory management acts as a proxy which may delay releasing memory towards the system. Due to this, comparing the memory usage of the MySQL Native Driver and the MySQL Client Library is difficult. The MySQL Client Library is using the operating system memory management calls directly, hence the effects can be observed immediately at the operating system level.
 
 Any memory limit enforced by PHP also affects the MySQL Native Driver. This may cause out of memory errors when fetching large result sets that exceed the size of the remaining memory made available by PHP. Because the MySQL Client Library is not using PHP memory management functions, it does not comply to any PHP memory limit set. If using the MySQL Client Library, depending on the deployment model, the memory footprint of the PHP process may grow beyond the PHP memory limit. But also PHP scripts may be able to process larger result sets as parts of the memory allocated to hold the result sets are beyond the control of the PHP engine.
 
@@ -7267,23 +7263,23 @@ PHP memory management functions are invoked by the MySQL Native Driver through a
 
 Handling of result sets
 
-The various MySQL Server and the various client APIs differentiate between ' . $this->return_crnrstn_text_link('buffered and unbuffered', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.quickstart.statements.php') . ' result sets. Unbuffered result sets are transferred row-by-row from MySQL to the client as the client iterates over the results. Buffered results are fetched in their entirety by the client library before passing them on to the client.
+The various MySQL Server and the various client APIs differentiate between ' . $this->oCRNRSTN->return_crnrstn_text_link('buffered and unbuffered', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqli.quickstart.statements.php') . ' result sets. Unbuffered result sets are transferred row-by-row from MySQL to the client as the client iterates over the results. Buffered results are fetched in their entirety by the client library before passing them on to the client.
 
 The MySQL Native Driver is using PHP Streams for the network communication with the MySQL Server. Results sent by MySQL are fetched from the PHP Streams network buffers into the result buffer of mysqlnd. The result buffer is made of zvals. In a second step the results are made available to the PHP script. This final transfer from the result buffer into PHP variables impacts the memory consumption and is mostly noticeable when using buffered result sets.
 
 By default the MySQL Native Driver tries to avoid holding buffered results twice in memory. Results are kept only once in the internal result buffers and their zvals. When results are fetched into PHP variables by the PHP script, the variables will reference the internal result buffers. Database query results are not copied and kept in memory only once. Should the user modify the contents of a variable holding the database results a copy-on-write must be performed to avoid changing the referenced internal result buffer. The contents of the buffer must not be modified because the user may decide to read the result set a second time. The copy-on-write mechanism is implemented using an additional reference management list and the use of standard zval reference counters. Copy-on-write must also be done if the user reads a result set into PHP variables and frees a result set before the variables are unset.
 
-Generally speaking, this pattern works well for scripts that read a result set once and do not modify variables holding results. Its major drawback is the memory overhead caused by the additional reference management which comes primarily from the fact that user variables holding results cannot be entirely released until the mysqlnd reference management stops referencing them. The MySQL Native driver removes the reference to the user variables when the result set is freed or a copy-on-write is performed. An observer will see the total memory consumption grow until the result set is released. Use the ' . $this->return_crnrstn_text_link('statistics', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqlnd.stats.php') . ' to check whether a script does release result sets explicitly or the driver does implicit releases and thus memory is used for a time longer than necessary. Statistics also help to see how many copy-on-write operations happened.
+Generally speaking, this pattern works well for scripts that read a result set once and do not modify variables holding results. Its major drawback is the memory overhead caused by the additional reference management which comes primarily from the fact that user variables holding results cannot be entirely released until the mysqlnd reference management stops referencing them. The MySQL Native driver removes the reference to the user variables when the result set is freed or a copy-on-write is performed. An observer will see the total memory consumption grow until the result set is released. Use the ' . $this->oCRNRSTN->return_crnrstn_text_link('statistics', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqlnd.stats.php') . ' to check whether a script does release result sets explicitly or the driver does implicit releases and thus memory is used for a time longer than necessary. Statistics also help to see how many copy-on-write operations happened.
 
 A PHP script reading many small rows of a buffered result set using a code snippet equal or equivalent to while ($row = $res->fetch_assoc()) { ... } may optimize memory consumption by requesting copies instead of references. Albeit requesting copies means keeping results twice in memory, it allows PHP to free the copy contained in $row as the result set is being iterated and prior to releasing the result set itself. On a loaded server optimizing peak memory usage may help improving the overall system performance although for an individual script the copy approach may be slower due to additional allocations and memory copy operations.
 
 Monitoring and debugging
 
-There are multiple ways of tracking the memory usage of the MySQL Native Driver. If the goal is to get a quick high level overview or to verify the memory efficiency of PHP scripts, then check the ' . $this->return_crnrstn_text_link('statistics', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqlnd.stats.php') . ' collected by the library. The statistics allow you, for example, to catch SQL statements which generate more results than are processed by a PHP script.
+There are multiple ways of tracking the memory usage of the MySQL Native Driver. If the goal is to get a quick high level overview or to verify the memory efficiency of PHP scripts, then check the ' . $this->oCRNRSTN->return_crnrstn_text_link('statistics', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqlnd.stats.php') . ' collected by the library. The statistics allow you, for example, to catch SQL statements which generate more results than are processed by a PHP script.
 
-The ' . $this->return_crnrstn_text_link('debug', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqlnd.config.php#ini.mysqlnd.debug') . ' trace log can be configured to record memory management calls. This helps to see when memory is allocated or free\'d. However, the size of the requested memory chunks may not be listed.
+The ' . $this->oCRNRSTN->return_crnrstn_text_link('debug', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqlnd.config.php#ini.mysqlnd.debug') . ' trace log can be configured to record memory management calls. This helps to see when memory is allocated or free\'d. However, the size of the requested memory chunks may not be listed.
 
-Some, recent versions of the MySQL Native Driver feature the emulation of random out of memory situations. This feature is meant to be used by the C developers of the library or mysqlnd ' . $this->return_crnrstn_text_link('plugin', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqlnd.plugin.php') . ' authors only. Please, search the source code for corresponding PHP configuration settings and further details. The feature is considered private and may be modified at any time without prior notice.',
+Some, recent versions of the MySQL Native Driver feature the emulation of random out of memory situations. This feature is meant to be used by the C developers of the library or mysqlnd ' . $this->oCRNRSTN->return_crnrstn_text_link('plugin', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/mysqlnd.plugin.php') . ' authors only. Please, search the source code for corresponding PHP configuration settings and further details. The feature is considered private and may be modified at any time without prior notice.',
                                                         'TEXT' => 'Introduction
 
 The MySQL Native Driver manages memory different than the MySQL Client Library. The libraries differ in the way memory is allocated and released, how memory is allocated in chunks while reading results from MySQL, which debug and development options exist, and how results read from MySQL are linked to PHP user variables.
@@ -7335,7 +7331,7 @@ Some, recent versions of the MySQL Native Driver feature the emulation of random
                                                         array(
                                                         'HTML' => 'This user defined text should always be set when using Oracle Database Resident Connection Pooling (DRCP). It allows sub-partitioning of the DRCP connection pool, allowing OCI8 persistent connections from an application to reuse database sessions from a previous PHP script, giving better scalability. When an application uses a database pooled process previously used with a different connection class, the session settings such as the default Oracle date format are reset. This prevents accidental sharing of information between different applications.
 
-The value can be set at runtime with ' . $this->return_crnrstn_text_link('ini_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-set.php') . ' prior to connecting.
+The value can be set at runtime with ' . $this->oCRNRSTN->return_crnrstn_text_link('ini_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-set.php') . ' prior to connecting.
 
 To use DRCP, OCI8 must be linked with Oracle 11g (or later) libraries and the database must be Oracle 11g (or later). The DRCP connection pool must be enabled in the database, the oci8.connection_class should be set to the same string for all web servers running the same application, and the OCI8 connection string must specify to use a pooled server. The application should use persistent connections.',
                                                         'TEXT' => 'This user defined text should always be set when using Oracle Database Resident Connection Pooling (DRCP). It allows sub-partitioning of the DRCP connection pool, allowing OCI8 persistent connections from an application to reuse database sessions from a previous PHP script, giving better scalability. When an application uses a database pooled process previously used with a different connection class, the session settings such as the default Oracle date format are reset. This prevents accidental sharing of information between different applications.
@@ -7361,9 +7357,9 @@ To use DRCP, OCI8 must be linked with Oracle 11g (or later) libraries and the da
                                                         array(
                                                         'HTML' => 'This option sets the default number of extra rows that will be fetched and cached automatically whenever a low-level request for data from the database is made. Setting a value of 0 turns off prefetching.
 
-The prefetch value does not alter the number of rows that functions like ' . $this->return_crnrstn_text_link('oci_fetch_array', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-fetch-array.php') . ' return to the user; the prefetching and caching of rows is handled internally in OCI8.
+The prefetch value does not alter the number of rows that functions like ' . $this->oCRNRSTN->return_crnrstn_text_link('oci_fetch_array', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-fetch-array.php') . ' return to the user; the prefetching and caching of rows is handled internally in OCI8.
 
-The value can be set per-statement with ' . $this->return_crnrstn_text_link('oci_set_prefetch', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-set-prefetch.php') . ' prior to statement execution.
+The value can be set per-statement with ' . $this->oCRNRSTN->return_crnrstn_text_link('oci_set_prefetch', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-set-prefetch.php') . ' prior to statement execution.
 
 When using Oracle Database 12c (or later), the prefetch value set by PHP can be overridden by Oracle\'s client oraaccess.xml configuration file. Refer to Oracle documentation for more detail.
 
@@ -7398,9 +7394,9 @@ A larger prefetch can result in improved performance, at the cost of some increa
                                                         'HTML' => 'Returns the next row from a query as an associative or numeric array.
 Returns an array containing the next result-set row of a query. Each array entry corresponds to a column of the row. This function is typically called in a loop until it returns false, indicating no more rows exist.
 
-If statement corresponds to a PL/SQL block returning Oracle Database Implicit Result Sets, then rows from all sets are consecutively fetched. If statement is returned by ' . $this->return_crnrstn_text_link('oci_get_implicit_resultset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-get-implicit-resultset.php') . ', then only the subset of rows for one child query are returned.
+If statement corresponds to a PL/SQL block returning Oracle Database Implicit Result Sets, then rows from all sets are consecutively fetched. If statement is returned by ' . $this->oCRNRSTN->return_crnrstn_text_link('oci_get_implicit_resultset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-get-implicit-resultset.php') . ', then only the subset of rows for one child query are returned.
 
-For details on the data type mapping performed by the OCI8 extension, see the ' . $this->return_crnrstn_text_link('datatypes supported by the driver', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/oci8.datatypes.php') . '.',
+For details on the data type mapping performed by the OCI8 extension, see the ' . $this->oCRNRSTN->return_crnrstn_text_link('datatypes supported by the driver', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/oci8.datatypes.php') . '.',
                                                         'TEXT' => 'Returns the next row from a query as an associative or numeric array.
 Returns an array containing the next result-set row of a query. Each array entry corresponds to a column of the row. This function is typically called in a loop until it returns false, indicating no more rows exist.
 
@@ -7425,11 +7421,11 @@ For details on the data type mapping performed by the OCI8 extension, see the da
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Sets number of rows to be prefetched by queries. Sets the number of rows to be buffered by the Oracle Client libraries after a successful query call to ' . $this->return_crnrstn_text_link('oci_execute', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-execute.php') . ' and for each subsequent internal fetch request to the database. For queries returning a large number of rows, performance can be significantly improved by increasing the prefetch count above the default ' . $this->return_crnrstn_text_link('oci8.default_prefetch', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/oci8.configuration.php#ini.oci8.default-prefetch') . ' value.
+                                                        'HTML' => 'Sets number of rows to be prefetched by queries. Sets the number of rows to be buffered by the Oracle Client libraries after a successful query call to ' . $this->oCRNRSTN->return_crnrstn_text_link('oci_execute', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-execute.php') . ' and for each subsequent internal fetch request to the database. For queries returning a large number of rows, performance can be significantly improved by increasing the prefetch count above the default ' . $this->oCRNRSTN->return_crnrstn_text_link('oci8.default_prefetch', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/oci8.configuration.php#ini.oci8.default-prefetch') . ' value.
 
-Prefetching is Oracle\'s efficient way of returning more than one data row from the database in each network request. This can result in better network and CPU utilization. The buffering of rows is internal to OCI8 and the behavior of OCI8 fetching functions is unchanged regardless of the prefetch count. For example, ' . $this->return_crnrstn_text_link('oci_fetch_row', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-fetch-row.php') . ' will always return one row. The prefetch buffer is per-statement and is not used by re-executed statements or by other connections.
+Prefetching is Oracle\'s efficient way of returning more than one data row from the database in each network request. This can result in better network and CPU utilization. The buffering of rows is internal to OCI8 and the behavior of OCI8 fetching functions is unchanged regardless of the prefetch count. For example, ' . $this->oCRNRSTN->return_crnrstn_text_link('oci_fetch_row', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-fetch-row.php') . ' will always return one row. The prefetch buffer is per-statement and is not used by re-executed statements or by other connections.
 
-Call oci_set_prefetch() before calling ' . $this->return_crnrstn_text_link('oci_execute', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-execute.php') . '.
+Call oci_set_prefetch() before calling ' . $this->oCRNRSTN->return_crnrstn_text_link('oci_execute', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-execute.php') . '.
 
 A tuning goal is to set the prefetch value to a reasonable size for the network and database to handle. For queries returning a very large number of rows, overall system efficiency might be better if rows are retrieved from the database in several chunks (i.e set the prefetch value smaller than the number of rows). This allows the database to handle other users\' statements while the PHP script is processing the current set of rows.
 
@@ -7515,7 +7511,7 @@ FAN support is available when OCI8 is linked with Oracle 10gR2 (or later) librar
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'This option controls ' . $this->return_crnrstn_text_link('oci_close', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-close.php') . ' behaviour. Enabling it means that ' . $this->return_crnrstn_text_link('oci_close', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-close.php') . ' will do nothing; the connection will not be closed until the end of the script. This is for backward compatibility only. If you find that you need to enable this setting, you are strongly encouraged to adjust the ' . $this->return_crnrstn_text_link('oci_close', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-close.php') . ' calls in your application instead of enabling this option.',
+                                                        'HTML' => 'This option controls ' . $this->oCRNRSTN->return_crnrstn_text_link('oci_close', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-close.php') . ' behaviour. Enabling it means that ' . $this->oCRNRSTN->return_crnrstn_text_link('oci_close', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-close.php') . ' will do nothing; the connection will not be closed until the end of the script. This is for backward compatibility only. If you find that you need to enable this setting, you are strongly encouraged to adjust the ' . $this->oCRNRSTN->return_crnrstn_text_link('oci_close', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-close.php') . ' calls in your application instead of enabling this option.',
                                                         'TEXT' => 'This option controls oci_close() behaviour. Enabling it means that oci_close() will do nothing; the connection will not be closed until the end of the script. This is for backward compatibility only. If you find that you need to enable this setting, you are strongly encouraged to adjust the oci_close() calls in your application instead of enabling this option.'
                     )));
 
@@ -7535,7 +7531,7 @@ FAN support is available when OCI8 is linked with Oracle 10gR2 (or later) librar
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Closes an Oracle connection. Unsets connection. The underlying database connection is closed if no other resources are using it and if it was created with ' . $this->return_crnrstn_text_link('oci_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-connect.php') . ' or ' . $this->return_crnrstn_text_link('oci_new_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-new-connect.php') . '.
+                                                        'HTML' => 'Closes an Oracle connection. Unsets connection. The underlying database connection is closed if no other resources are using it and if it was created with ' . $this->oCRNRSTN->return_crnrstn_text_link('oci_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-connect.php') . ' or ' . $this->oCRNRSTN->return_crnrstn_text_link('oci_new_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-new-connect.php') . '.
 
 It is recommended to close connections that are no longer needed because this makes database resources available for other users.',
                                                         'TEXT' => 'Closes an Oracle connection. Unsets connection. The underlying database connection is closed if no other resources are using it and if it was created with oci_connect() or oci_new_connect().
@@ -7557,7 +7553,7 @@ It is recommended to close connections that are no longer needed because this ma
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The maximum number of seconds that a PHP process is allowed to keep an idle persistent connection open. Setting this option to -1 means that idle persistent connections will be retained until the PHP process terminates or the connection is explicitly closed with ' . $this->return_crnrstn_text_link('oci_close', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-close.php') . '.
+                                                        'HTML' => 'The maximum number of seconds that a PHP process is allowed to keep an idle persistent connection open. Setting this option to -1 means that idle persistent connections will be retained until the PHP process terminates or the connection is explicitly closed with ' . $this->oCRNRSTN->return_crnrstn_text_link('oci_close', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-close.php') . '.
 
 In PHP, the expiry of idle resources is not alarm-based. It occurs when PHP finishes processing a script and checks the last-used timestamp of resources. Hence there is a paradox that idle connections can only be closed when there is some activity (though not necessarily OCI8 related) in the PHP process. If there is more than one PHP process then each must individually be activated in order to trigger expiry of its idle resources. The introduction of Database Resident Connection Pooling (DRCP) in Oracle 11g resolves the memory and resource issues that oci8.max_persistent and oci8.persistent_timeout previously attempted to overcome.',
                                                         'TEXT' => 'The maximum number of seconds that a PHP process is allowed to keep an idle persistent connection open. Setting this option to -1 means that idle persistent connections will be retained until the PHP process terminates or the connection is explicitly closed with oci_close().
@@ -7579,9 +7575,9 @@ In PHP, the expiry of idle resources is not alarm-based. It occurs when PHP fini
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The number of seconds that must pass before issuing a ping during ' . $this->return_crnrstn_text_link('oci_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-pconnect.php') . '. A ping ensures that the database connection is valid. When set to 0, persistent connections will be pinged every time ' . $this->return_crnrstn_text_link('oci_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-pconnect.php') . ' is called. To disable pings completely, set this option to -1.
+                                                        'HTML' => 'The number of seconds that must pass before issuing a ping during ' . $this->oCRNRSTN->return_crnrstn_text_link('oci_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-pconnect.php') . '. A ping ensures that the database connection is valid. When set to 0, persistent connections will be pinged every time ' . $this->oCRNRSTN->return_crnrstn_text_link('oci_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-pconnect.php') . ' is called. To disable pings completely, set this option to -1.
 
-Disabling pings allows ' . $this->return_crnrstn_text_link('oci_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-pconnect.php') . ' to operate at the highest efficiency, but PHP may not be able to detect unusable connections, such as caused by network dropout, or if the Oracle database has gone down since PHP connected, until the connection is used later in the script. Consult the ' . $this->return_crnrstn_text_link('oci_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-pconnect.php') . ' documentation for more information.',
+Disabling pings allows ' . $this->oCRNRSTN->return_crnrstn_text_link('oci_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-pconnect.php') . ' to operate at the highest efficiency, but PHP may not be able to detect unusable connections, such as caused by network dropout, or if the Oracle database has gone down since PHP connected, until the connection is used later in the script. Consult the ' . $this->oCRNRSTN->return_crnrstn_text_link('oci_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-pconnect.php') . ' documentation for more information.',
                                                         'TEXT' => 'The number of seconds that must pass before issuing a ping during oci_pconnect(). A ping ensures that the database connection is valid. When set to 0, persistent connections will be pinged every time oci_pconnect() is called. To disable pings completely, set this option to -1.
 
 Disabling pings allows oci_pconnect() to operate at the highest efficiency, but PHP may not be able to detect unusable connections, such as caused by network dropout, or if the Oracle database has gone down since PHP connected, until the connection is used later in the script. Consult the oci_pconnect() documentation for more information.'
@@ -7605,7 +7601,7 @@ Disabling pings allows oci_pconnect() to operate at the highest efficiency, but 
                                                         array(
                                                         'HTML' => 'Connect to an Oracle database using a persistent connection. Creates a persistent connection to an Oracle server and logs on.
 
-Persistent connections are cached and re-used between requests, resulting in reduced overhead on each page load; a typical PHP application will have a single persistent connection open against an Oracle server per Apache child process (or PHP FPM process). See the ' . $this->return_crnrstn_text_link('OCI8 Connection Handling and Connection Pooling', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/oci8.connection.php') . ' section for more information.',
+Persistent connections are cached and re-used between requests, resulting in reduced overhead on each page load; a typical PHP application will have a single persistent connection open against an Oracle server per Apache child process (or PHP FPM process). See the ' . $this->oCRNRSTN->return_crnrstn_text_link('OCI8 Connection Handling and Connection Pooling', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/oci8.connection.php') . ' section for more information.',
                                                         'TEXT' => 'Connect to an Oracle database using a persistent connection. Creates a persistent connection to an Oracle server and logs on.
 
 Persistent connections are cached and re-used between requests, resulting in reduced overhead on each page load; a typical PHP application will have a single persistent connection open against an Oracle server per Apache child process (or PHP FPM process). See the OCI8 Connection Handling and Connection Pooling section for more information.'
@@ -7629,7 +7625,7 @@ Persistent connections are cached and re-used between requests, resulting in red
 
 The value affects LOBs returned as OCILob instances and also those returned using OCI_RETURN_LOBS.
 
-The value can be set per-statement with ' . $this->return_crnrstn_text_link('oci_set_prefetch_lob', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-set-prefetch-lob.php') . ' prior to statement execution.
+The value can be set per-statement with ' . $this->oCRNRSTN->return_crnrstn_text_link('oci_set_prefetch_lob', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-set-prefetch-lob.php') . ' prior to statement execution.
 
 Use with Oracle Database 12.2 or later.',
                                                         'TEXT' => 'This is a tuning parameter affecting internal buffering of LOB data. Increasing this value can improve the performance of fetching smaller LOBs by reducing round-trips between PHP and the database. Memory usage will change.
@@ -7657,11 +7653,11 @@ Use with Oracle Database 12.2 or later.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Sets the amount of data prefetched for each CLOB or BLOB. Sets the internal buffer size used to fetch each CLOB or BLOB value when the implementation gets the internal Oracle LOB locator from the database after a successful query call to ' . $this->return_crnrstn_text_link('oci_execute', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-execute.php') . ' and for each subsequent internal fetch request to the database. Increasing this value can improve the performance of fetching smaller LOBs by reducing round-trips between PHP and the database. Memory usage will change.
+                                                        'HTML' => 'Sets the amount of data prefetched for each CLOB or BLOB. Sets the internal buffer size used to fetch each CLOB or BLOB value when the implementation gets the internal Oracle LOB locator from the database after a successful query call to ' . $this->oCRNRSTN->return_crnrstn_text_link('oci_execute', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-execute.php') . ' and for each subsequent internal fetch request to the database. Increasing this value can improve the performance of fetching smaller LOBs by reducing round-trips between PHP and the database. Memory usage will change.
 
 The value affects LOBs returned as OCILob instances and also those returned using OCI_RETURN_LOBS.
 
-Call oci_set_prefetch_lob() before calling ' . $this->return_crnrstn_text_link('oci_execute', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-execute.php') . '. If it is not called, the value of ' . $this->return_crnrstn_text_link('oci8.prefetch_lob_size', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/oci8.configuration.php#ini.oci8.prefetch-lob-size') . ' is used.
+Call oci_set_prefetch_lob() before calling ' . $this->oCRNRSTN->return_crnrstn_text_link('oci_execute', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.oci-execute.php') . '. If it is not called, the value of ' . $this->oCRNRSTN->return_crnrstn_text_link('oci8.prefetch_lob_size', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/oci8.configuration.php#ini.oci8.prefetch-lob-size') . ' is used.
 
 The LOB prefetch value should only be set with Oracle Database 12.2 or later.',
                                                         'TEXT' => 'Sets the amount of data prefetched for each CLOB or BLOB. Sets the internal buffer size used to fetch each CLOB or BLOB value when the implementation gets the internal Oracle LOB locator from the database after a successful query call to oci_execute() and for each subsequent internal fetch request to the database. Increasing this value can improve the performance of fetching smaller LOBs by reducing round-trips between PHP and the database. Memory usage will change.
@@ -7743,7 +7739,7 @@ When using Oracle Database 12c (or later), this value can be overridden and auto
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'ODBC data source to use if none is specified in ' . $this->return_crnrstn_text_link('odbc_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-connect.php') . ' or ' . $this->return_crnrstn_text_link('odbc_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-pconnect.php') . '.',
+                                                        'HTML' => 'ODBC data source to use if none is specified in ' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-connect.php') . ' or ' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-pconnect.php') . '.',
                                                         'TEXT' => 'ODBC data source to use if none is specified in odbc_connect() or odbc_pconnect().'
                     )));
 
@@ -7765,7 +7761,7 @@ When using Oracle Database 12c (or later), this value can be overridden and auto
                                                         array(
                                                         'HTML' => 'Connect to a datasource. The connection id returned by this functions is needed by other ODBC functions. You can have multiple connections open at once as long as they either use different db or different credentials.
 
-With some ODBC drivers, executing a complex stored procedure may fail with an error similar to: &quot;Cannot open a cursor on a stored procedure that has anything other than a single select statement in it&quot;. Using SQL_CUR_USE_ODBC may avoid that error. Also, some drivers don\'t support the optional row_number parameter in ' . $this->return_crnrstn_text_link('odbc_fetch_row', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-fetch-row.php') . '. SQL_CUR_USE_ODBC might help in that case, too.',
+With some ODBC drivers, executing a complex stored procedure may fail with an error similar to: &quot;Cannot open a cursor on a stored procedure that has anything other than a single select statement in it&quot;. Using SQL_CUR_USE_ODBC may avoid that error. Also, some drivers don\'t support the optional row_number parameter in ' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_fetch_row', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-fetch-row.php') . '. SQL_CUR_USE_ODBC might help in that case, too.',
                                                         'TEXT' => 'Connect to a datasource. The connection id returned by this functions is needed by other ODBC functions. You can have multiple connections open at once as long as they either use different db or different credentials.
 
 With some ODBC drivers, executing a complex stored procedure may fail with an error similar to: "Cannot open a cursor on a stored procedure that has anything other than a single select statement in it". Using SQL_CUR_USE_ODBC may avoid that error. Also, some drivers don\'t support the optional row_number parameter in odbc_fetch_row(). SQL_CUR_USE_ODBC might help in that case, too.'
@@ -7789,7 +7785,7 @@ With some ODBC drivers, executing a complex stored procedure may fail with an er
                                                         array(
                                                         'HTML' => 'Open a persistent database connection. Opens a persistent database connection.
 
-This function is much like ' . $this->return_crnrstn_text_link('odbc_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-connect.php') . ', except that the connection is not really closed when the script has finished. Future requests for a connection with the same dsn, user, password combination (via ' . $this->return_crnrstn_text_link('odbc_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-connect.php') . ' and odbc_pconnect()) can reuse the persistent connection.',
+This function is much like ' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-connect.php') . ', except that the connection is not really closed when the script has finished. Future requests for a connection with the same dsn, user, password combination (via ' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-connect.php') . ' and odbc_pconnect()) can reuse the persistent connection.',
                                                         'TEXT' => 'Open a persistent database connection. Opens a persistent database connection.
 
 This function is much like odbc_connect(), except that the connection is not really closed when the script has finished. Future requests for a connection with the same dsn, user, password combination (via odbc_connect() and odbc_pconnect()) can reuse the persistent connection.'
@@ -7809,7 +7805,7 @@ This function is much like odbc_connect(), except that the connection is not rea
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'User name to use if none is specified in ' . $this->return_crnrstn_text_link('odbc_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-connect.php') . ' or ' . $this->return_crnrstn_text_link('odbc_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-pconnect.php') . '.',
+                                                        'HTML' => 'User name to use if none is specified in ' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-connect.php') . ' or ' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-pconnect.php') . '.',
                                                         'TEXT' => 'User name to use if none is specified in odbc_connect() or odbc_pconnect().'
                     )));
 
@@ -7827,7 +7823,7 @@ This function is much like odbc_connect(), except that the connection is not rea
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Password to use if none is specified in ' . $this->return_crnrstn_text_link('odbc_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-connect.php') . ' or ' . $this->return_crnrstn_text_link('odbc_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-pconnect.php') . '.',
+                                                        'HTML' => 'Password to use if none is specified in ' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-connect.php') . ' or ' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-pconnect.php') . '.',
                                                         'TEXT' => 'Password to use if none is specified in odbc_connect() or odbc_pconnect().'
                     )));
 
@@ -7917,9 +7913,9 @@ This function is much like odbc_connect(), except that the connection is not rea
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Handling of LONG fields. Specifies the number of bytes returned to variables. See ' . $this->return_crnrstn_text_link('odbc_longreadlen', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-longreadlen.php') . ' for details.
+                                                        'HTML' => 'Handling of LONG fields. Specifies the number of bytes returned to variables. See ' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_longreadlen', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-longreadlen.php') . ' for details.
 
-When an int is used, the value is measured in bytes. Shorthand notation, as described in ' . $this->return_crnrstn_text_link('this FAQ', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/faq.using.php#faq.using.shorthandbytes') . ', may also be used.',
+When an int is used, the value is measured in bytes. Shorthand notation, as described in ' . $this->oCRNRSTN->return_crnrstn_text_link('this FAQ', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/faq.using.php#faq.using.shorthandbytes') . ', may also be used.',
                                                         'TEXT' => 'Handling of LONG fields. Specifies the number of bytes returned to variables. See odbc_longreadlen() for details.
 
 When an int is used, the value is measured in bytes. Shorthand notation, as described in this FAQ, may also be used.'
@@ -7941,7 +7937,7 @@ When an int is used, the value is measured in bytes. Shorthand notation, as desc
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Handling of LONG columns. Controls handling of LONG, LONGVARCHAR and LONGVARBINARY columns. The default length can be set using the ' . $this->return_crnrstn_text_link('uodbc.defaultlrl', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/odbc.configuration.php#ini.uodbc.defaultlrl') . ' php.ini directive.',
+                                                        'HTML' => 'Handling of LONG columns. Controls handling of LONG, LONGVARCHAR and LONGVARBINARY columns. The default length can be set using the ' . $this->oCRNRSTN->return_crnrstn_text_link('uodbc.defaultlrl', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/odbc.configuration.php#ini.uodbc.defaultlrl') . ' php.ini directive.',
                                                         'TEXT' => 'Handling of LONG columns. Controls handling of LONG, LONGVARCHAR and LONGVARBINARY columns. The default length can be set using the uodbc.defaultlrl php.ini directive.'
                     )));
 
@@ -7959,7 +7955,7 @@ When an int is used, the value is measured in bytes. Shorthand notation, as desc
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Handling of binary data. See ' . $this->return_crnrstn_text_link('odbc_binmode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-binmode.php') . ' for details.',
+                                                        'HTML' => 'Handling of binary data. See ' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_binmode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-binmode.php') . ' for details.',
                                                         'TEXT' => 'Handling of binary data. See odbc_binmode() for details.'
                     )));
 
@@ -7979,7 +7975,7 @@ When an int is used, the value is measured in bytes. Shorthand notation, as desc
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Handling of binary column data. Controls handling of binary column data. ODBC SQL types affected are BINARY, VARBINARY, and LONGVARBINARY. The default mode can be set using the ' . $this->return_crnrstn_text_link('uodbc.defaultbinmode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/odbc.configuration.php#ini.uodbc.defaultbinmode') . ' php.ini directive.
+                                                        'HTML' => 'Handling of binary column data. Controls handling of binary column data. ODBC SQL types affected are BINARY, VARBINARY, and LONGVARBINARY. The default mode can be set using the ' . $this->oCRNRSTN->return_crnrstn_text_link('uodbc.defaultbinmode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/odbc.configuration.php#ini.uodbc.defaultbinmode') . ' php.ini directive.
 
 When binary SQL data is converted to character C data (ODBC_BINMODE_CONVERT), each byte (8 bits) of source data is represented as two ASCII characters. These characters are the ASCII character representation of the number in its hexadecimal form. For example, a binary 00000001 is converted to &quot;01&quot; and a binary 11111111 is converted to &quot;FF&quot;.
 
@@ -7995,7 +7991,7 @@ ODBC_BINMODE_PASSTHRU           &gt;0              passthru
 ODBC_BINMODE_RETURN             &gt;0              return as is
 ODBC_BINMODE_CONVERT            &gt;0              return as char
 
-If ' . $this->return_crnrstn_text_link('odbc_fetch_into', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-fetch-into.php') . ' is used, passthru means that an empty string is returned for these columns. If ' . $this->return_crnrstn_text_link('odbc_result', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-result.php') . ' is used, passthru means that the data are sent directly to the client (i.e. printed).',
+If ' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_fetch_into', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-fetch-into.php') . ' is used, passthru means that an empty string is returned for these columns. If ' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_result', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-result.php') . ' is used, passthru means that the data are sent directly to the client (i.e. printed).',
                                                         'TEXT' => 'Handling of binary column data. Controls handling of binary column data. ODBC SQL types affected are BINARY, VARBINARY, and LONGVARBINARY. The default mode can be set using the uodbc.defaultbinmode php.ini directive.
 
 When binary SQL data is converted to character C data (ODBC_BINMODE_CONVERT), each byte (8 bits) of source data is represented as two ASCII characters. These characters are the ASCII character representation of the number in its hexadecimal form. For example, a binary 00000001 is converted to "01" and a binary 11111111 is converted to "FF".
@@ -8047,7 +8043,7 @@ If odbc_fetch_into() is used, passthru means that an empty string is returned fo
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Enables the opcode cache. When disabled, code is not optimised or cached. The setting opcache.enable can not be enabled at runtime through ' . $this->return_crnrstn_text_link('ini_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-set.php') . ', it can only be disabled. Trying to enable it in a script will generate a warning.',
+                                                        'HTML' => 'Enables the opcode cache. When disabled, code is not optimised or cached. The setting opcache.enable can not be enabled at runtime through ' . $this->oCRNRSTN->return_crnrstn_text_link('ini_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-set.php') . ', it can only be disabled. Trying to enable it in a script will generate a warning.',
                                                         'TEXT' => 'Enables the opcode cache. When disabled, code is not optimised or cached. The setting opcache.enable can not be enabled at runtime through ini_set(), it can only be disabled. Trying to enable it in a script will generate a warning.'
                     )));
 
@@ -8173,10 +8169,10 @@ If odbc_fetch_into() is used, passthru means that an empty string is returned fo
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'If enabled, OPcache will check for updated scripts every ' . $this->return_crnrstn_text_link('opcache.revalidate_freq', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.revalidate-freq') . ' seconds. When this directive is disabled, you must reset OPcache manually via ' . $this->return_crnrstn_text_link('opcache_reset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.opcache-reset.php') . ', ' . $this->return_crnrstn_text_link('opcache_invalidate', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.opcache-invalidate.php') . ' or by restarting the Web server for changes to the filesystem to take effect.
+                                                        'HTML' => 'If enabled, OPcache will check for updated scripts every ' . $this->oCRNRSTN->return_crnrstn_text_link('opcache.revalidate_freq', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.revalidate-freq') . ' seconds. When this directive is disabled, you must reset OPcache manually via ' . $this->oCRNRSTN->return_crnrstn_text_link('opcache_reset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.opcache-reset.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('opcache_invalidate', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.opcache-invalidate.php') . ' or by restarting the Web server for changes to the filesystem to take effect.
 
 Note: OPcache may still validate the timestamp of a file at compile-time if opcache.file_update_protection or opcache.max_file_size options are set to non-zero values.',
-                                                        'TEXT' => 'If enabled, OPcache will check for updated scripts every opcache.revalidate_freq seconds. When this directive is disabled, you must reset OPcache manually via ' . $this->return_crnrstn_text_link('opcache_reset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.opcache-reset.php') . ', ' . $this->return_crnrstn_text_link('opcache_invalidate', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.opcache-invalidate.php') . ' or by restarting the Web server for changes to the filesystem to take effect.
+                                                        'TEXT' => 'If enabled, OPcache will check for updated scripts every opcache.revalidate_freq seconds. When this directive is disabled, you must reset OPcache manually via ' . $this->oCRNRSTN->return_crnrstn_text_link('opcache_reset', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.opcache-reset.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('opcache_invalidate', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.opcache-invalidate.php') . ' or by restarting the Web server for changes to the filesystem to take effect.
 
 OPcache may still validate the timestamp of a file at compile-time if opcache.file_update_protection or opcache.max_file_size options are set to non-zero values.'
                     )));
@@ -8197,7 +8193,7 @@ OPcache may still validate the timestamp of a file at compile-time if opcache.fi
                                                         array(
                                                         'HTML' => 'How often to check script timestamps for updates, in seconds. 0 will result in OPcache checking for updates on every request.
 
-This configuration directive is ignored if ' . $this->return_crnrstn_text_link('opcache.validate_timestamps', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.validate-timestamps') . ' is disabled.',
+This configuration directive is ignored if ' . $this->oCRNRSTN->return_crnrstn_text_link('opcache.validate_timestamps', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.validate-timestamps') . ' is disabled.',
                                                         'TEXT' => 'How often to check script timestamps for updates, in seconds. 0 will result in OPcache checking for updates on every request.
 
 This configuration directive is ignored if opcache.validate_timestamps is disabled.'
@@ -8293,7 +8289,7 @@ This configuration directive is ignored if opcache.validate_timestamps is disabl
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'If disabled, existing cached files using the same ' . $this->return_crnrstn_text_link('include_path', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.include-path') . ' will be reused. Thus, if a file with the same name is elsewhere in the include_path, it won\'t be found.',
+                                                        'HTML' => 'If disabled, existing cached files using the same ' . $this->oCRNRSTN->return_crnrstn_text_link('include_path', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.include-path') . ' will be reused. Thus, if a file with the same name is elsewhere in the include_path, it won\'t be found.',
                                                         'TEXT' => 'If disabled, existing cached files using the same include_path will be reused. Thus, if a file with the same name is elsewhere in the include_path, it won\'t be found.'
                     )));
 
@@ -8352,7 +8348,7 @@ This directive has been removed in PHP 7.2.0. A variant of the fast shutdown seq
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'When enabled, the opcode cache will be checked for whether a file has already been cached when ' . $this->return_crnrstn_text_link('file_exists', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.file-exists.php') . ', ' . $this->return_crnrstn_text_link('is_file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.is-file.php') . ' and ' . $this->return_crnrstn_text_link('is_readable', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.is-readable.php') . ' are called. This may increase performance in applications that check the existence and readability of PHP scripts, but risks returning stale data if ' . $this->return_crnrstn_text_link('opcache.validate_timestamps', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.validate-timestamps') . ' is disabled.',
+                                                        'HTML' => 'When enabled, the opcode cache will be checked for whether a file has already been cached when ' . $this->oCRNRSTN->return_crnrstn_text_link('file_exists', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.file-exists.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('is_file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.is-file.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('is_readable', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.is-readable.php') . ' are called. This may increase performance in applications that check the existence and readability of PHP scripts, but risks returning stale data if ' . $this->oCRNRSTN->return_crnrstn_text_link('opcache.validate_timestamps', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.validate-timestamps') . ' is disabled.',
                                                         'TEXT' => 'When enabled, the opcode cache will be checked for whether a file has already been cached when file_exists(), is_file() and is_readable() are called. This may increase performance in applications that check the existence and readability of PHP scripts, but risks returning stale data if opcache.validate_timestamps is disabled.'
                     )));
 
@@ -8431,7 +8427,7 @@ This directive has been removed in PHP 7.2.0. A variant of the fast shutdown seq
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'A bitmask that controls which optimisation passes are executed. The default is to apply all safe optimizations. Changing the default is mostly useful for debugging/developing the optimizer (see also ' . $this->return_crnrstn_text_link('opcache.opt_debug_level', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.opt_debug_level') . ').',
+                                                        'HTML' => 'A bitmask that controls which optimisation passes are executed. The default is to apply all safe optimizations. Changing the default is mostly useful for debugging/developing the optimizer (see also ' . $this->oCRNRSTN->return_crnrstn_text_link('opcache.opt_debug_level', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.opt_debug_level') . ').',
                                                         'TEXT' => 'A bitmask that controls which optimisation passes are executed. The default is to apply all safe optimizations. Changing the default is mostly useful for debugging/developing the optimizer (see also opcache.opt_debug_level).'
                     )));
 
@@ -8875,7 +8871,7 @@ Disabling this configuration option may prevent processes to start, and is there
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Specifies a PHP script that is going to be compiled and executed at server start-up, and which may preload other files, either by ' . $this->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . 'ing them or by using the ' . $this->return_crnrstn_text_link('opcache_compile_file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.opcache-compile-file.php') . ' function. All the entities (e.g. functions and classes) defined in these files will be available to requests out of the box, until the server is shut down.
+                                                        'HTML' => 'Specifies a PHP script that is going to be compiled and executed at server start-up, and which may preload other files, either by ' . $this->oCRNRSTN->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . 'ing them or by using the ' . $this->oCRNRSTN->return_crnrstn_text_link('opcache_compile_file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.opcache-compile-file.php') . ' function. All the entities (e.g. functions and classes) defined in these files will be available to requests out of the box, until the server is shut down.
 
 Preloading is not supported on Windows.',
                                                         'TEXT' => 'Specifies a PHP script that is going to be compiled and executed at server start-up, and which may preload other files, either by includeing them or by using the opcache_compile_file() function. All the entities (e.g. functions and classes) defined in these files will be available to requests out of the box, until the server is shut down.
@@ -9037,7 +9033,7 @@ The "tracing" mode corresponds to CRTO = 1254, the "function" mode corresponds t
                                                         array(
                                                         'HTML' => 'The amount of shared memory to reserve for compiled JIT code. A zero value disables the JIT.
 
-When an int is used, the value is measured in bytes. Shorthand notation, as described in ' . $this->return_crnrstn_text_link('this FAQ', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/faq.using.php#faq.using.shorthandbytes') . ', may also be used.',
+When an int is used, the value is measured in bytes. Shorthand notation, as described in ' . $this->oCRNRSTN->return_crnrstn_text_link('this FAQ', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/faq.using.php#faq.using.shorthandbytes') . ', may also be used.',
                                                         'TEXT' => 'The amount of shared memory to reserve for compiled JIT code. A zero value disables the JIT.
 
 When an int is used, the value is measured in bytes. Shorthand notation, as described in this FAQ, may also be used.'
@@ -9057,7 +9053,7 @@ When an int is used, the value is measured in bytes. Shorthand notation, as desc
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'A bit mask specifying which JIT debug output to enable. For possible values, please consult ' . $this->return_crnrstn_text_link('»&nbsp;zend_jit.h', 'PHP_ELLIPSE', 'https://github.com/php/php-src/blob/master/ext/opcache/jit/zend_jit.h') . ' (search for macro definitions beginning with ZEND_JIT_DEBUG).',
+                                                        'HTML' => 'A bit mask specifying which JIT debug output to enable. For possible values, please consult ' . $this->oCRNRSTN->return_crnrstn_text_link('»&nbsp;zend_jit.h', 'PHP_ELLIPSE', 'https://github.com/php/php-src/blob/master/ext/opcache/jit/zend_jit.h') . ' (search for macro definitions beginning with ZEND_JIT_DEBUG).',
                                                         'TEXT' => 'A bit mask specifying which JIT debug output to enable. For possible values, please consult » zend_jit.h (search for macro definitions beginning with ZEND_JIT_DEBUG).'
                     )));
 
@@ -9125,7 +9121,7 @@ When an int is used, the value is measured in bytes. Shorthand notation, as desc
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Debugging option that disables JIT compilation after compiling a certain number of functions. This may be helpful to bisect the source of a JIT miscompilation. Note: this option only works when JIT trigger is set to 0 (compile on script load) or 1 (compile on first execution), e.g., opcache.jit=1215. See more in ' . $this->return_crnrstn_text_link('opcache.jit', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.jit') . ' option.',
+                                                        'HTML' => 'Debugging option that disables JIT compilation after compiling a certain number of functions. This may be helpful to bisect the source of a JIT miscompilation. Note: this option only works when JIT trigger is set to 0 (compile on script load) or 1 (compile on first execution), e.g., opcache.jit=1215. See more in ' . $this->oCRNRSTN->return_crnrstn_text_link('opcache.jit', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.jit') . ' option.',
                                                         'TEXT' => 'Debugging option that disables JIT compilation after compiling a certain number of functions. This may be helpful to bisect the source of a JIT miscompilation. Note: this option only works when JIT trigger is set to 0 (compile on script load) or 1 (compile on first execution), e.g., opcache.jit=1215. See more in opcache.jit option.'
                     )));
 
@@ -9397,13 +9393,13 @@ When an int is used, the value is measured in bytes. Shorthand notation, as desc
                                                         array(
                                                         'HTML' => 'Limit the files that can be accessed by PHP to the specified directory-tree, including the file itself.
 
-When a script tries to access the filesystem, for example using ' . $this->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ', or ' . $this->return_crnrstn_text_link('fopen', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.fopen.php') . ', the location of the file is checked. When the file is outside the specified directory-tree, PHP will refuse to access it. All symbolic links are resolved, so it\'s not possible to avoid this restriction with a symlink. If the file doesn\'t exist then the symlink couldn\'t be resolved and the filename is compared to (a resolved) open_basedir.
+When a script tries to access the filesystem, for example using ' . $this->oCRNRSTN->return_crnrstn_text_link('include', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.include.php') . ', or ' . $this->oCRNRSTN->return_crnrstn_text_link('fopen', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.fopen.php') . ', the location of the file is checked. When the file is outside the specified directory-tree, PHP will refuse to access it. All symbolic links are resolved, so it\'s not possible to avoid this restriction with a symlink. If the file doesn\'t exist then the symlink couldn\'t be resolved and the filename is compared to (a resolved) open_basedir.
 
 open_basedir can affect more than just filesystem functions; for example if MySQL is configured to use mysqlnd drivers, LOAD DATA INFILE will be affected by open_basedir. Much of the extended functionality of PHP uses open_basedir in this way.
 
-The special value . indicates that the working directory of the script will be used as the base-directory. This is, however, a little dangerous as the working directory of the script can easily be changed with ' . $this->return_crnrstn_text_link('chdir', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.chdir.php') . '.
+The special value . indicates that the working directory of the script will be used as the base-directory. This is, however, a little dangerous as the working directory of the script can easily be changed with ' . $this->oCRNRSTN->return_crnrstn_text_link('chdir', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.chdir.php') . '.
 
-In httpd.conf, open_basedir can be turned off (e.g. for some virtual hosts) ' . $this->return_crnrstn_text_link('the same way', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/configuration.changes.php#configuration.changes.apache') . ' as any other configuration directive with &quot;php_admin_value open_basedir none&quot;.
+In httpd.conf, open_basedir can be turned off (e.g. for some virtual hosts) ' . $this->oCRNRSTN->return_crnrstn_text_link('the same way', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/configuration.changes.php#configuration.changes.apache') . ' as any other configuration directive with &quot;php_admin_value open_basedir none&quot;.
 
 Under Windows, separate the directories with a semicolon. On all other systems, separate the directories with a colon. As an Apache module, open_basedir paths from parent directories are now automatically inherited.
 
@@ -9411,9 +9407,9 @@ The restriction specified with open_basedir is a directory name, not a prefix.
 
 The default is to allow all files to be opened.
 
-open_basedir can be tightened at run-time. This means that if open_basedir is set to /www/ in php.ini a script can tighten the configuration to /www/tmp/ at run-time with ' . $this->return_crnrstn_text_link('ini_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-set.php') . '. When listing several directories, you can use the PATH_SEPARATOR constant as a separator regardless of the operating system.
+open_basedir can be tightened at run-time. This means that if open_basedir is set to /www/ in php.ini a script can tighten the configuration to /www/tmp/ at run-time with ' . $this->oCRNRSTN->return_crnrstn_text_link('ini_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-set.php') . '. When listing several directories, you can use the PATH_SEPARATOR constant as a separator regardless of the operating system.
 
-Using open_basedir will set ' . $this->return_crnrstn_text_link('realpath_cache_size', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.realpath-cache-size') . ' to 0 and thus disable the realpath cache.
+Using open_basedir will set ' . $this->oCRNRSTN->return_crnrstn_text_link('realpath_cache_size', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.realpath-cache-size') . ' to 0 and thus disable the realpath cache.
 
 open_basedir is just an extra safety net, that is in no way comprehensive, and can therefore not be relied upon when security is needed.',
                                                         'TEXT' => 'Limit the files that can be accessed by PHP to the specified directory-tree, including the file itself.
@@ -9475,7 +9471,7 @@ open_basedir is just an extra safety net, that is in no way comprehensive, and c
                                                         array(
                                                         'HTML' => 'When using PHP as an Apache module, you can also change the configuration settings using directives in Apache configuration files (e.g. httpd.conf) and .htaccess files. You will need "AllowOverride Options" or "AllowOverride All" privileges to do so.
 
-There are several Apache directives that allow you to change the PHP configuration from within the Apache configuration files. For a listing of which directives are PHP_INI_ALL, PHP_INI_PERDIR, or PHP_INI_SYSTEM, have a look at the ' . $this->return_crnrstn_text_link('List of php.ini directives', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.list.php') . ' appendix.
+There are several Apache directives that allow you to change the PHP configuration from within the Apache configuration files. For a listing of which directives are PHP_INI_ALL, PHP_INI_PERDIR, or PHP_INI_SYSTEM, have a look at the ' . $this->oCRNRSTN->return_crnrstn_text_link('List of php.ini directives', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.list.php') . ' appendix.
 
 php_value           name value
 Sets the value of the specified directive. Can be used only with PHP_INI_ALL and PHP_INI_PERDIR type directives. To clear a previously set value use none as the value.
@@ -9486,10 +9482,10 @@ php_flag            name on|off
 Used to set a boolean configuration directive. Can be used only with PHP_INI_ALL and PHP_INI_PERDIR type directives.
 
 php_admin_value     name value
-Sets the value of the specified directive. This can not be used in .htaccess files. Any directive type set with php_admin_value can not be overridden by .htaccess or ' . $this->return_crnrstn_text_link('ini_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-set.php') . '. To clear a previously set value use none as the value.
+Sets the value of the specified directive. This can not be used in .htaccess files. Any directive type set with php_admin_value can not be overridden by .htaccess or ' . $this->oCRNRSTN->return_crnrstn_text_link('ini_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-set.php') . '. To clear a previously set value use none as the value.
 
 php_admin_flag      name on|off
-Used to set a boolean configuration directive. This can not be used in .htaccess files. Any directive type set with php_admin_flag can not be overridden by .htaccess or ' . $this->return_crnrstn_text_link('ini_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-set.php') . '.',
+Used to set a boolean configuration directive. This can not be used in .htaccess files. Any directive type set with php_admin_flag can not be overridden by .htaccess or ' . $this->oCRNRSTN->return_crnrstn_text_link('ini_set', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-set.php') . '.',
                                                         'TEXT' => 'When using PHP as an Apache module, you can also change the configuration settings using directives in Apache configuration files (e.g. httpd.conf) and .htaccess files. You will need "AllowOverride Options" or "AllowOverride All" privileges to do so.
 
 There are several Apache directives that allow you to change the PHP configuration from within the Apache configuration files. For a listing of which directives are PHP_INI_ALL, PHP_INI_PERDIR, or PHP_INI_SYSTEM, have a look at the List of php.ini directives appendix.
@@ -9567,9 +9563,9 @@ The size required for the cache entry data is system dependent.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'You can redirect all of the output of your scripts to a function. For example, if you set output_handler to ' . $this->return_crnrstn_text_link('mb_output_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-output-handler.php') . ', character encoding will be transparently converted to the specified encoding. Setting any output handler automatically turns on output buffering.
+                                                        'HTML' => 'You can redirect all of the output of your scripts to a function. For example, if you set output_handler to ' . $this->oCRNRSTN->return_crnrstn_text_link('mb_output_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-output-handler.php') . ', character encoding will be transparently converted to the specified encoding. Setting any output handler automatically turns on output buffering.
 
-You cannot use both ' . $this->return_crnrstn_text_link('mb_output_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-output-handler.php') . ' with ' . $this->return_crnrstn_text_link('ob_iconv_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-iconv-handler.php') . ' and you cannot use both ' . $this->return_crnrstn_text_link('ob_gzhandler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-gzhandler.php') . ' and ' . $this->return_crnrstn_text_link('zlib.output_compression', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/zlib.configuration.php#ini.zlib.output-compression') . '.
+You cannot use both ' . $this->oCRNRSTN->return_crnrstn_text_link('mb_output_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-output-handler.php') . ' with ' . $this->oCRNRSTN->return_crnrstn_text_link('ob_iconv_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-iconv-handler.php') . ' and you cannot use both ' . $this->oCRNRSTN->return_crnrstn_text_link('ob_gzhandler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-gzhandler.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('zlib.output_compression', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/zlib.configuration.php#ini.zlib.output-compression') . '.
 
 Only built-in functions can be used with this directive. For user defined functions, use ob_start().',
                                                         'TEXT' => 'You can redirect all of the output of your scripts to a function. For example, if you set output_handler to mb_output_handler(), character encoding will be transparently converted to the specified encoding. Setting any output handler automatically turns on output buffering.
@@ -9595,7 +9591,7 @@ Only built-in functions can be used with this directive. For user defined functi
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Callback function converts character encoding in output buffer. mb_output_handler() is ' . $this->return_crnrstn_text_link('ob_start', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-start.php') . ' callback function. mb_output_handler() converts characters in the output buffer from internal character encoding to HTTP output character encoding.',
+                                                        'HTML' => 'Callback function converts character encoding in output buffer. mb_output_handler() is ' . $this->oCRNRSTN->return_crnrstn_text_link('ob_start', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-start.php') . ' callback function. mb_output_handler() converts characters in the output buffer from internal character encoding to HTTP output character encoding.',
                                                         'TEXT' => 'Callback function converts character encoding in output buffer. mb_output_handler() is ob_start() callback function. mb_output_handler() converts characters in the output buffer from internal character encoding to HTTP output character encoding.'
                     )));
 
@@ -9617,7 +9613,7 @@ Only built-in functions can be used with this directive. For user defined functi
                                                         array(
                                                         'HTML' => 'Convert character encoding as output buffer handler. Converts the string encoded in internal_encoding to output_encoding.
 
-internal_encoding and output_encoding should be defined in the php.ini file or in ' . $this->return_crnrstn_text_link('iconv_set_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.iconv-set-encoding.php') . '.',
+internal_encoding and output_encoding should be defined in the php.ini file or in ' . $this->oCRNRSTN->return_crnrstn_text_link('iconv_set_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.iconv-set-encoding.php') . '.',
                                                         'TEXT' => 'Convert character encoding as output buffer handler. Converts the string encoded in internal_encoding to output_encoding.
 
 internal_encoding and output_encoding should be defined in the php.ini file or in iconv_set_encoding().'
@@ -9639,7 +9635,7 @@ internal_encoding and output_encoding should be defined in the php.ini file or i
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'ob_start callback function to gzip output buffer. ob_gzhandler() is intended to be used as a callback function for ' . $this->return_crnrstn_text_link('ob_start', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-start.php') . ' to help facilitate sending gz-encoded data to web browsers that support compressed web pages. Before ob_gzhandler() actually sends compressed data, it determines what type of content encoding the browser will accept (&quot;gzip&quot;, &quot;deflate&quot; or none at all) and will return its output accordingly. All browsers are supported since it\'s up to the browser to send the correct header saying that it accepts compressed web pages. If a browser doesn\'t support compressed pages this function returns false.',
+                                                        'HTML' => 'ob_start callback function to gzip output buffer. ob_gzhandler() is intended to be used as a callback function for ' . $this->oCRNRSTN->return_crnrstn_text_link('ob_start', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-start.php') . ' to help facilitate sending gz-encoded data to web browsers that support compressed web pages. Before ob_gzhandler() actually sends compressed data, it determines what type of content encoding the browser will accept (&quot;gzip&quot;, &quot;deflate&quot; or none at all) and will return its output accordingly. All browsers are supported since it\'s up to the browser to send the correct header saying that it accepts compressed web pages. If a browser doesn\'t support compressed pages this function returns false.',
                                                         'TEXT' => 'ob_start callback function to gzip output buffer. ob_gzhandler() is intended to be used as a callback function for ob_start() to help facilitate sending gz-encoded data to web browsers that support compressed web pages. Before ob_gzhandler() actually sends compressed data, it determines what type of content encoding the browser will accept ("gzip", "deflate" or none at all) and will return its output accordingly. All browsers are supported since it\'s up to the browser to send the correct header saying that it accepts compressed web pages. If a browser doesn\'t support compressed pages this function returns false.'
                     )));
 
@@ -9661,7 +9657,7 @@ internal_encoding and output_encoding should be defined in the php.ini file or i
 
 This option also accepts integer values instead of boolean &quot;On&quot;/&quot;Off&quot;, using this you can set the output buffer size (default is 4KB).
 
-' . $this->return_crnrstn_text_link('output_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/outcontrol.configuration.php#ini.output-handler') . ' must be empty if this is set \'On\' ! Instead you must use zlib.output_handler.',
+' . $this->oCRNRSTN->return_crnrstn_text_link('output_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/outcontrol.configuration.php#ini.output-handler') . ' must be empty if this is set \'On\' ! Instead you must use zlib.output_handler.',
                                                         'TEXT' => 'Whether to transparently compress pages. If this option is set to "On" in php.ini or the Apache configuration, pages are compressed if the browser sends an "Accept-Encoding: gzip" or "deflate" header. "Content-Encoding: gzip" (respectively "deflate") and "Vary: Accept-Encoding" headers are added to the output. In runtime, it can be set only before sending any output.
 
 This option also accepts integer values instead of boolean "On"/"Off", using this you can set the output buffer size (default is 4KB).
@@ -9687,11 +9683,11 @@ output_handler must be empty if this is set \'On\' ! Instead you must use zlib.o
                                                         array(
                                                         'HTML' => 'Turn on output buffering. This function will turn output buffering on. While output buffering is active no output is sent from the script (other than headers), instead the output is stored in an internal buffer.
 
-The contents of this internal buffer may be copied into a string variable using ' . $this->return_crnrstn_text_link('ob_get_contents', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-get-contents.php') . '. To output what is stored in the internal buffer, use ' . $this->return_crnrstn_text_link('ob_end_flush', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-end-flush.php') . '. Alternatively, ' . $this->return_crnrstn_text_link('ob_end_clean', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-end-clean.php') . ' will silently discard the buffer contents.
+The contents of this internal buffer may be copied into a string variable using ' . $this->oCRNRSTN->return_crnrstn_text_link('ob_get_contents', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-get-contents.php') . '. To output what is stored in the internal buffer, use ' . $this->oCRNRSTN->return_crnrstn_text_link('ob_end_flush', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-end-flush.php') . '. Alternatively, ' . $this->oCRNRSTN->return_crnrstn_text_link('ob_end_clean', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-end-clean.php') . ' will silently discard the buffer contents.
 
 Some web servers (e.g. Apache) change the working directory of a script when calling the callback function. You can change it back by e.g. chdir(dirname($_SERVER[\'SCRIPT_FILENAME\'])) in the callback function.
 
-Output buffers are stackable, that is, you may call ob_start() while another ob_start() is active. Just make sure that you call ' . $this->return_crnrstn_text_link('ob_end_flush', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-end-flush.php') . ' the appropriate number of times. If multiple output callback functions are active, output is being filtered sequentially through each of them in nesting order.
+Output buffers are stackable, that is, you may call ob_start() while another ob_start() is active. Just make sure that you call ' . $this->oCRNRSTN->return_crnrstn_text_link('ob_end_flush', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ob-end-flush.php') . ' the appropriate number of times. If multiple output callback functions are active, output is being filtered sequentially through each of them in nesting order.
 
 If output buffering is still active when the script ends, PHP outputs the contents automatically.',
                                                         'TEXT' => 'Turn on output buffering. This function will turn output buffering on. While output buffering is active no output is sent from the script (other than headers), instead the output is stored in an internal buffer.
@@ -9773,7 +9769,7 @@ If output buffering is still active when the script ends, PHP outputs the conten
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Defines DSN alias. See ' . $this->return_crnrstn_text_link('PDO::__construct()', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/pdo.construct.php') . ' for thorough explanation.',
+                                                        'HTML' => 'Defines DSN alias. See ' . $this->oCRNRSTN->return_crnrstn_text_link('PDO::__construct()', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/pdo.construct.php') . ' for thorough explanation.',
                                                         'TEXT' => 'Defines DSN alias. See PDO::__construct() for thorough explanation.'
                     )));
 
@@ -9811,7 +9807,7 @@ If output buffering is still active when the script ends, PHP outputs the conten
                                                         array(
                                                         'HTML' => 'Whether to pool ODBC connections. Can be one of &quot;strict&quot;, &quot;relaxed&quot; or &quot;off&quot; (equals to &quot;&quot;). The parameter describes how strict the connection manager should be when matching connection parameters to existing pooled connections. strict is the recommend default, and will result in the use of cached connections only when all the connection parameters match exactly. relaxed will result in the use of cached connections when similar connection parameters are used. This can result in increased use of the cache, at the risk of bleeding connection information between (for example) virtual hosts.
 
-This setting can only be changed from the php.ini file, and affects the entire process; any other modules loaded into the process that use the same ODBC libraries will be affected too, including the ' . $this->return_crnrstn_text_link('Unified ODBC extension', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.uodbc.php') . '.
+This setting can only be changed from the php.ini file, and affects the entire process; any other modules loaded into the process that use the same ODBC libraries will be affected too, including the ' . $this->oCRNRSTN->return_crnrstn_text_link('Unified ODBC extension', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.uodbc.php') . '.
 
 relaxed matching should not be used on a shared server, for security reasons.
 
@@ -9839,54 +9835,54 @@ Leave this setting at the default strict setting unless you have good reason to 
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => $this->return_crnrstn_text_link('odbc_autocommit', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-autocommit.php') . ' — Toggle autocommit behaviour
-' . $this->return_crnrstn_text_link('odbc_binmode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-binmode.php') . ' — Handling of binary column data
-' . $this->return_crnrstn_text_link('odbc_close_all', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-close-all.php') . ' — Close all ODBC connections
-' . $this->return_crnrstn_text_link('odbc_close', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-close.php') . ' — Close an ODBC connection
-' . $this->return_crnrstn_text_link('odbc_columnprivileges', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-columnprivileges.php') . ' — Lists columns and associated privileges for the given table
-' . $this->return_crnrstn_text_link('odbc_columns', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-columns.php') . ' — Lists the column names in specified tables
-' . $this->return_crnrstn_text_link('odbc_commit', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-commit.php') . ' — Commit an ODBC transaction
-' . $this->return_crnrstn_text_link('odbc_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-connect.php') . ' — Connect to a datasource
-' . $this->return_crnrstn_text_link('odbc_connection_string_is_quoted', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-connection-string-is-quoted.php') . ' — Determines if an ODBC connection string value is quoted
-' . $this->return_crnrstn_text_link('odbc_connection_string_quote', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-connection-string-quote.php') . ' — Quotes an ODBC connection string value
-' . $this->return_crnrstn_text_link('odbc_connection_string_should_quote', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-connection-string-should-quote.php') . ' — Determines if an ODBC connection string value should be quoted
-' . $this->return_crnrstn_text_link('odbc_cursor', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-cursor.php') . ' — Get cursorname
-' . $this->return_crnrstn_text_link('odbc_data_source', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-data-source.php') . ' — Returns information about available DSNs
-' . $this->return_crnrstn_text_link('odbc_do', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-do.php') . ' — Alias of ' . $this->return_crnrstn_text_link('0000000000_reporting', 'PHP_ELLIPSE', '000000000000000000000000000') . 'odbc_exec
-' . $this->return_crnrstn_text_link('odbc_error', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-error.php') . ' — Get the last error code
-' . $this->return_crnrstn_text_link('odbc_errormsg', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-errormsg.php') . ' — Get the last error message
-' . $this->return_crnrstn_text_link('odbc_exec', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-exec.php') . ' — Directly execute an SQL statement
-' . $this->return_crnrstn_text_link('odbc_execute', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-execute.php') . ' — Execute a prepared statement
-' . $this->return_crnrstn_text_link('odbc_fetch_array', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-fetch-array.php') . ' — Fetch a result row as an associative array
-' . $this->return_crnrstn_text_link('odbc_fetch_into', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-fetch-into.php') . ' — Fetch one result row into array
-' . $this->return_crnrstn_text_link('odbc_fetch_object', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-fetch-object.php') . ' — Fetch a result row as an object
-' . $this->return_crnrstn_text_link('odbc_fetch_row', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-fetch-row.php') . ' — Fetch a row
-' . $this->return_crnrstn_text_link('odbc_field_len', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-field-len.php') . ' — Get the length (precision) of a field
-' . $this->return_crnrstn_text_link('odbc_field_name', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-field-name.php') . ' — Get the columnname
-' . $this->return_crnrstn_text_link('odbc_field_num', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-field-num.php') . ' — Return column number
-' . $this->return_crnrstn_text_link('odbc_field_precision', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-field-precision.php') . ' — Alias of ' . $this->return_crnrstn_text_link('0000000000_reporting', 'PHP_ELLIPSE', '000000000000000000000000000') . 'odbc_field_len
-' . $this->return_crnrstn_text_link('odbc_field_scale', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-field-scale.php') . ' — Get the scale of a field
-' . $this->return_crnrstn_text_link('odbc_field_type', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-field-type.php') . ' — Datatype of a field
-' . $this->return_crnrstn_text_link('odbc_foreignkeys', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-foreignkeys.php') . ' — Retrieves a list of foreign keys
-' . $this->return_crnrstn_text_link('odbc_free_result', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-free-result.php') . ' — Free resources associated with a result
-' . $this->return_crnrstn_text_link('odbc_gettypeinfo', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-gettypeinfo.php') . ' — Retrieves information about data types supported by the data source
-' . $this->return_crnrstn_text_link('odbc_longreadlen', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-longreadlen.php') . ' — Handling of LONG columns
-' . $this->return_crnrstn_text_link('odbc_next_result', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-next-result.php') . ' — Checks if multiple results are available
-' . $this->return_crnrstn_text_link('odbc_num_fields', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-num-fields.php') . ' — Number of columns in a result
-' . $this->return_crnrstn_text_link('odbc_num_rows', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-num-rows.php') . ' — Number of rows in a result
-' . $this->return_crnrstn_text_link('odbc_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-pconnect.php') . ' — Open a persistent database connection
-' . $this->return_crnrstn_text_link('odbc_prepare', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-prepare.php') . ' — Prepares a statement for execution
-' . $this->return_crnrstn_text_link('odbc_primarykeys', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-primarykeys.php') . ' — Gets the primary keys for a table
-' . $this->return_crnrstn_text_link('odbc_procedurecolumns', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-procedurecolumns.php') . ' — Retrieve information about parameters to procedures
-' . $this->return_crnrstn_text_link('odbc_procedures', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-procedures.php') . ' — Get the list of procedures stored in a specific data source
-' . $this->return_crnrstn_text_link('odbc_result_all', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-result-all.php') . ' — Print result as HTML table
-' . $this->return_crnrstn_text_link('odbc_result', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-result.php') . ' — Get result data
-' . $this->return_crnrstn_text_link('odbc_rollback', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-rollback.php') . ' — Rollback a transaction
-' . $this->return_crnrstn_text_link('odbc_setoption', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-setoption.php') . ' — Adjust ODBC settings
-' . $this->return_crnrstn_text_link('odbc_specialcolumns', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-specialcolumns.php') . ' — Retrieves special columns
-' . $this->return_crnrstn_text_link('odbc_statistics', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-statistics.php') . ' — Retrieve statistics about a table
-' . $this->return_crnrstn_text_link('odbc_tableprivileges', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-tableprivileges.php') . ' — Lists tables and the privileges associated with each table
-' . $this->return_crnrstn_text_link('odbc_tables', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-tables.php') . ' — Get the list of table names stored in a specific data source',
+                                                        'HTML' => $this->oCRNRSTN->return_crnrstn_text_link('odbc_autocommit', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-autocommit.php') . ' — Toggle autocommit behaviour
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_binmode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-binmode.php') . ' — Handling of binary column data
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_close_all', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-close-all.php') . ' — Close all ODBC connections
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_close', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-close.php') . ' — Close an ODBC connection
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_columnprivileges', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-columnprivileges.php') . ' — Lists columns and associated privileges for the given table
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_columns', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-columns.php') . ' — Lists the column names in specified tables
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_commit', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-commit.php') . ' — Commit an ODBC transaction
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_connect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-connect.php') . ' — Connect to a datasource
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_connection_string_is_quoted', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-connection-string-is-quoted.php') . ' — Determines if an ODBC connection string value is quoted
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_connection_string_quote', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-connection-string-quote.php') . ' — Quotes an ODBC connection string value
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_connection_string_should_quote', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-connection-string-should-quote.php') . ' — Determines if an ODBC connection string value should be quoted
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_cursor', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-cursor.php') . ' — Get cursorname
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_data_source', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-data-source.php') . ' — Returns information about available DSNs
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_do', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-do.php') . ' — Alias of ' . $this->oCRNRSTN->return_crnrstn_text_link('0000000000_reporting', 'PHP_ELLIPSE', '000000000000000000000000000') . 'odbc_exec
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_error', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-error.php') . ' — Get the last error code
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_errormsg', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-errormsg.php') . ' — Get the last error message
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_exec', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-exec.php') . ' — Directly execute an SQL statement
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_execute', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-execute.php') . ' — Execute a prepared statement
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_fetch_array', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-fetch-array.php') . ' — Fetch a result row as an associative array
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_fetch_into', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-fetch-into.php') . ' — Fetch one result row into array
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_fetch_object', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-fetch-object.php') . ' — Fetch a result row as an object
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_fetch_row', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-fetch-row.php') . ' — Fetch a row
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_field_len', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-field-len.php') . ' — Get the length (precision) of a field
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_field_name', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-field-name.php') . ' — Get the columnname
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_field_num', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-field-num.php') . ' — Return column number
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_field_precision', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-field-precision.php') . ' — Alias of ' . $this->oCRNRSTN->return_crnrstn_text_link('0000000000_reporting', 'PHP_ELLIPSE', '000000000000000000000000000') . 'odbc_field_len
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_field_scale', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-field-scale.php') . ' — Get the scale of a field
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_field_type', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-field-type.php') . ' — Datatype of a field
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_foreignkeys', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-foreignkeys.php') . ' — Retrieves a list of foreign keys
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_free_result', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-free-result.php') . ' — Free resources associated with a result
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_gettypeinfo', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-gettypeinfo.php') . ' — Retrieves information about data types supported by the data source
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_longreadlen', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-longreadlen.php') . ' — Handling of LONG columns
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_next_result', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-next-result.php') . ' — Checks if multiple results are available
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_num_fields', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-num-fields.php') . ' — Number of columns in a result
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_num_rows', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-num-rows.php') . ' — Number of rows in a result
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-pconnect.php') . ' — Open a persistent database connection
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_prepare', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-prepare.php') . ' — Prepares a statement for execution
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_primarykeys', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-primarykeys.php') . ' — Gets the primary keys for a table
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_procedurecolumns', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-procedurecolumns.php') . ' — Retrieve information about parameters to procedures
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_procedures', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-procedures.php') . ' — Get the list of procedures stored in a specific data source
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_result_all', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-result-all.php') . ' — Print result as HTML table
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_result', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-result.php') . ' — Get result data
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_rollback', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-rollback.php') . ' — Rollback a transaction
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_setoption', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-setoption.php') . ' — Adjust ODBC settings
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_specialcolumns', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-specialcolumns.php') . ' — Retrieves special columns
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_statistics', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-statistics.php') . ' — Retrieve statistics about a table
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_tableprivileges', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-tableprivileges.php') . ' — Lists tables and the privileges associated with each table
+' . $this->oCRNRSTN->return_crnrstn_text_link('odbc_tables', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.odbc-tables.php') . ' — Get the list of table names stored in a specific data source',
                                                         'TEXT' => 'odbc_autocommit — Toggle autocommit behaviour
 odbc_binmode — Handling of binary column data
 odbc_close_all — Close all ODBC connections
@@ -9953,7 +9949,7 @@ odbc_tables — Get the list of table names stored in a specific data source'
                                                         array(
                                                         'HTML' => 'If you compile PDO_ODBC using the db2 flavour, this setting sets the value of the DB2INSTANCE environment variable on Linux and UNIX operating systems to the specified name of the DB2 instance. This enables PDO_ODBC to resolve the location of the DB2 libraries and make cataloged connections to DB2 databases.
 
-This setting can only be changed from the php.ini file, and affects the entire process; any other modules loaded into the process that use the same ODBC libraries will be affected too, including the ' . $this->return_crnrstn_text_link('Unified ODBC extension', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.uodbc.php') . '.
+This setting can only be changed from the php.ini file, and affects the entire process; any other modules loaded into the process that use the same ODBC libraries will be affected too, including the ' . $this->oCRNRSTN->return_crnrstn_text_link('Unified ODBC extension', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.uodbc.php') . '.
 
 This setting has no effect on Windows.',
                                                         'TEXT' => 'If you compile PDO_ODBC using the db2 flavour, this setting sets the value of the DB2INSTANCE environment variable on Linux and UNIX operating systems to the specified name of the DB2 instance. This enables PDO_ODBC to resolve the location of the DB2 libraries and make cataloged connections to DB2 databases.
@@ -10031,7 +10027,7 @@ This setting has no effect on Windows.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Detect broken persistent links with ' . $this->return_crnrstn_text_link('pg_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.pg-pconnect.php') . '. Needs a little overhead.',
+                                                        'HTML' => 'Detect broken persistent links with ' . $this->oCRNRSTN->return_crnrstn_text_link('pg_pconnect', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.pg-pconnect.php') . '. Needs a little overhead.',
                                                         'TEXT' => 'Detect broken persistent links with pg_pconnect(). Needs a little overhead.'
                     )));
 
@@ -10051,13 +10047,13 @@ This setting has no effect on Windows.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Open a persistent PostgreSQL connection. pg_pconnect() opens a connection to a PostgreSQL database. It returns an ' . $this->return_crnrstn_text_link('PgSql\Connection', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/class.pgsql-connection.php') . ' instance that is needed by other PostgreSQL functions.
+                                                        'HTML' => 'Open a persistent PostgreSQL connection. pg_pconnect() opens a connection to a PostgreSQL database. It returns an ' . $this->oCRNRSTN->return_crnrstn_text_link('PgSql\Connection', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/class.pgsql-connection.php') . ' instance that is needed by other PostgreSQL functions.
 
 If a second call is made to pg_pconnect() with the same connection_string as an existing connection, the existing connection will be returned unless you pass PGSQL_CONNECT_FORCE_NEW as flags.
 
-To enable persistent connection, the ' . $this->return_crnrstn_text_link('pgsql.allow_persistent', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/pgsql.configuration.php#ini.pgsql.allow-persistent') . ' php.ini directive must be set to &quot;On&quot; (which is the default). The maximum number of persistent connection can be defined with the ' . $this->return_crnrstn_text_link('pgsql.max_persistent', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/pgsql.configuration.php#ini.pgsql.max-persistent') . ' php.ini directive (defaults to -1 for no limit). The total number of connections can be set with the ' . $this->return_crnrstn_text_link('pgsql.max_links', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/pgsql.configuration.php#ini.pgsql.max-links') . ' php.ini directive.
+To enable persistent connection, the ' . $this->oCRNRSTN->return_crnrstn_text_link('pgsql.allow_persistent', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/pgsql.configuration.php#ini.pgsql.allow-persistent') . ' php.ini directive must be set to &quot;On&quot; (which is the default). The maximum number of persistent connection can be defined with the ' . $this->oCRNRSTN->return_crnrstn_text_link('pgsql.max_persistent', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/pgsql.configuration.php#ini.pgsql.max-persistent') . ' php.ini directive (defaults to -1 for no limit). The total number of connections can be set with the ' . $this->oCRNRSTN->return_crnrstn_text_link('pgsql.max_links', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/pgsql.configuration.php#ini.pgsql.max-links') . ' php.ini directive.
 
-' . $this->return_crnrstn_text_link('pg_close', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.pg-close.php') . ' will not close persistent links generated by pg_pconnect().',
+' . $this->oCRNRSTN->return_crnrstn_text_link('pg_close', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.pg-close.php') . ' will not close persistent links generated by pg_pconnect().',
                                                         'TEXT' => 'Open a persistent PostgreSQL connection. pg_pconnect() opens a connection to a PostgreSQL database. It returns an PgSql\Connection instance that is needed by other PostgreSQL functions.
 
 If a second call is made to pg_pconnect() with the same connection_string as an existing connection, the existing connection will be returned unless you pass PGSQL_CONNECT_FORCE_NEW as flags.
@@ -10099,7 +10095,7 @@ pg_close() will not close persistent links generated by pg_pconnect().'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Whether or not to log PostgreSQL backends notice messages. The PHP directive ' . $this->return_crnrstn_text_link('pgsql.ignore_notice', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/pgsql.configuration.php#ini.pgsql.ignore-notice') . ' must be off in order to log notice messages.',
+                                                        'HTML' => 'Whether or not to log PostgreSQL backends notice messages. The PHP directive ' . $this->oCRNRSTN->return_crnrstn_text_link('pgsql.ignore_notice', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/pgsql.configuration.php#ini.pgsql.ignore-notice') . ' must be off in order to log notice messages.',
                                                         'TEXT' => 'Whether or not to log PostgreSQL backends notice messages. The PHP directive pgsql.ignore_notice must be off in order to log notice messages.'
                     )));
 
@@ -10117,7 +10113,7 @@ pg_close() will not close persistent links generated by pg_pconnect().'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'This option disables creation or modification of Phar archives using the phar stream or ' . $this->return_crnrstn_text_link('Phar', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/class.phar.php') . ' object\'s write support. This setting should always be enabled on production machines, as the phar extension\'s convenient write support could allow straightforward creation of a php-based virus when coupled with other common security vulnerabilities.
+                                                        'HTML' => 'This option disables creation or modification of Phar archives using the phar stream or ' . $this->oCRNRSTN->return_crnrstn_text_link('Phar', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/class.phar.php') . ' object\'s write support. This setting should always be enabled on production machines, as the phar extension\'s convenient write support could allow straightforward creation of a php-based virus when coupled with other common security vulnerabilities.
 
 This setting can only be unset in php.ini due to security reasons. If phar.readonly is disabled in php.ini, the user may enable phar.readonly in a script or disable it later. If phar.readonly is enabled in php.ini, a script may harmlessly "re-enable" the INI variable, but may not disable it.',
                                                         'TEXT' => 'This option disables creation or modification of Phar archives using the phar stream or Phar object\'s write support. This setting should always be enabled on production machines, as the phar extension\'s convenient write support could allow straightforward creation of a php-based virus when coupled with other common security vulnerabilities.
@@ -10162,7 +10158,7 @@ This setting can only be unset in php.ini due to security reasons. If phar.reado
 
 This setting can only be unset in php.ini. If phar.require_hash is disabled in php.ini, the user may enable phar.require_hash in a script or disable it later. If phar.require_hash is enabled in php.ini, a script may harmlessly &quot;re-enable&quot; the INI variable, but may not disable it.
 
-This setting does not affect reading plain tar files with the ' . $this->return_crnrstn_text_link('PharData', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/class.phardata.php') . ' class.
+This setting does not affect reading plain tar files with the ' . $this->oCRNRSTN->return_crnrstn_text_link('PharData', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/class.phardata.php') . ' class.
 
 phar.require_hash does not provide any security per se, it is merely a measure against running accidentially corrupted Phar archives, because anyone who would be able to tamper with the Phar could easily fix the signature afterwards.',
                                                         'TEXT' => 'This option will force all opened Phar archives to contain some kind of signature (currently MD5, SHA1, SHA256, SHA512 and OpenSSL are supported), and will refuse to process any Phar archive that does not contain a signature.
@@ -10248,15 +10244,15 @@ Several predefined variables in PHP are &quot;superglobals&quot;, which means th
 
 These superglobal variables are:
 
-' . $this->return_crnrstn_text_link('$GLOBALS', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.globals.php') . '
-' . $this->return_crnrstn_text_link('$_SERVER', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.server.php') . '
-' . $this->return_crnrstn_text_link('$_GET', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.get.php') . '
-' . $this->return_crnrstn_text_link('$_POST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.post.php') . '
-' . $this->return_crnrstn_text_link('$_FILES', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.files.php') . '
-' . $this->return_crnrstn_text_link('$_COOKIE', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.cookies.php') . '
-' . $this->return_crnrstn_text_link('$_SESSION', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.session.php') . '
-' . $this->return_crnrstn_text_link('$_REQUEST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.request.php') . '
-' . $this->return_crnrstn_text_link('$_ENV', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.environment.php') . '',
+' . $this->oCRNRSTN->return_crnrstn_text_link('$GLOBALS', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.globals.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('$_SERVER', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.server.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('$_GET', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.get.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('$_POST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.post.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('$_FILES', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.files.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('$_COOKIE', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.cookies.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('$_SESSION', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.session.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('$_REQUEST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.request.php') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('$_ENV', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.environment.php') . '',
                                                         'TEXT' => 'Built-in variables that are always available in all scopes.
 
 Several predefined variables in PHP are "superglobals", which means they are available in all scopes throughout a script. There is no need to do global $variable; to access them within functions or methods.
@@ -10324,7 +10320,7 @@ $_ENV'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Tells PHP whether to declare the argv & argc variables (that would contain the GET information). See also ' . $this->return_crnrstn_text_link('command line', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.commandline.php') . '.',
+                                                        'HTML' => 'Tells PHP whether to declare the argv & argc variables (that would contain the GET information). See also ' . $this->oCRNRSTN->return_crnrstn_text_link('command line', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.commandline.php') . '.',
                                                         'TEXT' => 'Tells PHP whether to declare the argv & argc variables (that would contain the GET information). See also command line.'
                     )));
 
@@ -10342,7 +10338,7 @@ $_ENV'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'If this parameter is set to On (the default), this parameter will show a report of memory leaks detected by the Zend memory manager. This report will be sent to stderr on Posix platforms. On Windows, it will be sent to the debugger using OutputDebugString() and can be viewed with tools like ' . $this->return_crnrstn_text_link('»&nbsp;DbgView', 'SOCIAL_MICROSOFT', 'http://technet.microsoft.com/en-us/sysinternals/bb896647') . '. This parameter only has effect in a debug build and if error_reporting includes E_WARNING in the allowed list.',
+                                                        'HTML' => 'If this parameter is set to On (the default), this parameter will show a report of memory leaks detected by the Zend memory manager. This report will be sent to stderr on Posix platforms. On Windows, it will be sent to the debugger using OutputDebugString() and can be viewed with tools like ' . $this->oCRNRSTN->return_crnrstn_text_link('»&nbsp;DbgView', 'SOCIAL_MICROSOFT', 'http://technet.microsoft.com/en-us/sysinternals/bb896647') . '. This parameter only has effect in a debug build and if error_reporting includes E_WARNING in the allowed list.',
                                                         'TEXT' => 'If this parameter is set to On (the default), this parameter will show a report of memory leaks detected by the Zend memory manager. This report will be sent to stderr on Posix platforms. On Windows, it will be sent to the debugger using OutputDebugString() and can be viewed with tools like » DbgView. This parameter only has effect in a debug build and if error_reporting includes E_WARNING in the allowed list.'
                     )));
 
@@ -10380,7 +10376,7 @@ $_ENV'
                                                         array(
                                                         'HTML' => 'This directive describes the order in which PHP registers GET, POST and Cookie variables into the _REQUEST array. Registration is done from left to right, newer values override older values.
 
-If this directive is not set, ' . $this->return_crnrstn_text_link('variables_order', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.variables-order') . ' is used for ' . $this->return_crnrstn_text_link('$_REQUEST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.request.php') . ' contents.
+If this directive is not set, ' . $this->oCRNRSTN->return_crnrstn_text_link('variables_order', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.variables-order') . ' is used for ' . $this->oCRNRSTN->return_crnrstn_text_link('$_REQUEST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.request.php') . ' contents.
 
 Note that the default distribution php.ini files does not contain the \'C\' for cookies, due to security concerns.',
                                                         'TEXT' => 'This directive describes the order in which PHP registers GET, POST and Cookie variables into the _REQUEST array. Registration is done from left to right, newer values override older values.
@@ -10404,11 +10400,11 @@ Note that the default distribution php.ini files does not contain the \'C\' for 
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Sets the order of the EGPCS (Environment, Get, Post, Cookie, and Server) variable parsing. For example, if variables_order is set to &quot;SP&quot; then PHP will create the ' . $this->return_crnrstn_text_link('superglobals', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.variables.predefined.php') . ' ' . $this->return_crnrstn_text_link('$_SERVER', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.server.php') . ' and ' . $this->return_crnrstn_text_link('$_POST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.post.php') . ', but not create ' . $this->return_crnrstn_text_link('$_ENV', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.environment.php') . ', ' . $this->return_crnrstn_text_link('$_GET', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.get.php') . ', and ' . $this->return_crnrstn_text_link('$_COOKIE', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.cookies.php') . '. Setting to &quot;&quot; means no ' . $this->return_crnrstn_text_link('superglobals', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.variables.predefined.php') . ' will be set.
+                                                        'HTML' => 'Sets the order of the EGPCS (Environment, Get, Post, Cookie, and Server) variable parsing. For example, if variables_order is set to &quot;SP&quot; then PHP will create the ' . $this->oCRNRSTN->return_crnrstn_text_link('superglobals', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.variables.predefined.php') . ' ' . $this->oCRNRSTN->return_crnrstn_text_link('$_SERVER', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.server.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('$_POST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.post.php') . ', but not create ' . $this->oCRNRSTN->return_crnrstn_text_link('$_ENV', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.environment.php') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('$_GET', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.get.php') . ', and ' . $this->oCRNRSTN->return_crnrstn_text_link('$_COOKIE', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.cookies.php') . '. Setting to &quot;&quot; means no ' . $this->oCRNRSTN->return_crnrstn_text_link('superglobals', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.variables.predefined.php') . ' will be set.
 
-In both the CGI and FastCGI SAPIs, ' . $this->return_crnrstn_text_link('$_SERVER', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.server.php') . ' is also populated by values from the environment; S is always equivalent to ES regardless of the placement of E elsewhere in this directive.
+In both the CGI and FastCGI SAPIs, ' . $this->oCRNRSTN->return_crnrstn_text_link('$_SERVER', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.server.php') . ' is also populated by values from the environment; S is always equivalent to ES regardless of the placement of E elsewhere in this directive.
 
-The content and order of ' . $this->return_crnrstn_text_link('$_REQUEST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.request.php') . ' is also affected by this directive.',
+The content and order of ' . $this->oCRNRSTN->return_crnrstn_text_link('$_REQUEST', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.request.php') . ' is also affected by this directive.',
                                                         'TEXT' => 'Sets the order of the EGPCS (Environment, Get, Post, Cookie, and Server) variable parsing. For example, if variables_order is set to "SP" then PHP will create the superglobals $_SERVER and $_POST, but not create $_ENV, $_GET, and $_COOKIE. Setting to "" means no superglobals will be set.
 
 In both the CGI and FastCGI SAPIs, $_SERVER is also populated by values from the environment; S is always equivalent to ES regardless of the placement of E elsewhere in this directive.
@@ -10486,7 +10482,7 @@ The content and order of $_REQUEST is also affected by this directive.'
                                                         array(
                                                         'HTML' => 'Where the sendmail program can be found, usually /usr/sbin/sendmail or /usr/lib/sendmail. configure does an honest attempt of locating this one for you and set a default, but if it fails, you can set it here.
 
-Systems not using sendmail should set this directive to the sendmail wrapper/replacement their mail system offers, if any. For example, ' . $this->return_crnrstn_text_link('»&nbsp;Qmail', 'TEXT_ONLY', 'http://cr.yp.to/qmail.html') . ' users can normally set it to /var/qmail/bin/sendmail or /var/qmail/bin/qmail-inject.
+Systems not using sendmail should set this directive to the sendmail wrapper/replacement their mail system offers, if any. For example, ' . $this->oCRNRSTN->return_crnrstn_text_link('»&nbsp;Qmail', 'TEXT_ONLY', 'http://cr.yp.to/qmail.html') . ' users can normally set it to /var/qmail/bin/sendmail or /var/qmail/bin/qmail-inject.
 
 qmail-inject does not require any option to process mail correctly.
 
@@ -10514,15 +10510,15 @@ This directive works also under Windows. If set, smtp, smtp_port and sendmail_fr
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => $this->return_crnrstn_text_link('D. J. Bernstein', 'TEXT_ONLY', 'https://cr.yp.to/djb.html') . '
-' . $this->return_crnrstn_text_link('Internet mail', 'TEXT_ONLY', 'https://cr.yp.to/mail.html') . '
-' . $this->return_crnrstn_text_link('qmail', 'TEXT_ONLY', 'https://cr.yp.to/qmail.html') . '
-' . $this->return_crnrstn_text_link('Frequently asked questions', 'TEXT_ONLY', 'https://cr.yp.to/qmail/faq.html') . '
+                                                        'HTML' => $this->oCRNRSTN->return_crnrstn_text_link('D. J. Bernstein', 'TEXT_ONLY', 'https://cr.yp.to/djb.html') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('Internet mail', 'TEXT_ONLY', 'https://cr.yp.to/mail.html') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('qmail', 'TEXT_ONLY', 'https://cr.yp.to/qmail.html') . '
+' . $this->oCRNRSTN->return_crnrstn_text_link('Frequently asked questions', 'TEXT_ONLY', 'https://cr.yp.to/qmail/faq.html') . '
 
 Orientation
 
 How many people use qmail?
-Answer: As of October 2001, more than 700000 reachable IP addresses are running qmail as their SMTP server; qmail\'s growth over the past year is by far the ' . $this->return_crnrstn_text_link('fastest', 'TEXT_ONLY', 'https://cr.yp.to/surveys.html') . ' of any MTA. qmail handles a huge percentage of all Internet mail.
+Answer: As of October 2001, more than 700000 reachable IP addresses are running qmail as their SMTP server; qmail\'s growth over the past year is by far the ' . $this->oCRNRSTN->return_crnrstn_text_link('fastest', 'TEXT_ONLY', 'https://cr.yp.to/surveys.html') . ' of any MTA. qmail handles a huge percentage of all Internet mail.
 
 The qmail mailing list has more than 2000 subscribers (counting sublists as only one subscriber).
 
@@ -10537,10 +10533,10 @@ User-controlled mailing lists. Users don\'t have to pester the system administra
 Virtual hosts made easy. qmail pioneered multiple-domain support.
 Straightforward administration. qmail works with a minimum of fuss.
 Flexible program deliveries. qmail provides a powerful interface for external mail processors.
-Variable Envelope Return Paths. This feature (used by ' . $this->return_crnrstn_text_link('ezmlm', 'TEXT_ONLY', 'https://cr.yp.to/ezmlm.html') . ') provides 100% automatic bounce handling for mailing lists of any size.
-The maildir format. This feature makes it easy to set up high-volume distributed ' . $this->return_crnrstn_text_link('POP toasters', 'TEXT_ONLY', 'https://cr.yp.to/qmail/toaster.html') . '.
+Variable Envelope Return Paths. This feature (used by ' . $this->oCRNRSTN->return_crnrstn_text_link('ezmlm', 'TEXT_ONLY', 'https://cr.yp.to/ezmlm.html') . ') provides 100% automatic bounce handling for mailing lists of any size.
+The maildir format. This feature makes it easy to set up high-volume distributed ' . $this->oCRNRSTN->return_crnrstn_text_link('POP toasters', 'TEXT_ONLY', 'https://cr.yp.to/qmail/toaster.html') . '.
 Is qmail compatible with sendmail?
-Answer: Yes. qmail supports ' . $this->return_crnrstn_text_link('.forward', 'TEXT_ONLY', 'https://cr.yp.to/qmail/faq/incominguser.html#dot-forward') . ', ' . $this->return_crnrstn_text_link('/etc/aliases', 'TEXT_ONLY', 'https://cr.yp.to/qmail/faq/incominguser.html#etc-aliases') . ', binmail deliveries to a central mail spool in the usual mbox format, the /usr/{lib,sbin}/sendmail interface for mail injection, and the normal UNIX user database in /etc/passwd. There is a checklist for large sites moving from sendmail to qmail.
+Answer: Yes. qmail supports ' . $this->oCRNRSTN->return_crnrstn_text_link('.forward', 'TEXT_ONLY', 'https://cr.yp.to/qmail/faq/incominguser.html#dot-forward') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('/etc/aliases', 'TEXT_ONLY', 'https://cr.yp.to/qmail/faq/incominguser.html#etc-aliases') . ', binmail deliveries to a central mail spool in the usual mbox format, the /usr/{lib,sbin}/sendmail interface for mail injection, and the normal UNIX user database in /etc/passwd. There is a checklist for large sites moving from sendmail to qmail.
 
 What operating systems does qmail support?
 Answer: qmail works on practically all UNIX systems: AIX, BSD/OS, FreeBSD, HP/UX, Irix, Linux, NetBSD, OpenBSD, OSF/1, SunOS, Solaris, etc. It automatically adapts itself to new UNIX variants.
@@ -10548,7 +10544,7 @@ Answer: qmail works on practically all UNIX systems: AIX, BSD/OS, FreeBSD, HP/UX
 qmail does not support Windows NT.
 
 Is there really a cash reward for security holes?
-Answer: Yes. See ' . $this->return_crnrstn_text_link('cr.yp.to/qmail/guarantee.html', 'TEXT_ONLY', 'https://cr.yp.to/qmail/guarantee.html') . '.',
+Answer: Yes. See ' . $this->oCRNRSTN->return_crnrstn_text_link('cr.yp.to/qmail/guarantee.html', 'TEXT_ONLY', 'https://cr.yp.to/qmail/guarantee.html') . '.',
                                                         'TEXT' => 'D. J. Bernstein
 Internet mail
 qmail
@@ -10616,7 +10612,7 @@ Answer: Yes. See cr.yp.to/qmail/guarantee.html.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'session.save_path defines the argument which is passed to the save handler. If you choose the default files handler, this is the path where the files are created. See also ' . $this->return_crnrstn_text_link('session_save_path', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-save-path.php') . '.
+                                                        'HTML' => 'session.save_path defines the argument which is passed to the save handler. If you choose the default files handler, this is the path where the files are created. See also ' . $this->oCRNRSTN->return_crnrstn_text_link('session_save_path', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-save-path.php') . '.
 There is an optional N argument to this directive that determines the number of directory levels your session files will be spread around in. For example, setting to \'5;/tmp\' may end up creating a session file and location like /tmp/4/b/1/e/3/sess_4b1e384ad74619bd212e236e52a5a174If . In order to use N you must create all of these directories before use. A small shell script exists in ext/session to do this, it\'s called mod_files.sh, with a Windows version called mod_files.bat. Also note that if N is used and greater than 0 then automatic garbage collection will not be performed, see a copy of php.ini for further information. Also, if you use N, be sure to surround session.save_path in "quotes" because the separator (;) is also used for comments in php.ini.
 
 The file storage module creates files using mode 600 by default. This default can be changed with the optional MODE argument: N;MODE;/path where MODE is the octal representation of the mode. Setting MODE does not affect the process umask.
@@ -10672,7 +10668,7 @@ Only use N greater than 2 if you are absolutely certain that your site is large 
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'session.name specifies the name of the session which is used as cookie name. It should only contain alphanumeric characters. Defaults to PHPSESSID. See also ' . $this->return_crnrstn_text_link('session_name', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-name.php') . '.',
+                                                        'HTML' => 'session.name specifies the name of the session which is used as cookie name. It should only contain alphanumeric characters. Defaults to PHPSESSID. See also ' . $this->oCRNRSTN->return_crnrstn_text_link('session_name', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-name.php') . '.',
                                                         'TEXT' => 'session.name specifies the name of the session which is used as cookie name. It should only contain alphanumeric characters. Defaults to PHPSESSID. See also session_name().'
                     )));
 
@@ -10694,9 +10690,9 @@ Only use N greater than 2 if you are absolutely certain that your site is large 
                                                         array(
                                                         'HTML' => 'Get and/or set the current session name. session_name() returns the name of the current session. If name is given, session_name() will update the session name and return the old session name.
 
-If a new session name is supplied, session_name() modifies the HTTP cookie (and output content when session.transid is enabled). Once the HTTP cookie is sent, session_name() raises error. session_name() must be called before ' . $this->return_crnrstn_text_link('session_start', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-start.php') . ' for the session to work properly.
+If a new session name is supplied, session_name() modifies the HTTP cookie (and output content when session.transid is enabled). Once the HTTP cookie is sent, session_name() raises error. session_name() must be called before ' . $this->oCRNRSTN->return_crnrstn_text_link('session_start', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-start.php') . ' for the session to work properly.
 
-The session name is reset to the default value stored in session.name at request startup time. Thus, you need to call session_name() for every request (and before ' . $this->return_crnrstn_text_link('session_start', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-start.php') . ' is called).',
+The session name is reset to the default value stored in session.name at request startup time. Thus, you need to call session_name() for every request (and before ' . $this->oCRNRSTN->return_crnrstn_text_link('session_start', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-start.php') . ' is called).',
                                                         'TEXT' => 'Get and/or set the current session name. session_name() returns the name of the current session. If name is given, session_name() will update the session name and return the old session name.
 
 If a new session name is supplied, session_name() modifies the HTTP cookie (and output content when session.transid is enabled). Once the HTTP cookie is sent, session_name() raises error. session_name() must be called before session_start() for the session to work properly.
@@ -10718,7 +10714,7 @@ The session name is reset to the default value stored in session.name at request
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'session.save_handler defines the name of the handler which is used for storing and retrieving data associated with a session. Defaults to files. Note that individual extensions may register their own save_handlers; registered handlers can be obtained on a per-installation basis by referring to ' . $this->return_crnrstn_text_link('phpinfo', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.phpinfo.php') . '. See also ' . $this->return_crnrstn_text_link('session_set_save_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-set-save-handler.php') . '.',
+                                                        'HTML' => 'session.save_handler defines the name of the handler which is used for storing and retrieving data associated with a session. Defaults to files. Note that individual extensions may register their own save_handlers; registered handlers can be obtained on a per-installation basis by referring to ' . $this->oCRNRSTN->return_crnrstn_text_link('phpinfo', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.phpinfo.php') . '. See also ' . $this->oCRNRSTN->return_crnrstn_text_link('session_set_save_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-set-save-handler.php') . '.',
                                                         'TEXT' => 'session.save_handler defines the name of the handler which is used for storing and retrieving data associated with a session. Defaults to files. Note that individual extensions may register their own save_handlers; registered handlers can be obtained on a per-installation basis by referring to phpinfo(). See also session_set_save_handler().'
                     )));
 
@@ -10774,7 +10770,7 @@ The session name is reset to the default value stored in session.name at request
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'session.gc_probability in conjunction with session.gc_divisor is used to manage probability that the gc (garbage collection) routine is started. Defaults to 1. See ' . $this->return_crnrstn_text_link('session.gc_divisor', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.gc-divisor') . ' for details.',
+                                                        'HTML' => 'session.gc_probability in conjunction with session.gc_divisor is used to manage probability that the gc (garbage collection) routine is started. Defaults to 1. See ' . $this->oCRNRSTN->return_crnrstn_text_link('session.gc_divisor', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.gc-divisor') . ' for details.',
                                                         'TEXT' => 'session.gc_probability in conjunction with session.gc_divisor is used to manage probability that the gc (garbage collection) routine is started. Defaults to 1. See session.gc_divisor for details.'
                     )));
 
@@ -10810,9 +10806,9 @@ The session name is reset to the default value stored in session.name at request
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'session.gc_maxlifetime specifies the number of seconds after which data will be seen as \'garbage\' and potentially cleaned up. Garbage collection may occur during session start (depending on ' . $this->return_crnrstn_text_link('session.gc_probability', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.gc-probability') . ' and ' . $this->return_crnrstn_text_link('session.gc_divisor', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.gc-divisor') . '). Defaults to 1440 (24 minutes).
+                                                        'HTML' => 'session.gc_maxlifetime specifies the number of seconds after which data will be seen as \'garbage\' and potentially cleaned up. Garbage collection may occur during session start (depending on ' . $this->oCRNRSTN->return_crnrstn_text_link('session.gc_probability', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.gc-probability') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('session.gc_divisor', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.gc-divisor') . '). Defaults to 1440 (24 minutes).
 
-If different scripts have different values of session.gc_maxlifetime but share the same place for storing the session data then the script with the minimum value will be cleaning the data. In this case, use this directive together with ' . $this->return_crnrstn_text_link('session.save_path', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.save-path') . '.',
+If different scripts have different values of session.gc_maxlifetime but share the same place for storing the session data then the script with the minimum value will be cleaning the data. In this case, use this directive together with ' . $this->oCRNRSTN->return_crnrstn_text_link('session.save_path', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.save-path') . '.',
                                                         'TEXT' => 'session.gc_maxlifetime specifies the number of seconds after which data will be seen as \'garbage\' and potentially cleaned up. Garbage collection may occur during session start (depending on session.gc_probability and session.gc_divisor). Defaults to 1440 (24 minutes).
 
 If different scripts have different values of session.gc_maxlifetime but share the same place for storing the session data then the script with the minimum value will be cleaning the data. In this case, use this directive together with session.save_path.'
@@ -10832,7 +10828,7 @@ If different scripts have different values of session.gc_maxlifetime but share t
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'session.serialize_handler defines the name of the handler which is used to serialize/deserialize data. PHP serialize format (name php_serialize), PHP internal formats (name php and php_binary) and WDDX are supported (name wddx). WDDX is only available, if PHP is compiled with ' . $this->return_crnrstn_text_link('WDDX support', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.wddx.php') . '. php_serialize uses plain serialize/unserialize function internally and does not have limitations that php and php_binary have. Older serialize handlers cannot store numeric index nor string index contains special characters (| and !) in $_SESSION. Use php_serialize to avoid numeric index or special character errors at script shutdown. Defaults to php.',
+                                                        'HTML' => 'session.serialize_handler defines the name of the handler which is used to serialize/deserialize data. PHP serialize format (name php_serialize), PHP internal formats (name php and php_binary) and WDDX are supported (name wddx). WDDX is only available, if PHP is compiled with ' . $this->oCRNRSTN->return_crnrstn_text_link('WDDX support', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.wddx.php') . '. php_serialize uses plain serialize/unserialize function internally and does not have limitations that php and php_binary have. Older serialize handlers cannot store numeric index nor string index contains special characters (| and !) in $_SESSION. Use php_serialize to avoid numeric index or special character errors at script shutdown. Defaults to php.',
                                                         'TEXT' => 'session.serialize_handler defines the name of the handler which is used to serialize/deserialize data. PHP serialize format (name php_serialize), PHP internal formats (name php and php_binary) and WDDX are supported (name wddx). WDDX is only available, if PHP is compiled with WDDX support. php_serialize uses plain serialize/unserialize function internally and does not have limitations that php and php_binary have. Older serialize handlers cannot store numeric index nor string index contains special characters (| and !) in $_SESSION. Use php_serialize to avoid numeric index or special character errors at script shutdown. Defaults to php.'
                     )));
 
@@ -10853,12 +10849,12 @@ If different scripts have different values of session.gc_maxlifetime but share t
                                                         array(
                                                         'HTML' => 'Table of Contents
 
-' . $this->return_crnrstn_text_link('wddx_add_vars', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.wddx-add-vars.php') . ' — Add variables to a WDDX packet with the specified ID
-' . $this->return_crnrstn_text_link('wddx_deserialize', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.wddx-deserialize.php') . ' — Unserializes a WDDX packet
-' . $this->return_crnrstn_text_link('wddx_packet_end', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.wddx-packet-end.php') . ' — Ends a WDDX packet with the specified ID
-' . $this->return_crnrstn_text_link('wddx_packet_start', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.wddx-packet-start.php') . ' — Starts a new WDDX packet with structure inside it
-' . $this->return_crnrstn_text_link('wddx_serialize_value', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.wddx-serialize-value.php') . ' — Serialize a single value into a WDDX packet
-' . $this->return_crnrstn_text_link('wddx_serialize_vars', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.wddx-serialize-vars.php') . ' — Serialize variables into a WDDX packet',
+' . $this->oCRNRSTN->return_crnrstn_text_link('wddx_add_vars', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.wddx-add-vars.php') . ' — Add variables to a WDDX packet with the specified ID
+' . $this->oCRNRSTN->return_crnrstn_text_link('wddx_deserialize', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.wddx-deserialize.php') . ' — Unserializes a WDDX packet
+' . $this->oCRNRSTN->return_crnrstn_text_link('wddx_packet_end', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.wddx-packet-end.php') . ' — Ends a WDDX packet with the specified ID
+' . $this->oCRNRSTN->return_crnrstn_text_link('wddx_packet_start', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.wddx-packet-start.php') . ' — Starts a new WDDX packet with structure inside it
+' . $this->oCRNRSTN->return_crnrstn_text_link('wddx_serialize_value', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.wddx-serialize-value.php') . ' — Serialize a single value into a WDDX packet
+' . $this->oCRNRSTN->return_crnrstn_text_link('wddx_serialize_vars', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.wddx-serialize-vars.php') . ' — Serialize variables into a WDDX packet',
                                                         'TEXT' => 'Table of Contents
 
 wddx_add_vars — Add variables to a WDDX packet with the specified ID
@@ -10883,7 +10879,7 @@ wddx_serialize_vars — Serialize variables into a WDDX packet'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'session.cookie_lifetime specifies the lifetime of the cookie in seconds which is sent to the browser. The value 0 means "until the browser is closed." Defaults to 0. See also ' . $this->return_crnrstn_text_link('session_get_cookie_params', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-get-cookie-params.php') . ' and ' . $this->return_crnrstn_text_link('session_set_cookie_params', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-set-cookie-params.php') . '.
+                                                        'HTML' => 'session.cookie_lifetime specifies the lifetime of the cookie in seconds which is sent to the browser. The value 0 means "until the browser is closed." Defaults to 0. See also ' . $this->oCRNRSTN->return_crnrstn_text_link('session_get_cookie_params', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-get-cookie-params.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('session_set_cookie_params', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-set-cookie-params.php') . '.
 
 The expiration timestamp is set relative to the server time, which is not necessarily the same as the time in the client\'s browser.',
                                                         'TEXT' => 'session.cookie_lifetime specifies the lifetime of the cookie in seconds which is sent to the browser. The value 0 means "until the browser is closed." Defaults to 0. See also session_get_cookie_params() and session_set_cookie_params().
@@ -10927,9 +10923,9 @@ The expiration timestamp is set relative to the server time, which is not necess
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Set the session cookie parameters. Set cookie parameters defined in the php.ini file. The effect of this function only lasts for the duration of the script. Thus, you need to call session_set_cookie_params() for every request and before ' . $this->return_crnrstn_text_link('session_start', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-start.php') . ' is called.
+                                                        'HTML' => 'Set the session cookie parameters. Set cookie parameters defined in the php.ini file. The effect of this function only lasts for the duration of the script. Thus, you need to call session_set_cookie_params() for every request and before ' . $this->oCRNRSTN->return_crnrstn_text_link('session_start', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-start.php') . ' is called.
 
-This function updates the runtime ini values of the corresponding PHP ini configuration keys which can be retrieved with the ' . $this->return_crnrstn_text_link('ini_get', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-get.php') . '.',
+This function updates the runtime ini values of the corresponding PHP ini configuration keys which can be retrieved with the ' . $this->oCRNRSTN->return_crnrstn_text_link('ini_get', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.ini-get.php') . '.',
                                                         'TEXT' => 'Set the session cookie parameters. Set cookie parameters defined in the php.ini file. The effect of this function only lasts for the duration of the script. Thus, you need to call session_set_cookie_params() for every request and before session_start() is called.
 
 This function updates the runtime ini values of the corresponding PHP ini configuration keys which can be retrieved with the ini_get().'
@@ -10949,7 +10945,7 @@ This function updates the runtime ini values of the corresponding PHP ini config
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'session.cookie_path specifies path to set in the session cookie. Defaults to /. See also ' . $this->return_crnrstn_text_link('session_get_cookie_params', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-get-cookie-params.php') . ' and ' . $this->return_crnrstn_text_link('session_set_cookie_params', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-set-cookie-params.php') . '.',
+                                                        'HTML' => 'session.cookie_path specifies path to set in the session cookie. Defaults to /. See also ' . $this->oCRNRSTN->return_crnrstn_text_link('session_get_cookie_params', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-get-cookie-params.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('session_set_cookie_params', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-set-cookie-params.php') . '.',
                                                         'TEXT' => 'session.cookie_path specifies path to set in the session cookie. Defaults to /. See also session_get_cookie_params() and session_set_cookie_params().'
                     )));
 
@@ -10967,7 +10963,7 @@ This function updates the runtime ini values of the corresponding PHP ini config
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'session.cookie_domain specifies the domain to set in the session cookie. Default is none at all meaning the host name of the server which generated the cookie according to cookies specification. See also ' . $this->return_crnrstn_text_link('session_get_cookie_params', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-get-cookie-params.php') . ' and ' . $this->return_crnrstn_text_link('session_set_cookie_params', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-set-cookie-params.php') . '.',
+                                                        'HTML' => 'session.cookie_domain specifies the domain to set in the session cookie. Default is none at all meaning the host name of the server which generated the cookie according to cookies specification. See also ' . $this->oCRNRSTN->return_crnrstn_text_link('session_get_cookie_params', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-get-cookie-params.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('session_set_cookie_params', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-set-cookie-params.php') . '.',
                                                         'TEXT' => 'session.cookie_domain specifies the domain to set in the session cookie. Default is none at all meaning the host name of the server which generated the cookie according to cookies specification. See also session_get_cookie_params() and session_set_cookie_params().'
                     )));
 
@@ -10985,7 +10981,7 @@ This function updates the runtime ini values of the corresponding PHP ini config
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'session.cookie_secure specifies whether cookies should only be sent over secure connections. Defaults to off. See also ' . $this->return_crnrstn_text_link('session_get_cookie_params', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-get-cookie-params.php') . ' and ' . $this->return_crnrstn_text_link('session_set_cookie_params', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-set-cookie-params.php') . '.',
+                                                        'HTML' => 'session.cookie_secure specifies whether cookies should only be sent over secure connections. Defaults to off. See also ' . $this->oCRNRSTN->return_crnrstn_text_link('session_get_cookie_params', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-get-cookie-params.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('session_set_cookie_params', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-set-cookie-params.php') . '.',
                                                         'TEXT' => 'session.cookie_secure specifies whether cookies should only be sent over secure connections. Defaults to off. See also session_get_cookie_params() and session_set_cookie_params().'
                     )));
 
@@ -11041,9 +11037,9 @@ This function updates the runtime ini values of the corresponding PHP ini config
                                                         array(
                                                         'HTML' => 'session.use_strict_mode specifies whether the module will use strict session id mode. If this mode is enabled, the module does not accept uninitialized session IDs. If an uninitialized session ID is sent from the browser, a new session ID is sent to the browser. Applications are protected from session fixation via session adoption with strict mode. Defaults to 0 (disabled).
 
-Enabling session.use_strict_mode is mandatory for general session security. All sites are advised to enable this. See ' . $this->return_crnrstn_text_link('session_create_id', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-create-id.php') . ' example code for more details.
+Enabling session.use_strict_mode is mandatory for general session security. All sites are advised to enable this. See ' . $this->oCRNRSTN->return_crnrstn_text_link('session_create_id', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-create-id.php') . ' example code for more details.
 
-If a custom session handler registered via ' . $this->return_crnrstn_text_link('session_set_save_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-set-save-handler.php') . ' does not implement ' . $this->return_crnrstn_text_link('SessionUpdateTimestampHandlerInterface::validateId()', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/sessionupdatetimestamphandlerinterface.validateid.php') . ', nor supplies the validate_sid callback, respectively, strict session ID mode is effectively disabled, regardless of the value of this directive. Particularly note that ' . $this->return_crnrstn_text_link('SessionHandler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/class.sessionhandler.php') . ' does not implement SessionHandler::validateId().',
+If a custom session handler registered via ' . $this->oCRNRSTN->return_crnrstn_text_link('session_set_save_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-set-save-handler.php') . ' does not implement ' . $this->oCRNRSTN->return_crnrstn_text_link('SessionUpdateTimestampHandlerInterface::validateId()', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/sessionupdatetimestamphandlerinterface.validateid.php') . ', nor supplies the validate_sid callback, respectively, strict session ID mode is effectively disabled, regardless of the value of this directive. Particularly note that ' . $this->oCRNRSTN->return_crnrstn_text_link('SessionHandler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/class.sessionhandler.php') . ' does not implement SessionHandler::validateId().',
                                                         'TEXT' => 'session.use_strict_mode specifies whether the module will use strict session id mode. If this mode is enabled, the module does not accept uninitialized session IDs. If an uninitialized session ID is sent from the browser, a new session ID is sent to the browser. Applications are protected from session fixation via session adoption with strict mode. Defaults to 0 (disabled).
 
 Enabling session.use_strict_mode is mandatory for general session security. All sites are advised to enable this. See session_create_id() example code for more details.
@@ -11098,7 +11094,7 @@ It is important to use the same user ID of your web server for GC task script. O
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Validates a given session ID. A session ID is valid, if a session with that ID already exists. This function is automatically executed when a session is to be started, a session ID is supplied and ' . $this->return_crnrstn_text_link('session.use_strict_mode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.use-strict-mode') . ' is enabled.',
+                                                        'HTML' => 'Validates a given session ID. A session ID is valid, if a session with that ID already exists. This function is automatically executed when a session is to be started, a session ID is supplied and ' . $this->oCRNRSTN->return_crnrstn_text_link('session.use_strict_mode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.use-strict-mode') . ' is enabled.',
                                                         'TEXT' => 'Validates a given session ID. A session ID is valid, if a session with that ID already exists. This function is automatically executed when a session is to be started, a session ID is supplied and session.use_strict_mode is enabled.'
                     )));
 
@@ -11116,17 +11112,17 @@ It is important to use the same user ID of your web server for GC task script. O
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'SessionHandler is a special class that can be used to expose the current internal PHP session save handler by inheritance. There are seven methods which wrap the seven internal session save handler callbacks (open, close, read, write, destroy, gc and create_sid). By default, this class will wrap whatever internal save handler is set as defined by the ' . $this->return_crnrstn_text_link('session.save_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.save-handler') . ' configuration directive which is usually files by default. Other internal session save handlers are provided by PHP extensions such as SQLite (as sqlite), Memcache (as memcache), and Memcached (as memcached).
+                                                        'HTML' => 'SessionHandler is a special class that can be used to expose the current internal PHP session save handler by inheritance. There are seven methods which wrap the seven internal session save handler callbacks (open, close, read, write, destroy, gc and create_sid). By default, this class will wrap whatever internal save handler is set as defined by the ' . $this->oCRNRSTN->return_crnrstn_text_link('session.save_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.save-handler') . ' configuration directive which is usually files by default. Other internal session save handlers are provided by PHP extensions such as SQLite (as sqlite), Memcache (as memcache), and Memcached (as memcached).
 
-When a plain instance of SessionHandler is set as the save handler using ' . $this->return_crnrstn_text_link('session_set_save_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-set-save-handler.php') . ' it will wrap the current save handlers. A class extending from SessionHandler allows you to override the methods or intercept or filter them by calls the parent class methods which ultimately wrap the internal PHP session handlers.
+When a plain instance of SessionHandler is set as the save handler using ' . $this->oCRNRSTN->return_crnrstn_text_link('session_set_save_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-set-save-handler.php') . ' it will wrap the current save handlers. A class extending from SessionHandler allows you to override the methods or intercept or filter them by calls the parent class methods which ultimately wrap the internal PHP session handlers.
 
 This allows you, for example, to intercept the read and write methods to encrypt/decrypt the session data and then pass the result to and from the parent class. Alternatively one might chose to entirely override a method like the garbage collection callback gc.
 
 Because the SessionHandler wraps the current internal save handler methods, the above example of encryption can be applied to any internal save handler without having to know the internals of the handlers.
 
-To use this class, first set the save handler you wish to expose using ' . $this->return_crnrstn_text_link('session.save_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.save-handler') . ' and then pass an instance of SessionHandler or one extending it to ' . $this->return_crnrstn_text_link('session_set_save_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-set-save-handler.php') . '.
+To use this class, first set the save handler you wish to expose using ' . $this->oCRNRSTN->return_crnrstn_text_link('session.save_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.save-handler') . ' and then pass an instance of SessionHandler or one extending it to ' . $this->oCRNRSTN->return_crnrstn_text_link('session_set_save_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-set-save-handler.php') . '.
 
-Please note that the callback methods of this class are designed to be called internally by PHP and are not meant to be called from user-space code. The return values are equally processed internally by PHP. For more information on the session workflow, please refer to ' . $this->return_crnrstn_text_link('session_set_save_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-set-save-handler.php') . '.',
+Please note that the callback methods of this class are designed to be called internally by PHP and are not meant to be called from user-space code. The return values are equally processed internally by PHP. For more information on the session workflow, please refer to ' . $this->oCRNRSTN->return_crnrstn_text_link('session_set_save_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-set-save-handler.php') . '.',
                                                         'TEXT' => 'SessionHandler is a special class that can be used to expose the current internal PHP session save handler by inheritance. There are seven methods which wrap the seven internal session save handler callbacks (open, close, read, write, destroy, gc and create_sid). By default, this class will wrap whatever internal save handler is set as defined by the session.save_handler configuration directive which is usually files by default. Other internal session save handlers are provided by PHP extensions such as SQLite (as sqlite), Memcache (as memcache), and Memcached (as memcached).
 
 When a plain instance of SessionHandler is set as the save handler using session_set_save_handler() it will wrap the current save handlers. A class extending from SessionHandler allows you to override the methods or intercept or filter them by calls the parent class methods which ultimately wrap the internal PHP session handlers.
@@ -11208,7 +11204,7 @@ Please note that the callback methods of this class are designed to be called in
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'session.cache_limiter specifies the cache control method used for session pages. It may be one of the following values: nocache, private, private_no_expire, or public. Defaults to nocache. See also the ' . $this->return_crnrstn_text_link('session_cache_limiter', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-cache-limiter.php') . ' documentation for information about what these values mean.',
+                                                        'HTML' => 'session.cache_limiter specifies the cache control method used for session pages. It may be one of the following values: nocache, private, private_no_expire, or public. Defaults to nocache. See also the ' . $this->oCRNRSTN->return_crnrstn_text_link('session_cache_limiter', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-cache-limiter.php') . ' documentation for information about what these values mean.',
                                                         'TEXT' => 'session.cache_limiter specifies the cache control method used for session pages. It may be one of the following values: nocache, private, private_no_expire, or public. Defaults to nocache. See also the session_cache_limiter() documentation for information about what these values mean.'
                     )));
 
@@ -11236,7 +11232,7 @@ In private mode, the Expire header sent to the client may cause confusion for so
 
 Setting the cache limiter to \'\' will turn off automatic sending of cache headers entirely.
 
-The cache limiter is reset to the default value stored in session.cache_limiter at request startup time. Thus, you need to call ' . $this->return_crnrstn_text_link('session_cache_limiter', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.cache-limiter') . ' for every request (and before ' . $this->return_crnrstn_text_link('session_start', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-start.php') . ' is called).',
+The cache limiter is reset to the default value stored in session.cache_limiter at request startup time. Thus, you need to call ' . $this->oCRNRSTN->return_crnrstn_text_link('session_cache_limiter', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.cache-limiter') . ' for every request (and before ' . $this->oCRNRSTN->return_crnrstn_text_link('session_start', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-start.php') . ' is called).',
                                                         'TEXT' => 'Get and/or set the current cache limiter. session_cache_limiter() returns the name of the current cache limiter.
 
 The cache limiter defines which cache control HTTP headers are sent to the client. These headers determine the rules by which the page content may be cached by the client and intermediate proxies. Setting the cache limiter to nocache disallows any client/proxy caching. A value of public permits caching by proxies and the client, whereas private disallows caching by proxies and permits the client to cache the contents.
@@ -11262,7 +11258,7 @@ The cache limiter is reset to the default value stored in session.cache_limiter 
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'session.cache_expire specifies time-to-live for cached session pages in minutes, this has no effect for nocache limiter. Defaults to 180. See also ' . $this->return_crnrstn_text_link('session_cache_expire', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-cache-expire.php') . '.',
+                                                        'HTML' => 'session.cache_expire specifies time-to-live for cached session pages in minutes, this has no effect for nocache limiter. Defaults to 180. See also ' . $this->oCRNRSTN->return_crnrstn_text_link('session_cache_expire', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-cache-expire.php') . '.',
                                                         'TEXT' => 'session.cache_expire specifies time-to-live for cached session pages in minutes, this has no effect for nocache limiter. Defaults to 180. See also session_cache_expire().'
                     )));
 
@@ -11284,7 +11280,7 @@ The cache limiter is reset to the default value stored in session.cache_limiter 
                                                         array(
                                                         'HTML' => 'Get and/or set current cache expire. session_cache_expire() returns the current setting of session.cache_expire.
 
-The cache expire is reset to the default value of 180 stored in ' . $this->return_crnrstn_text_link('session.cache_expire', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.cache-expire') . ' at request startup time. Thus, you need to call session_cache_expire() for every request (and before ' . $this->return_crnrstn_text_link('session_start', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-start.php') . ' is called).',
+The cache expire is reset to the default value of 180 stored in ' . $this->oCRNRSTN->return_crnrstn_text_link('session.cache_expire', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.cache-expire') . ' at request startup time. Thus, you need to call session_cache_expire() for every request (and before ' . $this->oCRNRSTN->return_crnrstn_text_link('session_start', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.session-start.php') . ' is called).',
                                                         'TEXT' => 'Get and/or set current cache expire. session_cache_expire() returns the current setting of session.cache_expire.
 
 The cache expire is reset to the default value of 180 stored in session.cache_expire at request startup time. Thus, you need to call session_cache_expire() for every request (and before session_start() is called).'
@@ -11306,7 +11302,7 @@ The cache expire is reset to the default value of 180 stored in session.cache_ex
                                                         array(
                                                         'HTML' => 'session.use_trans_sid whether transparent sid support is enabled or not. Defaults to 0 (disabled).
 
-URL based session management has additional security risks compared to cookie based session management. Users may send a URL that contains an active session ID to their friends by email or users may save a URL that contains a session ID to their bookmarks and access your site with the same session ID always, for example. Since PHP 7.1.0, full URL path, e.g. https://php.net/, is handled by trans sid feature. Previous PHP handled relative URL path only. Rewrite target hosts are defined by ' . $this->return_crnrstn_text_link('session.trans_sid_hosts', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.trans-sid-hosts') . '.',
+URL based session management has additional security risks compared to cookie based session management. Users may send a URL that contains an active session ID to their friends by email or users may save a URL that contains a session ID to their bookmarks and access your site with the same session ID always, for example. Since PHP 7.1.0, full URL path, e.g. https://php.net/, is handled by trans sid feature. Previous PHP handled relative URL path only. Rewrite target hosts are defined by ' . $this->oCRNRSTN->return_crnrstn_text_link('session.trans_sid_hosts', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.trans-sid-hosts') . '.',
                                                         'TEXT' => 'session.use_trans_sid whether transparent sid support is enabled or not. Defaults to 0 (disabled).
 
 URL based session management has additional security risks compared to cookie based session management. Users may send a URL that contains an active session ID to their friends by email or users may save a URL that contains a session ID to their bookmarks and access your site with the same session ID always, for example. Since PHP 7.1.0, full URL path, e.g. https://php.net/, is handled by trans sid feature. Previous PHP handled relative URL path only. Rewrite target hosts are defined by session.trans_sid_hosts.'
@@ -11366,9 +11362,9 @@ Before PHP 7.1.0, url_rewriter.tags was used for this purpose. Since PHP 7.1.0, 
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'url_rewriter.tags specifies which HTML tags are rewritten by ' . $this->return_crnrstn_text_link('output_add_rewrite_var', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.output-add-rewrite-var.php') . ' values. Defaults to a=href,area=href,frame=src,input=src,form= form is special tag. &lt;input hidden="session_id" name="session_name"&gt; is added as form variable.
+                                                        'HTML' => 'url_rewriter.tags specifies which HTML tags are rewritten by ' . $this->oCRNRSTN->return_crnrstn_text_link('output_add_rewrite_var', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.output-add-rewrite-var.php') . ' values. Defaults to a=href,area=href,frame=src,input=src,form= form is special tag. &lt;input hidden="session_id" name="session_name"&gt; is added as form variable.
 
-Before PHP 7.1.0, ' . $this->return_crnrstn_text_link('url_rewriter.tags', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/outcontrol.configuration.php#ini.url-rewriter.tags') . ' was used to specify ' . $this->return_crnrstn_text_link('session.trans_sid_tags', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.trans-sid-tags') . '. As of PHP 7.1.0, fieldset is no longer considered as special tag.',
+Before PHP 7.1.0, ' . $this->oCRNRSTN->return_crnrstn_text_link('url_rewriter.tags', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/outcontrol.configuration.php#ini.url-rewriter.tags') . ' was used to specify ' . $this->oCRNRSTN->return_crnrstn_text_link('session.trans_sid_tags', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.trans-sid-tags') . '. As of PHP 7.1.0, fieldset is no longer considered as special tag.',
                                                         'TEXT' => 'url_rewriter.tags specifies which HTML tags are rewritten by output_add_rewrite_var() values. Defaults to a=href,area=href,frame=src,input=src,form= form is special tag. <input hidden="session_id" name="session_name"> is added as form variable.
 
 Before PHP 7.1.0, url_rewriter.tags was used to specify session.trans_sid_tags. As of PHP 7.1.0, fieldset is no longer considered as special tag.'
@@ -11436,7 +11432,7 @@ This setting is introduced in PHP 7.1.0.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Enables upload progress tracking, populating the ' . $this->return_crnrstn_text_link('$_SESSION', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.session.php') . ' variable. Defaults to 1, enabled.',
+                                                        'HTML' => 'Enables upload progress tracking, populating the ' . $this->oCRNRSTN->return_crnrstn_text_link('$_SESSION', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.session.php') . ' variable. Defaults to 1, enabled.',
                                                         'TEXT' => 'Enables upload progress tracking, populating the $_SESSION variable. Defaults to 1, enabled.'
                     )));
 
@@ -11457,7 +11453,7 @@ This setting is introduced in PHP 7.1.0.'
                                                         array(
                                                         'HTML' => 'Session variables
 
-An associative array containing session variables available to the current script. See the ' . $this->return_crnrstn_text_link('Session functions', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.session.php') . ' documentation for more information on how this is used.
+An associative array containing session variables available to the current script. See the ' . $this->oCRNRSTN->return_crnrstn_text_link('Session functions', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.session.php') . ' documentation for more information on how this is used.
 
 This is a \'superglobal\', or automatic global, variable. This simply means that it is available in all scopes throughout a script. There is no need to do global $variable; to access it within functions or methods.',
                                                         'TEXT' => 'Session variables
@@ -11503,7 +11499,7 @@ It is highly recommended to keep this feature enabled.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'A prefix used for the upload progress key in the ' . $this->return_crnrstn_text_link('$_SESSION', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.session.php') . '. This key will be concatenated with the value of $_POST[ini_get(&quot;session.upload_progress.name&quot;)] to provide a unique index. Defaults to &quot;upload_progress_&quot;.',
+                                                        'HTML' => 'A prefix used for the upload progress key in the ' . $this->oCRNRSTN->return_crnrstn_text_link('$_SESSION', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.session.php') . '. This key will be concatenated with the value of $_POST[ini_get(&quot;session.upload_progress.name&quot;)] to provide a unique index. Defaults to &quot;upload_progress_&quot;.',
                                                         'TEXT' => 'A prefix used for the upload progress key in the $_SESSION. This key will be concatenated with the value of $_POST[ini_get("session.upload_progress.name")] to provide a unique index. Defaults to "upload_progress_".'
                     )));
 
@@ -11521,7 +11517,7 @@ It is highly recommended to keep this feature enabled.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The name of the key to be used in ' . $this->return_crnrstn_text_link('$_SESSION', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.session.php') . ' storing the progress information. See also ' . $this->return_crnrstn_text_link('session.upload_progress.prefix', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.upload-progress.prefix') . '. If $_POST[ini_get(&quot;session.upload_progress.name&quot;)] is not passed or available, upload progressing will not be recorded. Defaults to &quot;PHP_SESSION_UPLOAD_PROGRESS&quot;.',
+                                                        'HTML' => 'The name of the key to be used in ' . $this->oCRNRSTN->return_crnrstn_text_link('$_SESSION', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.session.php') . ' storing the progress information. See also ' . $this->oCRNRSTN->return_crnrstn_text_link('session.upload_progress.prefix', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.upload-progress.prefix') . '. If $_POST[ini_get(&quot;session.upload_progress.name&quot;)] is not passed or available, upload progressing will not be recorded. Defaults to &quot;PHP_SESSION_UPLOAD_PROGRESS&quot;.',
                                                         'TEXT' => 'The name of the key to be used in $_SESSION storing the progress information. See also session.upload_progress.prefix. If $_POST[ini_get("session.upload_progress.name")] is not passed or available, upload progressing will not be recorded. Defaults to "PHP_SESSION_UPLOAD_PROGRESS".'
                     )));
 
@@ -11594,9 +11590,9 @@ It is highly recommended to keep this feature enabled.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'When the ' . $this->return_crnrstn_text_link('session.upload_progress.enabled', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.upload-progress.enabled') . ' INI option is enabled, PHP will be able to track the upload progress of individual files being uploaded. This information isn\'t particularly useful for the actual upload request itself, but during the file upload an application can send a POST request to a separate endpoint (via XHR for example) to check the status.
+                                                        'HTML' => 'When the ' . $this->oCRNRSTN->return_crnrstn_text_link('session.upload_progress.enabled', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.upload-progress.enabled') . ' INI option is enabled, PHP will be able to track the upload progress of individual files being uploaded. This information isn\'t particularly useful for the actual upload request itself, but during the file upload an application can send a POST request to a separate endpoint (via XHR for example) to check the status.
 
-The upload progress will be available in the ' . $this->return_crnrstn_text_link('$_SESSION', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.session.php') . ' superglobal when an upload is in progress, and when POSTing a variable of the same name as the ' . $this->return_crnrstn_text_link('session.upload_progress.name', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.upload-progress.name') . ' INI setting is set to. When PHP detects such POST requests, it will populate an array in the ' . $this->return_crnrstn_text_link('$_SESSION', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.session.php') . ', where the index is a concatenated value of the ' . $this->return_crnrstn_text_link('session.upload_progress.prefix', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.upload-progress.prefix') . ' and ' . $this->return_crnrstn_text_link('session.upload_progress.name', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.upload-progress.name') . ' INI options. ',
+The upload progress will be available in the ' . $this->oCRNRSTN->return_crnrstn_text_link('$_SESSION', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.session.php') . ' superglobal when an upload is in progress, and when POSTing a variable of the same name as the ' . $this->oCRNRSTN->return_crnrstn_text_link('session.upload_progress.name', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.upload-progress.name') . ' INI setting is set to. When PHP detects such POST requests, it will populate an array in the ' . $this->oCRNRSTN->return_crnrstn_text_link('$_SESSION', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.session.php') . ', where the index is a concatenated value of the ' . $this->oCRNRSTN->return_crnrstn_text_link('session.upload_progress.prefix', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.upload-progress.prefix') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('session.upload_progress.name', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.upload-progress.name') . ' INI options. ',
                                                         'TEXT' => 'When the session.upload_progress.enabled INI option is enabled, PHP will be able to track the upload progress of individual files being uploaded. This information isn\'t particularly useful for the actual upload request itself, but during the file upload an application can send a POST request to a separate endpoint (via XHR for example) to check the status.
 
 The upload progress will be available in the $_SESSION superglobal when an upload is in progress, and when POSTing a variable of the same name as the session.upload_progress.name INI setting is set to. When PHP detects such POST requests, it will populate an array in the $_SESSION, where the index is a concatenated value of the session.upload_progress.prefix and session.upload_progress.name INI options. '
@@ -11618,7 +11614,7 @@ The upload progress will be available in the $_SESSION superglobal when an uploa
                                                         array(
                                                         'HTML' => 'session.hash_function allows you to specify the hash algorithm used to generate the session IDs. \'0\' means MD5 (128 bits) and \'1\' means SHA-1 (160 bits).
 
-It is also possible to specify any of the algorithms provided by the ' . $this->return_crnrstn_text_link('hash extension', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.hash.php') . ' (if it is available), like sha512 or whirlpool. A complete list of supported algorithms can be obtained with the ' . $this->return_crnrstn_text_link('hash_algos', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-algos.php') . ' function.
+It is also possible to specify any of the algorithms provided by the ' . $this->oCRNRSTN->return_crnrstn_text_link('hash extension', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ref.hash.php') . ' (if it is available), like sha512 or whirlpool. A complete list of supported algorithms can be obtained with the ' . $this->oCRNRSTN->return_crnrstn_text_link('hash_algos', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-algos.php') . ' function.
 
 Removed in PHP 7.1.0.',
                                                         'TEXT' => 'session.hash_function allows you to specify the hash algorithm used to generate the session IDs. \'0\' means MD5 (128 bits) and \'1\' means SHA-1 (160 bits).
@@ -11645,21 +11641,21 @@ Removed in PHP 7.1.0.'
                                                         array(
                                                         'HTML' => 'Table of Contents
 
-' . $this->return_crnrstn_text_link('hash_algos', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-algos.php') . ' — Return a list of registered hashing algorithms
-' . $this->return_crnrstn_text_link('hash_copy', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-copy.php') . ' — Copy hashing context
-' . $this->return_crnrstn_text_link('hash_equals', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-equals.php') . ' — Timing attack safe string comparison
-' . $this->return_crnrstn_text_link('hash_file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-file.php') . ' — Generate a hash value using the contents of a given file
-' . $this->return_crnrstn_text_link('hash_final', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-final.php') . ' — Finalize an incremental hash and return resulting digest
-' . $this->return_crnrstn_text_link('hash_hkdf', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-hkdf.php') . ' — Generate a HKDF key derivation of a supplied key input
-' . $this->return_crnrstn_text_link('hash_hmac_algos', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-hmac-algos.php') . ' — Return a list of registered hashing algorithms suitable for hash_hmac
-' . $this->return_crnrstn_text_link('hash_hmac_file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-hmac-file.php') . ' — Generate a keyed hash value using the HMAC method and the contents of a given file
-' . $this->return_crnrstn_text_link('hash_hmac', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-hmac.php') . ' — Generate a keyed hash value using the HMAC method
-' . $this->return_crnrstn_text_link('hash_init', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-init.php') . ' — Initialize an incremental hashing context
-' . $this->return_crnrstn_text_link('hash_pbkdf2', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-pbkdf2.php') . ' — Generate a PBKDF2 key derivation of a supplied password
-' . $this->return_crnrstn_text_link('hash_update_file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-update-file.php') . ' — Pump data into an active hashing context from a file
-' . $this->return_crnrstn_text_link('hash_update_stream', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-update-stream.php') . ' — Pump data into an active hashing context from an open stream
-' . $this->return_crnrstn_text_link('hash_update', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-update.php') . ' — Pump data into an active hashing context
-' . $this->return_crnrstn_text_link('hash', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash.php') . ' — Generate a hash value (message digest)',
+' . $this->oCRNRSTN->return_crnrstn_text_link('hash_algos', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-algos.php') . ' — Return a list of registered hashing algorithms
+' . $this->oCRNRSTN->return_crnrstn_text_link('hash_copy', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-copy.php') . ' — Copy hashing context
+' . $this->oCRNRSTN->return_crnrstn_text_link('hash_equals', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-equals.php') . ' — Timing attack safe string comparison
+' . $this->oCRNRSTN->return_crnrstn_text_link('hash_file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-file.php') . ' — Generate a hash value using the contents of a given file
+' . $this->oCRNRSTN->return_crnrstn_text_link('hash_final', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-final.php') . ' — Finalize an incremental hash and return resulting digest
+' . $this->oCRNRSTN->return_crnrstn_text_link('hash_hkdf', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-hkdf.php') . ' — Generate a HKDF key derivation of a supplied key input
+' . $this->oCRNRSTN->return_crnrstn_text_link('hash_hmac_algos', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-hmac-algos.php') . ' — Return a list of registered hashing algorithms suitable for hash_hmac
+' . $this->oCRNRSTN->return_crnrstn_text_link('hash_hmac_file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-hmac-file.php') . ' — Generate a keyed hash value using the HMAC method and the contents of a given file
+' . $this->oCRNRSTN->return_crnrstn_text_link('hash_hmac', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-hmac.php') . ' — Generate a keyed hash value using the HMAC method
+' . $this->oCRNRSTN->return_crnrstn_text_link('hash_init', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-init.php') . ' — Initialize an incremental hashing context
+' . $this->oCRNRSTN->return_crnrstn_text_link('hash_pbkdf2', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-pbkdf2.php') . ' — Generate a PBKDF2 key derivation of a supplied password
+' . $this->oCRNRSTN->return_crnrstn_text_link('hash_update_file', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-update-file.php') . ' — Pump data into an active hashing context from a file
+' . $this->oCRNRSTN->return_crnrstn_text_link('hash_update_stream', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-update-stream.php') . ' — Pump data into an active hashing context from an open stream
+' . $this->oCRNRSTN->return_crnrstn_text_link('hash_update', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-update.php') . ' — Pump data into an active hashing context
+' . $this->oCRNRSTN->return_crnrstn_text_link('hash', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash.php') . ' — Generate a hash value (message digest)',
                                                         'TEXT' => 'Table of Contents
 
 hash_algos — Return a list of registered hashing algorithms
@@ -11797,7 +11793,7 @@ This directive does not affect the shorthand <?=, which is always available.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Used under Windows only: host name or IP address of the SMTP server PHP should use for mail sent with the ' . $this->return_crnrstn_text_link('mail', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mail.php') . ' function.',
+                                                        'HTML' => 'Used under Windows only: host name or IP address of the SMTP server PHP should use for mail sent with the ' . $this->oCRNRSTN->return_crnrstn_text_link('mail', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mail.php') . ' function.',
                                                         'TEXT' => 'Used under Windows only: host name or IP address of the SMTP server PHP should use for mail sent with the mail() function.'
                     )));
 
@@ -11815,7 +11811,7 @@ This directive does not affect the shorthand <?=, which is always available.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Used under Windows only: Number of the port to connect to the server specified with the SMTP setting when sending mail with ' . $this->return_crnrstn_text_link('mail', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mail.php') . '; defaults to 25.',
+                                                        'HTML' => 'Used under Windows only: Number of the port to connect to the server specified with the SMTP setting when sending mail with ' . $this->oCRNRSTN->return_crnrstn_text_link('mail', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mail.php') . '; defaults to 25.',
                                                         'TEXT' => 'Used under Windows only: Number of the port to connect to the server specified with the SMTP setting when sending mail with mail(); defaults to 25.'
                     )));
 
@@ -11887,7 +11883,7 @@ This directive does not affect the shorthand <?=, which is always available.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'If soap.wsdl_cache_enabled is on, this setting determines the type of caching. It can be any of: WSDL_CACHE_NONE (0), WSDL_CACHE_DISK (1), WSDL_CACHE_MEMORY (2) or WSDL_CACHE_BOTH (3). This can also be set via the options array in the ' . $this->return_crnrstn_text_link('SoapClient', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/class.soapclient.php') . ' or ' . $this->return_crnrstn_text_link('SoapServer', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/class.soapserver.php') . ' constructor.',
+                                                        'HTML' => 'If soap.wsdl_cache_enabled is on, this setting determines the type of caching. It can be any of: WSDL_CACHE_NONE (0), WSDL_CACHE_DISK (1), WSDL_CACHE_MEMORY (2) or WSDL_CACHE_BOTH (3). This can also be set via the options array in the ' . $this->oCRNRSTN->return_crnrstn_text_link('SoapClient', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/class.soapclient.php') . ' or ' . $this->oCRNRSTN->return_crnrstn_text_link('SoapServer', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/class.soapserver.php') . ' constructor.',
                                                         'TEXT' => 'If soap.wsdl_cache_enabled is on, this setting determines the type of caching. It can be any of: WSDL_CACHE_NONE (0), WSDL_CACHE_DISK (1), WSDL_CACHE_MEMORY (2) or WSDL_CACHE_BOTH (3). This can also be set via the options array in the SoapClient or SoapServer constructor.'
                     )));
 
@@ -11906,7 +11902,7 @@ This directive does not affect the shorthand <?=, which is always available.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The SoapClient class provides a client for ' . $this->return_crnrstn_text_link('»&nbsp;SOAP 1.1', 'SOCIAL_W3C_HQ', 'http://www.w3.org/TR/soap11/') . ', ' . $this->return_crnrstn_text_link('»&nbsp;SOAP 1.2', 'SOCIAL_W3C_HQ', 'http://www.w3.org/TR/soap12/') . ' servers. It can be used in WSDL or non-WSDL mode.',
+                                                        'HTML' => 'The SoapClient class provides a client for ' . $this->oCRNRSTN->return_crnrstn_text_link('»&nbsp;SOAP 1.1', 'SOCIAL_W3C_HQ', 'http://www.w3.org/TR/soap11/') . ', ' . $this->oCRNRSTN->return_crnrstn_text_link('»&nbsp;SOAP 1.2', 'SOCIAL_W3C_HQ', 'http://www.w3.org/TR/soap12/') . ' servers. It can be used in WSDL or non-WSDL mode.',
                                                         'TEXT' => 'The SoapClient class provides a client for » SOAP 1.1, » SOAP 1.2 servers. It can be used in WSDL or non-WSDL mode.'
                     )));
 
@@ -11925,7 +11921,7 @@ This directive does not affect the shorthand <?=, which is always available.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The SoapServer class provides a server for the ' . $this->return_crnrstn_text_link('»&nbsp;SOAP 1.1', 'SOCIAL_W3C_HQ', 'http://www.w3.org/TR/soap11/') . ' and ' . $this->return_crnrstn_text_link('»&nbsp;SOAP 1.2', 'SOCIAL_W3C_HQ', 'http://www.w3.org/TR/soap12/') . ' protocols. It can be used with or without a WSDL service description.',
+                                                        'HTML' => 'The SoapServer class provides a server for the ' . $this->oCRNRSTN->return_crnrstn_text_link('»&nbsp;SOAP 1.1', 'SOCIAL_W3C_HQ', 'http://www.w3.org/TR/soap11/') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('»&nbsp;SOAP 1.2', 'SOCIAL_W3C_HQ', 'http://www.w3.org/TR/soap12/') . ' protocols. It can be used with or without a WSDL service description.',
                                                         'TEXT' => 'The SoapServer class provides a server for the » SOAP 1.1 and » SOAP 1.2 protocols. It can be used with or without a WSDL service description.'
                     )));
 
@@ -12019,7 +12015,7 @@ This feature has been REMOVED as of PHP 7.2.0.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Specifies what type of program is logging the message. Only effective if ' . $this->return_crnrstn_text_link('error_log', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.error-log') . ' is set to &quot;syslog&quot;.',
+                                                        'HTML' => 'Specifies what type of program is logging the message. Only effective if ' . $this->oCRNRSTN->return_crnrstn_text_link('error_log', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.error-log') . ' is set to &quot;syslog&quot;.',
                                                         'TEXT' => 'Specifies what type of program is logging the message. Only effective if error_log is set to "syslog".'
                     )));
 
@@ -12077,7 +12073,7 @@ This directive is not supported on Windows.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Specifies the ident string which is prepended to every message. Only effective if ' . $this->return_crnrstn_text_link('error_log', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.error-log') . ' is set to &quot;syslog&quot;.',
+                                                        'HTML' => 'Specifies the ident string which is prepended to every message. Only effective if ' . $this->oCRNRSTN->return_crnrstn_text_link('error_log', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/errorfunc.configuration.php#ini.error-log') . ' is set to &quot;syslog&quot;.',
                                                         'TEXT' => 'Specifies the ident string which is prepended to every message. Only effective if error_log is set to "syslog".'
                     )));
 
@@ -12153,7 +12149,7 @@ Do not turn on tidy.clean_output if you are generating non-html content such as 
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'If enabled, the last error message will always be present in the variable ' . $this->return_crnrstn_text_link('$php_errormsg', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.phperrormsg.php') . '.',
+                                                        'HTML' => 'If enabled, the last error message will always be present in the variable ' . $this->oCRNRSTN->return_crnrstn_text_link('$php_errormsg', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.phperrormsg.php') . '.',
                                                         'TEXT' => 'If enabled, the last error message will always be present in the variable $php_errormsg.'
                     )));
 
@@ -12171,9 +12167,9 @@ Do not turn on tidy.clean_output if you are generating non-html content such as 
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The callback specified is called when ' . $this->return_crnrstn_text_link('unserialize', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.unserialize.php') . ' attempts to use an undefined class. A warning appears if the specified callback function is not defined, or if the callback function fails to define the missing class.
+                                                        'HTML' => 'The callback specified is called when ' . $this->oCRNRSTN->return_crnrstn_text_link('unserialize', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.unserialize.php') . ' attempts to use an undefined class. A warning appears if the specified callback function is not defined, or if the callback function fails to define the missing class.
 
-See also ' . $this->return_crnrstn_text_link('unserialize', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.unserialize.php') . ' and ' . $this->return_crnrstn_text_link('Autoloading Classes', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.oop5.autoload.php') . '.',
+See also ' . $this->oCRNRSTN->return_crnrstn_text_link('unserialize', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.unserialize.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('Autoloading Classes', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.oop5.autoload.php') . '.',
                                                         'TEXT' => 'The callback specified is called when unserialize() attempts to use an undefined class. A warning appears if the specified callback function is not defined, or if the callback function fails to define the missing class.
 
 See also unserialize() and Autoloading Classes.'
@@ -12197,9 +12193,9 @@ See also unserialize() and Autoloading Classes.'
                                                         array(
                                                         'HTML' => 'Creates a PHP value from a stored representation. unserialize() takes a single serialized variable and converts it back into a PHP value.
 
-Do not pass untrusted user input to unserialize() regardless of the options value of allowed_classes. Unserialization can result in code being loaded and executed due to object instantiation and autoloading, and a malicious user may be able to exploit this. Use a safe, standard data interchange format such as JSON (via ' . $this->return_crnrstn_text_link('json_decode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.json-decode.php') . ' and ' . $this->return_crnrstn_text_link('json_encode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.json-encode.php') . ') if you need to pass serialized data to the user.
+Do not pass untrusted user input to unserialize() regardless of the options value of allowed_classes. Unserialization can result in code being loaded and executed due to object instantiation and autoloading, and a malicious user may be able to exploit this. Use a safe, standard data interchange format such as JSON (via ' . $this->oCRNRSTN->return_crnrstn_text_link('json_decode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.json-decode.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('json_encode', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.json-encode.php') . ') if you need to pass serialized data to the user.
 
-If you need to unserialize externally-stored serialized data, consider using ' . $this->return_crnrstn_text_link('hash_hmac', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-hmac.php') . ' for data validation. Make sure data is not modified by anyone but you.',
+If you need to unserialize externally-stored serialized data, consider using ' . $this->oCRNRSTN->return_crnrstn_text_link('hash_hmac', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.hash-hmac.php') . ' for data validation. Make sure data is not modified by anyone but you.',
                                                         'TEXT' => 'Creates a PHP value from a stored representation. unserialize() takes a single serialized variable and converts it back into a PHP value.
 
 Do not pass untrusted user input to unserialize() regardless of the options value of allowed_classes. Unserialization can result in code being loaded and executed due to object instantiation and autoloading, and a malicious user may be able to exploit this. Use a safe, standard data interchange format such as JSON (via json_decode() and json_encode()) if you need to pass serialized data to the user.
@@ -12224,13 +12220,13 @@ If you need to unserialize externally-stored serialized data, consider using has
                                                         array(
                                                         'HTML' => 'Many developers writing object-oriented applications create one PHP source file per class definition. One of the biggest annoyances is having to write a long list of needed includes at the beginning of each script (one for each class).
 
-The ' . $this->return_crnrstn_text_link('spl_autoload_register', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.spl-autoload-register.php') . ' function registers any number of autoloaders, enabling for classes and interfaces to be automatically loaded if they are currently not defined. By registering autoloaders, PHP is given a last chance to load the class or interface before it fails with an error.
+The ' . $this->oCRNRSTN->return_crnrstn_text_link('spl_autoload_register', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.spl-autoload-register.php') . ' function registers any number of autoloaders, enabling for classes and interfaces to be automatically loaded if they are currently not defined. By registering autoloaders, PHP is given a last chance to load the class or interface before it fails with an error.
 
 Any class-like construct may be autoloaded the same way. That includes classes, interfaces, traits, and enumerations.
 
-Prior to PHP 8.0.0, it was possible to use ' . $this->return_crnrstn_text_link('__autoload', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.autoload.php') . ' to autoload classes and interfaces. However, it is a less flexible alternative to ' . $this->return_crnrstn_text_link('spl_autoload_register', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.spl-autoload-register.php') . ' and ' . $this->return_crnrstn_text_link('__autoload', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.autoload.php') . ' is deprecated as of PHP 7.2.0, and removed as of PHP 8.0.0.
+Prior to PHP 8.0.0, it was possible to use ' . $this->oCRNRSTN->return_crnrstn_text_link('__autoload', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.autoload.php') . ' to autoload classes and interfaces. However, it is a less flexible alternative to ' . $this->oCRNRSTN->return_crnrstn_text_link('spl_autoload_register', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.spl-autoload-register.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('__autoload', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.autoload.php') . ' is deprecated as of PHP 7.2.0, and removed as of PHP 8.0.0.
 
-' . $this->return_crnrstn_text_link('spl_autoload_register', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.spl-autoload-register.php') . ' may be called multiple times in order to register multiple autoloaders. Throwing an exception from an autoload function, however, will interrupt that process and not allow further autoload functions to run. For that reason, throwing exceptions from an autoload function is strongly discouraged.',
+' . $this->oCRNRSTN->return_crnrstn_text_link('spl_autoload_register', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.spl-autoload-register.php') . ' may be called multiple times in order to register multiple autoloaders. Throwing an exception from an autoload function, however, will interrupt that process and not allow further autoload functions to run. For that reason, throwing exceptions from an autoload function is strongly discouraged.',
                                                         'TEXT' => 'Many developers writing object-oriented applications create one PHP source file per class definition. One of the biggest annoyances is having to write a long list of needed includes at the beginning of each script (one for each class).
 
 The spl_autoload_register() function registers any number of autoloaders, enabling for classes and interfaces to be automatically loaded if they are currently not defined. By registering autoloaders, PHP is given a last chance to load the class or interface before it fails with an error.
@@ -12256,9 +12252,9 @@ spl_autoload_register() may be called multiple times in order to register multip
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'The maximum depth of structures permitted during unserialization when using ' . $this->return_crnrstn_text_link('unserialize', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.unserialize.php') . ', and is intended to prevent stack overflows. This can be disabled by setting unserialize_max_depth=0.
+                                                        'HTML' => 'The maximum depth of structures permitted during unserialization when using ' . $this->oCRNRSTN->return_crnrstn_text_link('unserialize', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.unserialize.php') . ', and is intended to prevent stack overflows. This can be disabled by setting unserialize_max_depth=0.
 
-See also ' . $this->return_crnrstn_text_link('unserialize', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.unserialize.php') . ' and ' . $this->return_crnrstn_text_link('Autoloading Classes', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.oop5.autoload.php') . '.',
+See also ' . $this->oCRNRSTN->return_crnrstn_text_link('unserialize', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.unserialize.php') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('Autoloading Classes', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.oop5.autoload.php') . '.',
                                                         'TEXT' => 'The maximum depth of structures permitted during unserialization when using unserialize(), and is intended to prevent stack overflows. This can be disabled by setting unserialize_max_depth=0.
 
 See also unserialize() and Autoloading Classes.'
@@ -12298,9 +12294,9 @@ See also unserialize() and Autoloading Classes.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Add URL rewriter values. This function adds another name/value pair to the URL rewrite mechanism. The name and value will be added to URLs (as GET parameter) and forms (as hidden input fields) the same way as the session ID when transparent URL rewriting is enabled with ' . $this->return_crnrstn_text_link('session.use_trans_sid', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.use-trans-sid') . '.
+                                                        'HTML' => 'Add URL rewriter values. This function adds another name/value pair to the URL rewrite mechanism. The name and value will be added to URLs (as GET parameter) and forms (as hidden input fields) the same way as the session ID when transparent URL rewriting is enabled with ' . $this->oCRNRSTN->return_crnrstn_text_link('session.use_trans_sid', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/session.configuration.php#ini.session.use-trans-sid') . '.
 
-This function\'s behaviour is controlled by the ' . $this->return_crnrstn_text_link('url_rewriter.tags', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/outcontrol.configuration.php#ini.url-rewriter.tags') . ' and ' . $this->return_crnrstn_text_link('url_rewriter.hosts', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/outcontrol.configuration.php#ini.url-rewriter.hosts') . ' php.ini parameters.
+This function\'s behaviour is controlled by the ' . $this->oCRNRSTN->return_crnrstn_text_link('url_rewriter.tags', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/outcontrol.configuration.php#ini.url-rewriter.tags') . ' and ' . $this->oCRNRSTN->return_crnrstn_text_link('url_rewriter.hosts', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/outcontrol.configuration.php#ini.url-rewriter.hosts') . ' php.ini parameters.
 
 Note that this function can be successfully called at most once per request.
 
@@ -12418,7 +12414,7 @@ Note: Calling this function will implicitly start output buffering if it is not 
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Whether to allow the execution of exit opcodes or not. This setting can be overridden during runtime by calling ' . $this->return_crnrstn_text_link('uopz_allow_exit', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.uopz-allow-exit.php') . '.',
+                                                        'HTML' => 'Whether to allow the execution of exit opcodes or not. This setting can be overridden during runtime by calling ' . $this->oCRNRSTN->return_crnrstn_text_link('uopz_allow_exit', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.uopz-allow-exit.php') . '.',
                                                         'TEXT' => 'Whether to allow the execution of exit opcodes or not. This setting can be overridden during runtime by calling uopz_allow_exit().'
                     )));
 
@@ -12438,7 +12434,7 @@ Note: Calling this function will implicitly start output buffering if it is not 
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Allows control over disabled exit opcode. By default uopz disables the exit opcode, so ' . $this->return_crnrstn_text_link('exit', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.exit.php') . ' calls are practically ignored. uopz_allow_exit() allows to control this behavior.',
+                                                        'HTML' => 'Allows control over disabled exit opcode. By default uopz disables the exit opcode, so ' . $this->oCRNRSTN->return_crnrstn_text_link('exit', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.exit.php') . ' calls are practically ignored. uopz_allow_exit() allows to control this behavior.',
                                                         'TEXT' => 'Allows control over disabled exit opcode. By default uopz disables the exit opcode, so exit() calls are practically ignored. uopz_allow_exit() allows to control this behavior.'
                     )));
 
@@ -12456,7 +12452,7 @@ Note: Calling this function will implicitly start output buffering if it is not 
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Enables the ability to use ' . $this->return_crnrstn_text_link('uopz_overload', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.uopz-overload.php') . '.',
+                                                        'HTML' => 'Enables the ability to use ' . $this->oCRNRSTN->return_crnrstn_text_link('uopz_overload', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.uopz-overload.php') . '.',
                                                         'TEXT' => 'Enables the ability to use uopz_overload().'
                     )));
 
@@ -12498,15 +12494,15 @@ This function has been REMOVED in PECL uopz 5.0.0.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'PHP provides a large number of predefined variables to any script which it runs. Many of these variables, however, cannot be fully documented as they are dependent upon which server is running, the version and setup of the server, and other factors. Some of these variables will not be available when PHP is run on the ' . $this->return_crnrstn_text_link('command line', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.commandline.php') . '. Refer to the ' . $this->return_crnrstn_text_link('list of predefined variables', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.php') . ' for details.
+                                                        'HTML' => 'PHP provides a large number of predefined variables to any script which it runs. Many of these variables, however, cannot be fully documented as they are dependent upon which server is running, the version and setup of the server, and other factors. Some of these variables will not be available when PHP is run on the ' . $this->oCRNRSTN->return_crnrstn_text_link('command line', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/features.commandline.php') . '. Refer to the ' . $this->oCRNRSTN->return_crnrstn_text_link('list of predefined variables', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/reserved.variables.php') . ' for details.
 
-PHP also provides an additional set of predefined arrays containing variables from the web server (if applicable), the environment, and user input. These arrays are rather special in that they are automatically global - i.e., automatically available in every scope. For this reason, they are often known as &quot;superglobals&quot;. (There is no mechanism in PHP for user-defined superglobals.) Refer to the ' . $this->return_crnrstn_text_link('list of superglobals', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.variables.superglobals.php') . ' for details.
+PHP also provides an additional set of predefined arrays containing variables from the web server (if applicable), the environment, and user input. These arrays are rather special in that they are automatically global - i.e., automatically available in every scope. For this reason, they are often known as &quot;superglobals&quot;. (There is no mechanism in PHP for user-defined superglobals.) Refer to the ' . $this->oCRNRSTN->return_crnrstn_text_link('list of superglobals', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/language.variables.superglobals.php') . ' for details.
 
 Variable variables
 
 Superglobals cannot be used as variable variables inside functions or class methods.
 
-If certain variables in ' . $this->return_crnrstn_text_link('variables_order', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.variables-order') . ' are not set, their appropriate PHP predefined arrays are also left empty.',
+If certain variables in ' . $this->oCRNRSTN->return_crnrstn_text_link('variables_order', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/ini.core.php#ini.variables-order') . ' are not set, their appropriate PHP predefined arrays are also left empty.',
                                                         'TEXT' => 'PHP provides a large number of predefined variables to any script which it runs. Many of these variables, however, cannot be fully documented as they are dependent upon which server is running, the version and setup of the server, and other factors. Some of these variables will not be available when PHP is run on the command line. Refer to the list of predefined variables for details.
 
 PHP also provides an additional set of predefined arrays containing variables from the web server (if applicable), the environment, and user input. These arrays are rather special in that they are automatically global - i.e., automatically available in every scope. For this reason, they are often known as "superglobals". (There is no mechanism in PHP for user-defined superglobals.) Refer to the list of superglobals for details.
@@ -12631,7 +12627,7 @@ Other environment variables include the CGI variables, placed there regardless o
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'Check for BOM (Byte Order Mark) and see if the file contains valid multibyte characters. This detection is performed before processing of ' . $this->return_crnrstn_text_link('__halt_compiler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.halt-compiler.php') . '. Available only in Zend Multibyte mode.',
+                                                        'HTML' => 'Check for BOM (Byte Order Mark) and see if the file contains valid multibyte characters. This detection is performed before processing of ' . $this->oCRNRSTN->return_crnrstn_text_link('__halt_compiler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.halt-compiler.php') . '. Available only in Zend Multibyte mode.',
                                                         'TEXT' => 'Check for BOM (Byte Order Mark) and see if the file contains valid multibyte characters. This detection is performed before processing of __halt_compiler(). Available only in Zend Multibyte mode.'
                     )));
 
@@ -12713,9 +12709,9 @@ Enabling zend.multibyte requires the mbstring extension to be available.'
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'This value will be used unless a ' . $this->return_crnrstn_text_link('declare(encoding=...)', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/control-structures.declare.php#control-structures.declare.encoding') . ' directive appears at the top of the script. When ISO-8859-1 incompatible encoding is used, both zend.multibyte and zend.script_encoding must be used.
+                                                        'HTML' => 'This value will be used unless a ' . $this->oCRNRSTN->return_crnrstn_text_link('declare(encoding=...)', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/control-structures.declare.php#control-structures.declare.encoding') . ' directive appears at the top of the script. When ISO-8859-1 incompatible encoding is used, both zend.multibyte and zend.script_encoding must be used.
 
-Literal strings will be transliterated from zend.script_encoding to mbstring.internal_encoding, as if ' . $this->return_crnrstn_text_link('mb_convert_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-convert-encoding.php') . ' would have been called.',
+Literal strings will be transliterated from zend.script_encoding to mbstring.internal_encoding, as if ' . $this->oCRNRSTN->return_crnrstn_text_link('mb_convert_encoding', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/function.mb-convert-encoding.php') . ' would have been called.',
                                                         'TEXT' => 'This value will be used unless a declare(encoding=...) directive appears at the top of the script. When ISO-8859-1 incompatible encoding is used, both zend.multibyte and zend.script_encoding must be used.
 
 Literal strings will be transliterated from zend.script_encoding to mbstring.internal_encoding, as if mb_convert_encoding() would have been called.'
@@ -12828,7 +12824,7 @@ Literal strings will be transliterated from zend.script_encoding to mbstring.int
                         'DESCRIPTION_PHP_NET'   => array(
                                                     'en' =>
                                                         array(
-                                                        'HTML' => 'You cannot specify additional output handlers if zlib.output_compression is activated here. This setting does the same as ' . $this->return_crnrstn_text_link('output_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/outcontrol.configuration.php#ini.output-handler') . ' but in a different order.',
+                                                        'HTML' => 'You cannot specify additional output handlers if zlib.output_compression is activated here. This setting does the same as ' . $this->oCRNRSTN->return_crnrstn_text_link('output_handler', 'PHP_ELLIPSE', 'https://www.php.net/manual/en/outcontrol.configuration.php#ini.output-handler') . ' but in a different order.',
                                                         'TEXT' => 'You cannot specify additional output handlers if zlib.output_compression is activated here. This setting does the same as output_handler but in a different order.'
                     )));
 

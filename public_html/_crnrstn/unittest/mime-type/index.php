@@ -177,7 +177,7 @@ die();
                     <p>I worked under the umbrella of Moxie in Atlanta, GA for six years...where I contributed
                         to projects for clients such as Home Depot, TruGreen, Verizon Wireless, and UPS.
                         After my exodus from Moxie, I took a sabbatical to reconnect with the foundations of
-                        my faith and ultimately launch the CRNRSTN Suite :: PHP class library, I have now
+                        my faith and ultimately launch the CRNRSTN :: PHP class library, I have now
                         returned full circle to re-open the doors of Evifweb Development to do what I
                         love...web development and digital marketing. This market re-entrance comes with a
                         broadened list of service offerings and performance expectations that have been

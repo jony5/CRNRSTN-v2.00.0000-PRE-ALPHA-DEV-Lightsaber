@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -74,7 +74,6 @@
 #
 class crnrstn_electrum_the_statistician {
 
-    protected $oLogger;
     public $oCRNRSTN_USR;
 
     protected $electrum_process_id;
@@ -118,10 +117,6 @@ class crnrstn_electrum_the_statistician {
     public function __construct($oCRNRSTN_USR){
 
         $this->oCRNRSTN_USR = $oCRNRSTN_USR;
-
-        //
-        // INSTANTIATE LOGGER
-        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_USR);
 
     }
 
@@ -175,7 +170,8 @@ class crnrstn_electrum_the_statistician {
             $tmp_chop_ARRAY = explode($tmp_slashChar, $tmp_ARRAY['DESTINATION_FILEPATH']);
             $tmp_node_cnt = sizeof($tmp_chop_ARRAY);
 
-            //$this->oCRNRSTN_USR->error_log('oWheel :: We want to get target path['.$target_destination_file_path.'] starting from => '.$tmp_ARRAY[$tmp_node_cnt-2], __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
+            //$this->oCRNRSTN_USR->error_log('oWheel :: We want to get target path[' . $target_destination_file_path . '] starting from => ' . $tmp_ARRAY[$tmp_node_cnt-2], __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
+            //$this->oCRNRSTN_USR->error_log('oWheel :: We want to get target path[' . $target_destination_file_path . '] starting from => ' . $tmp_ARRAY[$tmp_node_cnt-2], __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
             $tmp_destination_node_ARRAY = explode($tmp_chop_ARRAY[$tmp_node_cnt-2], $SOURCE_filePath);
 
@@ -543,7 +539,8 @@ class crnrstn_electrum_the_statistician {
 
         }
 
-        //$this->oCRNRSTN_USR->error_log('destination_path='.$destination_path, __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_PROFILE');
+        //$this->oCRNRSTN_USR->error_log('destination_path=' . $destination_path, __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_PROFILE');
+        //$this->oCRNRSTN_USR->error_log('destination_path=' . $destination_path, __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
         return $destination_path;
 

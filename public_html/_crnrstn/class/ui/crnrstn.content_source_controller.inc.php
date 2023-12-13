@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -70,7 +70,6 @@
 #
 class crnrstn_content_source_controller {
 
-    private static $oLogger;
     public $oCRNRSTN;
     public $oCRNRSTN_UI_ASSEMBLER;
 
@@ -86,11 +85,6 @@ class crnrstn_content_source_controller {
 	public function __construct($oCRNRSTN, $oCRNRSTN_UI_ASSEMBLER, $module_key = NULL){
 
         $this->oCRNRSTN = $oCRNRSTN;
-
-        //
-        // INSTANTIATE LOGGER
-        self::$oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
-
         $this->oCRNRSTN_UI_ASSEMBLER = $oCRNRSTN_UI_ASSEMBLER;
 
         $this->page_path = $this->oCRNRSTN_UI_ASSEMBLER->return_page_path();
@@ -524,8 +518,7 @@ class crnrstn_content_source_controller {
 
     public function return_crnrstn_text_link($module_key, $system_asset_constant = 'CRNRSTN_R_MD', $url_override = NULL, $resource_constant = CRNRSTN_RESOURCE_DOCUMENTATION){
 
-        error_log(__LINE__ . ' csc new link html. $module_key[' . $module_key . ']. $system_asset_constant[' .  $system_asset_constant .  ']. $url_override[' . $url_override . ']. $resource_constant[' . $resource_constant . '].');
-        die();
+        //error_log(__LINE__ . ' csc new link html. $module_key[' . $module_key . ']. $system_asset_constant[' .  $system_asset_constant .  ']. $url_override[' . $url_override . ']. $resource_constant[' . $resource_constant . '].');
 
         switch($resource_constant){
             case CRNRSTN_RESOURCE_DOCUMENTATION:
@@ -582,7 +575,7 @@ class crnrstn_content_source_controller {
 
                         error_log(__LINE__ . ' csc $tmp_url[' . strval($tmp_url) . ']. $module_key[' . strval($module_key)  . ']. content_output_type_ARRAY[' . print_r($this->content_output_type_ARRAY, true)  . '].');
 
-                        die();
+                        //die();
 
                         return '<a href="'. $tmp_url . '" target="_blank">' . $module_key . '</a><sup class="crnrstn_the_r_text_link_sup">' . $tmp_img . '</sup>';
 
@@ -645,7 +638,6 @@ class crnrstn_content_source_controller {
     public function return_server_response_code($response_code, $crnrstn_html_burn = NULL){
     public function client_ip(){
     public function PHPMAILER_debug_mode(){
-    public function CRNRSTN_debug_mode(){
     public function system_hash_algo(){
     public function soap_defencoding(){
     public function openssl_get_cipher_methods(){
@@ -1346,8 +1338,8 @@ class crnrstn_content_source_controller {
                     //
                     // RETURN VALUE
                     $token = $this->return_content_deep_link_token();
-                    $tmp_str = '<p>' . $token . 'Returns a hash string, the C<span class="the_R_in_crnrstn">R</span>NRSTN :: Decoupled
-                    Data Object (DDO) key, on success. On failure, session salt (<span class="crnrstn_general_post_code_copy">$oC<span class="the_R_in_crnrstn">R</span>NRSTN->session_salt()</span>)
+                    $tmp_str = '<p>' . $token . 'Returns a hash string, the C<span class="the_R_in_crnrstn">R</span>NRSTN :: Multi-
+                    Channel Decoupled Data Object (MC-DDO) key, on success. On failure, session salt (<span class="crnrstn_general_post_code_copy">$oC<span class="the_R_in_crnrstn">R</span>NRSTN->session_salt()</span>)
                     will be returned.</p>
                     <div class="crnrstn_br_shell"><br><br></div>
                     <p>The DDO key is the pointer to the storage location in memory for this data.
@@ -1508,8 +1500,8 @@ class crnrstn_content_source_controller {
                     // NOTE
                     $token = $this->return_content_deep_link_token();
                     $tmp_str = '<p>' . $token . 'In support of this storage and retrieval functionality, proprietary
-                    underlying technology is employed. The C<span class="the_R_in_crnrstn">R</span>NRSTN :: Decoupled
-                    Data Object (DDO):</p>
+                    underlying technology is employed. The C<span class="the_R_in_crnrstn">R</span>NRSTN :: Multi-
+                    Channel Decoupled Data Object (MC-DDO):</p>
                     <ul class="crnrstn_documentation_dyn_content_note_copy">
                         <li><span style="font-weight:normal;">Provides maximum data integrity (including the flawless
                         data transport of NULL, boolean, and empty string values),</span></li>
@@ -2163,8 +2155,8 @@ class crnrstn_content_source_controller {
                     // NOTE
                     $token = $this->return_content_deep_link_token();
                     $tmp_str = $token . 'In support of this storage and retrieval functionality, proprietary underlying
-                    technology is employed. The C<span class="the_R_in_crnrstn">R</span>NRSTN :: Decoupled Data Object
-                    (DDO):</p>
+                    technology is employed. The C<span class="the_R_in_crnrstn">R</span>NRSTN :: Multi-Channel Decoupled Data Object
+                    (MC-DDO):</p>
                     <ul class="crnrstn_documentation_dyn_content_note_copy"><li><span style="font-weight:normal;">Provides maximum data integrity (including the flawless data transport of NULL, boolean,
                     and empty string values),</span></li>
                     <li><span style="font-weight:normal;">Provides unrivaled flexibility...store n+1 values in the one parameter name,
@@ -3667,9 +3659,9 @@ class crnrstn_content_source_controller {
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
 
                 break;
-                case 'config_set_crnrstn_as_err_handler':
+                case 'config_custom_error_handler':
                     /*
-                    public function config_set_crnrstn_as_err_handler($env_key = CRNRSTN_RESOURCE_ALL, $crnrstn_is_active = true, $error_types_profile = NULL){
+                    public function config_custom_error_handler($env_key = CRNRSTN_RESOURCE_ALL, $crnrstn_is_active = true, $error_types_profile = NULL){
 
                     ON SUCCESS
                     return true;
@@ -5117,8 +5109,8 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // NOTE
                     $token = $this->return_content_deep_link_token();
                     $tmp_str = '<p>' . $token . 'In support of this storage and retrieval functionality, proprietary underlying 
-                    technology is employed. The C<span class="the_R_in_crnrstn">R</span>NRSTN :: Decoupled Data Object 
-                    (DDO):</p>
+                    technology is employed. The C<span class="the_R_in_crnrstn">R</span>NRSTN :: Multi-Channel Decoupled Data Object 
+                    (MC-DDO):</p>
                     <ul class="crnrstn_documentation_dyn_content_note_copy"><li><span style="font-weight:normal;">Provides maximum data integrity (including the flawless data transport of NULL, boolean, 
                     and empty string values),</span></li>
                     <li><span style="font-weight:normal;">Provides unrivaled flexibility...store n+1 values in the one parameter name, 
@@ -5145,7 +5137,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // BE PREPARED TO HOOK UP SYSTEM DEFAULT EXPOSURE FOR DISK WARNING AND DISK FULL.
                     // WILL NEED TO TALK ABOUT THAT.
                     public function grant_permissions_fwrite($filepath, $minimum_bytes_required = 0){
-                        return $this->oCRNRSTN_PERFORMANCE_REGULATOR->grant_permissions_fwrite($filepath, $minimum_bytes_required);
+                        return $this->oCRNRSTN->grant_permissions_fwrite($filepath, $minimum_bytes_required);
 
                     //
                     // MAXIMUM PERCENTAGE OF DISK (E.G. "FILL VOLUME UP TO 85% AND STOP. START WARNINGS AT 70.") USAGE
@@ -6520,7 +6512,8 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $this->sauce($tmp_param_def[$param_index]['param_name'].$tmp_param_def[$param_index]['param_name'].$this->return_param_required_str($tmp_param_def[$param_index]['param_required']));
 
                     $tmp_str_const = '';
-                    foreach($this->oCRNRSTN->system_theme_style_constants_ARRAY as $index => $int_const){
+                    $tmp_system_theme_style_constants_ARRAY = $this->oCRNRSTN->get_crnrstn('system_theme_style_constants_ARRAY');
+                    foreach($tmp_system_theme_style_constants_ARRAY as $index => $int_const){
 
                         $tmp_ARRAY = $this->oCRNRSTN->return_int_const_profile($int_const);
 
@@ -6647,13 +6640,16 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $this->sauce($tmp_param_def[$param_index]['param_name'].$tmp_param_def[$param_index]['param_name'].$this->return_param_required_str($tmp_param_def[$param_index]['param_required']));
 
                     $tmp_str_const = '';
-                    foreach($this->oCRNRSTN->system_theme_style_constants_ARRAY as $index => $int_const){
+                    $tmp_system_theme_style_constants_ARRAY = $this->oCRNRSTN->get_crnrstn('system_theme_style_constants_ARRAY');
+                    foreach($tmp_system_theme_style_constants_ARRAY as $index => $int_const){
+//                    foreach($this->oCRNRSTN->system_theme_style_constants_ARRAY as $index => $int_const){
 
                         $tmp_ARRAY = $this->oCRNRSTN->return_int_const_profile($int_const);
 
                         $tmp_str_const .= $tmp_ARRAY[CRNRSTN_INTEGER] . '&nbsp;&nbsp;<strong>' . $tmp_ARRAY[CRNRSTN_STRING] . '</strong><br>';
                         $tmp_str_const .= '<div style="font-size: 80%; padding: 5px 0 0 55px;">' . $tmp_ARRAY['DESCRIPTION'] . '</div>';
                         $tmp_str_const .= '<div class="crnrstn_cb_20"></div>';
+
                     }
 
                     $tmp_str_const = $this->oCRNRSTN->strrtrim($tmp_str_const, '<div class="crnrstn_cb_20"></div>');
@@ -8878,20 +8874,20 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     //
                     // NOW COMPILE PAGE CONTENT IN ORDER OF PRESENTATION...TOP TO BOTTOM
                     // BASIC_COPY,NOTE_COPY,TECH_SPEC,INVOKING_CLASS,METHOD_DEFINITION,PARAMETER_DEFINITION,RETURNED_VALUE,EXAMPLE
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'Welcome to the C<span class="the_R">R</span>NRSTN Suite :: documentation and support website! C<span class="the_R">R</span>NRSTN is a free open source PHP class library that facilitates the operation of a LAMP application within multiple server environments (e.g. localhost, stage, production, .etc) effectively and properly joining the "wall of SERVER" to the "wall of application"...creating the two into one house. With this tool, data and functionality possessing characteristics which inherently create distinctions from one environment to the next...such as IP address restrictions, error logging profiles, and database authentication credentials...can all be managed through one framework for an entire application. C<span class="the_R">R</span>NRSTN also provides a layer of encryption which can be configured for both cookie and session data.');
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'Thank you for taking the time to check out the C<span class="the_R">R</span>NRSTN Suite :: If you would like to contribute to this project, consider <a href="https://github.com/jony5/crnrstn" target="_blank">following/watching this project on GitHub</a>. View the project <a href="https://www.facebook.com/media/set/?set=a.10152398953669503.1073741836.586549502&type=1&l=4ba17e313a" target="_blank">photo gallery</a>.');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'Welcome to C<span class="the_R">R</span>NRSTN :: documentation and support website! C<span class="the_R">R</span>NRSTN is a free open source PHP class library that facilitates the operation of a LAMP application within multiple server environments (e.g. localhost, stage, production, .etc) effectively and properly joining the "wall of SERVER" to the "wall of application"...creating the two into one house. With this tool, data and functionality possessing characteristics which inherently create distinctions from one environment to the next...such as IP address restrictions, error logging profiles, and database authentication credentials...can all be managed through one framework for an entire application. C<span class="the_R">R</span>NRSTN also provides a layer of encryption which can be configured for both cookie and session data.');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'Thank you for taking the time to check out C<span class="the_R">R</span>NRSTN :: If you would like to contribute to this project, consider <a href="https://github.com/jony5/crnrstn" target="_blank">following/watching this project on GitHub</a>. View the project <a href="https://www.facebook.com/media/set/?set=a.10152398953669503.1073741836.586549502&type=1&l=4ba17e313a" target="_blank">photo gallery</a>.');
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'As a "hat tip" to King Abdullah Bin Abdul Aziz\'s bold move to provide 500 tons of wheat to Syrian refugees in Jordan (as reported by <a href="http://english.alarabiya.net/en/News/2013/01/13/Saudi-king-orders-500-tons-of-wheat-to-Syrian-refugees-in-Jordan.html" target="_blank">Al Arabiya</a>), as of today (1/16/2013 @ 0600), I am undertaking a slightly less noble...but just as sincere...effort to "help the people" through my creation of an open source enterprise level PHP class library for the management of a web application\'s integration into n+1 hosting ($_SERVER) environments. This body of code is completely new, and I am only leveraging resources and knowledge as is readily and freely available to the open source PHP community at large for the benefit of exactly the same. No part of any application that I developed whilst under the employ of any agency or for-profit business entity has been lifted and placed into this work. Due to the fact that I am currently being subjected to extensive surveillance protocols by an entity which bears an inscription...even written upon it\'s very forehead...which reads as "<a href="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '_crnrstn/amalek/" target="_self">AMALEKITE PRINCESS</a>", I have a high degree of confidence that the genesis of this project has been recorded and documented in a very thorough manner; there are witnesses who can vouch for the originality of this work.');
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'SUB_TITLE', 'History');
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'When I entered the workforce in 2006 as an HTML developer making $35 an hour (after having to to step away from my internet start up company...where I was a full stack developer who was to be compensated through a stock offering upon going public), within the first few DAYS on the job, I was quietly using PHP to stand up tools to help me control the quality my HTML code via rendering it in an email to myself so that I could QA my code (and tweak it if necessary) before submitting my work to the team for the next step of the email marketing process. The quality of my email HTML code went from zero (0) to one hundred (100) real quick (within a day or so), and I (and our small team) knew immediately that things were going to work out. As far as I know, HTML email developers at <a href="http://www.moxieusa.com/" target="_blank">Moxie</a> are using the tools that I put together to test HTML email quality and rendering to this very day.');
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'Through out the course of my career at Moxie, I would use PHP to put together various portals, a file sharing and project management extranet complete with MySQL powered search and user administration, and...heck...even web services for EMAIL and SMS real-time messaging. <strong>Sadly however, I never had the time to carve out for myself a solid and reusable PHP class library for the gaining of efficiencies in product maintenance, development and deployment.</strong> While working at Moxie (2006-2012), <strong>I really could have used an out-of-the-box/plug-n-play <a href="https://en.wikipedia.org/wiki/LAMP_(software_bundle)" target="_blank">LAMP stack</a> class library with the capability of facilitating an application\'s compliance with the RTM processes of a mature development shop.</strong>');
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'In 2012 (after my exodus from Moxie with...according to what I have been told...&quot;a bang&quot;) on a 09\' model unibody Macbook Pro that I purchased with my own personal money while at Moxie...for my web application development at Moxie, <strong>I began work on just such a solution...coining the project name C<span class="the_R">R</span>NRSTN, because I was going to use this "stone" to properly join the "wall of server environment" and the "wall of application codebase" together into one house.</strong> In hindsight (when I look at archived code from the period of the C<span class="the_R">R</span>NRSTN genesis)...the approach of my execution in the code was a little off...leaning hard on achieving light and fast performance and completely abandoning flexibility and usability. My mind needed to be uplifted; I needed to experience a paradigm shift. Well...between October of 2012 and Jan 16, 2013, I took a break from programming to go deep in my study of the Bible together with books of ministry to strengthen the foundation of my faith, deepen my daily walk with the Lord Jesus Christ, and validate my moment by moment Christian experience against the teaching and fellowship of the apostles.');
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'While following the leading of the Spirit in my study of the Word of God...during this sabbatical of sorts..., I also began to reconsider the C<span class="the_R">R</span>NRSTN project and what I wanted this tool to be able to do. By that point, I had thoroughly re-read (cover to cover a couple of times) my second edition copy of <a href="https://g.co/kgs/kJbTk5" target="_blank">High Performance MySQL</a> that was purchased for me by Moxie on the professional development budget. ');
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'NOTE_COPY', '&lt;flashback&gt; While at Moxie and when I was approaching a massive redesign (LAMP) for a client extranet that was growing in number of users and activity, I requested to be enrolled in a MySQL course from <a href="http://education.oracle.com/" target="_blank">Oracle</a>. That request was denied with audible laughs. Not giving up on my quest for <i>the knowledge</i>...I then found and purchased the best 2 books I could on the topics of interest (<a href="https://g.co/kgs/kJbTk5" target="_blank">High Performance MySQL</a> and <a href="https://g.co/kgs/7ZgxfK" target="_blank">Ajax Design Patterns</a>) and then requested for Moxie to recoup my investment. This request was approved...but I got a stern talking to about making future purchases without getting all of the approvals first. No problem. I\'ve read the MySQL book maybe 5 times by now, and it has changed the way that I architect data drive applications. I also have a loose development roadmap which will be directing my ongoing R&amp;D for the C<span class="the_R">R</span>NRSTN Suite :: Any useful results from this research will be incorporated into the C<span class="the_R">R</span>NRSTN Suite in a future release. &lt;/flashback&gt;');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'NOTE_COPY', '&lt;flashback&gt; While at Moxie and when I was approaching a massive redesign (LAMP) for a client extranet that was growing in number of users and activity, I requested to be enrolled in a MySQL course from <a href="http://education.oracle.com/" target="_blank">Oracle</a>. That request was denied with audible laughs. Not giving up on my quest for <i>the knowledge</i>...I then found and purchased the best 2 books I could on the topics of interest (<a href="https://g.co/kgs/kJbTk5" target="_blank">High Performance MySQL</a> and <a href="https://g.co/kgs/7ZgxfK" target="_blank">Ajax Design Patterns</a>) and then requested for Moxie to recoup my investment. This request was approved...but I got a stern talking to about making future purchases without getting all of the approvals first. No problem. I\'ve read the MySQL book maybe 5 times by now, and it has changed the way that I architect data drive applications. I also have a loose development roadmap which will be directing my ongoing R&amp;D for C<span class="the_R">R</span>NRSTN :: Any useful results from this research will be incorporated into the C<span class="the_R">R</span>NRSTN Suite in a future release. &lt;/flashback&gt;');
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'So beginning in Jan of 2013...while I continued my study of the Holy Scriptures...I picked up the C<span class="the_R">R</span>NRSTN project and (starting from scratch with a much more insightful approach) began to architect and build out this tool. Between July of 2013 and March of 2016 all application development was moved to my pre-Moxie development machine...a circa 2005 Toshiba Portege M100 running Windows XP&reg; pro and Apache as a service (via <a href="https://www.apachefriends.org/" target="_blank">Xampp</a>). The AC power adapter for my 09\' unibody Macbook Pro had broken, and I did not feel to move in a direction to resolve that problem...so good bye for now dear 09\' Macbook Pro. The bulk of this second (fresh from the ground up) iteration of C<span class="the_R">R</span>NRSTN development was done from within the Windows environment.');
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'Fast-forward to March of 2016,...the broken power adapter for my 09\' Macbook Pro was replaced by a good friend of mine, and I immediately copied the C<span class="the_R">R</span>NRSTN project (which was approximately 90% complete) from my 2005 Widows XP Toshiba Portege M100 laptop back to my 09\' Macbook Pro. I then began to painstakingly crawl through both the C<span class="the_R">R</span>NRSTN Suite :: class library and it\'s accompanying documentation web site...testing all the work I had done within the Windows environment on my Toshiba in my 09\' Mac localhost hosting environment. Once I got C<span class="the_R">R</span>NRSTN in shape on my Macbook Pro, a couple of other projects (including a redesign of my personal website <a href="http://jony5.com" target="_blank">jony5.com</a>) fell on my plate, and so I had opportunity to test the implementation of C<span class="the_R">R</span>NRSTN on these new projects and new hosting environments and make changes wherever it made sense. ');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'Fast-forward to March of 2016,...the broken power adapter for my 09\' Macbook Pro was replaced by a good friend of mine, and I immediately copied the C<span class="the_R">R</span>NRSTN project (which was approximately 90% complete) from my 2005 Widows XP Toshiba Portege M100 laptop back to my 09\' Macbook Pro. I then began to painstakingly crawl through both the C<span class="the_R">R</span>NRSTN :: class library and it\'s accompanying documentation web site...testing all the work I had done within the Windows environment on my Toshiba in my 09\' Mac localhost hosting environment. Once I got C<span class="the_R">R</span>NRSTN in shape on my Macbook Pro, a couple of other projects (including a redesign of my personal website <a href="http://jony5.com" target="_blank">jony5.com</a>) fell on my plate, and so I had opportunity to test the implementation of C<span class="the_R">R</span>NRSTN on these new projects and new hosting environments and make changes wherever it made sense. ');
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'December of 2017 came around along with a renewed desire to pick up, complete and release the C<span class="the_R">R</span>NRSTN project, but my 09\' Macbook Pro began to freeze up on me and was not up for the task at hand. I shared my frustrations with my dad, and he offered to get me a new laptop. On Dec. 28 2017, a new 2017 Macbook Pro was purchased for me from the <a href="https://www.apple.com/" target="_blank">Apple</a> store at <a href="https://www.perimetermall.com/en.html" target="_blank">Perimeter Mall</a> in Atlanta, GA; I copied all my project files along with my XP and Ubuntu virtual machines from my 09\' Macbook Pro to the new 2017 Macbook Pro. I then upgraded my Ubuntu Server VM to the latest which brought with it PHP7 (previously, I had only supported PHP5) and the extra work of having to crawl through C<span class="the_R">R</span>NRSTN and the documentation website making updates to account for the new version of PHP. Both PHP5 and PHP7 are now supported by C<span class="the_R">R</span>NRSTN!');
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'Between Dec of 2017 and April of 2018, I completed a third iterative pass through the C<span class="the_R">R</span>NRSTN class library and the accompanying documentation web site. On top of making updates for PHP7 compatibility, the code for the C<span class="the_R">R</span>NRSTN Suite :: was tightened up a little more, the session and cookie encryption layers were updated to stand on the openssl encryption cipher library (as opposed to the deprecated[PHP5] and removed[PHP7] mcrypt library), and the documentation with the accompanying code examples were thoroughly fleshed out and checked against the C<span class="the_R">R</span>NRSTN Suite :: codebase for clarity and accuracy.');
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'It is now June 20, 2018, and a hard launch date of July 4, 2018 has been set. The C<span class="the_R">R</span>NRSTN Suite :: version 1.0.0 documentation has been pushed to production, and the <a href="https://github.com/jony5/CRNRSTN" target="_blank">GitHub repository</a> for this project has been updated with the latest release. We have now entered into the realm of soft launch for the C<span class="the_R">R</span>NRSTN Suite :: version 1.0.0. Over the next couple of weeks leading up to the official release date, there will be plenty of &quot;tire kicking&quot;, fine tuning, and copy tweaks. After a solid 6 years spent in thoughtful contemplation and faithful laboring, we are finally ready to go! Thank You, Lord Jesus!');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'Between Dec of 2017 and April of 2018, I completed a third iterative pass through the C<span class="the_R">R</span>NRSTN class library and the accompanying documentation web site. On top of making updates for PHP7 compatibility, the code for C<span class="the_R">R</span>NRSTN :: was tightened up a little more, the session and cookie encryption layers were updated to stand on the openssl encryption cipher library (as opposed to the deprecated[PHP5] and removed[PHP7] mcrypt library), and the documentation with the accompanying code examples were thoroughly fleshed out and checked against the C<span class="the_R">R</span>NRSTN Suite :: codebase for clarity and accuracy.');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'It is now June 20, 2018, and a hard launch date of July 4, 2018 has been set. The C<span class="the_R">R</span>NRSTN :: version 1.0.0 documentation has been pushed to production, and the <a href="https://github.com/jony5/CRNRSTN" target="_blank">GitHub repository</a> for this project has been updated with the latest release. We have now entered into the realm of soft launch for the C<span class="the_R">R</span>NRSTN Suite :: version 1.0.0. Over the next couple of weeks leading up to the official release date, there will be plenty of &quot;tire kicking&quot;, fine tuning, and copy tweaks. After a solid 6 years spent in thoughtful contemplation and faithful laboring, we are finally ready to go! Thank You, Lord Jesus!');
 
                 break;
                 case '/suite_methods/configuration_file/':
@@ -8903,15 +8899,15 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     //
                     // NOW COMPILE PAGE CONTENT IN ORDER OF PRESENTATION...TOP TO BOTTOM
                     // BASIC_COPY,NOTE_COPY,TECH_SPEC,INVOKING_CLASS,METHOD_DEFINITION,PARAMETER_DEFINITION,RETURNED_VALUE,EXAMPLE
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'BASIC_COPY', 'The C<span class="the_R">R</span>NRSTN Suite :: 
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'BASIC_COPY', 'C<span class="the_R">R</span>NRSTN :: 
                     is an open source PHP class library to both facilitate, augment, and enhance fundamental operations (from basic to advanced) 
                     of a code base for an application in parallel across multiple hosting environments. The configuration file of this suite with 
                     its accompanying configuration includes serves as a fitting cornerstone joining the &quot;wall&quot; of any server to the 
                     &quot;wall&quot; of the running application to produce a suitable abode at any IP.');
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'NOTE_COPY', 'For consistency, process start time is 
-                    the first data point acquired by the C<span class="the_R">R</span>NRSTN Suite :: Placing the 
-                    C<span class="the_R">R</span>NRSTN :: configuration include at the very top of every page is primarily 
+                    the first data point acquired by C<span class="the_R">R</span>NRSTN :: Placing the 
+                    C<span class="the_R">R</span>NRSTN :: configuration include() at the very top of every page is primarily 
                     important for the accuracy of any load testing results that would key against runtime calculations made from time related
                     data (such as &quot;rtime&quot; or runtime) reported on by C<span class="the_R">R</span>NRSTN :: One (1) MD5 hash 
                     algorithm generation call (called before recording a start time) can throw off consistency of when the actual process 
@@ -8928,8 +8924,8 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $tmp_spec_array[1] = 'It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.';
 
                     $tmp_example_title_str = 'Example 1';
-                    $tmp_example_description_str = 'To stand up the code base of a web application on top of the 
-                    C<span class="the_R">R</span>NRSTN Suite ::, place the configuration file include at the top of every page 
+                    $tmp_example_description_str = 'To stand up the code base of a web application on top of
+                    C<span class="the_R">R</span>NRSTN ::, place the configuration file include at the top of every page 
                     or endpoint (i.e. at the very top of the first operation that runs) for the entire application. This 
                     documentation web site uses a &quot;current directory depth relative to root directory&quot; include 
                     file, <strong><em>_crnrstn.root.inc.php</em></strong>, to maintain the 
@@ -8948,7 +8944,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     //
                     // NOW COMPILE PAGE CONTENT IN ORDER OF PRESENTATION...TOP TO BOTTOM
                     // BASIC_COPY,NOTE_COPY,TECH_SPEC,INVOKING_CLASS,METHOD_DEFINITION,PARAMETER_DEFINITION,RETURNED_VALUE,EXAMPLE
-                    $tmp_str = 'The C<span class="the_R">R</span>NRSTN :: __construct() facilitates a number of critical performance behaviors. 1) Session serialization to prevent resource contention, 2) the debug output level for <a href="https://github.com/PHPMailer/PHPMailer" target="_blank">PHPMAILER</a> - a full-featured email creation and transfer class for PHP which has been refactored and deeply integrated into the C<span class="the_R">R</span>NRSTN Suite :: to provide rich email features and functionality and to lay a solid foundation for all system generated (or user initiated) notifications, 3) silos to capture user-defined subsets of error log trace data for bubbling up through a robust debug logging and notification services layer managed by 4) the C<span class="the_R">R</span>NRSTN :: master debug mode profile for the entire C<span class="the_R">R</span>NRSTN Suite ::';
+                    $tmp_str = 'The C<span class="the_R">R</span>NRSTN :: __construct() facilitates a number of critical performance behaviors. 1) Session serialization to prevent resource contention, 2) the debug output level for <a href="https://github.com/PHPMailer/PHPMailer" target="_blank">PHPMAILER</a> - a full-featured email creation and transfer class for PHP which has been refactored and deeply integrated into C<span class="the_R">R</span>NRSTN :: to provide rich email features and functionality and to lay a solid foundation for all system generated (or user initiated) notifications, 3) silos to capture user-defined subsets of error log trace data for bubbling up through a robust debug logging and notification services layer managed by 4) the C<span class="the_R">R</span>NRSTN :: master debug mode profile for the entire C<span class="the_R">R</span>NRSTN Suite ::';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'BASIC_COPY', $tmp_str);
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'NOTE_COPY', '<span style="color:#F00; font-weight: bold;">!!</span> CAUTION :: <span style=\'font-family: "Courier New", Courier, monospace;\'>$PHPMAILER_debug_mode = 4</span> will expose ALL SMTP <strong>usernames</strong> and <strong>passwords</strong> to the C<span class="the_R">R</span>NRSTN :: debug log trace services layer which, said layer, includes user configured and browser accessible log output modes of SCREEN_TEXT, SCREEN or SCREEN_HTML, SCREEN_HTML_HIDDEN, EMAIL, and EMAIL_PROXY <span style="color:#F00; font-weight: bold;">!!</span>');
 
@@ -8963,7 +8959,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'METHOD_DEFINITION', '__construct($config_filepath, $C<span class="the_R">R</span>NRSTN_config_serialization, $C<span class="the_R">R</span>NRSTN_debugMode=0, $PHPMAILER_debug_mode=0, $log_silo_key_piped=\'*\')');
 
                     $tmp_param_def = array();
-                    $tmp_str = '__FILE__ path to the C<span class="the_R">R</span>NRSTN Suite :: configuration 
+                    $tmp_str = '__FILE__ path to the C<span class="the_R">R</span>NRSTN :: configuration 
                                 file. This is used to monitor the configuration file for any updates and to subsequently modify 
                                 any active sessions for the purposes of reducing all C<span class="the_R">R</span>NRSTN :: 
                                 environmental detection mid-active-session re-initialization-induced memory leaks to zero. Should
@@ -8996,7 +8992,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $tmp_param_def[1]['param_definition'] = $tmp_str;
                     $tmp_param_def[1]['param_required'] = true;
 
-                    $tmp_str = 'The master debug mode for the C<span class="the_R">R</span>NRSTN Suite ::, where $C<span class="the_R">R</span>NRSTN_debugMode =  0, 1, or 2.
+                    $tmp_str = 'The master debug mode for C<span class="the_R">R</span>NRSTN ::, where $C<span class="the_R">R</span>NRSTN_debugMode =  0, 1, or 2.
                     <div class="cb_10"></div>
 
                     <strong>$C<span class="the_R">R</span>NRSTN_debugMode = 0</strong><br>
@@ -9009,7 +9005,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     <strong>$C<span class="the_R">R</span>NRSTN_debugMode = 1</strong><br>
                     Activates real-time error trace logging output that will be sent to the default error logging location 
                     via PHP native error_log(). No log data is aggregated for delayed output via method invocation; 
-                    <span class="phpvar_copy">$oC<span class="the_R">R</span>NRSTN_USR->get_error_log_trace()</span> 
+                    <span class="phpvar_copy">$oC<span class="the_R">R</span>NRSTN->get_error_log_trace()</span> 
                     will have no log data to return. Please note that ALL log 
                     silo data will be in the output unless n+1 pipe delimited silo key(s) are provided to the 
                     C<span class="the_R">R</span>NRSTN :: constructor. In this case, only error trace log data aligning to 
@@ -9028,7 +9024,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     controlled (invoked by method only) access to aggregated (and always chronologically presented) 
                     trace log data for any pipe delimited log silo key(s) passed to 
                     C<span class="the_R">R</span>NRSTN :: method(s) for log output. See methods such as 
-                    <span class="phpvar_copy">$oC<span class="the_R">R</span>NRSTN_USR->get_error_log_trace()</span>. 
+                    <span class="phpvar_copy">$oC<span class="the_R">R</span>NRSTN->get_error_log_trace()</span>. 
                     If ANY piped silo key(s) have been provided to the 
                     C<span class="the_R">R</span>NRSTN :: constructor, only that/those key(s) will be aggregated (and 
                     hence, available for output), and all other keyed log silo data will be ignored. This does not 
@@ -9078,8 +9074,8 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     <div class="cb_10"></div>
 
                     When critical areas of an application need to be monitored in the background for exception error 
-                    log trace or bubbled to the surface during real-time development and QA, the 
-                    C<span class="the_R">R</span>NRSTN Suite :: has a properly robust error_log() method which allows 
+                    log trace or bubbled to the surface during real-time development and QA, C<span class="the_R">R</span>NRSTN :: 
+                    has a properly robust error_log() method which allows 
                     for the strategic placement of "meta-data rich" application run-time log trace comments 
                     throughout the code base. Due to the limitations of reviewing error logs via file traversal 
                     within a terminal, it can be desired to effectively trim back error log trace output from all 
@@ -9087,11 +9083,11 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     the area(s) of interest front and center for more ready review through a terminal, for example. 
                     Enter stage left...C<span class="the_R">R</span>NRSTN :: Log Silos. By passing, as a parameter, 
                     a relevant-to-the-purpose-at-hand key at the end of each invocation of the 
-                    $oC<span class="the_R">R</span>NRSTN_USR->error_log() method (such as, e.g., \'USER_SIGNIN\' for 
+                    $oC<span class="the_R">R</span>NRSTN->error_log() method (such as, e.g., \'USER_SIGNIN\' for 
                     all error log trace relevant to user login use cases within an application), one can effectively 
                     drive the logging trace profile of the entire application from the 
                     C<span class="the_R">R</span>NRSTN :: constructor and/or any method within 
-                    C<span class="the_R">R</span>NRSTN :: (such as $oC<span class="the_R">R</span>NRSTN_USR->get_error_log_trace()) 
+                    C<span class="the_R">R</span>NRSTN :: (such as $oC<span class="the_R">R</span>NRSTN->get_error_log_trace()) 
                     which exposes log trace data by including just the silo key(s) of interest...or excluding via 
                     prefix of a \'~\' silo key(s) from perhaps more verbose sections of the application which 
                     effectively bloat the error log trace data and are cumbersome to dig through in order to find 
@@ -9121,22 +9117,22 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     //
                     // NOW COMPILE PAGE CONTENT IN ORDER OF PRESENTATION...TOP TO BOTTOM
                     // BASIC_COPY,NOTE_COPY,TECH_SPEC,INVOKING_CLASS,METHOD_DEFINITION,PARAMETER_DEFINITION,RETURNED_VALUE,EXAMPLE
-                    $tmp_str = 'The core competency of the C<span class="the_R">R</span>NRSTN Suite :: lay in its ability to seamlessly 
+                    $tmp_str = 'The core competency of C<span class="the_R">R</span>NRSTN :: lay in its ability to seamlessly 
                     articulate environmentally unique data profiles of an application across multiple hosting environments and thereby with 
                     strength and precision joining the &quot;wall of server&quot; to the &quot;wall of application&quot;. From localhost 
                     to production, all hosting environments with their unique data profiles can be represented and managed from within a 
                     single configuration file.
                     <div class="cb_10"></div>
 
-                    The addEnvironment() method configures the C<span class="the_R">R</span>NRSTN Suite :: to acknowledge the existence of 
+                    The addEnvironment() method configures C<span class="the_R">R</span>NRSTN :: to acknowledge the existence of 
                     each specified hosting environment. Each of the (n+1) environments within which one wishes to run an application needs 
-                    to be conveyed to the C<span class="the_R">R</span>NRSTN Suite :: through the addEnvironment() method where each 
+                    to be conveyed to C<span class="the_R">R</span>NRSTN :: through the addEnvironment() method where each 
                     environment is represented by a unique key, <span class="phpvar_copy">$env_key</span>.
                     <div class="cb_10"></div>
 
                     In development and hosting shops which (either by force or choice) apply mature release to manufacture (RTM) protocols to 
-                    their development life cycles, the application migration characteristics supported by the C<span class="the_R">R</span>NRSTN Suite :: are certainly 
-                    the status quo. One goal in the development of the C<span class="the_R">R</span>NRSTN Suite :: has been to allow for 
+                    their development life cycles, the application migration characteristics supported by C<span class="the_R">R</span>NRSTN :: are certainly 
+                    the status quo. One goal in the development of C<span class="the_R">R</span>NRSTN :: has been to allow for 
                     said rigid RTM requirements to be met effectively and elegantly with as little performance overhead as possible. ';
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', $tmp_str);
@@ -9209,7 +9205,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     <div class="cb_10"></div>
                     The second parameter, <span class="phpvar_copy">$errorTypesProfile</span>, will allow for 
                     customization of the error handling profile for C<span class="the_R">R</span>NRSTN :: to 
-                    fine tune the PHP error level constants that C<span class="the_R">R</span>NRSTN Suite :: error log 
+                    fine tune the PHP error level constants that C<span class="the_R">R</span>NRSTN :: error log 
                     trace and exception handling will process by providing the desired profile of error level integer 
                     constants as this parameter. Feel free to use bit flips, and not (&amp; ~), etc.
                     <div class="cb_10"></div>
@@ -9270,10 +9266,10 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
 
                 break;
-                case '/suite_methods/configuration_file/config_set_crnrstn_as_err_handler/':
+                case '/suite_methods/configuration_file/config_custom_error_handler/':
                     $tmp_categ_name = 'Configuration File';
                     $tmp_subcateg_name = 'Configuration File';            # MATCHES SECTION TITLE LINK COPY
-                    $tmp_subsubcat_name = 'config_set_crnrstn_as_err_handler()';
+                    $tmp_subsubcat_name = 'config_custom_error_handler()';
                     self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE', $tmp_categ_name, $tmp_subcateg_name, $tmp_subsubcat_name);
 
                     //
@@ -9286,7 +9282,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     <div class="cb_10"></div>
                     The second parameter, <span class="phpvar_copy">$errorTypesProfile</span>, will allow for 
                     customization of the error handling profile for C<span class="the_R">R</span>NRSTN :: to 
-                    fine tune the PHP error level constants that C<span class="the_R">R</span>NRSTN Suite :: error log 
+                    fine tune the PHP error level constants that C<span class="the_R">R</span>NRSTN :: error log 
                     trace and exception handling will process. Provide the desired profile of error level integer 
                     constants via this parameter. Feel free to use bit flips, and not (&amp; ~), etc.';
 
@@ -9345,7 +9341,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     particular error level constant profile. The environment set on line 42 will keep the error 
                     handling profile applied during the initialization and configuration of 
                     C<span class="the_R">R</span>NRSTN ::...which said error handling profile was processed on line 33 of this example. ';
-                    $tmp_example_presentation_file = '/common/inc/examples/config_set_crnrstn_as_err_handler_show.php';
+                    $tmp_example_presentation_file = '/common/inc/examples/config_custom_error_handler_show.php';
                     $tmp_example_execute_file = '';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
 
@@ -10452,7 +10448,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     //
                     // NOW COMPILE PAGE CONTENT IN ORDER OF PRESENTATION...TOP TO BOTTOM
                     // BASIC_COPY,NOTE_COPY,TECH_SPEC,INVOKING_CLASS,METHOD_DEFINITION,PARAMETER_DEFINITION,RETURNED_VALUE,EXAMPLE
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'For the purposes of supporting front-end and back-end functional use case requirements which walk lock-step with the need to accurately determine client device type from the server-side, C<span class="the_R">R</span>NRSTN Suite :: v2.0.0 incorporates into itself an active and developer supported open source PHP project, <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a>, in order to leverage the deep specialization of that project in the areas of mobile device and tablet computer detection over HTTP/S. isClientMobile() will enable the running application to cater to the experience of an end-user request coming from the mobile (and also tablet) device channel.');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'For the purposes of supporting front-end and back-end functional use case requirements which walk lock-step with the need to accurately determine client device type from the server-side, C<span class="the_R">R</span>NRSTN :: v2.0.0 incorporates into itself an active and developer supported open source PHP project, <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a>, in order to leverage the deep specialization of that project in the areas of mobile device and tablet computer detection over HTTP/S. isClientMobile() will enable the running application to cater to the experience of an end-user request coming from the mobile (and also tablet) device channel.');
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'NOTE_COPY', 'This functionality stands on top of the <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> project which has been incorporated into C<span class="the_R">R</span>NRSTN Suite v2.0.0. <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> is a lightweight PHP class for detecting mobile devices (including tablets). It uses the User-Agent string combined with specific HTTP headers to detect the mobile environment. <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> is sponsored by it\'s developers and community, and they send thanks to the JetBrains team for providing <a href="https://www.jetbrains.com/phpstorm/" target="_blank">PHPStorm</a> and <a href="https://www.jetbrains.com/datagrip/" target="_blank">DataGrip</a> licenses for said project.');
 
                     //
@@ -10489,8 +10485,8 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     //
                     // NOW COMPILE PAGE CONTENT IN ORDER OF PRESENTATION...TOP TO BOTTOM
                     // BASIC_COPY,NOTE_COPY,TECH_SPEC,INVOKING_CLASS,METHOD_DEFINITION,PARAMETER_DEFINITION,RETURNED_VALUE,EXAMPLE
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'For the purposes of supporting front-end and back-end functional use case requirements which walk lock-step with the need to accurately determine client device type from the server-side, C<span class="the_R">R</span>NRSTN Suite :: v2.0.0 incorporates into itself an active and developer supported open source PHP project, <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a>, in order to leverage the deep specialization of that project in the areas of mobile device and tablet computer detection over HTTP/S. isClientTablet() will enable the running application to cater to the experience of an end-user request coming from the tablet (and also mobile) device channel.');
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'NOTE_COPY', 'This functionality stands on top of the <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> project which has been incorporated into C<span class="the_R">R</span>NRSTN Suite v2.0.0. <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> is a lightweight PHP class for detecting mobile devices (including tablets). It uses the User-Agent string combined with specific HTTP headers to detect the mobile environment. <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> is sponsored by it\'s developers and community, and they send thanks to the JetBrains team for providing <a href="https://www.jetbrains.com/phpstorm/" target="_blank">PHPStorm</a> and <a href="https://www.jetbrains.com/datagrip/" target="_blank">DataGrip</a> licenses for said project.');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'For the purposes of supporting front-end and back-end functional use case requirements which walk lock-step with the need to accurately determine client device type from the server-side, C<span class="the_R">R</span>NRSTN :: v2.0.0 incorporates into itself an active and developer supported open source PHP project, <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a>, in order to leverage the deep specialization of that project in the areas of mobile device and tablet computer detection over HTTP/S. isClientTablet() will enable the running application to cater to the experience of an end-user request coming from the tablet (and also mobile) device channel.');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'NOTE_COPY', 'This functionality stands on top of the <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> project which has been incorporated into C<span class="the_R">R</span>NRSTN v2.0.0. <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> is a lightweight PHP class for detecting mobile devices (including tablets). It uses the User-Agent string combined with specific HTTP headers to detect the mobile environment. <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> is sponsored by it\'s developers and community, and they send thanks to the JetBrains team for providing <a href="https://www.jetbrains.com/phpstorm/" target="_blank">PHPStorm</a> and <a href="https://www.jetbrains.com/datagrip/" target="_blank">DataGrip</a> licenses for said project.');
 
                     //
                     // TECH SPECS...PASS IN ARRAY OF SPECS
@@ -10526,8 +10522,8 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     //
                     // NOW COMPILE PAGE CONTENT IN ORDER OF PRESENTATION...TOP TO BOTTOM
                     // BASIC_COPY,NOTE_COPY,TECH_SPEC,INVOKING_CLASS,METHOD_DEFINITION,PARAMETER_DEFINITION,RETURNED_VALUE,EXAMPLE
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'For the purposes of supporting front-end and back-end functional use case requirements which walk lock-step with the need to accurately determine client device type from the server-side, C<span class="the_R">R</span>NRSTN Suite :: v2.0.0 incorporates into itself an active and developer supported open source PHP project, <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a>, in order to leverage the deep specialization of that project in the areas of mobile device and tablet computer detection over HTTP/S. isClientMobileCustom() will enable the running application to cater to the experience of an end-user request coming from the mobile/tablet device channel.');
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'NOTE_COPY', 'This functionality stands on top of the <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> project which has been incorporated into C<span class="the_R">R</span>NRSTN Suite v2.0.0. <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> is a lightweight PHP class for detecting mobile devices (including tablets). It uses the User-Agent string combined with specific HTTP headers to detect the mobile environment. <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> is sponsored by it\'s developers and community, and they send thanks to the JetBrains team for providing <a href="https://www.jetbrains.com/phpstorm/" target="_blank">PHPStorm</a> and <a href="https://www.jetbrains.com/datagrip/" target="_blank">DataGrip</a> licenses for said project.');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'For the purposes of supporting front-end and back-end functional use case requirements which walk lock-step with the need to accurately determine client device type from the server-side, C<span class="the_R">R</span>NRSTN :: v2.0.0 incorporates into itself an active and developer supported open source PHP project, <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a>, in order to leverage the deep specialization of that project in the areas of mobile device and tablet computer detection over HTTP/S. isClientMobileCustom() will enable the running application to cater to the experience of an end-user request coming from the mobile/tablet device channel.');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'NOTE_COPY', 'This functionality stands on top of the <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> project which has been incorporated into C<span class="the_R">R</span>NRSTN :: v2.0.0. <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> is a lightweight PHP class for detecting mobile devices (including tablets). It uses the User-Agent string combined with specific HTTP headers to detect the mobile environment. <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> is sponsored by it\'s developers and community, and they send thanks to the JetBrains team for providing <a href="https://www.jetbrains.com/phpstorm/" target="_blank">PHPStorm</a> and <a href="https://www.jetbrains.com/datagrip/" target="_blank">DataGrip</a> licenses for said project.');
 
                     //
                     // TECH SPECS...PASS IN ARRAY OF SPECS
@@ -10541,7 +10537,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$target_device';
-                    $tmp_param_def[0]['param_definition'] = 'A string value representing a particular algorithm to be used to look for a specific mobile device or tablet computer platform. For a list of supported algorithms, you can check out the <a href="http://demo.mobiledetect.net/" target="_blank">Mobile Detect Demo</a>. While there, <strong>please feel free to help them improve the mobile detection algorithms by choosing an appropriate answer from the small user experience feedback form on that demo page. This will help to make future releases of <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> more robust and accurate for everyone...and the C<span class="the_R">R</span>NRSTN Suite ::</strong> They are listed here as well. As of Mobile Detect v2.8.34, the custom detection methods are listed as: 
+                    $tmp_param_def[0]['param_definition'] = 'A string value representing a particular algorithm to be used to look for a specific mobile device or tablet computer platform. For a list of supported algorithms, you can check out the <a href="http://demo.mobiledetect.net/" target="_blank">Mobile Detect Demo</a>. While there, <strong>please feel free to help them improve the mobile detection algorithms by choosing an appropriate answer from the small user experience feedback form on that demo page. This will help to make future releases of <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> more robust and accurate for everyone...and C<span class="the_R">R</span>NRSTN ::</strong> They are listed here as well. As of Mobile Detect v2.8.34, the custom detection methods are listed as: 
 isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsung(), isLG(), isSony(), isAsus(), isNokiaLumia(), isMicromax(), isPalm(), isVertu(), isPantech(), isFly(), isWiko(), isiMobile(), isSimValley(), isWolfgang(), isAlcatel(), isNintendo(), isAmoi(), isINQ(), isOnePlus(), isGenericPhone(), isiPad(), isNexusTablet(), isGoogleTablet(), isSamsungTablet(), isKindle(), isSurfaceTablet(), isHPTablet(), isAsusTablet(), isBlackBerryTablet(), isHTCtablet(), isMotorolaTablet(), isNookTablet(), isAcerTablet(), isToshibaTablet(), isLGTablet(), isFujitsuTablet(), isPrestigioTablet(), isLenovoTablet(), isDellTablet(), isYarvikTablet(), isMedionTablet(), isArnovaTablet(), isIntensoTablet(), isIRUTablet(), isMegafonTablet(), isEbodaTablet(), isAllViewTablet(), isArchosTablet(), isAinolTablet(), isNokiaLumiaTablet(), isSonyTablet(), isPhilipsTablet(), isCubeTablet(), isCobyTablet(), isMIDTablet(), isMSITablet(), isSMiTTablet(), isRockChipTablet(), isFlyTablet(), isbqTablet(), isHuaweiTablet(), isNecTablet(), isPantechTablet(), isBronchoTablet(), isVersusTablet(), isZyncTablet(), isPositivoTablet(), isNabiTablet(), isKoboTablet(), isDanewTablet(), isTexetTablet(), isPlaystationTablet(), isTrekstorTablet(), isPyleAudioTablet(), isAdvanTablet(), isDanyTechTablet(), isGalapadTablet(), isMicromaxTablet(), isKarbonnTablet(), isAllFineTablet(), isPROSCANTablet(), isYONESTablet(), isChangJiaTablet(), isGUTablet(), isPointOfViewTablet(), isOvermaxTablet(), isHCLTablet(), isDPSTablet(), isVistureTablet(), isCrestaTablet(), isMediatekTablet(), isConcordeTablet(), isGoCleverTablet(), isModecomTablet(), isVoninoTablet(), isECSTablet(), isStorexTablet(), isVodafoneTablet(), isEssentielBTablet(), isRossMoorTablet(), isiMobileTablet(), isTolinoTablet(), isAudioSonicTablet(), isAMPETablet(), isSkkTablet(), isTecnoTablet(), isJXDTablet(), isiJoyTablet(), isFX2Tablet(), isXoroTablet(), isViewsonicTablet(), isVerizonTablet(), isOdysTablet(), isCaptivaTablet(), isIconbitTablet(), isTeclastTablet(), isOndaTablet(), isJaytechTablet(), isBlaupunktTablet(), isDigmaTablet(), isEvolioTablet(), isLavaTablet(), isAocTablet(), isMpmanTablet(), isCelkonTablet(), isWolderTablet(), isMediacomTablet(), isMiTablet(), isNibiruTablet(), isNexoTablet(), isLeaderTablet(), isUbislateTablet(), isPocketBookTablet(), isKocasoTablet(), isHisenseTablet(), isHudl(), isTelstraTablet(), isGenericTablet(), isAndroidOS(), isBlackBerryOS(), isPalmOS(), isSymbianOS(), isWindowsMobileOS(), isWindowsPhoneOS(), isiOS(), isiPadOS(), isMeeGoOS(), isMaemoOS(), isJavaOS(), iswebOS(), isbadaOS(), isBREWOS(), isChrome(), isDolfin(), isOpera(), isSkyfire(), isEdge(), isIE(), isFirefox(), isBolt(), isTeaShark(), isBlazer(), isSafari(), isWeChat(), isUCBrowser(), isbaiduboxapp(), isbaidubrowser(), isDiigoBrowser(), isMercury(), isObigoBrowser(), isNetFront(), isGenericBrowser(), and isPaleMoon().';
                     $tmp_param_def[0]['param_required'] = true;
 
@@ -10564,7 +10560,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
                     //
                     // NOW COMPILE PAGE CONTENT IN ORDER OF PRESENTATION...TOP TO BOTTOM
                     // BASIC_COPY,NOTE_COPY,TECH_SPEC,INVOKING_CLASS,METHOD_DEFINITION,PARAMETER_DEFINITION,RETURNED_VALUE,EXAMPLE
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'Due to the fact that the C<span class="the_R">R</span>NRSTN Suite :: was engineered to sit so "low level" in the grand scheme of an application...sitting directly on top of the running $_SERVER environment and hooking into it at run time, it is necessary to provide functionality that will support the manual/brute force "straight lining" or persisting of the client\'s mobile device identity for the duration of their session (or until resetDeviceDetect() is appropriately called). Otherwise...for example, a mobile device or tablet user (maybe coming to the site from a link in an email) who clicks a link within the LAMP application to view the "desktop version" will still be met with whatever mobile device experience has been prepared in the application...with no way to change their stars. SO SAD! Enter stage left, setClientMobile(). This method forcefully pushes mobile device indicators to the C<span class="the_R">R</span>NRSTN managed session of said user, so that...regardless of their device or activity within the application...the user may receive the experience that they desire without any cursing and frustration. Hooray!!');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'Due to the fact that C<span class="the_R">R</span>NRSTN :: was engineered to sit so "low level" in the grand scheme of an application...sitting directly on top of the running $_SERVER environment and hooking into it at run time, it is necessary to provide functionality that will support the manual/brute force "straight lining" or persisting of the client\'s mobile device identity for the duration of their session (or until resetDeviceDetect() is appropriately called). Otherwise...for example, a mobile device or tablet user (maybe coming to the site from a link in an email) who clicks a link within the LAMP application to view the "desktop version" will still be met with whatever mobile device experience has been prepared in the application...with no way to change their stars. SO SAD! Enter stage left, setClientMobile(). This method forcefully pushes mobile device indicators to the C<span class="the_R">R</span>NRSTN managed session of said user, so that...regardless of their device or activity within the application...the user may receive the experience that they desire without any cursing and frustration. Hooray!!');
 
                     //
                     // TECH SPECS...PASS IN ARRAY OF SPECS
@@ -10579,7 +10575,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'RETURNED_VALUE', 'TRUE');
 
                     $tmp_example_title_str = 'Example 1';
-                    $tmp_example_description_str = 'Set the client\'s sesson profile in the C<span class="the_R">R</span>NRSTN Suite :: to indicate that they are a mobile device.';
+                    $tmp_example_description_str = 'Set the client\'s sesson profile in C<span class="the_R">R</span>NRSTN :: to indicate that they are a mobile device.';
                     $tmp_example_presentation_file = '/common/inc/examples/setClientMobile_show.php';
                     $tmp_example_execute_file = '/common/inc/examples/setClientMobile_exec.php';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
@@ -10594,7 +10590,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
                     //
                     // NOW COMPILE PAGE CONTENT IN ORDER OF PRESENTATION...TOP TO BOTTOM
                     // BASIC_COPY,NOTE_COPY,TECH_SPEC,INVOKING_CLASS,METHOD_DEFINITION,PARAMETER_DEFINITION,RETURNED_VALUE,EXAMPLE
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'Due to the fact that the C<span class="the_R">R</span>NRSTN Suite :: was engineered to sit so "low level" in the grand scheme of an application...sitting directly on top of the running $_SERVER environment and hooking into it at run time, it is necessary to provide functionality that will support the manual/brute force "straight lining" or persisting of the client\'s mobile device identity for the duration of their session (or until resetDeviceDetect() is appropriately called). Otherwise...for example, a mobile device or tablet user (maybe coming to the site from a link in an email) who clicks a link within the LAMP application to view the "desktop version" will still be met with whatever mobile device experience has been prepared in the application...with no way to change their stars. SO SAD! Enter stage left, setClientTablet(). This method forcefully pushes tablet computer indicators to the C<span class="the_R">R</span>NRSTN managed session of said user, so that...regardless of their device or activity within the application...the user may receive the experience that they desire without any cursing and frustration. Hooray!!');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'Due to the fact that C<span class="the_R">R</span>NRSTN :: was engineered to sit so "low level" in the grand scheme of an application...sitting directly on top of the running $_SERVER environment and hooking into it at run time, it is necessary to provide functionality that will support the manual/brute force "straight lining" or persisting of the client\'s mobile device identity for the duration of their session (or until resetDeviceDetect() is appropriately called). Otherwise...for example, a mobile device or tablet user (maybe coming to the site from a link in an email) who clicks a link within the LAMP application to view the "desktop version" will still be met with whatever mobile device experience has been prepared in the application...with no way to change their stars. SO SAD! Enter stage left, setClientTablet(). This method forcefully pushes tablet computer indicators to the C<span class="the_R">R</span>NRSTN managed session of said user, so that...regardless of their device or activity within the application...the user may receive the experience that they desire without any cursing and frustration. Hooray!!');
 
                     //
                     // TECH SPECS...PASS IN ARRAY OF SPECS
@@ -10609,7 +10605,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'RETURNED_VALUE', 'TRUE');
 
                     $tmp_example_title_str = 'Example 1';
-                    $tmp_example_description_str = 'Set the client\'s sesson profile in the C<span class="the_R">R</span>NRSTN Suite :: to indicate that they are a tablet computer.';
+                    $tmp_example_description_str = 'Set the client\'s sesson profile in C<span class="the_R">R</span>NRSTN :: to indicate that they are a tablet computer.';
                     $tmp_example_presentation_file = '/common/inc/examples/setClientTablet_show.php';
                     $tmp_example_execute_file = '/common/inc/examples/setClientTablet_exec.php';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
@@ -10624,7 +10620,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
                     //
                     // NOW COMPILE PAGE CONTENT IN ORDER OF PRESENTATION...TOP TO BOTTOM
                     // BASIC_COPY,NOTE_COPY,TECH_SPEC,INVOKING_CLASS,METHOD_DEFINITION,PARAMETER_DEFINITION,RETURNED_VALUE,EXAMPLE
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'Due to the fact that the C<span class="the_R">R</span>NRSTN Suite :: was engineered to sit so "low level" in the grand scheme of an application...sitting directly on top of the running $_SERVER environment and hooking into it at run time, it is necessary to provide functionality that will support the manual/brute force "straight lining" or persisting of the client\'s mobile device identity for the duration of their session (or until resetDeviceDetect() is appropriately called). Otherwise...for example, a mobile device or tablet user (maybe coming to the site from a link in an email) who clicks a link within the LAMP application to view the "desktop version" will still be met with whatever mobile device experience has been prepared in the application...with no way to change their stars. SO SAD! Enter stage left, setClientMobileCustom(). This method forcefully pushes a custom device profile indicator to the C<span class="the_R">R</span>NRSTN managed session of said user, so that...regardless of their device or activity within the application...the user may receive the experience that is desired for them without them needing to provide any cursing and frustration along the way. Hooray!!');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'Due to the fact that C<span class="the_R">R</span>NRSTN :: was engineered to sit so "low level" in the grand scheme of an application...sitting directly on top of the running $_SERVER environment and hooking into it at run time, it is necessary to provide functionality that will support the manual/brute force "straight lining" or persisting of the client\'s mobile device identity for the duration of their session (or until resetDeviceDetect() is appropriately called). Otherwise...for example, a mobile device or tablet user (maybe coming to the site from a link in an email) who clicks a link within the LAMP application to view the "desktop version" will still be met with whatever mobile device experience has been prepared in the application...with no way to change their stars. SO SAD! Enter stage left, setClientMobileCustom(). This method forcefully pushes a custom device profile indicator to the C<span class="the_R">R</span>NRSTN managed session of said user, so that...regardless of their device or activity within the application...the user may receive the experience that is desired for them without them needing to provide any cursing and frustration along the way. Hooray!!');
 
                     //
                     // TECH SPECS...PASS IN ARRAY OF SPECS
@@ -10638,7 +10634,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$target_device';
-                    $tmp_param_def[0]['param_definition'] = 'A string value representing a particular algorithm to be used to look for a specific mobile device or tablet computer platform. For a list of supported algorithms, you can check out the <a href="http://demo.mobiledetect.net/" target="_blank">Mobile Detect Demo</a>. While there, <strong>please feel free to help them improve the mobile detection algorithms by choosing an appropriate answer from the small user experience feedback form on that demo page. This will help to make future releases of <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> more robust and accurate for everyone...and the C<span class="the_R">R</span>NRSTN Suite ::</strong> They are listed here as well. As of Mobile Detect v2.8.34, the custom detection methods are listed as: 
+                    $tmp_param_def[0]['param_definition'] = 'A string value representing a particular algorithm to be used to look for a specific mobile device or tablet computer platform. For a list of supported algorithms, you can check out the <a href="http://demo.mobiledetect.net/" target="_blank">Mobile Detect Demo</a>. While there, <strong>please feel free to help them improve the mobile detection algorithms by choosing an appropriate answer from the small user experience feedback form on that demo page. This will help to make future releases of <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> more robust and accurate for everyone...and C<span class="the_R">R</span>NRSTN ::</strong> They are listed here as well. As of Mobile Detect v2.8.34, the custom detection methods are listed as: 
 isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsung(), isLG(), isSony(), isAsus(), isNokiaLumia(), isMicromax(), isPalm(), isVertu(), isPantech(), isFly(), isWiko(), isiMobile(), isSimValley(), isWolfgang(), isAlcatel(), isNintendo(), isAmoi(), isINQ(), isOnePlus(), isGenericPhone(), isiPad(), isNexusTablet(), isGoogleTablet(), isSamsungTablet(), isKindle(), isSurfaceTablet(), isHPTablet(), isAsusTablet(), isBlackBerryTablet(), isHTCtablet(), isMotorolaTablet(), isNookTablet(), isAcerTablet(), isToshibaTablet(), isLGTablet(), isFujitsuTablet(), isPrestigioTablet(), isLenovoTablet(), isDellTablet(), isYarvikTablet(), isMedionTablet(), isArnovaTablet(), isIntensoTablet(), isIRUTablet(), isMegafonTablet(), isEbodaTablet(), isAllViewTablet(), isArchosTablet(), isAinolTablet(), isNokiaLumiaTablet(), isSonyTablet(), isPhilipsTablet(), isCubeTablet(), isCobyTablet(), isMIDTablet(), isMSITablet(), isSMiTTablet(), isRockChipTablet(), isFlyTablet(), isbqTablet(), isHuaweiTablet(), isNecTablet(), isPantechTablet(), isBronchoTablet(), isVersusTablet(), isZyncTablet(), isPositivoTablet(), isNabiTablet(), isKoboTablet(), isDanewTablet(), isTexetTablet(), isPlaystationTablet(), isTrekstorTablet(), isPyleAudioTablet(), isAdvanTablet(), isDanyTechTablet(), isGalapadTablet(), isMicromaxTablet(), isKarbonnTablet(), isAllFineTablet(), isPROSCANTablet(), isYONESTablet(), isChangJiaTablet(), isGUTablet(), isPointOfViewTablet(), isOvermaxTablet(), isHCLTablet(), isDPSTablet(), isVistureTablet(), isCrestaTablet(), isMediatekTablet(), isConcordeTablet(), isGoCleverTablet(), isModecomTablet(), isVoninoTablet(), isECSTablet(), isStorexTablet(), isVodafoneTablet(), isEssentielBTablet(), isRossMoorTablet(), isiMobileTablet(), isTolinoTablet(), isAudioSonicTablet(), isAMPETablet(), isSkkTablet(), isTecnoTablet(), isJXDTablet(), isiJoyTablet(), isFX2Tablet(), isXoroTablet(), isViewsonicTablet(), isVerizonTablet(), isOdysTablet(), isCaptivaTablet(), isIconbitTablet(), isTeclastTablet(), isOndaTablet(), isJaytechTablet(), isBlaupunktTablet(), isDigmaTablet(), isEvolioTablet(), isLavaTablet(), isAocTablet(), isMpmanTablet(), isCelkonTablet(), isWolderTablet(), isMediacomTablet(), isMiTablet(), isNibiruTablet(), isNexoTablet(), isLeaderTablet(), isUbislateTablet(), isPocketBookTablet(), isKocasoTablet(), isHisenseTablet(), isHudl(), isTelstraTablet(), isGenericTablet(), isAndroidOS(), isBlackBerryOS(), isPalmOS(), isSymbianOS(), isWindowsMobileOS(), isWindowsPhoneOS(), isiOS(), isiPadOS(), isMeeGoOS(), isMaemoOS(), isJavaOS(), iswebOS(), isbadaOS(), isBREWOS(), isChrome(), isDolfin(), isOpera(), isSkyfire(), isEdge(), isIE(), isFirefox(), isBolt(), isTeaShark(), isBlazer(), isSafari(), isWeChat(), isUCBrowser(), isbaiduboxapp(), isbaidubrowser(), isDiigoBrowser(), isMercury(), isObigoBrowser(), isNetFront(), isGenericBrowser(), and isPaleMoon().';
                     $tmp_param_def[0]['param_required'] = true;
 
@@ -10646,7 +10642,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'RETURNED_VALUE', 'TRUE');
 
                     $tmp_example_title_str = 'Example 1';
-                    $tmp_example_description_str = 'Set the client\'s sesson profile in the C<span class="the_R">R</span>NRSTN Suite :: to indicate that they are a very specific kind of device/computer.';
+                    $tmp_example_description_str = 'Set the client\'s sesson profile in C<span class="the_R">R</span>NRSTN :: to indicate that they are a very specific kind of device/computer.';
                     $tmp_example_presentation_file = '/common/inc/examples/setClientMobileCustom_show.php';
                     $tmp_example_execute_file = '/common/inc/examples/setClientMobileCustom_exec.php';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
@@ -10661,7 +10657,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
                     //
                     // NOW COMPILE PAGE CONTENT IN ORDER OF PRESENTATION...TOP TO BOTTOM
                     // BASIC_COPY,NOTE_COPY,TECH_SPEC,INVOKING_CLASS,METHOD_DEFINITION,PARAMETER_DEFINITION,RETURNED_VALUE,EXAMPLE
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'Due to the fact that the C<span class="the_R">R</span>NRSTN Suite :: was engineered to sit so "low level" in the grand scheme of an application...sitting directly on top of the running $_SERVER environment and hooking into it at run time, it is necessary to provide functionality that will support the manual/brute force "straight lining" or persisting of the client\'s mobile device identity for the duration of their session (or until resetDeviceDetect() is appropriately called). Otherwise...for example, a mobile device or tablet user (maybe coming to the site from a link in an email) who clicks another link within the LAMP application to view the "desktop version" will still be met with whatever mobile device experience has been prepared in the application...with no way to change their stars. SO SAD! It stands to be said, therefore, that there was no choice but to create resetDeviceDetect() as a reversion enabling component for the device detection functionality within the C<span class="the_R">R</span>NRSTN Suite :: wherein mobile device/tablet computer profile data...which has been pushed to the session for persistence with the user\'s experience...can thereupon be reset, and the user\'s experience in the application can return to "zero" to re-open opportunity for the persistence of other (read as "desktop") use-case scenarios.');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', 'Due to the fact that C<span class="the_R">R</span>NRSTN :: was engineered to sit so "low level" in the grand scheme of an application...sitting directly on top of the running $_SERVER environment and hooking into it at run time, it is necessary to provide functionality that will support the manual/brute force "straight lining" or persisting of the client\'s mobile device identity for the duration of their session (or until resetDeviceDetect() is appropriately called). Otherwise...for example, a mobile device or tablet user (maybe coming to the site from a link in an email) who clicks another link within the LAMP application to view the "desktop version" will still be met with whatever mobile device experience has been prepared in the application...with no way to change their stars. SO SAD! It stands to be said, therefore, that there was no choice but to create resetDeviceDetect() as a reversion enabling component for the device detection functionality within the C<span class="the_R">R</span>NRSTN Suite :: wherein mobile device/tablet computer profile data...which has been pushed to the session for persistence with the user\'s experience...can thereupon be reset, and the user\'s experience in the application can return to "zero" to re-open opportunity for the persistence of other (read as "desktop") use-case scenarios.');
 
                     //
                     // TECH SPECS...PASS IN ARRAY OF SPECS
@@ -10676,7 +10672,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'RETURNED_VALUE', 'TRUE');
 
                     $tmp_example_title_str = 'Example 1';
-                    $tmp_example_description_str = 'Set the client\'s sesson profile in the C<span class="the_R">R</span>NRSTN Suite :: to indicate that they are a mobile device. We then use resetDeviceDetect() on Line 20 to return to "zero" so that the user can still access the desktop version (literally,...in this case) of the C<span class="the_R">R</span>NRSTN Suite :: documentation site.<br><br>resetDeviceDetect() needs only to be called if setClientMobile(), setClientTablet(), or setClientMobileCustom() are called, and there is the desire to reset the user\'s session in order to reopen opportunity for desktop experiences within the application in the same user session.';
+                    $tmp_example_description_str = 'Set the client\'s sesson profile in C<span class="the_R">R</span>NRSTN :: to indicate that they are a mobile device. We then use resetDeviceDetect() on Line 20 to return to "zero" so that the user can still access the desktop version (literally,...in this case) of the C<span class="the_R">R</span>NRSTN Suite :: documentation site.<br><br>resetDeviceDetect() needs only to be called if setClientMobile(), setClientTablet(), or setClientMobileCustom() are called, and there is the desire to reset the user\'s session in order to reopen opportunity for desktop experiences within the application in the same user session.';
                     $tmp_example_presentation_file = '/common/inc/examples/resetDeviceDetect_show.php';
                     $tmp_example_execute_file = '/common/inc/examples/resetDeviceDetect_exec.php';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
@@ -11867,7 +11863,7 @@ between the server and client can be achieved with minimal effort and maximum da
                     $tmp_spec_array = array();
                     $tmp_spec_array[0] = 'Currently tested on an Ubuntu Server 18.04 running PHP 7.0.22/MySQLi 5.0.12 and CentOS 7 Linux (a 100% compatible rebuild of the Red Hat Enterprise Linux) running PHP 5.6.32/MySQLi 5.5.58.';
                     $tmp_spec_array[1] = 'It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.';
-                    $tmp_spec_array[2] = 'Some hash_algos() returned methods will NOT be compatible with hash_hmac() which C<span class="the_R">R</span>NRSTN Suite :: v2.0.0 uses in validating its decryption. And certain openssl encryption cipher / hash_algos algorithm combinations will not be compatible. Please test the compatibility of your desired combination of encryption cipher and hmac algoritm for each environment...especially before releasing to production code base.';
+                    $tmp_spec_array[2] = 'Some hash_algos() returned methods will NOT be compatible with hash_hmac() which C<span class="the_R">R</span>NRSTN :: v2.0.0 uses in validating its decryption. And certain openssl encryption cipher / hash_algos algorithm combinations will not be compatible. Please test the compatibility of your desired combination of encryption cipher and hmac algoritm for each environment...especially before releasing to production code base.';
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'TECH_SPEC', $tmp_spec_array);
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'INVOKING_CLASS', 'crnrstn_user');
@@ -11879,7 +11875,7 @@ between the server and client can be achieved with minimal effort and maximum da
                     $tmp_param_def[0]['param_required'] = true;
 
                     $tmp_param_def[1]['param_name'] = '$secret_key';
-                    $tmp_param_def[1]['param_definition'] = 'If it is desired to override the environmentally specific and globally applied openssl-encryption-key passed into init_tunnel_encryption(), this parameter will be used in place of the openssl encryption key provided there in the C<span class="the_R">R</span>NRSTN Suite :: configuration file for all of the environments within which the application code base will be running.';
+                    $tmp_param_def[1]['param_definition'] = 'If it is desired to override the environmentally specific and globally applied openssl-encryption-key passed into init_tunnel_encryption(), this parameter will be used in place of the openssl encryption key provided there in C<span class="the_R">R</span>NRSTN :: configuration file for all of the environments within which the application code base will be running.';
                     $tmp_param_def[1]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -11911,7 +11907,7 @@ between the server and client can be achieved with minimal effort and maximum da
                     $tmp_spec_array = array();
                     $tmp_spec_array[0] = 'Currently tested on an Ubuntu Server 18.04 running PHP 7.0.22/MySQLi 5.0.12 and CentOS 7 Linux (a 100% compatible rebuild of the Red Hat Enterprise Linux) running PHP 5.6.32/MySQLi 5.5.58.';
                     $tmp_spec_array[1] = 'It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.';
-                    $tmp_spec_array[2] = 'Some hash_algos() returned methods will NOT be compatible with hash_hmac() which C<span class="the_R">R</span>NRSTN Suite :: v2.0.0 uses in validating its decryption. And certain openssl encryption cipher / hash_algos algorithm combinations will not be compatible. Please test the compatibility of your desired combination of encryption cipher and hmac algorithm for each environment...especially before releasing to production code base.';
+                    $tmp_spec_array[2] = 'Some hash_algos() returned methods will NOT be compatible with hash_hmac() which C<span class="the_R">R</span>NRSTN :: v2.0.0 uses in validating its decryption. And certain openssl encryption cipher / hash_algos algorithm combinations will not be compatible. Please test the compatibility of your desired combination of encryption cipher and hmac algorithm for each environment...especially before releasing to production code base.';
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'TECH_SPEC', $tmp_spec_array);
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'INVOKING_CLASS', 'crnrstn_user');
@@ -11927,7 +11923,7 @@ between the server and client can be achieved with minimal effort and maximum da
                     $tmp_param_def[1]['param_required'] = false;
 
                     $tmp_param_def[2]['param_name'] = '$secret_key';
-                    $tmp_param_def[2]['param_definition'] = 'If it is desired to override the environmentally specific and globally applied openssl-encryption-key passed into init_tunnel_encryption(), this parameter will be used in place of the openssl encryption key provided there in the C<span class="the_R">R</span>NRSTN Suite :: configuration file for all of the environments within which the application code base will be running.';
+                    $tmp_param_def[2]['param_definition'] = 'If it is desired to override the environmentally specific and globally applied openssl-encryption-key passed into init_tunnel_encryption(), this parameter will be used in place of the openssl encryption key provided there in C<span class="the_R">R</span>NRSTN :: configuration file for all of the environments within which the application code base will be running.';
                     $tmp_param_def[2]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -12035,7 +12031,7 @@ between the server and client can be achieved with minimal effort and maximum da
                     $tmp_param_def[1]['param_required'] = false;
 
                     $tmp_param_def[2]['param_name'] = '$secret_key';
-                    $tmp_param_def[2]['param_definition'] = 'If it is desired to override the environmentally specific and globally applied openssl-encryption-key passed into init_tunnel_encryption(), this parameter will be used in place of the openssl encryption key provided there in the C<span class="the_R">R</span>NRSTN Suite :: configuration file for all of the environments within which the application code base will be running.';
+                    $tmp_param_def[2]['param_definition'] = 'If it is desired to override the environmentally specific and globally applied openssl-encryption-key passed into init_tunnel_encryption(), this parameter will be used in place of the openssl encryption key provided there in C<span class="the_R">R</span>NRSTN :: configuration file for all of the environments within which the application code base will be running.';
                     $tmp_param_def[2]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -48135,8 +48131,8 @@ In late 2012 and 2013, several projects for alternative implementations for Perl
                     case 'en':
                     default:
 
-                        $tmp_output_ARRAY['TITLE'] = '';
-                        $tmp_output_ARRAY['DESCRIPTION'] = '';
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
 
                     break;
 
@@ -48166,8 +48162,8 @@ In late 2012 and 2013, several projects for alternative implementations for Perl
                     case 'en':
                     default:
 
-                        $tmp_output_ARRAY['TITLE'] = '';
-                        $tmp_output_ARRAY['DESCRIPTION'] = '';
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
 
                     break;
 
@@ -48197,8 +48193,8 @@ In late 2012 and 2013, several projects for alternative implementations for Perl
                     case 'en':
                     default:
 
-                        $tmp_output_ARRAY['TITLE'] = '';
-                        $tmp_output_ARRAY['DESCRIPTION'] = '';
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
 
                     break;
 
@@ -48228,8 +48224,8 @@ In late 2012 and 2013, several projects for alternative implementations for Perl
                     case 'en':
                     default:
 
-                        $tmp_output_ARRAY['TITLE'] = '';
-                        $tmp_output_ARRAY['DESCRIPTION'] = '';
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
 
                     break;
 
@@ -48259,8 +48255,39 @@ In late 2012 and 2013, several projects for alternative implementations for Perl
                     case 'en':
                     default:
 
-                        $tmp_output_ARRAY['TITLE'] = '';
-                        $tmp_output_ARRAY['DESCRIPTION'] = '';
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
+
+                    break;
+
+                }
+
+                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_NAME'][] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_URL'][] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['FILE_EXTENSION'] = array('');
+                $tmp_output_ARRAY['INTEGRATIONS']['MEDIA_ELEMENT_KEY'] = array('');
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LABEL'] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_COLOR_CLASS'] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_WEIGHT_CLASS'] = 'HEAVY';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_COLOR_CLASS'] = '#000';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_BRIGHTEN_EFFECT_IS_ACTIVE'] = 1;
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_MAGNIFICATION_EFFECT_IS_ACTIVE'] = 1;
+
+            break;
+            case 'CRNRSTN_LOG_FILE_FTP_PROXY':
+            case CRNRSTN_LOG_FILE_FTP_PROXY:
+
+                $tmp_output_ARRAY['FAMILY'] = 'CRNRSTN_LOG';
+                $tmp_output_ARRAY[CRNRSTN_INTEGER] = CRNRSTN_LOG_FILE_FTP_PROXY;
+                $tmp_output_ARRAY[CRNRSTN_STRING] = 'CRNRSTN_LOG_FILE_FTP_PROXY';
+
+                switch($this->iso_lang_code){
+                    case 'es':
+                    case 'en':
+                    default:
+
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
 
                     break;
 
@@ -48290,8 +48317,8 @@ In late 2012 and 2013, several projects for alternative implementations for Perl
                     case 'en':
                     default:
 
-                        $tmp_output_ARRAY['TITLE'] = '';
-                        $tmp_output_ARRAY['DESCRIPTION'] = '';
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
 
                     break;
 
@@ -48321,8 +48348,8 @@ In late 2012 and 2013, several projects for alternative implementations for Perl
                     case 'en':
                     default:
 
-                        $tmp_output_ARRAY['TITLE'] = '';
-                        $tmp_output_ARRAY['DESCRIPTION'] = '';
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
 
                     break;
 
@@ -48352,8 +48379,8 @@ In late 2012 and 2013, several projects for alternative implementations for Perl
                     case 'en':
                     default:
 
-                        $tmp_output_ARRAY['TITLE'] = '';
-                        $tmp_output_ARRAY['DESCRIPTION'] = '';
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
 
                     break;
 
@@ -48383,8 +48410,8 @@ In late 2012 and 2013, several projects for alternative implementations for Perl
                     case 'en':
                     default:
 
-                        $tmp_output_ARRAY['TITLE'] = '';
-                        $tmp_output_ARRAY['DESCRIPTION'] = '';
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
 
                     break;
 
@@ -48414,8 +48441,8 @@ In late 2012 and 2013, several projects for alternative implementations for Perl
                     case 'en':
                     default:
 
-                        $tmp_output_ARRAY['TITLE'] = '';
-                        $tmp_output_ARRAY['DESCRIPTION'] = '';
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
 
                     break;
 
@@ -48445,8 +48472,8 @@ In late 2012 and 2013, several projects for alternative implementations for Perl
                     case 'en':
                     default:
 
-                        $tmp_output_ARRAY['TITLE'] = '';
-                        $tmp_output_ARRAY['DESCRIPTION'] = '';
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
 
                     break;
 
@@ -48476,8 +48503,225 @@ In late 2012 and 2013, several projects for alternative implementations for Perl
                     case 'en':
                     default:
 
-                        $tmp_output_ARRAY['TITLE'] = '';
-                        $tmp_output_ARRAY['DESCRIPTION'] = '';
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
+
+                    break;
+
+                }
+
+                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_NAME'][] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_URL'][] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['FILE_EXTENSION'] = array('');
+                $tmp_output_ARRAY['INTEGRATIONS']['MEDIA_ELEMENT_KEY'] = array('');
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LABEL'] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_COLOR_CLASS'] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_WEIGHT_CLASS'] = 'HEAVY';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_COLOR_CLASS'] = '#000';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_BRIGHTEN_EFFECT_IS_ACTIVE'] = 1;
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_MAGNIFICATION_EFFECT_IS_ACTIVE'] = 1;
+
+            break;
+            case 'CRNRSTN_LOG_ELECTRUM_PROXY':
+            case CRNRSTN_LOG_ELECTRUM_PROXY:
+
+                $tmp_output_ARRAY['FAMILY'] = 'CRNRSTN_LOG';
+                $tmp_output_ARRAY[CRNRSTN_INTEGER] = CRNRSTN_LOG_ELECTRUM_PROXY;
+                $tmp_output_ARRAY[CRNRSTN_STRING] = 'CRNRSTN_LOG_ELECTRUM_PROXY';
+
+                switch($this->iso_lang_code){
+                    case 'es':
+                    case 'en':
+                    default:
+
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
+
+                    break;
+
+                }
+
+                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_NAME'][] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_URL'][] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['FILE_EXTENSION'] = array('');
+                $tmp_output_ARRAY['INTEGRATIONS']['MEDIA_ELEMENT_KEY'] = array('');
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LABEL'] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_COLOR_CLASS'] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_WEIGHT_CLASS'] = 'HEAVY';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_COLOR_CLASS'] = '#000';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_BRIGHTEN_EFFECT_IS_ACTIVE'] = 1;
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_MAGNIFICATION_EFFECT_IS_ACTIVE'] = 1;
+
+            break;
+            case 'CRNRSTN_LOG_DATABASE':
+            case CRNRSTN_LOG_DATABASE:
+
+                $tmp_output_ARRAY['FAMILY'] = 'CRNRSTN_LOG';
+                $tmp_output_ARRAY[CRNRSTN_INTEGER] = CRNRSTN_LOG_DATABASE;
+                $tmp_output_ARRAY[CRNRSTN_STRING] = 'CRNRSTN_LOG_DATABASE';
+
+                switch($this->iso_lang_code){
+                    case 'es':
+                    case 'en':
+                    default:
+
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
+
+                    break;
+
+                }
+
+                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_NAME'][] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_URL'][] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['FILE_EXTENSION'] = array('');
+                $tmp_output_ARRAY['INTEGRATIONS']['MEDIA_ELEMENT_KEY'] = array('');
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LABEL'] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_COLOR_CLASS'] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_WEIGHT_CLASS'] = 'HEAVY';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_COLOR_CLASS'] = '#000';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_BRIGHTEN_EFFECT_IS_ACTIVE'] = 1;
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_MAGNIFICATION_EFFECT_IS_ACTIVE'] = 1;
+
+            break;
+            case 'CRNRSTN_LOG_DATABASE_PROXY':
+            case CRNRSTN_LOG_DATABASE_PROXY:
+
+                $tmp_output_ARRAY['FAMILY'] = 'CRNRSTN_LOG';
+                $tmp_output_ARRAY[CRNRSTN_INTEGER] = CRNRSTN_LOG_DATABASE_PROXY;
+                $tmp_output_ARRAY[CRNRSTN_STRING] = 'CRNRSTN_LOG_DATABASE_PROXY';
+
+                switch($this->iso_lang_code){
+                    case 'es':
+                    case 'en':
+                    default:
+
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
+
+                    break;
+
+                }
+
+                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_NAME'][] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_URL'][] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['FILE_EXTENSION'] = array('');
+                $tmp_output_ARRAY['INTEGRATIONS']['MEDIA_ELEMENT_KEY'] = array('');
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LABEL'] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_COLOR_CLASS'] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_WEIGHT_CLASS'] = 'HEAVY';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_COLOR_CLASS'] = '#000';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_BRIGHTEN_EFFECT_IS_ACTIVE'] = 1;
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_MAGNIFICATION_EFFECT_IS_ACTIVE'] = 1;
+
+            break;
+            case 'CRNRSTN_LOG_SSDTLA':
+            case CRNRSTN_LOG_SSDTLA:
+
+                $tmp_output_ARRAY['FAMILY'] = 'CRNRSTN_LOG';
+                $tmp_output_ARRAY[CRNRSTN_INTEGER] = CRNRSTN_LOG_SSDTLA;
+                $tmp_output_ARRAY[CRNRSTN_STRING] = 'CRNRSTN_LOG_SSDTLA';
+
+                switch($this->iso_lang_code){
+                    case 'es':
+                    case 'en':
+                    default:
+
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
+
+                    break;
+
+                }
+
+                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_NAME'][] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_URL'][] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['FILE_EXTENSION'] = array('');
+                $tmp_output_ARRAY['INTEGRATIONS']['MEDIA_ELEMENT_KEY'] = array('');
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LABEL'] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_COLOR_CLASS'] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_WEIGHT_CLASS'] = 'HEAVY';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_COLOR_CLASS'] = '#000';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_BRIGHTEN_EFFECT_IS_ACTIVE'] = 1;
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_MAGNIFICATION_EFFECT_IS_ACTIVE'] = 1;
+
+            break;
+            case 'CRNRSTN_LOG_SSDTLA_PROXY':
+            case CRNRSTN_LOG_SSDTLA_PROXY:
+
+                $tmp_output_ARRAY['FAMILY'] = 'CRNRSTN_LOG';
+                $tmp_output_ARRAY[CRNRSTN_INTEGER] = CRNRSTN_LOG_SSDTLA_PROXY;
+                $tmp_output_ARRAY[CRNRSTN_STRING] = 'CRNRSTN_LOG_SSDTLA_PROXY';
+
+                switch($this->iso_lang_code){
+                    case 'es':
+                    case 'en':
+                    default:
+
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
+
+                    break;
+
+                }
+
+                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_NAME'][] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_URL'][] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['FILE_EXTENSION'] = array('');
+                $tmp_output_ARRAY['INTEGRATIONS']['MEDIA_ELEMENT_KEY'] = array('');
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LABEL'] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_COLOR_CLASS'] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_WEIGHT_CLASS'] = 'HEAVY';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_COLOR_CLASS'] = '#000';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_BRIGHTEN_EFFECT_IS_ACTIVE'] = 1;
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_MAGNIFICATION_EFFECT_IS_ACTIVE'] = 1;
+
+            break;
+            case 'CRNRSTN_LOG_PSSDTLA':
+            case CRNRSTN_LOG_PSSDTLA:
+
+                $tmp_output_ARRAY['FAMILY'] = 'CRNRSTN_LOG';
+                $tmp_output_ARRAY[CRNRSTN_INTEGER] = CRNRSTN_LOG_PSSDTLA;
+                $tmp_output_ARRAY[CRNRSTN_STRING] = 'CRNRSTN_LOG_PSSDTLA';
+
+                switch($this->iso_lang_code){
+                    case 'es':
+                    case 'en':
+                    default:
+
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
+
+                    break;
+
+                }
+
+                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_NAME'][] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_URL'][] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['FILE_EXTENSION'] = array('');
+                $tmp_output_ARRAY['INTEGRATIONS']['MEDIA_ELEMENT_KEY'] = array('');
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LABEL'] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_COLOR_CLASS'] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_WEIGHT_CLASS'] = 'HEAVY';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_COLOR_CLASS'] = '#000';
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_BRIGHTEN_EFFECT_IS_ACTIVE'] = 1;
+                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_MAGNIFICATION_EFFECT_IS_ACTIVE'] = 1;
+
+            break;
+            case 'CRNRSTN_LOG_PSSDTLA_PROXY':
+            case CRNRSTN_LOG_PSSDTLA_PROXY:
+
+                $tmp_output_ARRAY['FAMILY'] = 'CRNRSTN_LOG';
+                $tmp_output_ARRAY[CRNRSTN_INTEGER] = CRNRSTN_LOG_PSSDTLA_PROXY;
+                $tmp_output_ARRAY[CRNRSTN_STRING] = 'CRNRSTN_LOG_PSSDTLA_PROXY';
+
+                switch($this->iso_lang_code){
+                    case 'es':
+                    case 'en':
+                    default:
+
+                        $tmp_output_ARRAY['TITLE'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'NAME');
+                        $tmp_output_ARRAY['DESCRIPTION'] = $this->oCRNRSTN->get_system_logging_config($resource_constant, 'DESCRIPTION');
 
                     break;
 
@@ -50709,16 +50953,16 @@ In late 2012 and 2013, several projects for alternative implementations for Perl
                 $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_MAGNIFICATION_EFFECT_IS_ACTIVE'] = 1;
 
             break;
-            case 'CRNRSTN_CHANNEL_FORM_INTEGRATIONS':
-            case CRNRSTN_CHANNEL_FORM_INTEGRATIONS:
+            case 'CRNRSTN_CHANNEL_FORM':
+            case CRNRSTN_CHANNEL_FORM:
 
                 //
                 // THIS IS BASICALLY AN ALIS FOR SHIT RELATED TO CRNRSTN :: SSDTLA
                 // AND PSSDTLA. CRNRSTN :: FORM INTEGRATIONS IS THE FOUNDATIONAL
                 // ARCHITECTURE BEHIND THE SSDTLA...FOR REAL, YO.
                 $tmp_output_ARRAY['FAMILY'] = 'OUTPUT';
-                $tmp_output_ARRAY[CRNRSTN_INTEGER] = CRNRSTN_CHANNEL_FORM_INTEGRATIONS;
-                $tmp_output_ARRAY[CRNRSTN_STRING] = 'CRNRSTN_CHANNEL_FORM_INTEGRATIONS';
+                $tmp_output_ARRAY[CRNRSTN_INTEGER] = CRNRSTN_CHANNEL_FORM;
+                $tmp_output_ARRAY[CRNRSTN_STRING] = 'CRNRSTN_CHANNEL_FORM';
 
                 switch($this->iso_lang_code){
                     case 'es':
@@ -51458,7 +51702,7 @@ In late 2012 and 2013, several projects for alternative implementations for Perl
     public function return_integer_constant_profiles($module_key = NULL){
 
         /*
-        $this->system_theme_style_constants_ARRAY = array(
+        system_theme_style_constants_ARRAY = array(
         CRNRSTN_UI_PHPNIGHT,
         CRNRSTN_UI_DARKNIGHT,
         CRNRSTN_UI_PHP,
@@ -51557,11 +51801,6 @@ In late 2012 and 2013, several projects for alternative implementations for Perl
                 //CRNRSTN_RESPONSE_REPORT
 
                 $tmp_output_ARRAY = array();
-
-            break;
-            case 'system_theme_profiles':
-
-                $tmp_output_ARRAY = $this->oCRNRSTN->system_theme_style_constants_ARRAY;
 
             break;
             default:

@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -71,23 +71,20 @@
 #  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
 #
 class crnrstn_cookie_manager {
-	
+
+    public $oCRNRSTN;
+
 	public static $cookie_ARRAY = array();
 	public $config_serial;
 	public static $tmp_cookie_name;
 	public static $cookieValue_Encrypted;
 	public static $cookieName_Encrypted;
-	private static $cookieName_ChecksumSeed = 'CRNRSTN';				// SEED CHARS VALID FOR COOKIE NAME
+	private static $cookieName_ChecksumSeed = 'CRNRSTN';				// SEED CHARS VALID FOR COOKIE NAME.
 	public static $thisCookieCrawler_ARRAY = array();
-	protected $oLogger;
-
-	public $oCRNRSTN;
 
     public function __construct($oCRNRSTN){
 		
 	    $this->oCRNRSTN = $oCRNRSTN;
-	
-        $this->oLogger = new crnrstn_logging(__CLASS__, $oCRNRSTN);
 	
 	}
 	
@@ -230,7 +227,7 @@ class crnrstn_cookie_manager {
                     if($this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('isset', 'encrypt_cipher', 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION') == true){
 
                         //
-                        // EXTRACT DATA FROM THE CRNRSTN :: DECOUPLED DATA OBJECT (DDO).
+                        // EXTRACT DATA FROM THE CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO).
                         $tmp_encrypt_cipher = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('data_value', $this->oCRNRSTN->hash_ddo_memory_pointer('encrypt_cipher', 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION', CRNRSTN_RESOURCE_ALL), true);
                         $tmp_encrypt_secret_key = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('data_value', $this->oCRNRSTN->hash_ddo_memory_pointer('encrypt_secret_key', 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION', CRNRSTN_RESOURCE_ALL), true);
                         $tmp_encrypt_options = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('data_value', $this->oCRNRSTN->hash_ddo_memory_pointer('encrypt_options', 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION', CRNRSTN_RESOURCE_ALL), true);
@@ -304,7 +301,7 @@ class crnrstn_cookie_manager {
                 if($this->oCRNRSTN->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('isset', $this->oCRNRSTN->hash_ddo_memory_pointer('encrypt_cipher', 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION', CRNRSTN_RESOURCE_ALL), false)){
 
                     //
-                    // EXTRACT DATA FROM THE CRNRSTN :: DECOUPLED DATA OBJECT (DDO).
+                    // EXTRACT DATA FROM THE CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO).
                     $tmp_encrypt_cipher = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('data_value', $this->oCRNRSTN->hash_ddo_memory_pointer('encrypt_cipher', 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION', CRNRSTN_RESOURCE_ALL), false);
                     $tmp_encrypt_secret_key = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('data_value', $this->oCRNRSTN->hash_ddo_memory_pointer('encrypt_secret_key', 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION', CRNRSTN_RESOURCE_ALL), false);
                     $tmp_encrypt_options = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('data_value', $this->oCRNRSTN->hash_ddo_memory_pointer('encrypt_options', 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION', CRNRSTN_RESOURCE_ALL), false);

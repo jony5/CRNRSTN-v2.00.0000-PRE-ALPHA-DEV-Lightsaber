@@ -11,13 +11,13 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer.
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
 #            URI :: http://crnrstn.evifweb.com/
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
-#                   Copyright (C) 2012-2023 eVifweb development.
+#                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
 #                   preprod, and production). With this tool, data and functionality possessing characteristics that
@@ -32,7 +32,7 @@
 #                   framework that will bubble up logs from exception notifications to any output channel (email, hidden
 #                   HTML comment, native default,...etc.) of one's own choosing.
 #
-#                   For example, stand on top of the CRNRSTN :: SOAP services layer to organize and strengthen the
+#                   Stand on top of the CRNRSTN :: SOAP Services Layer to, for example, organize and strengthen the
 #                   communications architecture of any web application. By supporting many-to-one proxy messaging
 #                   relationships between slaves and a master "communications server", CRNRSTN :: can streamline and
 #                   simplify the management of web application communications; one can configure everything from SMTP
@@ -72,12 +72,11 @@
 #
 class crnrstn_ui_html_manager {
 
-	protected $oLogger;
 	public $oCRNRSTN;
     protected $oCRNRSTN_UI_ASSEMBLER;
 
     public $page_serial;
-    public $css_length_units_ARRAY = array();
+    private static $css_length_units_ARRAY = array();
     protected $docs_nav_link_ARRAY = array();
     protected $docs_nav_html = '';
 
@@ -86,17 +85,13 @@ class crnrstn_ui_html_manager {
 	    $this->oCRNRSTN = $oCRNRSTN;
 
         //
-        // INSTANTIATE LOGGER.
-        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
-
-        //
         // PAGE CONTENT AGGREGATION.
         $this->oCRNRSTN_UI_ASSEMBLER = new crnrstn_ui_content_assembler($this->oCRNRSTN);
 
         //
         // SOURCE :: https://www.w3schools.com/cssref/css_units.php
         // DATE :: Thursday, June 22, 2023 @ 0555 hrs.
-        $this->css_length_units_ARRAY = array('cm' => 'centimeters', 'mm' => 'millimeters',
+        self::$css_length_units_ARRAY = array('cm' => 'centimeters', 'mm' => 'millimeters',
         'in' => 'inches (1in = 96px = 2.54cm)', 'px' => 'pixels (1px = 1/96th of 1in)',
         'pt' => 'points (1pt = 1/72 of 1in)', 'pc' => 'picas (1pc = 12 pt)',
         'em' => 'Relative to the font-size of the element (2em means 2 times the size of the current font)',
@@ -2067,6 +2062,61 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         include(CRNRSTN_ROOT . $filepath);
 
         return $tmp_str;
+
+    }
+
+    public function get_crnrstn_interact_ui_html_mgr($name){
+
+        switch($name){
+            case 'css_length_units_ARRAY':
+
+                return self::$css_length_units_ARRAY;
+
+            break;
+
+        }
+
+        return false;
+
+    }
+
+    public function set_crnrstn_interact_ui_html_mgr($name, $value = NULL){
+
+        switch($name){
+            case 'css_length_units_ARRAY':
+
+                self::$css_length_units_ARRAY = $value;
+
+            break;
+
+        }
+
+        return false;
+
+    }
+
+    public function isset_crnrstn_interact_ui_html_mgr($name){
+
+        switch($name){
+            case 'css_length_units_ARRAY':
+
+                if(isset(self::$css_length_units_ARRAY)){
+
+                    if(count(self::$css_length_units_ARRAY) > 0){
+
+                        return true;
+
+                    }
+
+                }
+
+                return false;
+
+            break;
+
+        }
+
+        return false;
 
     }
 

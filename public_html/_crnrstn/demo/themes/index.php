@@ -23,9 +23,10 @@ $tmp_theme_style_nom = $tmp_theme_style_ARRAY[CRNRSTN_STRING];
 $tmp_theme_style_int = $tmp_theme_style_ARRAY[CRNRSTN_INTEGER];
 
 $tmp_lnk_str = '';
-//$tmp_active_profile_ARRAY = $this->return_set_bits($this->system_theme_style_constants_ARRAY);
 
-foreach($oCRNRSTN->system_theme_style_constants_ARRAY as $index => $int_const){
+$tmp_system_theme_style_constants_ARRAY = $oCRNRSTN->get_crnrstn('system_theme_style_constants_ARRAY');
+//$tmp_system_theme_style_constants_ARRAY = $this->return_set_bits($tmp_system_theme_style_constants_ARRAY);
+foreach($tmp_system_theme_style_constants_ARRAY as $index => $int_const){
 
     // $int_const CAN EVEN BE A STRING REPRESENTATION OF THE CONSTANT.
     $tmp_ARRAY = $oCRNRSTN->return_constant_profile_ARRAY($int_const);
@@ -144,7 +145,7 @@ $tmp_str = '/*
 
     -----
     CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA
-    OBJECT (DDO) SERVICES LAYER AUTHORIZATION
+    OBJECT (MC-DDO) SERVICES LAYER AUTHORIZATION
     PROFILES FOR DATA HANDLING.
     -----
     CRNRSTN_AUTHORIZE_ALL
@@ -168,8 +169,7 @@ $tmp_str = '/*
     */';
 $oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: CODE NOTES. crnrstn::', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$oCRNRSTN->print_r('$this->config_serial_hash = $oCRNRSTN->get_server_config_serial(\'hash\');', 'crnrstn::get_server_config_serial()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
-
+$oCRNRSTN->print_r('self::$config_serial = $oCRNRSTN->get_crnrstn(\'config_serial\');', 'crnrstn::get_crnrstn()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 $tmp_str = '$tmp_data_key = \'crnrstn_pssdtl_packet\';
 $tmp_data_type_family = \'CRNRSTN::RESOURCE::FORM_HANDLE::\' . md5($crnrstn_form_handle);
@@ -307,7 +307,7 @@ $oCRNRSTN->system_base64_integrate(CRNRSTN_ROOT . '/_crnrstn/demo/common/imgs/j5
 //    <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
 //        <br>// ' . $oCRNRSTN->multi_lang_content_return('PLEASE_ENTER_A_CONFIG_SERIAL') . '
 //        <br>// ' . $oCRNRSTN->multi_lang_content_return('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 141].' . '
-//        <br>$CRNRSTN_config_serial = \'' . $oCRNRSTN->generate_new_key(64, -3) . '\';
+//        <br>$CRNRSTN_config_salt = \'' . $oCRNRSTN->generate_new_key(64, -3) . '\';
 //        <br>// <a href="#"  style="font-family:Courier New, Courier, monospace; color: #0066CC;">' . $oCRNRSTN->multi_lang_content_return('CLICK_HERE') . '</a> to copy the 64 ' . $oCRNRSTN->multi_lang_content_return('TO_COPY_THE_CHAR_SERIAL_TO_CLIPBOARD') . '.
 //        <br>
 //

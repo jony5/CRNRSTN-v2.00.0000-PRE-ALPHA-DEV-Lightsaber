@@ -88,11 +88,11 @@ j5_pup_top_right
 
 if($oCRNRSTN->http_data_services_initialize(true, false)) {
 
-    $oCRNRSTN->error_log('System is initialized to received form data.]', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+    $oCRNRSTN->error_log('System is initialized to received form data.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
     if($oCRNRSTN->isset_crnrstn_services_http()) {
 
-        $oCRNRSTN->error_log('CRNRSTN :: POST DATA PACKET HAS BEEN RECEIVED.]', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+        $oCRNRSTN->error_log('CRNRSTN :: POST DATA PACKET HAS BEEN RECEIVED.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
         $oCRNRSTN->error_log('CRNRSTN :: checking base64 on [' . $oCRNRSTN->return_form_submitted_value('crnrstn_image_to_process_name') . ']', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
