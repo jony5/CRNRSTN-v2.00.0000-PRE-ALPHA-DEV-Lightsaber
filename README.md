@@ -9,7 +9,7 @@ The SITE IS DOWN at this time. Hosting migration is in progress --> [lightsaber.
 
 [Click here](https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/) for temp diagrams that are being used for decision making now.
 
-Last updated on Tuesday, November 28, 2023 @ 18:42:54.199429 EDT. Diagram line numbers were updated due to GLOBAL code comment HEADER update across all files.
+Last updated on Wednesday, December 13, 2023 @ 04:20:00.586911 EDT; The project _tmp_diagrams/ were updated as well.
 
 [lightsaber.crnrstn.jony5.com](http://lightsaber.crnrstn.jony5.com/)
 
