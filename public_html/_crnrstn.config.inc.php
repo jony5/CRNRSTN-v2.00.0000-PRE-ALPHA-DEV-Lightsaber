@@ -617,7 +617,7 @@ error_log(__LINE__ . ' config STARTING [config_load_system_overrides()] [rtime '
 // CRNRSTN :: PLAID FIRES HERE.
 $oCRNRSTN->config_load_system_overrides(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.load.inc.php');
 
-$tmp_channel_ARRAY = $oCRNRSTN->get_channel_config('soap');
+$tmp_channel_ARRAY = $oCRNRSTN->get_channel_config(CRNRSTN_CHANNEL_SOAP);
 
 $oCRNRSTN->destruct_output .= '<pre><code>[' . $oCRNRSTN->return_micro_time()  . '] [lnum ' .  __LINE__ . '] [rtime ' . $oCRNRSTN->wall_time() . '] [file ' . __FILE__  . '] config file
 C<span style="color:#F90000;">R</span>NRSTN :: MULTI-CHANNEL [' . $tmp_channel_ARRAY['DESCRIPTION'] . '] PROFILE <br><br>// # # C # R # N # R # S # T # N # : : # # # #<br><br>' . print_r($tmp_channel_ARRAY, true) . ']</code></pre>';
