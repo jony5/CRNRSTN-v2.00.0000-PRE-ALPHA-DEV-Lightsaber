@@ -303,6 +303,7 @@ class crnrstn {
     private static $crnrstn_max_length_filepath_override;
     private static $crnrstn_soap_services_enabled_override;
     private static $crnrstn_slow_queries_acceleration_enabled_override;
+    private static $max_connections_override;
     private static $connection_keepalive_override;
     private static $connection_ttl_override;
     private static $crnrstn_query_cache_enabled_override;
@@ -13863,6 +13864,12 @@ class crnrstn {
 
         }
 
+        if($this->isset_resource('data_value', 'max_connections_override', 'CRNRSTN::RESOURCE::DATABASE_NETWORK') == true){
+
+            self::$max_connections_override = $this->get_resource('max_connections_override', 0, 'CRNRSTN::RESOURCE::DATABASE_NETWORK');
+
+        }
+
         if($this->isset_resource('data_value', 'connection_keepalive_override', 'CRNRSTN::RESOURCE::DATABASE_NETWORK') == true){
 
             self::$connection_keepalive_override = $this->get_resource('connection_keepalive_override', 0, 'CRNRSTN::RESOURCE::DATABASE_NETWORK');
@@ -14167,7 +14174,7 @@ class crnrstn {
 
                 }
 
-                //error_log(__LINE__ . ' rrs map [' . $channel . '] CHANNEL DATA INITIALIZED $channel_bytes=0.');
+                //error_log(__LINE__ . ' rrs map [' . $channel . '] ' . $this->get_channel_config($channel, 'NAME') . ' CHANNEL DATA INITIALIZED $channel_bytes=0.');
                 self::$cache_ARRAY[self::$request_id]['channel_bytes'][$channel] = $this->return_cache_bytes_size($tmp_str);
 
             break;
@@ -14187,21 +14194,21 @@ class crnrstn {
 
                 }
 
-                //error_log(__LINE__ . ' rrs map [' . $channel . '] CHANNEL DATA INITIALIZED $channel_bytes=0.');
+                //error_log(__LINE__ . ' rrs map [' . $channel . '] ' . $this->get_channel_config($channel, 'NAME') . ' CHANNEL DATA INITIALIZED $channel_bytes=0.');
                 self::$cache_ARRAY[self::$request_id]['channel_bytes'][$channel] = $this->return_cache_bytes_size($tmp_str);
 
             break;
             case CRNRSTN_CHANNEL_COOKIE:
                 //C :: CARRIER PIGEON (AVIAN OF HOMING VARIANT)...OR EVEN A BROWSER COOKIE...EQUALLY AS RELIABLE TO CRNRSTN ::
 
-                //error_log(__LINE__ . ' rrs map [' . $channel . '] CHANNEL DATA INITIALIZED $channel_bytes=0.');
+                //error_log(__LINE__ . ' rrs map [' . $channel . '] ' . $this->get_channel_config($channel, 'NAME') . ' CHANNEL DATA INITIALIZED $channel_bytes=0.');
                 self::$cache_ARRAY[self::$request_id]['channel_bytes'][$channel] = 0;
 
             break;
             case CRNRSTN_CHANNEL_SESSION:
                 //H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
 
-                //error_log(__LINE__ . ' rrs map [' . $channel . '] CHANNEL DATA INITIALIZED $channel_bytes=0.');
+                //error_log(__LINE__ . ' rrs map [' . $channel . '] ' . $this->get_channel_config($channel, 'NAME') . ' CHANNEL DATA INITIALIZED $channel_bytes=0.');
                 $_SESSION['CRNRSTN_' . self::$config_serial]['channel_bytes'][$channel] = 0;
 
             break;
@@ -14218,7 +14225,7 @@ class crnrstn {
             case CRNRSTN_CHANNEL_FILE:
                 //F :: SERVER LOCAL FILE SYSTEM.
 
-                //error_log(__LINE__ . ' rrs map [' . $channel . '] CHANNEL DATA INITIALIZED $channel_bytes=0.');
+                //error_log(__LINE__ . ' rrs map [' . $channel . '] ' . $this->get_channel_config($channel, 'NAME') . ' CHANNEL DATA INITIALIZED $channel_bytes=0.');
                 self::$cache_ARRAY[self::$request_id]['channel_bytes'][$channel] = 0;
 
             break;
@@ -14376,7 +14383,7 @@ class crnrstn {
 
             if(count($tmp_param_missing_ARRAY) > 0){
 
-                $this->error_log('Attempted ' . __METHOD__ . '(' . $channel . ') but missing required parameters. ' .
+                $this->error_log('Attempted ' . __METHOD__ . ' [(' . $channel . ') ' . $this->get_channel_config($channel, 'NAME') . ' CHANNEL] but missing required parameters. ' .
                     $tmp_param_missing_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                 throw new Exception('CRNRSTN :: channel initialization ERROR. Missing parameter information. ' . $tmp_param_missing_str);
@@ -14774,7 +14781,7 @@ class crnrstn {
                             break;
                             default:
 
-                                error_log(__LINE__ . ' crnrstn MISSING SWITCH CASE $channel[' . $channel . '].');
+                                error_log(__LINE__ . ' crnrstn MISSING SWITCH CASE $channel[(' . $channel . ') ' . $this->get_channel_config($channel, 'NAME') . '].');
 
                             break;
 
@@ -15904,7 +15911,7 @@ class crnrstn {
 
     }
 
-    public function config_database_network_overrides($env_key = CRNRSTN_RESOURCE_ALL, $crnrstn_soap_services_enabled = NULL, $crnrstn_slow_queries_acceleration_enabled = NULL, $connection_keepalive = true, $connection_ttl = NULL){
+    public function config_database_network_overrides($env_key = CRNRSTN_RESOURCE_ALL, $crnrstn_soap_services_enabled = NULL, $crnrstn_slow_queries_acceleration_enabled = NULL, $max_connections = NULL, $connection_keepalive = NULL, $connection_ttl = NULL){
 
         try{
 
@@ -16002,6 +16009,46 @@ class crnrstn {
                         //
                         //              NULL IS THE DEFAULT FOR THIS $message_override INPUT.
                         if(!($tmp_result = $this->config_ugc_input_clean_data('boolean', $crnrstn_slow_queries_acceleration_enabled, 'crnrstn_slow_queries_acceleration_enabled_override', 'CRNRSTN::RESOURCE::DATABASE_NETWORK', 0))){
+
+                            //
+                            // HOOOSTON...VE HAF PROBLEM!
+                            throw new Exception($this->err_message_queue_retrieve());
+
+                        }
+
+                    }
+
+                    //
+                    // THIS IS TO BE MANAGED BY THE APPLICATION
+                    // AT A GLOBAL LEVEL.
+                    if(isset($max_connections)){
+
+                        //
+                        // THE CRNRSTN :: CONFIGURATION MANAGER WILL INPUT CLEAN UGC DATA
+                        // OR LOOK FOR THE BEST AND MOST ELEGANT (PLEASE READ AS GRACEFUL)
+                        // DEGRADATION PATHWAYS TO A VANILLA DEFAULT.
+                        //
+                        // ON CRITICAL ERR, $oCRNRSTN->config_ugc_input_clean_data() RETURNS
+                        // NULL, AND A SYSTEM EXCEPTION IS THROWN. OTHERWISE, IF THE INPUT
+                        // DATA IS NOT VALID BUT CAN BE OVERRIDDEN WITH A SETTINGS DEFAULT,
+                        // AN ON THE FLY PATCH IS MADE, AND A SYSTEM NOTIFICATION WITH
+                        // DETAILS ABOUT THE INTERNAL OVERRIDE IS QUIETLY CAPTURED.
+                        //
+                        // CURRENTLY IN DEVELOPMENT UNDER CRNRSTN :: LOGGING ARE:
+                        // - $oCRNRSTN->err_message_queue_push(),
+                        // - $oCRNRSTN->err_message_queue_retrieve(),
+                        // - $oCRNRSTN->err_message_queue_clear(), AND
+                        // - $oCRNRSTN->get_err_message_count().
+                        //
+                        // PLEASE NOTE: $oCRNRSTN->err_message_queue_retrieve() CAN RECEIVE
+                        //              AN ERR MESSAGE OUTPUT OVERRIDE AS INPUT. ALSO OF NOTE...TO
+                        //              CRNRSTN :: ESPECIALLY...IS THAT ACCEPTABLE INPUT CAN INCLUDE DATA
+                        //              SUCH AS EMPTY STRING, SOAP ERROR OBJECT, OR EVEN AN OpenSSL v1.1.1
+                        //              ENCRYPTED JSON PACKET CONTAINING SESSION META AND A CACHE
+                        //              EXPIRATION TTL.
+                        //
+                        //              NULL IS THE DEFAULT FOR THIS $message_override INPUT.
+                        if(!($tmp_result = $this->config_ugc_input_clean_data('integer', $max_connections, 'max_connections_override', 'CRNRSTN::RESOURCE::DATABASE_NETWORK', 0))){
 
                             //
                             // HOOOSTON...VE HAF PROBLEM!
@@ -28013,7 +28060,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                     if($this->get_channel_config($channel_alpha, 'cache_is_active') == true){
 
-                        error_log(__LINE__ . ' crnrstn ACTIVE [' . $channel_alpha . '] MC-DDO CHANNEL.');
+                        error_log(__LINE__ . ' crnrstn ACTIVE [' . $channel_alpha . '] ' . $this->get_channel_config($channel_alpha, 'NAME') . ' MC-DDO CHANNEL.');
 
                         //
                         // RETURN ONLY ACTIVE DATA STORAGE CHANNELS IN THE SEQUENCE OF THEIR INITIALIZATION.
@@ -28022,13 +28069,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     }else{
 
                         //$tmp = strlen(array('324324'));
-                        error_log(__LINE__ . ' crnrstn INACTIVE [' . $channel_alpha . '] MC-DDO CHANNEL.');
+                        error_log(__LINE__ . ' crnrstn INACTIVE [' . $channel_alpha . '] ' . $this->get_channel_config($channel_alpha, 'NAME') . ' MC-DDO CHANNEL.');
 
                     }
 
                 }else{
 
-                    error_log(__LINE__ . ' crnrstn MC-DDO CHANNEL ACTIVE [' . $channel_alpha . '].');
+                    error_log(__LINE__ . ' crnrstn MC-DDO CHANNEL ACTIVE [' . $channel_alpha . '] ' . $this->get_channel_config($channel_alpha, 'NAME') . '.');
 
                     //
                     // RETURN ALL DATA STORAGE CHANNELS IN THE SEQUENCE OF THEIR INITIALIZATION.
@@ -32921,14 +32968,13 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
                     }else{
 
-                        error_log(__LINE__ . ' crnrstn NO CACHE DATA AUTHORIZED TO RETURN FROM $channel[' . $channel . '].');
+                        error_log(__LINE__ . ' crnrstn NO CACHE DATA AUTHORIZED TO RETURN FROM $channel[' . $channel . '] ' . $this->get_channel_config($channel, 'NAME') . '.');
 
                     }
 
                 break;
                 case CRNRSTN_CHANNEL_SESSION:
                     // SILENCE IS GOLDEN.
-                    error_log(__LINE__ . ' crnrstn SESSION IS LOOKING TO RETURN CACHE.');
                 case CRNRSTN_CHANNEL_COOKIE:
                 case CRNRSTN_CHANNEL_DATABASE:
                 case CRNRSTN_CHANNEL_SSDTLA:
@@ -32936,11 +32982,14 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
                 case CRNRSTN_CHANNEL_POST:
                 case CRNRSTN_CHANNEL_PSSDTLA:
                 case CRNRSTN_CHANNEL_SOAP:
+                case CRNRSTN_CHANNEL_FILE:
                     // IMPLEMENTATION PENDING. Tuesday, April 4, 2023 @ 2046 hrs
+                    error_log(__LINE__ . ' ' . __METHOD__ . ' (' . $channel . ') ' . $this->get_channel_config($channel, 'NAME') . ' CHANNEL IS LOOKING TO RETURN CACHE.');
+
                 break;
                 default:
 
-                    error_log(__LINE__ . ' crnrstn UNKNOWN CHANNEL AUTHORIZATION INTEGER RECEIVED $channel[' . $channel . '].');
+                    error_log(__LINE__ . ' crnrstn UNKNOWN CHANNEL AUTHORIZATION INTEGER RECEIVED $channel[' . $channel . ']' . $this->get_channel_config($channel, 'NAME') . '.');
 
                 break;
 
@@ -32984,10 +33033,10 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
                 case CRNRSTN_CHANNEL_PSSDTLA:
                 case CRNRSTN_CHANNEL_SOAP:
                     // IMPLEMENTATION PENDING. Tuesday, April 4, 2023 @ 2046 hrs
-                break;
+                //break;
                 default:
 
-                    error_log(__LINE__ . ' crnrstn UNKNOWN CHANNEL AUTHORIZATION INTEGER RECEIVED $channel[' . $channel . '].');
+                    error_log(__LINE__ . ' crnrstn UNKNOWN CHANNEL AUTHORIZATION INTEGER RECEIVED $channel[' . $channel . ']' . $this->get_channel_config($channel, 'NAME') . '.');
 
                 break;
 
