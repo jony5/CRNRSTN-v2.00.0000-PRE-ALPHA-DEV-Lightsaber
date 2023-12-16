@@ -138,12 +138,13 @@ $this->config_disk_max_item_count_overrides(CRNRSTN_RESOURCE_ALL, NULL, NULL, NU
 // config_database_network_overrides(
 //      $env_key = CRNRSTN_RESOURCE_ALL,
 //      $crnrstn_soap_services_enabled = NULL,
-//      $crnrstn_slow_queries_acceleration_enabled = NULL;
+//      $crnrstn_slow_queries_acceleration_enabled = NULL,
+//		$max_connections = NULL,
 //      $connection_keepalive = NULL,
 //      $connection_ttl = NULL,
 //
 // );
-$this->config_database_network_overrides(CRNRSTN_RESOURCE_ALL, NULL, NULL, NULL, NULL);
+$this->config_database_network_overrides(CRNRSTN_RESOURCE_ALL, NULL, NULL, NULL, NULL, NULL);
 
 //
 // TODO :: REMOVE THIS TODO WHEN THE BELOW OVERRIDES ARE ALL IN PLACE. Wednesday, October 4, 2023 @ 1233 hrs.
