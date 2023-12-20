@@ -5,7 +5,11 @@ A significant refactoring of CRNRSTN :: This is hot in the works...with ~60% of 
 
 ## Production
 
-The SITE IS DOWN at this time. Hosting migration is in progress --> [lightsaber.crnrstn.evifweb.com](http://lightsaber.crnrstn.evifweb.com/) [off-site development backup] Sadly...serving as such...for now...so errors can be expected. 
+The SITE IS STILL AWAITING ACCOUNT SETUP with Bluehost at this time (~5 failed trys with support). Hosting migration is in progress --> [lightsaber.crnrstn.evifweb.com](http://lightsaber.crnrstn.evifweb.com/) [off-site development backup] Sadly...serving as such...for now...so errors can be expected. 
+
+[Click here](https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/bassdrive_dirty_shit/) for some bassdrive.com tunes that I'm luv'n.
+
+[https://bassdrive.com/](https://www.bassdrive.com/)
 
 [Click here](https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/) for temp diagrams that are being used for decision making now.
 
