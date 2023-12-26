@@ -28,14 +28,14 @@ var forecast_night_HTML;
 var forecast_item_cnt = 0;
 
 var oWindage_words = {};
-oWindage_words['N'] = 'Northernly';
-oWindage_words['NE'] = 'North-Easternly';
-oWindage_words['NW'] = 'North-Westernly';
-oWindage_words['E'] = 'Easternly';
-oWindage_words['S'] = 'Southernly';
-oWindage_words['SE'] = 'South-Easternly';
-oWindage_words['SW'] = 'South-Westernly';
-oWindage_words['W'] = 'Westernly';
+oWindage_words['N'] = 'Northerly';
+oWindage_words['NE'] = 'North-Easterly';
+oWindage_words['NW'] = 'North-Westerly';
+oWindage_words['E'] = 'Easterly';
+oWindage_words['S'] = 'Southerly';
+oWindage_words['SE'] = 'South-Easterly';
+oWindage_words['SW'] = 'South-Westerly';
+oWindage_words['W'] = 'Westerly';
 
 var oDate_month = {};
 oDate_month['01'] = 'Jan.';
@@ -357,6 +357,7 @@ function parseXHRCP_JSON(oElemJSON){
 			// BUILD OUT HTML FORECAST
 			// forecast_HTML
 			for(var ii  = 0; ii < period_cnt; ii++){
+
 				var tmp_number = oElemJSON.properties.periods[ii].number;
 				var tmp_name = oElemJSON.properties.periods[ii].name;
 				var tmp_startTime = oElemJSON.properties.periods[ii].startTime;
@@ -413,13 +414,14 @@ function parseXHRCP_JSON(oElemJSON){
 				$('#nws_json_headerMORE_celsius_' + ii).html('<strong>' + tmp_name + ' :: </strong>' + oDate_month[tmp_mnth_str] + ' ' + oDate_day_eng[tmp_day_str] + ', ' + tmp_year_str);
 
 				if((tmp_isDaytime === true || tmp_isDaytime === "true" || tmp_number === 1 || tmp_number === "1") && tmp_daycnt > 0){
+					
 					forecast_item_cnt++;
 					tmp_daycnt--;
 
 					if(oWindage_words[tmp_windDirection] != undefined){
 
-						tmp_windage_html = 'Windage '+ tmp_windSpeed +' in '+oWindage_words[tmp_windDirection]+' direction. (<a id="open-popupViewMORE_' + ii + '" href="#" data-rel="popup" data-transition="pop" style="font-weight: normal; color:#0066CC;" title="Detail">detail</a>)';
-						tmp_windage_celsius_html = 'Windage '+ tmp_windSpeed +' in '+oWindage_words[tmp_windDirection]+' direction. (<a id="open-popupViewMORE_celsius_' + ii + '" href="#" data-rel="popup" data-transition="pop" style="font-weight: normal; color:#0066CC;" title="Detail">detail</a>)';
+						tmp_windage_html = 'Windage '+ tmp_windSpeed +' and '+oWindage_words[tmp_windDirection]+' in nature. (<a id="open-popupViewMORE_' + ii + '" href="#" data-rel="popup" data-transition="pop" style="font-weight: normal; color:#0066CC;" title="Detail">detail</a>)';
+						tmp_windage_celsius_html = 'Windage '+ tmp_windSpeed +' and '+oWindage_words[tmp_windDirection]+' in nature. (<a id="open-popupViewMORE_celsius_' + ii + '" href="#" data-rel="popup" data-transition="pop" style="font-weight: normal; color:#0066CC;" title="Detail">detail</a>)';
 
 					}else{
 
@@ -440,6 +442,7 @@ function parseXHRCP_JSON(oElemJSON){
 							</div>
 						</div>
 					</div>
+
 					*/
 
 					tmp_forecast_day_period_HTML = '<div class="wethr_period_wrapper">' +
@@ -492,13 +495,14 @@ function parseXHRCP_JSON(oElemJSON){
 				}else{
 
 					if(tmp_nightcnt > 0){
+
 						forecast_item_cnt++;
 						tmp_nightcnt--;
 
 						if(oWindage_words[tmp_windDirection] != undefined){
 
-							tmp_windage_html = 'Windage ' + tmp_windSpeed + ' in ' + oWindage_words[tmp_windDirection]  + ' direction. (<a id="open-popupViewMORE_' + ii + '" href="#" data-rel="popup" data-transition="pop" style="font-weight: normal; color:#0066CC;" title="Detail">detail</a>)';
-							tmp_windage_celsius_html = 'Windage ' + tmp_windSpeed + ' in ' + oWindage_words[tmp_windDirection]  + ' direction. (<a id="open-popupViewMORE_celsius_' + ii + '" href="#" data-rel="popup" data-transition="pop" style="font-weight: normal; color:#0066CC;" title="Detail">detail</a>)';
+							tmp_windage_html = 'Windage ' + tmp_windSpeed + ' and ' + oWindage_words[tmp_windDirection]  + ' in nature. (<a id="open-popupViewMORE_' + ii + '" href="#" data-rel="popup" data-transition="pop" style="font-weight: normal; color:#0066CC;" title="Detail">detail</a>)';
+							tmp_windage_celsius_html = 'Windage ' + tmp_windSpeed + ' and ' + oWindage_words[tmp_windDirection]  + ' in nature. (<a id="open-popupViewMORE_celsius_' + ii + '" href="#" data-rel="popup" data-transition="pop" style="font-weight: normal; color:#0066CC;" title="Detail">detail</a>)';
 
 						}else{
 
@@ -575,7 +579,8 @@ function parseXHRCP_JSON(oElemJSON){
 			"icon": "https://api.weather.gov/icons/land/day/wind_few?size=medium",
 			"shortForecast": "Sunny",
 			"detailedForecast": "Sunny, with a high near 65. South wind 15 to 20 mph, with gusts as high as 40 mph."
-			* */
+			
+			*/
 
 			//clearTimeout(wethr_refresh_timer);
 
@@ -591,15 +596,14 @@ function parseXHRCP_JSON(oElemJSON){
 function parseXHRCP_JSON_error(oElemJSON){
 
 	/*
-	{
     "correlationId": "24181cdc-fbc9-4e2d-a560-4c564b8c6b25",
-    "title": "Forecast Grid Expired",
-    "type": "https://api.weather.gov/problems/ForecastGridExpired",
-    "status": 503,
-    "detail": "The requested forecast grid was issued 2020-03-24T16:24:12+00:00 and has expired.",
-    "instance": "https://api.weather.gov/requests/24181cdc-fbc9-4e2d-a560-4c564b8c6b25"
-}
-	* */
+	"title": "Forecast Grid Expired",
+	"type": "https://api.weather.gov/problems/ForecastGridExpired",
+	"status": 503,
+	"detail": "The requested forecast grid was issued 2020-03-24T16:24:12+00:00 and has expired.",
+	"instance": "https://api.weather.gov/requests/24181cdc-fbc9-4e2d-a560-4c564b8c6b25"
+
+	*/
 
 	//var tmp_number = oElemJSON.title;
 	//var tmp_name = oElemJSON.detail;
@@ -614,9 +618,10 @@ function parseXHRCP_JSON_error(oElemJSON){
 	}else{
 
 		var tmp_resp = oElemJSON.responseText;
+
 	}
 
-	var tmp_err_output = '<strong><a href="https://www.weather.gov/" target="_blank" style="font-weight:normal; color:#0066CC;">National Weather Service</a> Response ::</strong><div class="cb_10"></div>' + tmp_resp;
+	var tmp_err_output = '<a href="https://www.weather.gov/" target="_blank" style="font-weight:normal; color:#0066CC;">National Weather Service</a> Response ::<div class="cb_10"></div>' + tmp_resp;
 
 	tmp_err_output = tmp_err_output + '<div class="cb_10"></div><a href="' + $('#ajax_root').html() + '" target="_self" style="color:#0066CC; font-weight:normal;" data-ajax="false">Click here</a> for a new wethr lookup.';
 
@@ -631,10 +636,14 @@ function returnDayOfWeekOrTimePeriod(str){
 		case 'Sunday Night':
 		case 'Sunday':
 		case 'Monday':
+
 			var outputPeriod = oDayOfWeek[str];
+
 		break;
 		default:
+
 			var outputPeriod = str;
+
 		break;
 
 	}
@@ -821,6 +830,7 @@ function unitConversionHover(elem, state='OFF'){
 		break;
 		default:
 			// OFF
+
 			oMouseState_hover[elem.id] = 'OFF';
 
 			obj_btn = $('#toggleUnit_btn');
@@ -1032,22 +1042,28 @@ function toggleDayNight(elem){
 
 }
 
+//
 // SOURCE :: https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
 // AUTHOR :: https://stackoverflow.com/users/1897010/sameer-kazi
 // SOURCE [ORIGINAL] :: http://www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
-function getUrlParameter(sParam_cust) {
+function getUrlParameter(sParam_cust){
 	var sPageURL_cust = window.location.search.substring(1),
 		sURLVariables_cust = sPageURL_cust.split('&'),
 		sParameterName_cust,
 		aaa;
 
-	for (aaa = 0; aaa < sURLVariables_cust.length; aaa++) {
+	for(aaa = 0; aaa < sURLVariables_cust.length; aaa++){
+
 		sParameterName_cust = sURLVariables_cust[aaa].split('=');
 
-		if (sParameterName_cust[0] === sParam_cust) {
+		if(sParameterName_cust[0] === sParam_cust){
+
 			return sParameterName_cust[1] === undefined ? true : decodeURIComponent(sParameterName_cust[1]);
+		
 		}
+
 	}
+
 }
 
 function startHeartbeats(){
@@ -1064,9 +1080,11 @@ function startHeartbeats(){
 // SOURCE :: https://joe-riggs.com/blog/2012/05/javascript-count-up-timer-with-hours-minutes-second-hours-minutes/
 // AUTHOR :: https://joe-riggs.com/blog/author/jriggs/
 function syncTimerState(){
+
 	if($('#timer_lck').html()==="OFF"){
 
 		if($("#timer_copy_persist").length){
+
 			var time_shown = $("#timer_copy_persist").html();
 			var time_chunks = time_shown.split(":");
 			var hour, mins, secs;
@@ -1076,14 +1094,19 @@ function syncTimerState(){
 			secs=Number(time_chunks[2]);
 			secs++;
 
-			if (secs==60){
+			if(secs==60){
+
 				secs = 0;
 				mins=mins + 1;
+
 			}
-			if (mins==60){
+
+			if(mins==60){
 				mins=0;
 				hour=hour + 1;
+
 			}
+
 			//if (hour==13){
 			//	hour=1;
 			//}
@@ -1093,6 +1116,7 @@ function syncTimerState(){
 			if($("#timer_copy").length){
 
 				$("#timer_copy").html(hour +":" + plz(mins) + ":" + plz(secs));
+
 			}
 
 		}
@@ -1110,7 +1134,9 @@ function plz(digit){
 	if (digit < 10) {
 		zpad = "0" + zpad;
 	}
+
 	return zpad;
+
 }
 
 function applyLangPackStyles_FULL(overlay_type, objLangPack, tmp_copy_fullscrn_font_size_percentage, cleartext_endpoint,copy_hash){
@@ -1124,10 +1150,13 @@ function applyLangPackStyles_FULL(overlay_type, objLangPack, tmp_copy_fullscrn_f
 }
 
 
+//
 // SOURCE :: https://stackoverflow.com/questions/14129953/how-to-encode-a-string-in-javascript-for-displaying-in-html
 // AUTHOR :: https://stackoverflow.com/users/616443/j08691
-function htmlEntities(str) {
+function htmlEntities(str){
+
 	return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
 }
 
 function log_activity(str){
@@ -1165,13 +1194,12 @@ function log_activity(str){
 			alert('The logger param [var log_controller] is not visible to me.');
 		break;
 
-
 	}
 
 }
 
+function oProfileIndex(requestor_id,pid,config_hash,profile_endpoint,lastmodified){
 
-function oProfileIndex(requestor_id,pid,config_hash,profile_endpoint,lastmodified) {
 	this.requestor_id = requestor_id;
 	this.pid = pid;
 	this.config_hash = config_hash;
@@ -1181,9 +1209,10 @@ function oProfileIndex(requestor_id,pid,config_hash,profile_endpoint,lastmodifie
 
 }
 
-
 function generate_cachebust(){
+
 	//https://gist.github.com/6174/6062387
 	//http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript
 	$('#cache_bust').html(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
+
 }
