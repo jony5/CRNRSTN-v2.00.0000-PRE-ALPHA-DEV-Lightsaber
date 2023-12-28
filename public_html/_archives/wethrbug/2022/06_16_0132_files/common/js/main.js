@@ -613,7 +613,31 @@ function parseXHRCP_JSON_error(oElemJSON){
 
 	if(oElemJSON.responseText == ""){
 
-		var tmp_resp = "The National Weather Service API is not responding; it may currently be down for maintenance. Please check back later for good wethr report.";
+		const d = new Date();
+
+		/*
+		Thursday, December 28, 2023 @ 0420 hrs.
+
+		Access to XMLHttpRequest at 
+		'https://api.weather.gov/gridpoints/FFC/49,88/forecast' from 
+		origin 'https://wethrbug.jony5.com' has been blocked by CORS policy: 
+		No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+		*/
+
+		var tmp_year = d.getFullYear();
+		var tmp_month = d.getMonth();
+		var tmp_date = d.getDate();
+
+		if((tmp_year == '2023' || tmp_year == '2024') && (tmp_month == '11' || tmp_month == '0') && (tmp_date == '28' || tmp_date == '29' || tmp_date == '30' || tmp_date == '31' || tmp_date == '1')){
+
+			var tmp_resp = "The information you are requesting is unavailable until 01/01/2024 due to a known technical issue.";
+
+		}else{
+
+			var tmp_resp = "The National Weather Service API is not responding; it may currently be down for maintenance. Please check back later for good wethr report.";
+
+		}
 
 	}else{
 
