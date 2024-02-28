@@ -21484,7 +21484,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     // SOURCE :: https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
     // COMMENT :: https://stackoverflow.com/a/13733588
     // AUTHOR :: Scott :: https://stackoverflow.com/users/1698153/scott
-    public function generate_new_key($len = 32, $char_selection = NULL, $system_hashed_return = false, $algorithm_override = NULL, $binary_return = false, $runtime_acceleration = false, $session_acceleration_key = NULL){
+    public function generate_new_key($len = 32, $char_selection = NULL, $system_hashed_return = false, $algorithm_override = NULL, $binary_return = false){
 
         //
         // $char_selection = NULL [OR (int) 0]
@@ -21688,7 +21688,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         if($system_hashed_return !== false){
 
-            return $this->hash($token, $algorithm_override, $binary_return, $runtime_acceleration, $session_acceleration_key);
+            return $this->hash($token, $algorithm_override, $binary_return);
 
         }
 
