@@ -1,0 +1,1425 @@
+[02-Jul-2018 12:14:12 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:14:16 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:14:17 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:14:17 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:14:17 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:14:20 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:14:20 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:14:20 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:14:22 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:14:22 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:14:22 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:14:25 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:14:25 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:14:25 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:14:27 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:14:27 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:14:27 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:14:31 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:14:31 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:14:31 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:14:31 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:14:31 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:14:31 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:14:35 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:14:35 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:14:35 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:14:37 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:14:37 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:14:37 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:14:40 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:14:40 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:14:40 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:14:41 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:14:41 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:14:41 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:14:45 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:14:45 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:14:45 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:14:46 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:14:46 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:14:46 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:14:50 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:14:50 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:14:50 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:14:51 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:14:51 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:14:51 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:14:55 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:14:55 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:14:55 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:14:56 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:14:56 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:14:56 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:15:00 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:15:00 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:15:00 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:15:01 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:15:01 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:15:01 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:15:05 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:15:05 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:15:05 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:15:07 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:15:07 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:15:07 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:15:10 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:15:10 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:15:10 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:15:12 UTC] :: Source: crnrstn->getServerEnv() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN initialization error :: Environmental detection failed to match a sufficient number of parameters (apparently, finding 5 $_SERVER matches was too hard) to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[02-Jul-2018 12:15:12 UTC] :: Source: oCRNRSTN_ENV->__construct() || Priority: LOG_ALERT :: action must be taken immediately || Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[02-Jul-2018 12:15:12 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 498
+[02-Jul-2018 12:15:15 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/jony5/public_html/_crnrstn/class/crnrstn/crnrstn.inc.php on line 96
+[02-Jul-2018 12:15:16 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/jony5/public_html/_crnrstn/class/database/mysqli/crnrstn.mysqli.inc.php on line 339
+[04-Jul-2018 17:02:02 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 302
+[04-Jul-2018 17:02:05 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/jony5/public_html/_crnrstn/class/database/mysqli/crnrstn.mysqli.inc.php on line 111
+[07-Aug-2018 02:05:11 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/jony5/public_html/_crnrstn.config.inc.php on line 192
+[18-Aug-2018 18:10:37 UTC] PHP Parse error:  syntax error, unexpected end of file in /home2/jony5/public_html/common/classes/database.inc.php on line 566
+[18-Aug-2018 18:11:32 UTC] PHP Warning:  require(../../..//common/classes/user.inc.php): failed to open stream: No such file or directory in /home2/jony5/public_html/_crnrstn.config.inc.php on line 365
+[18-Aug-2018 18:11:32 UTC] PHP Warning:  require(../../..//common/classes/user.inc.php): failed to open stream: No such file or directory in /home2/jony5/public_html/_crnrstn.config.inc.php on line 365
+[18-Aug-2018 18:11:32 UTC] PHP Fatal error:  require(): Failed opening required '../../..//common/classes/user.inc.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home2/jony5/public_html/_crnrstn.config.inc.php on line 365
+[18-Aug-2018 18:11:37 UTC] PHP Warning:  require(../../..//common/classes/user.inc.php): failed to open stream: No such file or directory in /home2/jony5/public_html/_crnrstn.config.inc.php on line 365
+[18-Aug-2018 18:11:37 UTC] PHP Warning:  require(../../..//common/classes/user.inc.php): failed to open stream: No such file or directory in /home2/jony5/public_html/_crnrstn.config.inc.php on line 365
+[18-Aug-2018 18:11:37 UTC] PHP Fatal error:  require(): Failed opening required '../../..//common/classes/user.inc.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home2/jony5/public_html/_crnrstn.config.inc.php on line 365
+[18-Jan-2019 06:07:10 UTC] PHP Fatal error:  Call to a member function getEnvParam() on null in /home2/jony5/public_html/common/inc/lifestyle/banner.inc.php on line 609
+[18-Jan-2019 06:07:20 UTC] PHP Fatal error:  Call to a member function getEnvParam() on null in /home2/jony5/public_html/common/inc/lifestyle/banner.inc.php on line 609
+[18-Jan-2019 06:07:45 UTC] PHP Fatal error:  Call to a member function getEnvParam() on null in /home2/jony5/public_html/common/inc/lifestyle/banner.inc.php on line 609
+[18-Jan-2019 06:11:51 UTC] PHP Fatal error:  Call to a member function getEnvParam() on null in /home2/jony5/public_html/common/inc/lifestyle/banner.inc.php on line 609
+[18-Jan-2019 06:32:22 UTC] PHP Warning:  scandir(/home2/jony5/public_htmlcommon/imgs/banner_1180x250/): failed to open dir: No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:32:22 UTC] PHP Warning:  scandir(): (errno 2): No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:32:22 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 16
+[18-Jan-2019 06:32:27 UTC] PHP Warning:  scandir(/home2/jony5/public_htmlcommon/imgs/banner_1180x250/): failed to open dir: No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:32:27 UTC] PHP Warning:  scandir(): (errno 2): No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:32:27 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 16
+[18-Jan-2019 06:32:32 UTC] PHP Warning:  scandir(/home2/jony5/public_htmlcommon/imgs/banner_1180x250/): failed to open dir: No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:32:32 UTC] PHP Warning:  scandir(): (errno 2): No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:32:32 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 16
+[18-Jan-2019 06:32:37 UTC] PHP Warning:  scandir(/home2/jony5/public_htmlcommon/imgs/banner_1180x250/): failed to open dir: No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:32:37 UTC] PHP Warning:  scandir(): (errno 2): No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:32:37 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 16
+[18-Jan-2019 06:32:42 UTC] PHP Warning:  scandir(/home2/jony5/public_htmlcommon/imgs/banner_1180x250/): failed to open dir: No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:32:42 UTC] PHP Warning:  scandir(): (errno 2): No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:32:42 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 16
+[18-Jan-2019 06:32:48 UTC] PHP Warning:  scandir(/home2/jony5/public_htmlcommon/imgs/banner_1180x250/): failed to open dir: No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:32:48 UTC] PHP Warning:  scandir(): (errno 2): No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:32:48 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 16
+[18-Jan-2019 06:32:52 UTC] PHP Warning:  scandir(/home2/jony5/public_htmlcommon/imgs/banner_1180x250/): failed to open dir: No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:32:52 UTC] PHP Warning:  scandir(): (errno 2): No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:32:52 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 16
+[18-Jan-2019 06:32:57 UTC] PHP Warning:  scandir(/home2/jony5/public_htmlcommon/imgs/banner_1180x250/): failed to open dir: No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:32:57 UTC] PHP Warning:  scandir(): (errno 2): No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:32:57 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 16
+[18-Jan-2019 06:33:02 UTC] PHP Warning:  scandir(/home2/jony5/public_htmlcommon/imgs/banner_1180x250/): failed to open dir: No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:33:02 UTC] PHP Warning:  scandir(): (errno 2): No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:33:02 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 16
+[18-Jan-2019 06:33:07 UTC] PHP Warning:  scandir(/home2/jony5/public_htmlcommon/imgs/banner_1180x250/): failed to open dir: No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:33:07 UTC] PHP Warning:  scandir(): (errno 2): No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:33:07 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 16
+[18-Jan-2019 06:33:12 UTC] PHP Warning:  scandir(/home2/jony5/public_htmlcommon/imgs/banner_1180x250/): failed to open dir: No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:33:12 UTC] PHP Warning:  scandir(): (errno 2): No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:33:12 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 16
+[18-Jan-2019 06:33:17 UTC] PHP Warning:  scandir(/home2/jony5/public_htmlcommon/imgs/banner_1180x250/): failed to open dir: No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:33:17 UTC] PHP Warning:  scandir(): (errno 2): No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:33:17 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 16
+[18-Jan-2019 06:33:23 UTC] PHP Warning:  scandir(/home2/jony5/public_htmlcommon/imgs/banner_1180x250/): failed to open dir: No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:33:23 UTC] PHP Warning:  scandir(): (errno 2): No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:33:23 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 16
+[18-Jan-2019 06:33:27 UTC] PHP Warning:  scandir(/home2/jony5/public_htmlcommon/imgs/banner_1180x250/): failed to open dir: No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:33:27 UTC] PHP Warning:  scandir(): (errno 2): No such file or directory in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 13
+[18-Jan-2019 06:33:27 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 16
+[18-Jan-2019 06:36:58 UTC] banner_auto_rotate.inc.php (14) # of files: 802|Random file: banner_new_sight_06.jpg
+[18-Jan-2019 06:37:03 UTC] banner_auto_rotate.inc.php (14) # of files: 802|Random file: banner_atlanta_157.jpg
+[18-Jan-2019 06:37:07 UTC] banner_auto_rotate.inc.php (14) # of files: 802|Random file: banner_party_21.jpg
+[18-Jan-2019 06:37:13 UTC] banner_auto_rotate.inc.php (14) # of files: 802|Random file: banner_atlanta_98.jpg
+[18-Jan-2019 06:37:17 UTC] banner_auto_rotate.inc.php (14) # of files: 802|Random file: banner_clouds_07.jpg
+[18-Jan-2019 06:37:23 UTC] banner_auto_rotate.inc.php (14) # of files: 802|Random file: banner_new_sight_39.jpg
+[18-Jan-2019 06:37:28 UTC] banner_auto_rotate.inc.php (14) # of files: 802|Random file: banner_new_sight_48.jpg
+[18-Jan-2019 06:37:33 UTC] banner_auto_rotate.inc.php (14) # of files: 802|Random file: banner_new_jony5_18.jpg
+[18-Jan-2019 06:37:38 UTC] banner_auto_rotate.inc.php (14) # of files: 802|Random file: banner_new_sight_17.jpg
+[18-Jan-2019 06:37:43 UTC] banner_auto_rotate.inc.php (14) # of files: 802|Random file: banner_band_00.jpg
+[18-Jan-2019 06:37:48 UTC] banner_auto_rotate.inc.php (14) # of files: 802|Random file: banner_new_sight_65.jpg
+[18-Jan-2019 06:37:53 UTC] banner_auto_rotate.inc.php (14) # of files: 802|Random file: banner_atlanta_190.jpg
+[18-Jan-2019 06:37:58 UTC] banner_auto_rotate.inc.php (14) # of files: 802|Random file: banner_j5_guinness_00.jpg
+[18-Jan-2019 06:38:03 UTC] banner_auto_rotate.inc.php (14) # of files: 802|Random file: banner_atlanta_50.jpg
+[19-Jan-2019 00:45:50 UTC] PHP Fatal error:  Function name must be a string in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 20
+[19-Jan-2019 00:45:52 UTC] PHP Fatal error:  Function name must be a string in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 20
+[19-Jan-2019 00:45:55 UTC] PHP Fatal error:  Function name must be a string in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 20
+[19-Jan-2019 00:45:57 UTC] PHP Fatal error:  Function name must be a string in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 20
+[19-Jan-2019 00:46:00 UTC] PHP Fatal error:  Function name must be a string in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 20
+[19-Jan-2019 00:46:02 UTC] PHP Fatal error:  Function name must be a string in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 20
+[19-Jan-2019 00:46:05 UTC] PHP Fatal error:  Function name must be a string in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 20
+[19-Jan-2019 00:46:07 UTC] PHP Fatal error:  Function name must be a string in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 20
+[19-Jan-2019 00:46:12 UTC] PHP Fatal error:  Function name must be a string in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 20
+[19-Jan-2019 00:46:12 UTC] PHP Fatal error:  Function name must be a string in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 20
+[19-Jan-2019 00:46:17 UTC] PHP Fatal error:  Function name must be a string in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 20
+[19-Jan-2019 00:46:17 UTC] PHP Fatal error:  Function name must be a string in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 20
+[19-Jan-2019 00:46:21 UTC] PHP Fatal error:  Function name must be a string in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 20
+[19-Jan-2019 00:46:22 UTC] PHP Fatal error:  Function name must be a string in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 20
+[19-Jan-2019 00:46:27 UTC] PHP Fatal error:  Function name must be a string in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 20
+[19-Jan-2019 00:46:27 UTC] PHP Fatal error:  Function name must be a string in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 20
+[19-Jan-2019 00:46:31 UTC] PHP Fatal error:  Function name must be a string in /home2/jony5/public_html/common/inc/lifestyle/banner_auto_rotate.inc.php on line 20
+[19-Jan-2019 00:46:32 UTC] banner_auto_rotate (20) Pulled image array[802] from directory scan.
+[19-Jan-2019 00:46:35 UTC] banner_auto_rotate (20) Pulled image array[802] from directory scan.
+[19-Jan-2019 00:46:37 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:46:40 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:46:42 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:46:45 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:46:47 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:46:50 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:46:52 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:46:55 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:46:57 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:47:00 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:47:02 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:47:05 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:47:07 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:47:10 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:47:12 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:47:17 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:47:22 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:47:27 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:47:32 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:47:37 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:47:42 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:47:47 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:47:52 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:47:57 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:48:02 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:48:07 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:48:12 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:48:17 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:48:22 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:48:27 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:48:32 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:48:37 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:48:41 UTC] banner_auto_rotate (20) Pulled image array[802] from directory scan.
+[19-Jan-2019 00:48:42 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:48:45 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:48:47 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:48:52 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:48:53 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:48:57 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:48:58 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:02 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:03 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:07 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:08 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:12 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:14 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:17 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:18 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:22 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:24 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:27 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:28 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:32 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:33 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:37 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:42 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:45 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:45 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:47 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:48 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:52 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:54 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:57 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:49:58 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:02 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:04 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:07 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:09 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:12 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:14 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:17 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:19 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:22 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:23 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:27 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:29 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:32 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:34 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:37 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:42 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:47 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:52 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:57 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:50:58 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:02 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:03 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:07 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:08 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:12 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:13 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:17 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:18 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:22 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:24 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:27 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:28 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:32 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:34 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:37 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:39 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:42 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:44 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:47 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:49 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:52 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:53 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:57 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:51:59 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:02 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:04 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:07 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:09 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:12 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:14 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:17 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:18 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:22 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:24 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:27 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:28 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:32 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:33 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:37 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:42 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:43 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:47 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:48 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:52 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:52:57 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:02 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:07 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:12 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:15 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:17 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:20 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:22 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:25 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:27 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:30 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:32 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:37 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:37 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:41 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:42 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:46 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:47 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:51 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:52 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:56 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:53:57 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:00 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:02 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:06 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:07 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:11 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:12 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:16 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:17 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:21 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:22 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:26 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:27 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:31 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:32 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:35 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:37 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:41 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:42 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:46 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:47 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:51 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:52 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:56 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:54:57 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:01 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:02 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:06 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:07 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:11 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:12 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:16 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:17 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:21 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:22 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:26 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:27 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:31 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:32 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:36 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:37 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:41 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:42 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:46 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:47 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:51 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:52 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:56 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:55:57 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:01 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:02 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:06 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:07 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:11 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:12 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:16 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:17 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:21 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:22 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:26 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:27 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:31 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:32 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:35 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:37 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:42 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:42 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:46 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:47 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:51 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:52 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:56 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:56:57 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:01 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:02 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:06 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:07 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:11 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:12 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:16 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:17 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:21 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:22 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:25 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:27 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:30 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:32 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:36 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:37 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:41 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:42 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:46 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:47 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:51 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:52 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:56 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:57:57 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:01 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:02 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:06 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:07 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:11 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:12 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:16 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:17 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:21 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:22 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:26 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:27 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:31 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:32 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:36 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:37 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:41 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:42 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:45 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:47 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:51 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:52 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:56 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:58:57 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:01 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:02 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:06 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:07 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:11 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:12 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:16 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:17 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:21 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:22 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:26 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:27 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:31 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:32 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:36 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:37 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:41 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:42 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:46 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:47 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:50 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:52 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:55 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 00:59:57 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:01 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:02 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:06 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:07 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:11 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:12 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:16 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:17 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:20 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:22 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:26 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:27 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:31 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:32 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:36 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:37 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:40 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:42 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:45 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:47 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:50 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:52 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:57 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:00:57 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:01 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:02 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:06 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:07 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:11 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:12 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:16 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:17 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:21 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:22 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:26 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:27 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:31 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:32 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:36 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:37 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:41 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:42 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:46 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:47 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:51 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:52 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:56 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:01:57 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:02:01 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:02:02 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:02:05 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:02:07 UTC] banner_auto_rotate (13) Pulled image array[802] from session.
+[19-Jan-2019 01:02:10 UTC] banner_auto_rotate (20) Pulled image array[802] from session 1 times.
+[19-Jan-2019 01:02:12 UTC] banner_auto_rotate (20) Pulled image array[802] from session 1 times.
+[19-Jan-2019 01:02:15 UTC] banner_auto_rotate (20) Pulled image array[802] from session 2 times.
+[19-Jan-2019 01:02:17 UTC] banner_auto_rotate (20) Pulled image array[802] from session 2 times.
+[19-Jan-2019 01:02:20 UTC] banner_auto_rotate (20) Pulled image array[802] from session 3 times.
+[19-Jan-2019 01:02:22 UTC] banner_auto_rotate (20) Pulled image array[802] from session 3 times.
+[19-Jan-2019 01:02:25 UTC] banner_auto_rotate (20) Pulled image array[802] from session 4 times.
+[19-Jan-2019 01:02:27 UTC] banner_auto_rotate (20) Pulled image array[802] from session 4 times.
+[19-Jan-2019 01:02:30 UTC] banner_auto_rotate (20) Pulled image array[802] from session 5 times.
+[19-Jan-2019 01:02:32 UTC] banner_auto_rotate (20) Pulled image array[802] from session 5 times.
+[19-Jan-2019 01:02:35 UTC] banner_auto_rotate (20) Pulled image array[802] from session 6 times.
+[19-Jan-2019 01:02:37 UTC] banner_auto_rotate (20) Pulled image array[802] from session 6 times.
+[19-Jan-2019 01:02:40 UTC] banner_auto_rotate (20) Pulled image array[802] from session 7 times.
+[19-Jan-2019 01:02:42 UTC] banner_auto_rotate (20) Pulled image array[802] from session 7 times.
+[19-Jan-2019 01:02:45 UTC] banner_auto_rotate (20) Pulled image array[802] from session 8 times.
+[19-Jan-2019 01:02:47 UTC] banner_auto_rotate (20) Pulled image array[802] from session 8 times.
+[19-Jan-2019 01:02:52 UTC] banner_auto_rotate (20) Pulled image array[802] from session 9 times.
+[19-Jan-2019 01:02:57 UTC] banner_auto_rotate (20) Pulled image array[802] from session 10 times.
+[19-Jan-2019 01:02:59 UTC] banner_auto_rotate (20) Pulled image array[802] from session 2 times.
+[19-Jan-2019 01:03:02 UTC] banner_auto_rotate (20) Pulled image array[802] from session 11 times.
+[19-Jan-2019 01:03:04 UTC] banner_auto_rotate (20) Pulled image array[802] from session 3 times.
+[19-Jan-2019 01:03:07 UTC] banner_auto_rotate (20) Pulled image array[802] from session 1 times.
+[19-Jan-2019 01:03:09 UTC] banner_auto_rotate (20) Pulled image array[802] from session 4 times.
+[19-Jan-2019 01:03:12 UTC] banner_auto_rotate (20) Pulled image array[802] from session 2 times.
+[19-Jan-2019 01:03:14 UTC] banner_auto_rotate (20) Pulled image array[802] from session 5 times.
+[19-Jan-2019 01:03:17 UTC] banner_auto_rotate (20) Pulled image array[802] from session 3 times.
+[19-Jan-2019 01:03:19 UTC] banner_auto_rotate (20) Pulled image array[802] from session 6 times.
+[19-Jan-2019 01:03:22 UTC] banner_auto_rotate (20) Pulled image array[802] from session 4 times.
+[19-Jan-2019 01:03:24 UTC] banner_auto_rotate (20) Pulled image array[802] from session 7 times.
+[19-Jan-2019 01:03:27 UTC] banner_auto_rotate (20) Pulled image array[802] from session 5 times.
+[19-Jan-2019 01:03:30 UTC] banner_auto_rotate (20) Pulled image array[802] from session 8 times.
+[19-Jan-2019 01:03:32 UTC] banner_auto_rotate (20) Pulled image array[802] from session 6 times.
+[19-Jan-2019 01:03:35 UTC] banner_auto_rotate (20) Pulled image array[802] from session 9 times.
+[19-Jan-2019 01:03:37 UTC] banner_auto_rotate (20) Pulled image array[802] from session 7 times.
+[19-Jan-2019 01:03:40 UTC] banner_auto_rotate (20) Pulled image array[802] from session 10 times.
+[19-Jan-2019 01:03:42 UTC] banner_auto_rotate (20) Pulled image array[802] from session 8 times.
+[19-Jan-2019 01:03:45 UTC] banner_auto_rotate (20) Pulled image array[802] from session 11 times.
+[19-Jan-2019 01:03:47 UTC] banner_auto_rotate (20) Pulled image array[802] from session 9 times.
+[19-Jan-2019 01:03:50 UTC] banner_auto_rotate (20) Pulled image array[802] from session 1 times.
+[19-Jan-2019 01:03:52 UTC] banner_auto_rotate (20) Pulled image array[802] from session 10 times.
+[19-Jan-2019 01:03:55 UTC] banner_auto_rotate (20) Pulled image array[802] from session 2 times.
+[19-Jan-2019 01:03:57 UTC] banner_auto_rotate (20) Pulled image array[802] from session 11 times.
+[19-Jan-2019 01:04:00 UTC] banner_auto_rotate (20) Pulled image array[802] from session 3 times.
+[19-Jan-2019 01:04:01 UTC] banner_auto_rotate (20) Pulled image array[802] from session 2 times.
+[19-Jan-2019 01:04:02 UTC] banner_auto_rotate (20) Pulled image array[802] from session 1 times.
+[19-Jan-2019 01:04:05 UTC] banner_auto_rotate (20) Pulled image array[802] from session 4 times.
+[19-Jan-2019 01:04:07 UTC] banner_auto_rotate (20) Pulled image array[802] from session 2 times.
+[19-Jan-2019 01:04:10 UTC] banner_auto_rotate (20) Pulled image array[802] from session 5 times.
+[19-Jan-2019 01:04:12 UTC] banner_auto_rotate (20) Pulled image array[802] from session 3 times.
+[19-Jan-2019 01:04:14 UTC] banner_auto_rotate (20) Pulled image array[802] from session 6 times.
+[19-Jan-2019 01:04:17 UTC] banner_auto_rotate (20) Pulled image array[802] from session 4 times.
+[19-Jan-2019 01:04:19 UTC] banner_auto_rotate (20) Pulled image array[802] from session 7 times.
+[19-Jan-2019 01:04:22 UTC] banner_auto_rotate (20) Pulled image array[802] from session 5 times.
+[19-Jan-2019 01:04:24 UTC] banner_auto_rotate (20) Pulled image array[802] from session 8 times.
+[19-Jan-2019 01:04:27 UTC] banner_auto_rotate (20) Pulled image array[802] from session 6 times.
+[19-Jan-2019 01:04:29 UTC] banner_auto_rotate (20) Pulled image array[802] from session 9 times.
+[19-Jan-2019 01:04:32 UTC] banner_auto_rotate (20) Pulled image array[802] from session 7 times.
+[19-Jan-2019 01:04:36 UTC] banner_auto_rotate (20) Pulled image array[802] from session 10 times.
+[19-Jan-2019 01:04:37 UTC] banner_auto_rotate (20) Pulled image array[802] from session 8 times.
+[19-Jan-2019 01:04:40 UTC] banner_auto_rotate (20) Pulled image array[802] from session 11 times.
+[19-Jan-2019 01:04:40 UTC] banner_auto_rotate (20) Refreshed image array[802] in session via directory scan.
+[19-Jan-2019 01:04:42 UTC] banner_auto_rotate (20) Pulled image array[802] from session 9 times.
+[19-Jan-2019 01:04:45 UTC] banner_auto_rotate (20) Pulled image array[802] from session 1 times.
+[19-Jan-2019 01:04:47 UTC] banner_auto_rotate (20) Pulled image array[802] from session 10 times.
+[19-Jan-2019 01:04:50 UTC] banner_auto_rotate (20) Pulled image array[802] from session 2 times.
+[19-Jan-2019 01:04:52 UTC] banner_auto_rotate (20) Pulled image array[802] from session 11 times.
+[19-Jan-2019 01:04:52 UTC] banner_auto_rotate (20) Refreshed image array[802] in session via directory scan.
+[19-Jan-2019 01:04:54 UTC] banner_auto_rotate (20) Pulled image array[802] from session 3 times.
+[19-Jan-2019 01:04:57 UTC] banner_auto_rotate (20) Pulled image array[802] from session 1 times.
+[19-Jan-2019 01:05:00 UTC] banner_auto_rotate (20) Pulled image array[802] from session 4 times.
+[19-Jan-2019 01:05:02 UTC] banner_auto_rotate (20) Pulled image array[802] from session 2 times.
+[19-Jan-2019 01:05:05 UTC] banner_auto_rotate (20) Pulled image array[802] from session 5 times.
+[19-Jan-2019 01:05:07 UTC] banner_auto_rotate (20) Pulled image array[802] from session 3 times.
+[19-Jan-2019 01:05:10 UTC] banner_auto_rotate (20) Pulled image array[802] from session 6 times.
+[19-Jan-2019 01:05:12 UTC] banner_auto_rotate (20) Pulled image array[802] from session 4 times.
+[19-Jan-2019 01:05:15 UTC] banner_auto_rotate (20) Pulled image array[802] from session 7 times.
+[19-Jan-2019 01:05:17 UTC] banner_auto_rotate (20) Pulled image array[802] from session 5 times.
+[19-Jan-2019 01:05:20 UTC] banner_auto_rotate (20) Pulled image array[802] from session 8 times.
+[19-Jan-2019 01:05:22 UTC] banner_auto_rotate (20) Pulled image array[802] from session 6 times.
+[19-Jan-2019 01:05:24 UTC] banner_auto_rotate (20) Pulled image array[802] from session 9 times.
+[19-Jan-2019 01:05:27 UTC] banner_auto_rotate (20) Pulled image array[802] from session 7 times.
+[19-Jan-2019 01:05:29 UTC] banner_auto_rotate (20) Pulled image array[802] from session 10 times.
+[19-Jan-2019 01:05:32 UTC] banner_auto_rotate (20) Pulled image array[802] from session 8 times.
+[19-Jan-2019 01:05:34 UTC] banner_auto_rotate (20) Pulled image array[802] from session 11 times.
+[19-Jan-2019 01:05:34 UTC] banner_auto_rotate (20) Refreshed image array[802] in session via directory scan.
+[19-Jan-2019 01:05:37 UTC] banner_auto_rotate (20) Pulled image array[802] from session 9 times.
+[19-Jan-2019 01:05:39 UTC] banner_auto_rotate (20) Pulled image array[802] from session 1 times.
+[19-Jan-2019 01:05:42 UTC] banner_auto_rotate (20) Pulled image array[802] from session 10 times.
+[19-Jan-2019 01:05:46 UTC] banner_auto_rotate (20) Pulled image array[802] from session 2 times.
+[19-Jan-2019 01:05:47 UTC] banner_auto_rotate (20) Pulled image array[802] from session 11 times.
+[19-Jan-2019 01:05:47 UTC] banner_auto_rotate (20) Refreshed image array[802] in session via directory scan.
+[19-Jan-2019 01:05:50 UTC] banner_auto_rotate (20) Pulled image array[802] from session 3 times.
+[19-Jan-2019 01:05:52 UTC] banner_auto_rotate (20) Pulled image array[802] from session 1 times.
+[19-Jan-2019 01:05:55 UTC] banner_auto_rotate (20) Pulled image array[802] from session 4 times.
+[19-Jan-2019 01:05:57 UTC] banner_auto_rotate (20) Pulled image array[802] from session 2 times.
+[19-Jan-2019 01:06:00 UTC] banner_auto_rotate (20) Pulled image array[802] from session 5 times.
+[19-Jan-2019 01:06:02 UTC] banner_auto_rotate (20) Pulled image array[802] from session 3 times.
+[19-Jan-2019 01:06:05 UTC] banner_auto_rotate (20) Pulled image array[802] from session 6 times.
+[19-Jan-2019 01:06:07 UTC] banner_auto_rotate (20) Pulled image array[802] from session 4 times.
+[19-Jan-2019 01:06:10 UTC] banner_auto_rotate (20) Pulled image array[802] from session 7 times.
+[19-Jan-2019 01:06:12 UTC] banner_auto_rotate (20) Pulled image array[802] from session 5 times.
+[19-Jan-2019 01:06:15 UTC] banner_auto_rotate (20) Pulled image array[802] from session 8 times.
+[19-Jan-2019 01:06:17 UTC] banner_auto_rotate (20) Pulled image array[802] from session 6 times.
+[19-Jan-2019 01:06:20 UTC] banner_auto_rotate (20) Pulled image array[802] from session 9 times.
+[19-Jan-2019 01:06:22 UTC] banner_auto_rotate (20) Pulled image array[802] from session 7 times.
+[19-Jan-2019 01:06:24 UTC] banner_auto_rotate (20) Pulled image array[802] from session 10 times.
+[19-Jan-2019 01:06:27 UTC] banner_auto_rotate (20) Pulled image array[802] from session 8 times.
+[19-Jan-2019 01:06:29 UTC] banner_auto_rotate (20) Pulled image array[802] from session 11 times.
+[19-Jan-2019 01:06:29 UTC] banner_auto_rotate (20) Refreshed image array[802] in session via directory scan.
+[19-Jan-2019 01:06:32 UTC] banner_auto_rotate (20) Pulled image array[802] from session 9 times.
+[19-Jan-2019 01:06:34 UTC] banner_auto_rotate (20) Pulled image array[802] from session 1 times.
+[19-Jan-2019 01:06:37 UTC] banner_auto_rotate (20) Pulled image array[802] from session 10 times.
+[19-Jan-2019 01:06:40 UTC] banner_auto_rotate (20) Pulled image array[802] from session 2 times.
+[19-Jan-2019 01:06:42 UTC] banner_auto_rotate (20) Pulled image array[802] from session 11 times.
+[19-Jan-2019 01:06:42 UTC] banner_auto_rotate (20) Refreshed image array[802] in session via directory scan.
+[19-Jan-2019 01:06:44 UTC] banner_auto_rotate (20) Pulled image array[802] from session 3 times.
+[19-Jan-2019 01:06:47 UTC] banner_auto_rotate (20) Pulled image array[802] from session 1 times.
+[19-Jan-2019 01:06:50 UTC] banner_auto_rotate (20) Pulled image array[802] from session 4 times.
+[19-Jan-2019 01:06:52 UTC] banner_auto_rotate (20) Pulled image array[802] from session 2 times.
+[19-Jan-2019 01:06:55 UTC] banner_auto_rotate (20) Pulled image array[802] from session 5 times.
+[19-Jan-2019 01:06:57 UTC] banner_auto_rotate (20) Pulled image array[802] from session 3 times.
+[19-Jan-2019 01:07:00 UTC] banner_auto_rotate (20) Pulled image array[802] from session 6 times.
+[19-Jan-2019 01:07:02 UTC] banner_auto_rotate (20) Pulled image array[802] from session 4 times.
+[19-Jan-2019 01:07:05 UTC] banner_auto_rotate (20) Pulled image array[802] from session 7 times.
+[19-Jan-2019 01:07:07 UTC] banner_auto_rotate (20) Pulled image array[802] from session 5 times.
+[19-Jan-2019 01:07:10 UTC] banner_auto_rotate (20) Pulled image array[802] from session 8 times.
+[19-Jan-2019 01:07:12 UTC] banner_auto_rotate (20) Pulled image array[802] from session 6 times.
+[19-Jan-2019 01:07:15 UTC] banner_auto_rotate (20) Pulled image array[802] from session 9 times.
+[19-Jan-2019 01:07:17 UTC] banner_auto_rotate (20) Pulled image array[802] from session 7 times.
+[19-Jan-2019 01:07:20 UTC] banner_auto_rotate (20) Pulled image array[802] from session 10 times.
+[19-Jan-2019 01:07:22 UTC] banner_auto_rotate (20) Pulled image array[802] from session 8 times.
+[19-Jan-2019 01:07:25 UTC] banner_auto_rotate (20) Pulled image array[802] from session 11 times.
+[19-Jan-2019 01:07:25 UTC] banner_auto_rotate (20) Refreshed image array[802] in session via directory scan.
+[19-Jan-2019 01:07:27 UTC] banner_auto_rotate (20) Pulled image array[802] from session 9 times.
+[19-Jan-2019 01:07:30 UTC] banner_auto_rotate (20) Pulled image array[802] from session 1 times.
+[19-Jan-2019 01:07:32 UTC] banner_auto_rotate (20) Pulled image array[802] from session 10 times.
+[19-Jan-2019 01:07:35 UTC] banner_auto_rotate (20) Pulled image array[802] from session 2 times.
+[19-Jan-2019 01:07:37 UTC] banner_auto_rotate (20) Pulled image array[802] from session 11 times.
+[19-Jan-2019 01:07:37 UTC] banner_auto_rotate (20) Refreshed image array[802] in session via directory scan.
+[19-Jan-2019 01:07:40 UTC] banner_auto_rotate (20) Pulled image array[802] from session 3 times.
+[19-Jan-2019 01:07:42 UTC] banner_auto_rotate (20) Pulled image array[802] from session 1 times.
+[19-Jan-2019 01:07:45 UTC] banner_auto_rotate (20) Pulled image array[802] from session 4 times.
+[19-Jan-2019 01:07:47 UTC] banner_auto_rotate (20) Pulled image array[802] from session 2 times.
+[19-Jan-2019 01:07:49 UTC] banner_auto_rotate (20) Pulled image array[802] from session 5 times.
+[19-Jan-2019 01:07:52 UTC] banner_auto_rotate (20) Pulled image array[802] from session 3 times.
+[19-Jan-2019 01:07:54 UTC] banner_auto_rotate (20) Pulled image array[802] from session 6 times.
+[19-Jan-2019 01:07:57 UTC] banner_auto_rotate (20) Pulled image array[802] from session 4 times.
+[19-Jan-2019 01:08:00 UTC] banner_auto_rotate (20) Pulled image array[802] from session 7 times.
+[19-Jan-2019 01:08:02 UTC] banner_auto_rotate (20) Pulled image array[802] from session 5 times.
+[19-Jan-2019 01:08:05 UTC] banner_auto_rotate (20) Pulled image array[802] from session 8 times.
+[19-Jan-2019 01:08:07 UTC] banner_auto_rotate (20) Pulled image array[802] from session 6 times.
+[19-Jan-2019 01:08:10 UTC] banner_auto_rotate (20) Pulled image array[802] from session 9 times.
+[19-Jan-2019 01:08:12 UTC] banner_auto_rotate (20) Pulled image array[802] from session 7 times.
+[19-Jan-2019 01:08:15 UTC] banner_auto_rotate (20) Pulled image array[802] from session 10 times.
+[19-Jan-2019 01:08:17 UTC] banner_auto_rotate (20) Pulled image array[802] from session 8 times.
+[19-Jan-2019 01:08:20 UTC] banner_auto_rotate (20) Pulled image array[802] from session 11 times.
+[19-Jan-2019 01:08:20 UTC] banner_auto_rotate (20) Refreshed image array[802] in session via directory scan.
+[19-Jan-2019 01:08:22 UTC] banner_auto_rotate (20) Pulled image array[802] from session 9 times.
+[19-Jan-2019 01:08:24 UTC] banner_auto_rotate (20) Pulled image array[802] from session 1 times.
+[19-Jan-2019 01:08:27 UTC] banner_auto_rotate (20) Pulled image array[802] from session 10 times.
+[19-Jan-2019 11:42:35 UTC] banner_auto_rotate (27) Pulled image array[802] from session 21 times.
+[19-Jan-2019 11:42:35 UTC] banner_auto_rotate (89) Refreshed image array[1] in session via directory scan.
+[19-Jan-2019 11:42:37 UTC] banner_auto_rotate (27) Pulled image array[802] from session 51 times.
+[19-Jan-2019 11:42:37 UTC] banner_auto_rotate (89) Refreshed image array[1] in session via directory scan.
+[19-Jan-2019 11:42:40 UTC] banner_auto_rotate (27) Pulled image array[802] from session 1 times.
+[19-Jan-2019 11:42:42 UTC] banner_auto_rotate (27) Pulled image array[802] from session 1 times.
+[19-Jan-2019 11:42:45 UTC] banner_auto_rotate (27) Pulled image array[802] from session 2 times.
+[19-Jan-2019 11:42:50 UTC] banner_auto_rotate (27) Pulled image array[802] from session 3 times.
+[19-Jan-2019 11:42:55 UTC] banner_auto_rotate (27) Pulled image array[802] from session 4 times.
+[19-Jan-2019 11:42:57 UTC] banner_auto_rotate (27) Pulled image array[802] from session 2 times.
+[19-Jan-2019 11:43:00 UTC] banner_auto_rotate (27) Pulled image array[802] from session 5 times.
+[19-Jan-2019 11:43:02 UTC] banner_auto_rotate (27) Pulled image array[802] from session 3 times.
+[19-Jan-2019 11:43:05 UTC] banner_auto_rotate (27) Pulled image array[802] from session 6 times.
+[19-Jan-2019 11:43:07 UTC] banner_auto_rotate (27) Pulled image array[802] from session 4 times.
+[19-Jan-2019 11:43:10 UTC] banner_auto_rotate (27) Pulled image array[802] from session 7 times.
+[19-Jan-2019 11:43:12 UTC] banner_auto_rotate (27) Pulled image array[802] from session 5 times.
+[19-Jan-2019 11:43:15 UTC] banner_auto_rotate (27) Pulled image array[802] from session 8 times.
+[19-Jan-2019 11:43:17 UTC] banner_auto_rotate (27) Pulled image array[802] from session 6 times.
+[19-Jan-2019 11:43:20 UTC] banner_auto_rotate (27) Pulled image array[802] from session 9 times.
+[19-Jan-2019 11:43:20 UTC] banner_auto_rotate (89) Refreshed image array[1] in session via directory scan.
+[19-Jan-2019 11:43:22 UTC] banner_auto_rotate (27) Pulled image array[802] from session 7 times.
+[19-Jan-2019 11:43:25 UTC] banner_auto_rotate (27) Pulled image array[802] from session 1 times.
+[19-Jan-2019 11:43:27 UTC] banner_auto_rotate (27) Pulled image array[802] from session 8 times.
+[19-Jan-2019 11:43:30 UTC] banner_auto_rotate (27) Pulled image array[802] from session 2 times.
+[19-Jan-2019 11:43:33 UTC] banner_auto_rotate (27) Pulled image array[802] from session 9 times.
+[19-Jan-2019 11:43:33 UTC] banner_auto_rotate (89) Refreshed image array[1] in session via directory scan.
+[19-Jan-2019 11:43:35 UTC] banner_auto_rotate (27) Pulled image array[802] from session 3 times.
+[19-Jan-2019 11:43:38 UTC] banner_auto_rotate (27) Pulled image array[802] from session 1 times.
+[19-Jan-2019 11:43:40 UTC] banner_auto_rotate (27) Pulled image array[802] from session 4 times.
+[19-Jan-2019 11:43:43 UTC] banner_auto_rotate (27) Pulled image array[802] from session 2 times.
+[19-Jan-2019 11:43:45 UTC] banner_auto_rotate (27) Pulled image array[802] from session 5 times.
+[19-Jan-2019 11:43:48 UTC] banner_auto_rotate (27) Pulled image array[802] from session 3 times.
+[19-Jan-2019 11:43:50 UTC] banner_auto_rotate (27) Pulled image array[802] from session 6 times.
+[19-Jan-2019 11:43:53 UTC] banner_auto_rotate (27) Pulled image array[802] from session 4 times.
+[19-Jan-2019 11:43:55 UTC] banner_auto_rotate (27) Pulled image array[802] from session 7 times.
+[19-Jan-2019 11:43:58 UTC] banner_auto_rotate (27) Pulled image array[802] from session 5 times.
+[19-Jan-2019 11:44:00 UTC] banner_auto_rotate (27) Pulled image array[802] from session 8 times.
+[19-Jan-2019 11:44:03 UTC] banner_auto_rotate (27) Pulled image array[802] from session 6 times.
+[19-Jan-2019 11:44:05 UTC] banner_auto_rotate (27) Pulled image array[802] from session 9 times.
+[19-Jan-2019 11:44:05 UTC] banner_auto_rotate (89) Refreshed image array[1] in session via directory scan.
+[19-Jan-2019 11:44:08 UTC] banner_auto_rotate (27) Pulled image array[802] from session 7 times.
+[19-Jan-2019 11:44:10 UTC] banner_auto_rotate (27) Pulled image array[802] from session 1 times.
+[19-Jan-2019 11:44:13 UTC] banner_auto_rotate (27) Pulled image array[802] from session 8 times.
+[19-Jan-2019 11:44:15 UTC] banner_auto_rotate (27) Pulled image array[802] from session 2 times.
+[19-Jan-2019 11:44:18 UTC] banner_auto_rotate (27) Pulled image array[802] from session 9 times.
+[19-Jan-2019 11:44:18 UTC] banner_auto_rotate (89) Refreshed image array[1] in session via directory scan.
+[19-Jan-2019 11:44:20 UTC] banner_auto_rotate (27) Pulled image array[802] from session 3 times.
+[19-Jan-2019 11:44:23 UTC] banner_auto_rotate (27) Pulled image array[802] from session 1 times.
+[19-Jan-2019 11:44:25 UTC] banner_auto_rotate (27) Pulled image array[802] from session 4 times.
+[19-Jan-2019 11:44:28 UTC] banner_auto_rotate (27) Pulled image array[802] from session 2 times.
+[19-Jan-2019 11:44:30 UTC] banner_auto_rotate (27) Pulled image array[802] from session 5 times.
+[19-Jan-2019 11:44:33 UTC] banner_auto_rotate (27) Pulled image array[802] from session 3 times.
+[19-Jan-2019 11:44:35 UTC] banner_auto_rotate (27) Pulled image array[802] from session 6 times.
+[19-Jan-2019 11:44:38 UTC] banner_auto_rotate (27) Pulled image array[802] from session 4 times.
+[19-Jan-2019 11:44:40 UTC] banner_auto_rotate (27) Pulled image array[802] from session 7 times.
+[19-Jan-2019 11:44:43 UTC] banner_auto_rotate (27) Pulled image array[802] from session 5 times.
+[19-Jan-2019 11:44:45 UTC] banner_auto_rotate (27) Pulled image array[802] from session 8 times.
+[19-Jan-2019 11:44:48 UTC] banner_auto_rotate (27) Pulled image array[802] from session 6 times.
+[19-Jan-2019 11:44:50 UTC] banner_auto_rotate (27) Pulled image array[802] from session 9 times.
+[19-Jan-2019 11:44:50 UTC] banner_auto_rotate (89) Refreshed image array[1] in session via directory scan.
+[19-Jan-2019 11:44:53 UTC] banner_auto_rotate (27) Pulled image array[802] from session 7 times.
+[19-Jan-2019 11:44:55 UTC] banner_auto_rotate (27) Pulled image array[802] from session 1 times.
+[19-Jan-2019 11:44:58 UTC] banner_auto_rotate (27) Pulled image array[802] from session 8 times.
+[19-Jan-2019 11:45:00 UTC] banner_auto_rotate (27) Pulled image array[802] from session 2 times.
+[19-Jan-2019 11:45:03 UTC] banner_auto_rotate (27) Pulled image array[802] from session 9 times.
+[19-Jan-2019 11:45:03 UTC] banner_auto_rotate (89) Refreshed image array[1] in session via directory scan.
+[19-Jan-2019 11:45:05 UTC] banner_auto_rotate (27) Pulled image array[802] from session 3 times.
+[19-Jan-2019 11:45:08 UTC] banner_auto_rotate (27) Pulled image array[802] from session 1 times.
+[19-Jan-2019 11:45:10 UTC] banner_auto_rotate (27) Pulled image array[802] from session 4 times.
+[19-Jan-2019 11:45:13 UTC] banner_auto_rotate (27) Pulled image array[802] from session 2 times.
+[19-Jan-2019 11:45:15 UTC] banner_auto_rotate (27) Pulled image array[802] from session 5 times.
+[19-Jan-2019 11:45:18 UTC] banner_auto_rotate (27) Pulled image array[802] from session 3 times.
+[19-Jan-2019 11:45:20 UTC] banner_auto_rotate (27) Pulled image array[802] from session 6 times.
+[19-Jan-2019 11:45:23 UTC] banner_auto_rotate (27) Pulled image array[802] from session 4 times.
+[19-Jan-2019 11:45:25 UTC] banner_auto_rotate (27) Pulled image array[802] from session 7 times.
+[19-Jan-2019 11:45:28 UTC] banner_auto_rotate (27) Pulled image array[802] from session 5 times.
+[19-Jan-2019 11:45:30 UTC] banner_auto_rotate (27) Pulled image array[802] from session 8 times.
+[19-Jan-2019 11:45:33 UTC] banner_auto_rotate (27) Pulled image array[802] from session 6 times.
+[19-Jan-2019 11:45:35 UTC] banner_auto_rotate (27) Pulled image array[802] from session 9 times.
+[19-Jan-2019 11:45:35 UTC] banner_auto_rotate (89) Refreshed image array[1] in session via directory scan.
+[19-Jan-2019 11:45:38 UTC] banner_auto_rotate (27) Pulled image array[802] from session 7 times.
+[19-Jan-2019 11:45:40 UTC] banner_auto_rotate (27) Pulled image array[802] from session 1 times.
+[19-Jan-2019 11:45:43 UTC] banner_auto_rotate (27) Pulled image array[802] from session 8 times.
+[19-Jan-2019 11:45:45 UTC] banner_auto_rotate (27) Pulled image array[802] from session 2 times.
+[19-Jan-2019 11:45:48 UTC] banner_auto_rotate (27) Pulled image array[802] from session 9 times.
+[19-Jan-2019 11:45:48 UTC] banner_auto_rotate (89) Refreshed image array[1] in session via directory scan.
+[19-Jan-2019 11:45:50 UTC] banner_auto_rotate (27) Pulled image array[802] from session 3 times.
+[19-Jan-2019 11:45:53 UTC] banner_auto_rotate (27) Pulled image array[802] from session 1 times.
+[19-Jan-2019 11:45:55 UTC] banner_auto_rotate (27) Pulled image array[802] from session 4 times.
+[19-Jan-2019 11:45:58 UTC] banner_auto_rotate (27) Pulled image array[802] from session 2 times.
+[19-Jan-2019 11:46:00 UTC] banner_auto_rotate (27) Pulled image array[802] from session 5 times.
+[19-Jan-2019 11:46:03 UTC] banner_auto_rotate (27) Pulled image array[802] from session 3 times.
+[19-Jan-2019 11:46:05 UTC] banner_auto_rotate (27) Pulled image array[802] from session 6 times.
+[19-Jan-2019 11:46:08 UTC] banner_auto_rotate (27) Pulled image array[802] from session 4 times.
+[19-Jan-2019 11:46:10 UTC] banner_auto_rotate (27) Pulled image array[802] from session 7 times.
+[19-Jan-2019 11:46:13 UTC] banner_auto_rotate (27) Pulled image array[802] from session 5 times.
+[19-Jan-2019 11:46:15 UTC] banner_auto_rotate (27) Pulled image array[802] from session 8 times.
+[19-Jan-2019 11:46:18 UTC] banner_auto_rotate (27) Pulled image array[802] from session 6 times.
+[19-Jan-2019 11:46:20 UTC] banner_auto_rotate (27) Pulled image array[802] from session 9 times.
+[19-Jan-2019 11:46:20 UTC] banner_auto_rotate (89) Refreshed image array[1] in session via directory scan.
+[19-Jan-2019 11:46:23 UTC] banner_auto_rotate (27) Pulled image array[802] from session 7 times.
+[19-Jan-2019 11:46:25 UTC] banner_auto_rotate (27) Pulled image array[802] from session 1 times.
+[19-Jan-2019 11:46:28 UTC] banner_auto_rotate (27) Pulled image array[802] from session 8 times.
+[19-Jan-2019 11:46:30 UTC] banner_auto_rotate (27) Pulled image array[802] from session 2 times.
+[19-Jan-2019 11:46:33 UTC] banner_auto_rotate (27) Pulled image array[802] from session 9 times.
+[19-Jan-2019 11:46:33 UTC] banner_auto_rotate (89) Refreshed image array[1] in session via directory scan.
+[19-Jan-2019 11:46:35 UTC] banner_auto_rotate (27) Pulled image array[802] from session 3 times.
+[19-Jan-2019 11:46:38 UTC] banner_auto_rotate (27) Pulled image array[802] from session 1 times.
+[19-Jan-2019 11:46:40 UTC] banner_auto_rotate (27) Pulled image array[802] from session 4 times.
+[19-Jan-2019 11:46:43 UTC] banner_auto_rotate (27) Pulled image array[802] from session 2 times.
+[19-Jan-2019 11:46:45 UTC] banner_auto_rotate (27) Pulled image array[802] from session 5 times.
+[19-Jan-2019 11:46:48 UTC] banner_auto_rotate (27) Pulled image array[802] from session 3 times.
+[19-Jan-2019 11:46:50 UTC] banner_auto_rotate (27) Pulled image array[802] from session 6 times.
+[19-Jan-2019 11:46:53 UTC] banner_auto_rotate (27) Pulled image array[802] from session 4 times.
+[19-Jan-2019 11:46:55 UTC] banner_auto_rotate (27) Pulled image array[802] from session 7 times.
+[19-Jan-2019 11:46:58 UTC] banner_auto_rotate (27) Pulled image array[802] from session 5 times.
+[19-Jan-2019 11:47:00 UTC] banner_auto_rotate (27) Pulled image array[802] from session 8 times.
+[19-Jan-2019 11:47:03 UTC] banner_auto_rotate (27) Pulled image array[802] from session 6 times.
+[19-Jan-2019 11:47:05 UTC] banner_auto_rotate (27) Pulled image array[802] from session 9 times.
+[19-Jan-2019 11:47:05 UTC] banner_auto_rotate (89) Refreshed image array[1] in session via directory scan.
+[19-Jan-2019 11:47:08 UTC] banner_auto_rotate (27) Pulled image array[802] from session 7 times.
+[19-Jan-2019 11:47:10 UTC] banner_auto_rotate (27) Pulled image array[802] from session 1 times.
+[19-Jan-2019 11:47:13 UTC] banner_auto_rotate (27) Pulled image array[802] from session 8 times.
+[19-Jan-2019 11:47:15 UTC] banner_auto_rotate (27) Pulled image array[802] from session 2 times.
+[19-Jan-2019 11:47:18 UTC] banner_auto_rotate (27) Pulled image array[802] from session 9 times.
+[19-Jan-2019 11:47:18 UTC] banner_auto_rotate (89) Refreshed image array[1] in session via directory scan.
+[19-Jan-2019 11:47:20 UTC] banner_auto_rotate (27) Pulled image array[802] from session 3 times.
+[19-Jan-2019 11:47:23 UTC] banner_auto_rotate (27) Pulled image array[802] from session 1 times.
+[19-Jan-2019 11:47:25 UTC] banner_auto_rotate (27) Pulled image array[802] from session 4 times.
+[19-Jan-2019 11:47:28 UTC] banner_auto_rotate (27) Pulled image array[802] from session 2 times.
+[19-Jan-2019 11:47:30 UTC] banner_auto_rotate (27) Pulled image array[802] from session 5 times.
+[19-Jan-2019 11:47:33 UTC] banner_auto_rotate (27) Pulled image array[802] from session 3 times.
+[19-Jan-2019 11:47:35 UTC] banner_auto_rotate (27) Pulled image array[802] from session 6 times.
+[19-Jan-2019 11:47:38 UTC] banner_auto_rotate (27) Pulled image array[802] from session 4 times.
+[19-Jan-2019 11:47:40 UTC] banner_auto_rotate (27) Pulled image array[802] from session 7 times.
+[19-Jan-2019 11:47:43 UTC] banner_auto_rotate (27) Pulled image array[802] from session 5 times.
+[19-Jan-2019 11:47:45 UTC] banner_auto_rotate (27) Pulled image array[802] from session 8 times.
+[19-Jan-2019 11:47:48 UTC] banner_auto_rotate (27) Pulled image array[802] from session 6 times.
+[19-Jan-2019 11:47:50 UTC] banner_auto_rotate (27) Pulled image array[802] from session 9 times.
+[19-Jan-2019 11:47:50 UTC] banner_auto_rotate (89) Refreshed image array[1] in session via directory scan.
+[19-Jan-2019 11:47:53 UTC] banner_auto_rotate (27) Pulled image array[802] from session 7 times.
+[19-Jan-2019 11:47:55 UTC] banner_auto_rotate (27) Pulled image array[802] from session 1 times.
+[19-Jan-2019 11:47:58 UTC] banner_auto_rotate (27) Pulled image array[802] from session 8 times.
+[19-Jan-2019 11:48:00 UTC] banner_auto_rotate (27) Pulled image array[802] from session 2 times.
+[19-Jan-2019 11:48:03 UTC] banner_auto_rotate (27) Pulled image array[802] from session 9 times.
+[19-Jan-2019 11:48:03 UTC] banner_auto_rotate (89) Refreshed image array[1] in session via directory scan.
+[19-Jan-2019 11:48:05 UTC] banner_auto_rotate (27) Pulled image array[802] from session 3 times.
+[19-Jan-2019 11:48:08 UTC] banner_auto_rotate (27) Pulled image array[802] from session 1 times.
+[19-Jan-2019 11:48:10 UTC] banner_auto_rotate (27) Pulled image array[802] from session 4 times.
+[19-Jan-2019 11:48:13 UTC] banner_auto_rotate (27) Pulled image array[802] from session 2 times.
+[19-Jan-2019 11:48:15 UTC] banner_auto_rotate (27) Pulled image array[802] from session 5 times.
+[19-Jan-2019 11:48:18 UTC] banner_auto_rotate (27) Pulled image array[802] from session 3 times.
+[19-Jan-2019 11:48:20 UTC] banner_auto_rotate (27) Pulled image array[802] from session 6 times.
+[19-Jan-2019 11:48:23 UTC] banner_auto_rotate (27) Pulled image array[802] from session 4 times.
+[19-Jan-2019 11:48:25 UTC] banner_auto_rotate (27) Pulled image array[802] from session 7 times.
+[19-Jan-2019 11:48:28 UTC] banner_auto_rotate (27) Pulled image array[802] from session 5 times.
+[19-Jan-2019 11:48:30 UTC] banner_auto_rotate (27) Pulled image array[802] from session 8 times.
+[19-Jan-2019 11:48:33 UTC] banner_auto_rotate (27) Pulled image array[802] from session 6 times.
+[19-Jan-2019 11:48:35 UTC] banner_auto_rotate (27) Pulled image array[802] from session 9 times.
+[19-Jan-2019 11:48:35 UTC] banner_auto_rotate (89) Refreshed image array[1] in session via directory scan.
+[19-Jan-2019 11:48:38 UTC] banner_auto_rotate (27) Pulled image array[802] from session 7 times.
+[19-Jan-2019 11:48:40 UTC] banner_auto_rotate (27) Pulled image array[802] from session 1 times.
+[19-Jan-2019 11:48:43 UTC] banner_auto_rotate (27) Pulled image array[802] from session 8 times.
+[19-Jan-2019 11:48:45 UTC] banner_auto_rotate (27) Pulled image array[802] from session 2 times.
+[19-Jan-2019 11:48:48 UTC] banner_auto_rotate (27) Pulled image array[802] from session 9 times.
+[19-Jan-2019 11:48:48 UTC] banner_auto_rotate (89) Refreshed image array[1] in session via directory scan.
+[19-Jan-2019 11:48:50 UTC] banner_auto_rotate (27) Pulled image array[802] from session 3 times.
+[19-Jan-2019 11:48:53 UTC] banner_auto_rotate (27) Pulled image array[802] from session 1 times.
+[19-Jan-2019 11:48:55 UTC] banner_auto_rotate (27) Pulled image array[802] from session 4 times.
+[19-Jan-2019 11:48:58 UTC] banner_auto_rotate (27) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:20:06 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:20:08 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:20:11 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:20:13 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:20:16 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:20:18 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:20:21 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:20:23 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:20:26 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:20:28 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:20:31 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:20:33 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:20:38 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:20:43 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:20:45 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:20:48 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:20:50 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:20:53 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:20:56 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:20:58 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:01 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:03 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:06 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:08 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:10 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:13 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:15 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:18 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:20 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:23 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:25 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:28 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:31 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:33 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:35 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:38 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:41 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:43 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:45 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:48 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:51 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:53 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:55 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:21:58 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:01 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:03 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:05 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:08 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:10 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:13 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:15 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:18 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:21 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:23 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:25 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:28 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:31 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:33 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:35 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:38 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:41 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:43 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:46 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:48 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:50 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:53 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:55 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:22:58 UTC] banner_auto_rotate (40) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:01 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:06 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:08 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:10 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:13 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:23 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:25 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:28 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:30 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:35 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:41 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:46 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:48 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:50 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:55 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:23:58 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:00 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:05 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:08 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:11 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:13 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:16 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:20 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:23 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:26 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:28 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:31 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:35 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:40 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:45 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:48 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:51 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:56 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:24:58 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:01 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:06 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:08 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:11 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:13 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:16 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:21 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:23 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:26 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:28 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:31 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:36 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:41 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:46 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:48 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:51 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:56 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:25:58 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:01 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:06 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:08 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:11 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:13 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:16 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:21 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:23 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:25 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:28 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:30 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:35 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:40 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:46 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:48 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:51 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:56 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:26:58 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:01 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:06 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:08 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:11 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:13 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:16 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:21 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:23 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:26 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:28 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:31 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:36 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:41 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:45 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:48 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:51 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:56 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:27:58 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:28:00 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:28:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:28:06 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:28:08 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:28:10 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:28:13 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:28:15 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:28:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:28:20 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:28:23 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:28:28 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:28:31 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:28:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:28:36 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:28:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:28:41 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:28:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:28:46 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:28:48 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:28:51 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:28:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:28:56 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:28:58 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:29:01 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:29:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:29:06 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:29:08 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:29:12 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:29:13 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:29:17 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:29:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:29:22 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:29:23 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:29:27 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:29:28 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:29:32 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:29:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:29:37 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:29:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:29:42 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:29:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:29:47 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:29:48 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:29:52 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:29:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:29:57 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:29:58 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:30:02 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:30:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:30:07 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:30:08 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:30:12 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:30:13 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:30:16 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:30:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:30:21 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:30:23 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:30:27 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:30:29 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:30:31 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:30:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:30:37 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:30:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:30:42 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:30:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:30:47 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:30:48 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:30:51 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:30:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:30:57 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:30:58 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:31:02 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:31:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:31:06 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:31:08 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:31:12 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:31:13 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:31:16 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:31:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:31:22 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:31:23 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:31:26 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:31:28 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:31:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:31:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:31:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:31:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:31:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:31:48 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:31:48 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:31:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:31:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:31:58 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:31:59 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:04 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:08 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:09 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:13 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:13 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:19 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:23 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:23 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:28 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:29 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:39 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:48 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:48 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:58 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:32:58 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:08 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:09 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:13 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:14 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:23 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:24 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:28 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:29 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:34 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:44 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:48 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:49 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:58 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:33:59 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:34:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:34:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:34:08 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:34:09 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:34:13 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:34:14 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:34:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:34:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:34:23 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:34:24 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:34:28 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:34:29 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:34:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:34:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:34:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:34:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:34:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:34:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:34:48 UTC] banner_auto_rotate (37) Pulled image array[802] from session 3 times.
+[19-Jan-2019 19:34:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 4 times.
+[19-Jan-2019 19:34:54 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:34:58 UTC] banner_auto_rotate (37) Pulled image array[802] from session 5 times.
+[19-Jan-2019 19:34:59 UTC] banner_auto_rotate (37) Pulled image array[802] from session 3 times.
+[19-Jan-2019 19:35:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 6 times.
+[19-Jan-2019 19:35:04 UTC] banner_auto_rotate (37) Pulled image array[802] from session 4 times.
+[19-Jan-2019 19:35:08 UTC] banner_auto_rotate (37) Pulled image array[802] from session 7 times.
+[19-Jan-2019 19:35:09 UTC] banner_auto_rotate (37) Pulled image array[802] from session 5 times.
+[19-Jan-2019 19:35:13 UTC] banner_auto_rotate (37) Pulled image array[802] from session 8 times.
+[19-Jan-2019 19:35:15 UTC] banner_auto_rotate (37) Pulled image array[802] from session 6 times.
+[19-Jan-2019 19:35:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:35:19 UTC] banner_auto_rotate (37) Pulled image array[802] from session 7 times.
+[19-Jan-2019 19:35:23 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:35:25 UTC] banner_auto_rotate (37) Pulled image array[802] from session 8 times.
+[19-Jan-2019 19:35:28 UTC] banner_auto_rotate (37) Pulled image array[802] from session 3 times.
+[19-Jan-2019 19:35:29 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:35:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 4 times.
+[19-Jan-2019 19:35:35 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:35:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 5 times.
+[19-Jan-2019 19:35:39 UTC] banner_auto_rotate (37) Pulled image array[802] from session 3 times.
+[19-Jan-2019 19:35:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 6 times.
+[19-Jan-2019 19:35:45 UTC] banner_auto_rotate (37) Pulled image array[802] from session 4 times.
+[19-Jan-2019 19:35:48 UTC] banner_auto_rotate (37) Pulled image array[802] from session 7 times.
+[19-Jan-2019 19:35:50 UTC] banner_auto_rotate (37) Pulled image array[802] from session 5 times.
+[19-Jan-2019 19:35:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 8 times.
+[19-Jan-2019 19:35:54 UTC] banner_auto_rotate (37) Pulled image array[802] from session 6 times.
+[19-Jan-2019 19:35:58 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:36:00 UTC] banner_auto_rotate (37) Pulled image array[802] from session 7 times.
+[19-Jan-2019 19:36:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:36:04 UTC] banner_auto_rotate (37) Pulled image array[802] from session 8 times.
+[19-Jan-2019 19:36:08 UTC] banner_auto_rotate (37) Pulled image array[802] from session 3 times.
+[19-Jan-2019 19:36:10 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:36:13 UTC] banner_auto_rotate (37) Pulled image array[802] from session 4 times.
+[19-Jan-2019 19:36:14 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:36:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 5 times.
+[19-Jan-2019 19:36:19 UTC] banner_auto_rotate (37) Pulled image array[802] from session 3 times.
+[19-Jan-2019 19:36:23 UTC] banner_auto_rotate (37) Pulled image array[802] from session 6 times.
+[19-Jan-2019 19:36:24 UTC] banner_auto_rotate (37) Pulled image array[802] from session 4 times.
+[19-Jan-2019 19:36:28 UTC] banner_auto_rotate (37) Pulled image array[802] from session 7 times.
+[19-Jan-2019 19:36:29 UTC] banner_auto_rotate (37) Pulled image array[802] from session 5 times.
+[19-Jan-2019 19:36:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 8 times.
+[19-Jan-2019 19:36:35 UTC] banner_auto_rotate (37) Pulled image array[802] from session 6 times.
+[19-Jan-2019 19:36:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:36:39 UTC] banner_auto_rotate (37) Pulled image array[802] from session 7 times.
+[19-Jan-2019 19:36:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:36:45 UTC] banner_auto_rotate (37) Pulled image array[802] from session 8 times.
+[19-Jan-2019 19:36:48 UTC] banner_auto_rotate (37) Pulled image array[802] from session 3 times.
+[19-Jan-2019 19:36:49 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:36:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 4 times.
+[19-Jan-2019 19:36:55 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:36:58 UTC] banner_auto_rotate (37) Pulled image array[802] from session 5 times.
+[19-Jan-2019 19:37:00 UTC] banner_auto_rotate (37) Pulled image array[802] from session 3 times.
+[19-Jan-2019 19:37:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 6 times.
+[19-Jan-2019 19:37:04 UTC] banner_auto_rotate (37) Pulled image array[802] from session 4 times.
+[19-Jan-2019 19:37:08 UTC] banner_auto_rotate (37) Pulled image array[802] from session 7 times.
+[19-Jan-2019 19:37:09 UTC] banner_auto_rotate (37) Pulled image array[802] from session 5 times.
+[19-Jan-2019 19:37:13 UTC] banner_auto_rotate (37) Pulled image array[802] from session 8 times.
+[19-Jan-2019 19:37:14 UTC] banner_auto_rotate (37) Pulled image array[802] from session 6 times.
+[19-Jan-2019 19:37:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:37:19 UTC] banner_auto_rotate (37) Pulled image array[802] from session 7 times.
+[19-Jan-2019 19:37:23 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:37:25 UTC] banner_auto_rotate (37) Pulled image array[802] from session 8 times.
+[19-Jan-2019 19:37:28 UTC] banner_auto_rotate (37) Pulled image array[802] from session 3 times.
+[19-Jan-2019 19:37:29 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:37:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 4 times.
+[19-Jan-2019 19:37:35 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:37:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 5 times.
+[19-Jan-2019 19:37:39 UTC] banner_auto_rotate (37) Pulled image array[802] from session 3 times.
+[19-Jan-2019 19:37:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 6 times.
+[19-Jan-2019 19:37:45 UTC] banner_auto_rotate (37) Pulled image array[802] from session 4 times.
+[19-Jan-2019 19:37:48 UTC] banner_auto_rotate (37) Pulled image array[802] from session 7 times.
+[19-Jan-2019 19:37:49 UTC] banner_auto_rotate (37) Pulled image array[802] from session 5 times.
+[19-Jan-2019 19:37:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 8 times.
+[19-Jan-2019 19:37:55 UTC] banner_auto_rotate (37) Pulled image array[802] from session 6 times.
+[19-Jan-2019 19:37:58 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:37:59 UTC] banner_auto_rotate (37) Pulled image array[802] from session 7 times.
+[19-Jan-2019 19:38:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:38:05 UTC] banner_auto_rotate (37) Pulled image array[802] from session 8 times.
+[19-Jan-2019 19:38:08 UTC] banner_auto_rotate (37) Pulled image array[802] from session 3 times.
+[19-Jan-2019 19:38:09 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:38:13 UTC] banner_auto_rotate (37) Pulled image array[802] from session 4 times.
+[19-Jan-2019 19:38:15 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:38:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 5 times.
+[19-Jan-2019 19:38:19 UTC] banner_auto_rotate (37) Pulled image array[802] from session 3 times.
+[19-Jan-2019 19:38:23 UTC] banner_auto_rotate (37) Pulled image array[802] from session 6 times.
+[19-Jan-2019 19:38:25 UTC] banner_auto_rotate (37) Pulled image array[802] from session 4 times.
+[19-Jan-2019 19:38:28 UTC] banner_auto_rotate (37) Pulled image array[802] from session 7 times.
+[19-Jan-2019 19:38:29 UTC] banner_auto_rotate (37) Pulled image array[802] from session 5 times.
+[19-Jan-2019 19:38:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 8 times.
+[19-Jan-2019 19:38:35 UTC] banner_auto_rotate (37) Pulled image array[802] from session 6 times.
+[19-Jan-2019 19:38:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:38:39 UTC] banner_auto_rotate (37) Pulled image array[802] from session 7 times.
+[19-Jan-2019 19:38:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:38:45 UTC] banner_auto_rotate (37) Pulled image array[802] from session 8 times.
+[19-Jan-2019 19:38:48 UTC] banner_auto_rotate (37) Pulled image array[802] from session 3 times.
+[19-Jan-2019 19:38:49 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:38:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 4 times.
+[19-Jan-2019 19:38:54 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:38:58 UTC] banner_auto_rotate (37) Pulled image array[802] from session 5 times.
+[19-Jan-2019 19:38:59 UTC] banner_auto_rotate (37) Pulled image array[802] from session 3 times.
+[19-Jan-2019 19:39:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 6 times.
+[19-Jan-2019 19:39:04 UTC] banner_auto_rotate (37) Pulled image array[802] from session 4 times.
+[19-Jan-2019 19:39:08 UTC] banner_auto_rotate (37) Pulled image array[802] from session 7 times.
+[19-Jan-2019 19:39:10 UTC] banner_auto_rotate (37) Pulled image array[802] from session 5 times.
+[19-Jan-2019 19:39:13 UTC] banner_auto_rotate (37) Pulled image array[802] from session 8 times.
+[19-Jan-2019 19:39:14 UTC] banner_auto_rotate (37) Pulled image array[802] from session 6 times.
+[19-Jan-2019 19:39:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:39:20 UTC] banner_auto_rotate (37) Pulled image array[802] from session 7 times.
+[19-Jan-2019 19:39:23 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:39:24 UTC] banner_auto_rotate (37) Pulled image array[802] from session 8 times.
+[19-Jan-2019 19:39:28 UTC] banner_auto_rotate (37) Pulled image array[802] from session 3 times.
+[19-Jan-2019 19:39:30 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:39:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 4 times.
+[19-Jan-2019 19:39:34 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:39:38 UTC] banner_auto_rotate (37) Pulled image array[802] from session 5 times.
+[19-Jan-2019 19:39:39 UTC] banner_auto_rotate (37) Pulled image array[802] from session 3 times.
+[19-Jan-2019 19:39:43 UTC] banner_auto_rotate (37) Pulled image array[802] from session 6 times.
+[19-Jan-2019 19:39:45 UTC] banner_auto_rotate (37) Pulled image array[802] from session 4 times.
+[19-Jan-2019 19:39:48 UTC] banner_auto_rotate (37) Pulled image array[802] from session 7 times.
+[19-Jan-2019 19:39:49 UTC] banner_auto_rotate (37) Pulled image array[802] from session 5 times.
+[19-Jan-2019 19:39:53 UTC] banner_auto_rotate (37) Pulled image array[802] from session 8 times.
+[19-Jan-2019 19:39:54 UTC] banner_auto_rotate (37) Pulled image array[802] from session 6 times.
+[19-Jan-2019 19:39:58 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:39:59 UTC] banner_auto_rotate (37) Pulled image array[802] from session 7 times.
+[19-Jan-2019 19:40:03 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:40:05 UTC] banner_auto_rotate (37) Pulled image array[802] from session 8 times.
+[19-Jan-2019 19:40:08 UTC] banner_auto_rotate (37) Pulled image array[802] from session 3 times.
+[19-Jan-2019 19:40:10 UTC] banner_auto_rotate (37) Pulled image array[802] from session 1 times.
+[19-Jan-2019 19:40:13 UTC] banner_auto_rotate (37) Pulled image array[802] from session 4 times.
+[19-Jan-2019 19:40:14 UTC] banner_auto_rotate (37) Pulled image array[802] from session 2 times.
+[19-Jan-2019 19:40:18 UTC] banner_auto_rotate (37) Pulled image array[802] from session 5 times.
+[19-Jan-2019 19:40:20 UTC] banner_auto_rotate (37) Pulled image array[802] from session 3 times.
+[19-Jan-2019 19:40:23 UTC] banner_auto_rotate (37) Pulled image array[802] from session 6 times.
+[19-Jan-2019 19:40:24 UTC] banner_auto_rotate (37) Pulled image array[802] from session 4 times.
+[19-Jan-2019 19:40:28 UTC] banner_auto_rotate (37) Pulled image array[802] from session 7 times.
+[19-Jan-2019 19:40:30 UTC] banner_auto_rotate (37) Pulled image array[802] from session 5 times.
+[19-Jan-2019 19:40:33 UTC] banner_auto_rotate (37) Pulled image array[802] from session 8 times.
+[19-Jan-2019 19:40:35 UTC] banner_auto_rotate (37) Pulled image array[802] from session 6 times.
+[19-Jan-2019 19:40:45 UTC] banner_auto_rotate (89) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:41:13 UTC] banner_auto_rotate (89) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:41:53 UTC] banner_auto_rotate (89) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:41:56 UTC] banner_auto_rotate (89) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:42:33 UTC] banner_auto_rotate (89) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:42:37 UTC] banner_auto_rotate (89) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:43:13 UTC] banner_auto_rotate (89) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:43:17 UTC] banner_auto_rotate (89) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:43:53 UTC] banner_auto_rotate (89) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:43:57 UTC] banner_auto_rotate (89) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:44:33 UTC] banner_auto_rotate (89) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:44:36 UTC] banner_auto_rotate (89) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:45:13 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:45:44 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:45:48 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:46:19 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:46:23 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:46:54 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:46:58 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:47:29 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:47:33 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan.
+[19-Jan-2019 19:48:00 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [96.73.223.43]
+[19-Jan-2019 19:48:08 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [108.210.7.32]
+[19-Jan-2019 19:48:33 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [96.73.223.43]
+[19-Jan-2019 19:48:43 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [108.210.7.32]
+[19-Jan-2019 19:49:08 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [96.73.223.43]
+[19-Jan-2019 19:49:18 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [108.210.7.32]
+[19-Jan-2019 19:49:43 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [96.73.223.43]
+[19-Jan-2019 19:49:53 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [108.210.7.32]
+[19-Jan-2019 19:50:18 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [96.73.223.43]
+[19-Jan-2019 19:51:03 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [108.210.7.32]
+[19-Jan-2019 19:51:44 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [96.73.223.43]
+[19-Jan-2019 19:52:13 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [108.210.7.32]
+[19-Jan-2019 19:52:53 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [96.73.223.43]
+[19-Jan-2019 19:53:23 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [108.210.7.32]
+[19-Jan-2019 19:54:04 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [96.73.223.43]
+[19-Jan-2019 19:54:33 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [108.210.7.32]
+[19-Jan-2019 19:55:43 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [108.210.7.32] after 15 loads.
+[19-Jan-2019 19:55:53 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [96.73.223.43] after 15 loads.
+[19-Jan-2019 19:56:53 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [108.210.7.32] after 15 loads.
+[19-Jan-2019 19:57:03 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [96.73.223.43] after 15 loads.
+[19-Jan-2019 19:58:03 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [108.210.7.32] after 15 loads.
+[19-Jan-2019 19:58:13 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [96.73.223.43] after 15 loads.
+[19-Jan-2019 19:59:13 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [108.210.7.32] after 15 loads.
+[19-Jan-2019 19:59:24 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [96.73.223.43] after 15 loads.
+[19-Jan-2019 20:00:23 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [108.210.7.32] after 15 loads.
+[19-Jan-2019 20:00:33 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [96.73.223.43] after 15 loads.
+[19-Jan-2019 20:01:33 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [108.210.7.32] after 15 loads.
+[19-Jan-2019 20:01:43 UTC] banner_auto_rotate (103) Refreshed image array[800] in session via directory scan for [96.73.223.43] after 15 loads.
+[20-Jan-2019 08:49:01 UTC] PHP Fatal error:  Access to undeclared static property: banner_carousel::$ttl in /home2/jony5/public_html/common/classes/banner_carousel.inc.php on line 24
+[20-Jan-2019 08:49:03 UTC] PHP Fatal error:  Access to undeclared static property: banner_carousel::$ttl in /home2/jony5/public_html/common/classes/banner_carousel.inc.php on line 24
+[20-Jan-2019 08:49:06 UTC] PHP Fatal error:  Access to undeclared static property: banner_carousel::$ttl in /home2/jony5/public_html/common/classes/banner_carousel.inc.php on line 24
+[20-Jan-2019 08:49:11 UTC] PHP Fatal error:  Access to undeclared static property: banner_carousel::$ttl in /home2/jony5/public_html/common/classes/banner_carousel.inc.php on line 24
+[20-Jan-2019 08:50:34 UTC] banner_carousel (126) delta [1547974234.49] | ttl[60] | start mtime[] | curr mtime[1547974234.49]
+[20-Jan-2019 08:50:40 UTC] banner_carousel (126) delta [1547974240.23] | ttl[60] | start mtime[] | curr mtime[1547974240.23]
+[20-Jan-2019 08:50:45 UTC] banner_carousel (126) delta [1547974245.35] | ttl[60] | start mtime[] | curr mtime[1547974245.35]
+[20-Jan-2019 08:50:50 UTC] banner_carousel (126) delta [1547974250.23] | ttl[60] | start mtime[] | curr mtime[1547974250.23]
+[20-Jan-2019 08:50:55 UTC] banner_carousel (126) delta [1547974255.3] | ttl[60] | start mtime[] | curr mtime[1547974255.3]
+[20-Jan-2019 08:51:00 UTC] banner_carousel (126) delta [1547974260.24] | ttl[60] | start mtime[] | curr mtime[1547974260.24]
+[20-Jan-2019 08:51:05 UTC] banner_carousel (126) delta [1547974265.34] | ttl[60] | start mtime[] | curr mtime[1547974265.34]
+[20-Jan-2019 08:51:10 UTC] banner_carousel (126) delta [1547974270.32] | ttl[60] | start mtime[] | curr mtime[1547974270.32]
+[20-Jan-2019 08:51:15 UTC] banner_carousel (126) delta [1547974275.25] | ttl[60] | start mtime[] | curr mtime[1547974275.25]
+[20-Jan-2019 08:51:20 UTC] banner_carousel (126) delta [1547974280.31] | ttl[60] | start mtime[] | curr mtime[1547974280.31]
+[20-Jan-2019 08:51:25 UTC] banner_carousel (126) delta [1547974285.23] | ttl[60] | start mtime[] | curr mtime[1547974285.23]
+[20-Jan-2019 08:51:30 UTC] banner_carousel (126) delta [1547974290.34] | ttl[60] | start mtime[] | curr mtime[1547974290.34]
+[20-Jan-2019 08:51:35 UTC] banner_carousel (126) delta [1547974295.22] | ttl[60] | start mtime[] | curr mtime[1547974295.22]
+[20-Jan-2019 08:51:40 UTC] banner_carousel (126) delta [1547974300.23] | ttl[60] | start mtime[] | curr mtime[1547974300.23]
+[20-Jan-2019 08:51:45 UTC] banner_carousel (126) delta [1547974305.35] | ttl[60] | start mtime[] | curr mtime[1547974305.35]
+[20-Jan-2019 08:51:50 UTC] banner_carousel (126) delta [1547974310.31] | ttl[60] | start mtime[] | curr mtime[1547974310.31]
+[20-Jan-2019 08:51:55 UTC] banner_carousel (126) delta [1547974315.31] | ttl[60] | start mtime[] | curr mtime[1547974315.31]
+[20-Jan-2019 08:52:00 UTC] banner_carousel (126) delta [1547974320.17] | ttl[60] | start mtime[] | curr mtime[1547974320.17]
+[20-Jan-2019 08:52:05 UTC] banner_carousel (126) delta [1547974325.34] | ttl[60] | start mtime[] | curr mtime[1547974325.34]
+[20-Jan-2019 08:52:10 UTC] banner_carousel (126) delta [1547974330.37] | ttl[60] | start mtime[] | curr mtime[1547974330.37]
+[20-Jan-2019 08:52:15 UTC] banner_carousel (126) delta [1547974335.36] | ttl[60] | start mtime[] | curr mtime[1547974335.36]
+[20-Jan-2019 08:52:20 UTC] banner_carousel (126) delta [1547974340.34] | ttl[60] | start mtime[] | curr mtime[1547974340.34]
+[20-Jan-2019 08:52:25 UTC] banner_carousel (126) delta [1547974345.38] | ttl[60] | start mtime[] | curr mtime[1547974345.38]
+[20-Jan-2019 08:52:30 UTC] banner_carousel (126) delta [1547974350.24] | ttl[60] | start mtime[] | curr mtime[1547974350.24]
+[20-Jan-2019 08:52:35 UTC] banner_carousel (126) delta [1547974355.25] | ttl[60] | start mtime[] | curr mtime[1547974355.25]
+[20-Jan-2019 08:52:40 UTC] banner_carousel (126) delta [1547974360.15] | ttl[60] | start mtime[] | curr mtime[1547974360.15]
+[20-Jan-2019 08:52:45 UTC] banner_carousel (126) delta [1547974365.37] | ttl[60] | start mtime[] | curr mtime[1547974365.37]
+[20-Jan-2019 08:52:50 UTC] banner_carousel (126) delta [1547974370.16] | ttl[60] | start mtime[] | curr mtime[1547974370.16]
+[20-Jan-2019 08:52:55 UTC] banner_carousel (126) delta [1547974375.16] | ttl[60] | start mtime[] | curr mtime[1547974375.16]
+[20-Jan-2019 08:53:00 UTC] banner_carousel (126) delta [1547974380.38] | ttl[60] | start mtime[] | curr mtime[1547974380.38]
+[20-Jan-2019 08:53:05 UTC] banner_carousel (126) delta [1547974385.43] | ttl[60] | start mtime[] | curr mtime[1547974385.43]
+[20-Jan-2019 08:53:10 UTC] banner_carousel (126) delta [1547974390.24] | ttl[60] | start mtime[] | curr mtime[1547974390.24]
+[20-Jan-2019 08:53:15 UTC] banner_carousel (126) delta [1547974395.23] | ttl[60] | start mtime[] | curr mtime[1547974395.23]
+[20-Jan-2019 08:53:20 UTC] banner_carousel (126) delta [1547974400.35] | ttl[60] | start mtime[] | curr mtime[1547974400.35]
+[20-Jan-2019 08:53:25 UTC] banner_carousel (126) delta [1547974405.39] | ttl[60] | start mtime[] | curr mtime[1547974405.39]
+[20-Jan-2019 08:53:30 UTC] banner_carousel (126) delta [1547974410.16] | ttl[60] | start mtime[] | curr mtime[1547974410.16]
+[20-Jan-2019 08:53:35 UTC] banner_carousel (126) delta [1547974415.33] | ttl[60] | start mtime[] | curr mtime[1547974415.33]
+[20-Jan-2019 08:53:40 UTC] banner_carousel (126) delta [1547974420.24] | ttl[60] | start mtime[] | curr mtime[1547974420.24]
+[20-Jan-2019 08:53:45 UTC] banner_carousel (126) delta [1547974425.35] | ttl[60] | start mtime[] | curr mtime[1547974425.35]
+[20-Jan-2019 08:53:50 UTC] banner_carousel (126) delta [1547974430.24] | ttl[60] | start mtime[] | curr mtime[1547974430.24]
+[20-Jan-2019 08:53:54 UTC] banner_carousel (126) delta [1547974434.94] | ttl[60] | start mtime[] | curr mtime[1547974434.94]
+[20-Jan-2019 08:53:59 UTC] banner_carousel (126) delta [1547974439.49] | ttl[60] | start mtime[] | curr mtime[1547974439.49]
+[20-Jan-2019 08:54:14 UTC] banner_carousel (126) delta [1547974454.16] | ttl[60] | start mtime[] | curr mtime[1547974454.16]
+[20-Jan-2019 08:54:19 UTC] banner_carousel (126) delta [1547974459.18] | ttl[60] | start mtime[] | curr mtime[1547974459.18]
+[20-Jan-2019 08:54:24 UTC] banner_carousel (126) delta [1547974464.19] | ttl[60] | start mtime[] | curr mtime[1547974464.19]
+[20-Jan-2019 08:54:29 UTC] banner_carousel (126) delta [1547974469.18] | ttl[60] | start mtime[] | curr mtime[1547974469.18]
+[20-Jan-2019 08:54:34 UTC] banner_carousel (126) delta [1547974474.18] | ttl[60] | start mtime[] | curr mtime[1547974474.18]
+[20-Jan-2019 08:54:39 UTC] banner_carousel (126) delta [1547974479.17] | ttl[60] | start mtime[] | curr mtime[1547974479.17]
+[23-Apr-2019 06:52:05 UTC] PHP Parse error:  syntax error, unexpected '$tmp_comment_loc' in /home2/jony5/public_html/common/classes/user.inc.php on line 2359

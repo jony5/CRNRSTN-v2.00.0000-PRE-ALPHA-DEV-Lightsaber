@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<obs_overlay_profile>
+        <profile>
+            <pid>xuTLgaatXgJk4C5WuVwJOqvzaazwswaQRznxOwlDvFsP8PU8KAAYuKDMWWjF8wLMUG1HXu</pid>
+            <lastmodified>10/02/2019 00:00:00</lastmodified>
+            <type>full</type>
+            <master_overlay_visible_BOOL>true</master_overlay_visible_BOOL>
+            <copy_overlay_visible_BOOL>true</copy_overlay_visible_BOOL>
+
+            <master_overlay_display_area_width_in_px>4000</master_overlay_display_area_width_in_px>
+            <master_overlay_display_area_height_in_px>2000</master_overlay_display_area_height_in_px>
+            <copy_display_area_width_in_px>700</copy_display_area_width_in_px>
+            <copy_display_area_height_in_px>600</copy_display_area_height_in_px>
+
+            <master_overlay_bgcolor>#F9F6F9</master_overlay_bgcolor>
+            <master_overlay_bgopacity>0.9</master_overlay_bgopacity>
+            <overlay_copy_color>#1A182D</overlay_copy_color>
+
+            <lang_pack_rotation_interval_secs>25</lang_pack_rotation_interval_secs>
+
+            <name>SE Blend Conf - Schedule</name>
+            <lang_pack_translations>
+                <lang_pack>
+                    <lang_id>en</lang_id>
+                    <copy_fullscrn_header><![CDATA[Southeast Blending Conference</br>April 6-8, 2019</br>Atlanta, Georgia]]></copy_fullscrn_header>
+                    <copy_fullscrn_title><![CDATA[Conference Schedule]]></copy_fullscrn_title>
+                    <copy_fullscrn_body><![CDATA[<div class="cb_20"></div>ENGLISH ALL COPY CODE HERE - EN]]></copy_fullscrn_body>
+                    <copy_fullscrn_font_size_percentage>120</copy_fullscrn_font_size_percentage>
+                    <cleartext_endpoint>http://172.16.225.128/jony5/social/fellowship/avsvc_overlay/_lib/xml/_cleartext/?pid=123&amp;amp;type=full&amp;amp;lang_id=en</cleartext_endpoint>
+                    <copy_hash>aazwswaQRznxOwlDvFsP</copy_hash>
+                </lang_pack>
+                <lang_pack>
+                    <lang_id>es</lang_id>
+                    <copy_fullscrn_header><![CDATA[Conferencia de mezcla del sudeste</br>Abril 6-8, 2019</br>Atlanta, Georgia]]></copy_fullscrn_header>
+                    <copy_fullscrn_title><![CDATA[Horario de conferencia]]></copy_fullscrn_title>
+                    <copy_fullscrn_body><![CDATA[<div class="cb_20"></div>SPANISH ALL COPY CODE HERE - ES]]></copy_fullscrn_body>
+                    <copy_fullscrn_font_size_percentage>120</copy_fullscrn_font_size_percentage>
+                    <cleartext_endpoint>http://172.16.225.128/jony5/social/fellowship/avsvc_overlay/_lib/xml/_cleartext/?pid=123&amp;amp;type=full&amp;amp;lang_id=es</cleartext_endpoint>
+                    <copy_hash>aazwswaQRznxOwlDvFsP</copy_hash>
+                </lang_pack>
+                <lang_pack>
+                    <lang_id>ko</lang_id>
+                    <copy_fullscrn_header><![CDATA[남동 혼합 회의</br>4월 6-8, 2019</br>Atlanta, Georgia]]></copy_fullscrn_header>
+                    <copy_fullscrn_title><![CDATA[회의 일정]]></copy_fullscrn_title>
+                    <copy_fullscrn_body><![CDATA[<div class="cb_20"></div>KOREAN ALL COPY CODE HERE - KO]]></copy_fullscrn_body>
+                    <copy_fullscrn_font_size_percentage>140</copy_fullscrn_font_size_percentage>
+                    <cleartext_endpoint>http://172.16.225.128/jony5/social/fellowship/avsvc_overlay/_lib/xml/_cleartext/?pid=123&amp;amp;type=full&amp;amp;lang_id=ko</cleartext_endpoint>
+                    <copy_hash>aazwswaQRznxOwlDvFsP</copy_hash>
+                </lang_pack>
+                <lang_pack>
+                    <lang_id>zh</lang_id>
+                    <copy_fullscrn_header><![CDATA[東南混合會議</br>四月 6-8, 2019</br>Atlanta, Georgia]]></copy_fullscrn_header>
+                    <copy_fullscrn_title><![CDATA[會議日程]]></copy_fullscrn_title>
+                    <copy_fullscrn_body><![CDATA[<div class="cb_20"></div>CHINESE ALL COPY CODE HERE - ZH]]></copy_fullscrn_body>
+                    <copy_fullscrn_font_size_percentage>140</copy_fullscrn_font_size_percentage>
+                    <cleartext_endpoint>http://172.16.225.128/jony5/social/fellowship/avsvc_overlay/_lib/xml/_cleartext/?pid=123&amp;amp;type=full&amp;amp;lang_id=zh</cleartext_endpoint>
+                    <copy_hash>aazwswaQRznxOwlDvFsP</copy_hash>
+                </lang_pack>
+            </lang_pack_translations>
+
+            <config_hash>aazwswaQRznxOwlDvFsP</config_hash>
+        </profile>
+
+</obs_overlay_profile>

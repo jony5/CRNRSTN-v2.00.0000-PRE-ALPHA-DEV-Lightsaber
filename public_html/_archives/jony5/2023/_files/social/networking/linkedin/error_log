@@ -1,0 +1,6 @@
+[20-Apr-2018 16:17:36 UTC] Source: crnrstn->getServerEnv()|| Priority: 1|| Message: CRNRSTN environmental initialization error :: Environmental detection failed to match a sufficient number of parameters to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[20-Apr-2018 16:17:36 UTC] Source: oENV->__construct()|| Priority: 1|| Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[20-Apr-2018 16:17:36 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 581
+[26-May-2018 17:37:49 UTC] Source: crnrstn->getServerEnv()|| Priority: 1|| Message: CRNRSTN environmental initialization error :: Environmental detection failed to match a sufficient number of parameters to your servers configuration to successfully initialize CRNRSTN on server jony5.com (184.173.96.66)
+[26-May-2018 17:37:49 UTC] Source: oENV->__construct()|| Priority: 1|| Message: CRNRSTN environmental configuration error :: unable to detect environment on server jony5.com (184.173.96.66).
+[26-May-2018 17:37:49 UTC] PHP Fatal error:  Call to a member function getSessionParam() on null in /home2/jony5/public_html/_crnrstn/class/environmentals/crnrstn.env.inc.php on line 503

@@ -1,0 +1,8 @@
+[29-May-2022 03:37:11 America/New_York] database.inc.php (1526) jony5 queryType sent to user database_integrations class object :: get_overlay_mgmt_state from [45.24.129.215]
+[29-May-2022 03:37:11 America/New_York] PHP Fatal error:  Uncaught Error: Call to a member function ping() on null in /home2/jonyfivc/public_html/common/classes/database.inc.php:1834
+Stack trace:
+#0 /home2/jonyfivc/public_html/common/classes/database.inc.php(1511): database_integration->executeQueryType('get_overlay_mgm...', Object(user), Object(crnrstn_environmentals))
+#1 /home2/jonyfivc/public_html/common/classes/user.inc.php(422): database_integration->processUserRequest('get_overlay_mgm...', Object(user), Object(crnrstn_environmentals))
+#2 /home2/jonyfivc/public_html/social/fellowship/avsvc_overlay/admin/index.php(14): user->getOverlayStateDatum('OVERLAY_DATUM')
+#3 {main}
+  thrown in /home2/jonyfivc/public_html/common/classes/database.inc.php on line 1834

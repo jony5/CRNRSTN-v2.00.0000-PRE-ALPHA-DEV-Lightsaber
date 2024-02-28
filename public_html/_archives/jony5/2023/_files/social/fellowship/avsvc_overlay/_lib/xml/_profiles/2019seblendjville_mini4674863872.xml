@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<obs_overlay_profile>
+        <profile>
+            <pid>xuTLgaatXgJk4C5WuVwJOqvzaazwswaQRznxOwlDvFsP8PU8KAAYuKDMWWjF8wLMUG1HXu</pid>
+            <lastmodified>10/02/2019 00:00:00</lastmodified>
+            <type>mini</type>
+            <master_overlay_visible_BOOL>false</master_overlay_visible_BOOL>
+            <timer_overlay_visible_BOOL>true</timer_overlay_visible_BOOL>
+            <copy_overlay_visible_BOOL>true</copy_overlay_visible_BOOL>
+            <timer_mode>RESET</timer_mode>
+            <timer_override_parameter>false</timer_override_parameter>
+            <timer_override_transaction_hash>false</timer_override_transaction_hash>
+
+            <master_overlay_display_area_width_in_px>490</master_overlay_display_area_width_in_px>
+            <master_overlay_display_area_height_in_px>60</master_overlay_display_area_height_in_px>
+            <content_area_width_in_px>390</content_area_width_in_px>
+            <timer_display_area_width_in_px>45</timer_display_area_width_in_px>
+            <timer_display_area_height_in_px>45</timer_display_area_height_in_px>
+            <copy_display_area_width_in_px>255</copy_display_area_width_in_px>
+            <copy_display_area_height_in_px>35</copy_display_area_height_in_px>
+
+            <master_overlay_bgcolor>#F9F6F9</master_overlay_bgcolor>
+            <master_overlay_bgopacity>1.0</master_overlay_bgopacity>
+            <overlay_copy_color>#1A182D</overlay_copy_color>
+            <timer_copy_color>#1A182D</timer_copy_color>
+
+            <name>SE Blend Conf - Msg 1</name>
+            <lang_pack_translations>
+                <lang_pack>
+                    <lang_id>en</lang_id>
+                    <copy_m_title>The Ultimate Revelation of Jesus Christ and the Vision of the Enthroned Christ as the Administrator in God's Universal Government</copy_m_title>
+                    <copy_m_message>Message 01 - RK</copy_m_message>
+                    <copy_m_conference>Southeast Blending Conference April 6-8, 2019 Atlanta, Georgia</copy_m_conference>
+                    <copy_m_date>Friday April 6, 2019</copy_m_date>
+                    <copy_m_scroll_speed>50</copy_m_scroll_speed>
+                    <copy_m_scroll_direction>right_to_left</copy_m_scroll_direction>
+                    <copy_m_font_size_percentage>120</copy_m_font_size_percentage>
+                    <copy_m_padding_top_px>14</copy_m_padding_top_px>
+                    <timer_m_font_size_percentage>140</timer_m_font_size_percentage>
+                    <cleartext_endpoint>http://172.16.225.128/jony5/social/fellowship/avsvc_overlay/_lib/xml/_cleartext/?pid=123&amp;amp;type=mini&amp;amp;lang_id=en</cleartext_endpoint>
+                    <copy_hash>aazwswaegwgewfewfgwgwernxOwlDvFsP</copy_hash>
+                </lang_pack>
+                <lang_pack>
+                    <lang_id>es</lang_id>
+                    <copy_m_title>La última revelación de Jesucristo y la visión de Cristo entronizado como el administrador de Dios Gobierno universal</copy_m_title>
+                    <copy_m_message>Mensaje 1 - RK</copy_m_message>
+                    <copy_m_conference>Conferencia de mezcla del sudeste Abril 6-8, 2019 Atlanta, Georgia</copy_m_conference>
+                    <copy_m_date>Viernes Abril 6, 2019</copy_m_date>
+                    <copy_m_scroll_speed>50</copy_m_scroll_speed>
+                    <copy_m_scroll_direction>right_to_left</copy_m_scroll_direction>
+                    <copy_m_font_size_percentage>120</copy_m_font_size_percentage>
+                    <copy_m_padding_top_px>14</copy_m_padding_top_px>
+                    <timer_m_font_size_percentage>140</timer_m_font_size_percentage>
+                    <cleartext_endpoint>http://172.16.225.128/jony5/social/fellowship/avsvc_overlay/_lib/xml/_cleartext/?pid=123&amp;amp;type=mini&amp;amp;lang_id=es</cleartext_endpoint>
+                    <copy_hash>aazwswaQRzgwegfwfewfeggOwlDvFsP</copy_hash>
+                </lang_pack>
+                <lang_pack>
+                    <lang_id>ko</lang_id>
+                    <copy_m_title><![CDATA[예수 그리스도의 궁극적 인 계시와 비전 하나님의 행정관으로서의 그리스도의 말씀 보편적 정부]]></copy_m_title>
+                    <copy_m_message><![CDATA[메시지 1 - RK]]></copy_m_message>
+                    <copy_m_conference><![CDATA[남동 혼합 회의 4월 6-8, 2019 Atlanta, Georgia]]></copy_m_conference>
+                    <copy_m_date><![CDATA[금요일 4월 6, 2019]]></copy_m_date>
+                    <copy_m_scroll_speed>50</copy_m_scroll_speed>
+                    <copy_m_scroll_direction>right_to_left</copy_m_scroll_direction>
+                    <copy_m_font_size_percentage>140</copy_m_font_size_percentage>
+                    <copy_m_padding_top_px>11</copy_m_padding_top_px>
+                    <timer_m_font_size_percentage>140</timer_m_font_size_percentage>
+                    <cleartext_endpoint>http://172.16.225.128/jony5/social/fellowship/avsvc_overlay/_lib/xml/_cleartext/?pid=&amp;amp;type=mini&amp;amp;lang_id=ko</cleartext_endpoint>
+                    <copy_hash>aazwswaQRejwrirOwlDfewfvFsP</copy_hash>
+                </lang_pack>
+                <lang_pack>
+                    <lang_id>zh</lang_id>
+                    <copy_m_title><![CDATA[耶穌基督的終極啟示與異象 作為上帝的管理者，登基的基督 普遍政府]]></copy_m_title>
+                    <copy_m_message><![CDATA[消息1 - RK]]></copy_m_message>
+                    <copy_m_conference><![CDATA[東南混合會議 四月 6-8, 2019 Atlanta, Georgia]]></copy_m_conference>
+                    <copy_m_date><![CDATA[星期五 四月 6, 2019]]></copy_m_date>
+                    <copy_m_scroll_speed>50</copy_m_scroll_speed>
+                    <copy_m_scroll_direction>right_to_left</copy_m_scroll_direction>
+                    <copy_m_font_size_percentage>140</copy_m_font_size_percentage>
+                    <copy_m_padding_top_px>9</copy_m_padding_top_px>
+                    <timer_m_font_size_percentage>140</timer_m_font_size_percentage>
+                    <cleartext_endpoint>http://172.16.225.128/jony5/social/fellowship/avsvc_overlay/_lib/xml/_cleartext/?pid=&amp;amp;type=mini&amp;amp;lang_id=zh</cleartext_endpoint>
+                    <copy_hash>aazwswaQRrfwfewrewjojwwOwlDvFsP</copy_hash>
+                </lang_pack>
+            </lang_pack_translations>
+
+            <config_hash>aazwswafewfwfwQRznxOwlDvFsP</config_hash>
+        </profile>
+
+</obs_overlay_profile>

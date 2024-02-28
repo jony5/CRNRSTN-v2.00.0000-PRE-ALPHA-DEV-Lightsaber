@@ -1,0 +1,20 @@
+[30-Oct-2023 14:57:27 America/New_York] PHP Warning:  mysqli::__construct(): (08004/1040): Too many connections in /home2/jonyfivc/public_html/_crnrstn/class/database/mysqli/crnrstn.mysqli.inc.php on line 71
+[30-Oct-2023 14:57:44 America/New_York] PHP Warning:  mysqli::__construct(): (08004/1040): Too many connections in /home2/jonyfivc/public_html/_crnrstn/class/database/mysqli/crnrstn.mysqli.inc.php on line 71
+[30-Oct-2023 14:57:56 America/New_York] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home2/jonyfivc/public_html/_crnrstn/class/database/mysqli/crnrstn.mysqli.inc.php:538
+Stack trace:
+#0 /home2/jonyfivc/public_html/common/classes/database.inc.php(4062): crnrstn_mysqli_conn_manager->processQuery(false, 'SELECT `bassdri...')
+#1 /home2/jonyfivc/public_html/common/classes/database.inc.php(1577): database_integration->dbQuery('ttl_bassdriveDa...', Object(crnrstn_environmentals), Object(user))
+#2 /home2/jonyfivc/public_html/common/classes/user.inc.php(275): database_integration->ttl_bassdriveData(Object(user), Object(crnrstn_environmentals), 'ttl_bassdriveDa...')
+#3 /home2/jonyfivc/public_html/common/classes/user.inc.php(194): user->ttl_bassdriveData()
+#4 /home2/jonyfivc/public_html/_crnrstn.config.inc.php(497): user->__construct(Object(crnrstn_environmentals))
+#5 /home2/jonyfivc/public_html/projects/cannabis/diagram/index.php(7): include_once('/home2/jonyfivc...')
+#6 {main}
+  thrown in /home2/jonyfivc/public_html/_crnrstn/class/database/mysqli/crnrstn.mysqli.inc.php on line 538
+[30-Oct-2023 14:58:08 America/New_York] PHP Fatal error:  Uncaught Error: Call to a member function real_escape_string() on bool in /home2/jonyfivc/public_html/common/classes/database.inc.php:4011
+Stack trace:
+#0 /home2/jonyfivc/public_html/common/classes/database.inc.php(1583): database_integration->dbQuery('expire_ttl_bass...', Object(crnrstn_environmentals), Object(bassdrive_integration_data))
+#1 /home2/jonyfivc/public_html/common/classes/user.inc.php(4319): database_integration->expire_ttl_bassdriveData(Object(bassdrive_integration_data), Object(crnrstn_environmentals), 'expire_ttl_bass...')
+#2 /home2/jonyfivc/public_html/common/classes/database.inc.php(4121): bassdrive_integration_data->reset_cache_ttl()
+#3 /home2/jonyfivc/public_html/common/classes/database.inc.php(1577): database_integration->dbQuery('ttl_bassdriveDa...', Object(crnrstn_environmentals), Object(user))
+#4 /home2/jonyfivc/public_html/common/classes/user.inc.php(275): database_integration->ttl_bassdriveData(Object(user), Object(crnrstn_environmentals), 'ttl_bassdriveDa...')
+#5 /home2/jonyfivc/pub in /home2/jonyfivc/public_html/common/classes/database.inc.php on line 4011

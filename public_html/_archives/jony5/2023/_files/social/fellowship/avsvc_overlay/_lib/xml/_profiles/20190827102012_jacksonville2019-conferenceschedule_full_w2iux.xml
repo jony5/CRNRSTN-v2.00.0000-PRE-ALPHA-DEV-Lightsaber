@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><obs_overlay_profile><profile><pid>2hDCI8O5ysC0V261r0DcPiSspbjMUnUzqccekKGbZR8CihaQJ8cd3UWfpwQ1qRYm2gPKhP</pid>
+    <lastmodified>2019-08-27 22:20:07</lastmodified>
+    <type>full</type>
+    <master_overlay_visible_BOOL>true</master_overlay_visible_BOOL>
+    <copy_overlay_visible_BOOL>true</copy_overlay_visible_BOOL>
+
+    <master_overlay_display_area_width_in_px>4000</master_overlay_display_area_width_in_px>
+    <master_overlay_display_area_height_in_px>4000</master_overlay_display_area_height_in_px>
+    <copy_display_area_width_in_px>700</copy_display_area_width_in_px>
+    <copy_display_area_height_in_px>600</copy_display_area_height_in_px>
+
+    <master_overlay_bgcolor>#FFFFFF</master_overlay_bgcolor>
+    <master_overlay_bgopacity>0.6</master_overlay_bgopacity>
+    <overlay_copy_color>#1A182D</overlay_copy_color>
+
+    <lang_pack_rotation_interval_secs>30</lang_pack_rotation_interval_secs>
+
+    <name>Jacksonville 2019 - Conference Schedule</name><lang_pack_translations>
+                        <lang_pack>
+                            <lang_id>en</lang_id>
+                            <copy_fullscrn_header><![CDATA[Southeast Blending Conference</br>
+August 30 - September 2</br>
+Jacksonville, Florida]]></copy_fullscrn_header>
+                            <copy_fullscrn_title><![CDATA[Conference Schedule]]></copy_fullscrn_title>
+                            <copy_fullscrn_body><![CDATA[<div class="cb_20"></div><div class="schedule_day_title">Friday, April 6</div>
+
+<div class="schedule_element_wrapper">
+    <div class="schedule_element_time">7:30 p.m.</div>
+    <div class="schedule_element_activity">
+<strong>First Conference Meeting</strong></div>
+    <div class="cb"></div>
+</div>
+
+<div class="schedule_day_title">Saturday, April 7</div>
+
+<div class="schedule_element_wrapper">
+    <div class="schedule_element_time">10:00 a.m.
+</div>
+    <div class="schedule_element_activity">
+<strong>Second Conference Meeting</strong></div>
+    <div class="cb"></div>
+</div>
+<div class="schedule_element_wrapper">
+    <div class="schedule_element_time">12:30 p.m.
+</div>
+    <div class="schedule_element_activity">Corporate 
+Lunch at the Meeting Hall</div>
+    <div class="cb"></div>
+</div>
+<div class="schedule_element_wrapper">
+    <div class="schedule_element_time">3:00 p.m.</div>
+    <div class="schedule_element_activity">Responsible 
+brothers' Meeting</div>
+    <div class="cb"></div>
+</div>
+<div class="schedule_element_wrapper">
+    <div class="schedule_element_time">3:00 p.m.</div>
+    <div class="schedule_element_activity">Young 
+People's Meeting - College Age, HS, Jr. High</div>
+    <div class="cb"></div>
+</div>
+<div class="schedule_element_wrapper">
+    <div class="schedule_element_time">5:00 p.m.</div>
+    <div class="schedule_element_activity">Cookout for 
+YP - College Age, HS, Jr. High</div>
+    <div class="cb"></div>
+</div>
+<div class="schedule_element_wrapper">
+    <div class="schedule_element_time">7:30 p.m.</div>
+    <div class="schedule_element_activity">
+<strong>Third Conference Meeting</strong></div>
+    <div class="cb"></div>
+</div>
+
+
+<div class="schedule_day_title">Lord's Day, April 
+8</div>
+<div class="schedule_element_wrapper">
+    <div class="schedule_element_time">9:30 a.m.</div>
+    <div class="schedule_element_activity">Lord's 
+Table</div>
+    <div class="cb"></div>
+</div>
+<div class="schedule_element_wrapper">
+    <div class="schedule_element_time">10:00 a.m.
+</div>
+    <div class="schedule_element_activity">
+<strong>Fourth Conference Meeting</strong></div>
+    <div class="cb"></div>
+</div>
+<div class="cb"></div>]]></copy_fullscrn_body>
+                            <copy_fullscrn_font_size_percentage>120</copy_fullscrn_font_size_percentage>
+                            <cleartext_endpoint>NULL</cleartext_endpoint>
+                            <copy_hash>8a6975df6ca8f6d0a970705080c364fc34d4244c</copy_hash>
+                        </lang_pack></lang_pack_translations><config_hash>94a9ec2a7e0fd0652be9f43bf9cb3c886af2f48d</config_hash></profile></obs_overlay_profile>
