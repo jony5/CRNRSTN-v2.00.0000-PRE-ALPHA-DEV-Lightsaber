@@ -7947,7 +7947,7 @@ class bringer_of_the_precious_things {
             if($char_selection == -1){
 
                 $codeAlphabet .= "{}[]:;\"\'|\\+=_- )(*&^%$#@!~
-                `?/>.<,   '";
+                `?./><,   '";
 
             }
 
