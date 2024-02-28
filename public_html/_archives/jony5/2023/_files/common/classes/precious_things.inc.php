@@ -7450,7 +7450,7 @@ class bringer_of_the_precious_things {
                 
                 ' . $tmp_top_lnk_html . '
                 <div class="cb_10"></div>
-                After 20 years of living in this truth people, at a glance, think that I am a criminal (or a 
+                After 20 years of living in this truth...people, at a glance, think that I am a criminal (or a 
                 rapper). Christian living during the apostolic period of church history (A.D. 33&ndash;100) left 
                 many saints dead or imprisoned as criminals. So, I think I can say I am living (and am here 
                 teaching) the perfect carbon copy of a pure and apostolically sourced Christian living,...with 
