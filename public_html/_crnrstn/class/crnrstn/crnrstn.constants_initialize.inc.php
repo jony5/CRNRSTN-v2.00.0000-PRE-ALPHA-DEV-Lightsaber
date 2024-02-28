@@ -17,6 +17,9 @@
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
+#                   CRNRSTN :: is powered by eVifweb; CRNRSTN :: is powered by eCRM Strategy and Execution,
+#                   Web Design & Development, and Only The Best Coffee.
+#
 #                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
@@ -416,7 +419,7 @@ function crnrstn_constants_init($const_nom){
         break;
 
         // 3051
-        // 'CRNRSTN_GABRIEL', 'CRNRSTN_SMTP_AUTHENTICATION', 'CRNRSTN_EMAIL_CRNRSTN_SOURCE', 'CRNRSTN_EMAIL_USER_SOURCE'
+        // 'CRNRSTN_GABRIEL', 'CRNRSTN_SMTP_AUTHENTICATION', 'CRNRSTN_EMAIL'
         case 'CRNRSTN_GABRIEL':
 
             return (int) 3051;
@@ -427,12 +430,12 @@ function crnrstn_constants_init($const_nom){
             return (int) 3052;
 
         break;
-        case 'CRNRSTN_EMAIL_CRNRSTN_SOURCE':
+        case 'CRNRSTN_EMAIL':
 
             return (int) 3053;
 
         break;
-        case 'CRNRSTN_EMAIL_USER_SOURCE':
+        case 'CRNRSTN_PASSWORD':
 
             return (int) 3054;
 

@@ -17,6 +17,9 @@
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
+#                   CRNRSTN :: is powered by eVifweb; CRNRSTN :: is powered by eCRM Strategy and Execution,
+#                   Web Design & Development, and Only The Best Coffee.
+#
 #                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
@@ -4343,6 +4346,7 @@ requirements related to returning the content for this request.
                     // self::$oCRNRSTN_CONFIG_MGR->input_data_value($encrypt_cipher, 'encrypt_cipher','CRNRSTN::RESOURCE::TUNNEL_ENCRYPTION',NULL,CRNRSTN_AUTHORIZE_RUNTIME, $env_key);
                     $data_type_family = 'CRNRSTN::RESOURCE::TUNNEL_ENCRYPTION';
                     $this->error_log('Unknown encryption channel constant provided to ' . __METHOD__ .'. Tunnel encryption profile has been applied.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                    error_log(__LINE__ . ' ' . __METHOD__ .' Unknown encryption channel constant provided to ' . __FUNCTION__ . '. Tunnel encryption profile has been applied.');
 
                 break;
 
@@ -4352,6 +4356,11 @@ requirements related to returning the content for this request.
             $tmp_encrypt_secret_key = $this->oCRNRSTN->get_resource('encrypt_secret_key', 0, $data_type_family);
             $tmp_encrypt_options = $this->oCRNRSTN->get_resource('encrypt_options', 0, $data_type_family);
             $tmp_hmac_alg = $this->oCRNRSTN->get_resource('hmac_alg', 0, $data_type_family);
+            // error_log(__LINE__ . ' ' . __METHOD__ .' $tmp_encrypt_cipher[' . $tmp_encrypt_cipher . '].  $tmp_encrypt_secret_key[' . $tmp_encrypt_secret_key . ']. $tmp_encrypt_options[' . $tmp_encrypt_options . ']. $tmp_hmac_alg[' . $tmp_hmac_alg . ']. [' . print_r(self::$openssl_digest_profile_ARRAY[$data_type_family]['openssl_digest'], true) . '].');
+            // error_log(__LINE__ . ' ' . __METHOD__ .' $tmp_encrypt_cipher[' . $tmp_encrypt_cipher . ']. ');
+            // error_log(__LINE__ . ' ' . __METHOD__ .' $tmp_encrypt_secret_key[' . $tmp_encrypt_secret_key . '].');
+            // error_log(__LINE__ . ' ' . __METHOD__ .' $tmp_encrypt_options[' . $tmp_encrypt_options . '].');
+            // error_log(__LINE__ . ' ' . __METHOD__ .' $tmp_hmac_alg[' . $tmp_hmac_alg . '].');
 
             if(isset($cipher_override) || strlen($tmp_encrypt_cipher) > 0){
 
@@ -4405,6 +4414,18 @@ requirements related to returning the content for this request.
                     $hmac_algorithm = $hmac_algorithm_override;
 
                 }
+
+                //error_log(__LINE__ . ' ' . __METHOD__ .' $secret_key[' . $secret_key . '].  $encrypt_cipher[' . $encrypt_cipher . ']. $options_bitwise[' . $options_bitwise . ']. $tmp_hmac_alg[' . $tmp_hmac_alg . ']. $hmac_algorithm[' . $hmac_algorithm . ']. openssl_digest_profile_ARRAY[' . print_r(self::$openssl_digest_profile_ARRAY[$data_type_family]['openssl_digest'], true) . ']. die();');
+
+                error_log(__LINE__ . ' ' . __METHOD__ .' $secret key[' . $secret_key . '].');
+                error_log(__LINE__ . ' ' . __METHOD__ .' $encrypt cipher[' . $encrypt_cipher . '].');
+                error_log(__LINE__ . ' ' . __METHOD__ .' $options bitwise[' . $options_bitwise . '].');
+                error_log(__LINE__ . ' ' . __METHOD__ .' $tmp hmac alg[' . $tmp_hmac_alg . '].');
+                error_log(__LINE__ . ' ' . __METHOD__ .' $hmac algorithm[' . $hmac_algorithm . '].');
+                error_log(__LINE__ . ' ' . __METHOD__ .' $openssl digest profile ARRAY[' . print_r(self::$openssl_digest_profile_ARRAY, true) . ']. die();');
+
+                $tmp = strlen(array('345678'));
+                die();
 
                 #
                 # Source: http://php.net/manual/en/function.openssl-encrypt.php

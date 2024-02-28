@@ -17,6 +17,9 @@
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
+#                   CRNRSTN :: is powered by eVifweb; CRNRSTN :: is powered by eCRM Strategy and Execution,
+#                   Web Design & Development, and Only The Best Coffee.
+#
 #                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
@@ -86,6 +89,7 @@ class crnrstn_performance_regulator {
     private static $process_id_perf_stat_ARRAY = array();
     private static $spool_resource_override = true;
     private static $ddo_config_ugc_input_audit = false;
+    private static $spool_access_ARRAY = array();
     private static $resource_spool_ARRAY = array();
 
     private static $disk_write_authorization = false;
@@ -233,6 +237,62 @@ class crnrstn_performance_regulator {
 //
 //    }
 
+    public function isset_crnrstn_spool($data_attribute, $ddo_memory_pointer, $index = 0){
+
+        switch($data_attribute){
+            case 'data_value':
+                // jony5@localdev:/var/log/apache2$ [Sun Dec 17 03:47:19.294698 2023] [:error] [pid 24011]
+                // [client 172.16.225.1:61879] 4900 crnrstn_decoupled_data_object
+                // DO WE GET THIS FAR? $data_attribute[data_value].
+                // $data_key[058ebf2b0fd895c1071fe3c3255e2b57d41c58667ffc6c873e64d8151e512d45::version_php].
+                // $data_authorization_profile[CRNRSTN_AUTHORIZE_RUNTIME].
+                // $data_authorization_profile[8084].
+                // $tmp_channel_ARRAY[Array\n(\n    [0] => 8084\n)\n].
+                if(isset(self::$spool_access_ARRAY[$ddo_memory_pointer])){
+
+                    error_log(__LINE__ . ' ' . __METHOD__ . ' $ddo_memory_pointer[' . $ddo_memory_pointer . '].');
+
+                    if(isset(self::$spool_access_ARRAY[$ddo_memory_pointer][$index])){
+
+                        return true;
+
+                    }
+
+                }
+
+            break;
+
+        }
+
+        //error_log(__LINE__ . ' ' . __METHOD__ . ' $ddo_memory_pointer[' . $ddo_memory_pointer . ']. self::$spool_access_ARRAY[' . print_r(self::$spool_access_ARRAY, true) . '].');
+
+        return false;
+
+    }
+
+    public function get_crnrstn_spool($data_attribute, $ddo_memory_pointer, $index = 0){
+
+        switch($data_attribute){
+            case 'data_value':
+
+                if(isset(self::$spool_access_ARRAY[$ddo_memory_pointer])){
+
+                    if(isset(self::$spool_access_ARRAY[$ddo_memory_pointer][$index])){
+
+                        return self::$spool_access_ARRAY[$ddo_memory_pointer][$index];
+
+                    }
+
+                }
+
+            break;
+
+        }
+
+        return '';
+
+    }
+
     private function spool_ddo_input_data($data_profile, $data, $data_key, $data_type_family, $index, $data_authorization_profile, $ttl, $env_key){
 
         /*
@@ -271,6 +331,14 @@ class crnrstn_performance_regulator {
         $this->spool_ddo_data($data_authorization_profile,  'data_authorization_profile',   $tmp_spool_ddo_key);
         $this->spool_ddo_data($env_key,                     'env_key',                      $tmp_spool_ddo_key);
         $this->spool_ddo_data($ttl,                         'ttl',                          $tmp_spool_ddo_key);
+
+        //
+        // INIITIALIZE SPOOL EARLY-ACCESS DATA STRUCTURE.
+        $tmp_ddo_memory_pointer = $this->oCRNRSTN->hash_ddo_memory_pointer($data_key, $data_type_family, $env_key);
+
+        //error_log(__LINE__ . ' '. __METHOD__ . ' $env_key[' . $env_key . ']. data_key[' . print_r($data_key, true) . ']. $tmp_ddo_memory_pointer[' . $tmp_ddo_memory_pointer . '].');
+
+        self::$spool_access_ARRAY[$tmp_ddo_memory_pointer][] = $data;
 
         return true;
 
@@ -334,7 +402,7 @@ class crnrstn_performance_regulator {
 
     }
 
-    private function config_load_config_spool(){
+    public function config_load_config_spool(){
 
         /*
         CRNRSTN_STRING
@@ -459,7 +527,6 @@ class crnrstn_performance_regulator {
                 // REPLAY THE UGC INPUT.
                 if($tmp_curr_pointer != $spool_ddo_pointer){
 
-                    //error_log(__LINE__ . ' crnrstn SPOOL REPLAY :: DDO INPUT tmp_data_profile[' . $tmp_data_profile . ']. tmp_data[' . $tmp_data . ']. tmp_data_key[' .  $tmp_data_key . ']. tmp_data_type_family[' .  $tmp_data_type_family . ']. tmp_index[' .  $tmp_index . ']. tmp_data_authorization_profile[' . $tmp_data_authorization_profile . '].');
 
                     //
                     // THE CRNRSTN :: CONFIGURATION MANAGER WILL INPUT CLEAN UGC DATA
@@ -473,7 +540,23 @@ class crnrstn_performance_regulator {
                     // DETAILS ABOUT THE INTERNAL OVERRIDE IS QUIETLY CAPTURED.
                     //
                     // Friday, November 17, 2023 @ 2325 hrs.
-                    $this->config_ugc_input_clean_data($tmp_data_profile, $tmp_data, $tmp_data_key, $tmp_data_type_family, $tmp_index, $tmp_data_authorization_profile, $tmp_ttl, false, $tmp_env_key);
+                    //
+                    //
+                    // DID CRNRSTN :: RECEIVE UGC CONFIGURATION INPUT DATA THAT IS
+                    // ASSIGNED TO THE CURRENTLY DETECTED ENVIRONMENT? IF NOT,
+                    // RUN A BYPASS HERE IN ORDER TO RECEIVE A MINOR
+                    // PERFORMANCE ACCELERATION BOOST.
+                    if($this->oCRNRSTN->config_is_valid_detected_env($tmp_env_key) == true){
+
+                        if($tmp_data_key == 'crnrstn_path_directory' || $tmp_data_key == 'crnrstn_system_directory'){
+
+                            error_log(__LINE__ . ' ' . __METHOD__ . ' SPOOL REPLAY :: MC-DDO INPUT tmp_data_profile[' . $tmp_data_profile . ']. tmp_data[' . $tmp_data . ']. tmp_data_key[' .  $tmp_data_key . ']. tmp_data_type_family[' .  $tmp_data_type_family . ']. tmp_index[' .  $tmp_index . ']. tmp_data_authorization_profile[' . $tmp_data_authorization_profile . '].');
+
+                        }
+
+                        $this->oCRNRSTN->config_ugc_input_clean_data($tmp_data_profile, $tmp_data, $tmp_data_key, $tmp_data_type_family, $tmp_index, $tmp_data_authorization_profile, $tmp_ttl, false, $tmp_env_key);
+
+                    }
 
                     $tmp_curr_pointer = $spool_ddo_pointer;
 
@@ -517,7 +600,7 @@ class crnrstn_performance_regulator {
 
                                     //
                                     // THIS CASE WILL NEVER RUN.
-                                    $tmp_data_profile = $this->oCRNRSTN->boolean_conversion($spool_ARRAY2['DATA']);
+                                    $tmp_data_profile = $this->oCRNRSTN->tidy_boolean($spool_ARRAY2['DATA']);
                                     $tmp_length = $spool_ARRAY2['LENGTH'];
 
                                 break;
@@ -611,7 +694,7 @@ class crnrstn_performance_regulator {
                                 case CRNRSTN_BOOL:
                                 case CRNRSTN_BOOLEAN:
 
-                                    $tmp_data = $this->oCRNRSTN->boolean_conversion($spool_ARRAY2['DATA']);
+                                    $tmp_data = $this->oCRNRSTN->tidy_boolean($spool_ARRAY2['DATA']);
                                     $tmp_length = $spool_ARRAY2['LENGTH'];
 
                                 break;
@@ -699,7 +782,7 @@ class crnrstn_performance_regulator {
 
                                     //
                                     // THIS CASE WILL NEVER RUN.
-                                    $tmp_data_key = $this->oCRNRSTN->boolean_conversion($spool_ARRAY2['DATA']);
+                                    $tmp_data_key = $this->oCRNRSTN->tidy_boolean($spool_ARRAY2['DATA']);
                                     $tmp_length = $spool_ARRAY2['LENGTH'];
 
                                 break;
@@ -795,7 +878,7 @@ class crnrstn_performance_regulator {
 
                                     //
                                     // THIS CASE WILL NEVER RUN.
-                                    $tmp_data_type_family = $this->oCRNRSTN->boolean_conversion($spool_ARRAY2['DATA']);
+                                    $tmp_data_type_family = $this->oCRNRSTN->tidy_boolean($spool_ARRAY2['DATA']);
                                     $tmp_length = $spool_ARRAY2['LENGTH'];
 
                                 break;
@@ -889,7 +972,7 @@ class crnrstn_performance_regulator {
 
                                     //
                                     // THIS CASE WILL NEVER RUN.
-                                    $tmp_index = $this->oCRNRSTN->boolean_conversion($spool_ARRAY2['DATA']);
+                                    $tmp_index = $this->oCRNRSTN->tidy_boolean($spool_ARRAY2['DATA']);
                                     $tmp_length = $spool_ARRAY2['LENGTH'];
 
                                 break;
@@ -985,7 +1068,7 @@ class crnrstn_performance_regulator {
                                     // THIS CASE WILL NEVER RUN.
                                     //
                                     // THIS CASE WILL NEVER RUN.
-                                    $tmp_data_authorization_profile = $this->oCRNRSTN->boolean_conversion($spool_ARRAY2['DATA']);
+                                    $tmp_data_authorization_profile = $this->oCRNRSTN->tidy_boolean($spool_ARRAY2['DATA']);
                                     $tmp_length = $spool_ARRAY2['LENGTH'];
 
                                 break;
@@ -1077,7 +1160,7 @@ class crnrstn_performance_regulator {
 
                                     //
                                     // THIS CASE WILL NEVER RUN.
-                                    $tmp_ttl = $this->oCRNRSTN->boolean_conversion($spool_ARRAY2['DATA']);
+                                    $tmp_ttl = $this->oCRNRSTN->tidy_boolean($spool_ARRAY2['DATA']);
                                     $tmp_length = $spool_ARRAY2['LENGTH'];
 
                                 break;
@@ -1171,7 +1254,7 @@ class crnrstn_performance_regulator {
 
                                     //
                                     // THIS CASE WILL NEVER RUN.
-                                    $tmp_env_key = $this->oCRNRSTN->boolean_conversion($spool_ARRAY2['DATA']);
+                                    $tmp_env_key = $this->oCRNRSTN->tidy_boolean($spool_ARRAY2['DATA']);
                                     $tmp_length = $spool_ARRAY2['LENGTH'];
 
                                 break;
@@ -1252,8 +1335,9 @@ class crnrstn_performance_regulator {
         //[Sat Nov 18 01:35:42.426005 2023] [:error] [pid 49655] [client 172.16.225.1:57046] 22123 crnrstn SPOOLING MEM USAGE [28.9561 KiB].
 
         //
-        // CLEAR ARRAY.
+        // CLEAR ALL SPOOL SUPPORT CACHE ARRAYS.
         array_splice(self::$resource_spool_ARRAY, 0);
+        array_splice(self::$spool_access_ARRAY, 0);
 
         //error_log(__LINE__ . ' crnrstn SPOOLING MEM USAGE [' . $this->oCRNRSTN->format_bytes(self::$resource_spool_ARRAY, 4) . '].' );
         //[Sat Nov 18 01:35:42.426238 2023] [:error] [pid 49655] [client 172.16.225.1:57046] 22129 crnrstn SPOOLING MEM USAGE [6 bytes].
@@ -2779,8 +2863,8 @@ class crnrstn_performance_regulator {
 
                     break;
                     default:
-
-                        error_log(__LINE__ . ' ' .  __METHOD__ . ' UNKNOWN SWITCH CASE[' . $data_key .  '].');
+                        //SILENCE IS GOLDEN.
+                        //error_log(__LINE__ . ' ' .  __METHOD__ . ' UNKNOWN SWITCH CASE $data_key[' . $data_key . ']. $data_profile[' . $data_profile . '].');
 
                     break;
 
@@ -5779,8 +5863,8 @@ class crnrstn_performance_regulator {
 
                                         $tmp_data = $this->oCRNRSTN->get_crnrstn('max_disk_storage_utilization_warning');
                                         $tmp_force_data_err = true;
-                                        $tmp_err_str = 'CRNRSTN :: could not apply the CRNRSTN :: DISK MANAGEMENT ' . $data_key . ' percentage, ' . 
-                                            strval($tmp_percentage) . '. ' . strval($data) . ', was the value that was provided as method input to this environment. CRNRSTN :: has manually set the DISK WRITE WARNING percentage to ' . 
+                                        $tmp_err_str = 'CRNRSTN :: could not apply the CRNRSTN :: DISK MANAGEMENT ' . $data_key . ' percentage, ' .
+                                            strval($tmp_percentage) . '. ' . strval($data) . ', was the value that was provided as method input to this environment. CRNRSTN :: has manually set the DISK WRITE WARNING percentage to ' .
                                             $tmp_data . '. ' . $this->oCRNRSTN->data_report($data, 'CRNRSTN :: MC-DDO INPUT DATA REPORT');
 
                                     break;
@@ -5788,8 +5872,8 @@ class crnrstn_performance_regulator {
 
                                         $tmp_data = $this->oCRNRSTN->get_crnrstn('max_disk_storage_utilization');
                                         $tmp_force_data_err = true;
-                                        $tmp_err_str = 'CRNRSTN :: could not apply the CRNRSTN :: DISK MANAGEMENT ' . $data_key . ' percentage, ' . 
-                                            strval($tmp_percentage) . '. ' . strval($data) . ', was the value that was provided as method input to this environment. CRNRSTN :: has manually set the DISK WRITE BLOCK percentage to ' . 
+                                        $tmp_err_str = 'CRNRSTN :: could not apply the CRNRSTN :: DISK MANAGEMENT ' . $data_key . ' percentage, ' .
+                                            strval($tmp_percentage) . '. ' . strval($data) . ', was the value that was provided as method input to this environment. CRNRSTN :: has manually set the DISK WRITE BLOCK percentage to ' .
                                             $tmp_data . '. ' . $this->oCRNRSTN->data_report($data, 'CRNRSTN :: MC-DDO INPUT DATA REPORT');
 
                                     break;
@@ -5846,30 +5930,38 @@ class crnrstn_performance_regulator {
 
             case 'ini_set_ini_set':
             case 'config_ini_set_ini_set':
-            case 'ini_get_ini_set':
+            case 'ini_get_ini_get':
 
-                //                //
-                //                // CRNRSTN :: CONFIGURATION WILL INPUT CLEAN UGC DATA OR LOOK FOR
-                //                // GRACEFUL DEGRADATION TO A VANILLA DEFAULT. ON ERR, RETURNS NULL.
-                //                if(!($tmp_result = $this->config_ugc_input_clean_data(__FUNCTION__ . '_ini_set', $tmp_ini, $option, 'CRNRSTN::RESOURCE::PHP_INI', 0))){
-                //
-                //                    //
-                //                    // HOOOSTON...VE HAF PROBLEM!
-                //                    $this->oCRNRSTN->err_message_queue_push(NULL, $tmp_err_str);
-                //
-                //                }
+                error_log(__LINE__  . ' ' . __METHOD__ . ' INPUT UGC $tmp_ugc_option_name[' . $tmp_ugc_option_name  . ']. $data_key[' . $data_key . '].');
 
                 //
-                // LET US PUT A "LASER LINE" DOWN ON THE
-                // STRING DATA TYPE REQUIREMENT AS WE
-                // PUT A "LASER LINE" DOWN ON THE
-                // [PHP_INI] DATA TYPE REQUIREMENT.
-                $tmp_ini = strval($data);
-                $tmp_prev_val = false;
+                // STANDARDIZE UGC INPUT.
+                switch($data_profile){
+                    case 'ini_get_ini_get':
+
+                            $tmp_ugc_option_name = $data;
+                            error_log(__LINE__  . ' ' . __METHOD__ . ' INPUT UGC $tmp_ugc_option_name[' . $tmp_ugc_option_name  . ']. $data_key[' . $data_key . '].');
+
+                    break;
+                    case 'config_ini_set_ini_set':
+                    case 'ini_set_ini_set':
+
+                            $tmp_ugc_option_name = $data_key;
+                            $tmp_ugc_option_value = $data;
+                            error_log(__LINE__  . ' ' . __METHOD__ . ' INPUT UGC $tmp_ugc_option_value[' . $tmp_ugc_option_value  . ']. $tmp_ugc_option_name[' . $tmp_ugc_option_name . '].');
+
+                    break;
+                    default:
+
+                        error_log(__LINE__ . ' ' . __METHOD__ . ' UNKNOWN SWITCH CASE RECEIVED[' . strval($data_profile) . '].');
+
+                    break;
+
+                }
 
                 //
                 // THIS SHOULD BE A VALID PHP.INI PARAMETER
-                // WITH VALID DATA.
+                // WITH VALID DATA (IF PROVIDED/REQUIRED).
                 //
                 // SEE, List of php.ini directives:
                 // https://www.php.net/manual/en/ini.list.php
@@ -5880,15 +5972,11 @@ class crnrstn_performance_regulator {
 
                     $tmp_force_data_err = true;
 
-                }
-
-                //
-                // # # C # R # N # R # S # T # N # : : # # # #
-                // CRNRSTN :: UGC DATA VALIDATION ERROR MESSAGE [PHP_INI]
-                if($tmp_force_data_err == true){
-
+                    //
+                    // # # C # R # N # R # S # T # N # : : # # # #
+                    // CRNRSTN :: UGC DATA VALIDATION ERROR MESSAGE [PHP_INI]
                     switch($data_profile){
-                        case 'ini_get_ini_set':
+                        case 'ini_get_ini_get':
 
                             $tmp_err_str = 'CRNRSTN :: could not update internal system references to the PHP ini directive, ' .
                                 $data_key . ', (' . $this->oCRNRSTN->gettype($tmp_ini) . ') ' . $tmp_ini . '. ' . strval($data) .
@@ -5904,13 +5992,18 @@ class crnrstn_performance_regulator {
                                 $this->oCRNRSTN->data_report($data, 'CRNRSTN :: MC-DDO INPUT DATA REPORT');
 
                         break;
-                        default:
-                            //case 'ini_set_ini_set':
+                        case 'ini_set_ini_set':
 
                             $tmp_err_str = 'CRNRSTN :: could not apply the PHP ini directive, ' . $data_key . ', (' .
                                 $this->oCRNRSTN->gettype($tmp_ini) . ') ' . $tmp_ini . '. ' . strval($data) .
                                 ', was the value that was provided as method input to this environment. ' .
                                 $this->oCRNRSTN->data_report($data, 'CRNRSTN :: MC-DDO INPUT DATA REPORT');
+
+
+                        break;
+                        default:
+
+                            $tmp_err_str = __LINE__ . ' ' . __METHOD__ . ' UNKNOWN SWITCH CASE RECEIVED[' . strval($data_profile) . '].';
 
                         break;
 
@@ -5918,14 +6011,61 @@ class crnrstn_performance_regulator {
 
                     $this->oCRNRSTN->error_log($tmp_err_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
+
                 }
+
+
+
+                //
+                // # # C # R # N # R # S # T # N # : : # # # #
+                // CRNRSTN :: UGC DATA EXECUTION LAYER [PHP_INI]
+                switch($data_profile){
+                    case 'ini_get_ini_get':
+
+                        //
+                        // IF THE UGC INPUT IS GOOD...
+                        if(!($tmp_force_data_err !== false)){
+
+                            return $tmp_result;
+
+                        }
+
+
+                    break;
+                    case 'config_ini_set_ini_set':
+
+
+                    break;
+                    case 'ini_set_ini_set':
+
+
+                    break;
+
+                }
+
+                //
+                // php.ini directives
+                // https://www.php.net/manual/en/ini.list.php#ini.list
+                // $this->ini_set_ARRAY[$option] = ini_get($option);
+
+                $tmp_ini = ini_get($option);
+
+
+                //
+                // LET US PUT A "LASER LINE" DOWN ON THE
+                // STRING DATA TYPE REQUIREMENT AS WE
+                // PUT A "LASER LINE" DOWN ON THE
+                // [PHP_INI] DATA TYPE REQUIREMENT.
+                $tmp_ini = strval($data);
+                $tmp_prev_val = false;
+
 
                 //
                 // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) SERVICES LAYER.
                 // # # C # R # N # R # S # T # N # : : # # # #
                 // CRNRSTN :: UGC DATA INPUT [PHP_INI]
                 switch($data_profile){
-                    case 'ini_get_ini_set':
+                    case 'ini_get_ini_get':
 
                         $this->oCRNRSTN->input_data_value($tmp_ini, $data_key, $data_type_family, $index, $data_authorization_profile, $ttl, $spool_resource, $env_key);
 

@@ -17,6 +17,9 @@
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
+#                   CRNRSTN :: is powered by eVifweb; CRNRSTN :: is powered by eCRM Strategy and Execution,
+#                   Web Design & Development, and Only The Best Coffee.
+#
 #                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
@@ -140,13 +143,13 @@ class crnrstn_bitflip_manager {
 
     public function return_serialized_bit_value($bitwise_object_array_index_serial, $integer_constant){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($bitwise_object_array_index_serial, 'md5', true)])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($bitwise_object_array_index_serial, 'md5')])){
 
             return false;
 
         }else{
 
-            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($bitwise_object_array_index_serial, 'md5', true)];
+            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($bitwise_object_array_index_serial, 'md5')];
 
             $tmp_val = $this->return_bit_value($integer_constant);
 
@@ -166,13 +169,13 @@ class crnrstn_bitflip_manager {
 
     public function toggle_serialized_bit($name, $integer_constant, $is_bit_set = NULL){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5', true)])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')])){
 
             return false;
 
         }
 
-        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5', true)];
+        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')];
 
         if(is_bool($is_bit_set)){
 
@@ -208,7 +211,7 @@ class crnrstn_bitflip_manager {
 
         }
 
-        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5', true)] = $oCRNRSTN_BITMASK;
+        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')] = $oCRNRSTN_BITMASK;
 
         return $oCRNRSTN_BITMASK->read($integer_constant);
 
@@ -266,7 +269,7 @@ class crnrstn_bitflip_manager {
 
     public function initialize_serialized_bit($name, $integer_const, $default_state = true){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5', true)])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')])){
 
             //
             // SOURCE :: https://www.php.net/manual/en/language.operators.bitwise.php
@@ -274,11 +277,11 @@ class crnrstn_bitflip_manager {
             $oCRNRSTN_BITMASK = new crnrstn_bitmask();
 
             //error_log(__LINE__ .' '. __METHOD__ .' NEW bitmask object flipping['.$integer_const.'] to array index, '.strtoupper($this->oCRNRSTN->hash($name, 'md5')));
-            $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5', true)] = $oCRNRSTN_BITMASK;
+            $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')] = $oCRNRSTN_BITMASK;
 
         }
 
-        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5', true)];
+        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')];
 
         //
         // THIS WILL BASICALLY RETURN AN INT++ FOR EACH UNIQUE CONSTANT PROVIDED.
@@ -303,7 +306,7 @@ class crnrstn_bitflip_manager {
         }
 
         //error_log(__LINE__ . ' ' . __METHOD__ . ' we put back into the array[' . strtoupper($this->oCRNRSTN->hash($name, 'md5')) . ']...a oCRNRSTN_BITMASK object.');
-        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5', true)] = $oCRNRSTN_BITMASK;
+        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')] = $oCRNRSTN_BITMASK;
 
         return $tmp_val;
 
@@ -357,14 +360,14 @@ class crnrstn_bitflip_manager {
 
     public function is_serialized_bit_set($name, $integer_constant){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5', true)])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')])){
 
             return false;
 
         }else{
 
             //error_log(__LINE__ .' '. __METHOD__ .' we think the array[' . $name . '] index holds a oCRNRSTN_BITMASK object.');
-            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5', true)];
+            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')];
 
             return $oCRNRSTN_BITMASK->read($integer_constant);
 
@@ -380,22 +383,22 @@ class crnrstn_bitflip_manager {
 
     public function serialized_bit_stringin($name, $bits_stringin){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5', true)])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')])){
 
             //
             // SOURCE :: https://www.php.net/manual/en/language.operators.bitwise.php
             // AUTHOR :: icy at digitalitcc dot com :: https://www.php.net/manual/en/language.operators.bitwise.php#50299
             $oCRNRSTN_BITMASK = new crnrstn_bitmask();
 
-            $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5', true)] = $oCRNRSTN_BITMASK;
+            $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')] = $oCRNRSTN_BITMASK;
 
         }
 
-        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5', true)];
+        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')];
 
         $oCRNRSTN_BITMASK->stringin($bits_stringin);
 
-        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5', true)] = $oCRNRSTN_BITMASK;
+        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')] = $oCRNRSTN_BITMASK;
 
         return true;
 
@@ -411,14 +414,14 @@ class crnrstn_bitflip_manager {
 
         $tmp_str = '';
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5', true)])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')])){
 
             return false;
 
         }else{
 
             //error_log(__LINE__ .' '. __METHOD__ .' we think the array['.$name.'] index holds a oCRNRSTN_BITMASK object.');
-            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5', true)];
+            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')];
 
             $tmp_str = $oCRNRSTN_BITMASK->stringout();
 

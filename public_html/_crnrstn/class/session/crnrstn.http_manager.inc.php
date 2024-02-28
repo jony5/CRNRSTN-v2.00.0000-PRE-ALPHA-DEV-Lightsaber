@@ -17,6 +17,9 @@
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
+#                   CRNRSTN :: is powered by eVifweb; CRNRSTN :: is powered by eCRM Strategy and Execution,
+#                   Web Design & Development, and Only The Best Coffee.
+#
 #                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
@@ -326,6 +329,9 @@ class crnrstn_http_manager {
         switch($data_type){
             case 'get_channel_system_parameters_ARRAY':
 
+                //
+                // SOME UPS TRACKING URL PARAMETERS ADDED
+                // ON Tuesday, February 13, 2024 @ 1245 hrs.
                 return  array('crnrstn_' => 'crnrstn_', 'crnrstn_m' => 'crnrstn_m',
                 'crnrstn_l' => 'crnrstn_l', 'crnrstn_r' => 'crnrstn_r', 'crnrstn_sk' => 'crnrstn_sk', 'crnrstn_bst' => 'crnrstn_bst',
                 'crnrstn_sid' => 'crnrstn_sid', 'crnrstn_smk' => 'crnrstn_smk', 'crnrstn_css_valptrn' => 'crnrstn_css_valptrn',
@@ -334,7 +340,7 @@ class crnrstn_http_manager {
                 'gid' => 'gid', 'pattern' => 'pattern', 'scope' => 'scope', 'q' => 'q', 'w' => 'w', 'e' => 'e', 'r' => 'r',
                 't' => 't', 'y' => 'y', 'u' => 'u', 'i' => 'i', 'o' => 'o', 'p' => 'p', 'a' => 'a', 's' => 's', 'd' => 'd',
                 'f' => 'f', 'g' => 'g', 'h' => 'h', 'j' => 'j', 'k' => 'k', 'l' => 'l', 'z' => 'z', 'x' => 'x', 'v' => 'v',
-                'b' => 'b', 'n' => 'n', 'm' => 'm', 'geo' => 'geo', 'hl' => 'hl', 'language' => 'language', 'locale' => 'locale',
+                'b' => 'b', 'n' => 'n', 'm' => 'm', 'geo' => 'geo', 'hl' => 'hl', 'language' => 'language', 'locale' => 'locale', 'loc' => 'loc',
                 'pmln' => 'pmln', 'domain' => 'domain', 'content' => 'content', 'userId' => 'userId', 'memberId' => 'memberId',
                 'c' => 'c', 'js' => 'js', 'noticeType' => 'noticeType', 'text' => 'text', 'cdn' => 'cdn', 'pcookie' => 'pcookie',
                 'gtm' => 'gtm', 'cid' => 'cid', 'sourceid' => 'sourceid', 'qs' => 'qs', 'sc' => 'sc', 'cvid' => 'cvid', 'FORM' => 'FORM',
@@ -350,6 +356,8 @@ class crnrstn_http_manager {
                 'spot_page_type' => 'spot_page_type', 'spot_platform' => 'spot_platform', 'spot_orientation' => 'spot_orientation',
                 'spot_is_logged' => 'spot_is_logged', 'spotPageType' => 'spotPageType', 'spotType' => 'spotType', 'locationCountry' => 'locationCountry',
                 'webp' => 'webp', 'statsUID' => 'statsUID', 'lenderref' => 'lenderref', 'referralsource' => 'referralsource',
+                'tracking_numbers' => 'tracking_numbers', 'mediaType' => 'mediaType', 'WT.z_eCTAid' => 'WT.z_eCTAid', 'WT.z_edatesent' => 'WT.z_edatesent', 
+                'Requester' => 'Requester', 'requester' => 'requester', 'trackNums' => 'trackNums', 'tracknum' => 'tracknum', 'AgreeToTermsAndConditions' => 'AgreeToTermsAndConditions',
                 'include' => 'include', 'qt' => 'qt', 'C' => 'C', 'K' => 'K', 'M' => 'M', 'R' => 'R', 'T' => 'T', 'U' => 'U',
                 'H' => 'H', 'ref_' => 'ref_', '$_ga' => '$_ga', 'aref' => 'aref', 'medium' => 'medium', 'mid' => 'mid', 'bcode' => 'bcode',
                 'n_m' => 'n_m', 'lloc' => 'lloc', 'rms' => 'rms', 'irms' => 'irms', 'lipi' => 'lipi', 'midSig' => 'midSig',

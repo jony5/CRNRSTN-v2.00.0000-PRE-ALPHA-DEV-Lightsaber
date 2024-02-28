@@ -17,6 +17,9 @@
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
+#                   CRNRSTN :: is powered by eVifweb; CRNRSTN :: is powered by eCRM Strategy and Execution,
+#                   Web Design & Development, and Only The Best Coffee.
+#
 #                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
@@ -406,25 +409,65 @@ Production Value: E_ALL & ~E_DEPRECATED & ~E_STRICT
  */
 
 //
-// CRNRSTN :: SERVER ENVIRONMENT KEY AND ERROR PROFILE INITIALIZATION.
+// CRNRSTN :: SERVER ENVIRONMENT KEY AND
+// ERROR PROFILE INITIALIZATION.
 $oCRNRSTN->config_add_environment('BLUEHOST_JONY5', E_ALL & ~E_NOTICE & ~E_STRICT, CRNRSTN_DEBUG_OFF);
 $oCRNRSTN->config_add_environment('BLUEHOST_EVIFWEB', E_ALL & ~E_NOTICE & ~E_STRICT, CRNRSTN_DEBUG_OFF, CRNRSTN_HTML_COMMENTS_NONE);
 $oCRNRSTN->config_add_environment('LOCALHOST_CHAD_MACBOOKPRO', E_ALL, CRNRSTN_DEBUG_OFF);
 $oCRNRSTN->config_add_environment('LOCALHOST_PC', E_ALL);
 
 //
-// CRNRSTN :: SERVER ENVIRONMENT DETECTION.
-$oCRNRSTN->config_detect_environment('BLUEHOST_JONY5', 'SERVER_NAME', 'lightsaber.crnrstn.jony5.com');
-$oCRNRSTN->config_detect_environment('BLUEHOST_EVIFWEB', 'SERVER_NAME', 'lightsaber.crnrstn.evifweb.com');
-$oCRNRSTN->config_detect_environment('LOCALHOST_CHAD_MACBOOKPRO', 'SERVER_NAME', '172.16.225.139', 1);
+// INITIALIZE CRNRSTN :: SERVER ADMINISTRATION AND
+// APPLICATION SUPPORT ACCOUNT AUTHENTICATION EMAIL.
+$oCRNRSTN->config_admin_email(CRNRSTN_RESOURCE_ALL, 'Jonathan Harris j00000101@gmail.com, Jonathan J5 Harris j5@jony5.com, jharris@eVifweb.com');
+
+/**
+ * $oCRNRSTN->config_init_http()
+ * DESCRIPTION :: Configure public IP image HTTP URI directory endpoint(s) for
+ *  CRNRSTN :: system notifications.
+ *
+ * @param   string $env_key is a custom user-defined value representing a specific environment within
+ * which this application will be running (such as 'localhost_PC' or 'PREPROD-02-AKAMAI') and which key
+ * will be used throughout this configuration process.
+ *
+ * @param   string $crnrstn_http_endpoint the entire http/s access url terminating on /_crnrstn/.
+ *
+ * @param   string $crnrstn_dir_path the entire file access directory path terminating on /_crnrstn.
+
+ */
+$oCRNRSTN->config_init_http('BLUEHOST_JONY5', 'https://lightsaber.crnrstn.jony5.com/', CRNRSTN_ROOT, '_crnrstn');
+$oCRNRSTN->config_init_http('BLUEHOST_EVIFWEB', 'https://lightsaber.crnrstn.evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
+$oCRNRSTN->config_init_http('LOCALHOST_CHAD_MACBOOKPRO', 'http://172.16.225.139/evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
+$oCRNRSTN->config_init_http('LOCALHOST_PC', 'http://172.16.225.138/evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
+
+/*
+//
+// JAVASCRIPT FRAMEWORK MINIMIZATION MODE.
+Before deploying your website to production, be mindful that unminified
+JavaScript can significantly slow down the page for your users.
+
+Calling this method [config_init_js_css_minimization()] will invoke the
+use of xxx.min.js where available. This setting can be bound to an admin
+or dev's sign-in session, and the javascript that is development will be
+returned to this authenticated user, alone.
+
+*/
+//
+// $production_min_js = true, WILL ENABLE THE RETURN OF min.js AND min.css WHERE AVAILABLE.
+// $production_min_js = false, RETURNS THE DEVELOPMENT (JS, CSS, MAP) VERSIONS.
+$oCRNRSTN->config_init_js_css_minimization('BLUEHOST_JONY5');
+$oCRNRSTN->config_init_js_css_minimization('BLUEHOST_EVIFWEB', false);
+$oCRNRSTN->config_init_js_css_minimization('LOCALHOST_CHAD_MACBOOKPRO', false);
+$oCRNRSTN->config_init_js_css_minimization('LOCALHOST_PC', false);
 
 //
-// CRNRSTN :: SERVER ENVIRONMENT DETECTION DEMONSTRATION OF CASE REQUIRING
-// MORE THAN ONE (1) $_SERVER[] MATCH TO POSITIVELY DETECT THE RUNNING ENVIRONMENT.
-$oCRNRSTN->config_detect_environment('LOCALHOST_PC', 'SERVER_NAME', 'localhost', 4);                    // TOSHIBA M100 [eVifweb, HARDWARE (XAMPP/XP PRO, SP2) CIRCA 2005] :: RADIOHEAD LAPTOP.
-$oCRNRSTN->config_detect_environment('LOCALHOST_PC', 'SERVER_ADDR', '127.0.0.1', 4);
-$oCRNRSTN->config_detect_environment('LOCALHOST_PC', 'SERVER_PORT', '80', 4);
-$oCRNRSTN->config_detect_environment('LOCALHOST_PC', 'SERVER_PROTOCOL', 'HTTP/1.1', 4);
+// CRNRSTN :: SYSTEM ASSET MAPPING.
+$oCRNRSTN->config_init_asset_map_favicon(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs/favicon');
+$oCRNRSTN->config_init_asset_map_css(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/css');
+$oCRNRSTN->config_init_asset_map_js(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/js');
+$oCRNRSTN->config_init_asset_map_system_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
+$oCRNRSTN->config_init_asset_map_social_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
+$oCRNRSTN->config_init_asset_map_meta_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
 
 /*
 //
@@ -462,15 +505,23 @@ $oCRNRSTN->config_detect_environment('LOCALHOST_PC', 'SERVER_PROTOCOL', 'HTTP/1.
 $oCRNRSTN->config_data_authorization_profile(CRNRSTN_RESOURCE_ALL, CRNRSTN_AUTHORIZE_RUNTIME);
 
 //
-// INITIALIZE CRNRSTN :: SERVER ADMINISTRATION
-// AND APPLICATION SUPPORT ACCOUNT
-// AUTHENTICATION EMAIL.
-$oCRNRSTN->config_admin_email(CRNRSTN_RESOURCE_ALL, 'Jonathan Harris j00000101@gmail.com, Jonathan J5 Harris j5@jony5.com, jharris@eVifweb.com');
+// CRNRSTN :: SERVER ENVIRONMENT DETECTION.
+$oCRNRSTN->config_detect_environment('BLUEHOST_JONY5', 'SERVER_NAME', 'lightsaber.crnrstn.jony5.com');
+$oCRNRSTN->config_detect_environment('BLUEHOST_EVIFWEB', 'SERVER_NAME', 'lightsaber.crnrstn.evifweb.com');
+$oCRNRSTN->config_detect_environment('LOCALHOST_CHAD_MACBOOKPRO', 'SERVER_NAME', '172.16.225.139', 1);
+
+//
+// CRNRSTN :: SERVER ENVIRONMENT DETECTION DEMONSTRATION OF CASE REQUIRING
+// MORE THAN ONE (1) $_SERVER[] MATCH TO POSITIVELY DETECT THE RUNNING ENVIRONMENT.
+$oCRNRSTN->config_detect_environment('LOCALHOST_PC', 'SERVER_NAME', 'localhost', 4);                    // TOSHIBA M100 [eVifweb, HARDWARE (XAMPP/XP PRO, SP2) CIRCA 2005] :: RADIOHEAD LAPTOP.
+$oCRNRSTN->config_detect_environment('LOCALHOST_PC', 'SERVER_ADDR', '127.0.0.1', 4);
+$oCRNRSTN->config_detect_environment('LOCALHOST_PC', 'SERVER_PORT', '80', 4);
+$oCRNRSTN->config_detect_environment('LOCALHOST_PC', 'SERVER_PROTOCOL', 'HTTP/1.1', 4);
 
 //
 // INITIALIZE SETTINGS FOR EACH ENVIRONMENT.
 // CRNRSTN :: PLAID FIRES HERE.
-error_log(__LINE__ . ' config STARTING [config_load_system_settings()] [rtime ' . $oCRNRSTN->wall_time() . '].');
+error_log(__LINE__ . ' config BY-PASSING STARTING config_load_system_settings() [rtime ' . $oCRNRSTN->wall_time() . ' secs].');
 $oCRNRSTN->config_load_system_settings(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.system_settings.inc.php');
 
 //
@@ -497,24 +548,15 @@ $oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_RUNTIME, -1
 $oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_SOAP, 65535, -1);      // 65,535 IS THE LARGEST NUMBER THAT CAN BE HELD IN A 16 BIT UNSIGNED INTEGER.
 $oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_FILE, -1, -1);
 
-/**
- * $oCRNRSTN->config_init_http()
- * DESCRIPTION :: Configure public IP image HTTP URI directory endpoint(s) for
- *  CRNRSTN :: system notifications.
- *
- * @param   string $env_key is a custom user-defined value representing a specific environment within
- * which this application will be running (such as 'localhost_PC' or 'PREPROD-02-AKAMAI') and which key
- * will be used throughout this configuration process.
- *
- * @param   string $crnrstn_http_endpoint the entire http/s access url terminating on /_crnrstn/.
- *
- * @param   string $crnrstn_dir_path the entire file access directory path terminating on /_crnrstn.
+error_log(__LINE__ . ' config STARTING config_channel_data_translate() [rtime ' . $oCRNRSTN->wall_time() . ' secs].');
 
- */
-$oCRNRSTN->config_init_http('BLUEHOST_JONY5', 'https://lightsaber.crnrstn.jony5.com/', CRNRSTN_ROOT, '_crnrstn');
-$oCRNRSTN->config_init_http('BLUEHOST_EVIFWEB', 'https://lightsaber.crnrstn.evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
-$oCRNRSTN->config_init_http('LOCALHOST_CHAD_MACBOOKPRO', 'http://172.16.225.139/evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
-$oCRNRSTN->config_init_http('LOCALHOST_PC', 'http://172.16.225.138/evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
+//
+// CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA
+// OBJECT (MC-DDO) SERVICES LAYER INITIALIZATION.
+// # # C # R # N # R # S # T # N # : : # # # #
+// CRNRSTN :: MC-DDO TRANSLATION SERVICES LAYER
+$oCRNRSTN->config_channel_data_translate();
+die();
 
 /**
  * $oCRNRSTN->config_init_sys_resp_return_profile($env_key = CRNRSTN_RESOURCE_ALL, $system_asset_mode = CRNRSTN_ASSET_MODE_BASE64)
@@ -549,37 +591,6 @@ $oCRNRSTN->config_init_sys_resp_return_profile(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASS
 // config_init_file_system_integrations(CRNRSTN_RESOURCE_ALL, $disk_write_authorization = true, $disk_percent_full_warning_override = 70, $disk_percent_full_max_override = 80);
 $oCRNRSTN->config_init_file_system_integrations(CRNRSTN_RESOURCE_ALL, true);
 
-/*
-//
-// JAVASCRIPT FRAMEWORK MINIMIZATION MODE.
-Before deploying your website to production, be mindful that unminified
-JavaScript can significantly slow down the page for your users.
-
-Calling this method [config_init_js_css_minimization()] will invoke the
-use of xxx.min.js where available. This setting can be bound to an admin
-or dev's sign-in session, and the javascript that is development will be
-returned to this authenticated user, alone.
-
-*/
-//
-// ENABLE RETURN OF min.js AND min.css WHERE AVAILABLE.
-// FALSE RETURNS DEVELOPMENT JS + CSS;
-// TRUE [FLIPS BIT: CRNRSTN_JS_CSS_PROD_MIN] RETURNS JS/CSS MINIMIZATION (PRODUCTION VERSION),
-// WHEN AVAILABLE.
-$oCRNRSTN->config_init_js_css_minimization('BLUEHOST_JONY5');
-$oCRNRSTN->config_init_js_css_minimization('BLUEHOST_EVIFWEB', false);
-$oCRNRSTN->config_init_js_css_minimization('LOCALHOST_CHAD_MACBOOKPRO', false);
-$oCRNRSTN->config_init_js_css_minimization('LOCALHOST_PC', false);
-
-//
-// CRNRSTN :: SYSTEM ASSET MAPPING
-$oCRNRSTN->config_init_asset_map_favicon(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs/favicon');
-$oCRNRSTN->config_init_asset_map_css(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/css');
-$oCRNRSTN->config_init_asset_map_js(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/js');
-$oCRNRSTN->config_init_asset_map_system_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
-$oCRNRSTN->config_init_asset_map_social_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
-$oCRNRSTN->config_init_asset_map_meta_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
-
 //
 // TODO :: SYNC SYSTEM FOOTER TO TIMEZONE CHANGES.
 // TODO :: SYNC $_SESSION TO CRNRSTN :: INTERACT UI REPORTED TIMEZONE [UTC DELTA].
@@ -608,20 +619,6 @@ $oCRNRSTN->config_ini_set(CRNRSTN_RESOURCE_ALL, 'allow_url_include', true);
 $oCRNRSTN->config_ini_set(CRNRSTN_RESOURCE_ALL, 'max_execution_time', 32);
 //$oCRNRSTN->config_ini_set(CRNRSTN_RESOURCE_ALL, 'memory_limit', -1);
 //$oCRNRSTN->config_ini_set(CRNRSTN_RESOURCE_ALL, 'memory_limit', '300M');
-
-
-error_log(__LINE__ . ' config STARTING [config_load_system_overrides()] [rtime ' . $oCRNRSTN->wall_time() . '].');
-
-//
-// INITIALIZE DEFAULTS FOR EACH ENVIRONMENT.
-// CRNRSTN :: PLAID FIRES HERE.
-$oCRNRSTN->config_load_system_overrides(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.load.inc.php');
-
-$tmp_channel_ARRAY = $oCRNRSTN->get_channel_config(CRNRSTN_CHANNEL_SOAP);
-
-$oCRNRSTN->destruct_output .= '<pre><code>[' . $oCRNRSTN->return_micro_time()  . '] [lnum ' .  __LINE__ . '] [rtime ' . $oCRNRSTN->wall_time() . '] [file ' . __FILE__  . '] config file
-C<span style="color:#F90000;">R</span>NRSTN :: MULTI-CHANNEL [' . $tmp_channel_ARRAY['DESCRIPTION'] . '] PROFILE <br><br>// # # C # R # N # R # S # T # N # : : # # # #<br><br>' . print_r($tmp_channel_ARRAY, true) . ']</code></pre>';
-
 
 /**
  * $oCRNRSTN->config_custom_error_handler()
@@ -678,42 +675,19 @@ $oCRNRSTN->config_custom_error_handler('LOCALHOST_PC');
 // THEME CAN BE SENT TO THE CLIENT FOR CLIENT UI/UX CONFIGURATION.
 $oCRNRSTN->config_set_ui_theme_style(CRNRSTN_RESOURCE_ALL, CRNRSTN_UI_DARKNIGHT, CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.themes.inc.php');
 
-//
-// INITIALIZE SOCIAL MEDIA PROFILE FOR EACH ENVIRONMENT.
-$oCRNRSTN->config_include_social_media(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.social_media_meta.secure/_crnrstn.social_media_meta.inc.php');
-
-//
-// INITIALIZATION OF CRNRSTN :: WILD CARD RESOURCES.
-$oCRNRSTN->config_include_wild_card_resources(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.resource_wildcards.secure/_crnrstn.resource_wildcards.inc.php');
-
-//
-// INITIALIZE SQL QUERY SILOS FOR EACH ENVIRONMENT.
-$oCRNRSTN->config_include_sql_silo(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.database.sql/crnrstn.db_sql_silo.inc.php');
-
-//
-// INITIALIZE DATABASE FUNCTIONALITY FOR EACH ENVIRONMENT.
-$oCRNRSTN->config_add_database(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.database.secure/_crnrstn.db.config.inc.php');
-
-//
-// INITIALIZATION OF ENCRYPTION PROFILES :: CRNRSTN ::
-// ADVANCED CONFIGURATION PARAMETERS
-$oCRNRSTN->config_include_encryption(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.encryption.secure/_crnrstn.encryption.inc.php');
-
-//
-// INITIALIZATION OF SYSTEM RESOURCES :: CRNRSTN ::
-// ADVANCED CONFIGURATION PARAMETERS
-$oCRNRSTN->config_include_system_resources(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.system_resource.secure/_crnrstn.system_resource.inc.php');
-
-//
-// INITIALIZE SUPPORT FOR WORDPRESS CONFIGURATION(S)
-$oCRNRSTN->config_include_wordpress(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.wp.secure/_crnrstn.wp_config.inc.php');
-
 /*
 CRNRSTN_ASSET_MAPPING
 CRNRSTN_ASSET_MAPPING_PROXY
 
 */
 //$oCRNRSTN->config_init_asset_tunnel_mode(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MAPPING_PROXY, 'http://172.16.225.139/lightsaber.crnrstn.evifweb.com/');
+
+error_log(__LINE__ . ' config STARTING config_load_system_overrides() [rtime ' . $this->wall_time() . ' secs].');
+
+//
+// INITIALIZE DEFAULTS FOR EACH ENVIRONMENT.
+// CRNRSTN :: PLAID FIRES HERE.
+$oCRNRSTN->config_load_system_overrides($env_key, CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.load.inc.php');
 
 //
 // INITIALIZE LOGGING FUNCTIONALITY FOR EACH ENVIRONMENT
@@ -878,16 +852,6 @@ $oCRNRSTN->config_ip_deny_access('LOCALHOST_CHAD_MACBOOKPRO', CRNRSTN_ROOT . '/_
 // TODO :: MACHINE SOAP ACCOUNT AUTH IS ABOUT TO BE REFACTORED TO ELSEWHERE. Saturday, August 20, 2022 @ 0320 hrs
 // INITIALIZE CRNRSTN :: SOAP SERVICES LAYER RESOURCE ACCESS
 //$oCRNRSTN->config_add_soap(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.soap.secure/_crnrstn.soap.config.inc.php');
-
-//
-// INITIALIZATION OF THIRD PARTY WEB REPORTING AND ANALYTICS
-// TAG PROFILES :: CRNRSTN :: ADVANCED CONFIGURATION PARAMETERS
-$oCRNRSTN->config_include_seo_analytics(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.seo_analytics.secure/_crnrstn.analytics.inc.php');
-
-//
-// INITIALIZATION OF THIRD PARTY ENGAGEMENT TAG PROFILES ::
-// CRNRSTN :: ADVANCED CONFIGURATION PARAMETERS
-$oCRNRSTN->config_include_seo_engagement(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.seo_engagement.secure/_crnrstn.engagement.inc.php');
 
 //
 // WE ARE LISTENING FOR THE CRNRSTN :: SOAP SERVICES DATA TUNNEL

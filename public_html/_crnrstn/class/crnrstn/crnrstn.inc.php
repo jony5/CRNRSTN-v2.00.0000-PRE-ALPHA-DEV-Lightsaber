@@ -17,6 +17,9 @@
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
+#                   CRNRSTN :: is powered by eVifweb; CRNRSTN :: is powered by eCRM Strategy and Execution,
+#                   Web Design & Development, and Only The Best Coffee.
+#
 #                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
@@ -117,6 +120,7 @@ class crnrstn {
     private static $channel_syntax_ARRAY = array();
     private static $timezone_syntax_ARRAY = array();
     private static $get_channel_system_parameters_ARRAY = array();
+    private static $html_comments_profile_ARRAY = array();
     private static $sql_interval_ARRAY = array();
     private static $static_css_length_unit = 'px';
     private static $system_output_profile_constant = CRNRSTN_ASSET_MODE_PNG;
@@ -542,6 +546,39 @@ class crnrstn {
             // - $oCRNRSTN->err_message_queue_clear(), AND
             // - $oCRNRSTN->get_err_message_count().
             //
+            // PLEASE NOTE: $oCRNRSTN->err_message_queue_retrieve() CAN RECEIVE
+            //              AN ERR MESSAGE OUTPUT OVERRIDE AS INPUT. ALSO OF NOTE...TO
+            //              CRNRSTN :: ESPECIALLY...IS THAT ACCEPTABLE INPUT CAN INCLUDE DATA
+            //              SUCH AS EMPTY STRING, SOAP ERROR OBJECT, OR EVEN AN OpenSSL v1.1.1
+            //              ENCRYPTED JSON PACKET CONTAINING SESSION META AND A CACHE
+            //              EXPIRATION TTL.
+            //
+            //              NULL IS THE DEFAULT FOR THIS $message_override INPUT.
+            if(!($tmp_result = $this->config_ugc_input_clean_data(__FUNCTION__ . '_string', self::$version_crnrstn, 'version_crnrstn', 'CRNRSTN::RESOURCE::CONFIGURATION', 0))){
+
+                //
+                // HOOOSTON...VE HAF PROBLEM!
+                throw new Exception($this->err_message_queue_retrieve());
+
+            }
+
+            //
+            // THE CRNRSTN :: CONFIGURATION MANAGER WILL INPUT CLEAN UGC DATA
+            // OR LOOK FOR THE BEST AND MOST ELEGANT (PLEASE READ AS GRACEFUL)
+            // DEGRADATION PATHWAYS TO A VANILLA DEFAULT.
+            //
+            // ON CRITICAL ERR, $oCRNRSTN->config_ugc_input_clean_data() RETURNS
+            // NULL, AND A SYSTEM EXCEPTION IS THROWN. OTHERWISE, IF THE INPUT
+            // DATA IS NOT VALID BUT CAN BE OVERRIDDEN WITH A SETTINGS DEFAULT,
+            // AN ON THE FLY PATCH IS MADE, AND A SYSTEM NOTIFICATION WITH
+            // DETAILS ABOUT THE INTERNAL OVERRIDE IS QUIETLY CAPTURED.
+            //
+            // CURRENTLY IN DEVELOPMENT UNDER CRNRSTN :: LOGGING ARE:
+            // - $oCRNRSTN->err_message_queue_push(),
+            // - $oCRNRSTN->err_message_queue_retrieve(),
+            // - $oCRNRSTN->err_message_queue_clear(), AND
+            // - $oCRNRSTN->get_err_message_count().
+            //
             // Monday, December 11, 2023 @ 1057 hrs.
             //
             // PLEASE NOTE: $oCRNRSTN->err_message_queue_retrieve() CAN RECEIVE
@@ -595,6 +632,14 @@ class crnrstn {
             // J5, my boy!
             // INITIALIZE ALPHA SHIFT CRYPT KEY.
             $this->initialize_alpha_shift_crypt('JFIVEMYBOY');
+
+            //
+            // CRNRSTN :: HTML <!-- COMMENTS MODE --> PROFILE CONSTANTS.
+            self::$html_comments_profile_ARRAY = array(CRNRSTN_HTML_COMMENTS_SILENT_GOLD => 'CRNRSTN_HTML_COMMENTS_SILENT_GOLD',
+            CRNRSTN_HTML_COMMENTS_NONE => 'CRNRSTN_HTML_COMMENTS_NONE',
+            CRNRSTN_HTML_COMMENTS_CDN_STABILITY_CONTROL_ENABLED => 'CRNRSTN_HTML_COMMENTS_CDN_STABILITY_CONTROL_ENABLED',
+            CRNRSTN_HTML_COMMENTS_ENLARGED_PHYLACTERIES => 'CRNRSTN_HTML_COMMENTS_ENLARGED_PHYLACTERIES',
+            CRNRSTN_HTML_COMMENTS_FULL => 'CRNRSTN_HTML_COMMENTS_FULL');
 
             //
             // INITIALIZE SOME GROUPED INTEGER CONSTANTS ARRAYS
@@ -716,44 +761,6 @@ class crnrstn {
             //
             //              NULL IS THE DEFAULT FOR THIS $message_override INPUT.
             if(!($tmp_result = $this->config_ugc_input_clean_data(__FUNCTION__ . '_datetime', $this->starttime, 'starttime', 'CRNRSTN::RESOURCE::CONFIGURATION', 0))){
-
-                //
-                // HOOOSTON...VE HAF PROBLEM!
-                throw new Exception($this->err_message_queue_retrieve());
-
-            }
-
-            //$this->input_data_value($this->starttime, 'starttime');
-
-            //$this->input_data_value(self::$version_crnrstn, 'version_crnrstn');
-            // $tmp_ = $this->get_resource('version_crnrstn', 0, 'CRNRSTN::RESOURCE::CONFIGURATION');
-
-            //
-            // THE CRNRSTN :: CONFIGURATION MANAGER WILL INPUT CLEAN UGC DATA
-            // OR LOOK FOR THE BEST AND MOST ELEGANT (PLEASE READ AS GRACEFUL)
-            // DEGRADATION PATHWAYS TO A VANILLA DEFAULT.
-            //
-            // ON CRITICAL ERR, $oCRNRSTN->config_ugc_input_clean_data() RETURNS
-            // NULL, AND A SYSTEM EXCEPTION IS THROWN. OTHERWISE, IF THE INPUT
-            // DATA IS NOT VALID BUT CAN BE OVERRIDDEN WITH A SETTINGS DEFAULT,
-            // AN ON THE FLY PATCH IS MADE, AND A SYSTEM NOTIFICATION WITH
-            // DETAILS ABOUT THE INTERNAL OVERRIDE IS QUIETLY CAPTURED.
-            //
-            // CURRENTLY IN DEVELOPMENT UNDER CRNRSTN :: LOGGING ARE:
-            // - $oCRNRSTN->err_message_queue_push(),
-            // - $oCRNRSTN->err_message_queue_retrieve(),
-            // - $oCRNRSTN->err_message_queue_clear(), AND
-            // - $oCRNRSTN->get_err_message_count().
-            //
-            // PLEASE NOTE: $oCRNRSTN->err_message_queue_retrieve() CAN RECEIVE
-            //              AN ERR MESSAGE OUTPUT OVERRIDE AS INPUT. ALSO OF NOTE...TO
-            //	            CRNRSTN :: ESPECIALLY...IS THAT ACCEPTABLE INPUT CAN INCLUDE DATA
-            //		        SUCH AS EMPTY STRING, SOAP ERROR OBJECT, OR EVEN AN OpenSSL v1.1.1
-            //	            ENCRYPTED JSON PACKET CONTAINING SESSION META AND A CACHE
-            //		        EXPIRATION TTL.
-            //
-            //              NULL IS THE DEFAULT FOR THIS $message_override INPUT.
-            if(!($tmp_result = $this->config_ugc_input_clean_data(__FUNCTION__ . '_string', self::$version_crnrstn, 'version_crnrstn', 'CRNRSTN::RESOURCE::CONFIGURATION', 0))){
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
@@ -1980,6 +1987,81 @@ class crnrstn {
                 return self::$system_default_logging_output_profile;
 
             break;
+            case 'env_err_reporting_profile_ARRAY':
+
+                //
+                // THIS SHOULD, AT LEAST, BE A NUMBER.
+                if(!is_numeric($data)){
+
+                    return $default_override;
+
+                }
+
+                return (int) $data;
+
+            break;
+            case 'env_html_comments_mode_ARRAY':
+                // WHERE $system_html_comments_mode = [CRNRSTN_HTML_COMMENTS_SILENT_GOLD, CRNRSTN_HTML_COMMENTS_NONE,
+                // CRNRSTN_HTML_COMMENTS_CDN_STABILITY_CONTROL_ENABLED, CRNRSTN_HTML_COMMENTS_ENLARGED_PHYLACTERIES,
+                // CRNRSTN_HTML_COMMENTS_FULL]
+
+                //
+                // THE INPUT SHOULD MATCH AN EXISTING INTEGER VALUE.
+                if(isset(self::$html_comments_profile_ARRAY[$data])){
+
+                    return (int) $data;
+
+                }
+
+                //
+                // THERE IS A STRING VALUE WE CAN LOOKUP, TOO.
+                switch($data){
+                    case 'CRNRSTN_HTML_COMMENTS_SILENT_GOLD':
+                    case CRNRSTN_HTML_COMMENTS_SILENT_GOLD:
+
+                        return CRNRSTN_HTML_COMMENTS_SILENT_GOLD;
+
+                    break;
+                    case 'CRNRSTN_HTML_COMMENTS_NONE':
+                    case CRNRSTN_HTML_COMMENTS_NONE:
+
+                        return CRNRSTN_HTML_COMMENTS_NONE;
+
+                    break;
+                    case 'CRNRSTN_HTML_COMMENTS_CDN_STABILITY_CONTROL_ENABLED':
+                    case CRNRSTN_HTML_COMMENTS_CDN_STABILITY_CONTROL_ENABLED:
+
+                        return CRNRSTN_HTML_COMMENTS_CDN_STABILITY_CONTROL_ENABLED;
+
+                    break;
+                    case 'CRNRSTN_HTML_COMMENTS_ENLARGED_PHYLACTERIES':
+                    case CRNRSTN_HTML_COMMENTS_ENLARGED_PHYLACTERIES:
+
+                        return CRNRSTN_HTML_COMMENTS_ENLARGED_PHYLACTERIES;
+
+                    break;
+                    case 'CRNRSTN_HTML_COMMENTS_FULL':
+                    case CRNRSTN_HTML_COMMENTS_FULL:
+
+                        return CRNRSTN_HTML_COMMENTS_FULL;
+
+                    break;
+
+                }
+
+                //
+                // THE INPUT SHOULD BE A NUMBER.
+                if(!is_numeric($data)){
+
+                    return CRNRSTN_HTML_COMMENTS_FULL;
+
+                }
+
+                return CRNRSTN_HTML_COMMENTS_FULL;
+
+            break;
+            //[Sun Dec 17 23:32:29.788837 2023] [:error] [pid 40134] [client 172.16.225.1:51217] 1985 crnrstn UNKNOWN SWITCH CASE[env_err_reporting_profile_ARRAY].
+            //[Sun Dec 17 23:32:29.788907 2023] [:error] [pid 40134] [client 172.16.225.1:51217] 1985 crnrstn UNKNOWN SWITCH CASE[env_html_comments_mode_ARRAY].
             default:
 
                 error_log(__LINE__ . ' crnrstn UNKNOWN SWITCH CASE[' . strval($system_source_key) . '].');
@@ -2573,6 +2655,8 @@ class crnrstn {
 
         }
 
+        //
+        // CAN WE RETURN $tmp_result FOR INI_GET() VALIDATION REQUESTS?
         die();
         return $tmp_is_valid;
 
@@ -3330,6 +3414,8 @@ class crnrstn {
                     // RETURN ACTIVE CACHE CHANNELS.
                     $tmp_channel_ARRAY = $this->return_cache_channels();
 
+                    error_log(__LINE__ . ' ' . __METHOD__ . ' SETTING tmp_channel_ARRAY[' . print_r($tmp_channel_ARRAY, true) . '] TO EXTRACT $_GET[] DATA.');
+
                 }
 
             }
@@ -3342,11 +3428,14 @@ class crnrstn {
         if($this->isset_param($_GET, $this->session_salt()) == true){
 
             //
-            // CHANNEL NOT PROVIDED. CHECK ALL ACTIVE CHANNELS. ORDER ISDETERMINED BY GLOBAL
+            // CHANNEL NOT PROVIDED. CHECK ALL ACTIVE CHANNELS. ORDER IS DETERMINED BY GLOBAL
             // CONTROL ARRAY...NOT INITIALIZATION SEQUENCE.
             // RETURN ACTIVE CACHE CHANNELS.
-            $tmp_channel_ARRAY = $this->return_cache_channels();
 
+            //$this->return_isactive_channels();
+            $tmp_channel_ARRAY = $this->return_cache_channels();
+            error_log(__LINE__ . ' ' . __METHOD__ . ' SETTING tmp_channel_ARRAY[' . print_r($tmp_channel_ARRAY, true) . '] TO EXTRACT $_GET[] DATA.');
+            error_log(__LINE__ . ' ' . __METHOD__ . ' ATTEMPTING TO EXTRACT $_GET[] DATA [' . strval($_GET[$this->session_salt()]) . '] FROM tmp_channel_ARRAY[' . print_r($tmp_channel_ARRAY, true) . '].');
 
         }
 
@@ -3355,8 +3444,11 @@ class crnrstn {
             //
             // FASTEST PATH TO $_GET RESOURCE RETURN FULFILLMENT.
             $tmp_return = self::$oCRNRSTN_RRS_MAP->rrs_map_execute($channel . '_cache_accelerated_return');
+            error_log(__LINE__ . ' ' . __METHOD__ . ' ATTEMPTING TO EXTRACT $_GET[] DATA(LEN=' . strlen($tmp_return) . ') [' . strval($_GET[$this->session_salt()]) . '] FROM $channel[' . print_r($channel, true) . '].');
 
             if(strlen($tmp_return) > 0){
+
+                error_log(__LINE__ . ' ' . __METHOD__ . ' ATTEMPTING TO EXTRACT $_GET[] DATA(LEN=' . strlen($tmp_return) . ') [' . strval($_GET[$this->session_salt()]) . '] FROM $channel[' . print_r($channel, true) . '].');
 
                 return $tmp_return;
 
@@ -4226,11 +4318,11 @@ class crnrstn {
 
     }
 
-    public function init_config_cache_index_mem_header($ddo_memory_pointer, $index, $data_authorization_profile, $ttl){
+    public function init_config_cache_index_mem_header($ddo_memory_pointer, $data_key, $data_authorization_profile, $index, $ttl){
 
         //
         // GOING TO CRNRSTN :: PLAID.
-        return self::$oCRNRSTN_RRS_MAP->init_config_cache_index_mem_header($ddo_memory_pointer, $index, $data_authorization_profile, $ttl);
+        return self::$oCRNRSTN_RRS_MAP->init_config_cache_index_mem_header($ddo_memory_pointer, $data_key, $data_authorization_profile, $index, $ttl);
 
     }
 
@@ -7205,7 +7297,7 @@ class crnrstn {
 
     private function encoder_wheel_integrations(){
 
-        $tmp_salt_tail = $this->return_encoder_wheel_output(self::$wheel_encoder_salt, $this->hash(self::$config_serial, NULL, true), 10);
+        $tmp_salt_tail = $this->return_encoder_wheel_output(self::$wheel_encoder_salt, $this->hash(self::$config_serial), 10);
         self::$crnrstn_session_salt = 'crnrstn_' . $tmp_salt_tail;
 
     }
@@ -7273,7 +7365,7 @@ class crnrstn {
 
     }
 
-    private function config_is_valid_detected_env($env_key, $force_detection = true){
+    public function config_is_valid_detected_env($env_key, $force_detection = true){
 
         //
         // IS THE ENVIRONMENT DETECTED?
@@ -7285,7 +7377,7 @@ class crnrstn {
 
         //
         // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
-        if($env_key == CRNRSTN_RESOURCE_ALL || (self::$env_key_hash_config_ARRAY[self::$config_serial] == $this->hash($env_key, NULL, true))){
+        if($env_key == CRNRSTN_RESOURCE_ALL || (self::$env_key_hash_config_ARRAY[self::$config_serial] == $this->hash($env_key))){
 
             return true;
 
@@ -7635,17 +7727,17 @@ class crnrstn {
 
     public function initSOAP_WSDL_connectionProfile($SOAP_endpoint, $WSDL_cache_ttl, $nusoap_useCURL){
 
-        $this->WSDL_cache_ttl_ARRAY[$this->hash($SOAP_endpoint, 'crc32', NULL, true)] = $WSDL_cache_ttl;
-        $this->nusoap_useCURL_ARRAY[$this->hash($SOAP_endpoint, 'crc32', NULL, true)] = $nusoap_useCURL;
+        $this->WSDL_cache_ttl_ARRAY[$this->hash($SOAP_endpoint, 'crc32')] = $WSDL_cache_ttl;
+        $this->nusoap_useCURL_ARRAY[$this->hash($SOAP_endpoint, 'crc32')] = $nusoap_useCURL;
 
     }
 
     public function initSOAP_tunnelEncryptProfile($SOAP_endpoint, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override){
 
-        $this->secret_key_override_ARRAY[$this->hash($SOAP_endpoint, 'crc32', NULL, true)] = $secret_key_override;
-        $this->cipher_override_ARRAY[$this->hash($SOAP_endpoint, 'crc32', NULL, true)] = $cipher_override;
-        $this->hmac_algorithm_override_ARRAY[$this->hash($SOAP_endpoint, 'crc32', NULL, true)] = $hmac_algorithm_override;
-        $this->options_bitwise_override_ARRAY[$this->hash($SOAP_endpoint, 'crc32', NULL, true)] = $options_bitwise_override;
+        $this->secret_key_override_ARRAY[$this->hash($SOAP_endpoint, 'crc32')] = $secret_key_override;
+        $this->cipher_override_ARRAY[$this->hash($SOAP_endpoint, 'crc32')] = $cipher_override;
+        $this->hmac_algorithm_override_ARRAY[$this->hash($SOAP_endpoint, 'crc32')] = $hmac_algorithm_override;
+        $this->options_bitwise_override_ARRAY[$this->hash($SOAP_endpoint, 'crc32')] = $options_bitwise_override;
 
     }
 
@@ -8723,7 +8815,7 @@ class crnrstn {
         // ASSIGNED TO THE CURRENTLY DETECTED ENVIRONMENT? IF NOT,
         // RUN A BYPASS HERE IN ORDER TO RECEIVE A MINOR
         // PERFORMANCE ACCELERATION BOOST.
-        if($this->config_is_valid_detected_env($env_key) == true){
+        //if($this->config_is_valid_detected_env($env_key) == true){
 
             //
             // THE CRNRSTN :: CONFIGURATION MANAGER WILL INPUT CLEAN UGC DATA
@@ -8865,7 +8957,7 @@ class crnrstn {
             //$oCRNRSTN_GABRIEL = $this->initialize_oGabriel($tmp_messenger_from_north_serial);
             //$oCRNRSTN_GABRIEL->addAddress($email_data, $recipient_name);
 
-        }
+        //}
 
     }
 
@@ -9308,7 +9400,7 @@ class crnrstn {
             // ASSIGNED TO THE CURRENTLY DETECTED ENVIRONMENT? IF NOT,
             // RUN A BYPASS HERE IN ORDER TO RECEIVE A MINOR
             // PERFORMANCE ACCELERATION BOOST.
-            if($this->config_is_valid_detected_env($env_key) == true){
+            //if($this->config_is_valid_detected_env($env_key) == true){
 
                 //
                 // THE CRNRSTN :: CONFIGURATION MANAGER WILL INPUT CLEAN UGC DATA
@@ -9343,7 +9435,7 @@ class crnrstn {
 
                 }
 
-            }
+            //}
 
             return true;
 
@@ -9507,7 +9599,7 @@ class crnrstn {
             // ASSIGNED TO THE CURRENTLY DETECTED ENVIRONMENT? IF NOT,
             // RUN A BYPASS HERE IN ORDER TO RECEIVE A MINOR
             // PERFORMANCE ACCELERATION BOOST.
-            if($this->config_is_valid_detected_env($env_key) == true){
+            //if($this->config_is_valid_detected_env($env_key) == true){
 
                 //
                 // THE CRNRSTN :: CONFIGURATION MANAGER WILL INPUT CLEAN UGC DATA
@@ -9608,7 +9700,7 @@ class crnrstn {
 
                 }
 
-            }
+            //}
 
             return true;
 
@@ -10401,7 +10493,7 @@ class crnrstn {
             // ASSIGNED TO THE CURRENTLY DETECTED ENVIRONMENT? IF NOT,
             // RUN A BYPASS HERE IN ORDER TO RECEIVE A MINOR
             // PERFORMANCE ACCELERATION BOOST.
-            if($this->config_is_valid_detected_env($env_key) == true){
+            //if($this->config_is_valid_detected_env($env_key) == true){
 
                 //
                 // HTTP PATH. PLEASE GUARANTEE TRAILING SLASH.
@@ -10471,7 +10563,7 @@ class crnrstn {
                 //		        EXPIRATION TTL.
                 //
                 //              NULL IS THE DEFAULT FOR THIS $message_override INPUT.
-                if(!($tmp_result = $this->config_ugc_input_clean_data(__FUNCTION__ . '_string', $crnrstn_http_endpoint, 'crnrstn_http_endpoint', 'CRNRSTN::RESOURCE::HTTP_IMAGES', 0))){
+                if(!($tmp_result = $this->config_ugc_input_clean_data(__FUNCTION__ . '_string', $crnrstn_http_endpoint, 'crnrstn_http_endpoint', 'CRNRSTN::RESOURCE::HTTP_IMAGES', 0, ''))){
 
                     //
                     // HOOOSTON...VE HAF PROBLEM!
@@ -10504,6 +10596,7 @@ class crnrstn {
                 //		        EXPIRATION TTL.
                 //
                 //              NULL IS THE DEFAULT FOR THIS $message_override INPUT.
+                error_log(__LINE__ .  ' ' . __METHOD__ . '  SPOOL[?] $crnrstn_path_dir[' . $crnrstn_path_dir . ']. SEE config_ugc_input_clean_data(' . __FUNCTION__ . '_string).');
                 if(!($tmp_result = $this->config_ugc_input_clean_data(__FUNCTION__ . '_string', $crnrstn_path_dir, 'crnrstn_path_directory', 'CRNRSTN::RESOURCE::HTTP_IMAGES', 0))){
 
                     //
@@ -10537,6 +10630,7 @@ class crnrstn {
                 //		        EXPIRATION TTL.
                 //
                 //              NULL IS THE DEFAULT FOR THIS $message_override INPUT.
+                error_log(__LINE__ . ' ' . __METHOD__ . '  SPOOL[?] $crnrstn_system_directory[' . $crnrstn_system_directory . '].');
                 if(!($tmp_result = $this->config_ugc_input_clean_data(__FUNCTION__ . '_string', $crnrstn_system_directory, 'crnrstn_system_directory', 'CRNRSTN::RESOURCE::HTTP_IMAGES', 0))){
 
                     //
@@ -10578,7 +10672,7 @@ class crnrstn {
 
                 }
 
-            }
+            //}
 
             return true;
 
@@ -10624,7 +10718,7 @@ class crnrstn {
 
     public function config_custom_error_handler($env_key = CRNRSTN_RESOURCE_ALL, $crnrstn_error_handling = true, $err_reporting_profile_override = NULL){
 
-        $tmp_env_key_hash = $this->hash($env_key, NULL, true);
+        $tmp_env_key_hash = $this->hash($env_key);
         //$this->crnrstn_as_error_handler_ARRAY[self::$config_serial][$tmp_env_key_hash] = $crnrstn_is_active;
         //$this->crnrstn_as_error_handler_constants_ARRAY[self::$config_serial][$tmp_env_key_hash] = $err_reporting_profile_override;
 
@@ -10900,7 +10994,7 @@ class crnrstn {
 
         try{
 
-            $env_key_hash = $this->hash($env_key, NULL, true);
+            $env_key_hash = $this->hash($env_key);
 
             $this->error_log('Environment key [' . $env_key . '] converts to checksum [' . $env_key_hash . '] and will be referenced as such from time to time. ', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
@@ -11042,7 +11136,7 @@ class crnrstn {
 
     public function config_init_logging($env_key = CRNRSTN_RESOURCE_ALL, $system_logging_output_profile = CRNRSTN_LOG_DEFAULT, $profile_meta = NULL){
 
-        $tmp_env_hash = $this->hash($env_key, NULL, true);
+        $tmp_env_hash = $this->hash($env_key);
 
         //
         // DID CRNRSTN :: RECEIVE UGC CONFIGURATION INPUT DATA THAT IS
@@ -11439,7 +11533,7 @@ class crnrstn {
 
         $this->error_log('CRNRSTN :: Specify database extension. Database type=[' . $type . '] specified for environment=[' . $env_key . '] on server [' . $_SERVER['SERVER_NAME'] . ']', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-        self::$database_extension_type_ARRAY[self::$config_serial][hash(self::$hmac_hash_algorithm_ARRAY['OPTIONS']['SERVER'][self::$hmac_hash_algorithm_ARRAY['DEFAULT'][CRNRSTN_INTEGER]], $env_key)] = $type;
+        self::$database_extension_type_ARRAY[self::$config_serial][$this->hash(self::$hmac_hash_algorithm_ARRAY['OPTIONS']['SERVER'][self::$hmac_hash_algorithm_ARRAY['DEFAULT'][CRNRSTN_INTEGER]], $env_key)] = $type;
 
     }
 
@@ -12074,7 +12168,7 @@ class crnrstn {
 
         //error_log(__LINE__  . ' crnrstn $data_key[' . $data_key . ']. $value[' . $value . ']. $required_server_matches[' . $required_server_matches . '].');
 
-        $env_key_hash = $this->hash($env_key, NULL, true);
+        $env_key_hash = $this->hash($env_key);
 
         //
         // IS THE ENVIRONMENT NOT DETECTED?
@@ -12121,8 +12215,8 @@ class crnrstn {
 
                 $this->encoder_wheel_integrations();
 
-                //error_log(__LINE__ . ' crnrstn Environmental detection complete. Setting application server app key for CRNRSTN ::');
-                $this->error_log('Detection is complete for CRNRSTN :: ENVIRONMENT. Setting the application server key for CRNRSTN :: to [' . $env_key_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                //error_log(__LINE__ . ' crnrstn CRNRSTN :: ENVIRONMENT detection is complete. Setting the application server key for CRNRSTN :: to [' . print_r($env_key_hash, true) . '].');
+                $this->error_log('CRNRSTN :: ENVIRONMENT detection is complete. Setting the application server key for CRNRSTN :: to [' . print_r($env_key_hash, true) . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                 $this->initialize_asset_management();
 
@@ -12149,16 +12243,7 @@ class crnrstn {
                 //
                 // SEE, $oCRNRSTN->add_resource().
                 $tmp_ddo_serializable_resources_ARRAY = array(CRNRSTN_OBJECT => 1, CRNRSTN_ARRAY => 1);
-                $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'ddo_serializable_data_types', $tmp_ddo_serializable_resources_ARRAY, 'CRNRSTN::RESOURCE::MULTI_CHANNEL');
-
-                //
-                // LOAD ALL REMAINING STATIC SYSTEM APPLICATION DATUM PRIOR TO
-                // REPLAYING THE CONTENTS OF THE CRNRSTN :: CONFIGURATION
-                // APPLICATION SPOOL.
-                $this->config_load_static_application_data();
-
-                error_log(__LINE__ . ' crnrstn STOP HERE.');
-                die();
+                $this->config_add_resource($env_key, 'ddo_serializable_data_types', $tmp_ddo_serializable_resources_ARRAY, 'CRNRSTN::RESOURCE::MULTI_CHANNEL');
 
                 //
                 // NOTE :: LOADING THE CRNRSTN :: CONFIGURATION SPOOL MAY
@@ -12177,15 +12262,66 @@ class crnrstn {
                 // SERVICES LAYER. ALSO, DEACTIVATE SPOOLING.
                 $this->config_load_config_spool();
 
-                error_log(__LINE__ . ' crnrstn STOP HERE.');
-                die();
+                //
+                // INITIALIZE SETTINGS FOR EACH ENVIRONMENT.
+                // CRNRSTN :: PLAID FIRES HERE.
+                error_log(__LINE__ . ' crnrstn STARTING config_load_system_settings() [rtime ' . $this->wall_time() . ' secs].');
+                $this->config_load_system_settings($env_key, CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.system_settings.inc.php');
+
+                $tmp_channel_ARRAY = $this->get_channel_config(CRNRSTN_CHANNEL_SOAP);
+
+                $this->destruct_output .= '<pre><code>[' . $this->return_micro_time()  . '] [lnum ' .  __LINE__ . '] [rtime ' . $this->wall_time() . ' secs] [' . __METHOD__ . ']
+C<span style="color:#F90000;">R</span>NRSTN :: MC-DDO [' . strtoupper($tmp_channel_ARRAY['NAME']) . '] PROFILE <br><br># # C # <span style="color:#F90000;">R</span> # N # R # S # T # N # : : # # # #<br><br>' . print_r($tmp_channel_ARRAY, true) . ']</code></pre>';
 
                 //
-                // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA
-                // OBJECT (MC-DDO) SERVICES LAYER INITIALIZATION.
-                // # # C # R # N # R # S # T # N # : : # # # #
-                // CRNRSTN :: MC-DDO TRANSLATION SERVICES LAYER
-                $this->config_channel_data_translate();
+                // INITIALIZE SQL QUERY SILOS FOR EACH ENVIRONMENT.
+                $this->config_include_sql_silo($env_key, CRNRSTN_ROOT . '/_crnrstn/_config/config.database.sql/crnrstn.db_sql_silo.inc.php');
+
+                error_log(__LINE__ . ' crnrstn STARTING config_add_database() [rtime ' . $this->wall_time() . ' secs].');
+
+                //
+                // INITIALIZE DATABASE FUNCTIONALITY FOR EACH ENVIRONMENT.
+                $this->config_add_database($env_key, CRNRSTN_ROOT . '/_crnrstn/_config/config.database.secure/_crnrstn.db.config.inc.php');
+
+                //
+                // INITIALIZE SUPPORT FOR WORDPRESS CONFIGURATION(S).
+                $this->config_include_wordpress($env_key, CRNRSTN_ROOT . '/_crnrstn/_config/config.wp.secure/_crnrstn.wp_config.inc.php');
+
+                error_log(__LINE__ . ' crnrstn STARTING config_include_encryption() [rtime ' . $this->wall_time() . ' secs].');
+
+                //
+                // INITIALIZATION OF ENCRYPTION PROFILES :: CRNRSTN ::
+                // ADVANCED CONFIGURATION PARAMETERS.
+                $this->config_include_encryption($env_key, CRNRSTN_ROOT . '/_crnrstn/_config/config.encryption.secure/_crnrstn.encryption.inc.php');
+
+                //
+                // INITIALIZATION OF CRNRSTN :: WILD CARD RESOURCES.
+                $this->config_include_wild_card_resources($env_key, CRNRSTN_ROOT . '/_crnrstn/_config/config.resource_wildcards.secure/_crnrstn.resource_wildcards.inc.php');
+
+                //
+                // INITIALIZATION OF SYSTEM RESOURCES :: CRNRSTN ::
+                // ADVANCED CONFIGURATION PARAMETERS.
+                $this->config_include_system_resources($env_key, CRNRSTN_ROOT . '/_crnrstn/_config/config.system_resource.secure/_crnrstn.system_resource.inc.php');
+
+                //
+                // INITIALIZATION OF THIRD PARTY WEB REPORTING AND ANALYTICS
+                // TAG PROFILES :: CRNRSTN :: ADVANCED CONFIGURATION PARAMETERS
+                $this->config_include_seo_analytics($env_key, CRNRSTN_ROOT . '/_crnrstn/_config/config.seo_analytics.secure/_crnrstn.analytics.inc.php');
+
+                //
+                // INITIALIZATION OF THIRD PARTY ENGAGEMENT TAG PROFILES ::
+                // CRNRSTN :: ADVANCED CONFIGURATION PARAMETERS
+                $this->config_include_seo_engagement($env_key, CRNRSTN_ROOT . '/_crnrstn/_config/config.seo_engagement.secure/_crnrstn.engagement.inc.php');
+
+                //
+                // INITIALIZE SOCIAL MEDIA PROFILE FOR EACH ENVIRONMENT.
+                $this->config_include_social_media($env_key, CRNRSTN_ROOT . '/_crnrstn/_config/config.social_media_meta.secure/_crnrstn.social_media_meta.inc.php');
+
+                //
+                // LOAD ALL REMAINING STATIC SYSTEM APPLICATION DATUM PRIOR TO
+                // REPLAYING THE CONTENTS OF THE CRNRSTN :: CONFIGURATION
+                // APPLICATION SPOOL.
+                $this->config_load_static_application_data();
 
                 return self::$env_key_hash_config_ARRAY[self::$config_serial];
 
@@ -12196,6 +12332,12 @@ class crnrstn {
         }
 
         return self::$env_key_hash_config_ARRAY[self::$config_serial];
+
+    }
+
+    private function config_load_config_spool(){
+
+        self::$oCRNRSTN_PERFORMANCE_REGULATOR->config_load_config_spool();
 
     }
 
@@ -13625,12 +13767,16 @@ class crnrstn {
 
         if(strlen($env_key) > 0){
 
-            //error_log(__LINE__  . ' crnrstn $data_key[' . $data_key . ']. $data_type_family[' . $data_type_family . ']. $index[' . $index . ']. $env_key[' . $env_key . ']. $data_authorization_profile[' . $data_authorization_profile . '].');
-            return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family, $index, $env_key, $data_authorization_profile);
+            error_log(__LINE__  . ' crnrstn $data_key[' . $data_key . ']. $data_type_family[' . $data_type_family . ']. $index[' . $index . ']. $env_key[' . $env_key . ']. $data_authorization_profile[' . $data_authorization_profile . '].');
+            $tmp_return = self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family, $index, $env_key, $data_authorization_profile);
+
+            if($tmp_return != $this->session_salt()){
+
+                return $tmp_return;
+
+            }
 
         }
-
-        $this->error_log('Environmental detection has failed. Cannot retrieve resource configured with empty string for environmental key.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
 
         return '';
 
@@ -13708,21 +13854,17 @@ class crnrstn {
 
 //     }
 
-    public function get_ddo_resource_channel_array($ddo_memory_pointer){
+    public function get_ddo_resource_pointer($ddo_memory_pointer, $data_key, $data_type_family, $index = 0){
 
-        return self::$oCRNRSTN_CONFIG_MGR->get_ddo_resource_channel_array($ddo_memory_pointer);
-
-    }
-
-    public function build_ddo_resource_pointer($ddo_memory_pointer, $channel){
-
-        return self::$oCRNRSTN_CONFIG_MGR->build_ddo_resource_pointer($ddo_memory_pointer, $channel);
+        return self::$oCRNRSTN_CONFIG_MGR->get_ddo_resource_pointer($ddo_memory_pointer, $data_key, $data_type_family, $index);
 
     }
 
-    public function isset_ddo_resource_pointer($data_key, $data_type_family, $data_authorization_profile = NULL){
+    public function initialize_ddo_resource_pointer($ddo_memory_pointer, $data_key, $channel = NULL, $index = 0, $ttl = 60){
+        // TODO :: $ttl SHOULD INITIALIZE AS NULL AND THEN TAKE A SYSTEM OVERRIDE...IN LEU OF VALID TTL INPUT.
+        //         Thursday, January 4, 2024 @ 0158 hrs.
 
-        return self::$oCRNRSTN_CONFIG_MGR->isset_ddo_resource_pointer($data_key, $data_type_family, $data_authorization_profile);
+        self::$oCRNRSTN_CONFIG_MGR->initialize_ddo_resource_pointer($ddo_memory_pointer, $data_key, $channel, $index, $ttl);
 
     }
 
@@ -14308,6 +14450,12 @@ class crnrstn {
 
     }
 
+    public function authorized_channel_ids($channel_data, $output_format = CRNRSTN_INTEGER){
+
+        return self::$oCRNRSTN_CONFIG_MGR->authorized_channel_ids($channel_data, $output_format);
+
+    }
+
     public function get_channel_config($channel, $index_0 = NULL, $index_1 = NULL, $index_2 = NULL, $index_3 = NULL){
         // RENAMED THIS METHOD AND PRESSED BACK INTO SERVICE ON Tuesday, October 10, 2023 @ 0651 hrs.
         // LAST MODIFIED: Wednesday, October 18, 2023 @ 0110 hrs.
@@ -14819,7 +14967,7 @@ class crnrstn {
 
     }
 
-    private function config_channel_data_translate(){
+    public function config_channel_data_translate(){
 
         $this->destruct_output .= '<pre><code>[' . $this->return_micro_time() . '] [lnum ' . __LINE__ . '] [class ' . __CLASS__ . '] C<span style="color:#F90000;">R</span>NRSTN :: CONFIGURATION CALLING self::$oCRNRSTN_CONFIG_MGR->config_init_multi_channels().</code></pre>';
         self::$oCRNRSTN_CONFIG_MGR->config_channel_data_translate();
@@ -14870,7 +15018,7 @@ class crnrstn {
             // ASSIGNED TO THE CURRENTLY DETECTED ENVIRONMENT? IF NOT,
             // RUN A BYPASS HERE IN ORDER TO RECEIVE A MINOR
             // PERFORMANCE ACCELERATION BOOST.
-            if($this->config_is_valid_detected_env($env_key, false) == true){
+            //if($this->config_is_valid_detected_env($env_key, false) == true){
 
                 //
                 // THE CRNRSTN :: CONFIGURATION MANAGER WILL INPUT CLEAN UGC DATA
@@ -14905,7 +15053,7 @@ class crnrstn {
 
                 }
 
-            }
+            //}
 
             return true;
 
@@ -19565,6 +19713,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
+    public function isset_crnrstn_spool($data_attribute, $ddo_memory_pointer,  $index = 0){
+
+        return self::$oCRNRSTN_PERFORMANCE_REGULATOR->isset_crnrstn_spool($data_attribute, $ddo_memory_pointer, $index);
+
+    }
+
     public function config_ugc_input_clean_data($data_profile, $data, $data_key, $data_type_family = 'CRNRSTN::RESOURCE', $index = NULL, $data_authorization_profile = CRNRSTN_AUTHORIZE_RUNTIME, $ttl = NULL, $spool_resource = false, $env_key = NULL){
 
         //
@@ -21059,7 +21213,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 //
 //                if($output_format == 'hash'){
 //
-//                    return $this->hash(CRNRSTN_RESOURCE_ALL, NULL, true);
+//                    return $this->hash(CRNRSTN_RESOURCE_ALL);
 //
 //                }
 //
@@ -24002,12 +24156,6 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         try{
 
             //
-            // php.ini directives
-            // https://www.php.net/manual/en/ini.list.php#ini.list
-            // $this->ini_set_ARRAY[$option] = ini_get($option);
-            $tmp_ini = ini_get($option);
-
-            //
             // THE CRNRSTN :: CONFIGURATION MANAGER WILL INPUT CLEAN UGC DATA
             // OR LOOK FOR THE BEST AND MOST ELEGANT (PLEASE READ AS GRACEFUL)
             // DEGRADATION PATHWAYS TO A VANILLA DEFAULT.
@@ -24032,7 +24180,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             //		        EXPIRATION TTL.
             //
             //              NULL IS THE DEFAULT FOR THIS $message_override INPUT.
-            if(!($tmp_result = $this->config_ugc_input_clean_data(__FUNCTION__ . '_ini_set', $tmp_ini, $option, 'CRNRSTN::RESOURCE::PHP_INI', 0))){
+            if(!($tmp_result = $this->config_ugc_input_clean_data(__FUNCTION__ . '_ini_get', $option, 'ini_get_attribute_name', 'CRNRSTN::RESOURCE::PHP_INI', 0))){
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
@@ -24044,8 +24192,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             // CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO) SERVICES LAYER.
             // self::$oCRNRSTN_CONFIG_MGR->input_data_value($this->ini_set_ARRAY[$option], $option, 'CRNRSTN::RESOURCE::PHP_INI', 0);
             // return $this->ini_set_ARRAY[$option];
-
-            return $tmp_ini;
+            return $tmp_result;
 
         }catch(Exception $e){
 
@@ -25535,7 +25682,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
      * SOURCE :: https://www.php.net/manual/en/function.is-bool.php
      * AUTHOR :: Julio Marchi :: https://www.php.net/manual/en/function.is-bool.php#124179
      */
-    private function boolean_conversion($variable = NULL){
+    public function boolean_conversion($variable = NULL){
 
         if(!isset($variable)) return null;
         return filter_var($variable, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
@@ -27288,7 +27435,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    private function extract_key_from_string($data, $replacements_str_pattern = '', $replacements_is_prefix = false, $patterns_ARRAY = NULL, $replacements_ARRAY = NULL){
+    public function extract_key_from_string($data, $replacements_str_pattern = '', $replacements_is_prefix = false, $patterns_ARRAY = NULL, $replacements_ARRAY = NULL){
         // TODO :: WANT TO TAKE AN ARRAY OF PATTERNS? MORE ROBUST CHANNEL STRINGS COULD BE SUPPORTED.
         // Saturday, October 7, 2023 @ 0435 hrs.
 
@@ -28030,6 +28177,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
+    public function return_isactive_channels(){
+
+        return self::$oCRNRSTN_RRS_MAP->return_isactive_channels();
+
+    }
+
     public function return_cache_channels($return_active_channels = false){
 
         // Where, self::$data_channel_init_sequence = 'GPHSJCDROF';
@@ -28060,7 +28213,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                     if($this->get_channel_config($channel_alpha, 'cache_is_active') == true){
 
-                        error_log(__LINE__ . ' crnrstn ACTIVE [' . $channel_alpha . '] ' . $this->get_channel_config($channel_alpha, 'NAME') . ' MC-DDO CHANNEL.');
+                        //error_log(__LINE__ . ' crnrstn MC-DDO CHANNEL ACTIVE [' . $channel_alpha . '] ' . $this->get_channel_config($channel_alpha, 'NAME') . ' MC-DDO CHANNEL.');
 
                         //
                         // RETURN ONLY ACTIVE DATA STORAGE CHANNELS IN THE SEQUENCE OF THEIR INITIALIZATION.
@@ -28069,13 +28222,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     }else{
 
                         //$tmp = strlen(array('324324'));
-                        error_log(__LINE__ . ' crnrstn INACTIVE [' . $channel_alpha . '] ' . $this->get_channel_config($channel_alpha, 'NAME') . ' MC-DDO CHANNEL.');
+                        //error_log(__LINE__ . ' crnrstn MC-DDO CHANNEL INACTIVE [' . $channel_alpha . '] ' . $this->get_channel_config($channel_alpha, 'NAME') . ' MC-DDO CHANNEL.');
 
                     }
 
                 }else{
 
-                    error_log(__LINE__ . ' crnrstn MC-DDO CHANNEL ACTIVE [' . $channel_alpha . '] ' . $this->get_channel_config($channel_alpha, 'NAME') . '.');
+                    //error_log(__LINE__ . ' crnrstn MC-DDO CHANNEL ACTIVE [' . $channel_alpha . '] ' . $this->get_channel_config($channel_alpha, 'NAME') . '.');
 
                     //
                     // RETURN ALL DATA STORAGE CHANNELS IN THE SEQUENCE OF THEIR INITIALIZATION.
@@ -28481,26 +28634,29 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         switch($report_profile){
             case 'total_bytes_processed[r]':
+                //READ
 
                 return self::$oCRNRSTN_RRS_MAP->byte_reporting('total_bytes_processed[r]', $channel, $source);
 
             break;
             case 'channel_bytes_processed[r]':
+                //READ
 
                 return self::$oCRNRSTN_RRS_MAP->byte_reporting('channel_bytes_processed[r]', $channel, $source);
 
             break;
             case 'total_bytes_processed[w]':
+                //WRITES
 
                 foreach($channel as $ch_index => $ch_channel){
 
                     //
                     // EXTRACT REPORTING FOR CHANNEL BYTE STORAGE.
-                    $tmp_total_bytes_processed[$channel] = self::$oCRNRSTN_RRS_MAP->byte_reporting('total_bytes_processed[r]', $ch_channel, $source);
+                    $tmp_total_bytes_processed[$ch_channel] = self::$oCRNRSTN_RRS_MAP->byte_reporting('total_bytes_processed[r]', $ch_channel, $source);
 
                     //
                     // INCREMENT BYTES PROCESSED BY CHANNEL.
-                    $tmp_total_bytes_processed[$channel] += (int) $data_len;
+                    $tmp_total_bytes_processed[$ch_channel] += (int) $data_len;
 
                     self::$oCRNRSTN_RRS_MAP->byte_reporting('total_bytes_processed[w]', $ch_channel, $source, $tmp_total_bytes_processed);
 
@@ -28508,6 +28664,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             break;
             case 'channel_bytes_processed[w]':
+                //WRITES
 
                 //
                 // EXTRACT REPORTING FOR CHANNEL BYTE STORAGE.
@@ -28518,10 +28675,10 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 $tmp_total_bytes_processed[$channel] = (int) $tmp_total_bytes;
 
-                error_log(__LINE__ . '  crnrstn $channel[' . $this->get_channel_config($channel, 'NAME') . ']. tmp_total_bytes[' . print_r($tmp_total_bytes, true) . ']. ');
-                die();
-
-                self::$oCRNRSTN_RRS_MAP->byte_reporting('channel_bytes_processed[w]', $channel, $source, $tmp_grant_channel_auth_permissions);
+                 // error_log(__LINE__ . '  crnrstn $channel[' . $this->get_channel_config($channel, 'NAME') . ']. tmp_total_bytes[' . print_r($tmp_total_bytes, true) . ']. ');
+                 // error_log(__LINE__ . '  crnrstn $channel[' . $channel . ']. tmp_total_bytes[' . print_r($tmp_total_bytes, true) . ']. ');
+                 // die();
+                self::$oCRNRSTN_RRS_MAP->byte_reporting('channel_bytes_processed[w]', $channel, $source, $tmp_total_bytes_processed);
 
             break;
 
@@ -30405,6 +30562,9 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
                 //		        EXPIRATION TTL.
                 //
                 //              NULL IS THE DEFAULT FOR THIS $message_override INPUT.
+                error_log(__LINE__ . ' ' . __METHOD__ . ' SETTING PHP VERSION.');
+                //die();
+
                 if(!($tmp_result = $this->config_ugc_input_clean_data(__FUNCTION__ . '_string', $tmp_version_php, 'version_php', 'CRNRSTN::RESOURCE::CONFIGURATION', 0))){
 
                     //

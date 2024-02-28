@@ -17,6 +17,9 @@
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
+#                   CRNRSTN :: is powered by eVifweb; CRNRSTN :: is powered by eCRM Strategy and Execution,
+#                   Web Design & Development, and Only The Best Coffee.
+#
 #                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
@@ -256,10 +259,14 @@ $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'system_file_max_ui_pageview_cn
 $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'header_response_option_cache_control', 'Cache-Control: public, max-age=31536000', 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
 $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'header_response_option_x_frame_options', 'X-Frame-Options: SAMEORIGIN', 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
 
+error_log(__LINE__ . ' settings START return_creative(\'CRNRSTN_LOGO\', CRNRSTN_STRING ).');
+
 //
 // IMAGE 404 DEFAULT IMAGE. APPLIES TO $_GET[] FOR MISSING PNG,
 // JPEG, MAP, JS, AND CSS SYSTEM FILES.
 $tmp_404_image_url_replace = $this->return_creative('CRNRSTN_LOGO', CRNRSTN_STRING);
+error_log(__LINE__ . ' settings CRNRSTN_LOGO (string) [' . $tmp_404_image_url_replace . '].');
+die();
 $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'crnrstn_system_404_image_url_replace', $tmp_404_image_url_replace, 'CRNRSTN::RESOURCE::HTTP_IMAGES');
 
 //

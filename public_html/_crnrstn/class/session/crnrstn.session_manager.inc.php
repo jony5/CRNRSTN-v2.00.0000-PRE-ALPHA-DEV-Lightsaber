@@ -17,6 +17,9 @@
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
+#                   CRNRSTN :: is powered by eVifweb; CRNRSTN :: is powered by eCRM Strategy and Execution,
+#                   Web Design & Development, and Only The Best Coffee.
+#
 #                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
@@ -246,7 +249,7 @@ class crnrstn_session_manager {
 
                 }else{
 
-                    error_log(__LINE__ . ' ' . __METHOD__ . ' CORRUPT, MIS-MANAGED, OR UNINITIALIZED SESSION DATA. COULD NOT FIND [' . $tmp_previous_config_serial . '] IN $_SESSION[].');
+                    error_log(__LINE__ . ' ' . __METHOD__ . ' SESSION DATA IS UNINITIALIZED. COULD NOT FIND [' . $tmp_previous_config_serial . '] IN $_SESSION[].');
 
                 }
 
@@ -275,7 +278,7 @@ class crnrstn_session_manager {
 
                 $tmp_post_cleaned_total_session_packet_size = $this->oCRNRSTN->format_bytes($_SESSION);
 
-                error_log(__LINE__ . ' ' . __METHOD__ . ' SESSION DATA REPORT. MEM-LEAK SESSION DATA[' . $tmp_pre_cleaned_total_session_packet_size . ']. FINAL (CLEAN) SESSION DATA[' . $tmp_post_cleaned_total_session_packet_size . ']. [session_rtime ' . $this->session_runtime() . ' seconds].');
+                error_log(__LINE__ . ' ' . __METHOD__ . ' SESSION DATA REPORT. PRE-CLEANED SESSION DATA[' . $tmp_pre_cleaned_total_session_packet_size . ']. FINAL (CLEAN) SESSION DATA[' . $tmp_post_cleaned_total_session_packet_size . ']. [session_rtime ' . $this->session_runtime() . ' seconds].');
 
             }else{
 

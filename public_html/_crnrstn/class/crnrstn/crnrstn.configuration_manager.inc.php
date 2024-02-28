@@ -17,6 +17,9 @@
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
+#                   CRNRSTN :: is powered by eVifweb; CRNRSTN :: is powered by eCRM Strategy and Execution,
+#                   Web Design & Development, and Only The Best Coffee.
+#
 #                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
@@ -168,7 +171,13 @@ class crnrstn_configuration_manager {
 
     }
 
-    public function get_channel_config($channel, $index_0 = NULL, $index_1 = NULL, $index_2 = NULL, $index_3 = NULL){
+    public function authorized_channel_ids($channel_data, $output_format = CRNRSTN_INTEGER){
+
+        return self::$oCRNRSTN_DDO->authorized_channel_ids($channel_data, $output_format);
+
+    }
+
+    public function get_channel_config($channel, $index_0, $index_1, $index_2, $index_3){
 
         return self::$oCRNRSTN_DDO->get_channel_config($channel, $index_0, $index_1, $index_2, $index_3);
 
@@ -210,21 +219,21 @@ class crnrstn_configuration_manager {
 
     }
 
-    public function get_ddo_resource_channel_array($ddo_memory_pointer){
+    public function get_ddo_resource_pointer($ddo_memory_pointer, $data_key, $data_type_family, $index){
 
-        return self::$oCRNRSTN_DDO->get_ddo_resource_channel_array($ddo_memory_pointer);
-
-    }
-
-    public function build_ddo_resource_pointer($ddo_memory_pointer, $channel){
-
-        return self::$oCRNRSTN_DDO->build_ddo_resource_pointer($ddo_memory_pointer, $channel);
+        return self::$oCRNRSTN_DDO->get_ddo_resource_pointer($ddo_memory_pointer, $data_key, $data_type_family, $index);
 
     }
 
-    public function isset_ddo_resource_pointer($data_key, $data_type_family, $data_authorization_profile){
+    public function build_ddo_resource_pointer($data_key, $ddo_memory_pointer, $index, $channel, $ttl){
 
-        return self::$oCRNRSTN_DDO->isset_ddo_resource_pointer($data_key, $data_type_family, $data_authorization_profile);
+        return self::$oCRNRSTN_DDO->build_ddo_resource_pointer($data_key, $ddo_memory_pointer, $index, $channel, $ttl);
+
+    }
+
+    public function initialize_ddo_resource_pointer($ddo_memory_pointer, $data_key, $channel, $index, $ttl){
+
+        self::$oCRNRSTN_DDO->initialize_ddo_resource_pointer($ddo_memory_pointer, $data_key, $channel, $index, $ttl);
 
     }
 
@@ -390,10 +399,7 @@ class crnrstn_configuration_manager {
 
             }
 
-            $tmp_data_key = $this->oCRNRSTN->hash_ddo_memory_pointer($data_key, $data_type_family, $env_key);
-
-            //error_log(__LINE__ . ' ' . __METHOD__ . ' hash_ddo_memory_pointer[' . $tmp_data_key . '].');
-            $tmp_data_value_alpha = self::$oCRNRSTN_DDO->preach('data_value', $tmp_data_key, $data_type_family, $data_authorization_profile, $index);
+            $tmp_data_value_alpha = self::$oCRNRSTN_DDO->preach('data_value', $data_key, $data_type_family, $data_authorization_profile, $index);
 
 //            //
 //            // IMPLEMENTATION OF SERIALIZED "NO MATCH" RETURN TO DEFINITIVELY INDICATE WHETHER

@@ -17,6 +17,9 @@
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
+#                   CRNRSTN :: is powered by eVifweb; CRNRSTN :: is powered by eCRM Strategy and Execution,
+#                   Web Design & Development, and Only The Best Coffee.
+#
 #                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
@@ -787,7 +790,7 @@ class crnrstn_decoupled_data_object {
                         //
                         // PLEASE SEE, $oCRNRSTN->config_init_channel()
                         // IN CRNRSTN :: CONFIGURATION. [_crnrstn.config.inc.php]
-                        if($this->oCRNRSTN->oCRNRSTN_RRS_MAP->get_channel_config(self::$system_channel_ARRAY[$tmp_channel_ARRAY[$i]]['NAME'], 'cache_is_active') == true){
+                        if($this->oCRNRSTN->get_channel_config(self::$system_channel_ARRAY[$tmp_channel_ARRAY[$i]]['NAME'], 'cache_is_active') == true){
 
                             //
                             // TRANSLATE THE OpenSSL TUNNELED DATA FROM THIS CRNRSTN ::
@@ -2150,11 +2153,11 @@ class crnrstn_decoupled_data_object {
 
         try{
 
-            error_log(__LINE__ . ' ddo ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . '] authorization profile, ' . strval($data_authorization_profile) . '. alpha_ARRAY[' . print_r(self::$system_channel_alpha_ARRAY, true) . ']. channel_ARRAY[' . print_r(self::$system_channel_ARRAY, true) . '].');
+            //error_log(__LINE__ . ' ddo ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . '] authorization profile, ' . strval($data_authorization_profile) . '. alpha_ARRAY[' . print_r(self::$system_channel_alpha_ARRAY, true) . ']. system_channel_ARRAY[' . $this->oCRNRSTN->format_bytes(self::$system_channel_ARRAY) . '].');
 
-             $this->oCRNRSTN->destruct_output .= '<pre><code>[' . $this->oCRNRSTN->return_micro_time() . '] [rtime ' . $this->oCRNRSTN->wall_time() . '] [lnum ' .  __LINE__ . '] [' . __METHOD__ . ']
-ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
- '<br><br># # C # <span style="color:#F90000;">R</span> # N # R # S # T # N # : : # # # #</br>C<span style="color:#F90000;">R</span>NRSTN :: MULTI-CHANNEL TESTING [' .  print_r(self::$system_channel_alpha_ARRAY, true) . '].<br>' . print_r(self::$system_channel_ARRAY, true) . '</code></pre>';
+//              $this->oCRNRSTN->destruct_output .= '<pre><code>[' . $this->oCRNRSTN->return_micro_time() . '] [rtime ' . $this->oCRNRSTN->wall_time() . '] [lnum ' .  __LINE__ . '] [' . __METHOD__ . ']
+// ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
+//  '<br><br># # C # <span style="color:#F90000;">R</span> # N # R # S # T # N # : : # # # #</br>C<span style="color:#F90000;">R</span>NRSTN :: MULTI-CHANNEL TESTING [' .  print_r(self::$system_channel_alpha_ARRAY, true) . '].<br>' . print_r(self::$system_channel_ARRAY, true) . '</code></pre>';
 
             if(is_numeric($data_authorization_profile)){
 
@@ -2274,111 +2277,20 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
 
     }
 
-    public function get_ddo_resource_channel_array($ddo_memory_pointer){
+    public function get_ddo_resource_pointer($ddo_memory_pointer, $data_key, $data_type_family, $index = 0){
 
         //
-        // DDO MEMORY POINTER DRIVEN CHANNEL EXTRACTION.
+        // MC-DDO MEMORY POINTER DRIVEN CHANNEL EXTRACTION.
         if(isset(self::$ddo_resource_memory_pointer_ARRAY['HASH'][$ddo_memory_pointer])){
 
-            return self::$ddo_resource_memory_pointer_ARRAY['HASH'][$ddo_memory_pointer];
+            error_log(__LINE__ . ' ' . __METHOD__ . ' MC-DDO MEMORY POINTER DRIVEN CHANNEL EXTRACTION $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $index[' . $index . ']. mem pointer[' . print_r(self::$ddo_resource_memory_pointer_ARRAY['HASH'][$ddo_memory_pointer][$index], true) . '].');
+            return self::$ddo_resource_memory_pointer_ARRAY['HASH'][$ddo_memory_pointer][$index];
 
         }
 
         //
-        // EXTRACTION BY DATA KEY (KEY DERIVED FROM DDO MEMORY POINTER).
-        $tmp_data_key = $this->oCRNRSTN->str_sanitize($ddo_memory_pointer, 'data_key_extract');
-
-        if(isset(self::$ddo_resource_memory_pointer_ARRAY['KEY'][$tmp_data_key])){
-
-            return self::$ddo_resource_memory_pointer_ARRAY['KEY'][$tmp_data_key];
-
-        }
-
-        return NULL;
-
-    }
-
-    public function build_ddo_resource_pointer($ddo_memory_pointer, $channel){
-
-        //
-        // EXTRACT DATA KEY FROM DDO MEMORY POINTER.
-        $tmp_data_key = $this->oCRNRSTN->str_sanitize($ddo_memory_pointer, 'data_key_extract');
-
-        //error_log(__LINE__ . ' ddo [' . print_r(self::$ddo_resource_memory_pointer_ARRAY, true) . ']. $ddo_memory_pointer[' . strval($ddo_memory_pointer) . ']. $channel[' . strval($channel) . '].');
-        //error_log(__LINE__ . ' ddo BUILDING $tmp_data_key[' . $tmp_data_key . ']. $ddo_memory_pointer[' . strval($ddo_memory_pointer) . ']. $channel[' . strval($channel) . '].');
-        /*
-        [Tue Oct 31 05:39:49.694742 2023] [:error] [pid 75818] [client 172.16.225.1:59679] 300 ddo
-        $ddo_memory_pointer[eebb1d786f3fb62af6725dacc2e4927bdbc43241647ce47271f7099e1fe9579c::custom_mobi_name].
-        $channel[runtime].
-        $data_key[eebb1d786f3fb62af6725dacc2e4927bdbc43241647ce47271f7099e1fe9579c::custom_mobi_name].
-
-        */
-
-        //
-        // HASH POINTER FOR CHANNEL STORAGE.
-        //if(!isset(self::$ddo_resource_memory_pointer_ARRAY['HASH'][$ddo_memory_pointer])){
-
-            //
-            // ARCHITECTURE TO FIX PHP Warning: Cannot use a scalar value as an array.
-            self::$ddo_resource_memory_pointer_ARRAY['HASH'][$ddo_memory_pointer] = array($channel);
-            //self::$ddo_resource_memory_pointer_ARRAY['HASH'][$ddo_memory_pointer][] = $channel;
-
-        //}
-
-        //
-        // HASH POINTER FOR CHANNEL STORAGE.
-        //if(!isset(self::$ddo_resource_memory_pointer_ARRAY['KEY'][$tmp_data_key])){
-
-            //
-            // ARCHITECTURE TO FIX PHP Warning: Cannot use a scalar value as an array.
-            self::$ddo_resource_memory_pointer_ARRAY['KEY'][$tmp_data_key][] = array($channel);
-            //self::$ddo_resource_memory_pointer_ARRAY['KEY'][$tmp_data_key][] = $channel;
-
-        //}
-
-        return true;
-
-    }
-
-    public function isset_ddo_resource_pointer($ddo_memory_pointer, $data_type_family, $data_auth_channel){
-
-        //
-        // EXTRACT DATA KEY FROM DDO MEMORY POINTER.
-        $tmp_data_key = $this->oCRNRSTN->str_sanitize($ddo_memory_pointer, 'data_key_extract');
-
-//        //
-//        // RETURN NULL IF NOT SET.
-//        // RETURN DDO MEMORY POINTER IF FOUND.
-//        // RETURN ARRAY OF CHANNELS IF SET.
-//        if(!isset($data_auth_channel)){
-//
-//            //
-//            // LOAD THE DEFAULT DATA AUTHORIZATION PROFILE FROM THE CRNRSTN :: CONFIGURATION FILE.
-//            $data_auth_channel = $this->oCRNRSTN->get_resource('data_authorization_profile', 0, 'CRNRSTN::RESOURCE::CONFIGURATION');
-//
-//        }
-
-        if(isset(self::$ddo_resource_memory_pointer_ARRAY['KEY'][$tmp_data_key])){
-
-            $tmp_count = count(self::$ddo_resource_memory_pointer_ARRAY['KEY'][$tmp_data_key]);
-
-            //
-            // FAST...IF THIS USE-CASE IS SATISFIED. I DUNNO IF IT WILL BE.
-            if($tmp_count == 1){
-
-                error_log(__LINE__ . ' env I AM FAST.');
-
-                //
-                // RETURN THE ONE AND ONLY DDO MEMORY POINTER.
-                return self::$ddo_resource_memory_pointer_ARRAY['KEY'][$tmp_data_key][0];
-
-            }
-
-        }
-
-        //
-        // FROM USING DATA KEY ALONE, WE FAILED TO FIND OUT.
-        // NOW...HASH OUT THE DDO MEMORY POINTER, AND CHECK AGAIN.
+        // FROM USING THE MC-DDO MEMORY POIINTER ALONE..., WE FAILED TO FIND OUT.
+        // NOW...TURN TO DATA KEY, AND CHECK AGAIN.
         //
         // "IT'S DOWN THERE SOMEWHERE; LET ME TAKE ANOTHER LOOK."
         //
@@ -2386,18 +2298,58 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
         // https://www.youtube.com/watch?v=NlJGfFqYEms
         //
         // Sunday, October 15, 2023 @ 0438 hrs.
-        //$tmp_ddo_memory_pointer = $this->oCRNRSTN->hash_ddo_memory_pointer($ddo_memory_pointer, $data_type_family);
-        self::$ddo_resource_memory_pointer_ARRAY['KEY'][$tmp_data_key][] = $ddo_memory_pointer;
+        if(isset(self::$ddo_resource_memory_pointer_ARRAY['KEY'][$data_key])){
 
-        if(!isset(self::$ddo_resource_memory_pointer_ARRAY['HASH'][$ddo_memory_pointer])){
-
-            self::$ddo_resource_memory_pointer_ARRAY['HASH'][$ddo_memory_pointer] = 1;
-
-            $this->build_ddo_resource_pointer($ddo_memory_pointer, $this->get_channel_config($data_auth_channel, 'NAME', NULL, NULL, NULL, true));
+            error_log(__LINE__ . ' ' . __METHOD__ . ' MC-DDO EXTRACTION DRIVEN BY DATA KEY $data_key[' . $data_key . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $index[' . $index . ']. mem pointer[' . print_r(self::$ddo_resource_memory_pointer_ARRAY['KEY'][$data_key][$index], true) . '].');
+            return self::$ddo_resource_memory_pointer_ARRAY['KEY'][$data_key][$index];
 
         }
 
-        return $ddo_memory_pointer;
+        // //
+        // // CHECK THE CRNRSTN :: CONFIGURATION SPOOL.
+        // if($this->oCRNRSTN->isset_crnrstn_spool('data_value', $ddo_memory_pointer, $index)){
+
+        //     return 'REPLAY_FROM_CONFIG_SPOOL';
+
+        // }
+
+        //error_log(__LINE__ . ' ' . __METHOD__ . ' NULL RETURN ON $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $data_key[' . $data_key . '].');
+        //error_log(__LINE__ . ' ' . __METHOD__ . ' by ddo_memory_pointer[' . print_r(self::$ddo_resource_memory_pointer_ARRAY['HASH'][$ddo_memory_pointer], true) . '].');
+        //error_log(__LINE__ . ' ' . __METHOD__ . ' by data_key[' . print_r(self::$ddo_resource_memory_pointer_ARRAY['KEY'][$data_key], true) . '].');
+        //error_log(__LINE__ . ' ' . __METHOD__ . ' by HASH[' . print_r(self::$ddo_resource_memory_pointer_ARRAY['HASH'], true) . '].');
+        //error_log(__LINE__ . ' ' . __METHOD__ . ' by KEY[' . print_r(self::$ddo_resource_memory_pointer_ARRAY['KEY'], true) . '].');
+
+        //$tmp = strlen(array('12345'));
+        //die();
+
+        error_log(__LINE__ . ' ' . __METHOD__ . ' MC-DDO EXTRACTION DRIVEN BY RUNTIME [NULL] DEFAULT FOR $data_key[' . $data_key . ']. $ddo_memory_pointer[' . $ddo_memory_pointer . ']. $index[' . $index . '].');
+
+        return array(CRNRSTN_CHANNEL_RUNTIME => CRNRSTN_CHANNEL_RUNTIME);
+
+    }
+
+    public function initialize_ddo_resource_pointer($ddo_memory_pointer, $data_key, $channel, $index, $ttl){
+
+        //
+        // MC-DDO POINTER BUILD.
+        error_log(__LINE__ . ' ' . __METHOD__ . ' $ddo_memory_pointer[' . print_r($ddo_memory_pointer, true) . ']. data_key[' . print_r($data_key, true) . ']. $channel[' . print_r($channel, true) . '].');
+
+        //
+        // STORE THE CRNRSTN :: MC-DDO TARGETED-FOR-INPUT
+        // CHANNEL ID INTEGER ARRAY BY THIS MEMORY POINTER.
+        self::$ddo_resource_memory_pointer_ARRAY['HASH'][$ddo_memory_pointer][$index][] = $channel;
+
+        //
+        // DATA TTL.
+        // TODO :: MC-DDO TTL IMPLEMENTATION.           // Monday, January 1, 2023 @ 0727 hrs.
+        //self::$ddo_resource_ttl_ARRAY['HASH'][$ddo_memory_pointer][$index][] = $ttl;
+        //self::$ddo_resource_ttl_ARRAY['HASH'][$ddo_memory_pointer][$index][] = $this->oCRNRSTN->return_micro_time();
+
+        //
+        // ARCHITECTURE TO FIX PHP Warning: Cannot use a scalar value as an array.
+        self::$ddo_resource_memory_pointer_ARRAY['KEY'][$data_key][$index][] = $channel;
+
+        return true;
 
     }
 
@@ -2445,9 +2397,10 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
             // MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO)
             // RESOURCE MANAGEMENT.
             //
-            // JUST THE CHAR RETURN.
+            // "JUST THE CHAR" RETURN.
             //
             // Sunday, December 10, 2023 @ 0416 hrs.
+            //error_log(__LINE__ . ' ' . __METHOD__ . ' $tmp_channel_char[' . $tmp_channel_char . ']. $index_0[' . $index_0 . ']. $index_1[' . $index_1 . ']. $system_channel_ARRAY[' . $this->oCRNRSTN->format_bytes(self::$system_channel_ARRAY) . ']. $channel[' . $channel . ' (' . $this->oCRNRSTN->format_bytes($channel) . ')].');
             switch($index_0){
                 case 'CHAR':
 
@@ -2456,6 +2409,8 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                 break;
                 case 'NAME':
                 case 'DESCRIPTION':
+
+                    //error_log(__LINE__ . ' ' . __METHOD__ . ' $tmp_channel_char[' . $tmp_channel_char . ']. $index_0[' . $index_0 . ']. $index_1[' . $index_1 . ']. $system_channel_ARRAY[' . $this->oCRNRSTN->format_bytes(self::$system_channel_ARRAY) . ']. $channel[' . $channel . ' (' . $this->oCRNRSTN->format_bytes($channel) . ')].');
 
                     return self::$system_channel_ARRAY[$tmp_channel_char][$index_0];
 
@@ -2612,7 +2567,2238 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
 
     }
 
-    public function get_channel_config($channel, $index_0 = NULL, $index_1 = NULL, $index_2 = NULL, $index_3 = NULL){
+    public function authorized_channel_ids($channel_data, $output_format = CRNRSTN_INTEGER){
+
+        $tmp_channel_int = $channel_data;
+
+        if(!is_numeric($channel_data)){
+
+            $tmp_channel_int = $this->get_channel_config($channel_data, 'AUTHORIZATION', 'PROFILE', 'PRIMARY', CRNRSTN_INTEGER);
+
+        }
+
+        switch($tmp_channel_int){
+            case CRNRSTN_AUTHORIZE_ALL:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_GET:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_POST:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_POST' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_POST => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_POST => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_POST' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_COOKIE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_COOKIE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_COOKIE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_COOKIE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_COOKIE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_SESSION:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_SESSION' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_SESSION => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_SESSION => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_SESSION' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_DATABASE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_DATABASE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_DATABASE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_DATABASE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_DATABASE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_SSDTLA:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_SSDTLA' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_SSDTLA => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_SSDTLA => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_SSDTLA' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_PSSDTLA:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_PSSDTLA' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_PSSDTLA => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_PSSDTLA => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_PSSDTLA' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_RUNTIME:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_RUNTIME => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_RUNTIME => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_SOAP:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_SOAP' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_SOAP => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_SOAP => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_SOAP' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_FILE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_POST & CRNRSTN_AUTHORIZE_GET:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_COOKIE & CRNRSTN_AUTHORIZE_GET:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_COOKIE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_COOKIE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_SESSION & CRNRSTN_AUTHORIZE_GET:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_SESSION => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_SESSION => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_DATABASE & CRNRSTN_AUTHORIZE_GET:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_DATABASE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_DATABASE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_SSDTLA & CRNRSTN_AUTHORIZE_GET:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_SSDTLA => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_SSDTLA => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_PSSDTLA & CRNRSTN_AUTHORIZE_GET:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_PSSDTLA => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_PSSDTLA => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_RUNTIME & CRNRSTN_AUTHORIZE_GET:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_RUNTIME => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_RUNTIME => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_SOAP & CRNRSTN_AUTHORIZE_GET:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_SOAP => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_SOAP => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_COOKIE & CRNRSTN_AUTHORIZE_POST:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_COOKIE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_COOKIE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_SESSION & CRNRSTN_AUTHORIZE_POST:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_SESSION => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_SESSION => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_DATABASE & CRNRSTN_AUTHORIZE_POST:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_DATABASE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_DATABASE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_SSDTLA & CRNRSTN_AUTHORIZE_POST:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_SSDTLA => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_SSDTLA => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_PSSDTLA & CRNRSTN_AUTHORIZE_POST:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_PSSDTLA => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_PSSDTLA => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_RUNTIME & CRNRSTN_AUTHORIZE_POST:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_RUNTIME => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_RUNTIME => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_SOAP & CRNRSTN_AUTHORIZE_POST:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_SOAP => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_SOAP => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_SESSION & CRNRSTN_AUTHORIZE_COOKIE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SESSION => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SESSION => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_DATABASE & CRNRSTN_AUTHORIZE_COOKIE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_DATABASE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_DATABASE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_SSDTLA & CRNRSTN_AUTHORIZE_COOKIE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SSDTLA => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SSDTLA => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_PSSDTLA & CRNRSTN_AUTHORIZE_COOKIE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_PSSDTLA => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_PSSDTLA => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_RUNTIME & CRNRSTN_AUTHORIZE_COOKIE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_RUNTIME => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_RUNTIME => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_SOAP & CRNRSTN_AUTHORIZE_COOKIE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SOAP => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SOAP => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_DATABASE & CRNRSTN_AUTHORIZE_SESSION:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_SSDTLA & CRNRSTN_AUTHORIZE_SESSION:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_SSDTLA => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_SSDTLA => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_PSSDTLA & CRNRSTN_AUTHORIZE_SESSION:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_PSSDTLA => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_PSSDTLA => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_RUNTIME & CRNRSTN_AUTHORIZE_SESSION:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_RUNTIME => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_RUNTIME => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_SOAP & CRNRSTN_AUTHORIZE_SESSION:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_SOAP => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_SOAP => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_SSDTLA & CRNRSTN_AUTHORIZE_DATABASE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_PSSDTLA & CRNRSTN_AUTHORIZE_DATABASE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_PSSDTLA => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_PSSDTLA => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_RUNTIME & CRNRSTN_AUTHORIZE_DATABASE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_RUNTIME => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_RUNTIME => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_SOAP & CRNRSTN_AUTHORIZE_DATABASE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SOAP => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SOAP => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_PSSDTLA & CRNRSTN_AUTHORIZE_SSDTLA:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array( CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_RUNTIME & CRNRSTN_AUTHORIZE_SSDTLA:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_SOAP & CRNRSTN_AUTHORIZE_SSDTLA:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_SOAP => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_SOAP => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_RUNTIME & CRNRSTN_AUTHORIZE_PSSDTLA:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_SOAP & CRNRSTN_AUTHORIZE_PSSDTLA:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_SOAP => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_SOAP => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_SOAP & CRNRSTN_AUTHORIZE_RUNTIME:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_FILE & CRNRSTN_AUTHORIZE_GET:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_FILE & CRNRSTN_AUTHORIZE_POST:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_FILE & CRNRSTN_AUTHORIZE_COOKIE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_FILE & CRNRSTN_AUTHORIZE_SESSION:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_FILE & CRNRSTN_AUTHORIZE_DATABASE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_FILE & CRNRSTN_AUTHORIZE_SSDTLA:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_FILE & CRNRSTN_AUTHORIZE_PSSDTLA:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_FILE & CRNRSTN_AUTHORIZE_RUNTIME:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_ALL & ~CRNRSTN_AUTHORIZE_POST:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_ALL & ~CRNRSTN_AUTHORIZE_COOKIE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_ALL & ~CRNRSTN_AUTHORIZE_SESSION:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_ALL & ~CRNRSTN_AUTHORIZE_SESSION & ~CRNRSTN_AUTHORIZE_COOKIE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_ALL & ~CRNRSTN_AUTHORIZE_DATABASE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_ALL & ~CRNRSTN_AUTHORIZE_DATABASE & ~CRNRSTN_AUTHORIZE_SESSION:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_ALL & ~CRNRSTN_AUTHORIZE_SSDTLA:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_ALL & ~CRNRSTN_AUTHORIZE_SSDTLA & ~CRNRSTN_AUTHORIZE_COOKIE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_ALL & ~CRNRSTN_AUTHORIZE_PSSDTLA:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_ALL & ~CRNRSTN_AUTHORIZE_PSSDTLA & ~CRNRSTN_AUTHORIZE_COOKIE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_SOAP => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_SOAP' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_ALL & ~CRNRSTN_AUTHORIZE_SOAP:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_ALL & ~CRNRSTN_AUTHORIZE_SOAP & ~CRNRSTN_AUTHORIZE_COOKIE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_FILE => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1, CRNRSTN_CHANNEL_FILE => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1, 'CRNRSTN_CHANNEL_FILE' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_ALL & ~CRNRSTN_AUTHORIZE_FILE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_COOKIE => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_COOKIE' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            case CRNRSTN_AUTHORIZE_ALL & ~CRNRSTN_AUTHORIZE_FILE & ~CRNRSTN_AUTHORIZE_COOKIE:
+
+                switch($output_format){
+                    case 'str':
+                    case 'string':
+                    case 'CRNRSTN_STRING':
+                    case CRNRSTN_STRING:
+
+                        return array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                    break;
+                    case 'CRNRSTN_INT':
+                    case CRNRSTN_INT:
+                    case 'CRNRSTN_INTEGER':
+                    case CRNRSTN_INTEGER:
+
+                        return array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1);
+
+                    break;
+                    default:
+
+                        $tmp_ARRAY = array();
+                        $tmp_ARRAY[] = array(CRNRSTN_CHANNEL_GET => 1, CRNRSTN_CHANNEL_POST => 1, CRNRSTN_CHANNEL_SESSION => 1, CRNRSTN_CHANNEL_DATABASE => 1, CRNRSTN_CHANNEL_SSDTLA => 1, CRNRSTN_CHANNEL_PSSDTLA => 1, CRNRSTN_CHANNEL_RUNTIME => 1);
+                        $tmp_ARRAY[] = array('CRNRSTN_CHANNEL_GET' => 1, 'CRNRSTN_CHANNEL_POST' => 1, 'CRNRSTN_CHANNEL_SESSION' => 1, 'CRNRSTN_CHANNEL_DATABASE' => 1, 'CRNRSTN_CHANNEL_SSDTLA' => 1, 'CRNRSTN_CHANNEL_PSSDTLA' => 1, 'CRNRSTN_CHANNEL_RUNTIME' => 1);
+
+                        return $tmp_ARRAY;
+
+                    break;
+
+                }
+
+            break;
+            default:
+
+                //
+                // THIS USE-CASE WILL ALWAYS FIRE DURING CRNRSTN :: INITIALIZATION.
+                return array(CRNRSTN_AUTHORIZE_RUNTIME);
+
+            break;
+
+        }
+
+    }
+
+    public function get_channel_config($channel, $index_0, $index_1 = NULL, $index_2 = NULL, $index_3 = NULL){
 
         try{
 
@@ -2632,10 +4818,10 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
 
 
             //
-            // IF CRNRSTN :: MC-DDO SYSTEM CACHE IS INITIALIZED, AND THIS IS 
-            // NOT A QUICK (SEE FURTHER BELOW) CHANNEL CHAR REQUEST, RETURN 
+            // IF CRNRSTN :: MC-DDO SYSTEM CACHE IS INITIALIZED, AND THIS IS
+            // NOT A QUICK (SEE FURTHER BELOW) CHANNEL CHAR REQUEST, RETURN
             // CHANNEL META FROM RUNTIME CACHE.
-            if((self::$system_channel_cache_initialized !== false) && ($index_0 != 'CHAR')){
+            if((self::$system_channel_cache_initialized !== false) && ($index_0 != 'CHAR') && ($index_0 != 'NAME') && ($index_0 != 'DESCRIPTION')){
 
                 return $this->channel_meta($channel, $index_0, $index_1, $index_2, $index_3);
 
@@ -2662,12 +4848,16 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     // MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO)
                     // RESOURCE MANAGEMENT.
                     //
-                    // JUST THE CHAR RETURN.
+                    // "JUST THE CHAR" RETURN.
                     //
                     // Sunday, December 10, 2023 @ 0423 hrs.
                     $tmp_channel_ARRAY['CHAR'] = 'G';
+                    $tmp_channel_ARRAY['NAME'] = 'get';
+                    $tmp_channel_ARRAY['DESCRIPTION'] = 'G :: HTTP $_GET REQUEST';
                     switch($index_0){
                         case 'CHAR':
+                        case 'NAME':
+                        case 'DESCRIPTION':
 
                             return $tmp_channel_ARRAY[$index_0];
 
@@ -2679,8 +4869,6 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_CHANNEL_GET';
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = CRNRSTN_ENCRYPT_GET;
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = 'CRNRSTN_ENCRYPT_GET';
-                    $tmp_channel_ARRAY['NAME'] = 'get';
-                    $tmp_channel_ARRAY['DESCRIPTION'] = 'G :: HTTP $_GET REQUEST';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = CRNRSTN_AUTHORIZE_GET;
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = 'CRNRSTN_AUTHORIZE_GET';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL,
@@ -2810,12 +4998,16 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     // MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO)
                     // RESOURCE MANAGEMENT.
                     //
-                    // JUST THE CHAR RETURN.
+                    // "JUST THE CHAR" RETURN.
                     //
                     // Sunday, December 10, 2023 @ 0430 hrs.
                     $tmp_channel_ARRAY['CHAR'] = 'P';
+                    $tmp_channel_ARRAY['NAME'] = 'post';
+                    $tmp_channel_ARRAY['DESCRIPTION'] = 'P :: HTTP $_POST REQUEST';
                     switch($index_0){
                         case 'CHAR':
+                        case 'NAME':
+                        case 'DESCRIPTION':
 
                             return $tmp_channel_ARRAY[$index_0];
 
@@ -2827,8 +5019,6 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_CHANNEL_POST';
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = CRNRSTN_ENCRYPT_POST;
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = 'CRNRSTN_ENCRYPT_POST';
-                    $tmp_channel_ARRAY['NAME'] = 'post';
-                    $tmp_channel_ARRAY['DESCRIPTION'] = 'P :: HTTP $_POST REQUEST';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = CRNRSTN_AUTHORIZE_POST;
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = 'CRNRSTN_AUTHORIZE_POST';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL,
@@ -2894,12 +5084,16 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     // MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO)
                     // RESOURCE MANAGEMENT.
                     //
-                    // JUST THE CHAR RETURN.
+                    // "JUST THE CHAR" RETURN.
                     //
                     // Sunday, December 10, 2023 @ 0433 hrs.
                     $tmp_channel_ARRAY['CHAR'] = 'C';
+                    $tmp_channel_ARRAY['NAME'] = 'cookie';
+                    $tmp_channel_ARRAY['DESCRIPTION'] = 'C :: CARRIER PIGEON (AVIAN OF HOMING VARIANT)...OR EVEN A BROWSER COOKIE...EQUALLY AS RELIABLE TO CRNRSTN ::';
                     switch($index_0){
                         case 'CHAR':
+                        case 'NAME':
+                        case 'DESCRIPTION':
 
                             return $tmp_channel_ARRAY[$index_0];
 
@@ -2911,8 +5105,6 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_CHANNEL_COOKIE';
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = CRNRSTN_ENCRYPT_COOKIE;
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = 'CRNRSTN_ENCRYPT_COOKIE';
-                    $tmp_channel_ARRAY['NAME'] = 'cookie';
-                    $tmp_channel_ARRAY['DESCRIPTION'] = 'C :: CARRIER PIGEON (AVIAN OF HOMING VARIANT)...OR EVEN A BROWSER COOKIE...EQUALLY AS RELIABLE TO CRNRSTN ::';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = CRNRSTN_AUTHORIZE_COOKIE;
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = 'CRNRSTN_AUTHORIZE_COOKIE';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL,
@@ -2976,12 +5168,16 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     // MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO)
                     // RESOURCE MANAGEMENT.
                     //
-                    // JUST THE CHAR RETURN.
+                    // "JUST THE CHAR" RETURN.
                     //
                     // Sunday, December 10, 2023 @ 0435 hrs.
                     $tmp_channel_ARRAY['CHAR'] = 'H';
+                    $tmp_channel_ARRAY['NAME'] = 'session';
+                    $tmp_channel_ARRAY['DESCRIPTION'] = 'H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY)';
                     switch($index_0){
                         case 'CHAR':
+                        case 'NAME':
+                        case 'DESCRIPTION':
 
                             return $tmp_channel_ARRAY[$index_0];
 
@@ -2993,8 +5189,6 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_CHANNEL_SESSION';
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = CRNRSTN_ENCRYPT_SESSION;
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = 'CRNRSTN_ENCRYPT_SESSION';
-                    $tmp_channel_ARRAY['NAME'] = 'session';
-                    $tmp_channel_ARRAY['DESCRIPTION'] = 'H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY)';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = CRNRSTN_AUTHORIZE_SESSION;
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = 'CRNRSTN_AUTHORIZE_SESSION';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL,
@@ -3058,12 +5252,16 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     // MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO)
                     // RESOURCE MANAGEMENT.
                     //
-                    // JUST THE CHAR RETURN.
+                    // "JUST THE CHAR" RETURN.
                     //
                     // Sunday, December 10, 2023 @ 0441 hrs.
                     $tmp_channel_ARRAY['CHAR'] = 'D';
+                    $tmp_channel_ARRAY['NAME'] = 'database';
+                    $tmp_channel_ARRAY['DESCRIPTION'] = 'D :: DATABASE (MySQLi CONNECTION)';
                     switch($index_0){
                         case 'CHAR':
+                        case 'NAME':
+                        case 'DESCRIPTION':
 
                             return $tmp_channel_ARRAY[$index_0];
 
@@ -3075,8 +5273,6 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_CHANNEL_DATABASE';
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = CRNRSTN_ENCRYPT_DATABASE;
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = 'CRNRSTN_ENCRYPT_DATABASE';
-                    $tmp_channel_ARRAY['NAME'] = 'database';
-                    $tmp_channel_ARRAY['DESCRIPTION'] = 'D :: DATABASE (MySQLi CONNECTION)';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = CRNRSTN_AUTHORIZE_DATABASE;
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = 'CRNRSTN_AUTHORIZE_DATABASE';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL,
@@ -3141,12 +5337,16 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     // MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO)
                     // RESOURCE MANAGEMENT.
                     //
-                    // JUST THE CHAR RETURN.
+                    // "JUST THE CHAR" RETURN.
                     //
                     // Sunday, December 10, 2023 @ 0446 hrs.
                     $tmp_channel_ARRAY['CHAR'] = 'S';
+                    $tmp_channel_ARRAY['NAME'] = 'ssdtla';
+                    $tmp_channel_ARRAY['DESCRIPTION'] = 'S :: CRNRSTN :: SOAP SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA)';
                     switch($index_0){
                         case 'CHAR':
+                        case 'NAME':
+                        case 'DESCRIPTION':
 
                             return $tmp_channel_ARRAY[$index_0];
 
@@ -3158,8 +5358,6 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_CHANNEL_SSDTLA';
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = CRNRSTN_ENCRYPT_TUNNEL;
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = 'CRNRSTN_ENCRYPT_TUNNEL';
-                    $tmp_channel_ARRAY['NAME'] = 'ssdtla';
-                    $tmp_channel_ARRAY['DESCRIPTION'] = 'S :: CRNRSTN :: SOAP SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA)';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = CRNRSTN_AUTHORIZE_SSDTLA;
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = 'CRNRSTN_AUTHORIZE_SSDTLA';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL,
@@ -3224,12 +5422,16 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     // MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO)
                     // RESOURCE MANAGEMENT.
                     //
-                    // JUST THE CHAR RETURN.
+                    // "JUST THE CHAR" RETURN.
                     //
                     // Sunday, December 10, 2023 @ 0448 hrs.
                     $tmp_channel_ARRAY['CHAR'] = 'J';
+                    $tmp_channel_ARRAY['NAME'] = 'pssdtla';
+                    $tmp_channel_ARRAY['DESCRIPTION'] = 'J :: CRNRSTN :: PSEUDO-SOAP SERVICES DATA TUNNEL LAYER ARCHITECTURE (PSSDTLA)';
                     switch($index_0){
                         case 'CHAR':
+                        case 'NAME':
+                        case 'DESCRIPTION':
 
                             return $tmp_channel_ARRAY[$index_0];
 
@@ -3241,8 +5443,6 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_CHANNEL_PSSDTLA';
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = CRNRSTN_ENCRYPT_TUNNEL;
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = 'CRNRSTN_ENCRYPT_TUNNEL';
-                    $tmp_channel_ARRAY['NAME'] = 'pssdtla';
-                    $tmp_channel_ARRAY['DESCRIPTION'] = 'J :: CRNRSTN :: PSEUDO-SOAP SERVICES DATA TUNNEL LAYER ARCHITECTURE (PSSDTLA)';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = CRNRSTN_AUTHORIZE_PSSDTLA;
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = 'CRNRSTN_AUTHORIZE_PSSDTLA';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL,
@@ -3308,12 +5508,16 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     // MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO)
                     // RESOURCE MANAGEMENT.
                     //
-                    // JUST THE CHAR RETURN.
+                    // "JUST THE CHAR" RETURN.
                     //
                     // Sunday, December 10, 2023 @ 0449 hrs.
                     $tmp_channel_ARRAY['CHAR'] = 'R';
+                    $tmp_channel_ARRAY['NAME'] = 'runtime';
+                    $tmp_channel_ARRAY['DESCRIPTION'] = 'R :: RUNTIME';
                     switch($index_0){
                         case 'CHAR':
+                        case 'NAME':
+                        case 'DESCRIPTION':
 
                             return $tmp_channel_ARRAY[$index_0];
 
@@ -3325,8 +5529,6 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_CHANNEL_RUNTIME';
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = CRNRSTN_ENCRYPT_TUNNEL;
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = 'CRNRSTN_ENCRYPT_TUNNEL';
-                    $tmp_channel_ARRAY['NAME'] = 'runtime';
-                    $tmp_channel_ARRAY['DESCRIPTION'] = 'R :: RUNTIME';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = CRNRSTN_AUTHORIZE_RUNTIME;
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = 'CRNRSTN_AUTHORIZE_RUNTIME';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL,
@@ -3414,12 +5616,16 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     // MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO)
                     // RESOURCE MANAGEMENT.
                     //
-                    // JUST THE CHAR RETURN.
+                    // "JUST THE CHAR" RETURN.
                     //
                     // Sunday, December 10, 2023 @ 0441 hrs.
                     $tmp_channel_ARRAY['CHAR'] = 'O';
+                    $tmp_channel_ARRAY['NAME'] = 'soap';
+                    $tmp_channel_ARRAY['DESCRIPTION'] = 'O :: SIMPLE OBJECT ACCESS PROTOCOL (NuSOAP 0.9.5, SOAP 1.1)';
                     switch($index_0){
                         case 'CHAR':
+                        case 'NAME':
+                        case 'DESCRIPTION':
 
                             return $tmp_channel_ARRAY[$index_0];
 
@@ -3431,8 +5637,6 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_CHANNEL_SOAP';
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = CRNRSTN_ENCRYPT_SOAP;
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = 'CRNRSTN_ENCRYPT_SOAP';
-                    $tmp_channel_ARRAY['NAME'] = 'soap';
-                    $tmp_channel_ARRAY['DESCRIPTION'] = 'O :: SIMPLE OBJECT ACCESS PROTOCOL (NuSOAP 0.9.5, SOAP 1.1)';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = CRNRSTN_AUTHORIZE_SOAP;
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = 'CRNRSTN_AUTHORIZE_SOAP';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL,
@@ -3502,12 +5706,16 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     // MULTI-CHANNEL DECOUPLED DATA OBJECT (MC-DDO)
                     // RESOURCE MANAGEMENT.
                     //
-                    // JUST THE CHAR RETURN.
+                    // "JUST THE CHAR" RETURN.
                     //
                     // Sunday, December 10, 2023 @ 0451 hrs.
                     $tmp_channel_ARRAY['CHAR'] = 'F';
+                    $tmp_channel_ARRAY['NAME'] = 'file';
+                    $tmp_channel_ARRAY['DESCRIPTION'] = 'F :: SERVER LOCAL FILE SYSTEM.';
                     switch($index_0){
                         case 'CHAR':
+                        case 'NAME':
+                        case 'DESCRIPTION':
 
                             return $tmp_channel_ARRAY[$index_0];
 
@@ -3519,8 +5727,6 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                     $tmp_channel_ARRAY['SOURCEID'][CRNRSTN_STRING] = 'CRNRSTN_CHANNEL_FILE';
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_INTEGER] = CRNRSTN_ENCRYPT_FILE;
                     $tmp_channel_ARRAY['ENCRYPTION']['PROFILE'][CRNRSTN_STRING] = 'CRNRSTN_ENCRYPT_FILE';
-                    $tmp_channel_ARRAY['NAME'] = 'file';
-                    $tmp_channel_ARRAY['DESCRIPTION'] = 'F :: SERVER LOCAL FILE SYSTEM.';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_INTEGER] = CRNRSTN_AUTHORIZE_FILE;
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['PRIMARY'][CRNRSTN_STRING] = 'CRNRSTN_AUTHORIZE_FILE';
                     $tmp_channel_ARRAY['AUTHORIZATION']['PROFILE']['AUTHORIZED'][CRNRSTN_INTEGER] = array(CRNRSTN_AUTHORIZE_ALL => CRNRSTN_AUTHORIZE_ALL,
@@ -4491,7 +6697,7 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
             //
             // PLEASE SEE,
             //  $oCRNRSTN->set_channel_config($channel_constant, $attribute_name, $data);
-            //  $oCRNRSTN->get_channel_config($channel, $index_0 = NULL, $index_1 = NULL, $index_2 = NULL, $index_3 = NULL, $initialize = false);
+            //  $oCRNRSTN->get_channel_config($channel, $index_0 = NULL, $index_1 = NULL, $index_2 = NULL, $index_3 = NULL);
             //  $oCRNRSTN->isset_channel_config($channel_constant, $attribute_name, $return_type = CRNRSTN_BOOLEAN);
             //  $oCRNRSTN->is_channel_active($channel_constant, $return_type = CRNRSTN_BOOLEAN);
             /*
@@ -4837,25 +7043,22 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
         //error_log(__LINE__ . ' ddo->' . __METHOD__ . ':: $this->data_value_ARRAY=' . print_r($this->data_value_ARRAY, true) . '.');
         //error_log(__LINE__ . ' ddo $data_attribute=[' . $data_attribute . ']. $data_key=[' . $data_key . ']. $soap_transport=[' . $soap_transport . ']. $index=[' . $index . '].');
 
-        //error_log(__LINE__ . ' env $data_attribute[' . $data_attribute . ']. $data_key[' . $data_key . ']. $index[' . $index . '].');
         //error_log(__LINE__ . ' env LOOKING TO PREACH $data_attribute[' . $data_attribute . ']. $data_key[' . $data_key . ']. $data_authorization_profile[' . $data_authorization_profile . '].');
 
         //
         // GET ACTIVE CACHE CHANNELS IN ORDER OF OPERATIONS DEFINED IN CRNRSTN :: SETTINGS CONFIG.
-        $tmp_channel_ARRAY = $this->oCRNRSTN->return_cache_channels(true);
+        // TODO :: RE-ARCHITECTING CHANNEL MAPPING LOGIC @ $tmp_isactive_channel_ARRAY. Wednesday, January 3, 2024 @ 1431 hrs.
+        //error_log(__LINE__ . ' ' . __METHOD__ . ' TODO :: RE-ARCHITECTING CHANNEL MAPPING LOGIC. Wednesday, January 3, 2024 @ 1431 hrs.');
 
-//        $tmp_pos = strpos($data_key, 'data_channel_init_sequence');
-//        if($tmp_pos !== false){
-//
-//            error_log(__LINE__ . ' env $data_key[' . $data_key . ']. $data_type_family[' . $data_type_family . ']. $index[' . $index . ']. $tmp_channel_ARRAY[' . print_r($tmp_channel_ARRAY, true) . '].');
-//
-//            $tmp_array = array();
-//            $tmp_array[] = '12345';
-//            $tmp = strlen($tmp_array);
-//
-//            die();
-//
-//        }
+        $tmp_ddo_memory_pointer = $this->oCRNRSTN->hash_ddo_memory_pointer($data_key, $data_type_family);
+        //error_log(__LINE__ . ' ' . __METHOD__ . ' $data_attribute[' . $data_attribute . ']. $data_key[' . $data_key . ']. $data_type_family[' . $data_type_family . ']. $data_authorization_profile[' . $data_authorization_profile . ']. $index[' . $index . ']. tmp_ddo_memory_pointer[' . $tmp_ddo_memory_pointer . '].');
+
+        //error_log(__LINE__ . ' ' . __METHOD__ . ' CHANNEL ARRAY FROM SINGLE INTEGER INPUT [' . print_r($this->authorized_channel_ids($data_authorization_profile, CRNRSTN_INTEGER), true) . '].');
+        //error_log(__LINE__ . ' ' . __METHOD__ . ' $tmp_isactive_channel_ARRAY[' . print_r($tmp_isactive_channel_ARRAY, true) . ']. die();');
+        //$this->oCRNRSTN->destruct_output = '<pre><code>[' . $this->oCRNRSTN->return_micro_time()  . '] [lnum ' .  __LINE__ . '] [rtime ' . $this->oCRNRSTN->wall_time() . '] [class ' . __CLASS__  . '] ' .
+        //                    '<br><br># # C # <span style="color:#F90000;">R</span> # N # R # S # T # N # : : # # # #</br>C<span style="color:#F90000;">R</span>NRSTN :: MC-DDO TESTING<br>' . print_r($this->oCRNRSTN->get_channel_config(CRNRSTN_CHANNEL_SOAP), true) . '</code></pre>';
+
+        //die();
 
         /*
         Sunday, October 15, 2023 0248 hrs.
@@ -4864,51 +7067,73 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
         self::$ddo_resource_memory_pointer_ARRAY['crnrstn_system_directory'] = 1;
         -----
         $tmp_ddo_memory_pointer = $this->oCRNRSTN->hash_ddo_memory_pointer($data_key, $data_type_family);
-        self::$ddo_resource_memory_pointer_ARRAY[$tmp_ddo_memory_pointer][] = 'runtime';
-        self::$ddo_resource_memory_pointer_ARRAY[$tmp_ddo_memory_pointer][] = 'session';
+        self::$ddo_resource_memory_pointer_ARRAY[$tmp_ddo_memory_pointer][] = CRNRSTN_CHANNEL_RUNTIME;
+        self::$ddo_resource_memory_pointer_ARRAY[$tmp_ddo_memory_pointer][] = CRNRSTN_CHANNEL_SESSION;
 
         */
 
-//        if($data_key == '451cbfd5141c77a347bb9265ef0257c9451b7f77f68346a37c3acb0c00fb282a::custom_mobi_name'){
-//
-//            $tmp_ARRAY = strlen(array('hello'));
-//
-//        }
+        //error_log(__LINE__ . ' ' . __METHOD__ . ' CHANNEL ARRAY FROM SINGLE INTEGER INPUT [' . print_r($this->authorized_channel_ids($data_authorization_profile, CRNRSTN_INTEGER), true) . '].');
+        // $this->oCRNRSTN->destruct_output = '<pre><code>[' . $this->oCRNRSTN->return_micro_time()  . '] [lnum ' .  __LINE__ . '] [rtime ' . $this->oCRNRSTN->wall_time() . '] [class ' . __CLASS__  . '] ' .
+        //                    '<br><br># # C # <span style="color:#F90000;">R</span> # N # R # S # T # N # : : # # # #</br>C<span style="color:#F90000;">R</span>NRSTN :: MC-DDO TESTING<br>' . print_r($this->oCRNRSTN->get_channel_config(CRNRSTN_CHANNEL_SOAP), true) . '</code></pre>';
 
-        if($tmp_ddo_memory_pointer = $this->oCRNRSTN->isset_ddo_resource_pointer($data_key, $data_type_family, $data_authorization_profile)){
+        //$tmp = strlen(array('1234567'));
+        //$tmp_channel_ARRAY = $this->oCRNRSTN->return_cache_channels(true);
+        $tmp_resource_channel_ARRAY = $this->oCRNRSTN->get_ddo_resource_pointer($tmp_ddo_memory_pointer, $data_key, $data_type_family, $index);
+        error_log(__LINE__ . ' ' . __METHOD__ . ' $data_attribute[' . $data_attribute . ']. $data_key[' . $data_key . ']. $data_type_family[' . $data_type_family . ']. $data_authorization_profile[' . $data_authorization_profile . '] $tmp_resource_channel_ARRAY[' . print_r($tmp_resource_channel_ARRAY, true) . '].');
+        //die();
 
-            if($tmp_resource_channel_ARRAY = $this->oCRNRSTN->get_ddo_resource_channel_array($tmp_ddo_memory_pointer)){
+        // if($tmp_resource_channel_ARRAY == 'REPLAY_FROM_CONFIG_SPOOL'){
 
-                foreach($tmp_resource_channel_ARRAY as $channel_index => $channel){
+        //     return $this->oCRNRSTN->get_crnrstn_spool('data_value', $tmp_ddo_memory_pointer, $index);
 
-                    if($this->isset_resource($data_attribute, $data_key, $channel, $index) == true){
+        // }
 
-                        $tmp_ddo_output = $this->oCRNRSTN->get_config_cache($data_attribute, $data_key, $data_type_family, $index, $channel);
+        foreach($tmp_resource_channel_ARRAY as $ch_index => $channel_int){
 
-                        return $tmp_ddo_output;
+            error_log(__LINE__ . ' ' . __METHOD__ . ' CHECKING MC-DDO channel_int[' . print_r($channel_int, true) . ']. data_key['. $data_key . ']. $tmp_ddo_memory_pointer[' . $tmp_ddo_memory_pointer . '].');
+            if($this->isset_resource($data_attribute, $data_key, $channel_int, $index) == true){
 
-                    }
+                $tmp_ddo_output = $this->oCRNRSTN->get_config_cache($data_attribute, $data_key, $data_type_family, $index, $channel_int);
 
-                }
+                error_log(__LINE__ . ' ' . __METHOD__ . ' DATA RETURN $index[' . $index . '] $data_attribute[' . $data_attribute  . ']. $data_key[' . $data_key . ']. $data_type_family[' . $data_type_family . '].');
+
+                return $tmp_ddo_output;
 
             }
 
         }
 
-        //if(!isset($channel)){
+        error_log(__LINE__ . ' ' . __METHOD__ . ' CHECKING MC-DDO SPOOL data_authorization_profile[' . print_r($data_authorization_profile, true) . ']. $tmp_ddo_memory_pointer[' . $tmp_ddo_memory_pointer . '].');
+        error_log(__LINE__ . ' ' . __METHOD__ . ' CHECKING MC-DDO SPOOL data_attribute[' . print_r($data_attribute, true) . ']. ddo_memory_pointer[' . $tmp_ddo_memory_pointer . ']. $index[' . print_r($index, true) . '].');
 
-        error_log(__LINE__ . ' ' . __CLASS__ . ' DO WE GET THIS FAR? $data_attribute[' . $data_attribute . ']. $data_key[' . $data_key . ']. $data_authorization_profile[' . $this->oCRNRSTN->return_constant_profile_ARRAY($data_authorization_profile, CRNRSTN_STRING) . ']. $tmp_channel_ARRAY[' . print_r($tmp_channel_ARRAY, true) . '].');
-        die();
+        //
+        // IS THE VALUE STORED IN THE SPOOL, BUT THIS REQUEST
+        // COMES BEFORE SPOOL REPLAY HAS FIRED?
+        if($this->oCRNRSTN->isset_crnrstn_spool($data_attribute, $tmp_ddo_memory_pointer, $index) !== false){
 
-        return NULL;
+            error_log(__LINE__ . ' ' . __METHOD__ . ' SPOOL RETURN $index[' . $index . '] $data_attribute[' . $data_attribute  . ']. ddo_memory_pointer[' . $tmp_ddo_memory_pointer . '].');
+            return $this->oCRNRSTN->get_crnrstn_spool($data_attribute, $tmp_ddo_memory_pointer, $index);
+
+        }
+
+        //error_log(__LINE__ . ' ' . __METHOD__ . ':: $index=' . $index . ' $data_attribute=' . $data_attribute  . '. $data_key=' . $data_key . '.');
+
+        //
+        // CHECK THE SPOOL DATA ACCESS ARRAY.
+        // self::$spool_access_ARRAY[$data_key][$data_type_family][] = $data
+        //error_log(__LINE__ . ' ' . __CLASS__ . ' DO WE GET THIS FAR? $data_attribute[' . strval($data_attribute) . ']. $data_key[' . $data_key . ']. $data_authorization_profile[' .
+        //   $this->oCRNRSTN->return_constant_profile_ARRAY($data_authorization_profile, CRNRSTN_STRING) . ']. $data_authorization_profile[' . $data_authorization_profile . ']. $tmp_channel_ARRAY[' . print_r($tmp_channel_ARRAY, true) . '].');
+
+        //die();
+
+        //return NULL;
         //}
 
         //
         // SHOULD WE SWITCH ON CHANNEL AUTHORIZATION...NOT CHANNEL NAME? Sunday, October 15, 2023 @ 0301 hrs.
         // E.G.  case CRNRSTN_AUTHORIZE_RUNTIME:, case CRNRSTN_AUTHORIZE_SESSION, ETC.:
-        switch($data_authorization_profile){
+        switch($this->oCRNRSTN->return_constant_profile_ARRAY($data_authorization_profile, CRNRSTN_INTEGER)){
             case CRNRSTN_AUTHORIZE_SESSION:
-            case 'session':
 
                 if(is_array($data_key)){
 
@@ -5204,7 +7429,7 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
                                 //
                                 // PLEASE SEE,
                                 //  $oCRNRSTN->set_channel_config($channel_constant, $attribute_name, $data);
-                                //  $oCRNRSTN->get_channel_config($channel, $index_0 = NULL, $index_1 = NULL, $index_2 = NULL, $index_3 = NULL, $initialize = false);
+                                //  $oCRNRSTN->get_channel_config($channel, $index_0 = NULL, $index_1 = NULL, $index_2 = NULL, $index_3 = NULL);
                                 //  $oCRNRSTN->isset_channel_config($channel_constant, $attribute_name, $return_type = CRNRSTN_BOOLEAN);
                                 //  $oCRNRSTN->is_channel_active($channel_constant, $return_type = CRNRSTN_BOOLEAN);
                                 //
@@ -5432,7 +7657,7 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
 
             break;
             case CRNRSTN_AUTHORIZE_RUNTIME:
-                //case  'runtime':
+            case  'runtime':
 
                 if(is_array($data_key)){
 
@@ -5900,21 +8125,21 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
 
     }
 
-    public function add($data_value, $data_key = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $index = NULL, $data_authorization_profile = CRNRSTN_AUTHORIZE_RUNTIME, $ttl = 60, $spool_resource = false, $env_key = CRNRSTN_RESOURCE_ALL){
+    public function add($data_value, $data_key = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $index = NULL, $data_authorization_profile = CRNRSTN_AUTHORIZE_RUNTIME, $ttl = 60, $spool_resource = false, $env_key = NULL){
 
-        if(isset($env_key)){
+        // if(isset($env_key)){
 
-            if(strlen((string) $env_key) < 1){
+        //     if(strlen((string) $env_key) < 1){
 
-                $env_key = CRNRSTN_RESOURCE_ALL;
+        //         $env_key = CRNRSTN_RESOURCE_ALL;
 
-            }
+        //     }
 
-        }else{
+        // }else{
 
-            $env_key = CRNRSTN_RESOURCE_ALL;
+        //     $env_key = CRNRSTN_RESOURCE_ALL;
 
-        }
+        // }
 
 //        if($data_key == '54ab03abbade5b942a9f6c3d946daf4e0ee761eba9e525ab12adb3959d626576::share_component_is_active'){
 //
@@ -5932,23 +8157,48 @@ ATTEMPTING CHANNEL AUTHORIZATION [' . strval($channel) . ']' .
         // HASH THE INPUT TO CREATE A CRNRSTN :: DDO ADDRESS FOR
         // (OR MULTI-DIMENSIONAL POINTER TO) THE CACHE STORAGE
         // LOCATION IN MEMORY.
-        $tmp_ddo_memory_pointer = $this->oCRNRSTN->hash_ddo_memory_pointer($data_key, $data_type_family, $env_key);
+        //$tmp_ddo_memory_pointer = $this->oCRNRSTN->hash_ddo_memory_pointer($data_key, $data_type_family, $env_key);
+        $tmp_ddo_memory_pointer = $this->oCRNRSTN->hash_ddo_memory_pointer($data_key, $data_type_family);
         //error_log(__LINE__ . ' crnrstn $tmp_ddo_memory_pointer[' . print_r($tmp_ddo_memory_pointer, true) . ']. $index[' . $index . '].');
+
+        /*
+        //
+        // BREAK-DOWN MC-DDO WRITE INSTRUCTIONS.
+        // Monday, January 1, 2024 @ 0319 hrs.
+        1) WE NEED A METHOD TO RECEVE A SINGLE INTEGER INPUT
+           AND THEN OUTPUT A RESPECTIVE CHANNEL INTEGER ARRAY.
+
+            INPUT:
+                $tmp_input_int = CRNRSTN_AUTHORIZE_RUNTIME & CRNRSTN_AUTHORIZE_GET;
+
+            OUTPUT:
+                $tmp_output_ARRAY = array(CRNRSTN_AUTHORIZE_RUNTIME, CRNRSTN_AUTHORIZE_GET);
+
+            SEE, $this->authorized_channel_ids($data_authorization_profile, CRNRSTN_INTEGER);
+
+        2) AFTER COMPLETING SUPPORT FOR ALL INPUT/OUTPUT
+           VARIATIONS, UPDATE ALL CHANNEL META WHERE
+           NECESSARY, HERE:
+
+                $this->get_channel_config($channel, $index_0, $index_1, $index_2, $index_3);
+
+        */
+
+        //
+        // CREATE A CRNRSTN :: MC-DDO TARGETED-FOR-INPUT CHANNEL ID INTEGER ARRAY.
+        //self::$ddo_resource_memory_pointer_ARRAY['HASH'][$tmp_ddo_memory_pointer][] = $this->authorized_channel_ids($data_authorization_profile, CRNRSTN_INTEGER);
+
+        //error_log(__LINE__ . ' ' . __METHOD__ . ' data_key [' . print_r($data_key, true) . '].');
+        //die();
 
         //
         // INITIALIZE CACHE HEADER FOR RESOURCE.
         // BYTES WILL BE SET TO ZERO.
-        $tmp_channel_res_counts_ARRAY = $this->oCRNRSTN->init_config_cache_index_mem_header($tmp_ddo_memory_pointer, $index, $data_authorization_profile, $ttl);
-        //error_log(__LINE__ . ' ddo HEADER WRITTEN $data_key[' . $data_key . ']. $tmp_ddo_memory_pointer[' . $tmp_ddo_memory_pointer . ']. $index[' . $index . ']. $data_authorization_profile[' . $data_authorization_profile . ']. $ttl[' . $ttl . ']. $tmp_channel_res_counts_ARRAY[' . print_r($tmp_channel_res_counts_ARRAY, true) . '].');
+        $this->oCRNRSTN->init_config_cache_index_mem_header($tmp_ddo_memory_pointer, $data_key, $data_authorization_profile, $index, $ttl);
+        error_log(__LINE__ . ' ddo HEADER WRITTEN $data_key[' . $data_key . ']. $tmp_ddo_memory_pointer[' . $tmp_ddo_memory_pointer . ']. $index[' . $index . ']. $data_authorization_profile[' . $data_authorization_profile . ']. $ttl[' . $ttl . '].');
 
         //error_log(__LINE__ . ' env DDO NEED COUNTS FOR INDEX CONTROL FOR <META> LOOP OUT. [' . print_r($tmp_channel_res_counts_ARRAY, true) . '].');
         //error_log(__LINE__ . ' env  PROCEED TO WRITE data_value[' . print_r($data_value, true) . ']. $data_type_family[' . $data_type_family . '].');
-
-        if(!isset($tmp_ddo_memory_pointer)){
-
-            $tmp_ddo_memory_pointer = '';
-
-        }
 
         //
         // PROCESS DATA TYPE.

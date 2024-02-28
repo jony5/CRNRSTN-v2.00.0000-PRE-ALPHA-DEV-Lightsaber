@@ -17,6 +17,9 @@
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
+#                   CRNRSTN :: is powered by eVifweb; CRNRSTN :: is powered by eCRM Strategy and Execution,
+#                   Web Design & Development, and Only The Best Coffee.
+#
 #                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
@@ -13040,7 +13043,7 @@ class crnrstn_system_asset_manager {
             break;
             default:
 
-                //error_log(__LINE__ . ' asset mgr CACHE META REQUEST RECEIVED FOR [' . $asset_data_key . '].');
+                error_log(__LINE__ . ' asset mgr CACHE META REQUEST RECEIVED FOR [' . $asset_data_key . ']. $asset_family[' . $asset_family . '].');
 
                 //
                 // MUST CHECK ALL FOR METHOD DRIVEN USE CASES.

@@ -17,6 +17,9 @@
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
 #
+#                   CRNRSTN :: is powered by eVifweb; CRNRSTN :: is powered by eCRM Strategy and Execution,
+#                   Web Design & Development, and Only The Best Coffee.
+#
 #                   Copyright (c) 2012-2024 :: eVifweb development :: All Rights Reserved.
 #    DESCRIPTION :: CRNRSTN :: is an open source PHP class library that will facilitate and spread (via SOAP services)
 #                   operations of a web application across multiple servers or environments (e.g. localhost, stage,
@@ -518,7 +521,7 @@ class crnrstn_content_source_controller {
 
     public function return_crnrstn_text_link($module_key, $system_asset_constant = 'CRNRSTN_R_MD', $url_override = NULL, $resource_constant = CRNRSTN_RESOURCE_DOCUMENTATION){
 
-        //error_log(__LINE__ . ' csc new link html. $module_key[' . $module_key . ']. $system_asset_constant[' .  $system_asset_constant .  ']. $url_override[' . $url_override . ']. $resource_constant[' . $resource_constant . '].');
+        error_log(__LINE__ . ' csc new link html. $module_key[' . $module_key . ']. $system_asset_constant[' .  $system_asset_constant .  ']. $url_override[' . $url_override . ']. $resource_constant[' . $resource_constant . '].');
 
         switch($resource_constant){
             case CRNRSTN_RESOURCE_DOCUMENTATION:
@@ -14785,8 +14788,7 @@ between the server and client can be achieved with minimal effort and maximum da
     CRNRSTN_IP_SECURITY
     CRNRSTN_GABRIEL
     CRNRSTN_SMTP_AUTHENTICATION
-    CRNRSTN_EMAIL_CRNRSTN_SOURCE
-    CRNRSTN_EMAIL_USER_SOURCE
+    CRNRSTN_EMAIL
     CRNRSTN_ELECTRUM
     CRNRSTN_ELECTRUM_THREAD
     CRNRSTN_ELECTRUM_COMM
@@ -21158,12 +21160,12 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_MAGNIFICATION_EFFECT_IS_ACTIVE'] = 1;
 
             break;
-            case 'CRNRSTN_EMAIL_CRNRSTN_SOURCE':
-            case CRNRSTN_EMAIL_CRNRSTN_SOURCE:
+            case 'CRNRSTN_EMAIL':
+            case CRNRSTN_EMAIL:
 
                 $tmp_output_ARRAY['FAMILY'] = 'CRNRSTN_GABRIEL';
-                $tmp_output_ARRAY[CRNRSTN_INTEGER] = CRNRSTN_EMAIL_CRNRSTN_SOURCE;
-                $tmp_output_ARRAY[CRNRSTN_STRING] = 'CRNRSTN_EMAIL_CRNRSTN_SOURCE';
+                $tmp_output_ARRAY[CRNRSTN_INTEGER] = CRNRSTN_EMAIL;
+                $tmp_output_ARRAY[CRNRSTN_STRING] = 'CRNRSTN_EMAIL';
 
                 switch($this->iso_lang_code){
                     case 'es':
@@ -21186,12 +21188,12 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_MAGNIFICATION_EFFECT_IS_ACTIVE'] = 1;
 
             break;
-            case 'CRNRSTN_EMAIL_USER_SOURCE':
-            case CRNRSTN_EMAIL_USER_SOURCE:
+            case 'CRNRSTN_PASSWORD':
+            case CRNRSTN_PASSWORD:
 
-                $tmp_output_ARRAY['FAMILY'] = 'CRNRSTN_GABRIEL';
-                $tmp_output_ARRAY[CRNRSTN_INTEGER] = CRNRSTN_EMAIL_USER_SOURCE;
-                $tmp_output_ARRAY[CRNRSTN_STRING] = 'CRNRSTN_EMAIL_USER_SOURCE';
+                $tmp_output_ARRAY['FAMILY'] = 'OUTPUT';
+                $tmp_output_ARRAY[CRNRSTN_INTEGER] = CRNRSTN_PASSWORD;
+                $tmp_output_ARRAY[CRNRSTN_STRING] = 'CRNRSTN_PASSWORD';
 
                 switch($this->iso_lang_code){
                     case 'es':
@@ -21205,6 +21207,9 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 }
 
+                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_NAME'][] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_URL'][] = '';
+                $tmp_output_ARRAY['INTEGRATIONS']['FILE_EXTENSION'] = array('');
                 $tmp_output_ARRAY['INTEGRATIONS']['MEDIA_ELEMENT_KEY'] = array('');
                 $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LABEL'] = '';
                 $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_COLOR_CLASS'] = '';
@@ -50891,68 +50896,6 @@ In late 2012 and 2013, several projects for alternative implementations for Perl
 
             break;
 
-            case 'CRNRSTN_CHANNEL_ISEMAIL':
-            case CRNRSTN_CHANNEL_ISEMAIL:
-
-                $tmp_output_ARRAY['FAMILY'] = 'OUTPUT';
-                $tmp_output_ARRAY[CRNRSTN_INTEGER] = CRNRSTN_CHANNEL_ISEMAIL;
-                $tmp_output_ARRAY[CRNRSTN_STRING] = 'CRNRSTN_CHANNEL_ISEMAIL';
-
-                switch($this->iso_lang_code){
-                    case 'es':
-                    case 'en':
-                    default:
-
-                        $tmp_output_ARRAY['TITLE'] = '';
-                        $tmp_output_ARRAY['DESCRIPTION'] = '';
-
-                    break;
-
-                }
-
-                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_NAME'][] = '';
-                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_URL'][] = '';
-                $tmp_output_ARRAY['INTEGRATIONS']['FILE_EXTENSION'] = array('');
-                $tmp_output_ARRAY['INTEGRATIONS']['MEDIA_ELEMENT_KEY'] = array('');
-                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LABEL'] = '';
-                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_COLOR_CLASS'] = '';
-                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_WEIGHT_CLASS'] = 'HEAVY';
-                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_COLOR_CLASS'] = '#000';
-                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_BRIGHTEN_EFFECT_IS_ACTIVE'] = 1;
-                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_MAGNIFICATION_EFFECT_IS_ACTIVE'] = 1;
-
-            break;
-            case 'CRNRSTN_CHANNEL_ISPASSWORD':
-            case CRNRSTN_CHANNEL_ISPASSWORD:
-
-                $tmp_output_ARRAY['FAMILY'] = 'OUTPUT';
-                $tmp_output_ARRAY[CRNRSTN_INTEGER] = CRNRSTN_CHANNEL_ISPASSWORD;
-                $tmp_output_ARRAY[CRNRSTN_STRING] = 'CRNRSTN_CHANNEL_ISPASSWORD';
-
-                switch($this->iso_lang_code){
-                    case 'es':
-                    case 'en':
-                    default:
-
-                        $tmp_output_ARRAY['TITLE'] = '';
-                        $tmp_output_ARRAY['DESCRIPTION'] = '';
-
-                    break;
-
-                }
-
-                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_NAME'][] = '';
-                $tmp_output_ARRAY['INTEGRATIONS']['TRADEMARK_OWNER_URL'][] = '';
-                $tmp_output_ARRAY['INTEGRATIONS']['FILE_EXTENSION'] = array('');
-                $tmp_output_ARRAY['INTEGRATIONS']['MEDIA_ELEMENT_KEY'] = array('');
-                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LABEL'] = '';
-                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_COLOR_CLASS'] = '';
-                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_WEIGHT_CLASS'] = 'HEAVY';
-                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_LINE_COLOR_CLASS'] = '#000';
-                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_BRIGHTEN_EFFECT_IS_ACTIVE'] = 1;
-                $tmp_output_ARRAY['INTEGRATIONS']['SYSTEM_ICON_MAGNIFICATION_EFFECT_IS_ACTIVE'] = 1;
-
-            break;
             case 'CRNRSTN_CHANNEL_FORM':
             case CRNRSTN_CHANNEL_FORM:
 
