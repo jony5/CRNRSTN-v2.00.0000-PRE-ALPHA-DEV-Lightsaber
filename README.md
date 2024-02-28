@@ -16,7 +16,7 @@ The SITE IS STILL AWAITING ACCOUNT SETUP with Bluehost at this time (~5 failed t
 
 [https://bassdrive.com/](https://www.bassdrive.com/)
 
-Last updated on Wednesday, December 13, 2023 @ 04:20:00.586911 EDT; The project _tmp_diagrams/ were updated as well.
+Last updated on Wednesday, December 13, 2023 @ 04:20:00.586911 EDT; The project _tmp_diagrams/ were updated as well. Please note that the code has since changed.
 
 [lightsaber.crnrstn.jony5.com](http://lightsaber.crnrstn.jony5.com/)
 
