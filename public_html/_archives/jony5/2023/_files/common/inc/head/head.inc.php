@@ -76,8 +76,12 @@ switch($_SERVER['SCRIPT_NAME']){
 
                     }
 
+                    //
+                    // LOWERCASE.
                     $tmp_book_str_social = strtolower($pfw[1]['COPY'][0]);
 
+                    //
+                    // REMOVE SPACES.
                     $tmp_book_str_social = $oBringer->str_sanitize($tmp_book_str_social, 'bible_book_name');
 
                     //error_log(__LINE__ . ' $tmp_nav_str_social_preview[' . $tmp_description_str_social_preview . ']. $tmp_book_str_social[' . $tmp_book_str_social . ']. vvid[' . $oBringer->vvid . '].');
@@ -89,7 +93,7 @@ switch($_SERVER['SCRIPT_NAME']){
             //
             // SCRIPTURES SOCIAL PREVIEW IMAGE
             $social_img = 'scriptures_lsm_social_preview.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.0';
-            if(is_file($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/' . strtolower($tmp_book_str_social) . '_lsm_social_preview.png')){
+            if(is_file($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/' . $tmp_book_str_social . '_lsm_social_preview.png')){
 
                 $social_img = $tmp_book_str_social . '_lsm_social_preview.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/' . $tmp_book_str_social . '_lsm_social_preview.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/' . $tmp_book_str_social . '_lsm_social_preview.png') . '.0';
 
