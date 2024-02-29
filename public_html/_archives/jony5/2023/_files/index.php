@@ -1,5 +1,4 @@
 <?php
-
 /* 
 // J5
 // Code is Poetry */
@@ -16,7 +15,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
 // They will turn to you,
 // But you will not turn to them. - Jeremiah 15:19
 //
-// INSTANTIATE A bringer_of_the_precious_things()
+// INSTANTIATE A bringer_of_the_precious_things CLASS OBJECT.
 $oBringer = new bringer_of_the_precious_things($oCRNRSTN_ENV);
 $pfw = $precious_from_the_worthless = $oBringer->return_to_me_the_precious();
 $tmp_scroll_ID = '';
@@ -44,7 +43,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
 // They will turn to you,
 // But you will not turn to them. - Jeremiah 15:19
 //
-// INSTANTIATE A NEW bringer_of_the_precious_things()
+// INSTANTIATE A bringer_of_the_precious_things CLASS OBJECT.
 -->
 <div id="scripture_lightbox_overlay" class="scripture_lightbox_overlay" onclick="close_scripture_overlay_modal();"></div>
 <div id="script_shell0">
@@ -65,7 +64,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
 	require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/nav/topnav.inc.php');
 	?>
 	<div class="cb"></div>
-    
+
     <!-- LIFESTYLE BANNER -->
     <?php
     require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/lifestyle/banner_component.inc.php');
@@ -74,7 +73,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
     <div id="banner_lifestyle_dropshadow" style="background-image:url(<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/dropshadow.gif);">
     	<div id="banner_lifestyle_dropshadow_corner"><img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/dropshadow_corner.gif" width="6" height="6" alt=""></div>
     </div>
-    
+
     <div id="user_transaction_wrapper" class="user_transaction_wrapper" style="display:none;">
         <div class="user_transaction_content">
             <div id="user_transaction_status_msg" class="<?php echo $oUSER->transStatusMessage_ARRAY[0]; ?>"><?php echo $oUSER->transStatusMessage_ARRAY[1]; ?></div>
@@ -82,6 +81,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
     </div>
 
     <div class="cb_30"></div>
+
     <!-- PAGE CONTENT -->
     <div id="content_wrapper">
     	<div id="vert_nav_wrapper">
@@ -90,7 +90,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
             <div class="vert_nav_lnk_wrapper"><a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>about/work/skills/" target="_self"></a></div>
     		<div class="vert_nav_lnk_wrapper"></div>
     	</div>
-    
+
     	<div id="content">
             <div style="float: left;">
                 <div style="position:relative;">
@@ -117,7 +117,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
                             $tmp_lnk_reddit = 'https://www.reddit.com/submit?url=' . $tmp_share_lnk . '&title=' . $tmp_share_message;
 
                             ?>
-                            
+
                             <div style="padding: 0 0 10px 0; cursor: pointer;" onclick="scripture_deep_link_copy_clipboard('<?php echo $tmp_serial; ?>', '<?php echo $tmp_copy_share_lnk; ?>');">
                                 <div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
                                     <div style="position: relative;">
@@ -192,7 +192,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
                         echo $oBringer->link_html('luke12_34-44','Luke 12:34-44');
                         ?>),
                         a web professional living and working in Atlanta, GA.
-                        With 6 years of solid agency experience (+16 years of programming
+                        With 6 years of solid agency experience (+18 years of programming
 						experience in open source web technologies) behind me, I am always open to 
 						investigate fresh opportunities to work with active, growing and digitally 
 						fueled companies in order to strengthen and broaden aspects of their service 
@@ -405,7 +405,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
 					<p>In January of 2006, I acquired (for the first time in my life) a little puppy dog! At a loss for what to name him, I decided to go with &quot;J5&quot;...a play off of my nickname &quot;jony5&quot;. About a month later, I found myself working with advertising agency, <a href="http://moxieusa.com" target="_blank">Moxie</a>...and introduced myself to them as &quot;jony5&quot;...the name given to me by coworkers at REI. The office was dog friendly, and so people became accustomed to seeing &quot;J5&quot; and &quot;jony5&quot;...which gradually morphed over time to &quot;the 2 fives&quot;, &quot;five squared&quot; or just simply &quot;J5 and J5&quot;.</p>
 
 					<p>At this point (16 years from the start), many of my friends (including all my Moxie coworkers) and even family members call me &quot;J5&quot;, and that is just fine with me.</p>
-                    
+
                 </div>
             </div>
                 <div class="cb"></div>
@@ -1183,9 +1183,9 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
             <div class="cb"></div>
 
         </div><!-- END PAGE CONTENT -->
-    
+
     </div>
-    
+
     <div class="cb_30"></div>
     <?php
 	require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/footer/footer.inc.php');
