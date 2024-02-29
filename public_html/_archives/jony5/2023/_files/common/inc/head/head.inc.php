@@ -379,7 +379,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs. ::
 
                             $tmp_uri                    = str_replace("index.php", "", $tmp_uri);
                             $social_url                 = $tmp_uri;
-                            $htmlTitle = $social_title  = "INDEX OF SCRIPTURES by Jonathan 'J5' Harris, messenger of the church in Philadelphia.";
+                            $htmlTitle = $social_title  = "INDEX OF SCRIPTURES by Jonathan 'J5' Harris.";
                             $social_img                 = 'scriptures_lsm_social_preview.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.0';
                             $social_desc                = "INDEX OF SCRIPTURES by Jonathan 'J5' Harris, messenger of the church in Philadelphia.";
                             $primary_desc               = "INDEX OF SCRIPTURES by Jonathan 'J5' Harris, messenger of the church in Philadelphia.";
