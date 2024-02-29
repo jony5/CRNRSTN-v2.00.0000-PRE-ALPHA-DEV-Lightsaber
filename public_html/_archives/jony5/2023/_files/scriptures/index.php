@@ -55,7 +55,16 @@ $tmp_sprite_ver_date = filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $
 // $tmp_vnav_array['VVID'][1] = 'col2_9';
 // $tmp_vnav_array['COPY'][1] = 'Colossians 2:9';
 $tmp_flag = '';
-$tmp_loop_size = sizeof($pfw[0]['VVID']);
+if(isset($pfw[0]['VVID'])){
+
+    $tmp_loop_size = sizeof($pfw[0]['VVID']);
+
+}else{
+
+    $tmp_loop_size = 0;
+
+}
+
 $tmp_nav_str = '';
 $tmp_nav_str_social_preview = '';
 for($i = 0; $i < $tmp_loop_size; $i++){
@@ -185,6 +194,10 @@ for($i = 0; $i < $tmp_loop_size; $i++){
     <style>
 
         .script_fade_bdr                    { background-image: url("<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/imgs/scriptures_fade_edge_grey.png"); }
+        .script_footer_vv_index_rel         { position:relative; float:left; width:5px; padding:0 0 10px 10px; }
+        .script_footer_vv_index_abs         { position:absolute; width: 200px; }
+        .script_footer_holy_bible_rel       { position:relative; width: 5px; float:right; padding:0 10px; 10px 0; }
+        .script_footer_holy_bible_abs       { position:absolute; left:-250px; width: 300px; }
 
     </style>
 </head>
@@ -293,12 +306,21 @@ for($i = 0; $i < $tmp_loop_size; $i++){
             // LOOP THROUGH $pfw TO OUTPUT RETURNED BOOK TITLE - SHOULD NEVER BE MORE THAN ONE FROM CURRENT REQUIREMENTS
             // TITLE STRUCTURE IS AS FOLLOWS
             // ['COPY'][n+1] = COPY
-            $tmp_loop_size = sizeof($pfw[1]['COPY']);
-            for($i=0; $i < $tmp_loop_size; $i++){
+            if(isset($pfw[1]['COPY'])){
 
-                echo '<div class="script_book_title">' . $pfw[1]['COPY'][$i] . '</div>';
+                $tmp_loop_size = sizeof($pfw[1]['COPY']);
+                for($i=0; $i < $tmp_loop_size; $i++){
+
+                    echo '<div class="script_book_title">' . $pfw[1]['COPY'][$i] . '</div>';
+
+                }
+
+            }else{
+
+                echo '<div class="script_book_title">Jehovah Has Revealed His Heart</div>';
 
             }
+
             ?>
             <div class="script_verse_wrapper">
                 <?php
@@ -354,8 +376,18 @@ for($i = 0; $i < $tmp_loop_size; $i++){
         <div class="script_fade_bdr"></div>
     </div>
     <div class="cb_20"></div>
-    <div id="script_footer_wrapper">Holy Bible :: <a href="https://www.recoveryversion.bible/" target="_blank" onclick="lockPopup('https://www.recoveryversion.bible/');">Recovery Version</a></div>
+    <div id="script_footer_wrapper">
+        <div class="script_footer_vv_index_rel">
+            <div class="script_footer_vv_index_abs">
+                <div class="script_footer_vv_index"><a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>scriptures/site_index/" target="_blank" onclick="lockPopup('<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>scriptures/site_index/');">Site Index of Holy Scriptures</a></div>
+            </div>
+        </div>
+        <div class="script_footer_holy_bible_rel">
+            <div class="script_footer_holy_bible_abs">Holy Bible :: <a href="https://www.recoveryversion.bible/" target="_blank" onclick="lockPopup('https://www.recoveryversion.bible/');">Recovery Version</a></div>
+        </div>
+        <div class="cb_5"></div>
 
+    </div>
 </div>
 
 <?php

@@ -87,9 +87,17 @@ switch($_SERVER['SCRIPT_NAME']){
 
                     }
 
-                    //
-                    // LOWERCASE.
-                    $tmp_book_str_social = strtolower($pfw[1]['COPY'][0]);
+                    if(isset($pfw[1]['COPY'])){
+
+                        //
+                        // LOWERCASE.
+                        $tmp_book_str_social = strtolower($pfw[1]['COPY'][0]);
+
+                    }else{
+
+                        $tmp_book_str_social = 'Jehovah Has Revealed His Heart';
+
+                    }
 
                     //
                     // REMOVE SPACES.
@@ -153,10 +161,28 @@ switch($_SERVER['SCRIPT_NAME']){
 
             }
 
-            $site_name      = 'Hi, I\'m Jonathan \'J5\' Harris, messenger of the church in Philadelphia.';
-            $social_url     = $tmp_http_root . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-            $htmlTitle      = $social_title = $tmp_nav_str_social_preview;
-            $tmp_str_cnt    = strlen($tmp_description_str_social_preview);
+            $site_name = 'Hi, I\'m Jonathan \'J5\' Harris, messenger of the church in Philadelphia.';
+            $social_url = $tmp_http_root . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+            if($tmp_vv == 'jehovah_has_revealed_dl'){
+
+                $htmlTitle = $social_title = 'DOWNLOAD :: Jehovah Has Revealed His Heart';
+
+            }else{
+
+                if($tmp_vv == 'jehovah_has_revealed_audio'){
+
+                    $htmlTitle = $social_title = 'LISTEN :: Jehovah Has Revealed His Heart';
+
+                }else{
+
+                    $htmlTitle = $social_title = $tmp_nav_str_social_preview;
+
+                }
+
+            }
+
+            $tmp_str_cnt = strlen($tmp_description_str_social_preview);
             if($tmp_str_cnt > 190){
 
                 $tmp_elip = '...';
@@ -347,12 +373,30 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs. ::
 
                     $tmp_elip = '...';
 
-                    $tmp_uri                    = str_replace("index.php", "", $tmp_uri);
-                    $social_url                 = "https://jony5.com" . $tmp_uri;
-                    $htmlTitle = $social_title  = "Hi, I'm Jonathan 'J5' Harris, messenger of the church in Philadelphia.";
-                    $social_img                 = 'jony5_social_preview_00.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/jony5_social_preview_00.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/jony5_social_preview_00.png') . '.0';
-                    $social_desc                = "I'm Jonathan 'J5' Harris, a web professional living in the metro-Atlanta area. In my free time, I jump head-first into web development, email marketing, & drum-n-bass music!";
-                    $primary_desc               = "I'm Jonathan 'J5' Harris, a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+10 years of programming experience) behind me, I am always open to finding fresh opportunities to work with growing and digitally fueled companies in order to strengthen and broaden the technical aspects of their service offerings. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands when necessary) multi-channel business marketing initiatives. Digital brand strategy and execution are my core competencies.";
+                    switch($_SERVER['SCRIPT_NAME']) {
+                        case '/jony5.com/scriptures/site_index/index.php':
+                        case '/scriptures/site_index/index.php':
+
+                            $tmp_uri                    = str_replace("index.php", "", $tmp_uri);
+                            $social_url                 = $tmp_uri;
+                            $htmlTitle = $social_title  = "INDEX OF SCRIPTURES by Jonathan 'J5' Harris, messenger of the church in Philadelphia.";
+                            $social_img                 = 'scriptures_lsm_social_preview.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.0';
+                            $social_desc                = "INDEX OF SCRIPTURES by Jonathan 'J5' Harris, messenger of the church in Philadelphia.";
+                            $primary_desc               = "INDEX OF SCRIPTURES by Jonathan 'J5' Harris, messenger of the church in Philadelphia.";
+
+                        break;
+                        default:
+
+                            $tmp_uri                    = str_replace("index.php", "", $tmp_uri);
+                            $social_url                 = $tmp_uri;
+                            $htmlTitle = $social_title  = "Hi, I'm Jonathan 'J5' Harris, messenger of the church in Philadelphia.";
+                            $social_img                 = 'jony5_social_preview_00.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/jony5_social_preview_00.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/jony5_social_preview_00.png') . '.0';
+                            $social_desc                = "I'm Jonathan 'J5' Harris, a web professional living in the metro-Atlanta area. In my free time, I jump head-first into web development, email marketing, & drum-n-bass music!";
+                            $primary_desc               = "I'm Jonathan 'J5' Harris, a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+10 years of programming experience) behind me, I am always open to finding fresh opportunities to work with growing and digitally fueled companies in order to strengthen and broaden the technical aspects of their service offerings. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands when necessary) multi-channel business marketing initiatives. Digital brand strategy and execution are my core competencies.";
+
+                        break;
+
+                    }
 
                 break;
 

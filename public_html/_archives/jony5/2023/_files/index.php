@@ -4,7 +4,7 @@
 // Code is Poetry */
 require('_crnrstn.root.inc.php');
 include_once($CRNRSTN_ROOT . '_crnrstn.config.inc.php');
-require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/session/session.inc.php');
+require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/inc/session/session.inc.php');
 
 //
 // Therefore thus says Jehovah,
@@ -28,7 +28,7 @@ $tmp_sprite_ver_date = filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $
 <html lang="en">
 <head>
 <?php
-require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/head/head.inc.php');
+require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/inc/head/head.inc.php');
 ?>
 </head>
 
@@ -55,23 +55,23 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
     </div>
 </div>
 <?php
-	require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/contact/contact.inc.php');
+	require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/inc/contact/contact.inc.php');
 	?>
 
 <div id="body_wrapper">
 	<!-- HEAD CONTENT -->
 	<?php
-	require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/nav/topnav.inc.php');
+	require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/inc/nav/topnav.inc.php');
 	?>
 	<div class="cb"></div>
 
     <!-- LIFESTYLE BANNER -->
     <?php
-    require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/lifestyle/banner_component.inc.php');
+    require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/inc/lifestyle/banner_component.inc.php');
     ?>
 
-    <div id="banner_lifestyle_dropshadow" style="background-image:url(<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/dropshadow.gif);">
-    	<div id="banner_lifestyle_dropshadow_corner"><img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/dropshadow_corner.gif" width="6" height="6" alt=""></div>
+    <div id="banner_lifestyle_dropshadow" style="background-image:url(<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/dropshadow.gif);">
+    	<div id="banner_lifestyle_dropshadow_corner"><img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/dropshadow_corner.gif" width="6" height="6" alt=""></div>
     </div>
 
     <div id="user_transaction_wrapper" class="user_transaction_wrapper" style="display:none;">
@@ -82,12 +82,12 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
 
     <div class="cb_30"></div>
 
-    <!-- PAGE CONTENT -->
+    <!-- BEGIN PAGE CONTENT WRAPPER -->
     <div id="content_wrapper">
     	<div id="vert_nav_wrapper">
-    		<div class="vert_nav_lnk_wrapper"><a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>about/work/highlights/" target="_self"></a></div>
-            <div class="vert_nav_lnk_wrapper"><a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>about/work/experience/" target="_self"></a></div>
-            <div class="vert_nav_lnk_wrapper"><a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>about/work/skills/" target="_self"></a></div>
+    		<div class="vert_nav_lnk_wrapper"><a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>about/work/highlights/" target="_self"></a></div>
+            <div class="vert_nav_lnk_wrapper"><a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>about/work/experience/" target="_self"></a></div>
+            <div class="vert_nav_lnk_wrapper"><a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>about/work/skills/" target="_self"></a></div>
     		<div class="vert_nav_lnk_wrapper"></div>
     	</div>
 
@@ -177,89 +177,91 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
                 <div class="hidden"><a id="scroll_WELCOME" name="WELCOME">WELCOME</a></div>
                 <div class="content_title">Welcome!</div>
                 <div class="content_copy">
-            	<div class="col">
-                    <p>I'm Jonathan 'J5' Harris (<a vvid="rev3_7-13" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Rev. 3:7-13</a><?php echo $oBringer->seo_out('rev3_7-13'); ?>;
-                        <a vvid="gen49_1,25-28" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Gen. 49:1, 25-28</a><?php echo $oBringer->seo_out('gen49_1,25-28'); ?>;
-                        <a vvid="deut33_1-4,12,29" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Deut. 33:1-4, 12, 29</a><?php echo $oBringer->seo_out('deut33_1-4,12,29'); ?>;
-                        <a vvid="isa16_1-5" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Isa. 16:1-5</a><?php echo $oBringer->seo_out('isa16_1-5'); ?>;
-                        <a vvid="dan9_17-27" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Dan. 9:17-27</a><?php echo $oBringer->seo_out('dan9_17-27'); ?>;
-                        <a vvid="matt24_15-22" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Matt. 24:15-22</a><?php echo $oBringer->seo_out('matt24_15-22'); ?>;
-                        <a vvid="matt24_8-14" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">24:8-14</a><?php echo $oBringer->seo_out('matt24_8-14'); ?>;
-                        <a vvid="james3_1-2" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">James 3:1-2</a><?php echo $oBringer->seo_out('james3_1-2'); ?>;
-                        <a vvid="num25_1-13" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Num. 25:1-13</a><?php echo $oBringer->seo_out('num25_1-13'); ?>;
-                        <a vvid="jer1_11-19" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Jer. 1:11-19</a><?php echo $oBringer->seo_out('jer1_11-19'); ?>;
+                    <div class="col">
+                        <p>I'm Jonathan 'J5' Harris (<a vvid="rev3_7-13" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Rev. 3:7-13</a><?php echo $oBringer->seo_out('rev3_7-13'); ?>;
+                            <a vvid="gen49_1,25-28" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Gen. 49:1, 25-28</a><?php echo $oBringer->seo_out('gen49_1,25-28'); ?>;
+                            <a vvid="deut33_1-4,12,29" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Deut. 33:1-4, 12, 29</a><?php echo $oBringer->seo_out('deut33_1-4,12,29'); ?>;
+                            <a vvid="isa16_1-5" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Isa. 16:1-5</a><?php echo $oBringer->seo_out('isa16_1-5'); ?>;
+                            <a vvid="dan9_17-27" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Dan. 9:17-27</a><?php echo $oBringer->seo_out('dan9_17-27'); ?>;
+                            <a vvid="matt24_15-22" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Matt. 24:15-22</a><?php echo $oBringer->seo_out('matt24_15-22'); ?>;
+                            <a vvid="matt24_8-14" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">24:8-14</a><?php echo $oBringer->seo_out('matt24_8-14'); ?>;
+                            <a vvid="james3_1-2" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">James 3:1-2</a><?php echo $oBringer->seo_out('james3_1-2'); ?>;
+                            <a vvid="num25_1-13" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Num. 25:1-13</a><?php echo $oBringer->seo_out('num25_1-13'); ?>;
+                            <a vvid="jer1_11-19" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Jer. 1:11-19</a><?php echo $oBringer->seo_out('jer1_11-19'); ?>;
+                            <?php
+                            echo $oBringer->link_html('luke12_34-44','Luke 12:34-44');
+                            ?>),
+                            a web professional living and working in Atlanta, GA.
+                            With 6 years of solid agency experience (+18 years of programming
+                            experience in open source web technologies) behind me, I am always open to
+                            investigate fresh opportunities to work with active, growing and digitally
+                            fueled companies in order to strengthen and broaden aspects of their service
+                            offerings from a technical perspective. For my previous employer, I worked
+                            with corporate clients to formulate and execute (with my own bare hands in the
+                            code whenever necessary) multi-channel business marketing initiatives.
+                            </p>
+
+                            <p>Digital brand strategy and execution are my core competencies.</p>
+
+                            <p>In 2004 I worked as a freelance designer, web application developer and
+                            serial entrepreneur. After the implosion of my 8 person startup company,
+                            CommercialNet Inc., I entered the world of interactive marketing and
+                            advertising by accepting a UI developer position with the Atlanta based
+                            agency, <a href="http://moxieusa.com" target="_blank">Moxie</a>.</p>
+
+                    </div>
+
+                    <div class="col">
+
+                            <p>In 2007 I helped a talented and diverse team of people at Moxie to start
+                            the eCRM department. Lead by Darryl Bolduc, Tina West and Sapana Nanuwa (and with over 50 years of combined
+                            email marketing experience), we worked with our clients to design and execute
+                            both award-winning and state-of-the-art email marketing programs in support of their global strategic
+                            initiatives. </p>
+
+                            <p>Born on Nov. 10th, 2005, my dog...named 'J5' (proper)...is part
+                            Korean Jindo, German Shepherd and Timber Wolf.</p>
+
                         <?php
-                        echo $oBringer->link_html('luke12_34-44','Luke 12:34-44');
-                        ?>),
-                        a web professional living and working in Atlanta, GA.
-                        With 6 years of solid agency experience (+18 years of programming
-						experience in open source web technologies) behind me, I am always open to 
-						investigate fresh opportunities to work with active, growing and digitally 
-						fueled companies in order to strengthen and broaden aspects of their service 
-						offerings from a technical perspective. For my previous employer, I worked 
-						with corporate clients to formulate and execute (with my own bare hands in the 
-						code whenever necessary) multi-channel business marketing initiatives. 
-						</p>
+                        $tmp_str_out = '';
+                        $first_img_display = false;
+                        $dir_path = "common/imgs/j5_my_boy/";
+                        $thum_path = "common/imgs/j5_my_boy/_thumb/";
 
-                        <p>Digital brand strategy and execution are my core competencies.</p>
+                        $tmp_dir = $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/' . $dir_path;
+                        $j5_filename_array = scandir($tmp_dir, 1);
 
-                        <p>In 2004 I worked as a freelance designer, web application developer and
-                        serial entrepreneur. After the implosion of my 8 person startup company,
-                        CommercialNet Inc., I entered the world of interactive marketing and
-                        advertising by accepting a UI developer position with the Atlanta based
-                        agency, <a href="http://moxieusa.com" target="_blank">Moxie</a>.</p>
+                        $j5_filename_array = array_reverse($j5_filename_array);
 
-                </div>
-               	
-               	<div class="col">
+                        $j5_array_size = sizeof($j5_filename_array);
 
-						<p>In 2007 I helped a talented and diverse team of people at Moxie to start 
-						the eCRM department. Lead by Darryl Bolduc, Tina West and Sapana Nanuwa (and with over 50 years of combined 
-						email marketing experience), we worked with our clients to design and execute
-                        both award-winning and state-of-the-art email marketing programs in support of their global strategic
-						initiatives. </p>
+                        for($i = 0; $i < $j5_array_size; $i++){
 
-                        <p>Born on Nov. 10th, 2005, my dog...named 'J5' (proper)...is part
-                        Korean Jindo, German Shepherd and Timber Wolf.</p>
+                            if($j5_filename_array[$i] != '.DS_Store' && $j5_filename_array[$i] != '.' && $j5_filename_array[$i] != '..'){
 
-                    <?php
-                    $tmp_str_out = '';
-                    $first_img_display = false;
-                    $dir_path = "common/imgs/j5_my_boy/";
-                    $thum_path = "common/imgs/j5_my_boy/_thumb/";
+                                if(!$first_img_display){
 
-                    $tmp_dir = $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/' . $dir_path;
-                    $j5_filename_array = scandir($tmp_dir, 1);
+                                    if(strlen($j5_filename_array[$i]) > 6){
 
-                    $j5_filename_array = array_reverse($j5_filename_array);
+                                        $first_img_display = true;
 
-                    $j5_array_size = sizeof($j5_filename_array);
+                                        $tmp_str_out .= '<p>';
 
-                    for($i = 0; $i < $j5_array_size; $i++){
+                                        $tmp_str_out .= '<a class="j5_my_boy_thumb" href="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[j5_my_boy]" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs." style="line-height:11px;"><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thum_path . $j5_filename_array[$i].'" alt="" style="width:295px; height:221px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="221" alt="J5" />';
 
-                        if($j5_filename_array[$i] != '.DS_Store' && $j5_filename_array[$i] != '.' && $j5_filename_array[$i] != '..'){
+                                        $tmp_str_out .= '<span style="font-size:14px; text-decoration: underline; color: #0066CC; display: block; width:295px; text-align: right; padding: 0; margin: 0;">Gallery</span></a></p>';
 
-                            if(!$first_img_display){
+                                        //$tmp_str_out .= '<div style="font-size:12px; width:295px; text-align: right; padding: 3px 0 0 0;"><a href="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[j5_my_boy]" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs.">Gallery.<img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thum_path . $j5_filename_array[$i].'" alt="" style="padding:0px; margin:0px; display: none;" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee" /></a></div></p>';
 
-                                if(strlen($j5_filename_array[$i]) > 6){
+                                    }
 
-                                    $first_img_display = true;
+                                }else{
 
-                                    $tmp_str_out .= '<p>';
+                                    if(strlen($j5_filename_array[$i]) > 6){
 
-                                    $tmp_str_out .= '<a class="j5_my_boy_thumb" href="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[j5_my_boy]" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs." style="line-height:11px;"><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thum_path . $j5_filename_array[$i].'" alt="" style="width:295px; height:221px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="221" alt="J5" />';
+                                        $tmp_str_out .= '<div class="hidden"><a class="j5_my_boy_thumb" href=' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . ' rel="lightbox[j5_my_boy]" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs."><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thum_path . $j5_filename_array[$i].'" alt="" style="padding:0px; margin:0px;" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee" /></a></div>';
 
-                                    $tmp_str_out .= '<span style="font-size:14px; text-decoration: underline; color: #0066CC; display: block; width:295px; text-align: right; padding: 0; margin: 0;">Gallery</span></a></p>';
-
-                                    //$tmp_str_out .= '<div style="font-size:12px; width:295px; text-align: right; padding: 3px 0 0 0;"><a href="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[j5_my_boy]" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs.">Gallery.<img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thum_path . $j5_filename_array[$i].'" alt="" style="padding:0px; margin:0px; display: none;" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee" /></a></div></p>';
-
-                                }
-
-                            }else{
-
-                                if(strlen($j5_filename_array[$i]) > 6){
-
-                                    $tmp_str_out .= '<div class="hidden"><a class="j5_my_boy_thumb" href=' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . ' rel="lightbox[j5_my_boy]" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs."><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thum_path . $j5_filename_array[$i].'" alt="" style="padding:0px; margin:0px;" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee" /></a></div>';
+                                    }
 
                                 }
 
@@ -267,35 +269,33 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
 
                         }
 
-                    }
+                        echo $tmp_str_out;
 
-                    echo $tmp_str_out;
+                        ?>
 
-                    ?>
+                            <!--<p><div class="embedded_image" style="width:295px; height:221px;"><img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/j5_octane.jpg" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee"></div></p>-->
 
-                        <!--<p><div class="embedded_image" style="width:295px; height:221px;"><img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/j5_octane.jpg" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee"></div></p>-->
+                            <p>When I worked at agency, J5 accompanied me to the office on occasion as well as to local parks, coffee shops,
+                            neighborhood bars and even the occasional house party.</p>
 
-                        <p>When I worked at agency, J5 accompanied me to the office on occasion as well as to local parks, coffee shops,
-                        neighborhood bars and even the occasional house party.</p>
+                    </div>
+                    <div class="col">
+                            <p>On the morning of Monday, Aug. 16, 2021 at 0345 hrs and while laying under my arm, J5 went the way of all the earth (<a vvid="1kings2_1-3" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">1 Kings 2:1-3</a><?php echo $oBringer->seo_out('1kings2_1-3'); ?>)
+                            even with much encouragement and celebration from me by his side. In the woods behind my house in the dark of night,
+                            at 0500 hrs, as I was returning J5 to the earth from whence he came...whilst shoveling the dirt back in place, I thanked
+                            him repeatedly for everything he gave to me during our sojourn together upon the face of the earth in this God's old creation. I thanked him for
+                            bringing me into practical participation with and into the prophetic fulfillment of the blessings of Israel to his twelve sons (<a vvid="gen48_21-22|49_1,25-28" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Gen. 48:21-22; 49:1, 25-28</a><?php echo $oBringer->seo_out('gen48_21-22|49_1,25-28'); ?>)
+                            which are for all of the people of God across all space and all time. Even all the nations of the earth will be blessed.</p>
 
+                            <p>The bone from his last whole steak, a +$100 rare tomahawk ribeye from <a href="https://www.ruthschris.com/" target="_blank">Ruth's Chris</a>,
+                            is still clutched against his chest in the arm of his front right paw.</p>
+
+                            <p>Later, I came to realize that I buried him facing towards the direction of the rising of the sun to the east.</p>
+
+                            <p>Click <a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>downloads/resume/jharris_resume.pdf" target="_blank">here</a> to download the latest version of
+                            my resume or visit my <a href="https://www.linkedin.com/in/jonathan-harris-6397143" target="_blank">LinkedIn</a> profile.</p>
+                    </div>
                 </div>
-                <div class="col">
-                        <p>On the morning of Monday, Aug. 16, 2021 at 0345 hrs and while laying under my arm, J5 went the way of all the earth (<a vvid="1kings2_1-3" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">1 Kings 2:1-3</a><?php echo $oBringer->seo_out('1kings2_1-3'); ?>)
-                        even with much encouragement and celebration from me by his side. In the woods behind my house in the dark of night,
-                        at 0500 hrs, as I was returning J5 to the earth from whence he came...whilst shoveling the dirt back in place, I thanked
-                        him repeatedly for everything he gave to me during our sojourn together upon the face of the earth in this God's old creation. I thanked him for
-                        bringing me into practical participation with and into the prophetic fulfillment of the blessings of Israel to his twelve sons (<a vvid="gen48_21-22|49_1,25-28" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Gen. 48:21-22; 49:1, 25-28</a><?php echo $oBringer->seo_out('gen48_21-22|49_1,25-28'); ?>)
-                        which are for all of the people of God across all space and all time. Even all the nations of the earth will be blessed.</p>
-
-                        <p>The bone from his last whole steak, a +$100 rare tomahawk ribeye from <a href="https://www.ruthschris.com/" target="_blank">Ruth's Chris</a>,
-                        is still clutched against his chest in the arm of his front right paw.</p>
-
-                        <p>Later, I came to realize that I buried him facing towards the direction of the rising of the sun to the east.</p>
-
-						<p>Click <a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>downloads/resume/jharris_resume.pdf" target="_blank">here</a> to download the latest version of 
-						my resume or visit my <a href="https://www.linkedin.com/in/jonathan-harris-6397143" target="_blank">LinkedIn</a> profile.</p>
-                </div>
-            </div>
                 <div class="cb"></div>
             </div>
             <div class="cb"></div>
@@ -391,23 +391,23 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
                 <div class="content_title">How did the idea for &quot;J5&quot; come about?</div>
                 <div class="cb"></div>
                 <div class="content_copy">
-            	<div class="col">
-           			<p>This is an excellent question! You see, back in the days of dial up (late 90's), I was quite new to the world of the interwebs. I didn't even have an email address. Realizing that I needed to get some kind of messaging account called an email address, I went to the folks at Juno. They hooked me up with a free email account and dial-up<br>internet access!</p>
-					<p><div class="embedded_image" style="width:296px;height:197px;"><a href="https://en.wikipedia.org/wiki/Short_Circuit_%281986_film%29" target="_blank"><img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/imgs/jony5_no_disassemble.png" width="296" height="197" alt="No disassemble...Johnny number 5" title="Johnny number 5"></a></div></p>
-					<p>When I was filling out the Juno forms to get an email address, they asked me what I wanted it to be. I had no idea! Well, at that time, I had just finished watching the movie <a href="https://en.wikipedia.org/wiki/Short_Circuit_%281986_film%29" target="_blank">Short Circuit</a>, and so I was like &quot;I'll get the email jony5.&quot; (Johnny 5). From that point forward, I was <em>jony5@juno.com</em>. This era of my digital existence was defined by slow loading images and phone calls that broke the internet connection!</p>
-				</div>
-                <div class="col">
-					<p>The birth of my nickname came about a little while later. In 2000, I had successfully (and satisfactorily) interviewed for a job with the bike shop at the Perimeter <a href="https://www.rei.com/stores/perimeter.html" target="_blank">REI</a> store. Before completing some introductory job placement materials and being released into the gene pool of REI employees, the manager told me that there were already 3 or 4 &quot;Jonathans&quot; working at the store, and I would have to have a different name. I told her that my email address was jony5@juno.com, and so maybe I could be &quot;jony5&quot;. </p>
+                    <div class="col">
+                        <p>This is an excellent question! You see, back in the days of dial up (late 90's), I was quite new to the world of the interwebs. I didn't even have an email address. Realizing that I needed to get some kind of messaging account called an email address, I went to the folks at Juno. They hooked me up with a free email account and dial-up<br>internet access!</p>
+                        <p><div class="embedded_image" style="width:296px;height:197px;"><a href="https://en.wikipedia.org/wiki/Short_Circuit_%281986_film%29" target="_blank"><img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/imgs/jony5_no_disassemble.png" width="296" height="197" alt="No disassemble...Johnny number 5" title="Johnny number 5"></a></div></p>
+                        <p>When I was filling out the Juno forms to get an email address, they asked me what I wanted it to be. I had no idea! Well, at that time, I had just finished watching the movie <a href="https://en.wikipedia.org/wiki/Short_Circuit_%281986_film%29" target="_blank">Short Circuit</a>, and so I was like &quot;I'll get the email jony5.&quot; (Johnny 5). From that point forward, I was <em>jony5@juno.com</em>. This era of my digital existence was defined by slow loading images and phone calls that broke the internet connection!</p>
+                    </div>
+                    <div class="col">
+                        <p>The birth of my nickname came about a little while later. In 2000, I had successfully (and satisfactorily) interviewed for a job with the bike shop at the Perimeter <a href="https://www.rei.com/stores/perimeter.html" target="_blank">REI</a> store. Before completing some introductory job placement materials and being released into the gene pool of REI employees, the manager told me that there were already 3 or 4 &quot;Jonathans&quot; working at the store, and I would have to have a different name. I told her that my email address was jony5@juno.com, and so maybe I could be &quot;jony5&quot;. </p>
 
-					<p>At that moment, Elizabeth christened me as such, and for the next 4 years, people ONLY knew me as &quot;jony5&quot;. In fact, I even had one coworker write a check to me as &quot;Johnny 5.&quot; I was like, &quot;dude, that's not my real name!&quot; As I sit here and reminisce, I realize how fortunate I really was to be associated with people of that calibre. I mean, I have always worked with really great people! Like marbling in a premium cut of the choicest beef, the genesis of my nickname jony5 is intertwined with some of the coolest and most down-to-earth people I've been fortunate enough to have been able to know.</p>
-				</div>
-                <div class="col">
-					<p>In January of 2006, I acquired (for the first time in my life) a little puppy dog! At a loss for what to name him, I decided to go with &quot;J5&quot;...a play off of my nickname &quot;jony5&quot;. About a month later, I found myself working with advertising agency, <a href="http://moxieusa.com" target="_blank">Moxie</a>...and introduced myself to them as &quot;jony5&quot;...the name given to me by coworkers at REI. The office was dog friendly, and so people became accustomed to seeing &quot;J5&quot; and &quot;jony5&quot;...which gradually morphed over time to &quot;the 2 fives&quot;, &quot;five squared&quot; or just simply &quot;J5 and J5&quot;.</p>
+                        <p>At that moment, Elizabeth christened me as such, and for the next 4 years, people ONLY knew me as &quot;jony5&quot;. In fact, I even had one coworker write a check to me as &quot;Johnny 5.&quot; I was like, &quot;dude, that's not my real name!&quot; As I sit here and reminisce, I realize how fortunate I really was to be associated with people of that calibre. I mean, I have always worked with really great people! Like marbling in a premium cut of the choicest beef, the genesis of my nickname jony5 is intertwined with some of the coolest and most down-to-earth people I've been fortunate enough to have been able to know.</p>
+                    </div>
+                    <div class="col">
+                        <p>In January of 2006, I acquired (for the first time in my life) a little puppy dog! At a loss for what to name him, I decided to go with &quot;J5&quot;...a play off of my nickname &quot;jony5&quot;. About a month later, I found myself working with advertising agency, <a href="http://moxieusa.com" target="_blank">Moxie</a>...and introduced myself to them as &quot;jony5&quot;...the name given to me by coworkers at REI. The office was dog friendly, and so people became accustomed to seeing &quot;J5&quot; and &quot;jony5&quot;...which gradually morphed over time to &quot;the 2 fives&quot;, &quot;five squared&quot; or just simply &quot;J5 and J5&quot;.</p>
 
-					<p>At this point (16 years from the start), many of my friends (including all my Moxie coworkers) and even family members call me &quot;J5&quot;, and that is just fine with me.</p>
+                        <p>At this point (16 years from the start), many of my friends (including all my Moxie coworkers) and even family members call me &quot;J5&quot;, and that is just fine with me.</p>
 
+                    </div>
                 </div>
-            </div>
                 <div class="cb"></div>
             </div>
             <div class="cb"></div>
@@ -619,7 +619,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
                         </div>
                         <div class="cb"></div>
 
-                        <p>Saints, when the merciful Lord conveyed to this young college brother (<a vvid="jehovah_has_revealed" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">a song written by me in that hour</a><span style="padding-left: 2px;"><a vvid="jehovah_has_revealed_audio" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;"><img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/imgs/notes.png" width="10" height="10" alt="Listen" title="Listen"></a></span><?php echo $oBringer->seo_out('jehovah_has_revealed'); ?>) the core
+                        <p>Saints, when the merciful Lord conveyed to this young college brother (<a vvid="jehovah_has_revealed" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">a song written by me in that hour</a><span style="padding-left: 2px;"><a vvid="jehovah_has_revealed_audio" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;"><img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/imgs/notes.png" width="10" height="10" alt="Listen" title="Listen"></a></span><?php echo $oBringer->seo_out('jehovah_has_revealed'); ?>) the core
                         revelation in 2003 that has guided me still to this day, there was no thought about exploring any freedoms. I was just thrilled and
                         elated beyond words that I could simply be myself before my Lord with no shame or regret; and yet, I did not consider any of these freedoms as
                         a &quot;treasure to be grasped.&quot; I believe that this will be the experience of any seeking believer or new convert coming from the experience
@@ -1182,9 +1182,10 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
             </div>
             <div class="cb"></div>
 
-        </div><!-- END PAGE CONTENT -->
+        </div>
 
     </div>
+    <!-- END PAGE CONTENT WRAPPER-->
 
     <div class="cb_30"></div>
     <?php

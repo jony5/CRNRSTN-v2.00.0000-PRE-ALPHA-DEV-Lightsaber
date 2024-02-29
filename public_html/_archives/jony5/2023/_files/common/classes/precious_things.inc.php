@@ -71,7 +71,7 @@ class bringer_of_the_precious_things {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
             // SEND THIS THROUGH THE LOGGER OBJECT
@@ -304,6 +304,887 @@ class bringer_of_the_precious_things {
         $str = str_replace($patterns, $replacements, $str);
 
         return $str;
+
+    }
+
+    public function build_link_html_index(){
+
+        $tmp_link_html_output = '';
+        $tmp_link_html_output_ARRAY = array();
+        $tmp_link_vvid_ARRAY = array();
+
+        //
+        // Thursday, February 29, 2024 @ 0240 hrs.
+        //
+        // BUILD SCRIPTURE <A> LINK HTML
+        // OUTPUT VVID INDEX CONTROL STRUCTURE.
+        //$tmp_link_vvid_ARRAY[] = array(array('jehovah_has_revealed' => 'Jehovah Has Revealed His Heart'), array('jehovah_has_revealed_chords' => 'Chords'), array('jehovah_has_revealed_audio' => 'Listen&nbsp;&nbsp;<img src="https://jony5.com/common/imgs/listen_icon_wht.png" width="20" height="18" alt="Listen">'), array('jehovah_has_revealed_dl' => 'Listen&nbsp;&nbsp;<img src="https://jony5.com/common/imgs/listen_icon.png" width="20" height="18" alt="Download">'));
+        $tmp_link_vvid_ARRAY[] = array(array('jehovah_has_revealed' => 'Jehovah Has Revealed His Heart'));
+        $tmp_link_vvid_ARRAY[] = array(array('jehovah_has_revealed_chords' => 'Jehovah Has Revealed His Heart :: Chords'));
+        //$tmp_link_vvid_ARRAY[] = array(array('jehovah_has_revealed_audio' => 'Jehovah Has Revealed His Heart :: Listen&nbsp;&nbsp;<img src="https://jony5.com/common/imgs/listen_icon_wht.png" width="20" height="18" alt="Listen">'));
+        $tmp_link_vvid_ARRAY[] = array(array('jehovah_has_revealed_dl' => 'Jehovah Has Revealed His Heart :: Download'));
+
+        $tmp_link_vvid_ARRAY[] = array(array('hymn979' => 'HYMNS #979'), array('gen1_1' => 'Genesis 1:1'), array('gen2_7' => 'Genesis 2:7'), array('col1_16' => 'Colossians 1:16'), array('gen1_26' => 'Genesis 1:26'), array('gen3_1' => 'Genesis 3:1'), array('gen3_14[solo]' => 'Genesis 3:14'), array('gen48_21-22|49_1,25-28' => 'Genesis 48:21-22; 49:1, 25-28'));
+        $tmp_link_vvid_ARRAY[] = array(array('rev3_7-13' => 'Revelation 3:7-13'), array('gen49_1,25-28' => 'Genesis 49:1, 25-28'), array('deut33_1-4,12,29' => 'Deuteronomy 33:1-4, 12, 29'), array('isa16_1-5' => 'Isaiah 16:1-5'), array('dan9_17-27' => 'Daniel 9:17-27'), array('matt24_15-22' => 'Matthew 24:15-22'), array('matt24_8-14' => 'Matthew 24:8-14'), array('james3_1-2' => 'James 3:1-2'), array('num25_1-13' => 'Numbers 25:1-13'), array('jer1_11-19' => 'Jeremiah 1:11-19'), array('luke12_34-44' => 'Luke 12:34-44'));
+        $tmp_link_vvid_ARRAY[] = array(array('lifestudy_exo_156' => 'Life-Study of Exodus, Message 156'));
+        $tmp_link_vvid_ARRAY[] = array(array('exo20_15' => 'Exodus 20:15'));
+        $tmp_link_vvid_ARRAY[] = array(array('exo20_13' => 'Exodus 20:13'));
+        $tmp_link_vvid_ARRAY[] = array(array('exo30_18' => 'Exodus 30:18'));
+        $tmp_link_vvid_ARRAY[] = array(array('exo30_17-21' => 'Exodus 30:17-21'));
+        $tmp_link_vvid_ARRAY[] = array(array('lev18_1-5,24-28' => 'Leviticus 18:1-5, 24-28'));
+        $tmp_link_vvid_ARRAY[] = array(array('lev26_3-13' => 'Leviticus 26:3-13'), array('deut4_1-2,39-40' => 'Deuteronomy 4:1-2, 39-40'), array('deut5_10,29' => 'Deuteronomy 5:10, 29'), array('deut6_1-6,16-25' => 'Deuteronomy 6:1-6, 16-25'), array('deut6_25' => 'Deuteronomy 6:25'), array('deut7_9-26' => 'Deuteronomy 7:9-26'), array('deut8_1-10' => 'Deuteronomy 8:1-10'), array('deut11_1,8-15,22-28' => 'Deuteronomy 11:1, 8-15, 22-28'), array('deut26_16-19' => 'Deuteronomy 26:16-19'), array('deut28_1-14' => 'Deuteronomy 28:1-14'), array('deut30_11-20' => 'Deuteronomy 30:11-20'), array('exo15_26' => 'Exodus 15:26'), array('1kings8_54-66' => '1 Kings 8:54-66'), array('neh1_1-11' => 'Nehemiah 1:1-11'));
+        $tmp_link_vvid_ARRAY[] = array(array('num14_29-30' => 'Numbers 14:29-30'), array('1cor10_5' => '1 Corinthians 10:5'));
+        $tmp_link_vvid_ARRAY[] = array(array('num14_31[000]' => 'Numbers 14:31'), array('1pet2_7-8' => '1 Peter 2:7-8'), array('rom9_31-33' => 'Romans 9:31-33'), array('1cor1_22-25' => '1 Corinthians 1:22-25'));
+        $tmp_link_vvid_ARRAY[] = array(array('num14_31' => 'Numbers 14:31'), array('num32_13' => 'Numbers 32:13'), array('josh5_6' => 'Joshua 5:6'), array('psa95_10-11' => 'Psalm 95:10-11'), array('num14_35' => 'Numbers 14:35'), array('matt4_1-2' => 'Matthew 4:1-2'));
+        $tmp_link_vvid_ARRAY[] = array(array('num33_50-54' => 'Numbers 33:50-54'));
+        $tmp_link_vvid_ARRAY[] = array(array('deut11_14' => 'Deuteronomy 11:14'), array('joel2_23' => 'Joel 2:23'));
+        $tmp_link_vvid_ARRAY[] = array(array('1kings2_1-3' => '1 Kings 2:1-3'));
+        $tmp_link_vvid_ARRAY[] = array(array('1kings18_37-40,45;19_1-18' => '1 Kings 18:37-40, 45; 19:1-18'));
+        $tmp_link_vvid_ARRAY[] = array(array('1sam4_4' => '1 Samuel 4:4'));
+        $tmp_link_vvid_ARRAY[] = array(array('psa97_2' => 'Psalm 97:2'));
+        $tmp_link_vvid_ARRAY[] = array(array('psa119_103' => 'Psalm 119:103'));
+        $tmp_link_vvid_ARRAY[] = array(array('isa14_13' => 'Isaiah 14:13'));
+        $tmp_link_vvid_ARRAY[] = array(array('isa14_21-24' => 'Isaiah 14:21-24'));
+        $tmp_link_vvid_ARRAY[] = array(array('jer24_7' => 'Jeremiah 24:7'), array('1pet3_15' => '1 Peter 3:15'));
+        $tmp_link_vvid_ARRAY[] = array(array('jer31_33' => 'Jeremiah 31:33'));
+        $tmp_link_vvid_ARRAY[] = array(array('jer31_31-37' => 'Jeremiah 31:31-37'));
+        $tmp_link_vvid_ARRAY[] = array(array('ezek11_17-25' => 'Ezekiel 11:17-25'), array('jer31_33-37' => 'Jeremiah 31:33-37'));
+        $tmp_link_vvid_ARRAY[] = array(array('dan9_4' => 'Daniel 9:4'), array('gen26_4-5' => 'Genesis 26:4-5'), array('exo20_6' => 'Exodus 20:6'));
+        $tmp_link_vvid_ARRAY[] = array(array('matt1_18,20' => 'Matthew 1:18, 20'));
+        $tmp_link_vvid_ARRAY[] = array(array('matt2_4-6' => 'Matthew 2:4-6'));
+        $tmp_link_vvid_ARRAY[] = array(array('lev2_1' => 'Leviticus 2:1'), array('matt3_15' => 'Matthew 3:15'));
+        $tmp_link_vvid_ARRAY[] = array(array('matt4_3' => 'Matthew 4:3'));
+        $tmp_link_vvid_ARRAY[] = array(array('matt4_4b' => 'Matthew 4:4b'), array('luke22_42' => 'Luke 22:42'));
+        $tmp_link_vvid_ARRAY[] = array(array('matt4_5-7' => 'Matthew 4:5-7'));
+        $tmp_link_vvid_ARRAY[] = array(array('matt5' => 'Matthew Chapter 5'), array('matt6' => 'Matthew Chapter 6'), array('matt7' => 'Matthew Chapter 7'));
+        $tmp_link_vvid_ARRAY[] = array(array('rom6_18-19' => 'Romans 6:18-19'), array('1pet2_20' => '1 Peter 2:20'), array('matt5_10' => 'Matthew 5:10'));
+        $tmp_link_vvid_ARRAY[] = array(array('matt5_13' => 'Matthew 5:13'), array('mark9_50' => 'Mark 9:50'), array('luke14_34-35' => 'Luke 14:34-35'));
+        $tmp_link_vvid_ARRAY[] = array(array('matt7_13-14' => 'Matthew 7:13-14'));
+        $tmp_link_vvid_ARRAY[] = array(array('matt10_16-33' => 'Matthew 10:16-33'));
+        $tmp_link_vvid_ARRAY[] = array(array('matt11_28-30' => 'Matthew 11:28-30'));
+        $tmp_link_vvid_ARRAY[] = array(array('matt12_1-8' => 'Matthew 12:1-8'));
+        $tmp_link_vvid_ARRAY[] = array(array('matt13_4' => 'Matthew 13:4'));
+        $tmp_link_vvid_ARRAY[] = array(array('matt19_12' => 'Matthew 19:12'));
+        $tmp_link_vvid_ARRAY[] = array(array('matt24_14' => 'Matthew 24:14'));
+        $tmp_link_vvid_ARRAY[] = array(array('matt25_4' => 'Matthew 25:4'));
+        $tmp_link_vvid_ARRAY[] = array(array('matt26_33-35,69-75' => 'Matthew 26:33-35, 69-75'), array('mark14_27-31,66-72' => 'Mark 14:27-31, 66-72'), array('luke22_33-34,54-62' => 'Luke 22:33-34, 54-62'), array('john13_37-38;18_14-27' => 'John 13:37-38; 18:14-27'));
+        $tmp_link_vvid_ARRAY[] = array(array('matt27_46' => 'Matthew 27:46'));
+        $tmp_link_vvid_ARRAY[] = array(array('luke9_5-6' => 'Luke 9:5-6'), array('luke13_17' => 'Luke 13:17'), array('heb2_14-15' => 'Hebrews 2:14-15'), array('2cor3_12,17' => '2 Corinthians 3:12, 17'), array('rom8_33-39' => 'Romans 8:33-39'), array('1cor3_21-23' => '1 Corinthians 3:21-23'));
+        $tmp_link_vvid_ARRAY[] = array(array('luke14_31-32' => 'Luke 14:31-32'));
+        $tmp_link_vvid_ARRAY[] = array(array('luke18_11-12' => 'Luke 18:11-12'));
+        $tmp_link_vvid_ARRAY[] = array(array('luke18_13' => 'Luke 18:13'));
+        $tmp_link_vvid_ARRAY[] = array(array('rev6_16-17' => 'Revelation 6:16-17'), array('luke23_27-30' => 'Luke 23:28-30'), array('luke19_12,14,15,27' => 'Luke 19:12, 14, 15, 27'));
+        $tmp_link_vvid_ARRAY[] = array(array('luke22_24-30' => 'Luke 22:24-27'), array('john13_3-17' => 'John 13:3-17'), array('matt16_25-26' => 'Matthew 16:25-26'));
+        $tmp_link_vvid_ARRAY[] = array(array('luke22_42[solo]' => 'Luke 22:42'));
+        $tmp_link_vvid_ARRAY[] = array(array('luke23_38,42-43' => 'Luke 23:38, 42-43'), array('john8_51-59' => 'John 8:51-59'), array('acts2_22-25' => 'Acts 2:22-25'), array('exo9_29' => 'Exodus 9:29'), array('deut10_14-22' => 'Deuteronomy 10:14-22'), array('psa24' => 'Psalm 24'), array('1cor10_26,29b-31' => '1 Corinthians 10:26, 29b-31'), array('luke1_26-33' => 'Luke 1:26-33'));
+        $tmp_link_vvid_ARRAY[] = array(array('john2_20-21' => 'John 2:20-21'));
+        $tmp_link_vvid_ARRAY[] = array(array('john2_21' => 'John 2:21'), array('matt12_5' => 'Matthew 12:5'));
+        $tmp_link_vvid_ARRAY[] = array(array('john8_6' => 'John 8:6'), array('john9_41' => 'John 9:41'));
+        $tmp_link_vvid_ARRAY[] = array(array('john13_34[solo]' => 'John 13:34'));
+        $tmp_link_vvid_ARRAY[] = array(array('john13_37-38' => 'John 13:37-38'));
+        $tmp_link_vvid_ARRAY[] = array(array('john14_10-14' => 'John 14:10-14'));
+        $tmp_link_vvid_ARRAY[] = array(array('john14_12-14' => 'John 14:12-14'));
+        $tmp_link_vvid_ARRAY[] = array(array('john16_15' => 'John 16:15'));
+        $tmp_link_vvid_ARRAY[] = array(array('acts1_5' => 'Acts 1:5'));
+        $tmp_link_vvid_ARRAY[] = array(array('acts8_29' => 'Acts 8:29'), array('acts16_6,7' => 'Acts 16:6, 7'), array('acts11_12' => 'Acts 11:12'));
+        $tmp_link_vvid_ARRAY[] = array(array('acts11_18' => 'Acts 11:18'));
+        $tmp_link_vvid_ARRAY[] = array(array('eph1_3-12' => 'Ephesians 1:3-12'), array('rom5_1-5[000]' => 'Romans 5:1-5'), array('rom15_4[000]' => 'Romans 15:4'), array('1cor9_8-11,13' => '1 Corinthians 9:8-11, 13'));
+        $tmp_link_vvid_ARRAY[] = array(array('rom5_10' => 'Romans 5:10'));
+        $tmp_link_vvid_ARRAY[] = array(array('rom5_14,17,21' => 'Romans 5:14, 17, 21'), array('rom6_9-11' => 'Romans 6:9-11'), array('rom14_7-12' => 'Romans 14:7-12'));
+        $tmp_link_vvid_ARRAY[] = array(array('rom6_3' => 'Romans 6:3'));
+        $tmp_link_vvid_ARRAY[] = array(array('rom6_8' => 'Romans 6:8'));
+        $tmp_link_vvid_ARRAY[] = array(array('rom6_18-19[000]' => 'Romans 6:18-19'));
+        $tmp_link_vvid_ARRAY[] = array(array('rom6_22' => 'Romans 6:22'));
+        $tmp_link_vvid_ARRAY[] = array(array('rom7_2-4,6' => 'Romans 7:2-4, 6'));
+        $tmp_link_vvid_ARRAY[] = array(array('rom8_2' => 'Romans 8:2'));
+        $tmp_link_vvid_ARRAY[] = array(array('rom8_2,4' => 'Romans 8:2, 4'));
+        $tmp_link_vvid_ARRAY[] = array(array('rom8_14' => 'Romans 8:14'));
+        $tmp_link_vvid_ARRAY[] = array(array('rom12_2' => 'Romans 12:2'), array('phil2_13' => 'Philippians 2:13'));
+        $tmp_link_vvid_ARRAY[] = array(array('rom12_11' => 'Romans 12:11'));
+        $tmp_link_vvid_ARRAY[] = array(array('rom13_14' => 'Romans 13:14'));
+        $tmp_link_vvid_ARRAY[] = array(array('rom14_1' => 'Romans 14:1'));
+        $tmp_link_vvid_ARRAY[] = array(array('1cor5_1,5' => '1 Corinthians 5:1, 5'));
+        $tmp_link_vvid_ARRAY[] = array(array('1cor10_23' => '1 Corinthians 10:23'), array('1cor6_12' => '1 Corinthians 6:12'));
+        $tmp_link_vvid_ARRAY[] = array(array('1cor11_4' => '1 Corinthians 11:4'));
+        $tmp_link_vvid_ARRAY[] = array(array('1cor11_22' => '1 Corinthians 11:22'));
+        $tmp_link_vvid_ARRAY[] = array(array('1cor15_55,58' => '1 Corinthians 15:55, 58'), array('2cor1_9-10' => '2 Corinthians 1:9-10'), array('rom6_8-11' => 'Romans 6:8-11'));
+        $tmp_link_vvid_ARRAY[] = array(array('1cor15_58' => '1 Corinthians 15:58'), array('matt10_10b' => 'Matthew 10:10b'), array('john14_10' => 'John 14:10'), array('rom2_6-7' => 'Romans 2:6-7'));
+        $tmp_link_vvid_ARRAY[] = array(array('2cor1_20-22' => '2 Corinthians 1:20-22'));
+        $tmp_link_vvid_ARRAY[] = array(array('2cor1_20-22[000]' => '2 Corinthians 1:20-22'), array('rom10_2-3' => 'Romans 10:2-3'), array('gal1_14' => 'Galatians 1:14'));
+        $tmp_link_vvid_ARRAY[] = array(array('2cor3_3' => '2 Corinthians 3:3'), array('heb8_10[000]' => 'Hebrews 8:10'), array('jer31_31-34' => 'Jeremiah 31:31-34'));
+        $tmp_link_vvid_ARRAY[] = array(array('2cor3_6-9' => '2 Corinthians 3:6-9'), array('rom8_14-23' => 'Romans 8:14-23'));
+        $tmp_link_vvid_ARRAY[] = array(array('2cor3_17-18' => '2 Corinthians 3:17-18'));
+        $tmp_link_vvid_ARRAY[] = array(array('2cor11_2a' => '2 Corinthians 11:2a'), array('gal4_11' => 'Galatians 4:11'));
+        $tmp_link_vvid_ARRAY[] = array(array('2cor11_2b-3' => '2 Corinthians 11:2b-3'), array('rev2_14' => 'Revelation 2:14'));
+        $tmp_link_vvid_ARRAY[] = array(array('gal2_20' => 'Galatians 2:20'));
+        $tmp_link_vvid_ARRAY[] = array(array('gal2_20_x' => 'Galatians 2:20'), array('gal6_14' => 'Galatians 6:14'));
+        $tmp_link_vvid_ARRAY[] = array(array('gal3_1' => 'Galatians 3:1'), array('gal5_1,7' => 'Galatians 5:1, 7'));
+        $tmp_link_vvid_ARRAY[] = array(array('gal5_1' => 'Galatians 5:1'));
+        $tmp_link_vvid_ARRAY[] = array(array('gal5_16,18,22-23,25' => 'Galatians 5:16, 18, 22-23, 25'));
+        $tmp_link_vvid_ARRAY[] = array(array('eph1_9' => 'Ephesians 1:9'));
+        $tmp_link_vvid_ARRAY[] = array(array('eph1_3-14[000]' => 'Ephesians 1:3-14'));
+        $tmp_link_vvid_ARRAY[] = array(array('eph1_3' => 'Ephesians 1:3'), array('rom5_1-5' => 'Romans 5:1-5'), array('rom8_16-17,24-25' => 'Romans 8:16-17, 24-25'), array('rom15_4' => 'Romans 15:4'), array('2cor3_12' => '2 Corinthians 3:12'), array('gal5_5-6' => 'Galatians 5:5-6'), array('eph1_9-14,18-23' => 'Ephesians 1:9-14, 18-23'), array('col1_5-6,21-23,26-27' => 'Colossians 1:5-6, 21-23, 26-27'), array('1thes1_2-3' => '1 Thessalonians 1:2-3'), array('1thes5_7-11' => '1 Thessalonians 5:7-11'), array('2thes2_16-17' => '2 Thessalonians 2:16-17'), array('1tim1_1' => '1 Tim 1:1'), array('1tim6_17' => '1 Tim 6:17'), array('titus1_1-3' => 'Titus 1:1-3'), array('titus2_11-15' => 'Titus 2:11-15'), array('titus3_7[000]' => 'Titus 3:7'), array('heb3_6[000]' => 'Hebrews 3:6'), array('heb6_17-20' => 'Hebrews 6:17-20'), array('heb7_17-19' => 'Hebrews 7:17-19'), array('heb10_21-23' => 'Hebrews 10:21-23'), array('heb11_1' => 'Hebrews 11:1'), array('1pet1_3-9,13,21' => '1 Pet 1:3-9, 13, 21'), array('1pet3_5-7,14-22' => '1 Pet. 3:5-7, 14-22'), array('1john3_1-10' => '1 John 3:1-10'));
+        $tmp_link_vvid_ARRAY[] = array(array('phil1_6' => 'Philippians 1:6'));
+        $tmp_link_vvid_ARRAY[] = array(array('phil1_20' => 'Philippians 1:20'));
+        $tmp_link_vvid_ARRAY[] = array(array('phil1_27' => 'Philippians 1:27'));
+        $tmp_link_vvid_ARRAY[] = array(array('phil2_13[001]' => 'Philippians 2:13'));
+        $tmp_link_vvid_ARRAY[] = array(array('phil2_13[000]' => 'Philippians 2:13'));
+        $tmp_link_vvid_ARRAY[] = array(array('phil2_3' => 'Philippians 2:3'), array('john13_34' => 'John 13:34'));
+        $tmp_link_vvid_ARRAY[] = array(array('phil2_5-8' => 'Philippians 2:5-8'));
+        $tmp_link_vvid_ARRAY[] = array(array('phil2_5-16[000]' => 'Philippians 2:5-16'));
+        $tmp_link_vvid_ARRAY[] = array(array('phil2_5-16' => 'Philippians 2:5-16'), array('john14_15,20-21' => 'John 14:15, 20-21'));
+        $tmp_link_vvid_ARRAY[] = array(array('phil2_5-9' => 'Philippians 2:5-9'), array('gal5_13,16' => 'Galatians 5:13, 16'), array('1pet2_16' => '1 Peter 2:16'), array('1john2_15-17' => '1 John 2:15-17'), array('mark7_19-23' => 'Mark 7:19-23'), array('acts10_15-16b,19-21' => 'Acts 10:15-16b, 19-21'));
+        $tmp_link_vvid_ARRAY[] = array(array('phil2_8' => 'Philippians 2:8'));
+        $tmp_link_vvid_ARRAY[] = array(array('col1_5' => 'Colossians 1:5'), array('col1_27' => 'Colossians 1:27'), array('1pet1_3-5' => '1 Peter 1:3-5'), array('1pet1_13' => '1 Peter 1:13'), array('titus3_7' => 'Titus 3:7'), array('heb3_6' => 'Hebrews 3:6'), array('heb10_23' => 'Hebrews 10:23'));
+        $tmp_link_vvid_ARRAY[] = array(array('col2_9' => 'Colossians 2:9'));
+        $tmp_link_vvid_ARRAY[] = array(array('col2_8,12,20-23' => 'Colossians 2:8, 12, 20-23'));
+        $tmp_link_vvid_ARRAY[] = array(array('col3_5' => 'Colossians 3:5'));
+        $tmp_link_vvid_ARRAY[] = array(array('col3_6' => 'Colossians 3:6'));
+        $tmp_link_vvid_ARRAY[] = array(array('2thes2_8-12' => '2 Thessalonians 2:8-12'), array('heb3_7-19[000]' => 'Hebrews 3:7-19'), array('john8_1-11' => 'John 8:1-11'));
+        $tmp_link_vvid_ARRAY[] = array(array('1tim4_1-5' => '1 Timothy 4:1-5'), array('rev2_12-17' => 'Revelation 2:12-17'), array('rev2_18-23' => 'Revelation 2:18-23'));
+        $tmp_link_vvid_ARRAY[] = array(array('2tim1_6' => '2 Timothy 1:6'));
+        $tmp_link_vvid_ARRAY[] = array(array('2tim1_6-8' => '2 Timothy 1:6-8'), array('rom12_11-12' => 'Romans 12:11-12'), array('luke24_31-32' => 'Luke 24:31-32'), array('prov20_27' => 'Proverbs 20:27'), array('luke12_35' => 'Luke 12:35'));
+        $tmp_link_vvid_ARRAY[] = array(array('heb3_7-19' => 'Hebrews 3:7-19'));
+        $tmp_link_vvid_ARRAY[] = array(array('heb4_8-16' => 'Hebrews 4:8-16'));
+        $tmp_link_vvid_ARRAY[] = array(array('heb4_11' => 'Hebrews 4:11'));
+        $tmp_link_vvid_ARRAY[] = array(array('heb8_10' => 'Hebrews 8:10'));
+        $tmp_link_vvid_ARRAY[] = array(array('heb9_14' => 'Hebrews 9:14'));
+        $tmp_link_vvid_ARRAY[] = array(array('heb10_22,19' => 'Hebrews 10:22, 19'), array('1cor6_17' => '1 Corinthians 6:17'), array('2cor3_18' => '2 Corinthians 3:18'));
+        $tmp_link_vvid_ARRAY[] = array(array('heb10_22' => 'Hebrews 10:22'));
+        $tmp_link_vvid_ARRAY[] = array(array('heb10_35' => 'Hebrews 10:35'));
+        $tmp_link_vvid_ARRAY[] = array(array('heb10_35,38-39' => 'Hebrews 10:35, 38-39'), array('lev26_3,11b-12' => 'Leviticus 26:3, 11b-12'));
+        $tmp_link_vvid_ARRAY[] = array(array('heb12_1' => 'Hebrews 12:1'));
+        $tmp_link_vvid_ARRAY[] = array(array('1pet2_24' => '1 Peter 2:24'), array('isa53_6' => 'Isaiah 53:6'));
+        $tmp_link_vvid_ARRAY[] = array(array('1pet5_8' => '1 Peter 5:8'));
+        $tmp_link_vvid_ARRAY[] = array(array('rev2_21-22' => 'Revelation 2:21-22'));
+        $tmp_link_vvid_ARRAY[] = array(array('rev3_8' => 'Revelation 3:8'));
+        $tmp_link_vvid_ARRAY[] = array(array('rev2_11|2_17,26-28|3_5,12,21' => 'Revelation 2:11; 2:17,<br>26-28; 3:5, 12, 21;'), array('matt25_23,10b' => 'Matthew 25:23, 10b<br>&nbsp;&nbsp;'));
+        $tmp_link_vvid_ARRAY[] = array(array('rev2_14[solo]' => 'Revelation 2:14'));
+        $tmp_link_vvid_ARRAY[] = array(array('rev3_19' => 'Revelation 3:19'));
+        $tmp_link_vvid_ARRAY[] = array(array('rev12_3-4,9' => 'Revelation 12:3-4, 9'), array('gen3_14' => 'Genesis 3:14'));
+        $tmp_link_vvid_ARRAY[] = array(array('gen3_14[COVID]' => 'Genesis 3:14'), array('rev12_3-4,13,17;13:2,4' => 'Revelation 12:3-4, 13, 17; 13:2, 4'));
+        $tmp_link_vvid_ARRAY[] = array(array('rev21_2,9-27' => 'Revelation 21:2, 9-27'));
+        $tmp_link_vvid_ARRAY[] = array(array('rev21_7' => 'Revelation 21:7'), array('rev21_3-5' => 'Revelation 21:3-5'), array('rev2_10-11' => 'Revelation 2:10-11'), array('rev20_6' => 'Revelation 20:6'), array('eph1_3-14' => 'Ephesians 1:3-14'), array('john5_24-25' => 'John 5:24-25'), array('luke9_1-6' => 'Luke 9:1-6'), array('luke10_19' => 'Luke 10:19'), array('rev21_21' => 'Revelation 21:21'));
+        $tmp_link_vvid_ARRAY[] = array(array('rev22_2' => 'Revelation 22:2'));
+
+        foreach($tmp_link_vvid_ARRAY as $index_grp => $vvid_grp_CHUNKARRAY0){
+
+            $tmp_grp_html_str = '';
+            $tmp_grp_html_str_open = '<div class="cb_10"></div><p>(';
+            $tmp_grp_html_str_delim = ', ';
+            $tmp_grp_html_str_close = ')</p>';
+
+            foreach($vvid_grp_CHUNKARRAY0 as $index_vv => $vvid_grp_CHUNKARRAY1){
+
+                foreach($vvid_grp_CHUNKARRAY1 as $vvid => $vvid_copy){
+
+                    $tmp_vvid = $vvid;
+                    $tmp_vvid_copy = $vvid_copy;
+
+                    $tmp_grp_html_str .= $this->link_html($tmp_vvid, $tmp_vvid_copy);
+                    $tmp_grp_html_str .= $tmp_grp_html_str_delim;
+
+                }
+
+            }
+
+            //
+            // REMOVE TRAILING COMMA.
+            $tmp_grp_html_str = $this->strrtrim($tmp_grp_html_str,', ');
+
+            echo $tmp_grp_html_str_open . $tmp_grp_html_str . $tmp_grp_html_str_close;
+
+        }
+
+        /*
+        switch($this->vvid){
+            case 'jehovah_has_revealed':
+            case 'jehovah_has_revealed_chords':
+            case 'jehovah_has_revealed_audio':
+            case 'jehovah_has_revealed_dl':
+
+//                if($this->vvid == 'jehovah_has_revealed_audio'){
+//
+//                  $tmp_vnav_array['COPY'][] = 'Listen&nbsp;&nbsp;<img src="https://jony5.com/common/imgs/listen_icon_wht.png" width="20" height="18" alt="Listen">';
+//
+//                }else{
+//
+//                  $tmp_vnav_array['COPY'][] = 'Listen&nbsp;&nbsp;<img src="https://jony5.com/common/imgs/listen_icon.png" width="20" height="18" alt="Listen">';
+//
+//                }
+
+//                if($this->vvid == 'jehovah_has_revealed_dl'){
+//
+//                    $tmp_vnav_array['COPY'][] = '<span style="padding:0 8px 0 8px;"><img src="https://jony5.com/common/imgs/download_icon_wht.png" width="20" height="20" alt="Download"></span>'),
+//
+//                }else{
+//
+//                    $tmp_vnav_array['COPY'][] = '<span style="padding:0 8px 0 8px;"><img src="https://jony5.com/common/imgs/download_icon.png" width="20" height="20" alt="Download"></span>'),
+//
+//                }
+
+            break;
+            case 'hymn979':
+
+
+            break;
+            case 'gen1_1':
+            case 'gen2_7':
+            case 'col1_16':
+
+
+            break;
+            case 'gen1_26':
+
+            break;
+            case 'gen3_1':
+
+
+            break;
+            case 'gen3_14[solo]':
+
+            break;
+            case 'gen48_21-22|49_1,25-28':
+
+
+            break;
+            case 'deut33_1-4,12,29':
+            case 'gen49_1,25-28':
+            case 'dan9_17-27':
+            case 'matt24_8-14':
+            case 'matt24_15-22':
+            case 'rev3_7-13':
+            case 'isa16_1-5':
+            case 'james3_1-2':
+            case 'num25_1-13':
+            case 'jer1_11-19':
+            case 'luke12_34-44':
+
+            break;
+            case 'lifestudy_exo_156':
+
+
+            break;
+            case 'exo20_15':
+
+
+            break;
+            case 'exo20_13':
+
+            break;
+            case 'exo30_18':
+
+
+            break;
+            case 'exo30_17-21':
+
+
+            break;
+            case 'lev18_1-5,24-28':
+
+
+            break;
+            case 'lev26_3-13':
+            case 'deut4_1-2,39-40':
+            case 'deut5_10,29':
+            case 'deut6_1-6,16-25':
+            case 'deut6_25':
+            case 'deut7_9-26':
+            case 'deut8_1-10':
+            case 'deut11_1,8-15,22-28':
+            case 'deut26_16-19':
+            case 'deut28_1-14':
+            case 'deut30_11-20':
+            case 'exo15_26':
+            case '1kings8_54-66':
+            case 'neh1_1-11':
+
+
+            break;
+            case 'num14_29-30':
+            case '1cor10_5':
+
+            break;
+            case 'num14_31[000]':
+            case '1pet2_7-8':
+            case 'rom9_31-33':
+            case '1cor1_22-25':
+
+
+            break;
+            case 'num14_31':
+            case 'num32_13':
+            case 'josh5_6':
+            case 'psa95_10-11':
+            case 'num14_35':
+            case 'matt4_1-2':
+
+
+            break;
+
+            case 'num33_50-54':
+
+            break;
+            case 'deut11_14':
+            case 'joel2_23':
+
+
+            break;
+            case '1kings2_1-3':
+
+
+            break;
+            case '1kings18_37-40,45;19_1-18':
+
+
+            break;
+            case '1sam4_4':
+
+            break;
+            case 'psa97_2':
+
+
+            break;
+            case 'psa119_103':
+
+            break;
+            //'','Isa. 14:23'
+            case 'isa14_13':
+
+            break;
+            case 'isa14_21-24':
+
+            break;
+            case 'jer24_7':
+            case '1pet3_15':
+
+            break;
+            case 'jer31_33':
+
+            break;
+            case 'jer31_31-37':
+
+            break;
+            case 'ezek11_17-25':
+            case 'jer31_33-37':
+
+            break;
+            case 'dan9_4':
+            case 'gen26_4-5':
+            case 'exo20_6':
+
+            break;
+            case 'matt1_18,20':
+
+
+            break;
+            case 'matt2_4-6':
+
+
+            break;
+            case 'lev2_1':
+            case 'matt3_15':
+
+
+            break;
+            case 'matt4_3':
+
+
+            break;
+            case 'matt4_4b':
+            case 'luke22_42':
+            break;
+            case 'matt4_5-7':
+
+
+            break;
+            case 'matt5':
+            case 'matt6':
+            case 'matt7':
+
+            break;
+            case 'matt5_10':
+            case '1pet2_20':
+            case 'rom6_18-19':
+
+
+            break;
+            case 'matt5_13':
+            case 'mark9_50':
+            case 'luke14_34-35':
+
+
+            break;
+            case 'matt7_13-14':
+
+
+            break;
+            case 'matt10_16-33':
+
+            break;
+            case 'matt11_28-30':
+
+
+            break;
+            case 'matt12_1-8':
+
+            break;
+            case 'matt13_4':
+
+
+            break;
+            case 'matt19_12':
+
+
+            break;
+            case 'matt24_14':
+
+
+            break;
+            case 'matt25_4':
+
+            break;
+            case 'matt26_33-35,69-75':
+            case 'mark14_27-31,66-72':
+            case 'luke22_33-34,54-62':
+            case 'john13_37-38;18_14-27':
+
+            break;
+            case 'matt27_46':
+
+
+            break;
+            case 'luke9_5-6':
+            case 'luke13_17':
+            case 'heb2_14-15':
+            case '2cor3_12,17':
+            case 'rom8_33-39':
+            case '1cor3_21-23':
+
+            break;
+            case 'luke14_31-32':
+
+            break;
+            case 'luke18_11-12':
+
+            break;
+            case 'luke18_13':
+
+            break;
+            case 'luke19_12,14,15,27':
+            case 'luke23_27-30':
+            case 'rev6_16-17':
+            break;
+            case 'luke22_24-30':
+            case 'john13_3-17':
+            case 'matt16_25-26':
+
+            break;
+            case 'luke22_42[solo]':
+
+
+            break;
+            case 'luke23_38,42-43':
+            case 'john8_51-59':
+            case 'acts2_22-25':
+            case 'exo9_29':
+            case 'deut10_14-22':
+            case 'psa24':
+            case '1cor10_26,29b-31':
+            case 'luke1_26-33':
+
+
+            break;
+            case 'john2_20-21':
+            break;
+            case 'john2_21':
+            case 'matt12_5':
+
+            break;
+            case 'john8_6':
+            case 'john9_41':
+
+            break;
+            case 'john13_34[solo]':
+
+
+            break;
+            case 'john13_37-38':
+            break;
+            case 'john14_10-14':
+
+
+            break;
+            case 'john14_12-14':
+
+
+            break;
+            case 'john16_15':
+
+
+            break;
+            case 'acts1_5':
+
+
+            break;
+            case 'acts8_29':
+            case 'acts16_6,7':
+            case 'acts11_12':
+
+            break;
+            case 'acts11_18':
+
+
+            break;
+            case 'eph1_3-12':
+            case 'rom5_1-5[000]':
+            case 'rom15_4[000]':
+            case '1cor9_8-11,13':
+
+
+            break;
+            case 'rom5_10':
+
+            break;
+            case 'rom5_14,17,21':
+            case 'rom6_9-11':
+            case 'rom14_7-12':
+
+
+            break;
+            case 'rom6_3':
+
+
+            break;
+            case 'rom6_8':
+
+
+            break;
+            case 'rom6_18-19[000]':
+
+
+            break;
+            case 'rom6_22':
+
+
+            break;
+            case 'rom7_2-4,6':
+
+
+            break;
+            case 'rom8_2':
+            break;
+            case 'rom8_2,4':
+
+
+            break;
+            case 'rom8_14':
+
+
+            break;
+            case 'rom12_2':
+            case 'phil2_13':
+
+
+            break;
+            case 'rom12_11':
+            break;
+            case 'rom13_14':
+
+            break;
+            case 'rom14_1':
+
+
+            break;
+            case '1cor5_1,5':
+
+
+            break;
+            case '1cor6_12':
+            case '1cor10_23':
+
+            break;
+            case '1cor11_4':
+
+
+            break;
+            case '1cor11_22':
+
+
+            break;
+            case '1cor15_55,58':
+            case '2cor1_9-10':
+            case 'rom6_8-11':
+
+
+            break;
+            case '1cor15_58':
+            case 'matt10_10b':
+            case 'john14_10':
+            case 'rom2_6-7':
+
+
+            break;
+            case '2cor1_20-22':
+
+
+            break;
+            case '2cor1_20-22[000]':
+            case 'rom10_2-3':
+            case 'gal1_14':
+
+            break;
+            case '2cor3_3':
+            case 'heb8_10[000]':
+            case 'jer31_31-34':
+
+
+            break;
+            case '2cor3_6-9':
+            case 'rom8_14-23':
+
+
+            break;
+            case '2cor3_17-18':
+
+
+            break;
+            case '2cor11_2a':
+            case 'gal4_11':
+
+
+            break;
+            case '2cor11_2b-3':
+            case 'rev2_14':
+
+            break;
+            case 'gal2_20':
+
+
+            break;
+            case 'gal2_20_x':
+            case 'gal6_14':
+
+            break;
+            case 'gal3_1':
+            case 'gal5_1,7':
+
+
+            break;
+            case 'gal5_1':
+
+
+            break;
+            case 'gal5_16,18,22-23,25':
+
+            break;
+            case 'eph1_9':
+
+            break;
+            case 'eph1_3-14[000]':
+
+            break;
+            case 'eph1_3':
+            case 'eph1_9-14,18-23':
+            case 'rom5_1-5':
+            case 'rom8_16-17,24-25':
+            case 'rom15_4':
+            case '2cor3_12':
+            case 'gal5_5-6':
+            case 'col1_5-6,21-23,26-27':
+            case '1thes1_2-3':
+            case '1thes5_7-11':
+            case '2thes2_16-17':
+            case '1tim1_1':
+            case '1tim6_17':
+            case 'titus1_1-3':
+            case 'titus2_11-15':
+            case 'titus3_7[000]':
+            case 'heb3_6[000]':
+            case 'heb6_17-20':
+            case 'heb7_17-19':
+            case 'heb10_21-23':
+            case 'heb11_1':
+            case '1pet1_3-9,13,21':
+            case '1pet3_5-7,14-22':
+            case '1john3_1-10':
+
+            break;
+            case 'phil1_6':
+
+            break;
+            case 'phil1_20':
+
+            break;
+            case 'phil1_27':
+
+            break;
+            case 'phil2_13[001]':
+
+            break;
+            case 'phil2_13[000]':
+
+            break;
+            case 'phil2_3':
+            case 'john13_34':
+
+            break;
+            case 'phil2_5-8':
+
+            break;
+            case 'phil2_5-16[000]':
+
+            break;
+            case 'phil2_5-16':
+            case 'john14_15,20-21':
+
+            break;
+            case 'phil2_5-9':
+            case 'gal5_13,16':
+            case '1pet2_16':
+            case '1john2_15-17':
+            case 'mark7_19-23':
+            case 'acts10_15-16b,19-21':
+
+            break;
+            case 'phil2_8':
+
+            break;
+            case 'col1_5':
+            case 'col1_27':
+            case '1pet1_3-5':
+            case '1pet1_13':
+            case 'titus3_7':
+            case 'heb3_6':
+            case 'heb10_23':
+
+            break;
+            case 'col2_9':
+
+            break;
+            case 'col2_8,12,20-23':
+
+            break;
+            case 'col3_5':
+
+            break;
+            case 'col3_6':
+
+            break;
+            case '2thes2_8-12':
+            case 'heb3_7-19[000]':
+            case 'john8_1-11':
+
+            break;
+            case '1tim4_1-5':
+            case 'rev2_12-17':
+            case 'rev2_18-23':
+
+            break;
+            case '2tim1_6':
+
+
+            break;
+            case '2tim1_6-8':
+            case 'rom12_11-12':
+            case 'luke24_31-32':
+            case 'prov20_27':
+            case 'luke12_35':
+
+
+            break;
+            case 'heb3_7-19':
+
+            break;
+            case 'heb4_8-16':
+
+
+            break;
+            case 'heb4_11':
+            break;
+            case 'heb8_10':
+
+            break;
+            case 'heb9_14':
+
+            break;
+            case 'heb10_22,19':
+            case '1cor6_17':
+            case '2cor3_18':
+
+            break;
+            case 'heb10_22':
+
+            break;
+            case 'heb10_35':
+
+            break;
+            case 'heb10_35,38-39':
+            case 'lev26_3,11b-12':
+
+
+            break;
+            case 'heb12_1':
+
+            break;
+            case '1pet2_24':
+            case 'isa53_6':
+
+
+            break;
+            case '1pet5_8':
+
+
+            break;
+            case 'rev2_21-22':
+
+
+            break;
+            case 'rev3_8':
+
+            break;
+            case 'rev2_11|2_17,26-28|3_5,12,21':
+            case 'matt25_23,10b':
+
+            break;
+            case 'rev2_14[solo]':
+
+            break;
+            case 'rev3_19':
+
+            break;
+            case 'rev12_3-4,9':
+            case 'gen3_14':
+
+            break;
+            case 'rev12_3-4,13,17;13:2,4':
+            case 'gen3_14[COVID]':
+
+
+            break;
+            case 'rev21_2,9-27':
+
+
+            break;
+            case 'rev21_7':
+            case 'rev21_3-5':
+            case 'rev2_10-11':
+            case 'rev20_6':
+            case 'eph1_3-14':
+            case 'john5_24-25':
+            case 'luke9_1-6':
+            case 'luke10_19':
+            case 'rev21_21':
+
+            break;
+            case 'rev22_2':
+
+
+            break;
+
+        }
+
+        */
 
     }
 
@@ -1097,7 +1978,7 @@ class bringer_of_the_precious_things {
             break;
             case 'rom12_11':
 
-            $tmp_vnav_array['VVID'][0] = 'rom12_11';
+                $tmp_vnav_array['VVID'][0] = 'rom12_11';
                 $tmp_vnav_array['COPY'][0] = 'Romans 12:11';
 
             break;
@@ -1177,12 +2058,12 @@ class bringer_of_the_precious_things {
             case 'rom10_2-3':
             case 'gal1_14':
 
-                //$tmp_vnav_array['VVID'][0] = '2cor1_20-22';
-                //$tmp_vnav_array['COPY'][0] = '2 Corinthians 1:20-22';
-                $tmp_vnav_array['VVID'][0] = 'rom10_2-3';
-                $tmp_vnav_array['COPY'][0] = 'Romans 10:2-3';
-                $tmp_vnav_array['VVID'][1] = 'gal1_14';
-                $tmp_vnav_array['COPY'][1] = 'Galatians 1:14';
+                $tmp_vnav_array['VVID'][0] = '2cor1_20-22[000]';
+                $tmp_vnav_array['COPY'][0] = '2 Corinthians 1:20-22';
+                $tmp_vnav_array['VVID'][1] = 'rom10_2-3';
+                $tmp_vnav_array['COPY'][1] = 'Romans 10:2-3';
+                $tmp_vnav_array['VVID'][2] = 'gal1_14';
+                $tmp_vnav_array['COPY'][2] = 'Galatians 1:14';
 
             break;
             case '2cor3_3':
@@ -1716,7 +2597,7 @@ class bringer_of_the_precious_things {
             break;
             default:
                 //
-                // NOTHING TO DO HERE
+                // NOTHING TO DO HERE.
 
             break;
 
@@ -2202,7 +3083,7 @@ class bringer_of_the_precious_things {
             break;
             default:
                 //
-                // NOTHING TO DO HERE
+                // NOTHING TO DO HERE.
 
             break;
 
@@ -6659,7 +7540,7 @@ class bringer_of_the_precious_things {
             default:
 
                 //
-                // NOTHING TO DO HERE...HELLO.
+                // NOTHING TO DO HERE...BUT, HELLO :)
                 $tmp_verse_array['REFERENCE'][0]        = 'Hi there.';
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = '';
                 $tmp_verse_array['COPY'][0]             = 'Thanks for stopping by!';
@@ -8014,6 +8895,27 @@ class bringer_of_the_precious_things {
         }while($rnd > $range);
 
         return $min + $rnd;
+
+    }
+
+    //
+    // SOURCE :: https://www.php.net/manual/en/function.rtrim.php
+    // AUTHOR :: pinkgothic at gmail dot com :: https://www.php.net/manual/en/function.rtrim.php#95802
+    public function strrtrim($message, $strip){
+
+        // break message apart by strip string
+        $lines = explode($strip, $message);
+        $last = '';
+
+        // pop off empty strings at the end
+        do{
+
+            $last = array_pop($lines);
+
+        }while(empty($last) && (count($lines)));
+
+        // re-assemble what remains
+        return implode($strip, array_merge($lines, array($last)));
 
     }
 
