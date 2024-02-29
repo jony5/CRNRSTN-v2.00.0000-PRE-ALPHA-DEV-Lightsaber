@@ -73,7 +73,6 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
             <!-- BEGIN SOCIAL SHARE -->
             <div style="float: left;">
                 <div style="position:relative;">
-                    <!--<div style="position: absolute; left:630px; top:-10px;">-->
                     <div style="position: absolute; left:-10px; top:-10px;">
 
                         <div id="scripture_deep_link_<?php
