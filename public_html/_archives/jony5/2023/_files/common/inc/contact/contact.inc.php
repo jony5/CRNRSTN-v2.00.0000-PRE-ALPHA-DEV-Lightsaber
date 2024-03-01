@@ -14,13 +14,6 @@
                                 <td style="width:300px;"><div class="form_element_input" style="float:right;"><input frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="none" name="name" type="text" id="name" size="20" maxlength="100" value="" /></div></td>
                             </tr>
                         </table>
-
-
-
-
-
-
-
                         <div class="cb_20"></div>
                         <div id="submit_shell" class="form_submit_shell">
                             <div id="fb_form_submit_btn" class="form_submit_btn" onMouseOver="submitBtnMouseOver(this); return false;" onMouseOut="submitBtnMouseOut(this); return false;" onClick="if(mycrnrstn_fhandler.validateForm('post_feedback')){ $('post_feedback').submit()}">Submit</div>
@@ -31,9 +24,6 @@
                             <div class="crnrstn_chkbx_copy" style=" float:left; width:200px; padding-left: 5px;">By submitting this form, I agree that  I am at least 13 years of age.</div>
                             <div class="cb"></div>
                         </div>
-                        <div class="cb"></div>
-
-
                         <div class="cb_30"></div>
 
 						<div class="hidden">
@@ -53,5 +43,4 @@
 			</div>
 			<div id="form_fb_nav" onClick="toggleFeedbackForm(this);">&nbsp;&nbsp;C<br>&nbsp;&nbsp;O<br>&nbsp;&nbsp;N<br>&nbsp;&nbsp;T<br>&nbsp;&nbsp;A<br>&nbsp;&nbsp;C<br>&nbsp;&nbsp;T</div>
 		</div>
-		
 		</div>

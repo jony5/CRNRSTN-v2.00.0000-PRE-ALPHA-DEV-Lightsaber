@@ -25,6 +25,7 @@ class bringer_of_the_precious_things {
     public $oCRNRSTN_USR;
 
     public $vvid;
+    private static $vvid_is_grouped = false;
 
     public function __construct($oCRNRSTN_USR, $page = 'home'){
 
@@ -307,884 +308,685 @@ class bringer_of_the_precious_things {
 
     }
 
-    public function build_link_html_index(){
-
-        $tmp_link_html_output = '';
-        $tmp_link_html_output_ARRAY = array();
-        $tmp_link_vvid_ARRAY = array();
+    public function search_for_all_preciousness($ugc_str){
 
         //
-        // Thursday, February 29, 2024 @ 0240 hrs.
+        // Thursday, February 29, 2024 1430 hrs.
+        $tmp_result_html = '';
+
+
+        return $tmp_result_html;
+
+    }
+
+    public function build_link_html_index($vv_grouped = false){
+
         //
-        // BUILD SCRIPTURE <A> LINK HTML
-        // OUTPUT VVID INDEX CONTROL STRUCTURE.
-        //$tmp_link_vvid_ARRAY[] = array(array('jehovah_has_revealed' => 'Jehovah Has Revealed His Heart'), array('jehovah_has_revealed_chords' => 'Chords'), array('jehovah_has_revealed_audio' => 'Listen&nbsp;&nbsp;<img src="https://jony5.com/common/imgs/listen_icon_wht.png" width="20" height="18" alt="Listen">'), array('jehovah_has_revealed_dl' => 'Listen&nbsp;&nbsp;<img src="https://jony5.com/common/imgs/listen_icon.png" width="20" height="18" alt="Download">'));
-        $tmp_link_vvid_ARRAY[] = array(array('jehovah_has_revealed' => 'Jehovah Has Revealed His Heart'));
-        $tmp_link_vvid_ARRAY[] = array(array('jehovah_has_revealed_chords' => 'Jehovah Has Revealed His Heart :: Chords'));
-        //$tmp_link_vvid_ARRAY[] = array(array('jehovah_has_revealed_audio' => 'Jehovah Has Revealed His Heart :: Listen&nbsp;&nbsp;<img src="https://jony5.com/common/imgs/listen_icon_wht.png" width="20" height="18" alt="Listen">'));
-        $tmp_link_vvid_ARRAY[] = array(array('jehovah_has_revealed_dl' => 'Jehovah Has Revealed His Heart :: Download'));
+        // A NULL $vv_grouped IS INDICATION OF A
+        // REQUEST TO BUILD AND RETURN HTML FOR
+        // SCRIPTURES GROUPING UGC INPUT CONTROL.
+        if(!isset($vv_grouped)){
 
-        $tmp_link_vvid_ARRAY[] = array(array('hymn979' => 'HYMNS #979'), array('gen1_1' => 'Genesis 1:1'), array('gen2_7' => 'Genesis 2:7'), array('col1_16' => 'Colossians 1:16'), array('gen1_26' => 'Genesis 1:26'), array('gen3_1' => 'Genesis 3:1'), array('gen3_14[solo]' => 'Genesis 3:14'), array('gen48_21-22|49_1,25-28' => 'Genesis 48:21-22; 49:1, 25-28'));
-        $tmp_link_vvid_ARRAY[] = array(array('rev3_7-13' => 'Revelation 3:7-13'), array('gen49_1,25-28' => 'Genesis 49:1, 25-28'), array('deut33_1-4,12,29' => 'Deuteronomy 33:1-4, 12, 29'), array('isa16_1-5' => 'Isaiah 16:1-5'), array('dan9_17-27' => 'Daniel 9:17-27'), array('matt24_15-22' => 'Matthew 24:15-22'), array('matt24_8-14' => 'Matthew 24:8-14'), array('james3_1-2' => 'James 3:1-2'), array('num25_1-13' => 'Numbers 25:1-13'), array('jer1_11-19' => 'Jeremiah 1:11-19'), array('luke12_34-44' => 'Luke 12:34-44'));
-        $tmp_link_vvid_ARRAY[] = array(array('lifestudy_exo_156' => 'Life-Study of Exodus, Message 156'));
-        $tmp_link_vvid_ARRAY[] = array(array('exo20_15' => 'Exodus 20:15'));
-        $tmp_link_vvid_ARRAY[] = array(array('exo20_13' => 'Exodus 20:13'));
-        $tmp_link_vvid_ARRAY[] = array(array('exo30_18' => 'Exodus 30:18'));
-        $tmp_link_vvid_ARRAY[] = array(array('exo30_17-21' => 'Exodus 30:17-21'));
-        $tmp_link_vvid_ARRAY[] = array(array('lev18_1-5,24-28' => 'Leviticus 18:1-5, 24-28'));
-        $tmp_link_vvid_ARRAY[] = array(array('lev26_3-13' => 'Leviticus 26:3-13'), array('deut4_1-2,39-40' => 'Deuteronomy 4:1-2, 39-40'), array('deut5_10,29' => 'Deuteronomy 5:10, 29'), array('deut6_1-6,16-25' => 'Deuteronomy 6:1-6, 16-25'), array('deut6_25' => 'Deuteronomy 6:25'), array('deut7_9-26' => 'Deuteronomy 7:9-26'), array('deut8_1-10' => 'Deuteronomy 8:1-10'), array('deut11_1,8-15,22-28' => 'Deuteronomy 11:1, 8-15, 22-28'), array('deut26_16-19' => 'Deuteronomy 26:16-19'), array('deut28_1-14' => 'Deuteronomy 28:1-14'), array('deut30_11-20' => 'Deuteronomy 30:11-20'), array('exo15_26' => 'Exodus 15:26'), array('1kings8_54-66' => '1 Kings 8:54-66'), array('neh1_1-11' => 'Nehemiah 1:1-11'));
-        $tmp_link_vvid_ARRAY[] = array(array('num14_29-30' => 'Numbers 14:29-30'), array('1cor10_5' => '1 Corinthians 10:5'));
-        $tmp_link_vvid_ARRAY[] = array(array('num14_31[000]' => 'Numbers 14:31'), array('1pet2_7-8' => '1 Peter 2:7-8'), array('rom9_31-33' => 'Romans 9:31-33'), array('1cor1_22-25' => '1 Corinthians 1:22-25'));
-        $tmp_link_vvid_ARRAY[] = array(array('num14_31' => 'Numbers 14:31'), array('num32_13' => 'Numbers 32:13'), array('josh5_6' => 'Joshua 5:6'), array('psa95_10-11' => 'Psalm 95:10-11'), array('num14_35' => 'Numbers 14:35'), array('matt4_1-2' => 'Matthew 4:1-2'));
-        $tmp_link_vvid_ARRAY[] = array(array('num33_50-54' => 'Numbers 33:50-54'));
-        $tmp_link_vvid_ARRAY[] = array(array('deut11_14' => 'Deuteronomy 11:14'), array('joel2_23' => 'Joel 2:23'));
-        $tmp_link_vvid_ARRAY[] = array(array('1kings2_1-3' => '1 Kings 2:1-3'));
-        $tmp_link_vvid_ARRAY[] = array(array('1kings18_37-40,45;19_1-18' => '1 Kings 18:37-40, 45; 19:1-18'));
-        $tmp_link_vvid_ARRAY[] = array(array('1sam4_4' => '1 Samuel 4:4'));
-        $tmp_link_vvid_ARRAY[] = array(array('psa97_2' => 'Psalm 97:2'));
-        $tmp_link_vvid_ARRAY[] = array(array('psa119_103' => 'Psalm 119:103'));
-        $tmp_link_vvid_ARRAY[] = array(array('isa14_13' => 'Isaiah 14:13'));
-        $tmp_link_vvid_ARRAY[] = array(array('isa14_21-24' => 'Isaiah 14:21-24'));
-        $tmp_link_vvid_ARRAY[] = array(array('jer24_7' => 'Jeremiah 24:7'), array('1pet3_15' => '1 Peter 3:15'));
-        $tmp_link_vvid_ARRAY[] = array(array('jer31_33' => 'Jeremiah 31:33'));
-        $tmp_link_vvid_ARRAY[] = array(array('jer31_31-37' => 'Jeremiah 31:31-37'));
-        $tmp_link_vvid_ARRAY[] = array(array('ezek11_17-25' => 'Ezekiel 11:17-25'), array('jer31_33-37' => 'Jeremiah 31:33-37'));
-        $tmp_link_vvid_ARRAY[] = array(array('dan9_4' => 'Daniel 9:4'), array('gen26_4-5' => 'Genesis 26:4-5'), array('exo20_6' => 'Exodus 20:6'));
-        $tmp_link_vvid_ARRAY[] = array(array('matt1_18,20' => 'Matthew 1:18, 20'));
-        $tmp_link_vvid_ARRAY[] = array(array('matt2_4-6' => 'Matthew 2:4-6'));
-        $tmp_link_vvid_ARRAY[] = array(array('lev2_1' => 'Leviticus 2:1'), array('matt3_15' => 'Matthew 3:15'));
-        $tmp_link_vvid_ARRAY[] = array(array('matt4_3' => 'Matthew 4:3'));
-        $tmp_link_vvid_ARRAY[] = array(array('matt4_4b' => 'Matthew 4:4b'), array('luke22_42' => 'Luke 22:42'));
-        $tmp_link_vvid_ARRAY[] = array(array('matt4_5-7' => 'Matthew 4:5-7'));
-        $tmp_link_vvid_ARRAY[] = array(array('matt5' => 'Matthew Chapter 5'), array('matt6' => 'Matthew Chapter 6'), array('matt7' => 'Matthew Chapter 7'));
-        $tmp_link_vvid_ARRAY[] = array(array('rom6_18-19' => 'Romans 6:18-19'), array('1pet2_20' => '1 Peter 2:20'), array('matt5_10' => 'Matthew 5:10'));
-        $tmp_link_vvid_ARRAY[] = array(array('matt5_13' => 'Matthew 5:13'), array('mark9_50' => 'Mark 9:50'), array('luke14_34-35' => 'Luke 14:34-35'));
-        $tmp_link_vvid_ARRAY[] = array(array('matt7_13-14' => 'Matthew 7:13-14'));
-        $tmp_link_vvid_ARRAY[] = array(array('matt10_16-33' => 'Matthew 10:16-33'));
-        $tmp_link_vvid_ARRAY[] = array(array('matt11_28-30' => 'Matthew 11:28-30'));
-        $tmp_link_vvid_ARRAY[] = array(array('matt12_1-8' => 'Matthew 12:1-8'));
-        $tmp_link_vvid_ARRAY[] = array(array('matt13_4' => 'Matthew 13:4'));
-        $tmp_link_vvid_ARRAY[] = array(array('matt19_12' => 'Matthew 19:12'));
-        $tmp_link_vvid_ARRAY[] = array(array('matt24_14' => 'Matthew 24:14'));
-        $tmp_link_vvid_ARRAY[] = array(array('matt25_4' => 'Matthew 25:4'));
-        $tmp_link_vvid_ARRAY[] = array(array('matt26_33-35,69-75' => 'Matthew 26:33-35, 69-75'), array('mark14_27-31,66-72' => 'Mark 14:27-31, 66-72'), array('luke22_33-34,54-62' => 'Luke 22:33-34, 54-62'), array('john13_37-38;18_14-27' => 'John 13:37-38; 18:14-27'));
-        $tmp_link_vvid_ARRAY[] = array(array('matt27_46' => 'Matthew 27:46'));
-        $tmp_link_vvid_ARRAY[] = array(array('luke9_5-6' => 'Luke 9:5-6'), array('luke13_17' => 'Luke 13:17'), array('heb2_14-15' => 'Hebrews 2:14-15'), array('2cor3_12,17' => '2 Corinthians 3:12, 17'), array('rom8_33-39' => 'Romans 8:33-39'), array('1cor3_21-23' => '1 Corinthians 3:21-23'));
-        $tmp_link_vvid_ARRAY[] = array(array('luke14_31-32' => 'Luke 14:31-32'));
-        $tmp_link_vvid_ARRAY[] = array(array('luke18_11-12' => 'Luke 18:11-12'));
-        $tmp_link_vvid_ARRAY[] = array(array('luke18_13' => 'Luke 18:13'));
-        $tmp_link_vvid_ARRAY[] = array(array('rev6_16-17' => 'Revelation 6:16-17'), array('luke23_27-30' => 'Luke 23:28-30'), array('luke19_12,14,15,27' => 'Luke 19:12, 14, 15, 27'));
-        $tmp_link_vvid_ARRAY[] = array(array('luke22_24-30' => 'Luke 22:24-27'), array('john13_3-17' => 'John 13:3-17'), array('matt16_25-26' => 'Matthew 16:25-26'));
-        $tmp_link_vvid_ARRAY[] = array(array('luke22_42[solo]' => 'Luke 22:42'));
-        $tmp_link_vvid_ARRAY[] = array(array('luke23_38,42-43' => 'Luke 23:38, 42-43'), array('john8_51-59' => 'John 8:51-59'), array('acts2_22-25' => 'Acts 2:22-25'), array('exo9_29' => 'Exodus 9:29'), array('deut10_14-22' => 'Deuteronomy 10:14-22'), array('psa24' => 'Psalm 24'), array('1cor10_26,29b-31' => '1 Corinthians 10:26, 29b-31'), array('luke1_26-33' => 'Luke 1:26-33'));
-        $tmp_link_vvid_ARRAY[] = array(array('john2_20-21' => 'John 2:20-21'));
-        $tmp_link_vvid_ARRAY[] = array(array('john2_21' => 'John 2:21'), array('matt12_5' => 'Matthew 12:5'));
-        $tmp_link_vvid_ARRAY[] = array(array('john8_6' => 'John 8:6'), array('john9_41' => 'John 9:41'));
-        $tmp_link_vvid_ARRAY[] = array(array('john13_34[solo]' => 'John 13:34'));
-        $tmp_link_vvid_ARRAY[] = array(array('john13_37-38' => 'John 13:37-38'));
-        $tmp_link_vvid_ARRAY[] = array(array('john14_10-14' => 'John 14:10-14'));
-        $tmp_link_vvid_ARRAY[] = array(array('john14_12-14' => 'John 14:12-14'));
-        $tmp_link_vvid_ARRAY[] = array(array('john16_15' => 'John 16:15'));
-        $tmp_link_vvid_ARRAY[] = array(array('acts1_5' => 'Acts 1:5'));
-        $tmp_link_vvid_ARRAY[] = array(array('acts8_29' => 'Acts 8:29'), array('acts16_6,7' => 'Acts 16:6, 7'), array('acts11_12' => 'Acts 11:12'));
-        $tmp_link_vvid_ARRAY[] = array(array('acts11_18' => 'Acts 11:18'));
-        $tmp_link_vvid_ARRAY[] = array(array('eph1_3-12' => 'Ephesians 1:3-12'), array('rom5_1-5[000]' => 'Romans 5:1-5'), array('rom15_4[000]' => 'Romans 15:4'), array('1cor9_8-11,13' => '1 Corinthians 9:8-11, 13'));
-        $tmp_link_vvid_ARRAY[] = array(array('rom5_10' => 'Romans 5:10'));
-        $tmp_link_vvid_ARRAY[] = array(array('rom5_14,17,21' => 'Romans 5:14, 17, 21'), array('rom6_9-11' => 'Romans 6:9-11'), array('rom14_7-12' => 'Romans 14:7-12'));
-        $tmp_link_vvid_ARRAY[] = array(array('rom6_3' => 'Romans 6:3'));
-        $tmp_link_vvid_ARRAY[] = array(array('rom6_8' => 'Romans 6:8'));
-        $tmp_link_vvid_ARRAY[] = array(array('rom6_18-19[000]' => 'Romans 6:18-19'));
-        $tmp_link_vvid_ARRAY[] = array(array('rom6_22' => 'Romans 6:22'));
-        $tmp_link_vvid_ARRAY[] = array(array('rom7_2-4,6' => 'Romans 7:2-4, 6'));
-        $tmp_link_vvid_ARRAY[] = array(array('rom8_2' => 'Romans 8:2'));
-        $tmp_link_vvid_ARRAY[] = array(array('rom8_2,4' => 'Romans 8:2, 4'));
-        $tmp_link_vvid_ARRAY[] = array(array('rom8_14' => 'Romans 8:14'));
-        $tmp_link_vvid_ARRAY[] = array(array('rom12_2' => 'Romans 12:2'), array('phil2_13' => 'Philippians 2:13'));
-        $tmp_link_vvid_ARRAY[] = array(array('rom12_11' => 'Romans 12:11'));
-        $tmp_link_vvid_ARRAY[] = array(array('rom13_14' => 'Romans 13:14'));
-        $tmp_link_vvid_ARRAY[] = array(array('rom14_1' => 'Romans 14:1'));
-        $tmp_link_vvid_ARRAY[] = array(array('1cor5_1,5' => '1 Corinthians 5:1, 5'));
-        $tmp_link_vvid_ARRAY[] = array(array('1cor10_23' => '1 Corinthians 10:23'), array('1cor6_12' => '1 Corinthians 6:12'));
-        $tmp_link_vvid_ARRAY[] = array(array('1cor11_4' => '1 Corinthians 11:4'));
-        $tmp_link_vvid_ARRAY[] = array(array('1cor11_22' => '1 Corinthians 11:22'));
-        $tmp_link_vvid_ARRAY[] = array(array('1cor15_55,58' => '1 Corinthians 15:55, 58'), array('2cor1_9-10' => '2 Corinthians 1:9-10'), array('rom6_8-11' => 'Romans 6:8-11'));
-        $tmp_link_vvid_ARRAY[] = array(array('1cor15_58' => '1 Corinthians 15:58'), array('matt10_10b' => 'Matthew 10:10b'), array('john14_10' => 'John 14:10'), array('rom2_6-7' => 'Romans 2:6-7'));
-        $tmp_link_vvid_ARRAY[] = array(array('2cor1_20-22' => '2 Corinthians 1:20-22'));
-        $tmp_link_vvid_ARRAY[] = array(array('2cor1_20-22[000]' => '2 Corinthians 1:20-22'), array('rom10_2-3' => 'Romans 10:2-3'), array('gal1_14' => 'Galatians 1:14'));
-        $tmp_link_vvid_ARRAY[] = array(array('2cor3_3' => '2 Corinthians 3:3'), array('heb8_10[000]' => 'Hebrews 8:10'), array('jer31_31-34' => 'Jeremiah 31:31-34'));
-        $tmp_link_vvid_ARRAY[] = array(array('2cor3_6-9' => '2 Corinthians 3:6-9'), array('rom8_14-23' => 'Romans 8:14-23'));
-        $tmp_link_vvid_ARRAY[] = array(array('2cor3_17-18' => '2 Corinthians 3:17-18'));
-        $tmp_link_vvid_ARRAY[] = array(array('2cor11_2a' => '2 Corinthians 11:2a'), array('gal4_11' => 'Galatians 4:11'));
-        $tmp_link_vvid_ARRAY[] = array(array('2cor11_2b-3' => '2 Corinthians 11:2b-3'), array('rev2_14' => 'Revelation 2:14'));
-        $tmp_link_vvid_ARRAY[] = array(array('gal2_20' => 'Galatians 2:20'));
-        $tmp_link_vvid_ARRAY[] = array(array('gal2_20_x' => 'Galatians 2:20'), array('gal6_14' => 'Galatians 6:14'));
-        $tmp_link_vvid_ARRAY[] = array(array('gal3_1' => 'Galatians 3:1'), array('gal5_1,7' => 'Galatians 5:1, 7'));
-        $tmp_link_vvid_ARRAY[] = array(array('gal5_1' => 'Galatians 5:1'));
-        $tmp_link_vvid_ARRAY[] = array(array('gal5_16,18,22-23,25' => 'Galatians 5:16, 18, 22-23, 25'));
-        $tmp_link_vvid_ARRAY[] = array(array('eph1_9' => 'Ephesians 1:9'));
-        $tmp_link_vvid_ARRAY[] = array(array('eph1_3-14[000]' => 'Ephesians 1:3-14'));
-        $tmp_link_vvid_ARRAY[] = array(array('eph1_3' => 'Ephesians 1:3'), array('rom5_1-5' => 'Romans 5:1-5'), array('rom8_16-17,24-25' => 'Romans 8:16-17, 24-25'), array('rom15_4' => 'Romans 15:4'), array('2cor3_12' => '2 Corinthians 3:12'), array('gal5_5-6' => 'Galatians 5:5-6'), array('eph1_9-14,18-23' => 'Ephesians 1:9-14, 18-23'), array('col1_5-6,21-23,26-27' => 'Colossians 1:5-6, 21-23, 26-27'), array('1thes1_2-3' => '1 Thessalonians 1:2-3'), array('1thes5_7-11' => '1 Thessalonians 5:7-11'), array('2thes2_16-17' => '2 Thessalonians 2:16-17'), array('1tim1_1' => '1 Tim 1:1'), array('1tim6_17' => '1 Tim 6:17'), array('titus1_1-3' => 'Titus 1:1-3'), array('titus2_11-15' => 'Titus 2:11-15'), array('titus3_7[000]' => 'Titus 3:7'), array('heb3_6[000]' => 'Hebrews 3:6'), array('heb6_17-20' => 'Hebrews 6:17-20'), array('heb7_17-19' => 'Hebrews 7:17-19'), array('heb10_21-23' => 'Hebrews 10:21-23'), array('heb11_1' => 'Hebrews 11:1'), array('1pet1_3-9,13,21' => '1 Pet 1:3-9, 13, 21'), array('1pet3_5-7,14-22' => '1 Pet. 3:5-7, 14-22'), array('1john3_1-10' => '1 John 3:1-10'));
-        $tmp_link_vvid_ARRAY[] = array(array('phil1_6' => 'Philippians 1:6'));
-        $tmp_link_vvid_ARRAY[] = array(array('phil1_20' => 'Philippians 1:20'));
-        $tmp_link_vvid_ARRAY[] = array(array('phil1_27' => 'Philippians 1:27'));
-        $tmp_link_vvid_ARRAY[] = array(array('phil2_13[001]' => 'Philippians 2:13'));
-        $tmp_link_vvid_ARRAY[] = array(array('phil2_13[000]' => 'Philippians 2:13'));
-        $tmp_link_vvid_ARRAY[] = array(array('phil2_3' => 'Philippians 2:3'), array('john13_34' => 'John 13:34'));
-        $tmp_link_vvid_ARRAY[] = array(array('phil2_5-8' => 'Philippians 2:5-8'));
-        $tmp_link_vvid_ARRAY[] = array(array('phil2_5-16[000]' => 'Philippians 2:5-16'));
-        $tmp_link_vvid_ARRAY[] = array(array('phil2_5-16' => 'Philippians 2:5-16'), array('john14_15,20-21' => 'John 14:15, 20-21'));
-        $tmp_link_vvid_ARRAY[] = array(array('phil2_5-9' => 'Philippians 2:5-9'), array('gal5_13,16' => 'Galatians 5:13, 16'), array('1pet2_16' => '1 Peter 2:16'), array('1john2_15-17' => '1 John 2:15-17'), array('mark7_19-23' => 'Mark 7:19-23'), array('acts10_15-16b,19-21' => 'Acts 10:15-16b, 19-21'));
-        $tmp_link_vvid_ARRAY[] = array(array('phil2_8' => 'Philippians 2:8'));
-        $tmp_link_vvid_ARRAY[] = array(array('col1_5' => 'Colossians 1:5'), array('col1_27' => 'Colossians 1:27'), array('1pet1_3-5' => '1 Peter 1:3-5'), array('1pet1_13' => '1 Peter 1:13'), array('titus3_7' => 'Titus 3:7'), array('heb3_6' => 'Hebrews 3:6'), array('heb10_23' => 'Hebrews 10:23'));
-        $tmp_link_vvid_ARRAY[] = array(array('col2_9' => 'Colossians 2:9'));
-        $tmp_link_vvid_ARRAY[] = array(array('col2_8,12,20-23' => 'Colossians 2:8, 12, 20-23'));
-        $tmp_link_vvid_ARRAY[] = array(array('col3_5' => 'Colossians 3:5'));
-        $tmp_link_vvid_ARRAY[] = array(array('col3_6' => 'Colossians 3:6'));
-        $tmp_link_vvid_ARRAY[] = array(array('2thes2_8-12' => '2 Thessalonians 2:8-12'), array('heb3_7-19[000]' => 'Hebrews 3:7-19'), array('john8_1-11' => 'John 8:1-11'));
-        $tmp_link_vvid_ARRAY[] = array(array('1tim4_1-5' => '1 Timothy 4:1-5'), array('rev2_12-17' => 'Revelation 2:12-17'), array('rev2_18-23' => 'Revelation 2:18-23'));
-        $tmp_link_vvid_ARRAY[] = array(array('2tim1_6' => '2 Timothy 1:6'));
-        $tmp_link_vvid_ARRAY[] = array(array('2tim1_6-8' => '2 Timothy 1:6-8'), array('rom12_11-12' => 'Romans 12:11-12'), array('luke24_31-32' => 'Luke 24:31-32'), array('prov20_27' => 'Proverbs 20:27'), array('luke12_35' => 'Luke 12:35'));
-        $tmp_link_vvid_ARRAY[] = array(array('heb3_7-19' => 'Hebrews 3:7-19'));
-        $tmp_link_vvid_ARRAY[] = array(array('heb4_8-16' => 'Hebrews 4:8-16'));
-        $tmp_link_vvid_ARRAY[] = array(array('heb4_11' => 'Hebrews 4:11'));
-        $tmp_link_vvid_ARRAY[] = array(array('heb8_10' => 'Hebrews 8:10'));
-        $tmp_link_vvid_ARRAY[] = array(array('heb9_14' => 'Hebrews 9:14'));
-        $tmp_link_vvid_ARRAY[] = array(array('heb10_22,19' => 'Hebrews 10:22, 19'), array('1cor6_17' => '1 Corinthians 6:17'), array('2cor3_18' => '2 Corinthians 3:18'));
-        $tmp_link_vvid_ARRAY[] = array(array('heb10_22' => 'Hebrews 10:22'));
-        $tmp_link_vvid_ARRAY[] = array(array('heb10_35' => 'Hebrews 10:35'));
-        $tmp_link_vvid_ARRAY[] = array(array('heb10_35,38-39' => 'Hebrews 10:35, 38-39'), array('lev26_3,11b-12' => 'Leviticus 26:3, 11b-12'));
-        $tmp_link_vvid_ARRAY[] = array(array('heb12_1' => 'Hebrews 12:1'));
-        $tmp_link_vvid_ARRAY[] = array(array('1pet2_24' => '1 Peter 2:24'), array('isa53_6' => 'Isaiah 53:6'));
-        $tmp_link_vvid_ARRAY[] = array(array('1pet5_8' => '1 Peter 5:8'));
-        $tmp_link_vvid_ARRAY[] = array(array('rev2_21-22' => 'Revelation 2:21-22'));
-        $tmp_link_vvid_ARRAY[] = array(array('rev3_8' => 'Revelation 3:8'));
-        $tmp_link_vvid_ARRAY[] = array(array('rev2_11|2_17,26-28|3_5,12,21' => 'Revelation 2:11; 2:17,<br>26-28; 3:5, 12, 21;'), array('matt25_23,10b' => 'Matthew 25:23, 10b<br>&nbsp;&nbsp;'));
-        $tmp_link_vvid_ARRAY[] = array(array('rev2_14[solo]' => 'Revelation 2:14'));
-        $tmp_link_vvid_ARRAY[] = array(array('rev3_19' => 'Revelation 3:19'));
-        $tmp_link_vvid_ARRAY[] = array(array('rev12_3-4,9' => 'Revelation 12:3-4, 9'), array('gen3_14' => 'Genesis 3:14'));
-        $tmp_link_vvid_ARRAY[] = array(array('gen3_14[COVID]' => 'Genesis 3:14'), array('rev12_3-4,13,17;13:2,4' => 'Revelation 12:3-4, 13, 17; 13:2, 4'));
-        $tmp_link_vvid_ARRAY[] = array(array('rev21_2,9-27' => 'Revelation 21:2, 9-27'));
-        $tmp_link_vvid_ARRAY[] = array(array('rev21_7' => 'Revelation 21:7'), array('rev21_3-5' => 'Revelation 21:3-5'), array('rev2_10-11' => 'Revelation 2:10-11'), array('rev20_6' => 'Revelation 20:6'), array('eph1_3-14' => 'Ephesians 1:3-14'), array('john5_24-25' => 'John 5:24-25'), array('luke9_1-6' => 'Luke 9:1-6'), array('luke10_19' => 'Luke 10:19'), array('rev21_21' => 'Revelation 21:21'));
-        $tmp_link_vvid_ARRAY[] = array(array('rev22_2' => 'Revelation 22:2'));
+            $tmp_JONY5_SCRIPTURES_INDEXED_BY_GROUP = 0;
 
-        foreach($tmp_link_vvid_ARRAY as $index_grp => $vvid_grp_CHUNKARRAY0){
+            if(isset($_POST['JONY5_SCRIPTURES_INDEXED_BY_GROUP'])){
 
-            $tmp_grp_html_str = '';
-            $tmp_grp_html_str_open = '<div class="cb_10"></div><p>(';
-            $tmp_grp_html_str_delim = ', ';
-            $tmp_grp_html_str_close = ')</p>';
+                $tmp_JONY5_SCRIPTURES_INDEXED_BY_GROUP = $_POST['JONY5_SCRIPTURES_INDEXED_BY_GROUP'];
 
-            foreach($vvid_grp_CHUNKARRAY0 as $index_vv => $vvid_grp_CHUNKARRAY1){
+            }else{
 
-                foreach($vvid_grp_CHUNKARRAY1 as $vvid => $vvid_copy){
+                if(self::$oEnv->oSESSION_MGR->issetSessionParam('JONY5_SCRIPTURES_INDEXED_BY_GROUP') !== false){
 
-                    $tmp_vvid = $vvid;
-                    $tmp_vvid_copy = $vvid_copy;
+                    self::$vvid_is_grouped = false;
 
-                    $tmp_grp_html_str .= $this->link_html($tmp_vvid, $tmp_vvid_copy);
-                    $tmp_grp_html_str .= $tmp_grp_html_str_delim;
+                    //
+                    // INITIALIZE SCRIPTURE INDEX MODE SESSION PARAM.
+                    self::$oEnv->oSESSION_MGR->setSessionParam('JONY5_SCRIPTURES_INDEXED_BY_GROUP', self::$vvid_is_grouped);
+
+                }else{
+
+                    $tmp_JONY5_SCRIPTURES_INDEXED_BY_GROUP = self::$oEnv->oSESSION_MGR->getSessionParam('JONY5_SCRIPTURES_INDEXED_BY_GROUP');
 
                 }
 
             }
 
+            $tmp_checkbox_state = '';
+            if($tmp_JONY5_SCRIPTURES_INDEXED_BY_GROUP != 0){
+
+                $tmp_checkbox_state = 'checked="checked"';
+                self::$vvid_is_grouped = true;
+                self::$oEnv->oSESSION_MGR->setSessionParam('JONY5_SCRIPTURES_INDEXED_BY_GROUP', true);
+
+            }else{
+
+                self::$vvid_is_grouped = false;
+                self::$oEnv->oSESSION_MGR->setSessionParam('JONY5_SCRIPTURES_INDEXED_BY_GROUP', false);
+
+            }
+
             //
-            // REMOVE TRAILING COMMA.
-            $tmp_grp_html_str = $this->strrtrim($tmp_grp_html_str,', ');
+            // RETURN HTML OUTPUT FOR UGC INPUT CONTROL LINK TO
+            // TOGGLE SCRIPTURES PARENTHETICAL GROUPING "ON AND OFF".
+            $tmp_group_by_link_html = '<div class="cb"></div>
+                    <div style="float:left; padding-left:0; margin-left: 0; width:280px; cursor:pointer;" id="chkbx_JONY5_SCRIPTURES_INDEXED_BY_GROUP" class="crnrstn_chkbx_wrapper" onclick="crnrstn_vv_chkbxSel(this, \'JONY5_SCRIPTURES_INDEXED_BY_GROUP\');">
+                        <form action="#" method="post" name="post_scriptures_group_by" id="post_scriptures_group_by"  enctype="multipart/form-data">
+                            <div style="float:left;"><input type="checkbox" id="scriptures_group_by_chkbx" name="scriptures_group_by_chkbx" style="width:22px; height:22px;" ' . $tmp_checkbox_state . '></div>
+                            <div class="crnrstn_chkbx_copy" style="float:left; width:240px; padding-left: 5px;"><span class="script_lnk" style="font-size: 15px; color:#0066CC;">Display by Parenthetical Grouping</span></div>
+                            <div class="cb"></div>
+                            <div id="submit_shell" class="hidden">
+                                <div id="vv_form_submit_btn" class="form_submit_btn" onmouseover="submitBtnMouseOver(this); return false;" onmouseout="submitBtnMouseOut(this); return false;" onclick="$(\'post_scriptures_group_by\').submit();">Submit</div>
+                            </div>
+                            <input type="hidden" name="JONY5_SCRIPTURES_INDEXED_BY_GROUP" id="JONY5_SCRIPTURES_INDEXED_BY_GROUP" value="' . $tmp_JONY5_SCRIPTURES_INDEXED_BY_GROUP . '" />
+                            <input type="hidden" name="postid" id="postid" value="post_scriptures_group_by" />
+                            <input type="hidden" name="OPTIN" id="OPTIN" value="0" />
+                            <input type="hidden" name="crnrstn_interact_ui_sysdate" value="' . date('F j, Y H:i:s') . '">
+                        </form>
+                    </div>
+                    <div class="cb"></div>
+';
 
-            echo $tmp_grp_html_str_open . $tmp_grp_html_str . $tmp_grp_html_str_close;
+            echo $tmp_group_by_link_html;
+
+            return NULL;
 
         }
 
-        /*
-        switch($this->vvid){
-            case 'jehovah_has_revealed':
-            case 'jehovah_has_revealed_chords':
-            case 'jehovah_has_revealed_audio':
-            case 'jehovah_has_revealed_dl':
-
-//                if($this->vvid == 'jehovah_has_revealed_audio'){
-//
-//                  $tmp_vnav_array['COPY'][] = 'Listen&nbsp;&nbsp;<img src="https://jony5.com/common/imgs/listen_icon_wht.png" width="20" height="18" alt="Listen">';
-//
-//                }else{
-//
-//                  $tmp_vnav_array['COPY'][] = 'Listen&nbsp;&nbsp;<img src="https://jony5.com/common/imgs/listen_icon.png" width="20" height="18" alt="Listen">';
-//
-//                }
-
-//                if($this->vvid == 'jehovah_has_revealed_dl'){
-//
-//                    $tmp_vnav_array['COPY'][] = '<span style="padding:0 8px 0 8px;"><img src="https://jony5.com/common/imgs/download_icon_wht.png" width="20" height="20" alt="Download"></span>'),
-//
-//                }else{
-//
-//                    $tmp_vnav_array['COPY'][] = '<span style="padding:0 8px 0 8px;"><img src="https://jony5.com/common/imgs/download_icon.png" width="20" height="20" alt="Download"></span>'),
-//
-//                }
-
-            break;
-            case 'hymn979':
-
-
-            break;
-            case 'gen1_1':
-            case 'gen2_7':
-            case 'col1_16':
-
-
-            break;
-            case 'gen1_26':
-
-            break;
-            case 'gen3_1':
-
-
-            break;
-            case 'gen3_14[solo]':
-
-            break;
-            case 'gen48_21-22|49_1,25-28':
-
-
-            break;
-            case 'deut33_1-4,12,29':
-            case 'gen49_1,25-28':
-            case 'dan9_17-27':
-            case 'matt24_8-14':
-            case 'matt24_15-22':
-            case 'rev3_7-13':
-            case 'isa16_1-5':
-            case 'james3_1-2':
-            case 'num25_1-13':
-            case 'jer1_11-19':
-            case 'luke12_34-44':
-
-            break;
-            case 'lifestudy_exo_156':
-
-
-            break;
-            case 'exo20_15':
-
-
-            break;
-            case 'exo20_13':
-
-            break;
-            case 'exo30_18':
-
-
-            break;
-            case 'exo30_17-21':
-
-
-            break;
-            case 'lev18_1-5,24-28':
-
-
-            break;
-            case 'lev26_3-13':
-            case 'deut4_1-2,39-40':
-            case 'deut5_10,29':
-            case 'deut6_1-6,16-25':
-            case 'deut6_25':
-            case 'deut7_9-26':
-            case 'deut8_1-10':
-            case 'deut11_1,8-15,22-28':
-            case 'deut26_16-19':
-            case 'deut28_1-14':
-            case 'deut30_11-20':
-            case 'exo15_26':
-            case '1kings8_54-66':
-            case 'neh1_1-11':
-
-
-            break;
-            case 'num14_29-30':
-            case '1cor10_5':
-
-            break;
-            case 'num14_31[000]':
-            case '1pet2_7-8':
-            case 'rom9_31-33':
-            case '1cor1_22-25':
-
-
-            break;
-            case 'num14_31':
-            case 'num32_13':
-            case 'josh5_6':
-            case 'psa95_10-11':
-            case 'num14_35':
-            case 'matt4_1-2':
-
-
-            break;
-
-            case 'num33_50-54':
-
-            break;
-            case 'deut11_14':
-            case 'joel2_23':
-
-
-            break;
-            case '1kings2_1-3':
-
-
-            break;
-            case '1kings18_37-40,45;19_1-18':
-
-
-            break;
-            case '1sam4_4':
-
-            break;
-            case 'psa97_2':
-
-
-            break;
-            case 'psa119_103':
-
-            break;
-            //'','Isa. 14:23'
-            case 'isa14_13':
-
-            break;
-            case 'isa14_21-24':
-
-            break;
-            case 'jer24_7':
-            case '1pet3_15':
-
-            break;
-            case 'jer31_33':
-
-            break;
-            case 'jer31_31-37':
-
-            break;
-            case 'ezek11_17-25':
-            case 'jer31_33-37':
-
-            break;
-            case 'dan9_4':
-            case 'gen26_4-5':
-            case 'exo20_6':
-
-            break;
-            case 'matt1_18,20':
-
-
-            break;
-            case 'matt2_4-6':
-
-
-            break;
-            case 'lev2_1':
-            case 'matt3_15':
-
-
-            break;
-            case 'matt4_3':
-
-
-            break;
-            case 'matt4_4b':
-            case 'luke22_42':
-            break;
-            case 'matt4_5-7':
-
-
-            break;
-            case 'matt5':
-            case 'matt6':
-            case 'matt7':
-
-            break;
-            case 'matt5_10':
-            case '1pet2_20':
-            case 'rom6_18-19':
-
-
-            break;
-            case 'matt5_13':
-            case 'mark9_50':
-            case 'luke14_34-35':
-
-
-            break;
-            case 'matt7_13-14':
-
-
-            break;
-            case 'matt10_16-33':
-
-            break;
-            case 'matt11_28-30':
-
-
-            break;
-            case 'matt12_1-8':
-
-            break;
-            case 'matt13_4':
-
-
-            break;
-            case 'matt19_12':
-
-
-            break;
-            case 'matt24_14':
-
-
-            break;
-            case 'matt25_4':
-
-            break;
-            case 'matt26_33-35,69-75':
-            case 'mark14_27-31,66-72':
-            case 'luke22_33-34,54-62':
-            case 'john13_37-38;18_14-27':
-
-            break;
-            case 'matt27_46':
-
-
-            break;
-            case 'luke9_5-6':
-            case 'luke13_17':
-            case 'heb2_14-15':
-            case '2cor3_12,17':
-            case 'rom8_33-39':
-            case '1cor3_21-23':
-
-            break;
-            case 'luke14_31-32':
-
-            break;
-            case 'luke18_11-12':
-
-            break;
-            case 'luke18_13':
-
-            break;
-            case 'luke19_12,14,15,27':
-            case 'luke23_27-30':
-            case 'rev6_16-17':
-            break;
-            case 'luke22_24-30':
-            case 'john13_3-17':
-            case 'matt16_25-26':
-
-            break;
-            case 'luke22_42[solo]':
-
-
-            break;
-            case 'luke23_38,42-43':
-            case 'john8_51-59':
-            case 'acts2_22-25':
-            case 'exo9_29':
-            case 'deut10_14-22':
-            case 'psa24':
-            case '1cor10_26,29b-31':
-            case 'luke1_26-33':
-
-
-            break;
-            case 'john2_20-21':
-            break;
-            case 'john2_21':
-            case 'matt12_5':
-
-            break;
-            case 'john8_6':
-            case 'john9_41':
-
-            break;
-            case 'john13_34[solo]':
-
-
-            break;
-            case 'john13_37-38':
-            break;
-            case 'john14_10-14':
-
-
-            break;
-            case 'john14_12-14':
-
-
-            break;
-            case 'john16_15':
-
-
-            break;
-            case 'acts1_5':
-
-
-            break;
-            case 'acts8_29':
-            case 'acts16_6,7':
-            case 'acts11_12':
-
-            break;
-            case 'acts11_18':
-
-
-            break;
-            case 'eph1_3-12':
-            case 'rom5_1-5[000]':
-            case 'rom15_4[000]':
-            case '1cor9_8-11,13':
-
-
-            break;
-            case 'rom5_10':
-
-            break;
-            case 'rom5_14,17,21':
-            case 'rom6_9-11':
-            case 'rom14_7-12':
-
-
-            break;
-            case 'rom6_3':
-
-
-            break;
-            case 'rom6_8':
-
-
-            break;
-            case 'rom6_18-19[000]':
-
-
-            break;
-            case 'rom6_22':
-
-
-            break;
-            case 'rom7_2-4,6':
-
-
-            break;
-            case 'rom8_2':
-            break;
-            case 'rom8_2,4':
-
-
-            break;
-            case 'rom8_14':
-
-
-            break;
-            case 'rom12_2':
-            case 'phil2_13':
-
-
-            break;
-            case 'rom12_11':
-            break;
-            case 'rom13_14':
-
-            break;
-            case 'rom14_1':
-
-
-            break;
-            case '1cor5_1,5':
-
-
-            break;
-            case '1cor6_12':
-            case '1cor10_23':
-
-            break;
-            case '1cor11_4':
-
-
-            break;
-            case '1cor11_22':
-
-
-            break;
-            case '1cor15_55,58':
-            case '2cor1_9-10':
-            case 'rom6_8-11':
-
-
-            break;
-            case '1cor15_58':
-            case 'matt10_10b':
-            case 'john14_10':
-            case 'rom2_6-7':
-
-
-            break;
-            case '2cor1_20-22':
-
-
-            break;
-            case '2cor1_20-22[000]':
-            case 'rom10_2-3':
-            case 'gal1_14':
-
-            break;
-            case '2cor3_3':
-            case 'heb8_10[000]':
-            case 'jer31_31-34':
-
-
-            break;
-            case '2cor3_6-9':
-            case 'rom8_14-23':
-
-
-            break;
-            case '2cor3_17-18':
-
-
-            break;
-            case '2cor11_2a':
-            case 'gal4_11':
-
-
-            break;
-            case '2cor11_2b-3':
-            case 'rev2_14':
-
-            break;
-            case 'gal2_20':
-
-
-            break;
-            case 'gal2_20_x':
-            case 'gal6_14':
-
-            break;
-            case 'gal3_1':
-            case 'gal5_1,7':
-
-
-            break;
-            case 'gal5_1':
-
-
-            break;
-            case 'gal5_16,18,22-23,25':
-
-            break;
-            case 'eph1_9':
-
-            break;
-            case 'eph1_3-14[000]':
-
-            break;
-            case 'eph1_3':
-            case 'eph1_9-14,18-23':
-            case 'rom5_1-5':
-            case 'rom8_16-17,24-25':
-            case 'rom15_4':
-            case '2cor3_12':
-            case 'gal5_5-6':
-            case 'col1_5-6,21-23,26-27':
-            case '1thes1_2-3':
-            case '1thes5_7-11':
-            case '2thes2_16-17':
-            case '1tim1_1':
-            case '1tim6_17':
-            case 'titus1_1-3':
-            case 'titus2_11-15':
-            case 'titus3_7[000]':
-            case 'heb3_6[000]':
-            case 'heb6_17-20':
-            case 'heb7_17-19':
-            case 'heb10_21-23':
-            case 'heb11_1':
-            case '1pet1_3-9,13,21':
-            case '1pet3_5-7,14-22':
-            case '1john3_1-10':
-
-            break;
-            case 'phil1_6':
-
-            break;
-            case 'phil1_20':
-
-            break;
-            case 'phil1_27':
-
-            break;
-            case 'phil2_13[001]':
-
-            break;
-            case 'phil2_13[000]':
-
-            break;
-            case 'phil2_3':
-            case 'john13_34':
-
-            break;
-            case 'phil2_5-8':
-
-            break;
-            case 'phil2_5-16[000]':
-
-            break;
-            case 'phil2_5-16':
-            case 'john14_15,20-21':
-
-            break;
-            case 'phil2_5-9':
-            case 'gal5_13,16':
-            case '1pet2_16':
-            case '1john2_15-17':
-            case 'mark7_19-23':
-            case 'acts10_15-16b,19-21':
-
-            break;
-            case 'phil2_8':
-
-            break;
-            case 'col1_5':
-            case 'col1_27':
-            case '1pet1_3-5':
-            case '1pet1_13':
-            case 'titus3_7':
-            case 'heb3_6':
-            case 'heb10_23':
-
-            break;
-            case 'col2_9':
-
-            break;
-            case 'col2_8,12,20-23':
-
-            break;
-            case 'col3_5':
-
-            break;
-            case 'col3_6':
-
-            break;
-            case '2thes2_8-12':
-            case 'heb3_7-19[000]':
-            case 'john8_1-11':
-
-            break;
-            case '1tim4_1-5':
-            case 'rev2_12-17':
-            case 'rev2_18-23':
-
-            break;
-            case '2tim1_6':
-
-
-            break;
-            case '2tim1_6-8':
-            case 'rom12_11-12':
-            case 'luke24_31-32':
-            case 'prov20_27':
-            case 'luke12_35':
-
-
-            break;
-            case 'heb3_7-19':
-
-            break;
-            case 'heb4_8-16':
-
-
-            break;
-            case 'heb4_11':
-            break;
-            case 'heb8_10':
-
-            break;
-            case 'heb9_14':
-
-            break;
-            case 'heb10_22,19':
-            case '1cor6_17':
-            case '2cor3_18':
-
-            break;
-            case 'heb10_22':
-
-            break;
-            case 'heb10_35':
-
-            break;
-            case 'heb10_35,38-39':
-            case 'lev26_3,11b-12':
-
-
-            break;
-            case 'heb12_1':
-
-            break;
-            case '1pet2_24':
-            case 'isa53_6':
-
-
-            break;
-            case '1pet5_8':
-
-
-            break;
-            case 'rev2_21-22':
-
-
-            break;
-            case 'rev3_8':
-
-            break;
-            case 'rev2_11|2_17,26-28|3_5,12,21':
-            case 'matt25_23,10b':
-
-            break;
-            case 'rev2_14[solo]':
-
-            break;
-            case 'rev3_19':
-
-            break;
-            case 'rev12_3-4,9':
-            case 'gen3_14':
-
-            break;
-            case 'rev12_3-4,13,17;13:2,4':
-            case 'gen3_14[COVID]':
-
-
-            break;
-            case 'rev21_2,9-27':
-
-
-            break;
-            case 'rev21_7':
-            case 'rev21_3-5':
-            case 'rev2_10-11':
-            case 'rev20_6':
-            case 'eph1_3-14':
-            case 'john5_24-25':
-            case 'luke9_1-6':
-            case 'luke10_19':
-            case 'rev21_21':
-
-            break;
-            case 'rev22_2':
-
-
-            break;
+        $tmp_link_html_output = '';
+        $tmp_link_html_output_ARRAY = array();
+        $tmp_link_vvid_ARRAY = array();
+
+        if(self::$vvid_is_grouped !== false){
+
+            //
+            // Thursday, February 29, 2024 @ 0240 hrs.
+            //
+            // BUILD SCRIPTURE <A> LINK HTML
+            // OUTPUT SCRIPTURES VVID INDEX CONTROL STRUCTURE.
+            //$tmp_link_vvid_ARRAY[] = array(array('jehovah_has_revealed' => 'Jehovah Has Revealed His Heart'), array('jehovah_has_revealed_chords' => 'Chords'), array('jehovah_has_revealed_audio' => 'Listen&nbsp;&nbsp;<img src="https://jony5.com/common/imgs/listen_icon_wht.png" width="20" height="18" alt="Listen">'), array('jehovah_has_revealed_dl' => 'Listen&nbsp;&nbsp;<img src="https://jony5.com/common/imgs/listen_icon.png" width="20" height="18" alt="Download">'));
+            $tmp_link_vvid_ARRAY[] = array(array('jehovah_has_revealed' => 'Jehovah Has Revealed His Heart'));
+            $tmp_link_vvid_ARRAY[] = array(array('jehovah_has_revealed_chords' => 'Jehovah Has Revealed His Heart :: Chords'));
+            //$tmp_link_vvid_ARRAY[] = array(array('jehovah_has_revealed_audio' => 'Jehovah Has Revealed His Heart :: Listen&nbsp;&nbsp;<img src="https://jony5.com/common/imgs/listen_icon_wht.png" width="20" height="18" alt="Listen">'));
+            $tmp_link_vvid_ARRAY[] = array(array('jehovah_has_revealed_dl' => 'Jehovah Has Revealed His Heart :: Download'));
+            $tmp_link_vvid_ARRAY[] = array(array('hymn979' => 'HYMNS #979'), array('gen1_1' => 'Genesis 1:1'), array('gen2_7' => 'Genesis 2:7'), array('col1_16' => 'Colossians 1:16'), array('gen1_26' => 'Genesis 1:26'), array('gen3_1' => 'Genesis 3:1'), array('gen3_14[solo]' => 'Genesis 3:14'), array('gen48_21-22|49_1,25-28' => 'Genesis 48:21-22; 49:1, 25-28'));
+            $tmp_link_vvid_ARRAY[] = array(array('rev3_7-13' => 'Revelation 3:7-13'), array('gen49_1,25-28' => 'Genesis 49:1, 25-28'), array('deut33_1-4,12,29' => 'Deuteronomy 33:1-4, 12, 29'), array('isa16_1-5' => 'Isaiah 16:1-5'), array('dan9_17-27' => 'Daniel 9:17-27'), array('matt24_15-22' => 'Matthew 24:15-22'), array('matt24_8-14' => 'Matthew 24:8-14'), array('james3_1-2' => 'James 3:1-2'), array('num25_1-13' => 'Numbers 25:1-13'), array('jer1_11-19' => 'Jeremiah 1:11-19'), array('luke12_34-44' => 'Luke 12:34-44'));
+            $tmp_link_vvid_ARRAY[] = array(array('lifestudy_exo_156' => 'Life-Study of Exodus, Message 156'));
+            $tmp_link_vvid_ARRAY[] = array(array('exo20_15' => 'Exodus 20:15'));
+            $tmp_link_vvid_ARRAY[] = array(array('exo20_13' => 'Exodus 20:13'));
+            $tmp_link_vvid_ARRAY[] = array(array('exo30_18' => 'Exodus 30:18'));
+            $tmp_link_vvid_ARRAY[] = array(array('exo30_17-21' => 'Exodus 30:17-21'));
+            $tmp_link_vvid_ARRAY[] = array(array('lev18_1-5,24-28' => 'Leviticus 18:1-5, 24-28'));
+            $tmp_link_vvid_ARRAY[] = array(array('lev26_3-13' => 'Leviticus 26:3-13'), array('deut4_1-2,39-40' => 'Deuteronomy 4:1-2, 39-40'), array('deut5_10,29' => 'Deuteronomy 5:10, 29'), array('deut6_1-6,16-25' => 'Deuteronomy 6:1-6, 16-25'), array('deut6_25' => 'Deuteronomy 6:25'), array('deut7_9-26' => 'Deuteronomy 7:9-26'), array('deut8_1-10' => 'Deuteronomy 8:1-10'), array('deut11_1,8-15,22-28' => 'Deuteronomy 11:1, 8-15, 22-28'), array('deut26_16-19' => 'Deuteronomy 26:16-19'), array('deut28_1-14' => 'Deuteronomy 28:1-14'), array('deut30_11-20' => 'Deuteronomy 30:11-20'), array('exo15_26' => 'Exodus 15:26'), array('1kings8_54-66' => '1 Kings 8:54-66'), array('neh1_1-11' => 'Nehemiah 1:1-11'));
+            $tmp_link_vvid_ARRAY[] = array(array('num14_29-30' => 'Numbers 14:29-30'), array('1cor10_5' => '1 Corinthians 10:5'));
+            $tmp_link_vvid_ARRAY[] = array(array('num14_31[000]' => 'Numbers 14:31'), array('1pet2_7-8' => '1 Peter 2:7-8'), array('rom9_31-33' => 'Romans 9:31-33'), array('1cor1_22-25' => '1 Corinthians 1:22-25'));
+            $tmp_link_vvid_ARRAY[] = array(array('num14_31' => 'Numbers 14:31'), array('num32_13' => 'Numbers 32:13'), array('josh5_6' => 'Joshua 5:6'), array('psa95_10-11' => 'Psalm 95:10-11'), array('num14_35' => 'Numbers 14:35'), array('matt4_1-2' => 'Matthew 4:1-2'));
+            $tmp_link_vvid_ARRAY[] = array(array('num33_50-54' => 'Numbers 33:50-54'));
+            $tmp_link_vvid_ARRAY[] = array(array('deut11_14' => 'Deuteronomy 11:14'), array('joel2_23' => 'Joel 2:23'));
+            $tmp_link_vvid_ARRAY[] = array(array('1kings2_1-3' => '1 Kings 2:1-3'));
+            $tmp_link_vvid_ARRAY[] = array(array('1kings18_37-40,45;19_1-18' => '1 Kings 18:37-40, 45; 19:1-18'));
+            $tmp_link_vvid_ARRAY[] = array(array('1sam4_4' => '1 Samuel 4:4'));
+            $tmp_link_vvid_ARRAY[] = array(array('psa97_2' => 'Psalm 97:2'));
+            $tmp_link_vvid_ARRAY[] = array(array('psa119_103' => 'Psalm 119:103'));
+            $tmp_link_vvid_ARRAY[] = array(array('isa14_13' => 'Isaiah 14:13'));
+            $tmp_link_vvid_ARRAY[] = array(array('isa14_21-24' => 'Isaiah 14:21-24'));
+            $tmp_link_vvid_ARRAY[] = array(array('jer24_7' => 'Jeremiah 24:7'), array('1pet3_15' => '1 Peter 3:15'));
+            $tmp_link_vvid_ARRAY[] = array(array('jer31_33' => 'Jeremiah 31:33'));
+            $tmp_link_vvid_ARRAY[] = array(array('jer31_31-37' => 'Jeremiah 31:31-37'));
+            $tmp_link_vvid_ARRAY[] = array(array('ezek11_17-25' => 'Ezekiel 11:17-25'), array('jer31_33-37' => 'Jeremiah 31:33-37'));
+            $tmp_link_vvid_ARRAY[] = array(array('dan9_4' => 'Daniel 9:4'), array('gen26_4-5' => 'Genesis 26:4-5'), array('exo20_6' => 'Exodus 20:6'));
+            $tmp_link_vvid_ARRAY[] = array(array('matt1_18,20' => 'Matthew 1:18, 20'));
+            $tmp_link_vvid_ARRAY[] = array(array('matt2_4-6' => 'Matthew 2:4-6'));
+            $tmp_link_vvid_ARRAY[] = array(array('lev2_1' => 'Leviticus 2:1'), array('matt3_15' => 'Matthew 3:15'));
+            $tmp_link_vvid_ARRAY[] = array(array('matt4_3' => 'Matthew 4:3'));
+            $tmp_link_vvid_ARRAY[] = array(array('matt4_4b' => 'Matthew 4:4b'), array('luke22_42' => 'Luke 22:42'));
+            $tmp_link_vvid_ARRAY[] = array(array('matt4_5-7' => 'Matthew 4:5-7'));
+            $tmp_link_vvid_ARRAY[] = array(array('matt5' => 'Matthew Chapter 5'), array('matt6' => 'Matthew Chapter 6'), array('matt7' => 'Matthew Chapter 7'));
+            $tmp_link_vvid_ARRAY[] = array(array('rom6_18-19' => 'Romans 6:18-19'), array('1pet2_20' => '1 Peter 2:20'), array('matt5_10' => 'Matthew 5:10'));
+            $tmp_link_vvid_ARRAY[] = array(array('matt5_13' => 'Matthew 5:13'), array('mark9_50' => 'Mark 9:50'), array('luke14_34-35' => 'Luke 14:34-35'));
+            $tmp_link_vvid_ARRAY[] = array(array('matt7_13-14' => 'Matthew 7:13-14'));
+            $tmp_link_vvid_ARRAY[] = array(array('matt10_16-33' => 'Matthew 10:16-33'));
+            $tmp_link_vvid_ARRAY[] = array(array('matt11_28-30' => 'Matthew 11:28-30'));
+            $tmp_link_vvid_ARRAY[] = array(array('matt12_1-8' => 'Matthew 12:1-8'));
+            $tmp_link_vvid_ARRAY[] = array(array('matt13_4' => 'Matthew 13:4'));
+            $tmp_link_vvid_ARRAY[] = array(array('matt19_12' => 'Matthew 19:12'));
+            $tmp_link_vvid_ARRAY[] = array(array('matt24_14' => 'Matthew 24:14'));
+            $tmp_link_vvid_ARRAY[] = array(array('matt25_4' => 'Matthew 25:4'));
+            $tmp_link_vvid_ARRAY[] = array(array('matt26_33-35,69-75' => 'Matthew 26:33-35, 69-75'), array('mark14_27-31,66-72' => 'Mark 14:27-31, 66-72'), array('luke22_33-34,54-62' => 'Luke 22:33-34, 54-62'), array('john13_37-38;18_14-27' => 'John 13:37-38; 18:14-27'));
+            $tmp_link_vvid_ARRAY[] = array(array('matt27_46' => 'Matthew 27:46'));
+            $tmp_link_vvid_ARRAY[] = array(array('luke9_5-6' => 'Luke 9:5-6'), array('luke13_17' => 'Luke 13:17'), array('heb2_14-15' => 'Hebrews 2:14-15'), array('2cor3_12,17' => '2 Corinthians 3:12, 17'), array('rom8_33-39' => 'Romans 8:33-39'), array('1cor3_21-23' => '1 Corinthians 3:21-23'));
+            $tmp_link_vvid_ARRAY[] = array(array('luke14_31-32' => 'Luke 14:31-32'));
+            $tmp_link_vvid_ARRAY[] = array(array('luke18_11-12' => 'Luke 18:11-12'));
+            $tmp_link_vvid_ARRAY[] = array(array('luke18_13' => 'Luke 18:13'));
+            $tmp_link_vvid_ARRAY[] = array(array('rev6_16-17' => 'Revelation 6:16-17'), array('luke23_27-30' => 'Luke 23:28-30'), array('luke19_12,14,15,27' => 'Luke 19:12, 14, 15, 27'));
+            $tmp_link_vvid_ARRAY[] = array(array('luke22_24-30' => 'Luke 22:24-27'), array('john13_3-17' => 'John 13:3-17'), array('matt16_25-26' => 'Matthew 16:25-26'));
+            $tmp_link_vvid_ARRAY[] = array(array('luke22_42[solo]' => 'Luke 22:42'));
+            $tmp_link_vvid_ARRAY[] = array(array('luke23_38,42-43' => 'Luke 23:38, 42-43'), array('john8_51-59' => 'John 8:51-59'), array('acts2_22-25' => 'Acts 2:22-25'), array('exo9_29' => 'Exodus 9:29'), array('deut10_14-22' => 'Deuteronomy 10:14-22'), array('psa24' => 'Psalm 24'), array('1cor10_26,29b-31' => '1 Corinthians 10:26, 29b-31'), array('luke1_26-33' => 'Luke 1:26-33'));
+            $tmp_link_vvid_ARRAY[] = array(array('john2_20-21' => 'John 2:20-21'));
+            $tmp_link_vvid_ARRAY[] = array(array('john2_21' => 'John 2:21'), array('matt12_5' => 'Matthew 12:5'));
+            $tmp_link_vvid_ARRAY[] = array(array('john8_6' => 'John 8:6'), array('john9_41' => 'John 9:41'));
+            $tmp_link_vvid_ARRAY[] = array(array('john13_34[solo]' => 'John 13:34'));
+            $tmp_link_vvid_ARRAY[] = array(array('john13_37-38' => 'John 13:37-38'));
+            $tmp_link_vvid_ARRAY[] = array(array('john14_10-14' => 'John 14:10-14'));
+            $tmp_link_vvid_ARRAY[] = array(array('john14_12-14' => 'John 14:12-14'));
+            $tmp_link_vvid_ARRAY[] = array(array('john16_15' => 'John 16:15'));
+            $tmp_link_vvid_ARRAY[] = array(array('acts1_5' => 'Acts 1:5'));
+            $tmp_link_vvid_ARRAY[] = array(array('acts8_29' => 'Acts 8:29'), array('acts16_6,7' => 'Acts 16:6, 7'), array('acts11_12' => 'Acts 11:12'));
+            $tmp_link_vvid_ARRAY[] = array(array('acts11_18' => 'Acts 11:18'));
+            $tmp_link_vvid_ARRAY[] = array(array('eph1_3-12' => 'Ephesians 1:3-12'), array('rom5_1-5[000]' => 'Romans 5:1-5'), array('rom15_4[000]' => 'Romans 15:4'), array('1cor9_8-11,13' => '1 Corinthians 9:8-11, 13'));
+            $tmp_link_vvid_ARRAY[] = array(array('rom5_10' => 'Romans 5:10'));
+            $tmp_link_vvid_ARRAY[] = array(array('rom5_14,17,21' => 'Romans 5:14, 17, 21'), array('rom6_9-11' => 'Romans 6:9-11'), array('rom14_7-12' => 'Romans 14:7-12'));
+            $tmp_link_vvid_ARRAY[] = array(array('rom6_3' => 'Romans 6:3'));
+            $tmp_link_vvid_ARRAY[] = array(array('rom6_8' => 'Romans 6:8'));
+            $tmp_link_vvid_ARRAY[] = array(array('rom6_18-19[000]' => 'Romans 6:18-19'));
+            $tmp_link_vvid_ARRAY[] = array(array('rom6_22' => 'Romans 6:22'));
+            $tmp_link_vvid_ARRAY[] = array(array('rom7_2-4,6' => 'Romans 7:2-4, 6'));
+            $tmp_link_vvid_ARRAY[] = array(array('rom8_2' => 'Romans 8:2'));
+            $tmp_link_vvid_ARRAY[] = array(array('rom8_2,4' => 'Romans 8:2, 4'));
+            $tmp_link_vvid_ARRAY[] = array(array('rom8_14' => 'Romans 8:14'));
+            $tmp_link_vvid_ARRAY[] = array(array('rom12_2' => 'Romans 12:2'), array('phil2_13' => 'Philippians 2:13'));
+            $tmp_link_vvid_ARRAY[] = array(array('rom12_11' => 'Romans 12:11'));
+            $tmp_link_vvid_ARRAY[] = array(array('rom13_14' => 'Romans 13:14'));
+            $tmp_link_vvid_ARRAY[] = array(array('rom14_1' => 'Romans 14:1'));
+            $tmp_link_vvid_ARRAY[] = array(array('1cor5_1,5' => '1 Corinthians 5:1, 5'));
+            $tmp_link_vvid_ARRAY[] = array(array('1cor10_23' => '1 Corinthians 10:23'), array('1cor6_12' => '1 Corinthians 6:12'));
+            $tmp_link_vvid_ARRAY[] = array(array('1cor11_4' => '1 Corinthians 11:4'));
+            $tmp_link_vvid_ARRAY[] = array(array('1cor11_22' => '1 Corinthians 11:22'));
+            $tmp_link_vvid_ARRAY[] = array(array('1cor15_55,58' => '1 Corinthians 15:55, 58'), array('2cor1_9-10' => '2 Corinthians 1:9-10'), array('rom6_8-11' => 'Romans 6:8-11'));
+            $tmp_link_vvid_ARRAY[] = array(array('1cor15_58' => '1 Corinthians 15:58'), array('matt10_10b' => 'Matthew 10:10b'), array('john14_10' => 'John 14:10'), array('rom2_6-7' => 'Romans 2:6-7'));
+            $tmp_link_vvid_ARRAY[] = array(array('2cor1_20-22' => '2 Corinthians 1:20-22'));
+            $tmp_link_vvid_ARRAY[] = array(array('2cor1_20-22[000]' => '2 Corinthians 1:20-22'), array('rom10_2-3' => 'Romans 10:2-3'), array('gal1_14' => 'Galatians 1:14'));
+            $tmp_link_vvid_ARRAY[] = array(array('2cor3_3' => '2 Corinthians 3:3'), array('heb8_10[000]' => 'Hebrews 8:10'), array('jer31_31-34' => 'Jeremiah 31:31-34'));
+            $tmp_link_vvid_ARRAY[] = array(array('2cor3_6-9' => '2 Corinthians 3:6-9'), array('rom8_14-23' => 'Romans 8:14-23'));
+            $tmp_link_vvid_ARRAY[] = array(array('2cor3_17-18' => '2 Corinthians 3:17-18'));
+            $tmp_link_vvid_ARRAY[] = array(array('2cor11_2a' => '2 Corinthians 11:2a'), array('gal4_11' => 'Galatians 4:11'));
+            $tmp_link_vvid_ARRAY[] = array(array('2cor11_2b-3' => '2 Corinthians 11:2b-3'), array('rev2_14' => 'Revelation 2:14'));
+            $tmp_link_vvid_ARRAY[] = array(array('gal2_20' => 'Galatians 2:20'));
+            $tmp_link_vvid_ARRAY[] = array(array('gal2_20_x' => 'Galatians 2:20'), array('gal6_14' => 'Galatians 6:14'));
+            $tmp_link_vvid_ARRAY[] = array(array('gal3_1' => 'Galatians 3:1'), array('gal5_1,7' => 'Galatians 5:1, 7'));
+            $tmp_link_vvid_ARRAY[] = array(array('gal5_1' => 'Galatians 5:1'));
+            $tmp_link_vvid_ARRAY[] = array(array('gal5_16,18,22-23,25' => 'Galatians 5:16, 18, 22-23, 25'));
+            $tmp_link_vvid_ARRAY[] = array(array('eph1_9' => 'Ephesians 1:9'));
+            $tmp_link_vvid_ARRAY[] = array(array('eph1_3-14[000]' => 'Ephesians 1:3-14'));
+            $tmp_link_vvid_ARRAY[] = array(array('eph1_3' => 'Ephesians 1:3'), array('rom5_1-5' => 'Romans 5:1-5'), array('rom8_16-17,24-25' => 'Romans 8:16-17, 24-25'), array('rom15_4' => 'Romans 15:4'), array('2cor3_12' => '2 Corinthians 3:12'), array('gal5_5-6' => 'Galatians 5:5-6'), array('eph1_9-14,18-23' => 'Ephesians 1:9-14, 18-23'), array('col1_5-6,21-23,26-27' => 'Colossians 1:5-6, 21-23, 26-27'), array('1thes1_2-3' => '1 Thessalonians 1:2-3'), array('1thes5_7-11' => '1 Thessalonians 5:7-11'), array('2thes2_16-17' => '2 Thessalonians 2:16-17'), array('1tim1_1' => '1 Tim 1:1'), array('1tim6_17' => '1 Tim 6:17'), array('titus1_1-3' => 'Titus 1:1-3'), array('titus2_11-15' => 'Titus 2:11-15'), array('titus3_7[000]' => 'Titus 3:7'), array('heb3_6[000]' => 'Hebrews 3:6'), array('heb6_17-20' => 'Hebrews 6:17-20'), array('heb7_17-19' => 'Hebrews 7:17-19'), array('heb10_21-23' => 'Hebrews 10:21-23'), array('heb11_1' => 'Hebrews 11:1'), array('1pet1_3-9,13,21' => '1 Pet 1:3-9, 13, 21'), array('1pet3_5-7,14-22' => '1 Pet. 3:5-7, 14-22'), array('1john3_1-10' => '1 John 3:1-10'));
+            $tmp_link_vvid_ARRAY[] = array(array('phil1_6' => 'Philippians 1:6'));
+            $tmp_link_vvid_ARRAY[] = array(array('phil1_20' => 'Philippians 1:20'));
+            $tmp_link_vvid_ARRAY[] = array(array('phil1_27' => 'Philippians 1:27'));
+            $tmp_link_vvid_ARRAY[] = array(array('phil2_13[001]' => 'Philippians 2:13'));
+            $tmp_link_vvid_ARRAY[] = array(array('phil2_13[000]' => 'Philippians 2:13'));
+            $tmp_link_vvid_ARRAY[] = array(array('phil2_3' => 'Philippians 2:3'), array('john13_34' => 'John 13:34'));
+            $tmp_link_vvid_ARRAY[] = array(array('phil2_5-8' => 'Philippians 2:5-8'));
+            $tmp_link_vvid_ARRAY[] = array(array('phil2_5-16[000]' => 'Philippians 2:5-16'));
+            $tmp_link_vvid_ARRAY[] = array(array('phil2_5-16' => 'Philippians 2:5-16'), array('john14_15,20-21' => 'John 14:15, 20-21'));
+            $tmp_link_vvid_ARRAY[] = array(array('phil2_5-9' => 'Philippians 2:5-9'), array('gal5_13,16' => 'Galatians 5:13, 16'), array('1pet2_16' => '1 Peter 2:16'), array('1john2_15-17' => '1 John 2:15-17'), array('mark7_19-23' => 'Mark 7:19-23'), array('acts10_15-16b,19-21' => 'Acts 10:15-16b, 19-21'));
+            $tmp_link_vvid_ARRAY[] = array(array('phil2_8' => 'Philippians 2:8'));
+            $tmp_link_vvid_ARRAY[] = array(array('col1_5' => 'Colossians 1:5'), array('col1_27' => 'Colossians 1:27'), array('1pet1_3-5' => '1 Peter 1:3-5'), array('1pet1_13' => '1 Peter 1:13'), array('titus3_7' => 'Titus 3:7'), array('heb3_6' => 'Hebrews 3:6'), array('heb10_23' => 'Hebrews 10:23'));
+            $tmp_link_vvid_ARRAY[] = array(array('col2_9' => 'Colossians 2:9'));
+            $tmp_link_vvid_ARRAY[] = array(array('col2_8,12,20-23' => 'Colossians 2:8, 12, 20-23'));
+            $tmp_link_vvid_ARRAY[] = array(array('col3_5' => 'Colossians 3:5'));
+            $tmp_link_vvid_ARRAY[] = array(array('col3_6' => 'Colossians 3:6'));
+            $tmp_link_vvid_ARRAY[] = array(array('2thes2_8-12' => '2 Thessalonians 2:8-12'), array('heb3_7-19[000]' => 'Hebrews 3:7-19'), array('john8_1-11' => 'John 8:1-11'));
+            $tmp_link_vvid_ARRAY[] = array(array('1tim4_1-5' => '1 Timothy 4:1-5'), array('rev2_12-17' => 'Revelation 2:12-17'), array('rev2_18-23' => 'Revelation 2:18-23'));
+            $tmp_link_vvid_ARRAY[] = array(array('2tim1_6' => '2 Timothy 1:6'));
+            $tmp_link_vvid_ARRAY[] = array(array('2tim1_6-8' => '2 Timothy 1:6-8'), array('rom12_11-12' => 'Romans 12:11-12'), array('luke24_31-32' => 'Luke 24:31-32'), array('prov20_27' => 'Proverbs 20:27'), array('luke12_35' => 'Luke 12:35'));
+            $tmp_link_vvid_ARRAY[] = array(array('heb3_7-19' => 'Hebrews 3:7-19'));
+            $tmp_link_vvid_ARRAY[] = array(array('heb4_8-16' => 'Hebrews 4:8-16'));
+            $tmp_link_vvid_ARRAY[] = array(array('heb4_11' => 'Hebrews 4:11'));
+            $tmp_link_vvid_ARRAY[] = array(array('heb8_10' => 'Hebrews 8:10'));
+            $tmp_link_vvid_ARRAY[] = array(array('heb9_14' => 'Hebrews 9:14'));
+            $tmp_link_vvid_ARRAY[] = array(array('heb10_22,19' => 'Hebrews 10:22, 19'), array('1cor6_17' => '1 Corinthians 6:17'), array('2cor3_18' => '2 Corinthians 3:18'));
+            $tmp_link_vvid_ARRAY[] = array(array('heb10_22' => 'Hebrews 10:22'));
+            $tmp_link_vvid_ARRAY[] = array(array('heb10_35' => 'Hebrews 10:35'));
+            $tmp_link_vvid_ARRAY[] = array(array('heb10_35,38-39' => 'Hebrews 10:35, 38-39'), array('lev26_3,11b-12' => 'Leviticus 26:3, 11b-12'));
+            $tmp_link_vvid_ARRAY[] = array(array('heb12_1' => 'Hebrews 12:1'));
+            $tmp_link_vvid_ARRAY[] = array(array('1pet2_24' => '1 Peter 2:24'), array('isa53_6' => 'Isaiah 53:6'));
+            $tmp_link_vvid_ARRAY[] = array(array('1pet5_8' => '1 Peter 5:8'));
+            $tmp_link_vvid_ARRAY[] = array(array('rev2_21-22' => 'Revelation 2:21-22'));
+            $tmp_link_vvid_ARRAY[] = array(array('rev3_8' => 'Revelation 3:8'));
+            $tmp_link_vvid_ARRAY[] = array(array('rev2_11|2_17,26-28|3_5,12,21' => 'Revelation 2:11; 2:17,<br>26-28; 3:5, 12, 21;'), array('matt25_23,10b' => 'Matthew 25:23, 10b<br>&nbsp;&nbsp;'));
+            $tmp_link_vvid_ARRAY[] = array(array('rev2_14[solo]' => 'Revelation 2:14'));
+            $tmp_link_vvid_ARRAY[] = array(array('rev3_19' => 'Revelation 3:19'));
+            $tmp_link_vvid_ARRAY[] = array(array('rev12_3-4,9' => 'Revelation 12:3-4, 9'), array('gen3_14' => 'Genesis 3:14'));
+            $tmp_link_vvid_ARRAY[] = array(array('gen3_14[COVID]' => 'Genesis 3:14'), array('rev12_3-4,13,17;13:2,4' => 'Revelation 12:3-4, 13, 17; 13:2, 4'));
+            $tmp_link_vvid_ARRAY[] = array(array('rev21_2,9-27' => 'Revelation 21:2, 9-27'));
+            $tmp_link_vvid_ARRAY[] = array(array('rev21_7' => 'Revelation 21:7'), array('rev21_3-5' => 'Revelation 21:3-5'), array('rev2_10-11' => 'Revelation 2:10-11'), array('rev20_6' => 'Revelation 20:6'), array('eph1_3-14' => 'Ephesians 1:3-14'), array('john5_24-25' => 'John 5:24-25'), array('luke9_1-6' => 'Luke 9:1-6'), array('luke10_19' => 'Luke 10:19'), array('rev21_21' => 'Revelation 21:21'));
+            $tmp_link_vvid_ARRAY[] = array(array('rev22_2' => 'Revelation 22:2'));
+
+        }else{
+
+            //
+            // Thursday, February 29, 2024 @ 1632 hrs.
+            $tmp_link_vvid_ARRAY[] = array('jehovah_has_revealed_dl'        => 'Download Jehovah Has Revealed (Ashes). Vocals: Sister Doris K., Brother Jonathan H. African Djembe Hand Bongo: Brother Kenton W. Guitar: Brother Jonathan H.Jehovah has revealed / His heart to me. / To Him I thus would consecrated be. / As Daniel purposed in his heart...I\'ll be. / And pray; that God could move on earth through me. / Lord, You need me.');
+            //$tmp_link_vvid_ARRAY[] = array('jehovah_has_revealed_audio'     => 'Audio Stream for Jehovah has revealed His heart (Ashes) :: Vocals: Sister Doris K., Brother Jonathan H. African Djembe Hand Bongo: Brother Kenton W. Guitar: Brother Jonathan H.Jehovah has revealed / His heart to me. / To Him I thus would consecrated be. / As Daniel purposed in his heart...I\'ll be. / And pray; that God could move on earth through me. / Lord, You need me.');
+            $tmp_link_vvid_ARRAY[] = array('jehovah_has_revealed_chords'    => 'Jehovah has revealed His heart (Ashes) Guitar Chord Chart. Vocals: Sister Doris K., Brother Jonathan H. African Djembe Hand Bongo: Brother Kenton W. Guitar: Brother Jonathan H.Jehovah has revealed / His heart to me. / To Him I thus would consecrated be. / As Daniel purposed in his heart...I\'ll be. / And pray; that God could move on earth through me. / Lord, You need me.');
+            $tmp_link_vvid_ARRAY[] = array('jehovah_has_revealed'           => 'Lyrics and chords. Jehovah has revealed His heart (Ashes) :: Vocals: Sister Doris K., Brother Jonathan H. African Djembe Hand Bongo: Brother Kenton W. Guitar: Brother Jonathan H.Jehovah has revealed / His heart to me. / To Him I thus would consecrated be. / As Daniel purposed in his heart...I\'ll be. / And pray; that God could move on earth through me. / Lord, You need me.');
+            $tmp_link_vvid_ARRAY[] = array('hymn979'                        => 'HYMNS #979. How glorious, how bright it shines, / The holy, new Jerusalem; / It is God\'s dwelling place with man, / The spotless bride of Christ, the Lamb. 2. Saints of the Old and of the New, /Heirs of the promise God bestowed, / Components of the city are, / Together built for God\'s abode.');
+            $tmp_link_vvid_ARRAY[] = array('gen1_1'                         => 'In the beginning God created the heavens and the earth.');
+            $tmp_link_vvid_ARRAY[] = array('gen1_26'                        => 'And God said, Let Us make man in Our image, according to Our likeness; and let them have dominion over the fish of the sea and over the birds of heaven and over the cattle and over all the earth and over every creeping thing that creeps upon the earth.');
+            $tmp_link_vvid_ARRAY[] = array('gen2_7'                         => 'Jehovah God formed man from the dust of the ground and breathed into his nostrils the breath of life, and man became a living soul.');
+            $tmp_link_vvid_ARRAY[] = array('gen3_1'                         => 'Now the serpent was more crafty than any animal of the field that Jehovah God had made. And he said to the woman, Did God really say, You shall not eat of any tree of the garden?');
+            //$tmp_link_vvid_ARRAY[] = array('gen3_14[COVID]'                 => 'And Jehovah God said to the serpent, / Because you have done this, / You are cursed more than all the cattle / And more than all the animals of the field: / Upon your stomach you will go, / And dust you will eat / All the days of your life.');
+            //$tmp_link_vvid_ARRAY[] = array('gen3_14[solo]'                  => 'And Jehovah God said to the serpent, / Because you have done this, / You are cursed more than all the cattle / And more than all the animals of the field: / Upon your stomach you will go, / And dust you will eat / All the days of your life.');
+            $tmp_link_vvid_ARRAY[] = array('gen3_14'                        => 'And Jehovah God said to the serpent, / Because you have done this, / You are cursed more than all the cattle / And more than all the animals of the field: / Upon your stomach you will go, / And dust you will eat / All the days of your life.');
+            $tmp_link_vvid_ARRAY[] = array('gen26_4-5'                      => 'And I will multiply your seed as the stars of heaven and will give to your seed all these lands; and in your seed all the nations of the earth will be blessed, Because Abraham obeyed My voice and kept My charge, My commandments, My statutes, and My laws.');
+            $tmp_link_vvid_ARRAY[] = array('gen48_21-22|49_1,25-28'         => '21 And Israel said to Joseph, Now I am about to die, but God will be with you and will bring you again to the land of your fathers. Moreover I have given to you one portion more than your brothers, which I took out of the hand of the Amorite with my sword and with my bow. And Jacob called to his sons and said, Gather yourselves together that I may tell you what will happen to you in the last days.');
+            $tmp_link_vvid_ARRAY[] = array('gen49_1,25-28'                  => '1 And Jacob called to his sons and said, Gather yourselves together that I may tell you what will happen to you in the last days. 25 From the God of your father, who will help you, / And from the All-sufficient One, who will bless you / With blessings of heaven above, / Blessings of the deep that lies beneath, / Blessings of the breasts and of the womb.');
+            $tmp_link_vvid_ARRAY[] = array('lifestudy_exo_156'              => 'THE RESULT OF SERVING IN THE TABERNACLE WITHOUT FIRST WASHING IN THE LAVER. When we pray to offer something to the Lord, we first need to wash our hands and even our feet in the laver. To come to the meeting to function is actually to come into the tabernacle to serve the Lord. Before we serve the Lord in the tabernacle, we need to wash.');
+            $tmp_link_vvid_ARRAY[] = array('exo9_29'                        => 'And Moses said to him, As soon as I have gone out of the city, I will spread out my hands to Jehovah: The thunder will cease, and there will not be any more hail, that you may know that the earth is Jehovah\'s.');
+            $tmp_link_vvid_ARRAY[] = array('exo15_26'                       => 'And He said, If you will listen carefully to the voice of Jehovah your God and do what is right in His eyes and give ear to His commandments and keep all His statutes, I will put none of the diseases on you which I have put on the Egyptians;');
+            $tmp_link_vvid_ARRAY[] = array('exo20_6'                        => 'Yet showing lovingkindness to thousands of generations of those who love Me and keep My commandments.');
+            $tmp_link_vvid_ARRAY[] = array('exo20_13'                       => 'You shall not kill.');
+            $tmp_link_vvid_ARRAY[] = array('exo20_15'                       => 'You shall not steal.');
+            $tmp_link_vvid_ARRAY[] = array('exo30_18'                       => 'You shall also make a laver of bronze, with its base of bronze, for washing. And you shall put it between the Tent of Meeting and the alter, and you shall put water in it.');
+            $tmp_link_vvid_ARRAY[] = array('exo30_17-21'                    => 'And Jehovah spoke to Moses, saying, You shall also make a laver of bronze, with its base of bronze, for washing. And you shall put it between the Tent of Meeting and the alter, and you shall put water in it. And Aaron and his sons shall wash their hands and their feet from it; When they go into the Tent of Meeting, they shall wash with water, that they many not die;');
+            $tmp_link_vvid_ARRAY[] = array('lev2_1'                         => 'And when anyone presents an offering of a meal offering to Jehovah, his offering shall be of fine flour; and he shall pour oil on it and put frankincense on it.');
+            $tmp_link_vvid_ARRAY[] = array('lev18_1-5,24-28'                => '1 Then Jehovah spoke to Moses, saying, Speak to the children of Israel, and say to them, I am Jehovah your God. You shall not do as they do in the land of Egypt, in which you dwelt; and you shall not do as they do in the land of Canaan, where I am bringing you, nor shall you walk in their statutes.');
+            $tmp_link_vvid_ARRAY[] = array('lev26_3-13'                     => 'If you walk in My statutes and keep My commandments and do them, Then I will give you your rains in their season, and the land will yield its produce, and the trees of the field will yield their fruit.');
+            $tmp_link_vvid_ARRAY[] = array('lev26_3,11b-12'                 => '3 If you walk in My statutes and keep My commandments and do them, 11b My soul will not abhor you. And I will walk among you and be your God, and you will be My people.');
+            $tmp_link_vvid_ARRAY[] = array('num14_31'                       => 'But your little ones, whom you said would become plunder, I will bring in, and they will know the land which you have rejected.');
+            //$tmp_link_vvid_ARRAY[] = array('num14_31[000]'                  => 'But your little ones, whom you said would become plunder, I will bring in, and they will know the land which you have rejected.');
+            $tmp_link_vvid_ARRAY[] = array('num14_29-30'                    => 'Your corpses shall fall in this wilderness, and none of you who were numbered, according to the number you counted from twenty years old and upward, who have murmured against Me, Shall come into the land, in which I swore to settle you, except Caleb the son of Jephunneh and Joshua the son Nun.');
+            $tmp_link_vvid_ARRAY[] = array('num14_35'                       => 'I, Jehovah, have spoken; surely I will do this to all this evil assembly who are gathered together against Me. In this wilderness they shall be consumed, and there they shall die.');
+            $tmp_link_vvid_ARRAY[] = array('num25_1-13'                     => 'While Israel dwelt in Shittim, the people began to commit fornication with the daughters of Moab. For they invited the people to the sacrifices of their gods, and the people ate and bowed down to their gods. And Israel joined itself to Baal-peor, and the anger of Jehovah was kindled against Israel.');
+            $tmp_link_vvid_ARRAY[] = array('num32_13'                       => 'And Jehovah\'s anger was kindled against Israel, He made them wander in the wilderness forty years, until the whole generation which had done evil in the sight of Jehovah was consumed.');
+            $tmp_link_vvid_ARRAY[] = array('num33_50-54'                    => 'Then Jehovah spoke to Moses in the plains of Moab by the Jordan at Jericho, saying, Speak to the children of Israel, and say to them, When you pass over the Jordan into the land of Canaan, You shall drive out all the inhabitants of the land from before you, and you shall destroy all their figured stones and destroy all their molten images and demolish all their high places;');
+            $tmp_link_vvid_ARRAY[] = array('deut4_1-2,39-40'                => '1 And now, O Israel, listen to the statutes and the ordinances which I am teaching you to do, in order that you may live and go in and possess the land which Jehovah, the God of your fathers, is giving you.');
+            $tmp_link_vvid_ARRAY[] = array('deut5_10,29'                    => '10 Yet showing lovingkindness to thousands of generations of those who love Me and keep My commandments. 29 Oh that this heart of theirs would be in them always to fear Me and keep all My commandments so that it may go well with them and with their children forever!');
+            $tmp_link_vvid_ARRAY[] = array('deut6_1-6,16-25'                => '1 Now this is the commandment, the statutes and the ordinances, which Jehovah your God has commanded me to teach you, that you may do them in the land into which you are crossing over to possess;');
+            $tmp_link_vvid_ARRAY[] = array('deut6_25'                       => 'And it will be righteousness to us if we are certain to do all this commandment before Jehovah our God, as He commanded us.');
+            $tmp_link_vvid_ARRAY[] = array('deut7_9-26'                     => 'Know therefore that it is Jehovah your God who is God, the faithful God who keeps covenant and lovingkindness to the thousandth generation with those who love him and keep His commandments,');
+            $tmp_link_vvid_ARRAY[] = array('deut8_1-10'                     => 'The whole commandment which I am commanding you today, you shall keep and do, so that you may live and multiply, and enter and possess the land which Jehovah swore to your fathers.');
+            $tmp_link_vvid_ARRAY[] = array('deut10_14-22'                   => 'Behold, heaven and the heaven of heavens belong to Jehovah your God, the earth and all that is in it. But on your fathers Jehovah set His affection to love them and to choose their seed after them, that is, you above all the peoples, as it is this day. Circumcise then the foreskin of your heart, and do not be stiff-necked any longer;');
+            $tmp_link_vvid_ARRAY[] = array('deut11_14'                      => 'I will give rain for your land in its season, the early rain and the late rain, so that you may gather your grain and your new wine and your fresh oil.');
+            $tmp_link_vvid_ARRAY[] = array('deut11_1,8-15,22-28'            => '1 Therefore you shall love Jehovah your God and keep His charge and His statutes and His ordinances and His commandments always. 8 Therefore you shall keep the whole commandment which I am commanding you today so that you may be strong and that you may go in and possess the land into which you are crossing over to possess,');
+            $tmp_link_vvid_ARRAY[] = array('deut26_16-19'                   => 'This day Jehovah your God is commanding you to do these statutes and ordinances; therefore you shall keep them and do them with all your heart and with all your soul. It is Jehovah whom you have today declared to be your God and that you will walk in His ways and keep His statutes and His commandments and His ordinances, and will listen to His voice.');
+            $tmp_link_vvid_ARRAY[] = array('deut28_1-14'                    => 'And if you listen diligently to the voice of Jehovah your God and are certain to do all His commandments, which I am commanding you today, Jehovah your God will set you high above all the nations of the earth;');
+            $tmp_link_vvid_ARRAY[] = array('deut30_11-20'                   => 'For this commandment which I am commanding you today, it is not too difficult for you, nor is it distant. It is not in heaven that you should say, Who will ascend to heaven for us and bring it to us to make us hear it and do it?');
+            $tmp_link_vvid_ARRAY[] = array('deut33_1-4,12,29'               => '1 And this is the blessing with which Moses, the man of God, / blessed the children of Israel before his death. / And he said, / Jehovah came from Sinai, / And He dawned upon them from Seir; / He shined forth from Mount Paran, / And He approached from the myriads of holy ones; / From His right hand a fiery law out to them.');
+            $tmp_link_vvid_ARRAY[] = array('josh5_6'                        => 'For the children of Israel went for forty years through the wilderness until all the nation, the men of war who had come out of Egypt, were consumed, because they did not listen to the voice of Jehovah, they to whom Jehovah swore that they would not see the land that Jehovah has sworn to their fathers to give us, a land flowing with milk and honey.');
+            $tmp_link_vvid_ARRAY[] = array('1sam4_4'                        => 'So the people sent to Shiloh, and they took up from there the Ark of the Covenant of Jehovah of hosts who is enthroned the cherubim. And the two sons of Eli, Hophni and Phinehas, were there with the Ark of the Covenant of God.');
+            $tmp_link_vvid_ARRAY[] = array('1kings2_1-3'                    => 'When David\'s time to die drew near, he commanded Solomon his son, saying, I am going the way of all the earth. Be strong therefore and be a man; And keep the charge of Jehovah your God by walking in His ways, by keeping His statutes, His commandments, and His ordinances and His testimonies as they are written in the law of Moses, that you may prosper in all that you do and wherever you turn;');
+            $tmp_link_vvid_ARRAY[] = array('1kings8_54-66'                  => 'And when Solomon has finished praying all this prayer and supplication to Jehovah, he rose up from before the alter of Jehovah, from kneeling on his knees with his hands spread toward the heavens. And he stood and blessed the whole congregation of Israel with a loud voice, saying,');
+            $tmp_link_vvid_ARRAY[] = array('1kings18_37-40,45;19_1-18'      => '37 Answer me, O Jehovah; answer me, that this people may know that You, O Jehovah, are God and that You have turned their heart back again. And the fire of Jehovah fell and consumed the burnt offering and the wood and the stones and the dust, and it licked up the water that was in the trench.');
+            $tmp_link_vvid_ARRAY[] = array('neh1_1-11'                      => 'The words of Nehemiah the son of Hacaliah. Now in the month of Chislev, in the twentieth year, while I was in Susa the capital, Hanani, one of my brothers, came, he and some men from Judah; and I asked them about the Jews who had escaped, who were left from the captivity, and about Jerusalem.');
+            $tmp_link_vvid_ARRAY[] = array('psa24'                          => 'A Psalm of David. The earth is Jehovah\'s, and its fullness, / The habitable land and those who dwell in it. / For it is He who founded it upon the seas / And established it upon the streams. Who may ascend the mountain of Jehovah, / And who may stand in His holy place? / He who has clean hands and a pure heart, / Who has not lifted up his soul to falsehood Or sworn deceitfully. / He will receive blessing from Jehovah, / And righteousness from the God of His salvation. / This is the generation of those who seek Him, / Those who seek Your face, even Jacob. Selah');
+            $tmp_link_vvid_ARRAY[] = array('psa95_10-11'                    => 'For forty years I loathed that generation, / And I said, They are a people who go astray in heart; / And they do not know My ways; / Therefore I swore in My anger: / They shall by no means enter into My rest!');
+            $tmp_link_vvid_ARRAY[] = array('psa97_2'                        => 'Clouds and deep darkness surround Him; Righteousness and justice are the foundation of His throne.');
+            $tmp_link_vvid_ARRAY[] = array('psa119_103'                     => 'How sweet are Your words to my taste! than honey to my mouth!');
+            $tmp_link_vvid_ARRAY[] = array('prov20_27'                      => 'The spirit of man is the lamp of Jehovah, Searching all the innermost parts of the inner being.');
+            $tmp_link_vvid_ARRAY[] = array('isa14_13'                       => 'But you, you said in your heart: / I will ascend to heaven; / Above the stars of God / I will exalt my throne. / And I will sit upon the mount of assembly / In the uttermost parts of the north.');
+            $tmp_link_vvid_ARRAY[] = array('isa14_21-24'                    => 'Prepare a slaughterhouse for his children / Because of the iniquity of their fathers, / So that they do not rise up and possess the land, / And fill the surface of the world with cities. / And I will rise up against them, / Declares Jehovah of hosts. / And I will cut off from Babylon name and remnant, / And posterity and progeny, declares Jehovah.');
+            $tmp_link_vvid_ARRAY[] = array('isa16_1-5'                      => 'Send a lamb / To the ruler of the land, / From Sela across the wilderness / To the mountain of the daughter of Zion. / Like wandering birds, / a scattered nest, / Will the daughters of Moab be / At the fords of the Arnon.');
+            $tmp_link_vvid_ARRAY[] = array('isa53_6'                        => 'We all like sheep have gone astray; / Each of us has turned to his own way, / And Jehovah has caused the iniquity of us all / To fall on Him.');
+            $tmp_link_vvid_ARRAY[] = array('jer1_11-19'                     => 'Then the word of Jehovah came to me, saying, What do you see, Jeremiah? And I said, I see a rod of an almond tree. And Jehovah said to me, You have seen well, for I am watching over My word to perform it. Then the word of Jehovah came to me a second time, saying, What do you see? And I said, I see a boiling pot, and it is facing away from the north.');
+            $tmp_link_vvid_ARRAY[] = array('jer24_7'                        => 'And I will give them a heart to know Me, that I am Jehovah; and they will be My people, and I will be their God; for they will return to Me with their whole heart.');
+            $tmp_link_vvid_ARRAY[] = array('jer31_31-34'                    => 'Indeed, days are coming, declares Jehovah, when I will make a new covenant with the house of Israel and with the house of Judah, Not like the covenant which I made with their fathers in the day I took them by their hand to bring them out from the land of Egypt, My covenant which they broke, although I was their Husband, declares Jehovah.');
+            $tmp_link_vvid_ARRAY[] = array('jer31_33-34'                    => 'But this is the covenant which I will make with the house of Israel after those days, declares Jehovah: I will put My law in their inward parts and write it upon their hearts; and I will be their God, and they will be My people.');
+            $tmp_link_vvid_ARRAY[] = array('jer31_33-37'                    => 'But this is the covenant which I will make with the house of Israel after those days, declares Jehovah: I will put My law in their inward parts and write it upon their hearts; and I will be their God, and they will be My people. And they will no longer teach, each man his neighbor and each man his brother, saying, Know Jehovah; for all of them will know Me, from the little one among them even to the great one among them, declares Jehovah, for I will forgive their iniquity, and their sin I will remember no more.');
+            $tmp_link_vvid_ARRAY[] = array('jer31_31-37'                    => 'Indeed days are coming, declares Jehovah, when I will make a new covenant with the house of Israel and with the house of Judah, Not like the covenant which I made with their fathers in the day I took them by their hand to bring them out from the land of Egypt, My covenant which they broke, although I was their Husband, declares Jehovah.');
+            $tmp_link_vvid_ARRAY[] = array('ezek11_17-25'                   => 'Therefore say, Thus says the Lord Jehovah, I will gather you from the peoples and assemble you from the countries among which you have been scattered, and I will give you the land of Israel. And they will come there and take away all its detestable things and all its abominations from it.');
+            $tmp_link_vvid_ARRAY[] = array('dan9_4'                         => 'And I prayed to Jehovah my God and confessed; and I said, Ah, Lord, the great and awesome God, who keeps covenant and lovingkindness with those who love Him and keep His commandments,');
+            $tmp_link_vvid_ARRAY[] = array('dan9_17-27'                     => 'And now hear, O our God, the prayer of Your servant and his supplications, and cause Your face to shine upon Your sanctuary that has been desolated, for the Lord\'s sake. O my God, incline Your ear and hear; open Your eyes and see our desolations and the city that is called by Your name; for we are not presenting our supplications before You based upon any righteous doings that we have done, but based upon Your great compassion.');
+            $tmp_link_vvid_ARRAY[] = array('joel2_23'                       => 'O children of Zion, / Be glad and rejoice / In Jehovah your God. / For He gives you / The early rain in righteousness, / And He makes the rain come down for you: / The early rain and the late rain / At the beginning of the season.');
+            $tmp_link_vvid_ARRAY[] = array('matt1_18,20'                    => '18 Now the origin of Jesus Christ was in this way: His mother, Mary, after she had been engaged to Joseph, before they came together, was found to be with child of the Holy Spirit. 20 But while he pondered these things, behold, an angel of the Lord appeared to him in a dream, saying, Joseph, son of David, do not be afraid to take Mary your wife, for that which has been begotten in her is of the Holy Spirit.');
+            $tmp_link_vvid_ARRAY[] = array('matt2_4-6'                      => 'And gathering together all the chief priests and scribes of the people, he inquired of them where the Christ was to be born. And they said to him, In Bethlehem of Judea, for so it is written through the prophet: &quot;And you, Bethlehem, land of Judah, by no means are you the least among the princes of Judah; for out of you shall come forth a Ruler, One who will shepherd My people Israel.&quot;');
+            $tmp_link_vvid_ARRAY[] = array('matt3_15'                       => 'But Jesus answered and said to him, Permit it for now, for it is fitting for us in this way to fulfill all righteousness. Then he permitted Him.');
+            $tmp_link_vvid_ARRAY[] = array('matt4_1-2'                      => 'Then Jesus was led up into the wilderness by the Spirit to be tempted by the devil. And when He had fasted forty days and forty nights, afterward He became hungry.');
+            $tmp_link_vvid_ARRAY[] = array('matt4_3'                        => 'And the tempter came and said to Him, If You are the Son of God, speak that these stones may become loaves of bread.');
+            $tmp_link_vvid_ARRAY[] = array('matt4_4b'                       => 'Man shall not live on bread alone, but on every word that proceeds out through the mouth of God.');
+            $tmp_link_vvid_ARRAY[] = array('matt4_5-7'                      => 'Then the devil took Him into the holy city and set Him on the wing of the temple, And said to Him, If You are the Son of God, cast Yourself down; for it is written, &quot;To His angels He shall give charge concerning You, and on hands they shall bear You up, lest You strike Your foot against a stone.&quot; Jesus said to him, Again, it is written, &quot;You shall not test the Lord your God.&quot;');
+            $tmp_link_vvid_ARRAY[] = array('matt5_10'                       => 'Blessed are those who are persecuted for the sake of righteousness, for theirs is the kingdom of the heavens.');
+            $tmp_link_vvid_ARRAY[] = array('matt5_13'                       => 'You are the salt of the earth. But if the salt has become tasteless, with what shall it be salted? It is no longer good for anything except to be cast out and trampled underfoot by men.');
+            $tmp_link_vvid_ARRAY[] = array('matt5'                          => 'And when He saw the crowds, He went up to the mountain. And after He sat down, His disciples came to Him. And opening His mouth, He taught them, saying, Blessed are the poor in spirit, for theirs is the kingdom of the heavens. Blessed are those who mourn, for they shall be comforted. Blessed are the meek, for they shall inherit the earth. Blessed are those who hunger and thirst for righteousness, for they shall be satisfied.');
+            $tmp_link_vvid_ARRAY[] = array('matt6'                          => 'But take care not to do your righteousness before men in order to be gazed at by them; otherwise, you have no reward with your Father who is in the heavens. Therefore when you give alms, do not sound a trumpet before you as the hypocrites do in the synagogues and in the streets, so that they may be glorified by men. Truly I say to you, They have their reward in full.');
+            $tmp_link_vvid_ARRAY[] = array('matt7'                          => 'Do not judge, that you be not judged. For with what judgement you judge, you shall be judged; and with what measure you measure, it shall be measured to you. And why do you look at the splinter which is in your brothers\'s eye, but the beam in your eye you do not consider? Or how can you say to your brother, Let me remove the splinter from your eye, and behold, the beam is in your eye?');
+            $tmp_link_vvid_ARRAY[] = array('matt7_13-14'                    => 'Enter in through the narrow gate, for wide is the gate and broad is the way that leads to destruction, and many are those who enter through it. Because narrow is the gate and constricted is the way that leads to life, and few are those who find it.');
+            $tmp_link_vvid_ARRAY[] = array('matt10_10b'                     => 'For the worker is worthy of his food.');
+            $tmp_link_vvid_ARRAY[] = array('matt10_16-33'                   => 'Behold, I send you forth as sheep in the midst of wolves. Be therefore prudent as serpents and guileless as doves. And beware of men, for they will deliver you up to sanhedrins, and in their synagogues they will scourge you.');
+            $tmp_link_vvid_ARRAY[] = array('matt11_28-30'                   => 'Come to Me all who toil and are burdened, and I will give you rest. Take My yoke upon you and learn from Me, for I am meek and lowly in heart, and you will find rest for your souls. For My yoke is easy and My burden is light.');
+            $tmp_link_vvid_ARRAY[] = array('matt12_1-8'                     => 'At that time Jesus went on the Sabbath through the grainfields. And His disciples became hungry and began to pick ears of grain and eat. But the Pharisees, seeing, said to Him, Behold, Your disciples are doing what is not lawful to do on the Sabbath. But He said to them, Have you not read what David did when he became hungry, and those who were with him; How he entered into the house of God, and they ate the bread of the Presence, which was not lawful for him to eat, nor for those who were with him, except for the priests only?');
+            $tmp_link_vvid_ARRAY[] = array('matt12_5'                       => 'Or have you not read in the law that on the Sabbath the priests in the temple profane the Sabbath and are guiltless?');
+            $tmp_link_vvid_ARRAY[] = array('matt13_4'                       => 'And as he sowed, some fell beside the way, and the birds came and devoured them.');
+            $tmp_link_vvid_ARRAY[] = array('matt16_25-26'                   => 'For whoever wants to save his soul-life shall lose it; but whoever loses his soul-life for My sake shall it. For what shall a man be profited if he gains the whole world, but forfeits his soul-life? Or what shall a man give in exchange for his soul-life?');
+            $tmp_link_vvid_ARRAY[] = array('matt19_12'                      => 'For there are eunuchs who were born so from their mother\'s womb, and there are eunuchs who were made eunuchs by men, and there are eunuchs who made themselves eunuchs because of the kingdom of the heavens. He who can, let him accept.');
+            $tmp_link_vvid_ARRAY[] = array('matt24_8-14'                    => 'All these things are the beginning of birth pangs. Then they will deliver you up to tribulation and will kill you, and you will be hated by all the nations because of My name. And at that time many will be stumbled and will deliver up one another and will hate one another. And many false prophets will arise and will lead many astray. And because lawlessness will be multiplied, the love of the many will grow cold.');
+            $tmp_link_vvid_ARRAY[] = array('matt24_14'                      => 'And this gospel of the kingdom will be preached in the whole inhabited earth for a testimony to all the nations, and then the end will come.');
+            $tmp_link_vvid_ARRAY[] = array('matt24_15-22'                   => 'Therefore when you see the abomination of desolation, which was spoken of through Daniel the prophet, standing in the Holy Place (let him who reads understand), Then let those in Judea flee to the mountains; Let him who is on the housetop not come down to take the things out of his house; And let him who is in the field not turn back to take his garment.');
+            $tmp_link_vvid_ARRAY[] = array('matt25_4'                       => 'But the prudent took oil in their vessels with their lamps.');
+            $tmp_link_vvid_ARRAY[] = array('matt25_23,10b'                  => '23 His master said to him, Well, good and faithful slave. You were faithful over a few things; I will set you over many things. Enter into the joy of your master. 10b And those who were ready went in with him to the wedding feast. And the door was shut.');
+            $tmp_link_vvid_ARRAY[] = array('matt26_33-35,69-75'             => '33 Then Peter answered and said to Him, If all will be stumbled because of You, I will never be stumbled. Jesus said to him, Truly I say to you that in this night, before a rooster crows, you will deny Me three times.');
+            $tmp_link_vvid_ARRAY[] = array('matt27_46'                      => 'And about the ninth hour Jesus cried out with a loud voice, saying, Eli, Eli, lama sabachthani? that is, My God, My God, why have You forsaken Me?');
+            $tmp_link_vvid_ARRAY[] = array('mark7_19-23'                    => 'Because it does not enter into his heart, but into the stomach, and goes out into the drain? (He made all foods clean.) And He said, That which goes out of the man, that defiles the man. For from within, out of the heart of men, proceed evil reasonings, fornications, thefts, murders, adulteries, covetousness, wickedness, deceit, licentiousness, envy, blasphemy, arrogance, foolishness. All these wicked things proceed from within and defile the man.');
+            $tmp_link_vvid_ARRAY[] = array('mark9_50'                       => 'Salt is good, but if the salt becomes unsalty, with what will you restore its saltiness? Have salt in yourselves and be at peace with one another.');
+            $tmp_link_vvid_ARRAY[] = array('mark14_27-31,66-72'             => '27 And Jesus said to them, You will all be stumbled, because it is written, &quot;I will smite the Shepherd, and the sheep will be scattered.&quot; But after I have been raised, I will go before you into Galilee.');
+            $tmp_link_vvid_ARRAY[] = array('luke1_26-33'                    => 'And in the sixth month the angel Gabriel was sent from God to a city of Galilee named Nazareth, To a virgin engaged to a man named Joseph, of the house of David; and the virgin\'s name was Mary. And he came to her and said, Rejoice, you who have been graced! The Lord is with you.');
+            $tmp_link_vvid_ARRAY[] = array('luke9_1-6'                      => 'And He called together the twelve and gave them power and authority over all the demons and to heal diseases. And He sent them to proclaim the kingdom of God and to heal the sick. And He said to them, Take nothing for the journey, neither a staff nor a bag nor bread nor money, nor have two tunics apiece. And into whatever house you enter, remain there and from there go out. And as many as do not receive you, as you go out from that city, shake off the dust from your feet for a testimony against them.');
+            $tmp_link_vvid_ARRAY[] = array('luke9_5-6'                      => 'And as many as do not receive you, as you go out from that city, shake off the dust from your feet for a testimony against them. And they went out and passed through village after village, announcing the gospel and healing everywhere.');
+            $tmp_link_vvid_ARRAY[] = array('luke10_19'                      => 'Behold, I have given you the authority to tread upon serpents and scorpions and over all the power of the enemy, and nothing shall by any means hurt you.');
+            $tmp_link_vvid_ARRAY[] = array('luke12_35'                      => 'Let your loins be girded and your lamps burning,');
+            $tmp_link_vvid_ARRAY[] = array('luke12_34-44'                   => 'For where your treasure is, there also your heart will be. Let your loins be girded and your lamps burning, And you be like men waiting for their own master when he returns from the wedding feast, so that when he comes and knocks they may  open to him immediately. Blessed are those slaves whom the master, when he comes, will find watching. Truly I tell you that he will gird himself and will have them recline, and he will come to and serve them.');
+            $tmp_link_vvid_ARRAY[] = array('luke13_17'                      => 'And when He said these things, all those opposing Him were put to shame, and all the crowd rejoiced over all the glorious things that were being done by Him.');
+            $tmp_link_vvid_ARRAY[] = array('luke14_31-32'                   => 'Or what king, going to engage another king in war, will not first sit down and deliberate whether he is able with ten thousand to meet the one coming against him with twenty thousand? Otherwise, while he is yet at a distance, he sends an envoy and asks for the of peace.');
+            $tmp_link_vvid_ARRAY[] = array('luke14_34-35'                   => 'Therefore salt is good; but if even the salt becomes tasteless, with what will its saltiness be restored? It is fit neither for the land nor for the manure pile; they will throw it out. He who has ears to hear, let him hear.');
+            $tmp_link_vvid_ARRAY[] = array('luke18_11-12'                   => 'The Pharisee stood and prayed these things to himself: God, I thank You that I am not like the rest of men&ndash;&ndash;extortioners, unjust, adulterers, or even like this tax collector. I fast twice a week; I give a tenth of all that I get.');
+            $tmp_link_vvid_ARRAY[] = array('luke18_13'                      => 'But the tax collector, standing at a distance, would not even lift up his eyes to heaven, but beat his breast, saying, God, be propitiated to me, the sinner!');
+            $tmp_link_vvid_ARRAY[] = array('luke19_12,14,15,27'             => '12 He said therefore, A certain man of noble birth went to a distant country to receive for himself a kingdom and to return. 14 But his citizens hated him and sent an envoy after him, saying, We do not want this man to reign over us.');
+            $tmp_link_vvid_ARRAY[] = array('luke22_24-30'                   => 'And a contention also occurred among them as to which of them seemed to be greatest. And He said to them, The kings of the Gentiles lord it over them, and those who have authority over them are called benefactors.');
+            $tmp_link_vvid_ARRAY[] = array('luke22_33-34,54-62'             => '33 And he said to Him, Lord, I am ready to go with You both to prison and to death. But He said, I tell you, Peter, a rooster will not crow today until you deny three times that you know Me.');
+            $tmp_link_vvid_ARRAY[] = array('luke22_42'                      => 'Saying, Father, if You are willing, remove this cup from Me; yet, not My will, but Yours be done.');
+            //$tmp_link_vvid_ARRAY[] = array('luke22_42[solo]'                => 'Saying, Father, if You are willing, remove this cup from Me; yet, not My will, but Yours be done.');
+            $tmp_link_vvid_ARRAY[] = array('luke23_27-30'                   => 'And a great multitude of the people and of women who were mourning and lamenting Him followed Him. But Jesus turned to them and said, Daughters of Jerusalem, do not weep over Me, but weep over yourselves and over your children. For behold, the days are coming in which they will say, Blessed are the barren, and the wombs which have not borne, and the breasts which have not nourished.');
+            $tmp_link_vvid_ARRAY[] = array('luke23_38,42-43'                => '38 And there was also an inscription over Him : THIS IS THE KING OF THE JEWS. 42 And he said, Jesus, remember me when You come into Your kingdom. And He said to him, Truly I say to you, Today you shall be with Me in Paradise.');
+            $tmp_link_vvid_ARRAY[] = array('luke24_31-32'                   => 'And their eyes were opened, and they recognized Him; and He disappeared from them. And they said to one another, Was not our heart burning within us while He was speaking to us on the road, while He was opening to us the Scriptures?');
+            $tmp_link_vvid_ARRAY[] = array('john2_20-21'                    => 'Then the Jews said, This temple was built in forty-six years, and You will raise it up in three days? But He spoke of the temple of His body.');
+            $tmp_link_vvid_ARRAY[] = array('john2_21'                       => 'But He spoke of the temple of His body.');
+            $tmp_link_vvid_ARRAY[] = array('john5_24-25'                    => 'Truly, truly, I say to you, He who hears My word and believes Him who sent Me has eternal life, and does not come into judgement but has passed out of death into life. Truly, truly, I say to you, An hour is coming, and it is now, when the dead will hear the voice of the Son of God, and those who hear will live.');
+            $tmp_link_vvid_ARRAY[] = array('john8_1-11'                     => 'But Jesus went to the Mount of Olives. And early in the morning He came again into the temple, and all the people came to Him, and He sat down and taught them. And the scribes and Pharisees brought a woman caught in adultery, and having set her in the midst,');
+            $tmp_link_vvid_ARRAY[] = array('john8_6'                        => 'But they said this to tempt Him, so that they might have to accuse Him. But Jesus stooped down and wrote with His finger on the ground.');
+            $tmp_link_vvid_ARRAY[] = array('john8_51-59'                    => 'Truly, truly, I say to you, If anyone keeps My word, he shall by no means see death forever. The Jews therefore said to Him, Now we know that You have a demon. Abraham died, and the prophets; yet You say, If anyone keeps My word, he shall by no means taste death forever. Are You greater than our father Abraham, who died? The prophets died too. Who are You making Yourself?');
+            $tmp_link_vvid_ARRAY[] = array('john9_41'                       => 'Jesus said to them, If you were blind, you would not have sin; but now you say, We see; your sin remains.');
+            $tmp_link_vvid_ARRAY[] = array('john13_3-17'                    => 'Knowing that the Father had given all into His hands and that He had come forth from God and was going to God, Rose from supper and laid aside His outer garments; and taking a towel, He girded Himself');
+            $tmp_link_vvid_ARRAY[] = array('john13_34'                      => 'A new commandment I give to you, that you love one another, even as I have loved you, that you also love one another.');
+            //$tmp_link_vvid_ARRAY[] = array('john13_34[solo]'                => 'A new commandment I give to you, that you love one another, even as I have loved you, that you also love one another.');
+            $tmp_link_vvid_ARRAY[] = array('john13_37-38'                   => 'Peter said to Him, Lord, why can\'t I follow You now? I will lay down my life for You. Jesus answered, Will you lay down your life for Me? Truly, truly, I say to you, A rooster shall by no means crow until you deny Me three times.');
+            $tmp_link_vvid_ARRAY[] = array('john13_37-38;18_14-27'          => '13:37 Peter said to Him, Lord, why can\'t I follow You now? I will lay down my life for You. Jesus answered, Will you lay down your life for Me? Truly, truly, I say to you, A rooster shall by no means crow until you deny Me three times.');
+            $tmp_link_vvid_ARRAY[] = array('john14_10'                      => 'Do you not believe that I am in the Father and the Father is in Me? The words that I say to you I do not speak from Myself, but the Father who abides in Me does His works.');
+            $tmp_link_vvid_ARRAY[] = array('john14_10-14'                   => 'Do you not believe that I am in the Father and the Father is in Me? The words that I say to you I do not speak from Myself, but the Father who abides in Me does His works. Believe Me that I am in the Father and the Father is in Me; but if not, believe because of the works themselves.');
+            $tmp_link_vvid_ARRAY[] = array('john14_12-14'                   => 'Truly, truly, I say to you, He who believes into Me, the works which I do he shall do also; and greater than these he shall do because I am going to the Father. And whatever you ask in My name, that I will do, that the Father may be glorified in the Son. If you ask Me anything in My name, I will do.');
+            $tmp_link_vvid_ARRAY[] = array('john14_15,20-21'                => '15 If you love Me, you will keep My commandments. 20 In that day you will know that I am in My Father, and you in Me, and I in you. He who has My commandments and keeps them, he is the one who loves Me; and he who loves Me will be loved by My Father, and I will love him and will manifest Myself to him.');
+            $tmp_link_vvid_ARRAY[] = array('john16_15'                      => 'All that the Father has is Mine; for this I have said that He receives of Mine and will declare to you.');
+            $tmp_link_vvid_ARRAY[] = array('acts1_5'                        => 'For John baptized with water, but you shall be baptized in the Holy Spirit not many days from now.');
+            $tmp_link_vvid_ARRAY[] = array('acts2_22-25'                    => 'Men of Israel, hear these words: Jesus the Nazarene, a man shown by God to you to be approved by works of power and wonders and signs, which God did through Him in your midst, even as you yourselves know&ndash;&ndash; This man, delivered up by the determined counsel and foreknowledge of God, you, through the hand of lawless men, nailed to and killed;');
+            $tmp_link_vvid_ARRAY[] = array('acts8_29'                       => 'And the Spirit said to Philip, Approach and join this chariot.');
+            $tmp_link_vvid_ARRAY[] = array('acts10_15-16b,19-21'            => '15 And a voice to him again a second time: The things that God has cleansed, do not make common. And this occurred three times. 19 And while Peter was pondering over the vision, the Spirit said to him, Behold, three men seeking you. But rise up, go down and go with them, doubting nothing, because I have sent them.');
+            $tmp_link_vvid_ARRAY[] = array('acts16_6,7'                     => '6 And they passed through the region of Phrygia and Galatia, having been forbidden by the Holy Spirit to speak the word in Asia. 7 And when they had come to Mysia, they tried to go into Bithynia, yet the Spirit of Jesus did not allow them.');
+            $tmp_link_vvid_ARRAY[] = array('acts11_12'                      => 'And the Spirit told me to go with them, doubting nothing. And these six brothers went with me also; and we entered into the man\'s house.');
+            $tmp_link_vvid_ARRAY[] = array('acts11_18'                      => 'And when they heard these things, they became silent and glorified God, saying, Then to the Gentiles also God has given repentance unto life.');
+            $tmp_link_vvid_ARRAY[] = array('rom2_6-7'                       => 'Who will render to each according to his works: To those who by endurance in good work seek glory and honor and incorruptibility, life eternal;');
+            //$tmp_link_vvid_ARRAY[] = array('rom5_1-5[000]'                  => 'Therefore having been justified out of faith, we have peace toward God through our Lord Jesus Christ, Through whom also we have obtained access by faith into this grace in which we stand and boast because if the hope of the glory of God.');
+            $tmp_link_vvid_ARRAY[] = array('rom5_1-5'                       => 'Therefore having been justified out of faith, we have peace toward God through our Lord Jesus Christ, Through whom also we have obtained access by faith into this grace in which we stand and boast because if the hope of the glory of God.');
+            $tmp_link_vvid_ARRAY[] = array('rom5_10'                        => 'For if we, being enemies, were reconciled to God through the death of His Son, much more we will be saved in His life, having been reconciled.');
+            $tmp_link_vvid_ARRAY[] = array('rom5_14,17,21'                  => '14 But death reigned from Adam until Moses, even over those who had not sinned after the likeness of Adam\'s transgression, who is a type of Him who was to come. 17 For if, by the offense of the one, death reigned through the one, much more those who receive the abundance of grace and of the gift of righteousness will reign in life through the One, Jesus Christ.');
+            $tmp_link_vvid_ARRAY[] = array('rom6_3'                         => 'Or are you ignorant that all of us who have been baptized into Christ Jesus have been baptized into His death?');
+            $tmp_link_vvid_ARRAY[] = array('rom6_8'                         => 'Now if we have died with Christ, we believe that we will also live with Him.');
+            $tmp_link_vvid_ARRAY[] = array('rom6_8-11'                      => 'Now if we have died with Christ, we believe that we will also live with Him, Knowing that Christ, having been raised from the dead, dies no more; death lords it over Him no more. For which He died, He died to sin once for all; but which He lives, He lives to God. So also you, reckon yourselves to be dead to sin, but living to God in Christ Jesus.');
+            $tmp_link_vvid_ARRAY[] = array('rom6_9-11'                      => 'Knowing that Christ, having been raised from the dead, dies no more; death lords it over Him no more. For which He died, He died to sin once for all; but which He lives, He lives to God. So also you, reckon yourselves to be dead to sin, but living to God in Christ Jesus.');
+            //$tmp_link_vvid_ARRAY[] = array('rom6_18-19[000]'                => 'And having been freed from sin, you were enslaved to righteousness. I speak in human because of the weakness of your flesh. For just as you presented your members as slaves to uncleanness and lawlessness unto lawlessness, so now present your members as slaves to righteousness unto sanctification.');
+            $tmp_link_vvid_ARRAY[] = array('rom6_18-19'                     => 'And having been freed from sin, you were enslaved to righteousness. I speak in human because of the weakness of your flesh. For just as you presented your members as slaves to uncleanness and lawlessness unto lawlessness, so now present your members as slaves to righteousness unto sanctification.');
+            $tmp_link_vvid_ARRAY[] = array('rom6_22'                        => 'But now, having been freed from sin and enslaved to God, you have your fruit unto sanctification, and the end, eternal life.');
+            $tmp_link_vvid_ARRAY[] = array('rom7_2-4,6'                     => '2 For the married woman is bound by the law to her husband while he is living; but if the husband dies, she is discharged from the law regarding the husband. So then if, while the husband is living, she is joined to another man, she will be called an adulteress; but if the husband dies, she is free from the law, so that she is not an adulteress, though she is joined to another man.');
+            $tmp_link_vvid_ARRAY[] = array('rom8_2'                         => 'For the law of the Spirit of life has freed me in Christ Jesus from the law of sin and of death.');
+            $tmp_link_vvid_ARRAY[] = array('rom8_2,4'                       => '2 For the law of the Spirit of life has freed me in Christ Jesus from the law of sin and of death. 4 That the righteous requirement of the law might be fulfilled in us, who do not walk according to the flesh but according to the spirit.');
+            $tmp_link_vvid_ARRAY[] = array('rom8_14'                        => 'For as many as are led by the Spirit of God, these are sons of God.');
+            $tmp_link_vvid_ARRAY[] = array('rom8_16-17,24-25'               => '16 The Spirit Himself witnesses with our spirit that we are children of God. And if children, heirs also; on the one hand, heirs of God; on the other, joint heirs with Christ, if indeed we suffer with that we may also be glorified with.');
+            $tmp_link_vvid_ARRAY[] = array('rom8_14-23'                     => 'For as many as are led by the Spirit of God, these are sons of God. For you have not received a spirit of slavery into fear again, but you have received a spirit of sonship in which we cry, Abba, Father! The Spirit Himself witnesses with our spirit that we are children of God.');
+            $tmp_link_vvid_ARRAY[] = array('rom8_33-39'                     => 'Who shall bring a charge against God\'s chosen ones? It is God who justifies. Who is he who condemns? It is Christ Jesus who died and, rather, who was raised, who is also at the right hand of God, who also intercedes for us. Who shall separate us from the love of Christ? Shall tribulation or anguish or persecution or famine or nakedness or peril or sword?');
+            $tmp_link_vvid_ARRAY[] = array('rom9_31-33'                     => 'But Israel, pursuing a law of righteousness, did not attain to law. Why? Because not out of faith, but as it were out of works. They stumbled at the stone of stumbling, As it is written, &quot;Behold, I lay in Zion a stone of stumbling, a rock of offense, and he who believes on Him shall not be put to shame.&quot;');
+            $tmp_link_vvid_ARRAY[] = array('rom10_2-3'                      => 'For I bear them witness that they have a zeal for God, but not according to full knowledge; For because they were ignorant of God\'s righteousness and sought to establish their own righteousness, they were not subject to the righteousness of God.');
+            $tmp_link_vvid_ARRAY[] = array('rom12_2'                        => 'And do not be fashioned according to this age, but be transformed by the renewing of the mind that you may prove what the will of God is, that which is good and well pleasing and perfect.');
+            $tmp_link_vvid_ARRAY[] = array('rom12_11'                       => 'Do not be slothful in zeal, be burning in spirit, serving the Lord.');
+            $tmp_link_vvid_ARRAY[] = array('rom12_11-12'                    => 'Do not be slothful in zeal, be burning in spirit, serving the Lord. Rejoice in hope; endure in tribulation; persevere in prayer.');
+            $tmp_link_vvid_ARRAY[] = array('rom13_14'                       => 'But put on the Lord Jesus Christ, and make no provision for the flesh to its lusts.');
+            $tmp_link_vvid_ARRAY[] = array('rom14_1'                        => 'Now him who is weak in faith receive, not for the purpose of passing judgement on considerations.');
+            $tmp_link_vvid_ARRAY[] = array('rom14_7-12'                     => 'For none of us lives to himself, and none dies to himself; For whether we live, we live to the Lord, and whether we die, we die to the Lord. Therefore whether we live or we die, we are the Lord\'s. For Christ died and lived for this, that He might be Lord both of the dead and of the living.');
+            //$tmp_link_vvid_ARRAY[] = array('rom15_4[000]'                   => 'For the things that were written previously were written for our instruction, in order that through endurance and through the encouragement of the Scriptures we might have hope.');
+            $tmp_link_vvid_ARRAY[] = array('rom15_4'                        => 'For the things that were written previously were written for our instruction, in order that through endurance and through the encouragement of the Scriptures we might have hope.');
+            $tmp_link_vvid_ARRAY[] = array('1cor1_22-25'                    => 'For indeed Jews require signs and Greeks seek wisdom, But we preach Christ crucified, to Jews a stumbling block, and to Gentiles foolishness, But to those who are called, both Jews and Greeks, Christ the power of God and the wisdom of God. Because the foolishness of God is wiser than men, and the weakness of God is stronger than men.');
+            $tmp_link_vvid_ARRAY[] = array('1cor3_21-23'                    => 'So then let no one boast in men, for all things are yours, Whether Paul or Apollos or Cephas or the world or life or death or things present or things to come; all are yours, But you are Christ\'s, and Christ is God\'s.');
+            $tmp_link_vvid_ARRAY[] = array('1cor5_1,5'                      => '1 It is actually reported that there is fornication among you, and such fornication that not even among the Gentiles, that someone has his stepmother. 5 To deliver such a one to Satan for the destruction of his flesh, that his spirit may be saved in the day of the Lord.');
+            $tmp_link_vvid_ARRAY[] = array('1cor6_12'                       => 'All things are lawful to me, but not all things are profitable; all things are lawful to me, but I will not be brought under the power of anything.');
+            $tmp_link_vvid_ARRAY[] = array('1cor6_17'                       => 'But he who is joined to the Lord is one spirit.');
+            $tmp_link_vvid_ARRAY[] = array('1cor9_8-11,13'                  => '8 Am I speaking these things according to man? Or does the law not also say these things? For in the law of Moses it is written: &quot;You shall not muzzle the ox while it is treading out the grain.&quot; Is it for oxen that God cares? Or does He say <em>it</em> altogether for our sake?');
+            $tmp_link_vvid_ARRAY[] = array('1cor10_5'                       => 'But with most of them God was not well pleased, for they were strewn along in the wilderness.');
+            $tmp_link_vvid_ARRAY[] = array('1cor10_23'                      => 'All things are lawful, but not all things are profitable; all things are lawful, but not all things build up.');
+            $tmp_link_vvid_ARRAY[] = array('1cor10_26,29b-31'               => '26 For the earth is the Lord\'s and the fullness thereof. 29b For why is my freedom judged by other conscience? If I partake with thankfulness, why am I spoken evil of concerning that for which I give thanks? Therefore whether you eat or drink, or whatever you do, do all to the glory of God.');
+            $tmp_link_vvid_ARRAY[] = array('1cor11_4'                       => 'Every man praying or prophesying with his head covered disgraces his head.');
+            $tmp_link_vvid_ARRAY[] = array('1cor15_58'                      => 'Therefore, my beloved brothers, be steadfast, immovable, always abounding in the work of Lord, knowing that your labor is not in vain in the Lord.');
+            $tmp_link_vvid_ARRAY[] = array('1cor15_55,58'                   => '55 Where, O death, is your victory? Where, O death, is your sting? 58 Therefore, my beloved brothers, be steadfast, immovable, always abounding in the work of the Lord, knowing that your labor is not in vain in the Lord.');
+            $tmp_link_vvid_ARRAY[] = array('2cor1_9-10'                     => 'Indeed we ourselves had the response of death in ourselves, that we should not base our confidence on ourselves but on God, who raises the dead; Who has delivered us out of so great a death, and will deliver; in whom we have hoped that He will also yet deliver,');
+            $tmp_link_vvid_ARRAY[] = array('2cor1_20-22[000]'               => 'For as many promises of God as, in Him is the Yes; therefore also through Him is the Amen to God, for glory through us. But the One who firmly attaches us with you unto Christ and has anointed us is God, He who has also sealed us and given the Spirit in our hearts as a pledge.');
+            $tmp_link_vvid_ARRAY[] = array('2cor1_20-22'                    => 'For as many promises of God as, in Him is the Yes; therefore also through Him is the Amen to God, for glory through us. But the One who firmly attaches us with you unto Christ and has anointed us is God, He who has also sealed us and given the Spirit in our hearts as a pledge.');
+            $tmp_link_vvid_ARRAY[] = array('2cor3_6-9'                      => 'Who has also made us sufficient as ministers of a new covenant, not of the letter but of the Spirit; for the letter kills, but the Spirit gives life. Moreover if the ministry of death, engraved in stone in letters, came about in glory, so that the sons of Israel were not able to gaze at the face of Moses because of the glory of his face, which was being done away with, How shall the ministry of the Spirit not be more in glory? For if there is glory with the ministry of condemnation, much more the ministry of righteousness abounds with glory.');
+            $tmp_link_vvid_ARRAY[] = array('2cor3_12'                       => 'Therefore since we have such hope, we use much boldness,');
+            $tmp_link_vvid_ARRAY[] = array('2cor3_12,17'                    => '12 Therefore since we have such hope, we use much boldness, 17 And the Lord is the Spirit; and where the Spirit of the Lord is, there is freedom.');
+            $tmp_link_vvid_ARRAY[] = array('2cor11_2a'                      => 'For I am jealous over you with a jealousy of God.');
+            $tmp_link_vvid_ARRAY[] = array('2cor11_2b-3'                    => 'For I betrothed you to one husband to present a pure virgin to Christ. But I fear lest somehow, as the serpent deceived Eve by his craftiness, your thoughts would be corrupted from the simplicity and the purity toward Christ.');
+            $tmp_link_vvid_ARRAY[] = array('1cor11_22'                      => 'Do you not have houses to eat and drink in? Or do you despise the church of God and put those to shame who have not? What shall I say to you? Shall I praise you? In this I do not praise.');
+            $tmp_link_vvid_ARRAY[] = array('2cor3_3'                        => 'Since you are being manifested that you are a letter of Christ ministered by us, inscribed not with ink but with the Spirit of the living God; not in tablets of stone but in tablets of hearts of flesh.');
+            $tmp_link_vvid_ARRAY[] = array('2cor3_17-18'                    => 'And the Lord is the Spirit; and where the Spirit of the Lord is, there is freedom. But we all with unveiled face, beholding and reflecting like a mirror the glory of the Lord, are being transformed into the same image from glory to glory, even as from the Lord Spirit.');
+            $tmp_link_vvid_ARRAY[] = array('2cor3_18'                       => 'But we all with unveiled face, beholding and reflecting like a mirror the glory of the Lord, are being transformed into the same image from glory to glory, even as from the Lord Spirit.');
+            $tmp_link_vvid_ARRAY[] = array('gal1_14'                        => 'And I advanced in Judaism beyond many contemporaries in my race, being more abundantly a zealot for the traditions of my fathers.');
+            $tmp_link_vvid_ARRAY[] = array('gal2_20'                        => 'I am crucified with Christ; and no longer I live, but Christ lives in me; and the which I now live in the flesh I live in faith, the of the Son of God, who loved me and gave Himself up for me.');
+            //$tmp_link_vvid_ARRAY[] = array('gal2_20_x'                      => 'I am crucified with Christ; and no longer I live, but Christ lives in me; and the which I now live in the flesh I live in faith, the of the Son of God, who loved me and gave Himself up for me.');
+            $tmp_link_vvid_ARRAY[] = array('gal3_1'                         => 'O foolish Galatians, who has bewitched you, before whose eyes Jesus Christ was openly portrayed crucified?');
+            $tmp_link_vvid_ARRAY[] = array('gal5_1,7'                       => '1 For freedom Christ has set us free; stand fast therefore, and do not be entangled with a yoke of slavery again. 7 You were running well. Who hindered you that you would not believe and obey the truth?');
+            $tmp_link_vvid_ARRAY[] = array('gal5_1'                         => 'For freedom Christ has set us free; stand fast therefore, and do not be entangled with a yoke of slavery again.');
+            $tmp_link_vvid_ARRAY[] = array('gal5_5-6'                       => 'For we by the Spirit out of faith eagerly await the hope of righteousness.');
+            $tmp_link_vvid_ARRAY[] = array('gal4_11'                        => 'I fear for you, lest I have labored upon you in vain.');
+            $tmp_link_vvid_ARRAY[] = array('gal5_13,16'                     => '13 For you were called for freedom, brothers; only do not this freedom into an opportunity for the flesh, but through love serve one another. 16 But I say, Walk by the Spirit and you shall by no means fulfill the lust of the flesh.');
+            $tmp_link_vvid_ARRAY[] = array('gal5_16,18,22-23,25'            => '16 But I say, Walk by the Spirit and you shall by no means fulfill the lust of the flesh. 18 But if you are led by the Spirit, you are not under the law. 22 But the fruit of the Spirit is love, joy, peace, long-suffering, kindness, goodness, faithful, Meekness, self-control; against such things there is no law.');
+            $tmp_link_vvid_ARRAY[] = array('gal6_14'                        => 'But far be it from me to boast except in the cross of our Lord Jesus Christ, through whom the world has been crucified to me and I to the world.');
+            $tmp_link_vvid_ARRAY[] = array('eph1_3'                         => 'Blessed be the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenlies in Christ,');
+            $tmp_link_vvid_ARRAY[] = array('eph1_3-12'                      => 'Blessed be the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenlies in Christ, Even as He chose us in Him before the foundation of the world to be holy and without blemish before Him in love, Predestinating us unto sonship through Jesus Christ to Himself, according to the good pleasure of His will,');
+            //$tmp_link_vvid_ARRAY[] = array('eph1_3-14[000]'                 => 'Blessed be the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenlies in Christ, Even as He chose us in Him before the foundation of the world to be holy and without blemish before Him in love, Predestinating us unto sonship through Jesus Christ to Himself, according to the good pleasure of His will,');
+            $tmp_link_vvid_ARRAY[] = array('eph1_3-14'                      => 'Blessed be the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenlies in Christ, Even as He chose us in Him before the foundation of the world to be holy and without blemish before Him in love, Predestinating us unto sonship through Jesus Christ to Himself, according to the good pleasure of His will,');
+            $tmp_link_vvid_ARRAY[] = array('eph1_9'                         => 'Making known to us the mystery of His will according to His good pleasure, which He purposed in Himself,');
+            $tmp_link_vvid_ARRAY[] = array('eph1_9-14,18-23'                => '9 Making known to us the mystery of His will according to His good pleasure, which He purposed in Himself, Unto the economy of the fullness of the times, to head up all things in Christ, the things in the heavens and the things on the earth, in Him;');
+            $tmp_link_vvid_ARRAY[] = array('phil1_6'                        => 'Being confident of this very thing, that He who has begun in you a good work will complete it until the day of Christ Jesus.');
+            $tmp_link_vvid_ARRAY[] = array('phil1_20'                       => 'According to my earnest expectation and hope that in nothing I will be put to shame, but with all boldness, as always, even now Christ will be magnified in my body, whether through life or through death.');
+            $tmp_link_vvid_ARRAY[] = array('phil1_27'                       => 'Only, conduct yourselves in a manner worthy of the gospel of Christ, that whether coming and seeing you or being absent, I may hear of the things concerning you, that you stand firm in one spirit, with one soul striving together with the faith of the gospel.');
+            $tmp_link_vvid_ARRAY[] = array('phil2_3'                        => 'Nothing by way of selfish ambition nor by way of vainglory, but in lowliness of mind considering one another more excellent than yourselves.');
+            $tmp_link_vvid_ARRAY[] = array('phil2_5-8'                      => 'Let this mind be in you, which was also in Christ Jesus, Who, existing in the form of God, did not consider being equal with God a treasure to be grasped, But emptied Himself, taking the form of a slave, becoming in the likeness of men; And being found in fashion as a man, He humbled Himself, becoming obedient even unto death, and the death of a cross.');
+            //$tmp_link_vvid_ARRAY[] = array('phil2_5-16[000]'                => 'Let this mind be in you, which was also in Christ Jesus, Who, existing in the form of God, did not consider being equal with God a treasure to be grasped, But emptied Himself, taking the form of a slave, becoming in the likeness of men; And being found in fashion as a man, He humbled Himself, becoming obedient even unto death, and the death of a cross.');
+            $tmp_link_vvid_ARRAY[] = array('phil2_5-16'                     => 'Let this mind be in you, which was also in Christ Jesus, Who, existing in the form of God, did not consider being equal with God a treasure to be grasped, But emptied Himself, taking the form of a slave, becoming in the likeness of men; And being found in fashion as a man, He humbled Himself, becoming obedient even unto death, and the death of a cross.');
+            $tmp_link_vvid_ARRAY[] = array('phil2_5-9'                      => 'Let this mind be in you, which was also in Christ Jesus, Who, existing in the form of God, did not consider being equal with God a treasure to be grasped, But emptied Himself, taking the form of a slave, becoming in the likeness of men; And being found in fashion as a man, He humbled Himself, becoming obedient even unto death, and the death of a cross.');
+            $tmp_link_vvid_ARRAY[] = array('phil2_8'                        => 'And being found in fashion as a man, He humbled Himself, becoming obedient even unto death, and the death of a cross.');
+            //$tmp_link_vvid_ARRAY[] = array('phil2_13[001]'                  => 'For it is God who operates in you both the willing and the working for good pleasure.');
+            //$tmp_link_vvid_ARRAY[] = array('phil2_13[000]'                  => 'For it is God who operates in you both the willing and the working for good pleasure.');
+            $tmp_link_vvid_ARRAY[] = array('phil2_13'                       => 'For it is God who operates in you both the willing and the working for good pleasure.');
+            $tmp_link_vvid_ARRAY[] = array('col1_5'                         => 'Because of the hope laid up for you in the heavens, of which you heard before in the word of the truth of the gospel,');
+            $tmp_link_vvid_ARRAY[] = array('col1_27'                        => 'To whom God willed to make known what are the riches of the glory of this mystery among the Gentiles, which is Christ in you, the hope of glory,');
+            $tmp_link_vvid_ARRAY[] = array('col1_5-6,21-23,26-27'           => '5 Because of the hope laid up for you in the heavens, of which you heard before in the word of the truth of the gospel, Which has come to you, even as it is also in all the world, bearing fruit and growing, as also in you, since the day you heard and knew the grace of God in truth;');
+            $tmp_link_vvid_ARRAY[] = array('col1_16'                        => 'Because in Him all things were created, in the heavens and on the earth, the visible and the invisible, whether thrones or lordships or rulers or authorities; all things have been created through Him and unto Him.');
+            $tmp_link_vvid_ARRAY[] = array('col2_9'                         => 'For in Him dwells all the fullness of the Godhead bodily.');
+            $tmp_link_vvid_ARRAY[] = array('col2_8,12,20-23'                => '8 Beware that no one carries you off as spoil through his philosophy and empty deceit, according to the tradition of men, according to the elements of the world, and not according to Christ;');
+            $tmp_link_vvid_ARRAY[] = array('col3_5'                         => 'Put to death therefore your members which are on the earth: fornication, uncleanness, passion, evil desire, and greediness, which is idolatry.');
+            $tmp_link_vvid_ARRAY[] = array('col3_6'                         => 'Because of which things the wrath of God is coming upon the sons of disobedience;');
+            $tmp_link_vvid_ARRAY[] = array('1thes1_2-3'                     => 'We thank God always concerning all of you, making mention in our prayers, Remembering unceasingly your work of faith and labor of love and endurance of hope in our Lord Jesus Christ, before our God and Father;');
+            $tmp_link_vvid_ARRAY[] = array('1thes5_7-11'                    => 'For those who sleep, sleep during the night, and those who get drunk are drunk during the night; But since we are of the day, let us be sober, putting on the breastplate of faith and love and a helmet, the hope of salvation.');
+            $tmp_link_vvid_ARRAY[] = array('2thes2_8-12'                    => 'And then the lawless one will be revealed (whom the Lord Jesus will slay by the breath of His mouth and bring to nothing by the manifestation of His coming), The coming of whom is according to Satan\'s operation in all power and signs and wonders of a lie And in all deceit of unrighteousness among those who are perishing, because they did not receive the love of the truth that they might be saved.');
+            $tmp_link_vvid_ARRAY[] = array('2thes2_16-17'                   => 'Now our Lord Jesus Christ Himself and God our Father, who has loved us and given us eternal comfort and good hope in grace, Comfort your hearts and establish in every good work and word.');
+            $tmp_link_vvid_ARRAY[] = array('1tim1_1'                        => 'Paul, an apostle of Christ Jesus according to the command of God our Savior and of Christ Jesus our hope,');
+            $tmp_link_vvid_ARRAY[] = array('1tim4_1-5'                      => 'But the Spirit says expressly that in later times some will depart from the faith, giving heed to deceiving spirits and teachings of demons By means of the hypocrisy of men who speak lies, of men who are branded in their own conscience as with a hot iron,');
+            $tmp_link_vvid_ARRAY[] = array('1tim6_17'                       => 'Charge those who are rich in the present age not to be high-minded, nor to set their hope on the uncertainty of riches but on God, who affords us all things richly for enjoyment;');
+            $tmp_link_vvid_ARRAY[] = array('2tim1_6'                        => 'For which cause I remind you to fan into flame the gift of God, which is in you through the laying on of my hands.');
+            $tmp_link_vvid_ARRAY[] = array('2tim1_6-8'                      => 'For which cause I remind you to fan into flame the gift of God, which is in you through the laying on of my hands. For God has not given us a spirit of cowardice, but of power and of love and of sobermindedness. Therefore do not be ashamed of the testimony of our Lord nor of me His prisoner; but suffer evil with the gospel according to the power of God;');
+            $tmp_link_vvid_ARRAY[] = array('titus1_1-3'                     => 'Paul, a slave of God and an apostle of Jesus Christ according to the faith of God\'s chosen ones and the full knowledge of the truth, which is according to godliness, In the hope of eternal life, which God, who cannot lie, promised before the times of the ages.');
+            $tmp_link_vvid_ARRAY[] = array('titus2_11-15'                   => 'For the grace of God, bringing salvation to all men, has appeared, Training us that, denying ungodliness and worldly lusts, we should live soberly and righteously and godly in the present age,');
+            //$tmp_link_vvid_ARRAY[] = array('titus3_7[000]'                  => 'In order that having been justified by His grace, we might become heirs according to the hope of eternal life.');
+            $tmp_link_vvid_ARRAY[] = array('titus3_7'                       => 'In order that having been justified by His grace, we might become heirs according to the hope of eternal life.');
+            $tmp_link_vvid_ARRAY[] = array('heb2_14-15'                     => 'Since therefore the children have shared in blood and flesh, He also Himself in like manner partook of the same, that through death He might destroy him who has the might of death, that is, the devil, And might release those who because of the fear of death through all their life were held in slavery.');
+            $tmp_link_vvid_ARRAY[] = array('heb3_6[000]'                    => 'But Christ as a Son over His house, whose house we are if indeed we hold fast the boldness and the boast of hope firm to the end.');
+            $tmp_link_vvid_ARRAY[] = array('heb3_6'                         => 'But Christ as a Son over His house, whose house we are if indeed we hold fast the boldness and the boast of hope firm to the end.');
+            //$tmp_link_vvid_ARRAY[] = array('heb3_7-19[000]'                 => 'Therefore, even as the Holy Spirit says, &quot;Today if you hear His voice, Do not harden your hearts as in the provocation, in the day of trial in the wilderness, Where your fathers tried by testing and saw My works for forty years. Therefore I was displeased with this generation, and I said, They always go astray in their heart, and they have not known My ways;');
+            $tmp_link_vvid_ARRAY[] = array('heb3_7-19'                      => 'Therefore, even as the Holy Spirit says, &quot;Today if you hear His voice, Do not harden your hearts as in the provocation, in the day of trial in the wilderness, Where your fathers tried by testing and saw My works for forty years. Therefore I was displeased with this generation, and I said, They always go astray in their heart, and they have not known My ways;');
+            $tmp_link_vvid_ARRAY[] = array('heb4_8-16'                      => 'For if Joshua had brought them into rest, He would not have spoken concerning another day after these things. So then there remains a Sabbath rest for the people of God. For he who has entered into His rest has himself also rested from his works, as God did from His own. Let us therefore be diligent to enter into that rest lest anyone fall after the same example of disobedience.');
+            $tmp_link_vvid_ARRAY[] = array('heb4_11'                        => 'Let us therefore be diligent to enter into that rest lest anyone fall after the same example of disobedience.');
+            $tmp_link_vvid_ARRAY[] = array('heb6_17-20'                     => 'Therefore God, intending to show more abundantly to the heirs of the promise the unchangeableness of His counsel, interposed with an oath, In order that by two unchangeable things, in which it was impossible for God to lie we may have strong encouragement, we who have fled for refuge to lay hold of the hope set before,');
+            $tmp_link_vvid_ARRAY[] = array('heb7_17-19'                     => 'For it is testified, &quot;You are a Priest forever according to the order of Melchizedek.&quot; For there is, on the one hand, the setting aside of the preceding commandment because of its weakness and unprofitableness (For the law perfected nothing), and, on the other hand, the bringing in thereupon of a better hope, through which we draw near to God.');
+            //$tmp_link_vvid_ARRAY[] = array('heb8_10[000]'                   => 'For this is the covenant which I will covenant with the house of Israel after those days, says the Lord: I will impart My laws into their mind, and on their hearts I will inscribe them; and I will be God to them, and they will be a people to Me.');
+            $tmp_link_vvid_ARRAY[] = array('heb8_10'                        => 'For this is the covenant which I will covenant with the house of Israel after those days, says the Lord: I will impart My laws into their mind, and on their hearts I will inscribe them; and I will be God to them, and they will be a people to Me.');
+            $tmp_link_vvid_ARRAY[] = array('heb9_14'                        => 'How much more will the blood Christ, who through the eternal Spirit offered Himself without blemish to God, purify our conscience from dead works to serve the living God?');
+            $tmp_link_vvid_ARRAY[] = array('heb10_22,19'                    => '22 Let us come forward to with a true heart in full assurance of faith, having our hearts sprinkled from an evil conscience and having our bodies washed with pure water. 19 Having therefore, brothers, boldness for entering the Holies in the blood of Jesus.');
+            $tmp_link_vvid_ARRAY[] = array('heb10_22'                       => 'Let us come forward to with a true heart in full assurance of faith, having our hearts sprinkled from an evil conscience and having our bodies washed with pure water.');
+            $tmp_link_vvid_ARRAY[] = array('heb10_21-23'                    => 'And a great Priest over the house of God, Let us come forward to with a true heart in full assurance of faith, having our hearts sprinkled from an evil conscience and having our bodies washed with pure water.');
+            $tmp_link_vvid_ARRAY[] = array('heb10_23'                       => 'Let us hold fast the confession of our hope unwavering, for He who has promised is faithful;');
+            $tmp_link_vvid_ARRAY[] = array('heb10_35'                       => 'Do not cast away therefore your boldness, which has great reward.');
+            $tmp_link_vvid_ARRAY[] = array('heb10_35,38-39'                 => '35 Do not cast away therefore your boldness, which has great reward. 38 &quot;...But My righteous one shall live by faith; and if he shrinks back, My soul does not delight in him.&quot; But we are not of those who shrink back to ruin but of those who have faith to the gaining of the soul.');
+            $tmp_link_vvid_ARRAY[] = array('heb11_1'                        => 'Now faith is the substantiation of things hoped for, the conviction of things not seen.');
+            $tmp_link_vvid_ARRAY[] = array('heb12_1'                        => 'Therefore let us also, having so great a cloud of witnesses surrounding us, put away every encumbrance and the sin which so easily entangles and run with endurance the race which is set before us,');
+            $tmp_link_vvid_ARRAY[] = array('james3_1-2'                     => 'Do not become many teachers, my brothers, knowing that we will receive greater judgement. For in many things we all stumble. If anyone does not stumble in word, this one is a perfect man, able to bridle the whole body as well.');
+            $tmp_link_vvid_ARRAY[] = array('1pet1_3-9,13,21'                => '3 Blessed be the God and Father of our Lord Jesus Christ, who according to His great mercy has regenerated us unto a living hope through the resurrection of Jesus Christ from the dead, Unto an inheritance, incorruptible and undefiled and unfading, kept in the heavens for you,');
+            $tmp_link_vvid_ARRAY[] = array('1pet1_3-5'                      => 'Blessed be the God and Father of our Lord Jesus Christ, who according to His great mercy has regenerated us unto a living hope through the resurrection of Jesus Christ from the dead, Unto an inheritance, incorruptible and undefiled and unfading, kept in the heavens for you,');
+            $tmp_link_vvid_ARRAY[] = array('1pet1_13'                       => 'Therefore girding up the loins of your mind being sober, set your hope perfectly on the grace being brought to you at the revelation of Jesus Christ.');
+            $tmp_link_vvid_ARRAY[] = array('1pet2_16'                       => 'As free, and yet not having freedom as a covering for evil, but as slaves of God.');
+            $tmp_link_vvid_ARRAY[] = array('1pet2_20'                       => 'For what glory is it if, while sinning and being buffeted, you endure? But if, while doing good and suffering, you endure, this is grace with God.');
+            $tmp_link_vvid_ARRAY[] = array('1pet2_7-8'                      => 'To you therefore who believe is the preciousness; but to the unbelieving, &quot;The stone which the builders rejected, this has become the head of the corner,&quot; And, &quot;A stone of stumbling and a rock of offense&quot;; who stumble at the word, being disobedient, to which also they were appointed.');
+            $tmp_link_vvid_ARRAY[] = array('1pet2_24'                       => 'Who Himself bore up our sins in His body on the tree, in order that we, having died to sins, might live to righteousness; by whose bruise you were healed.');
+            $tmp_link_vvid_ARRAY[] = array('1pet3_15'                       => 'But sanctify Christ as Lord in your hearts, being always ready for a defense to everyone who asks of you an account concerning the hope which is in you,');
+            $tmp_link_vvid_ARRAY[] = array('1pet3_5-7,14-22'                => '5 For in this manner formerly the holy women also, who hoped in God, adorned themselves, being subject to their own husbands, As Sarah obeyed Abraham, calling him lord; whose children you have become, if you do good and do not fear any terror.');
+            $tmp_link_vvid_ARRAY[] = array('1pet5_8'                        => 'Be sober; watch. Your adversary, the devil, as a roaring lion, walks about, seeking someone to devour.');
+            $tmp_link_vvid_ARRAY[] = array('1john2_15-17'                   => 'Do not love the world nor the things in the world. If anyone loves the world, love for the Father is not in him; Because all that is in the world, the lust of the flesh and the lust of the eyes and the vainglory of life, is not of the Father but is of the world. And the world is passing away, and its lust, but he who does the will of God abides forever.');
+            $tmp_link_vvid_ARRAY[] = array('1john3_1-10'                    => 'Behold what manner of love the Father has given to us, that we should be called children of God; and we are. Because of this the world does not know us, because it did not know Him.');
+            $tmp_link_vvid_ARRAY[] = array('rev2_10-11'                     => 'Do not fear the things that you are about to suffer. Behold, the devil is about to cast some of you into prison that you may be tried, and you will have tribulation for ten days. Be faithful unto death, and I will give you the crown of life. He who has an ear, let him hear what the Spirit says to the churches. He who overcomes shall by no means be hurt of the second death.');
+            $tmp_link_vvid_ARRAY[] = array('rev2_12-17'                     => 'And to the messenger of the church in Pergamos write: These things says He who has the sharp two-edged sword: I know where you dwell, where Satan\'s throne is; and you hold fast My name and have not denied My faith, even in the days of Antipas, My witness, My faithful one, who was killed among you, where Satan dwells.');
+            $tmp_link_vvid_ARRAY[] = array('rev2_18-23'                     => 'And to the messenger of the church in Thyatira write: These things says the Son of God, He who has eyes like a flame of fire, and His feet are like shining bronze: I know your works and love and faith and service and your endurance and that your last works are more than the first. But I have against you, that you tolerate the woman Jezebel,');
+            //$tmp_link_vvid_ARRAY[] = array('rev2_14[solo]'                => 'But I have a few things against you, that you have some there who hold the teaching of Balaam, who taught Balak to put a stumbling block before the sons of Israel, to eat idol sacrifices and to commit fornication.');
+            $tmp_link_vvid_ARRAY[] = array('rev2_14'                        => 'But I have a few things against you, that you have some there who hold the teaching of Balaam, who taught Balak to put a stumbling block before the sons of Israel, to eat idol sacrifices and to commit fornication.');
+            $tmp_link_vvid_ARRAY[] = array('rev2_11|2_17,26-28|3_5,12,21'   => '11 He who has an ear, let him hear what the Spirit says to the churches. He who overcomes shall by no means be hurt of the second death. 17 He who has an ear, let him hear what the Spirit says to the churches. To him who overcomes, to him I will give of the hidden manna, and to him I will give a white stone, and upon the stone a new name written, which no one knows except him who receives.');
+            $tmp_link_vvid_ARRAY[] = array('rev2_21-22'                     => 'And I gave her time that she might repent, and she is not willing to repent of her fornication. Behold, I cast her into a bed, and those who commit adultery with her, into great tribulation, unless they repent of her works;');
+            $tmp_link_vvid_ARRAY[] = array('rev3_8'                         => 'I know your works; behold, I have put before you an opened door which no one can shut, because you have a little power and have kept My word and have not denied My name.');
+            $tmp_link_vvid_ARRAY[] = array('rev3_7-13'                      => 'And to the messenger of the church in Philadelphia write: These things says the Holy One, the true One, the One who has the key of David, the One who opens and no one will shut, and shuts and no one opens:');
+            $tmp_link_vvid_ARRAY[] = array('rev3_19'                        => 'As many as I love I reprove and discipline; be zealous therefore and repent.');
+            $tmp_link_vvid_ARRAY[] = array('rev6_16-17'                     => 'And they say to the mountains and to the rocks, Fall on us and hide us from the face of Him who sits upon the throne and from the wrath of the Lamb; For the great day of Their wrath has come, and who is able to stand?');
+            $tmp_link_vvid_ARRAY[] = array('rev12_3-4,9'                    => '3 And another sign was seen in heaven; and behold, a great red dragon, having seven heads and ten horns, and on his heads seven diadems. And his tail drags away the third part of the stars of heaven, and he cast them to the earth. And the dragon stood before the woman who was about to bring forth, so that when she brings forth he might devour her child.');
+            $tmp_link_vvid_ARRAY[] = array('rev12_3-4,13,17;13:2,4'         => '3 And another sign was seen in heaven; and behold, a great red dragon, having seven heads and ten horns, and on his heads seven diadems. And his tail drags away the third part of the stars of heaven, and he cast them to the earth. And the dragon stood before the woman who was about to bring forth, so that when she brings forth he might devour her child.');
+            $tmp_link_vvid_ARRAY[] = array('rev20_6'                        => 'Blessed and holy is he who has part in the first resurrection; over these the second death has no authority, but they will be priests of God and of Christ and will reign with Him for a thousand years.');
+            $tmp_link_vvid_ARRAY[] = array('rev21_2,9-27'                   => '2 And I saw the holy city, New Jerusalem, coming down out of heaven from God, prepared as a bride adorned for her husband. 9 And one of the seven angels who had the seven bowls full of the seven last plagues came and spoke with me, saying, Come here; I will show you the bride, the wife of the Lamb. And he carried me away in spirit onto a great and high mountain and showed me the holy city, Jerusalem, coming down out of heaven from God, Having the glory of God.');
+            $tmp_link_vvid_ARRAY[] = array('rev21_7'                        => 'He who overcomes will inherit these things, and I will be God to him, and he will be a son to Me.');
+            $tmp_link_vvid_ARRAY[] = array('rev21_3-5'                      => 'And I heard a loud voice out of the throne, saying, Behold, the tabernacle of God is with men, and He will tabernacle with them, and they will be His peoples, and God Himself will be with them their God. And He will wipe away every tear from their eyes; and death will be no more, nor will there be sorrow or crying or pain anymore; for the former things have passed away. And He who sits on the throne said, Behold, I make all things new. And He said, Write, for these words are faithful and true.');
+            $tmp_link_vvid_ARRAY[] = array('rev21_21'                       => 'And the twelve gates were twelve pearls; each one of the gates was, respectively, of one pearl. And the street of the city was pure gold, like transparent glass.');
+            $tmp_link_vvid_ARRAY[] = array('rev22_2'                        => 'And on this side and on that side of the river was the tree of life, producing twelve fruits, yielding its fruit each month; and the leaves of the tree of life are for the healing of the nations.');
+            //
+            // Friday, February 29, 2024 @ 0304 hrs.    // $tmp_link_vvid_ARRAY ARRAY BUILD; THE FIRST PASS HAS BEEN FINISHED.
+            //
+            // THE TARGET FORMAT FOR HTML OUTPUT:
+            // Philippians 1:27 - Only, conduct yourselves in a manner worthy of the gospe...
 
         }
 
-        */
+        if(self::$vvid_is_grouped !== false){
+
+            //
+            // HTML OUTPUT SCRIPTURE INDEX BY GROUP.
+            foreach($tmp_link_vvid_ARRAY as $index_grp => $vvid_grp_CHUNKARRAY0){
+
+                $tmp_grp_html_str = '';
+                $tmp_grp_html_str_open = '<div class="cb_10"></div><p>(';
+                $tmp_grp_html_str_delim = ', ';
+                $tmp_grp_html_str_close = ')</p>';
+
+                foreach($vvid_grp_CHUNKARRAY0 as $index_vv => $vvid_grp_CHUNKARRAY1){
+
+                    foreach($vvid_grp_CHUNKARRAY1 as $vvid => $vvid_reference_copy){
+
+                        $tmp_grp_html_str .= $this->link_html($vvid, $vvid_reference_copy);
+                        $tmp_grp_html_str .= $tmp_grp_html_str_delim;
+
+                    }
+
+                }
+
+                //
+                // REMOVE TRAILING COMMA.
+                $tmp_grp_html_str = $this->strrtrim($tmp_grp_html_str,', ');
+
+                echo $tmp_grp_html_str_open . $tmp_grp_html_str . $tmp_grp_html_str_close;
+
+            }
+
+        }else{
+
+            //
+            // HTML OUTPUT AN INDEX OF ALL SCRIPTURES.
+            foreach($tmp_link_vvid_ARRAY as $index_vv => $vvid_vv_CHUNKARRAY0){
+
+                $tmp_vv_html_str = '';
+                $tmp_vv_html_str_open = '<div class="cb_10"></div><p>';
+                $tmp_vv_html_str_close = '</p>';
+
+                foreach($vvid_vv_CHUNKARRAY0 as $tmp_vvid => $vvid_social_share_preview_copy){
+
+                    $this->vvid = $tmp_vvid;
+                    $tmp_vvid_vnav_reference_ARRAY = $this->return_vnav_preciousness();
+
+                    /*
+                    [Fri Mar 01 03:51:44.804286 2024] [:error] [pid 113849] [client 172.16.225.1:62164] 851 precious
+                    $tmp_vvid_vnav_reference_ARRAY[
+                    Array\n(\n
+                        [VVID] => Array\n        (\n
+                            [0] => jehovah_has_revealed\n
+                            [1] => jehovah_has_revealed_chords\n
+                            [2] => jehovah_has_revealed_audio\n
+                            [3] => jehovah_has_revealed_dl\n        )\n\n
+                        [COPY] => Array\n        (\n
+                            [0] => Jehovah Has Revealed His Heart\n
+                            [1] => Chords\n
+                            [2] => Listen&nbsp;&nbsp;<img src="https://jony5.com/common/imgs/listen_icon.png" width="20" height="18" alt="Listen">\n            [3] => <span style="padding:0 8px 0 8px;"><img src="https://jony5.com/common/imgs/download_icon_wht.png" width="20" height="20" alt="Download"></span>\n        )\n\n)\n]., referer: http://172.16.225.139/jony5.com/
+
+
+                    [Fri Mar 01 03:56:06.284538 2024] [:error] [pid 113851] [client 172.16.225.1:63531] 866 precious
+                    $tmp_vvid_vnav_reference_ARRAY[
+                    Array\n(\n
+                        [VVID] => Array\n        (\n
+                            [0] => gen1_26\n        )\n\n
+                        [COPY] => Array\n        (\n
+                            [0] => Genesis 1:26\n        )\n\n)\n]., referer: http://172.16.225.139/jony5.com/
+
+
+                    [Fri Mar 01 03:59:57.763450 2024] [:error] [pid 111370] [client 172.16.225.1:64478] 881 precious
+                    $vvid[gen1_26]. $tmp_vvid_copy[Genesis 1:26 &ndash;&ndash; And God said, Let Us make man in Our image, according to Our likeness; and let them have dominion over the fish of the sea and over the birds of heaven and over the cattle and over all the earth and over every creeping thing that creeps upon the earth.]., referer: http://172.16.225.139/jony5.com/
+
+                    error_log(__LINE__ . ' precious $vvid[' . $this->vvid . ']. $tmp_vvid_copy[' . print_r($tmp_vvid_copy, true) . '].');
+
+                    */
+
+                    foreach($tmp_vvid_vnav_reference_ARRAY['VVID'] as $index => $vnav_reference_copy){
+
+                        //
+                        // BECAUSE THE bringer_of_the_precious_things DATA STRUCTURE
+                        // BOTH DRIVES THE HTML UI AND ONLY HONORS SCRIPTURES BY
+                        // THEIR "UI GROUPING", WE MUST LOOP THROUGH THE VERSE
+                        // CLUSTER (THIS WILL BE ONE VERSE SOMETIMES) AND THEN
+                        // LOAD THE MATCHING VVID,...JUST.
+                        //
+                        // Friday, March 1, 2024 @ 0441 hrs.
+                        if($this->vvid == $vnav_reference_copy){
+
+                            switch($this->vvid){
+                                case 'jehovah_has_revealed_dl':
+
+                                    $tmp_vvid_vnav_reference_ARRAY['COPY'][$index] = 'Jehovah Has Revealed His Heart :: DOWNLOAD';
+
+                                break;
+                                case 'jehovah_has_revealed_chords':
+
+                                    $tmp_vvid_vnav_reference_ARRAY['COPY'][$index] = 'Jehovah Has Revealed His Heart :: CHORDS';
+
+                                break;
+
+                            }
+
+                            //
+                            // SOURCE :: https://stackoverflow.com/questions/4915753/how-can-i-remove-three-characters-at-the-end-of-a-string-in-php
+                            // AUTHOR :: bensiu ::  https://stackoverflow.com/users/367878/bensiu
+                            // COMMENT :: https://stackoverflow.com/a/4915787
+                            $vvid_social_share_preview_copy = trim(substr($vvid_social_share_preview_copy, 0, strlen($vvid_social_share_preview_copy) - 3));
+
+                            $tmp_vvid_copy = $tmp_vvid_vnav_reference_ARRAY['COPY'][$index] . ' &ndash; ' . $vvid_social_share_preview_copy . '...';
+
+                            $tmp_vv_html_str .= $this->link_html($this->vvid, $tmp_vvid_copy);
+
+                        }
+
+                    }
+
+                }
+
+                echo $tmp_vv_html_str_open . $tmp_vv_html_str . $tmp_vv_html_str_close;
+
+            }
+
+        }
 
     }
 
@@ -1536,6 +1338,12 @@ class bringer_of_the_precious_things {
 
                 $tmp_vnav_array['VVID'][0] = 'jer31_33';
                 $tmp_vnav_array['COPY'][0] = 'Jeremiah 31:33';
+
+            break;
+            case 'jer31_33-34':
+
+                $tmp_vnav_array['VVID'][0] = 'jer31_33-34';
+                $tmp_vnav_array['COPY'][0] = 'Jeremiah 31:33-34';
 
             break;
             case 'jer31_31-37':
@@ -2656,6 +2464,7 @@ class bringer_of_the_precious_things {
             case 'exo30_18':
             case 'exo9_29':
             case 'exo15_26':
+            case 'exo30_17-21':
 
                 $tmp_book_array['COPY'][0] = 'Exodus';
 
@@ -4595,7 +4404,7 @@ class bringer_of_the_precious_things {
             case 'ezek11_17-25':
 
                 $tmp_verse_array['REFERENCE'][0]        = '11:17-25';
-                $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Therefore say, Thus says the Lord Jehovah, I will gather you from the peoples and assemble you from the countries among which you have been scattered, and I will give you the land of Israel. And they will come there and take away all its detestable things and all its abominations from it. ';
+                $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Therefore say, Thus says the Lord Jehovah, I will gather you from the peoples and assemble you from the countries among which you have been scattered, and I will give you the land of Israel. And they will come there and take away all its detestable things and all its abominations from it.';
                 $tmp_verse_array['COPY'][0]             = 'Therefore say, Thus says the Lord Jehovah, I will gather you from the 
                 peoples and assemble you from the countries among which you have been scattered, and I will give 
                 you the land of Israel. And they will come there and take away all its detestable things and all its 
@@ -5211,7 +5020,7 @@ class bringer_of_the_precious_things {
             case 'luke1_26-33':
 
                 $tmp_verse_array['REFERENCE'][0]        = '1:26-33';
-                $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'And in the sixth month the angel Gabriel was sent from God to a city of Galilee named Nazareth, To a virgin engaged to a man named Joseph, of the house of David; and the virgin\'s name was Mary. And he came to her and said, Rejoice, you who have been graced! The Lord is with you. ';
+                $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'And in the sixth month the angel Gabriel was sent from God to a city of Galilee named Nazareth, To a virgin engaged to a man named Joseph, of the house of David; and the virgin\'s name was Mary. And he came to her and said, Rejoice, you who have been graced! The Lord is with you.';
                 $tmp_verse_array['COPY'][0]             = 'And in the sixth month the angel Gabriel was sent from God to a city 
                 of Galilee named Nazareth, To a virgin engaged to a man named Joseph, of the house of David; and the
                 virgin\'s name was Mary. And he came to her and said, Rejoice, you who have been graced! The Lord is 
@@ -5231,7 +5040,7 @@ class bringer_of_the_precious_things {
             case 'luke9_1-6':
 
                 $tmp_verse_array['REFERENCE'][0]        = '9:1-6';
-                $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'And He called together the twelve and gave them power and authority over all the demons and to heal diseases. And He sent them to proclaim the kingdom of God and to heal the sick. And He said to them, Take nothing for the journey, neither a staff nor a bag nor bread nor money, nor have two tunics apiece. And into whatever house you enter, remain there and from there go out. And as many as do not receive you, as you go out from that city, shake off the dust from your feet for a testimony against them. ';
+                $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'And He called together the twelve and gave them power and authority over all the demons and to heal diseases. And He sent them to proclaim the kingdom of God and to heal the sick. And He said to them, Take nothing for the journey, neither a staff nor a bag nor bread nor money, nor have two tunics apiece. And into whatever house you enter, remain there and from there go out. And as many as do not receive you, as you go out from that city, shake off the dust from your feet for a testimony against them.';
                 $tmp_verse_array['COPY'][0]             = 'And He called together the twelve and gave them power and authority 
                 over all the demons and to heal diseases. And He sent them to proclaim the kingdom of God and to 
                 heal the sick. And He said to them, Take nothing for the journey, neither a staff nor a bag nor 
@@ -5703,7 +5512,7 @@ class bringer_of_the_precious_things {
             case 'acts2_22-25':
 
                 $tmp_verse_array['REFERENCE'][0]        = '2:22-25';
-                $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Men of Israel, hear these words: Jesus the Nazarene, a man shown by God to you to be approved by works of power and wonders and signs, which God did through Him in your midst, even as you yourselves know&ndash;&ndash; This man, delivered up by the determined counsel and foreknowledge of God, you, through the hand of lawless men, nailed to and killed; ';
+                $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Men of Israel, hear these words: Jesus the Nazarene, a man shown by God to you to be approved by works of power and wonders and signs, which God did through Him in your midst, even as you yourselves know&ndash;&ndash; This man, delivered up by the determined counsel and foreknowledge of God, you, through the hand of lawless men, nailed to and killed;';
                 $tmp_verse_array['COPY'][0]             = 'Men of Israel, hear these words: Jesus the Nazarene, a man shown by 
                 God to you to be approved by works of power and wonders and signs, which God did through Him in your 
                 midst, even as you yourselves know&ndash;&ndash; This man, delivered up by the determined counsel 
@@ -5822,14 +5631,6 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Or are you ignorant that all of us who have been baptized into Christ Jesus have been baptized into His death?';
                 $tmp_verse_array['COPY'][0]             = 'Or are you ignorant that all of us who have been baptized into Christ 
                 Jesus have been baptized into His death?';
-
-            break;
-            case 'rom6_8_err':
-
-                $tmp_verse_array['REFERENCE'][0]        = '6:8';
-                $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'But God commends His own love to us in that while we were yet sinners, Christ died for us.';
-                $tmp_verse_array['COPY'][0]             = 'But God commends His own love to us in that while we were yet 
-                sinners, Christ died for us.';
 
             break;
             case 'rom6_8':
@@ -6471,7 +6272,7 @@ class bringer_of_the_precious_things {
             case 'eph1_9-14,18-23':
 
                 $tmp_verse_array['REFERENCE'][0]        = '1:9-14, 18-23';
-                $tmp_verse_array['SOCIAL_PREVIEW'][0]   = '9 Making known to us the mystery of His will according to His good pleasure, which He purposed in Himself, Unto the economy of the fullness of the times, to head up all things in Christ, the things in the heavens and the things on the earth, in Him; ';
+                $tmp_verse_array['SOCIAL_PREVIEW'][0]   = '9 Making known to us the mystery of His will according to His good pleasure, which He purposed in Himself, Unto the economy of the fullness of the times, to head up all things in Christ, the things in the heavens and the things on the earth, in Him;';
                 $tmp_verse_array['COPY'][0]             = '<span class="script_ref_num">9</span> Making known to us the mystery of 
                 His will according to His good pleasure, which He purposed in Himself, Unto the economy of the fullness 
                 of the times, to head up all things in Christ, the things in the heavens and the things on the earth, 
@@ -8700,11 +8501,11 @@ class bringer_of_the_precious_things {
         // FOOTNOTE.
         $tmp_footnote = $this->return_footnote_preciousness();
 
-        if(isset($tmp_footnote['REFERENCE'][0])) {
+        if(isset($tmp_footnote['REFERENCE'][0])){
 
-            if (sizeof($tmp_footnote['REFERENCE']) > 0) {
+            if (sizeof($tmp_footnote['REFERENCE']) > 0){
 
-                $tmp_ftnt = $tmp_footnote['REFERENCE'][0].' '.$tmp_footnote['COPY'][0];
+                $tmp_ftnt = $tmp_footnote['REFERENCE'][0] . ' ' . $tmp_footnote['COPY'][0];
 
             }else{
 
@@ -8740,7 +8541,7 @@ class bringer_of_the_precious_things {
 
         }
 
-        if($tmp_ftnt==''){
+        if($tmp_ftnt == ''){
 
             $tmp_output = $tmp_book_name['COPY'][0] . ' ' . $tmp_lbl . $tmp_reference['REFERENCE'][0] . ' - ' . $tmp_reference['COPY'][0];
 

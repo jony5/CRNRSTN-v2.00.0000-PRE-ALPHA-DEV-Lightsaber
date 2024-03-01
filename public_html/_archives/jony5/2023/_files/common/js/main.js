@@ -4093,22 +4093,46 @@ function toggleFeedbackForm(frmElem){
 	return false;
 }
 
-function crnrstn_chkbxSel(elem,inputName){
+function crnrstn_chkbxSel(elem, inputName){
 
-	if($( '#crnrstn_' + elem.id).hasClass( "crnrstn_chkbx_on" )){
+	if($('#crnrstn_' + elem.id).hasClass("crnrstn_chkbx_on")){
+
 		//
-		// UNCHECK THIS CHECKBOX
-		$('#crnrstn_'+elem.id).removeClass('crnrstn_chkbx_on').addClass( "crnrstn_chkbx" );
+		// UNCHECK THIS CHECKBOX.
+		$('#crnrstn_' + elem.id).removeClass('crnrstn_chkbx_on').addClass("crnrstn_chkbx");
+		$('#' + inputName).val('0');
 
-		$('input#'+inputName).value = '0';
 	}else{
 
 		//
-		// CHECK THIS CHECKBOX
-		$('#crnrstn_'+elem.id).removeClass('crnrstn_chkbx').addClass( "crnrstn_chkbx_on" );
+		// CHECK THIS CHECKBOX.
+		$('#crnrstn_' + elem.id).removeClass('crnrstn_chkbx').addClass("crnrstn_chkbx_on");
+		$('#' + inputName).val('1');
 
-		$('input#'+inputName).value = '1';
 	}
+
+}
+
+function crnrstn_vv_chkbxSel(elem, inputName){
+
+	if(document.getElementById('scriptures_group_by_chkbx').checked == true){
+
+		//
+		// UNCHECK THIS CHECKBOX.
+		document.getElementById('scriptures_group_by_chkbx').checked = false;
+		$('#' + inputName).val('0');
+
+	}else{
+
+		//
+		// CHECK THIS CHECKBOX.
+		document.getElementById('scriptures_group_by_chkbx').checked = true
+		$('#' + inputName).val('1');
+
+	}
+
+	$('#post_scriptures_group_by').submit();
+
 }
 
 function crnrstn_radioSel(elem, elem_IDSeed, radio_qty, inputName, inputValue){

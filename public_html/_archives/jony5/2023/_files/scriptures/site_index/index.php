@@ -159,17 +159,19 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                 <div class="hidden"><a id="scroll_WELCOME" name="WELCOME">INDEX OF SCRIPTURES</a></div>
                 <div class="content_title">INDEX OF SCRIPTURES ::</div>
                 <div class="content_copy">
-
-                    <div class="col" style="width:550px;">
-
+                    <?php
+                    $oBringer->build_link_html_index(NULL);
+                    ?>
+                </div>
+                <div class="content_copy">
+                    <div class="col" style="width:600px;">
                         <?php
                         $oBringer->build_link_html_index();
                         ?>
-
                     </div>
-
                 </div>
                 <div class="cb"></div>
+
             </div>
             <div class="cb"></div>
 
