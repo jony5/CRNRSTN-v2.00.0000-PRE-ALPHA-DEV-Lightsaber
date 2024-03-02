@@ -342,18 +342,20 @@ class bringer_of_the_precious_things {
         if($search_all_jony5 != false){
 
             //
-            // PUSH ALL CUSTOM CONTENT IDS FOR
-            // STATIC SEARCH SUPPORT.
+            // PUSH ALL CUSTOM CONTENT
+            // CONTENT_IDS FOR STATIC
+            // SEARCH SUPPORT.
             $tmp_search_vvid_ARRAY[] = array('jony5_home_page' => 'jony5_home_page');
 
         }
 
         //
         // Thursday, February 29, 2024 @ 1632 hrs.
-        // FOR THE GENERATION OF A NEW CONTROL STRUCTURE,
-        // PLEASE SEE, THE INSTRUCTIONS LOCATED IN COMMENTS
-        // WITHIN, build_link_html_index(), AND
-        // TITLED: "HOW TO GET MORE DATA INTO SEARCH".
+        // FOR THE GENERATION OF A NEW MASTER CONTROL
+        // STRUCTURE (THIS STRUCT DRIVES SEARCH),
+        // PLEASE SEE, THE INSTRUCTIONS LOCATED
+        // WITHIN, $this->build_link_html_index(), AND
+        // TITLED: "HOW TO GET MORE DATA INTO SEARCH ::".
         $tmp_search_vvid_ARRAY[] = array('jehovah_has_revealed_dl' => 'capoiv');
         $tmp_search_vvid_ARRAY[] = array('jehovah_has_revealed_audio' => 'capoiv');
         $tmp_search_vvid_ARRAY[] = array('jehovah_has_revealed_chords' => 'capoiv');
@@ -660,14 +662,14 @@ class bringer_of_the_precious_things {
 
     }
 
-    public function generate_optimized_search_content($mode = 'VVID_LOOKUP'){
+    public function generate_optimized_search_content($mode = 'VVID_LOOKUP_MASTER'){
 
         $tmp_php_generated_html = '
 ';
         $tmp_search_meta_vvid_ARRAY = $this->vvid_control_struct();
 
         switch($mode){
-            case 'VVID_LOOKUP':
+            case 'VVID_LOOKUP_MASTER':
                 // JONY5 + SCRIPTURES.
 
                 /*
@@ -697,7 +699,6 @@ class bringer_of_the_precious_things {
 
                         $this->vvid = $vvid;
                         $tmp_vnav_vvid_ARRAY = $this->return_book_preciousness();
-                        //error_log(__LINE__ . ' precious [' . print_r($tmp_vnav_vvid_ARRAY, true) . ']. $this->vvid[' . $this->vvid . '].');
 
                         /*
                         [Sat Mar 02 01:49:51.201318 2024] [:error] [pid 121890] [client 172.16.225.1:55119] 693 precious [
@@ -705,12 +706,20 @@ class bringer_of_the_precious_things {
                                 [VVID] => Array\n        (\n            [0] => rev2_21-22\n        )\n\n
                                 [COPY] => Array\n        (\n            [0] => Revelation 2:21-22\n        )\n\n
                             )\n].
-
                             $this->vvid[rev2_21-22].
 
                         [Sat Mar 02 02:38:11.375792 2024] [:error] [pid 121798] [client 172.16.225.1:56403] 693 precious [
-                        Array\n(\n
-                            [COPY] => Array\n        (\n            [0] => 1 Peter\n        )\n\n)\n]. $this->vvid[1pet2_16].
+                            Array\n(\n
+                                [COPY] => Array\n        (\n            [0] => 1 Peter\n        )\n\n
+                            )\n].
+                            $this->vvid[1pet2_16].
+
+                        [Sat Mar 02 04:54:57.670339 2024] [:error] [pid 125740] [client 172.16.225.1:59001] 741 precious [
+                            Array\n(\n
+                                [COPY] => Array\n        (\n            [0] => 1 Thessalonians\n        )\n\n
+                            )\n]
+                            $tmp_vvid_meta[1thessalonians].
+                            $this->vvid[1thes5_7-11].
 
                         */
 
@@ -735,6 +744,8 @@ class bringer_of_the_precious_things {
                                 break;
 
                             }
+
+                            error_log(__LINE__ . ' precious [' . print_r($tmp_vnav_vvid_ARRAY, true) . '] $tmp_vvid_meta[' . $tmp_vvid_meta . ']. $this->vvid[' . $this->vvid . '].');
 
                             $tmp_php_generated_html .= '$tmp_search_vvid_ARRAY[] = array(\'' . $vvid . '\' => \'' . $tmp_vvid_meta . '\');
 ';

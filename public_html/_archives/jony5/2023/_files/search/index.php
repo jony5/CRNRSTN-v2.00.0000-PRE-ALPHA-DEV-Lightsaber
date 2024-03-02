@@ -159,8 +159,9 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
                 <div class="content_copy">
                     <div class="col" style="width:600px;">
                         <?php
-                        $oBringer->search_for_all_preciousness();
-                        //echo $oBringer->generate_optimized_search_content();
+                        //$oBringer->search_for_all_preciousness();
+                        echo $oBringer->generate_optimized_search_content();
+                        //echo $oBringer->generate_optimized_search_content('COMPRESSED_SEARCH_CONTENT');
                         ?>
                     </div>
                 </div>
