@@ -26,9 +26,9 @@ $tmp_sprite_ver_date = filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<?php
-require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/head/head.inc.php');
-?>
+    <?php
+    require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/head/head.inc.php');
+    ?>
 </head>
 
 <body>
@@ -54,20 +54,20 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
     </div>
 </div>
 <?php
-	require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/inc/contact/contact.inc.php');
-	?>
+require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/contact/contact.inc.php');
+?>
 
 <div id="body_wrapper">
-	<!-- HEAD CONTENT -->
-	<?php
-	require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/inc/nav/topnav.inc.php');
-	?>
-	<div class="cb_30"></div>
+    <!-- HEAD CONTENT -->
+    <?php
+    require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/nav/topnav.inc.php');
+    ?>
+    <div class="cb_30"></div>
 
     <!-- PAGE CONTENT -->
     <div id="content_wrapper" style="text-align: center; margin: 0px auto; width:925px;">
 
-    	<div id="content">
+        <div id="content">
 
             <!-- BEGIN SOCIAL SHARE -->
             <div style="float: left;">
@@ -155,17 +155,12 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
 
             <!-- BEGIN PAGE CONTENT HTML -->
             <div id="scroll_WELCOME_highlight_content">
-                <div class="hidden"><a id="scroll_WELCOME" name="WELCOME">INDEX OF SCRIPTURES</a></div>
-                <div class="content_title">INDEX OF SCRIPTURES ::</div>
-                <div class="content_copy">
-                    <?php
-                    $oBringer->build_link_html_index(NULL);
-                    ?>
-                </div>
+                <div class="hidden"><a id="scroll_WELCOME" name="WELCOME">SEARCH RESULTS</a></div>
+                <div class="content_title">SEARCH RESULTS ::</div>
                 <div class="content_copy">
                     <div class="col" style="width:600px;">
                         <?php
-                        $oBringer->build_link_html_index();
+                        $oBringer->search_for_all_preciousness();
                         ?>
                     </div>
                 </div>
@@ -181,8 +176,8 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
 
     <div class="cb_30"></div>
     <?php
-	require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/inc/footer/footer.inc.php');
-	?>
+    require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/inc/footer/footer.inc.php');
+    ?>
     <div class="cb_50"></div>
 
 </div>

@@ -61,7 +61,7 @@ class bringer_of_the_precious_things {
 
                 if($page != 'home') {
 
-                    $this->vvid = self::$oEnv->oHTTP_MGR->extractData($_GET,'vv');
+                    $this->vvid = self::$oEnv->oHTTP_MGR->extractData($_GET, 'vv');
                     //error_log('issetHTTP returned FALSE for meta-key vvid['.$this->vvid.'] concerning requested preciousness.');
 
                     //
@@ -308,14 +308,103 @@ class bringer_of_the_precious_things {
 
     }
 
-    public function search_for_all_preciousness($ugc_str){
+    public function return_search_meta_jony5($ugc_str){
+        // Friday, March 1, 2024 2158 hrs.
+
+        //
+        // BUILD SEARCH CONTENT ARRAY.
+        // BUILD AND RETURN A COMPLETE
+        // SEARCH STRUCT OF JONY5 META.
+        $tmp_search_meta_ARRAY = '[' . time() . '] from return_search_meta_jony5(' . strval($ugc_str) . ')';
+
+        return $tmp_search_meta_ARRAY;
+
+    }
+
+    public function return_search_meta_scriptures($ugc_str){
+        // Friday, March 1, 2024 2205 hrs.
+
+        //
+        // BUILD SEARCH CONTENT ARRAY.
+        // BUILD AND RETURN A SEARCH
+        // STRUCT OF SCRIPTURES META.
+        $tmp_search_meta_ARRAY = '[' . time() . '] from return_search_meta_scriptures(' . strval($ugc_str) . ')';
+
+        return $tmp_search_meta_ARRAY;
+
+    }
+
+    public function return_search_meta_ARRAY($ugc_str, $search_all_jony5){
+        // Thursday, February 29, 2024 1430 hrs.
+
+        //
+        // BUILD SEARCH CONTENT ARRAY.
+        if($search_all_jony5 !== false){
+
+            //
+            // BUILD AND RETURN A COMPLETE
+            // SEARCH STRUCT OF JONY5 META.
+            $tmp_search_meta_ARRAY[] = $this->return_search_meta_jony5($ugc_str);
+            $tmp_search_meta_ARRAY[] = $this->return_search_meta_scriptures($ugc_str);
+
+        }else{
+
+            //
+            // BUILD AND RETURN A SEARCH
+            // STRUCT OF SCRIPTURES META.
+            $tmp_search_meta_ARRAY[] = $this->return_search_meta_scriptures($ugc_str);
+
+        }
+
+        return $tmp_search_meta_ARRAY;
+
+    }
+
+    public function search_for_all_preciousness($search_all_jony5 = false){
 
         //
         // Thursday, February 29, 2024 1430 hrs.
-        $tmp_result_html = '';
+        $tmp_ugc_str = $tmp_result_html = '';
 
+        //
+        // DO WE HAVE $_GET[] UGC DATA?
+        if(self::$oEnv->oHTTP_MGR->issetHTTP($_GET)){
 
-        return $tmp_result_html;
+            //
+            // STORE THE $_GET[] DATA THAT HAS BEEN SENT.
+            $tmp_ugc_str = self::$oEnv->oHTTP_MGR->extractData($_GET, 's');
+            $tmp_site_search_str = self::$oEnv->oHTTP_MGR->extractData($_GET, 'site');
+
+            if(strlen($tmp_ugc_str) > 1){
+
+                if(strlen($tmp_site_search_str) > 0){
+
+                    switch($tmp_site_search_str){
+                        case 'jony5':
+
+                            $search_all_jony5 = true;
+
+                        break;
+
+                    }
+
+                }
+
+                //
+                // RETURN SEARCH CONTENT ARRAY.
+                $tmp_search_meta_ARRAY = $this->return_search_meta_ARRAY($tmp_ugc_str, $search_all_jony5);
+
+            }
+
+        }
+
+        if(isset($tmp_search_meta_ARRAY)){
+
+            $tmp_result_html = '<p>' . __LINE__ . ' ' . __FUNCTION__ . ' ' . print_r($tmp_search_meta_ARRAY, true) . '</p>';
+
+        }
+
+        echo $tmp_result_html;
 
     }
 
@@ -857,7 +946,7 @@ class bringer_of_the_precious_things {
             $tmp_link_vvid_ARRAY[] = array('rev21_21'                       => 'And the twelve gates were twelve pearls; each one of the gates was, respectively, of one pearl. And the street of the city was pure gold, like transparent glass.');
             $tmp_link_vvid_ARRAY[] = array('rev22_2'                        => 'And on this side and on that side of the river was the tree of life, producing twelve fruits, yielding its fruit each month; and the leaves of the tree of life are for the healing of the nations.');
             //
-            // Friday, February 29, 2024 @ 0304 hrs.    // $tmp_link_vvid_ARRAY ARRAY BUILD; THE FIRST PASS HAS BEEN FINISHED.
+            // Friday, March 1, 2024 @ 0304 hrs.    // $tmp_link_vvid_ARRAY ARRAY BUILD; THE FIRST PASS HAS BEEN FINISHED.
             //
             // THE TARGET FORMAT FOR HTML OUTPUT:
             // Philippians 1:27 - Only, conduct yourselves in a manner worthy of the gospe...
