@@ -64,10 +64,11 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
 //
 // INSTANTIATE A NEW bringer_of_the_precious_things()
 -->
+<div id="scripture_lightbox_overlay" class="scripture_lightbox_overlay" onclick="close_scripture_overlay_modal();"></div>
 <div id="script_shell0">
     <div id="script_shell1">
         <div id="script_popup_wrapper">
-            <div id="script_popup"  onclick="lockPopup(); return false;"></div>
+            <div id="script_popup" onclick="lockPopup(); return false;"></div>
             <div class="cb"></div>
         </div>
     </div>
@@ -114,7 +115,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
     	</div>
     
     	<div id="content">
-    		<div class="content_title">Be burning in spirit, serving the Lord (<a vvid="rom12_11" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Rom. 12:11</a><?php echo $oBringer->seo_out('rom12_11'); ?>)</div>
+    		<div class="content_title">Be burning in spirit, serving the Lord (<?php echo $oBringer->link_html('rom12_11','Rom. 12:11'); ?>)</div>
             <div class="content_copy">
             	<div class="col">
            			<p>I don't think that I've taken time to talk (somewhat definitively) about why I ended up at the hospital in Q1 of 2012. That ambulance ride was not caused by the weed I habitually smoked on my lunch break (although a sample of the marijuana that I smoked was taken and I assume tested), and I was having so much fun...I can completely vouch for the complete absence of any stresses that many would probably have assumed to have been &quot;only natural&quot; with one being subjected to environmental atmospheres and stimuli the likes of which I myself have never even heard of or seen in my life.</p>
@@ -123,7 +124,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
                 </div>
                 <div class="col">
                 	<p>In the back of my mind I was thinking that maybe there would be some equipment there which would shed light (in the form of data) on what was happening inside my body. When we got to the hospital, the burning sensation had become so intense, I actually considered that I was about to be raptured to be with the Lord!</p>
-                	<p><img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/being_diagram.jpg" width="300" height="173" alt="Human Being" title="Being Diagram"></p>
+                	<p><img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/being_diagram.jpg" width="300" height="173" alt="Human Being" title="Being Diagram"></p>
                     <p>In the Holy Scriptures, these sensations are referred to as having a &quot;burning spirit&quot; (<a vvid="rom12_11" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Rom. 12:11</a><?php echo $oBringer->seo_out('rom12_11'); ?>) or fanning your spirit &quot;into flame&quot; (<a vvid="2tim1_6" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">2 Tim. 1:6</a><?php echo $oBringer->seo_out('2tim1_6'); ?>). In these verses...and contrary to what may be held as popular belief among todays Christians...the apostles were not encouraging or describing the act of working oneself up into a state of vigorous excitement or energetic/burning zeal; they were simply, innocently and honestly expressing (from first person experience) that a strong exercise of the human spirit in oneness with the Lord Spirit is both desirable for the Lord's work and can be accompanied by a </p>
                 </div>
                 <div class="col">

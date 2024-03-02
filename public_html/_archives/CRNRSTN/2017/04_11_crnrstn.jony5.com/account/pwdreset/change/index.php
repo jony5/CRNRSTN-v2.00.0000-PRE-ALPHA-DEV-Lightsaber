@@ -22,7 +22,6 @@ $page_title = 'PASSWORD RESET';
 require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/head/head.inc.php');
 ?>
 </head>
-
 <body>
 <div id="admin_form_shell"></div>
 <div id="admin_overlay"></div>
