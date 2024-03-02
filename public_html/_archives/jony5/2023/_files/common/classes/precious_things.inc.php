@@ -786,16 +786,69 @@ class bringer_of_the_precious_things {
                     break;
 
                 [OUTPUT] --------
-                    $tmp_search_vvid_ARRAY[] = array('{vvid}' => '{IMAGE_PREVIEW_SALT}');
-                    - - - - -
-                    $tmp_search_vvid_ARRAY[] = array('1kings2_1-3' => '1kings');
-                    $tmp_search_vvid_ARRAY[] = array('1kings18_37-40,45;19_1-18' => '1kings');
-                    $tmp_search_vvid_ARRAY[] = array('1sam4_4' => '1samuel');
-                    $tmp_search_vvid_ARRAY[] = array('psa97_2' => 'psalms');
+                    $tmp_search_vvid_ARRAY[] = array(array('IMAGE_RESOURCE_HTTP' => ''), array('psa97_2' => 'cloudsanddeepdarknesssurroundhimrighteo'));
 
                 */
+                foreach($tmp_search_meta_vvid_ARRAY as $tmp_index => $tmp_vvid_meta_CHUNKARRAY0){
 
-                $tmp = 1;
+                    foreach($tmp_vvid_meta_CHUNKARRAY0 as $vvid => $meta_content){
+
+                        $this->vvid = $vvid;
+                        $tmp_verse_meta_ARRAY = $this->return_verse_preciousness();
+
+                        //error_log(__LINE__ . ' precious [' . print_r($tmp_verse_meta_ARRAY, true) . '] $tmp_vvid_meta[' . $meta_content . ']. $this->vvid[' . $this->vvid . '].');
+                        /*
+                        [Sat Mar 02 07:09:09.364794 2024] [:error] [pid 6891] [client 172.16.225.1:63241] 799 precious [
+                        Array\n(\n
+                            [REFERENCE] => Array\n        (\n            [0] => \n        )\n\n
+                            [SOCIAL_PREVIEW] =>
+                                Array\n        (\n
+                                    [0] => Download Jehovah Has Revealed (Ashes). Vocals: Sister Doris K., Brother Jonathan H. African Djembe Hand Bongo: Brother Kenton W. Guitar: Brother Jonathan H.Jehovah has revealed / His heart to me. / To Him I thus would consecrated be. / As Daniel purposed in his heart...I'll be. / And pray; that God could move on earth through me. / Lord, You need me.\n        )\n\n
+                            [COPY] =>
+                                Array\n        (\n
+                                    [0] => <a href="#" onclick="launch_newwindow('https://jony5.com/downloads/audio/jehovah_has_revealed_his_heart.php'); return false;" target="_blank">Click \n                here</a> to download.\n        )\n\n)\n] $tmp_vvid_meta[capoiv]. $this->vvid[jehovah_has_revealed_dl].
+
+
+
+
+
+                        */
+                        if(isset($tmp_verse_meta_ARRAY['COPY'][0])){
+
+                            //
+                            // LOWERCASE.
+                            $tmp_book_str = strtolower($tmp_verse_meta_ARRAY['COPY'][0]);
+                            $tmp_vvid_meta = $this->str_sanitize($tmp_book_str, 'bible_book_name');
+
+                            switch($vvid){
+                                case 'jehovah_has_revealed_dl':
+                                case 'jehovah_has_revealed_audio':
+                                case 'jehovah_has_revealed_chords':
+
+                                    $tmp_vvid_meta = 'capoiv';
+
+                                break;
+                                case 'jony5_home_page':
+                                    // projects/crnrstn/philosophy/
+
+                                break;
+
+                            }
+
+                            //error_log(__LINE__ . ' precious [' . print_r($tmp_verse_meta_ARRAY, true) . '] $tmp_vvid_meta[' . $tmp_vvid_meta . ']. $this->vvid[' . $this->vvid . '].');
+
+                            $tmp_php_generated_html .= '$tmp_search_vvid_ARRAY[] = array(\'' . $vvid . '\' => \'' . $tmp_vvid_meta . '\');
+';
+
+                        }else{
+
+                            error_log(__LINE__ . ' '. __METHOD__ . ' MISSING COPY DATA FOR THE vvid, [' . $this->vvid . '].');
+
+                        }
+
+                    }
+
+                }
 
             break;
 
@@ -1573,7 +1626,19 @@ class bringer_of_the_precious_things {
 
         }
 
-        $tmp_str = '<a vvid="' . $vvid . '" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">' . $link_text . '</a>' . $this->seo_out($vvid);
+        switch($vvid){
+            case 'jehovah_has_revealed_dl':
+
+                $tmp_str = '<a vvid="' . $vvid . '" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">' . $link_text . '</a>';
+
+            break;
+            default:
+
+                $tmp_str = '<a vvid="' . $vvid . '" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">' . $link_text . '</a>' . $this->seo_out($vvid);
+
+            break;
+
+        }
 
         return $tmp_str;
 
@@ -3491,9 +3556,14 @@ class bringer_of_the_precious_things {
             case 'jehovah_has_revealed_dl':
 
                 $tmp_verse_array['REFERENCE'][0]        = '';
-                $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Download Jehovah Has Revealed (Ashes). Vocals: Sister Doris K., Brother Jonathan H. African Djembe Hand Bongo: Brother Kenton W. Guitar: Brother Jonathan H.Jehovah has revealed / His heart to me. / To Him I thus would consecrated be. / As Daniel purposed in his heart...I\'ll be. / And pray; that God could move on earth through me. / Lord, You need me.';
-                $tmp_verse_array['COPY'][0]             = '<a href="#" onclick="launch_newwindow(\'https://jony5.com/downloads/audio/jehovah_has_revealed_his_heart.php\'); return false;" target="_blank">Click 
-                here</a> to download.';
+                $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Download Jehovah Has Revealed (Ashes). Vocals: Sister Doris K., Brother Jonathan H. African Djembe Hand Bongo: Brother Kenton W. Guitar: Brother Jonathan H. Jehovah has revealed / His heart to me. / To Him I thus would consecrated be. / As Daniel purposed in his heart...I\'ll be. / And pray; that God could move on earth through me. / Lord, You need me.';
+                $tmp_verse_array['COPY'][0]             = '<p>Download Jehovah Has Revealed (Ashes).</p>
+                <div class="cb_10"></div>
+                <a href="#" onclick="launch_newwindow(\'https://jony5.com/downloads/audio/jehovah_has_revealed_his_heart.php\'); return false;" target="_blank">Click 
+                here</a> to download.
+                <div class="cb_10"></div>
+                <p><strong>Vocals:</strong> Sister Doris K., Brother Jonathan H.<br><strong>African Djembe Hand 
+                Bongo:</strong> Brother Kenton W.<br><strong>Guitar:</strong> Brother Jonathan H.</p>';
 
             break;
             case 'jehovah_has_revealed_audio':
