@@ -674,13 +674,12 @@ class bringer_of_the_precious_things {
 
                 /*
                 [INPUT] --------
-                    case 'matt13_4':
+                    case 'psa97_2':
 
-                        $tmp_verse_array['REFERENCE'][0]        = '13:4';
-                        $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'And as he sowed, some fell beside the way, and the birds came and devoured them.';
-                        $tmp_verse_array['COPY'][0]             = 'And as he sowed, some <a id="sup_ftnt_1" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_1\');">1</a><em>seeds</em>
-                        fell <a id="sup_ftnt_2" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_2\');">2</a>beside
-                        the way, and the birds came and devoured them.';
+                        $tmp_verse_array['REFERENCE'][0]        = '97:2';
+                        $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Clouds and deep darkness surround Him; Righteousness and justice are the foundation of His throne.';
+                        $tmp_verse_array['COPY'][0]             = 'Clouds and deep darkness surround Him;<br>
+                        &nbsp;&nbsp;&nbsp;Righteousness and justice are the foundation of His throne.';
 
                     break;
 
@@ -757,13 +756,12 @@ class bringer_of_the_precious_things {
 
                 /*
                 [INPUT] --------
-                    case 'matt13_4':
+                    case 'psa97_2':
 
-                        $tmp_verse_array['REFERENCE'][0]        = '13:4';
-                        $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'And as he sowed, some fell beside the way, and the birds came and devoured them.';
-                        $tmp_verse_array['COPY'][0]             = 'And as he sowed, some <a id="sup_ftnt_1" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_1\');">1</a><em>seeds</em>
-                        fell <a id="sup_ftnt_2" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_2\');">2</a>beside
-                        the way, and the birds came and devoured them.';
+                        $tmp_verse_array['REFERENCE'][0]        = '97:2';
+                        $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Clouds and deep darkness surround Him; Righteousness and justice are the foundation of His throne.';
+                        $tmp_verse_array['COPY'][0]             = 'Clouds and deep darkness surround Him;<br>
+                        &nbsp;&nbsp;&nbsp;Righteousness and justice are the foundation of His throne.';
 
                     break;
 
