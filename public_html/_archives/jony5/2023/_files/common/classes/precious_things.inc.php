@@ -745,7 +745,7 @@ class bringer_of_the_precious_things {
 
                             }
 
-                            error_log(__LINE__ . ' precious [' . print_r($tmp_vnav_vvid_ARRAY, true) . '] $tmp_vvid_meta[' . $tmp_vvid_meta . ']. $this->vvid[' . $this->vvid . '].');
+                            //error_log(__LINE__ . ' precious [' . print_r($tmp_vnav_vvid_ARRAY, true) . '] $tmp_vvid_meta[' . $tmp_vvid_meta . ']. $this->vvid[' . $this->vvid . '].');
 
                             $tmp_php_generated_html .= '$tmp_search_vvid_ARRAY[] = array(\'' . $vvid . '\' => \'' . $tmp_vvid_meta . '\');
 ';
