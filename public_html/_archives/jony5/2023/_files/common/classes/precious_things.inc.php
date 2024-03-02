@@ -308,16 +308,482 @@ class bringer_of_the_precious_things {
 
     }
 
-    public function return_search_meta_jony5($ugc_str){
-        // Friday, March 1, 2024 2158 hrs.
+    private function search_optimized_content($ugc_str){
+
+        $tmp_search_meta_vvid_ARRAY = array();
+
+        /*
+        $tmp_search_meta_ARRAY[] = array('rev21_3-5' => '{IMAGE_PREVIEW_SALT}', 'rev21_21' => '{IMAGE_PREVIEW_SALT}', 'rev22_2' => '{IMAGE_PREVIEW_SALT}');
+
+        case 'matt13_4':
+
+            $tmp_verse_array['REFERENCE'][0]        = '13:4';
+            $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'And as he sowed, some fell beside the way, and the birds came and devoured them.';
+
+            $tmp_verse_array['COPY'][0]             = 'And as he sowed, some <a id="sup_ftnt_1" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_1\');">1</a><em>seeds</em>
+            fell <a id="sup_ftnt_2" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_2\');">2</a>beside
+            the way, and the birds came and devoured them.';
+
+        break;
+
+        $tmp_link_vvid_ARRAY[] = array(array('1kings2_1-3' => '1 Kings 2:1-3'));
+        $tmp_link_vvid_ARRAY[] = array(array('1kings18_37-40,45;19_1-18' => '1 Kings 18:37-40, 45; 19:1-18'));
+        $tmp_link_vvid_ARRAY[] = array(array('1sam4_4' => '1 Samuel 4:4'));
+        $tmp_link_vvid_ARRAY[] = array(array('psa97_2' => 'Psalm 97:2'));
+
+        */
+
+        return $tmp_search_meta_vvid_ARRAY;
+
+    }
+
+    private function vvid_control_struct($search_all_jony5 = false){
+
+        $tmp_search_vvid_ARRAY = array();
+
+        if($search_all_jony5 != false){
+
+            //
+            // PUSH ALL CUSTOM CONTENT IDS FOR
+            // STATIC SEARCH SUPPORT.
+            $tmp_search_vvid_ARRAY[] = array('jony5_home_page' => 'jony5_home_page');
+
+        }
 
         //
-        // BUILD SEARCH CONTENT ARRAY.
-        // BUILD AND RETURN A COMPLETE
-        // SEARCH STRUCT OF JONY5 META.
-        $tmp_search_meta_ARRAY = '[' . time() . '] from return_search_meta_jony5(' . strval($ugc_str) . ')';
+        // Thursday, February 29, 2024 @ 1632 hrs.
+        // FOR THE GENERATION OF A NEW CONTROL STRUCTURE,
+        // PLEASE SEE, THE INSTRUCTIONS LOCATED IN COMMENTS
+        // WITHIN, build_link_html_index(), AND
+        // TITLED: "HOW TO GET MORE DATA INTO SEARCH".
+        $tmp_search_vvid_ARRAY[] = array('jehovah_has_revealed_dl' => 'capoiv');
+        $tmp_search_vvid_ARRAY[] = array('jehovah_has_revealed_audio' => 'capoiv');
+        $tmp_search_vvid_ARRAY[] = array('jehovah_has_revealed_chords' => 'capoiv');
+        $tmp_search_vvid_ARRAY[] = array('jehovah_has_revealed' => 'capoiv');
+        $tmp_search_vvid_ARRAY[] = array('hymn979' => 'hymns');
+        $tmp_search_vvid_ARRAY[] = array('gen1_1' => 'genesis');
+        $tmp_search_vvid_ARRAY[] = array('gen1_26' => 'genesis');
+        $tmp_search_vvid_ARRAY[] = array('gen2_7' => 'genesis');
+        $tmp_search_vvid_ARRAY[] = array('gen3_1' => 'genesis');
+        $tmp_search_vvid_ARRAY[] = array('gen3_14[COVID]' => 'genesis');
+        $tmp_search_vvid_ARRAY[] = array('gen3_14[solo]' => 'genesis');
+        $tmp_search_vvid_ARRAY[] = array('gen3_14' => 'genesis');
+        $tmp_search_vvid_ARRAY[] = array('gen26_4-5' => 'genesis');
+        $tmp_search_vvid_ARRAY[] = array('gen48_21-22|49_1,25-28' => 'genesis');
+        $tmp_search_vvid_ARRAY[] = array('gen49_1,25-28' => 'genesis');
+        $tmp_search_vvid_ARRAY[] = array('lifestudy_exo_156' => 'lifestudyofexodus');
+        $tmp_search_vvid_ARRAY[] = array('exo9_29' => 'exodus');
+        $tmp_search_vvid_ARRAY[] = array('exo15_26' => 'exodus');
+        $tmp_search_vvid_ARRAY[] = array('exo20_6' => 'exodus');
+        $tmp_search_vvid_ARRAY[] = array('exo20_13' => 'exodus');
+        $tmp_search_vvid_ARRAY[] = array('exo20_15' => 'exodus');
+        $tmp_search_vvid_ARRAY[] = array('exo30_18' => 'exodus');
+        $tmp_search_vvid_ARRAY[] = array('exo30_17-21' => 'exodus');
+        $tmp_search_vvid_ARRAY[] = array('lev2_1' => 'leviticus');
+        $tmp_search_vvid_ARRAY[] = array('lev18_1-5,24-28' => 'leviticus');
+        $tmp_search_vvid_ARRAY[] = array('lev26_3-13' => 'leviticus');
+        $tmp_search_vvid_ARRAY[] = array('lev26_3,11b-12' => 'leviticus');
+        $tmp_search_vvid_ARRAY[] = array('num14_31' => 'numbers');
+        $tmp_search_vvid_ARRAY[] = array('num14_31[000]' => 'numbers');
+        $tmp_search_vvid_ARRAY[] = array('num14_29-30' => 'numbers');
+        $tmp_search_vvid_ARRAY[] = array('num14_35' => 'numbers');
+        $tmp_search_vvid_ARRAY[] = array('num25_1-13' => 'numbers');
+        $tmp_search_vvid_ARRAY[] = array('num32_13' => 'numbers');
+        $tmp_search_vvid_ARRAY[] = array('num33_50-54' => 'numbers');
+        $tmp_search_vvid_ARRAY[] = array('deut4_1-2,39-40' => 'deuteronomy');
+        $tmp_search_vvid_ARRAY[] = array('deut5_10,29' => 'deuteronomy');
+        $tmp_search_vvid_ARRAY[] = array('deut6_1-6,16-25' => 'deuteronomy');
+        $tmp_search_vvid_ARRAY[] = array('deut6_25' => 'deuteronomy');
+        $tmp_search_vvid_ARRAY[] = array('deut7_9-26' => 'deuteronomy');
+        $tmp_search_vvid_ARRAY[] = array('deut8_1-10' => 'deuteronomy');
+        $tmp_search_vvid_ARRAY[] = array('deut10_14-22' => 'deuteronomy');
+        $tmp_search_vvid_ARRAY[] = array('deut11_14' => 'deuteronomy');
+        $tmp_search_vvid_ARRAY[] = array('deut11_1,8-15,22-28' => 'deuteronomy');
+        $tmp_search_vvid_ARRAY[] = array('deut26_16-19' => 'deuteronomy');
+        $tmp_search_vvid_ARRAY[] = array('deut28_1-14' => 'deuteronomy');
+        $tmp_search_vvid_ARRAY[] = array('deut30_11-20' => 'deuteronomy');
+        $tmp_search_vvid_ARRAY[] = array('deut33_1-4,12,29' => 'deuteronomy');
+        $tmp_search_vvid_ARRAY[] = array('josh5_6' => 'joshua');
+        $tmp_search_vvid_ARRAY[] = array('1sam4_4' => '1samuel');
+        $tmp_search_vvid_ARRAY[] = array('1kings2_1-3' => '1kings');
+        $tmp_search_vvid_ARRAY[] = array('1kings8_54-66' => '1kings');
+        $tmp_search_vvid_ARRAY[] = array('1kings18_37-40,45;19_1-18' => '1kings');
+        $tmp_search_vvid_ARRAY[] = array('neh1_1-11' => 'nehemiah');
+        $tmp_search_vvid_ARRAY[] = array('psa24' => 'psalms');
+        $tmp_search_vvid_ARRAY[] = array('psa95_10-11' => 'psalms');
+        $tmp_search_vvid_ARRAY[] = array('psa97_2' => 'psalms');
+        $tmp_search_vvid_ARRAY[] = array('psa119_103' => 'psalms');
+        $tmp_search_vvid_ARRAY[] = array('prov20_27' => 'proverbs');
+        $tmp_search_vvid_ARRAY[] = array('isa14_13' => 'isaiah');
+        $tmp_search_vvid_ARRAY[] = array('isa14_21-24' => 'isaiah');
+        $tmp_search_vvid_ARRAY[] = array('isa16_1-5' => 'isaiah');
+        $tmp_search_vvid_ARRAY[] = array('isa53_6' => 'isaiah');
+        $tmp_search_vvid_ARRAY[] = array('jer1_11-19' => 'jeremiah');
+        $tmp_search_vvid_ARRAY[] = array('jer24_7' => 'jeremiah');
+        $tmp_search_vvid_ARRAY[] = array('jer31_31-34' => 'jeremiah');
+        $tmp_search_vvid_ARRAY[] = array('jer31_33-34' => 'jeremiah');
+        $tmp_search_vvid_ARRAY[] = array('jer31_33-37' => 'jeremiah');
+        $tmp_search_vvid_ARRAY[] = array('jer31_31-37' => 'jeremiah');
+        $tmp_search_vvid_ARRAY[] = array('ezek11_17-25' => 'ezekiel');
+        $tmp_search_vvid_ARRAY[] = array('dan9_4' => 'daniel');
+        $tmp_search_vvid_ARRAY[] = array('dan9_17-27' => 'daniel');
+        $tmp_search_vvid_ARRAY[] = array('joel2_23' => 'joel');
+        $tmp_search_vvid_ARRAY[] = array('matt1_18,20' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt2_4-6' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt3_15' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt4_1-2' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt4_3' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt4_4b' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt4_5-7' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt5_10' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt5_13' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt5' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt6' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt7' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt7_13-14' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt10_10b' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt10_16-33' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt11_28-30' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt12_1-8' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt12_5' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt13_4' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt16_25-26' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt19_12' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt24_8-14' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt24_14' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt24_15-22' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt25_4' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt25_23,10b' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt26_33-35,69-75' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('matt27_46' => 'matthew');
+        $tmp_search_vvid_ARRAY[] = array('mark7_19-23' => 'mark');
+        $tmp_search_vvid_ARRAY[] = array('mark9_50' => 'mark');
+        $tmp_search_vvid_ARRAY[] = array('mark14_27-31,66-72' => 'mark');
+        $tmp_search_vvid_ARRAY[] = array('luke1_26-33' => 'luke');
+        $tmp_search_vvid_ARRAY[] = array('luke9_1-6' => 'luke');
+        $tmp_search_vvid_ARRAY[] = array('luke9_5-6' => 'luke');
+        $tmp_search_vvid_ARRAY[] = array('luke10_19' => 'luke');
+        $tmp_search_vvid_ARRAY[] = array('luke12_35' => 'luke');
+        $tmp_search_vvid_ARRAY[] = array('luke12_34-44' => 'luke');
+        $tmp_search_vvid_ARRAY[] = array('luke13_17' => 'luke');
+        $tmp_search_vvid_ARRAY[] = array('luke14_31-32' => 'luke');
+        $tmp_search_vvid_ARRAY[] = array('luke14_34-35' => 'luke');
+        $tmp_search_vvid_ARRAY[] = array('luke18_11-12' => 'luke');
+        $tmp_search_vvid_ARRAY[] = array('luke18_13' => 'luke');
+        $tmp_search_vvid_ARRAY[] = array('luke19_12,14,15,27' => 'luke');
+        $tmp_search_vvid_ARRAY[] = array('luke22_24-30' => 'luke');
+        $tmp_search_vvid_ARRAY[] = array('luke22_33-34,54-62' => 'luke');
+        $tmp_search_vvid_ARRAY[] = array('luke22_42' => 'luke');
+        $tmp_search_vvid_ARRAY[] = array('luke22_42[solo]' => 'luke');
+        $tmp_search_vvid_ARRAY[] = array('luke23_27-30' => 'luke');
+        $tmp_search_vvid_ARRAY[] = array('luke23_38,42-43' => 'luke');
+        $tmp_search_vvid_ARRAY[] = array('luke24_31-32' => 'luke');
+        $tmp_search_vvid_ARRAY[] = array('john2_20-21' => 'john');
+        $tmp_search_vvid_ARRAY[] = array('john2_21' => 'john');
+        $tmp_search_vvid_ARRAY[] = array('john5_24-25' => 'john');
+        $tmp_search_vvid_ARRAY[] = array('john8_1-11' => 'john');
+        $tmp_search_vvid_ARRAY[] = array('john8_6' => 'john');
+        $tmp_search_vvid_ARRAY[] = array('john8_51-59' => 'john');
+        $tmp_search_vvid_ARRAY[] = array('john9_41' => 'john');
+        $tmp_search_vvid_ARRAY[] = array('john13_3-17' => 'john');
+        $tmp_search_vvid_ARRAY[] = array('john13_34' => 'john');
+        $tmp_search_vvid_ARRAY[] = array('john13_34[solo]' => 'john');
+        $tmp_search_vvid_ARRAY[] = array('john13_37-38' => 'john');
+        $tmp_search_vvid_ARRAY[] = array('john13_37-38;18_14-27' => 'john');
+        $tmp_search_vvid_ARRAY[] = array('john14_10' => 'john');
+        $tmp_search_vvid_ARRAY[] = array('john14_10-14' => 'john');
+        $tmp_search_vvid_ARRAY[] = array('john14_12-14' => 'john');
+        $tmp_search_vvid_ARRAY[] = array('john14_15,20-21' => 'john');
+        $tmp_search_vvid_ARRAY[] = array('john16_15' => 'john');
+        $tmp_search_vvid_ARRAY[] = array('acts1_5' => 'acts');
+        $tmp_search_vvid_ARRAY[] = array('acts2_22-25' => 'acts');
+        $tmp_search_vvid_ARRAY[] = array('acts8_29' => 'acts');
+        $tmp_search_vvid_ARRAY[] = array('acts10_15-16b,19-21' => 'acts');
+        $tmp_search_vvid_ARRAY[] = array('acts16_6,7' => 'acts');
+        $tmp_search_vvid_ARRAY[] = array('acts11_12' => 'acts');
+        $tmp_search_vvid_ARRAY[] = array('acts11_18' => 'acts');
+        $tmp_search_vvid_ARRAY[] = array('rom2_6-7' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom5_1-5[000]' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom5_1-5' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom5_10' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom5_14,17,21' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom6_3' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom6_8' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom6_8-11' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom6_9-11' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom6_18-19[000]' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom6_18-19' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom6_22' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom7_2-4,6' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom8_2' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom8_2,4' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom8_14' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom8_16-17,24-25' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom8_14-23' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom8_33-39' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom9_31-33' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom10_2-3' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom12_2' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom12_11' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom12_11-12' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom13_14' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom14_1' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom14_7-12' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom15_4[000]' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('rom15_4' => 'romans');
+        $tmp_search_vvid_ARRAY[] = array('1cor1_22-25' => '1corinthians');
+        $tmp_search_vvid_ARRAY[] = array('1cor3_21-23' => '1corinthians');
+        $tmp_search_vvid_ARRAY[] = array('1cor5_1,5' => '1corinthians');
+        $tmp_search_vvid_ARRAY[] = array('1cor6_12' => '1corinthians');
+        $tmp_search_vvid_ARRAY[] = array('1cor6_17' => '1corinthians');
+        $tmp_search_vvid_ARRAY[] = array('1cor9_8-11,13' => '1corinthians');
+        $tmp_search_vvid_ARRAY[] = array('1cor10_5' => '1corinthians');
+        $tmp_search_vvid_ARRAY[] = array('1cor10_23' => '1corinthians');
+        $tmp_search_vvid_ARRAY[] = array('1cor10_26,29b-31' => '1corinthians');
+        $tmp_search_vvid_ARRAY[] = array('1cor11_4' => '1corinthians');
+        $tmp_search_vvid_ARRAY[] = array('1cor15_58' => '1corinthians');
+        $tmp_search_vvid_ARRAY[] = array('1cor15_55,58' => '1corinthians');
+        $tmp_search_vvid_ARRAY[] = array('2cor1_9-10' => '2corinthians');
+        $tmp_search_vvid_ARRAY[] = array('2cor1_20-22[000]' => '2corinthians');
+        $tmp_search_vvid_ARRAY[] = array('2cor1_20-22' => '2corinthians');
+        $tmp_search_vvid_ARRAY[] = array('2cor3_6-9' => '2corinthians');
+        $tmp_search_vvid_ARRAY[] = array('2cor3_12' => '2corinthians');
+        $tmp_search_vvid_ARRAY[] = array('2cor3_12,17' => '2corinthians');
+        $tmp_search_vvid_ARRAY[] = array('2cor11_2a' => '2corinthians');
+        $tmp_search_vvid_ARRAY[] = array('2cor11_2b-3' => '2corinthians');
+        $tmp_search_vvid_ARRAY[] = array('1cor11_22' => '1corinthians');
+        $tmp_search_vvid_ARRAY[] = array('2cor3_3' => '2corinthians');
+        $tmp_search_vvid_ARRAY[] = array('2cor3_17-18' => '2corinthians');
+        $tmp_search_vvid_ARRAY[] = array('2cor3_18' => '2corinthians');
+        $tmp_search_vvid_ARRAY[] = array('gal1_14' => 'galatians');
+        $tmp_search_vvid_ARRAY[] = array('gal2_20' => 'galatians');
+        $tmp_search_vvid_ARRAY[] = array('gal2_20_x' => 'galatians');
+        $tmp_search_vvid_ARRAY[] = array('gal3_1' => 'galatians');
+        $tmp_search_vvid_ARRAY[] = array('gal5_1,7' => 'galatians');
+        $tmp_search_vvid_ARRAY[] = array('gal5_1' => 'galatians');
+        $tmp_search_vvid_ARRAY[] = array('gal5_5-6' => 'galatians');
+        $tmp_search_vvid_ARRAY[] = array('gal4_11' => 'galatians');
+        $tmp_search_vvid_ARRAY[] = array('gal5_13,16' => 'galatians');
+        $tmp_search_vvid_ARRAY[] = array('gal5_16,18,22-23,25' => 'galatians');
+        $tmp_search_vvid_ARRAY[] = array('gal6_14' => 'galatians');
+        $tmp_search_vvid_ARRAY[] = array('eph1_3' => 'ephesians');
+        $tmp_search_vvid_ARRAY[] = array('eph1_3-12' => 'ephesians');
+        $tmp_search_vvid_ARRAY[] = array('eph1_3-14[000]' => 'ephesians');
+        $tmp_search_vvid_ARRAY[] = array('eph1_3-14' => 'ephesians');
+        $tmp_search_vvid_ARRAY[] = array('eph1_9' => 'ephesians');
+        $tmp_search_vvid_ARRAY[] = array('eph1_9-14,18-23' => 'ephesians');
+        $tmp_search_vvid_ARRAY[] = array('phil1_6' => 'philippians');
+        $tmp_search_vvid_ARRAY[] = array('phil1_20' => 'philippians');
+        $tmp_search_vvid_ARRAY[] = array('phil1_27' => 'philippians');
+        $tmp_search_vvid_ARRAY[] = array('phil2_3' => 'philippians');
+        $tmp_search_vvid_ARRAY[] = array('phil2_5-8' => 'philippians');
+        $tmp_search_vvid_ARRAY[] = array('phil2_5-16[000]' => 'philippians');
+        $tmp_search_vvid_ARRAY[] = array('phil2_5-16' => 'philippians');
+        $tmp_search_vvid_ARRAY[] = array('phil2_5-9' => 'philippians');
+        $tmp_search_vvid_ARRAY[] = array('phil2_8' => 'philippians');
+        $tmp_search_vvid_ARRAY[] = array('phil2_13[001]' => 'philippians');
+        $tmp_search_vvid_ARRAY[] = array('phil2_13[000]' => 'philippians');
+        $tmp_search_vvid_ARRAY[] = array('phil2_13' => 'philippians');
+        $tmp_search_vvid_ARRAY[] = array('col1_5' => 'colossians');
+        $tmp_search_vvid_ARRAY[] = array('col1_27' => 'colossians');
+        $tmp_search_vvid_ARRAY[] = array('col1_5-6,21-23,26-27' => 'colossians');
+        $tmp_search_vvid_ARRAY[] = array('col1_16' => 'colossians');
+        $tmp_search_vvid_ARRAY[] = array('col2_9' => 'colossians');
+        $tmp_search_vvid_ARRAY[] = array('col2_8,12,20-23' => 'colossians');
+        $tmp_search_vvid_ARRAY[] = array('col3_5' => 'colossians');
+        $tmp_search_vvid_ARRAY[] = array('col3_6' => 'colossians');
+        $tmp_search_vvid_ARRAY[] = array('1thes1_2-3' => '1thessalonians');
+        $tmp_search_vvid_ARRAY[] = array('1thes5_7-11' => '1thessalonians');
+        $tmp_search_vvid_ARRAY[] = array('2thes2_8-12' => '2thessalonians');
+        $tmp_search_vvid_ARRAY[] = array('2thes2_16-17' => '2thessalonians');
+        $tmp_search_vvid_ARRAY[] = array('1tim1_1' => '1timothy');
+        $tmp_search_vvid_ARRAY[] = array('1tim4_1-5' => '1timothy');
+        $tmp_search_vvid_ARRAY[] = array('1tim6_17' => '1timothy');
+        $tmp_search_vvid_ARRAY[] = array('2tim1_6' => '2timothy');
+        $tmp_search_vvid_ARRAY[] = array('2tim1_6-8' => '2timothy');
+        $tmp_search_vvid_ARRAY[] = array('titus1_1-3' => 'titus');
+        $tmp_search_vvid_ARRAY[] = array('titus2_11-15' => 'titus');
+        $tmp_search_vvid_ARRAY[] = array('titus3_7[000]' => 'titus');
+        $tmp_search_vvid_ARRAY[] = array('titus3_7' => 'titus');
+        $tmp_search_vvid_ARRAY[] = array('heb2_14-15' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('heb3_6[000]' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('heb3_6' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('heb3_7-19[000]' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('heb3_7-19' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('heb4_8-16' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('heb4_11' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('heb6_17-20' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('heb7_17-19' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('heb8_10[000]' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('heb8_10' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('heb9_14' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('heb10_22,19' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('heb10_22' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('heb10_21-23' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('heb10_23' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('heb10_35' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('heb10_35,38-39' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('heb11_1' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('heb12_1' => 'hebrews');
+        $tmp_search_vvid_ARRAY[] = array('james3_1-2' => 'james');
+        $tmp_search_vvid_ARRAY[] = array('1pet1_3-9,13,21' => '1peter');
+        $tmp_search_vvid_ARRAY[] = array('1pet1_3-5' => '1peter');
+        $tmp_search_vvid_ARRAY[] = array('1pet1_13' => '1peter');
+        $tmp_search_vvid_ARRAY[] = array('1pet2_16' => '1peter');
+        $tmp_search_vvid_ARRAY[] = array('1pet2_20' => '1peter');
+        $tmp_search_vvid_ARRAY[] = array('1pet2_7-8' => '1peter');
+        $tmp_search_vvid_ARRAY[] = array('1pet2_24' => '1peter');
+        $tmp_search_vvid_ARRAY[] = array('1pet3_15' => '1peter');
+        $tmp_search_vvid_ARRAY[] = array('1pet3_5-7,14-22' => '1peter');
+        $tmp_search_vvid_ARRAY[] = array('1pet5_8' => '1peter');
+        $tmp_search_vvid_ARRAY[] = array('1john2_15-17' => '1john');
+        $tmp_search_vvid_ARRAY[] = array('1john3_1-10' => '1john');
+        $tmp_search_vvid_ARRAY[] = array('rev2_10-11' => 'revelation');
+        $tmp_search_vvid_ARRAY[] = array('rev2_12-17' => 'revelation');
+        $tmp_search_vvid_ARRAY[] = array('rev2_18-23' => 'revelation');
+        $tmp_search_vvid_ARRAY[] = array('rev2_14[solo]' => 'revelation');
+        $tmp_search_vvid_ARRAY[] = array('rev2_14' => 'revelation');
+        $tmp_search_vvid_ARRAY[] = array('rev2_11|2_17,26-28|3_5,12,21' => 'revelation');
+        $tmp_search_vvid_ARRAY[] = array('rev2_21-22' => 'revelation');
+        $tmp_search_vvid_ARRAY[] = array('rev3_8' => 'revelation');
+        $tmp_search_vvid_ARRAY[] = array('rev3_7-13' => 'revelation');
+        $tmp_search_vvid_ARRAY[] = array('rev3_19' => 'revelation');
+        $tmp_search_vvid_ARRAY[] = array('rev6_16-17' => 'revelation');
+        $tmp_search_vvid_ARRAY[] = array('rev12_3-4,9' => 'revelation');
+        $tmp_search_vvid_ARRAY[] = array('rev12_3-4,13,17;13:2,4' => 'revelation');
+        $tmp_search_vvid_ARRAY[] = array('rev20_6' => 'revelation');
+        $tmp_search_vvid_ARRAY[] = array('rev21_2,9-27' => 'revelation');
+        $tmp_search_vvid_ARRAY[] = array('rev21_7' => 'revelation');
+        $tmp_search_vvid_ARRAY[] = array('rev21_3-5' => 'revelation');
+        $tmp_search_vvid_ARRAY[] = array('rev21_21' => 'revelation');
+        $tmp_search_vvid_ARRAY[] = array('rev22_2' => 'revelation');
 
-        return $tmp_search_meta_ARRAY;
+        return $tmp_search_vvid_ARRAY;
+
+    }
+
+    public function generate_optimized_search_content($mode = 'VVID_LOOKUP'){
+
+        $tmp_php_generated_html = '
+';
+        $tmp_search_meta_vvid_ARRAY = $this->vvid_control_struct();
+
+        switch($mode){
+            case 'VVID_LOOKUP':
+                // JONY5 + SCRIPTURES.
+
+                /*
+                [INPUT] --------
+                    case 'matt13_4':
+
+                        $tmp_verse_array['REFERENCE'][0]        = '13:4';
+                        $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'And as he sowed, some fell beside the way, and the birds came and devoured them.';
+                        $tmp_verse_array['COPY'][0]             = 'And as he sowed, some <a id="sup_ftnt_1" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_1\');">1</a><em>seeds</em>
+                        fell <a id="sup_ftnt_2" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_2\');">2</a>beside
+                        the way, and the birds came and devoured them.';
+
+                    break;
+
+                [OUTPUT] --------
+                    $tmp_search_vvid_ARRAY[] = array('{vvid}' => '{IMAGE_PREVIEW_SALT}');
+                    - - - - -
+                    $tmp_search_vvid_ARRAY[] = array('1kings2_1-3' => '1kings');
+                    $tmp_search_vvid_ARRAY[] = array('1kings18_37-40,45;19_1-18' => '1kings');
+                    $tmp_search_vvid_ARRAY[] = array('1sam4_4' => '1samuel');
+                    $tmp_search_vvid_ARRAY[] = array('psa97_2' => 'psalms');
+
+                */
+
+                foreach($tmp_search_meta_vvid_ARRAY as $tmp_index => $tmp_vvid_meta_CHUNKARRAY0){
+
+                    foreach($tmp_vvid_meta_CHUNKARRAY0 as $vvid => $meta_content){
+
+                        $this->vvid = $vvid;
+                        $tmp_vnav_vvid_ARRAY = $this->return_book_preciousness();
+                        //error_log(__LINE__ . ' precious [' . print_r($tmp_vnav_vvid_ARRAY, true) . ']. $this->vvid[' . $this->vvid . '].');
+
+                        /*
+                        [Sat Mar 02 01:49:51.201318 2024] [:error] [pid 121890] [client 172.16.225.1:55119] 693 precious [
+                            Array\n(\n
+                                [VVID] => Array\n        (\n            [0] => rev2_21-22\n        )\n\n
+                                [COPY] => Array\n        (\n            [0] => Revelation 2:21-22\n        )\n\n
+                            )\n].
+
+                            $this->vvid[rev2_21-22].
+
+                        [Sat Mar 02 02:38:11.375792 2024] [:error] [pid 121798] [client 172.16.225.1:56403] 693 precious [
+                        Array\n(\n
+                            [COPY] => Array\n        (\n            [0] => 1 Peter\n        )\n\n)\n]. $this->vvid[1pet2_16].
+
+                        */
+
+                        if(isset($tmp_vnav_vvid_ARRAY['COPY'][0])){
+
+                            //
+                            // LOWERCASE.
+                            $tmp_book_str = strtolower($tmp_vnav_vvid_ARRAY['COPY'][0]);
+                            $tmp_vvid_meta = $this->str_sanitize($tmp_book_str, 'bible_book_name');
+
+                            switch($vvid){
+                                case 'jehovah_has_revealed_dl':
+                                case 'jehovah_has_revealed_audio':
+                                case 'jehovah_has_revealed_chords':
+
+                                    $tmp_vvid_meta = 'capoiv';
+
+                                break;
+                                case 'jony5_home_page':
+                                    // projects/crnrstn/philosophy/
+
+                                break;
+
+                            }
+
+                            $tmp_php_generated_html .= '$tmp_search_vvid_ARRAY[] = array(\'' . $vvid . '\' => \'' . $tmp_vvid_meta . '\');
+';
+
+                        }else{
+
+                            error_log(__LINE__ . ' '. __METHOD__ . ' MISSING COPY DATA FOR THE vvid, [' . $this->vvid . '].');
+
+                        }
+
+                    }
+
+                }
+
+            break;
+            case 'COMPRESSED_SEARCH_CONTENT':
+
+                /*
+                [INPUT] --------
+                    case 'matt13_4':
+
+                        $tmp_verse_array['REFERENCE'][0]        = '13:4';
+                        $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'And as he sowed, some fell beside the way, and the birds came and devoured them.';
+                        $tmp_verse_array['COPY'][0]             = 'And as he sowed, some <a id="sup_ftnt_1" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_1\');">1</a><em>seeds</em>
+                        fell <a id="sup_ftnt_2" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_2\');">2</a>beside
+                        the way, and the birds came and devoured them.';
+
+                    break;
+
+                [OUTPUT] --------
+                    $tmp_search_vvid_ARRAY[] = array('{vvid}' => '{IMAGE_PREVIEW_SALT}');
+                    - - - - -
+                    $tmp_search_vvid_ARRAY[] = array('1kings2_1-3' => '1kings');
+                    $tmp_search_vvid_ARRAY[] = array('1kings18_37-40,45;19_1-18' => '1kings');
+                    $tmp_search_vvid_ARRAY[] = array('1sam4_4' => '1samuel');
+                    $tmp_search_vvid_ARRAY[] = array('psa97_2' => 'psalms');
+
+                */
+
+                $tmp = 1;
+
+            break;
+
+        }
+
+        return $tmp_php_generated_html;
 
     }
 
@@ -328,7 +794,25 @@ class bringer_of_the_precious_things {
         // BUILD SEARCH CONTENT ARRAY.
         // BUILD AND RETURN A SEARCH
         // STRUCT OF SCRIPTURES META.
-        $tmp_search_meta_ARRAY = '[' . time() . '] from return_search_meta_scriptures(' . strval($ugc_str) . ')';
+        $tmp_search_meta_vvid_ARRAY = '[' . time() . '] from return_search_meta_scriptures(UGC LEN=' . strlen($ugc_str) . ')';
+
+        /*
+        $tmp_search_meta_ARRAY[] = array('rev21_3-5' => '{IMAGE_PREVIEW_SALT}', 'rev21_21' => '{IMAGE_PREVIEW_SALT}', 'rev22_2' => '{IMAGE_PREVIEW_SALT}');
+
+        */
+
+        return $tmp_search_meta_vvid_ARRAY;
+
+    }
+
+    public function return_search_meta_jony5($ugc_str){
+        // Friday, March 1, 2024 2158 hrs.
+
+        //
+        // BUILD SEARCH CONTENT ARRAY.
+        // BUILD AND RETURN A COMPLETE
+        // SEARCH STRUCT OF JONY5 META.
+        $tmp_search_meta_ARRAY = '[' . time() . '] from return_search_meta_jony5(UGC LEN=' . strlen($ugc_str) . ')';
 
         return $tmp_search_meta_ARRAY;
 
@@ -377,6 +861,8 @@ class bringer_of_the_precious_things {
 
             if(strlen($tmp_ugc_str) > 1){
 
+                //
+                // IS THIS A GLOBAL SITE SEARCH?
                 if(strlen($tmp_site_search_str) > 0){
 
                     switch($tmp_site_search_str){
@@ -644,6 +1130,17 @@ class bringer_of_the_precious_things {
 
             //
             // Thursday, February 29, 2024 @ 1632 hrs.
+            //
+            // HERE ARE THE SCRIPTURES (VVID) BY VERSE.
+            // ------
+            // HOW TO GET MORE DATA INTO SEARCH ::
+            //      1. COPY ALL OF THE FOLLOWING LINES LIKE, "$tmp_link_vvid_ARRAY[] = ...."
+            //         TO THE METHOD, $this->vvid_control_struct().
+            //      2. RUN:
+            //         echo $this->generate_optimized_search_content('REFRESH_VVID');
+            //      3. FINALLY, COPY THE STRING OUTPUT OF $this->generate_optimized_search_content('REFRESH_VVID')
+            //         TO $this->vvid_control_struct();
+            //
             $tmp_link_vvid_ARRAY[] = array('jehovah_has_revealed_dl'        => 'Download Jehovah Has Revealed (Ashes). Vocals: Sister Doris K., Brother Jonathan H. African Djembe Hand Bongo: Brother Kenton W. Guitar: Brother Jonathan H.Jehovah has revealed / His heart to me. / To Him I thus would consecrated be. / As Daniel purposed in his heart...I\'ll be. / And pray; that God could move on earth through me. / Lord, You need me.');
             //$tmp_link_vvid_ARRAY[] = array('jehovah_has_revealed_audio'     => 'Audio Stream for Jehovah has revealed His heart (Ashes) :: Vocals: Sister Doris K., Brother Jonathan H. African Djembe Hand Bongo: Brother Kenton W. Guitar: Brother Jonathan H.Jehovah has revealed / His heart to me. / To Him I thus would consecrated be. / As Daniel purposed in his heart...I\'ll be. / And pray; that God could move on earth through me. / Lord, You need me.');
             $tmp_link_vvid_ARRAY[] = array('jehovah_has_revealed_chords'    => 'Jehovah has revealed His heart (Ashes) Guitar Chord Chart. Vocals: Sister Doris K., Brother Jonathan H. African Djembe Hand Bongo: Brother Kenton W. Guitar: Brother Jonathan H.Jehovah has revealed / His heart to me. / To Him I thus would consecrated be. / As Daniel purposed in his heart...I\'ll be. / And pray; that God could move on earth through me. / Lord, You need me.');
@@ -1110,7 +1607,7 @@ class bringer_of_the_precious_things {
     private function return_vnav_preciousness(){
 
         //
-        // VERSE NAV ARRAY STRUCTURE IS AS FOLLOWS
+        // THE VERSE NAV ARRAY STRUCTURE IS AS FOLLOWS.
         // ['VVID'][n+1] = REFERENCE
         // ['COPY'][n+1] = COPY
 
@@ -2507,7 +3004,7 @@ class bringer_of_the_precious_things {
     private function return_book_preciousness(){
 
         //
-        // VERSE ARRAY STRUCTURE IS AS FOLLOWS
+        // THE VERSE ARRAY STRUCTURE IS AS FOLLOWS.
         // ['COPY'][n+1] = COPY
 
         $tmp_book_array = array();
@@ -2524,8 +3021,10 @@ class bringer_of_the_precious_things {
 
             break;
             case 'jehovah_has_revealed_dl':
+            case 'jehovah_has_revealed_audio':
+            case 'jehovah_has_revealed_chords':
 
-                $tmp_book_array['COPY'][0] = '';
+                $tmp_book_array['COPY'][0] = 'Jehovah Has Revealed His Heart';
 
             break;
             case 'gen1_1':
@@ -2927,6 +3426,7 @@ class bringer_of_the_precious_things {
             case 'heb10_35':
             case 'heb10_35,38-39':
             case 'heb11_1':
+            case 'heb12_1':
 
                 $tmp_book_array['COPY'][0] = 'Hebrews';
 
@@ -2994,7 +3494,7 @@ class bringer_of_the_precious_things {
     private function return_verse_preciousness(){
 
         //
-        // VERSE ARRAY STRUCTURE IS AS FOLLOWS
+        // THE VERSE ARRAY STRUCTURE IS AS FOLLOWS.
         // ['REFERENCE'][n+1] = REFERENCE
         // ['COPY'][n+1] = COPY
 
@@ -7446,7 +7946,7 @@ class bringer_of_the_precious_things {
     private function return_footnote_preciousness(){
 
         //
-        // FOOTNOTE ARRAY STRUCTURE IS AS FOLLOWS
+        // THE FOOTNOTE ARRAY STRUCTURE IS AS FOLLOWS.
         // [0][n+1] = REFERENCE
         // [1][n+1] = COPY
         $tmp_footnote_array = array();

@@ -30,7 +30,6 @@ $tmp_sprite_ver_date = filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $
     require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/head/head.inc.php');
     ?>
 </head>
-
 <body>
 <!--
 //
@@ -161,6 +160,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
                     <div class="col" style="width:600px;">
                         <?php
                         $oBringer->search_for_all_preciousness();
+                        //echo $oBringer->generate_optimized_search_content();
                         ?>
                     </div>
                 </div>
