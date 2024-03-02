@@ -884,7 +884,7 @@ class bringer_of_the_precious_things {
                 }
 
                 //
-                // RETURN SEARCH CONTENT ARRAY.
+                // RETURN THE SEARCH CONTENT ARRAY.
                 $tmp_search_meta_ARRAY = $this->return_search_meta_ARRAY($tmp_ugc_str, $search_all_jony5);
 
             }
@@ -1502,45 +1502,14 @@ class bringer_of_the_precious_things {
                     $this->vvid = $tmp_vvid;
                     $tmp_vvid_vnav_reference_ARRAY = $this->return_vnav_preciousness();
 
-                    /*
-                    [Fri Mar 01 03:51:44.804286 2024] [:error] [pid 113849] [client 172.16.225.1:62164] 851 precious
-                    $tmp_vvid_vnav_reference_ARRAY[
-                    Array\n(\n
-                        [VVID] => Array\n        (\n
-                            [0] => jehovah_has_revealed\n
-                            [1] => jehovah_has_revealed_chords\n
-                            [2] => jehovah_has_revealed_audio\n
-                            [3] => jehovah_has_revealed_dl\n        )\n\n
-                        [COPY] => Array\n        (\n
-                            [0] => Jehovah Has Revealed His Heart\n
-                            [1] => Chords\n
-                            [2] => Listen&nbsp;&nbsp;<img src="https://jony5.com/common/imgs/listen_icon.png" width="20" height="18" alt="Listen">\n            [3] => <span style="padding:0 8px 0 8px;"><img src="https://jony5.com/common/imgs/download_icon_wht.png" width="20" height="20" alt="Download"></span>\n        )\n\n)\n]., referer: http://172.16.225.139/jony5.com/
-
-
-                    [Fri Mar 01 03:56:06.284538 2024] [:error] [pid 113851] [client 172.16.225.1:63531] 866 precious
-                    $tmp_vvid_vnav_reference_ARRAY[
-                    Array\n(\n
-                        [VVID] => Array\n        (\n
-                            [0] => gen1_26\n        )\n\n
-                        [COPY] => Array\n        (\n
-                            [0] => Genesis 1:26\n        )\n\n)\n]., referer: http://172.16.225.139/jony5.com/
-
-
-                    [Fri Mar 01 03:59:57.763450 2024] [:error] [pid 111370] [client 172.16.225.1:64478] 881 precious
-                    $vvid[gen1_26]. $tmp_vvid_copy[Genesis 1:26 &ndash;&ndash; And God said, Let Us make man in Our image, according to Our likeness; and let them have dominion over the fish of the sea and over the birds of heaven and over the cattle and over all the earth and over every creeping thing that creeps upon the earth.]., referer: http://172.16.225.139/jony5.com/
-
-                    error_log(__LINE__ . ' precious $vvid[' . $this->vvid . ']. $tmp_vvid_copy[' . print_r($tmp_vvid_copy, true) . '].');
-
-                    */
-
                     foreach($tmp_vvid_vnav_reference_ARRAY['VVID'] as $index => $vnav_reference_copy){
 
                         //
                         // BECAUSE THE bringer_of_the_precious_things DATA STRUCTURE
-                        // BOTH DRIVES THE HTML UI AND ONLY HONORS SCRIPTURES BY
-                        // THEIR "UI GROUPING", WE MUST LOOP THROUGH THE VERSE
-                        // CLUSTER (THIS WILL BE ONE VERSE SOMETIMES) AND THEN
-                        // LOAD THE MATCHING VVID,...JUST.
+                        // BOTH 1) DRIVES THE HTML UI AND 2) ONLY HONORS SCRIPTURES
+                        // BY THEIR "UI GROUPING", WE MUST LOOP THROUGH THE VERSE
+                        // CLUSTER (THIS WILL BE A ONE VERSE LOOP[?] SOMETIMES) AND
+                        // THEN LOAD THE MATCHING VVID,...JUST.
                         //
                         // Friday, March 1, 2024 @ 0441 hrs.
                         if($this->vvid == $vnav_reference_copy){
