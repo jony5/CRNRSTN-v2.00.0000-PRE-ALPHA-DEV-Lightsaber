@@ -8,12 +8,23 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
 
 //
 // Therefore thus says Jehovah,
-// If you return, I will restore you;
+//   If you return, I will restore you;
 // You will stand before Me;
-// And if you bring out the precious from the worthless,
+//   And if you bring out the precious from the worthless,
 // You will be as My mouth;
-// They will turn to you,
-// But you will not turn to them. - Jeremiah 15:19
+//   They will turn to you,
+//   But you will not turn to them.
+// And I will make you to this people
+//   A fortified wall of bronze;
+// And they will fight against you,
+//   But they will not prevail against you;
+// For I am with you
+//   To save you and deliver you,
+//   Declares Jehovah.
+// And I will deliver you from the hand of the wicked
+//   And redeem you from the hand of those who terrorize.
+//
+// - Jeremiah 15:19-21
 //
 // INSTANTIATE A bringer_of_the_precious_things CLASS OBJECT.
 $oBringer = new bringer_of_the_precious_things($oCRNRSTN_ENV);
@@ -34,12 +45,23 @@ $tmp_sprite_ver_date = filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $
 <!--
 //
 // Therefore thus says Jehovah,
-// If you return, I will restore you;
+//   If you return, I will restore you;
 // You will stand before Me;
-// And if you bring out the precious from the worthless,
+//   And if you bring out the precious from the worthless,
 // You will be as My mouth;
-// They will turn to you,
-// But you will not turn to them. - Jeremiah 15:19
+//   They will turn to you,
+//   But you will not turn to them.
+// And I will make you to this people
+//   A fortified wall of bronze;
+// And they will fight against you,
+//   But they will not prevail against you;
+// For I am with you
+//   To save you and deliver you,
+//   Declares Jehovah.
+// And I will deliver you from the hand of the wicked
+//   And redeem you from the hand of those who terrorize.
+//
+// - Jeremiah 15:19-21
 //
 // INSTANTIATE A bringer_of_the_precious_things CLASS OBJECT.
 -->
