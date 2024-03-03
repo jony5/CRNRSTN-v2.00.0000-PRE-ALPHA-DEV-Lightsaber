@@ -178,6 +178,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
             <div id="scroll_WELCOME_highlight_content">
                 <div class="hidden"><a id="scroll_WELCOME" name="WELCOME">INDEX OF SCRIPTURES</a></div>
                 <div class="content_title">INDEX OF SCRIPTURES ::</div>
+                <div id="static_jony5_performance_report_wrapper">&nbsp;</div>
                 <div class="content_copy">
                     <?php
                     $oBringer->build_link_html_index(NULL);
@@ -189,6 +190,9 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                         $oBringer->build_link_html_index();
                         ?>
                     </div>
+                    <?php
+                    echo $oBringer->return_performance_report_html();
+                    ?>
                 </div>
                 <div class="cb"></div>
 

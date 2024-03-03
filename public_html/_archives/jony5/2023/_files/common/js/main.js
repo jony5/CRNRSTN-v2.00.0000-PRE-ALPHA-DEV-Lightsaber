@@ -146,7 +146,7 @@ $.when(
 
 	var is_prod = ajax_root.indexOf("jony5.com");
 
-	if(tmp_logging==true || tmp_logging=='true') {
+	if(tmp_logging == true || tmp_logging == 'true') {
 
 		activity_log_FLAG = 'WeloveJesus!';
 
@@ -160,7 +160,7 @@ $.when(
 
 	}
 
-	if(tmp_overlayfs==true || tmp_overlayfs=='true'){
+	if(tmp_overlayfs == true || tmp_overlayfs == 'true'){
 
 		profile_overload = true;
 
@@ -177,7 +177,7 @@ $.when(
 
 	}
 
-	if(showbg_demo=='1'){
+	if(showbg_demo == '1'){
 		//
 		// SHOW DEMO BG
 		ajax_root = $('#ajax_root').html();
@@ -190,7 +190,7 @@ $.when(
 
 	}
 
-	if(tmp_audio==true || tmp_audio=='true') {
+	if(tmp_audio == true || tmp_audio == 'true') {
 
 		// SOURCE :: https://stackoverflow.com/questions/38316679/autoplay-html-audio-created-with-javascript
 		// AUTHOR :: https://stackoverflow.com/users/1927618/radiantstatic
@@ -236,8 +236,18 @@ $.when(
 
 	}
 
-});
+	if($('#static_jony5_performance_report_return').length){
 
+		if($('#static_jony5_performance_report_wrapper').length){
+
+			var tmp_report = $('#static_jony5_performance_report_return').html();
+			$('#static_jony5_performance_report_wrapper').html(tmp_report);
+
+		}
+
+	}
+
+});
 
 function log_activity(str){
 
@@ -4517,16 +4527,16 @@ function sublnkMouseOut(element){
 	$(element.id).addClassName('subnav_lnk_clear');
 }
 
-function submitBtnMouseOver(element){
+function submitBtnMouseOver(element, class_to_remove = 'submit_btn_clear', class_to_add = 'submit_btn_highlighted'){
 	// $( "p" ).removeClass( "myClass noClass" ).addClass( "yourClass" );
-	$('#'+element.id).removeClass('submit_btn_clear').addClass( "submit_btn_highlighted" );
-	//$('#'+element.id).removeClass('submit_btn_highlighted').addClass( "submit_btn_highlighted" );
+	$('#'+element.id).removeClass(class_to_remove).addClass(class_to_add);
+	//$('#'+element.id).removeClass('submit_btn_highlighted').addClass('submit_btn_highlighted');
 
 	//element.addClassName('submit_btn_highlighted');
 }
 
-function submitBtnMouseOut(element){
-	$('#'+element.id).removeClass('submit_btn_highlighted').addClass( "submit_btn_clear" );
+function submitBtnMouseOut(element, class_to_remove = 'submit_btn_highlighted', class_to_add = 'submit_btn_clear'){
+	$('#'+element.id).removeClass(class_to_remove).addClass(class_to_add);
 	//element.removeClassName('submit_btn_highlighted');
 	//element.addClassName('submit_btn_clear');
 }

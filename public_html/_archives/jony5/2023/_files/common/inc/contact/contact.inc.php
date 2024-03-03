@@ -7,7 +7,7 @@
 					<div class="content_results_subtitle_divider"></div>
 					<p><i>Thanks for taking the time to reach out to me!</i></p>
 					<div class="cb_10"></div>
-					<form action="#" method="post" name="post_feedback" id="post_feedback"  enctype="multipart/form-data" >
+					<form action="#" method="post" name="post_feedback" id="post_feedback"  enctype="multipart/form-data">
                         <table cellpadding="0" cellspacing="0" border="0">
                             <tr>
                                 <td align="right" style="width:60px;"><div class="form_fb_input_label">name</div></td>

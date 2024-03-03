@@ -178,17 +178,21 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
             <div id="scroll_WELCOME_highlight_content">
                 <div class="hidden"><a id="scroll_WELCOME" name="WELCOME">SEARCH RESULTS</a></div>
                 <div class="content_title">SEARCH RESULTS ::</div>
+                <div id="static_jony5_performance_report_wrapper">&nbsp;</div>
                 <div class="content_copy">
                     <div class="col" style="width:600px;">
                         <?php
                         //$oBringer->search_for_all_preciousness();
                         //echo $oBringer->generate_optimized_search_content();
-                        echo $oBringer->generate_optimized_search_content('COMPRESSED_SEARCH_CONTENT');
+                        //echo $oBringer->generate_optimized_search_content('COMPRESSED_SEARCH_CONTENT');
+                        echo $oBringer->generate_optimized_search_content('JONY5_COMPRESSED_SEARCH_CONTENT');
                         ?>
                     </div>
                 </div>
                 <div class="cb"></div>
-
+                <?php
+                echo $oBringer->return_performance_report_html();
+                ?>
             </div>
             <div class="cb"></div>
 

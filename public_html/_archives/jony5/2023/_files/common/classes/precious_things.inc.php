@@ -36,11 +36,16 @@ class bringer_of_the_precious_things {
     public $oCRNRSTN_USR;
 
     public $vvid;
+    public $starttime;
     private static $vvid_is_grouped = false;
+    private static $bytes_processed = 0;
+    private static $mbstring_func_overload = false;
 
     public function __construct($oCRNRSTN_USR, $page = 'home'){
 
         try{
+
+            $this->starttime = $_SERVER['REQUEST_TIME_FLOAT'];
 
             if(get_class($oCRNRSTN_USR) == 'crnrstn_user'){
 
@@ -83,6 +88,12 @@ class bringer_of_the_precious_things {
 
             }
 
+            if(ini_get('mbstring.func_overload') > 0){
+
+                self::$mbstring_func_overload = true;
+
+            }
+
         }catch(Exception $e){
 
             //
@@ -98,354 +109,6 @@ class bringer_of_the_precious_things {
             }
 
         }
-
-    }
-
-    public function str_sanitize($str, $type){
-
-        $patterns = array();
-        $replacements = array();
-
-        $type = strtolower($type);
-
-        switch($type){
-            case 'bible_book_name':
-
-                $patterns[0] = ' ';
-                $replacements[0] = '';
-
-            break;
-            case 'index':
-
-                $patterns[0] = '&nbsp;';
-                $patterns[1] = ')';
-                $replacements[0] = ' ';
-                $replacements[1] = ') ';
-
-            break;
-            case 'search_jony5_vvid_content':
-
-                $patterns[0] = 'href="';
-                $patterns[1] = 'src="';
-                $patterns[2] = 'type="';
-                $patterns[3] = 'controls="';
-                $patterns[4] = 'style="';
-                $patterns[5] = 'target="_blank"';
-                $patterns[6] = 'id="';
-                $patterns[7] = 'class="';
-                $patterns[8] = '<audio';
-                $patterns[9] = '</audio';
-                $patterns[10] = '[if lt IE';
-                $patterns[11] = '<![endif]-->';
-                $patterns[12] = '<script>';
-                $patterns[13] = '</script>';
-                $patterns[14] = 'document.createElement';
-                $patterns[15] = 'return false;"';
-                $patterns[16] = 'onclick="launch_newwindow(';
-                $patterns[17] = '<strong>';
-                $patterns[18] = '</strong>';
-                $patterns[19] = '<img src="https://jony5.com/common/imgs/';
-                $patterns[20] = '<span class="chords"';
-                $patterns[21] = '<span class="chords" style';
-                $patterns[22] = '<div class="stanza_copy">';
-                $patterns[23] = '<div class="script_ref_num hymn_stanza"';
-                $patterns[24] = '<br>';
-                $patterns[25] = '<div class="cb_10"></div>';
-                $patterns[26] = '</div>';
-                $patterns[27] = '</span>';
-                $patterns[28] = "
-";
-                $patterns[29] = '"';
-                $patterns[30] = '=';
-                $patterns[31] = '{';
-                $patterns[32] = '}';
-                $patterns[33] = '(';
-                $patterns[34] = ')';
-                $patterns[35] = '[';
-                $patterns[36] = ']';
-                $patterns[37] = ' ';
-                $patterns[38] = '	';
-                $patterns[39] = ',';
-                $patterns[40] = '.';
-                $patterns[41] = '\n';
-                $patterns[42] = '\r';
-                $patterns[43] = '\'';
-                $patterns[44] = '/';
-                $patterns[45] = '#';
-                $patterns[46] = ':';
-                $patterns[47] = '>';
-                $patterns[48] = '<';
-                $patterns[49] = '-';
-                $patterns[50] = '+';
-                $patterns[51] = '^';
-                $patterns[52] = '%';
-                $patterns[53] = '$';
-                $patterns[54] = '@';
-                $patterns[55] = '!';
-                $patterns[56] = '?';
-                $patterns[57] = '~';
-                $patterns[58] = '`';
-                $patterns[59] = ';';
-                $patterns[60] = '|';
-                $patterns[61] = '\\';
-
-                $replacements[0] = '';
-                $replacements[1] = '';
-                $replacements[2] = '';
-                $replacements[3] = '';
-                $replacements[4] = '';
-                $replacements[5] = '';
-                $replacements[6] = '';
-                $replacements[7] = '';
-                $replacements[8] = '';
-                $replacements[9] = '';
-                $replacements[10] = '';
-                $replacements[11] = '';
-                $replacements[12] = '';
-                $replacements[13] = '';
-                $replacements[14] = '';
-                $replacements[15] = '';
-                $replacements[16] = '';
-                $replacements[17] = '';
-                $replacements[18] = '';
-                $replacements[19] = '';
-                $replacements[20] = '';
-                $replacements[21] = '';
-                $replacements[22] = '';
-                $replacements[23] = '';
-                $replacements[24] = '';
-                $replacements[25] = '';
-                $replacements[26] = '';
-                $replacements[27] = '';
-                $replacements[28] = '';
-                $replacements[29] = '';
-                $replacements[30] = '';
-                $replacements[31] = '';
-                $replacements[32] = '';
-                $replacements[33] = '';
-                $replacements[34] = '';
-                $replacements[35] = '';
-                $replacements[36] = '';
-                $replacements[37] = '';
-                $replacements[38] = '';
-                $replacements[39] = '';
-                $replacements[40] = '';
-                $replacements[41] = '';
-                $replacements[42] = '';
-                $replacements[43] = '';
-                $replacements[44] = '';
-                $replacements[45] = '';
-                $replacements[46] = '';
-                $replacements[47] = '';
-                $replacements[48] = '';
-                $replacements[49] = '';
-                $replacements[50] = '';
-                $replacements[51] = '';
-                $replacements[52] = '';
-                $replacements[53] = '';
-                $replacements[54] = '';
-                $replacements[55] = '';
-                $replacements[56] = '';
-                $replacements[57] = '';
-                $replacements[58] = '';
-                $replacements[59] = '';
-                $replacements[60] = '';
-                $replacements[61] = '';
-
-            break;
-            case 'search':
-
-                $patterns[0] = "
-";
-                $patterns[1] = '"';
-                $patterns[2] = '=';
-                $patterns[3] = '{';
-                $patterns[4] = '}';
-                $patterns[5] = '(';
-                $patterns[6] = ')';
-                $patterns[7] = ' ';
-                $patterns[8] = '	';
-                $patterns[9] = ',';
-                $patterns[10] = '\n';
-                $patterns[11] = '\r';
-                $patterns[12] = '\'';
-                $patterns[13] = '/';
-                $patterns[14] = '#';
-                $patterns[15] = ';';
-                $patterns[16] = ':';
-                //$patterns[17] = '>';
-
-                $replacements[0] = '';
-                $replacements[1] = '';
-                $replacements[2] = '';
-                $replacements[3] = '';
-                $replacements[4] = '';
-                $replacements[5] = '';
-                $replacements[6] = '';
-                $replacements[7] = '';
-                $replacements[8] = '';
-                $replacements[9] = '';
-                $replacements[10] = '';
-                $replacements[11] = '';
-                $replacements[12] = '';
-                $replacements[13] = '';
-                $replacements[14] = '';
-                $replacements[15] = '';
-                $replacements[16] = '';
-                //$replacements[17] = '';
-
-            break;
-            case 'email_private':
-
-                $tmp_new_post_at_ARRAY = array();
-                $clean_str = '';
-                $last_dot_flag = false;
-                $tmp_at_split_ARRAY = explode('@', $str);
-                $tmp_post_at_len = strlen($tmp_at_split_ARRAY[1]);
-                $tmp_str_ARRAY = $this->str_split_unicode($str);
-                $tmp_post_at_str_ARRAY = $this->str_split_unicode($tmp_at_split_ARRAY[1]);
-                $tmp_post_at_str_rev_ARRAY = array_reverse($tmp_post_at_str_ARRAY);
-
-                //
-                // PREP POST @ SITUATION
-                for($i = 0; $i < $tmp_post_at_len; $i++){
-
-                    if(!$last_dot_flag){
-
-                        if($tmp_post_at_str_rev_ARRAY[$i] == '.'){
-
-                            $last_dot_flag = true;
-
-                        }
-
-                        $tmp_new_post_at_ARRAY[] = $tmp_post_at_str_rev_ARRAY[$i];
-
-                        if($last_dot_flag){
-
-                            $i = $tmp_post_at_len + 420;
-                            $tmp_new_post_at_ARRAY = array_reverse($tmp_new_post_at_ARRAY);
-
-                        }
-
-                    }
-
-                }
-
-                $tmp_str_len = sizeof($tmp_str_ARRAY);
-                for($i = 0; $i < $tmp_str_len; $i++){
-
-                    if($i == 0){
-
-                        $clean_str .= $tmp_str_ARRAY[$i] . '*****';
-
-                    }else{
-
-                        if($tmp_str_ARRAY[$i] == '@'){
-
-                            $at_flag = true;
-                            $tmp_plus_one = $i + 1;
-                            $clean_str .= $tmp_str_ARRAY[$i] . $tmp_str_ARRAY[$tmp_plus_one] . '*****';
-                            $clean_str .= implode($tmp_new_post_at_ARRAY);
-                            $i = $tmp_str_len + 420;
-
-                        }
-                    }
-                }
-
-                return $clean_str;
-
-            break;
-            case 'http_protocol_simple':
-
-                $patterns[0] = '_';
-                $patterns[1] = '$';
-                $patterns[2] = ' ';
-                $replacements[0] = '';
-                $replacements[1] = '';
-                $replacements[2] = '';
-
-            break;
-            case 'max_storage_utilization':
-
-                $patterns[0] = '%';
-                $patterns[1] = 'percent';
-                $patterns[2] = ' ';
-                $patterns[3] = '!';
-
-                $replacements[0] = '';
-                $replacements[1] = '';
-                $replacements[2] = '';
-                $replacements[3] = '';
-
-            break;
-            case 'custom_mobi_detect_alg':
-
-                $patterns[0] = '(';
-                $patterns[1] = ')';
-                $replacements[0] = '';
-                $replacements[1] = '';
-
-            break;
-            case 'select_statement':
-
-                $patterns[0] = "`";
-                $replacements[0] = '';
-
-            break;
-            case 'select_field_name':
-
-                $patterns[0] = "
-";
-                $patterns[1] = '"';
-                $patterns[2] = '=';
-                $patterns[3] = '{';
-                $patterns[4] = '}';
-                $patterns[5] = '(';
-                $patterns[6] = ')';
-                $patterns[7] = ' ';
-                $patterns[8] = '    ';
-                $patterns[9] = ',';
-                $patterns[10] = '\n';
-                $patterns[11] = '\r';
-                $patterns[12] = '\'';
-                $patterns[13] = '/';
-                $patterns[14] = '#';
-                $patterns[15] = ';';
-                $patterns[16] = ':';
-                $patterns[17] = '>';
-
-                $replacements = array();
-                $replacements[0] = '';
-                $replacements[1] = '';
-                $replacements[2] = '';
-                $replacements[3] = '';
-                $replacements[4] = '';
-                $replacements[5] = '';
-                $replacements[6] = '';
-                $replacements[7] = '';
-                $replacements[8] = '';
-                $replacements[9] = '';
-                $replacements[10] = '';
-                $replacements[11] = '';
-                $replacements[12] = '';
-                $replacements[13] = '';
-                $replacements[14] = '';
-                $replacements[15] = '';
-                $replacements[16] = '';
-                $replacements[17] = '';
-
-            break;
-            default:
-
-                return $str;
-
-            break;
-
-        }
-
-        $str = str_replace($patterns, $replacements, $str);
-
-        return $str;
 
     }
 
@@ -473,6 +136,80 @@ class bringer_of_the_precious_things {
         */
 
         return $tmp_search_meta_vvid_ARRAY;
+
+    }
+
+    public function return_performance_report_html(){
+
+        $tmp_report_html = '';
+        $tmp_report_html_open = '<div id="static_jony5_performance_report_return" class="hidden">';
+        $tmp_report_html_close = '</div>';
+
+        $tmp_report_html .= $this->formatBytes(self::$bytes_processed, 3) . ' of data was returned in '  . $this->wall_time() . ' seconds.';
+
+        return $tmp_report_html_open . $tmp_report_html . $tmp_report_html_close;
+
+    }
+
+    private function count_processed_bytes($data, $nerf_reporting_these_bytes = false){
+
+        $tmp_int = 0;
+        $tmp_type = gettype($data);
+
+        switch($tmp_type){
+            case 'float':
+            case 'double':
+                //NO CHANGE IS POSSIBLE WITHOUT DATA LOSS.
+            case 'int':
+            case 'integer':
+
+                $tmp_int += self::$mbstring_func_overload ? mb_strlen((string) $data, '8bit') : strlen((string) $data);
+
+            break;
+            case 'bool':
+            case 'boolean':
+
+                $tmp_int += 8;
+
+            break;
+            case 'str':
+            case 'string':
+
+                //
+                // SOURCE :: https://stackoverflow.com/questions/7568949/measure-string-size-in-bytes-in-php
+                // AUTHOR :: Ulver :: https://stackoverflow.com/users/1773335/ulver
+                // COMMENT :: https://stackoverflow.com/a/25299281
+                //
+                // Further to PhoneixS answer to get the correct length of string in bytes - Since mb_strlen()
+                // is slower than strlen(), for the best performance one can check "mbstring.func_overload" ini
+                // setting so that mb_strlen() is used only when it is really required:
+                //
+                // Thankfully, this check is no longer needed as of PHP 8.0.0. The function overloading
+                // "feature" has been removed as of PHP 8.0.0, and deprecated in 7.2.0.
+                // - Buttle Butkus, 2022, https://stackoverflow.com/a/7568984
+                //
+                // CRNRSTN :: PHP SUPPORT.
+                // PHP 5 >= 5.5, PHP 6, PHP 7, PHP 8.
+                $tmp_int += self::$mbstring_func_overload ? mb_strlen((string) $data, '8bit') : strlen((string) $data);
+
+            break;
+            default:
+
+                $tmp_int += self::$mbstring_func_overload ? mb_strlen((string) serialize($data), '8bit') : strlen((string) serialize($data));
+
+            break;
+
+        }
+
+    if(!($nerf_reporting_these_bytes !== false)){
+
+            self::$bytes_processed += $tmp_int;
+
+            return self::$bytes_processed;
+
+        }
+
+        return $tmp_int;
 
     }
 
@@ -979,75 +716,177 @@ class bringer_of_the_precious_things {
 
             break;
             case 'JONY5_COMPRESSED_SEARCH_CONTENT':
+            default:
 
-                /*
-                [INPUT] --------
+                $tmp_html_output = '';
 
-                [OUTPUT] --------
-                    $tmp_search_meta_vvid_ARRAY[] = array(array('ASSET_RESOURCE_HTTP' => ''), array('psa97_2' => 'cloudsanddeepdarknesssurroundhimrighteo'));
+                if(self::$oEnv->oHTTP_MGR->issetHTTP($_POST)){
 
-                */
-                foreach($tmp_search_meta_vvid_ARRAY as $tmp_index => $tmp_vvid_meta_CHUNKARRAY0){
+                    //
+                    // STORE THE $_GET[] DATA THAT HAS BEEN SENT.
+                    $tmp_social_media_preview_img_url = self::$oEnv->oHTTP_MGR->extractData($_POST, 'social_media_preview_img_url');
+                    $tmp_page_content_endpoint_url = self::$oEnv->oHTTP_MGR->extractData($_POST, 'page_content_endpoint_url');
+                    $tmp_search_content = self::$oEnv->oHTTP_MGR->extractData($_POST, 'search_content');
 
-                    foreach($tmp_vvid_meta_CHUNKARRAY0 as $vvid => $meta_content){
+                    $tmp_search_bytes_original = $this->count_processed_bytes($tmp_search_content,true);
+                    $tmp_original_bytes = $tmp_search_bytes_original + $this->count_processed_bytes($tmp_social_media_preview_img_url . $tmp_page_content_endpoint_url, true);
 
-                        $this->vvid = $vvid;
-                        $tmp_verse_meta_ARRAY = $this->return_verse_preciousness();
+                    $this->count_processed_bytes($tmp_social_media_preview_img_url);
+                    $this->count_processed_bytes($tmp_page_content_endpoint_url);
 
-                        //error_log(__LINE__ . ' precious [' . print_r($tmp_verse_meta_ARRAY, true) . '] $tmp_vvid_meta[' . $meta_content . ']. $this->vvid[' . $this->vvid . '].');
-                        /*
-                        [Sat Mar 02 07:09:09.364794 2024] [:error] [pid 6891] [client 172.16.225.1:63241] 799 precious [
-                        Array\n(\n
-                            [REFERENCE] => Array\n        (\n            [0] => \n        )\n\n
-                            [SOCIAL_PREVIEW] =>
-                                Array\n        (\n
-                                    [0] => Download Jehovah Has Revealed (Ashes). Vocals: Sister Doris K., Brother Jonathan H. African Djembe Hand Bongo: Brother Kenton W. Guitar: Brother Jonathan H.Jehovah has revealed / His heart to me. / To Him I thus would consecrated be. / As Daniel purposed in his heart...I'll be. / And pray; that God could move on earth through me. / Lord, You need me.\n        )\n\n
-                            [COPY] =>
-                                Array\n        (\n
-                                    [0] => <a href="#" onclick="launch_newwindow('https://jony5.com/downloads/audio/jehovah_has_revealed_his_heart.php'); return false;" target="_blank">Click \n                here</a> to download.\n        )\n\n)\n] $tmp_vvid_meta[capoiv]. $this->vvid[jehovah_has_revealed_dl].
+                    $tmp_search_content = $this->str_sanitize($tmp_search_content, 'search_jony5_vvid_content');
 
-                        */
+                    $this->count_processed_bytes($tmp_search_content);
+                    $tmp_serial = $this->generate_new_key(50, '01');
 
-                        if(isset($tmp_verse_meta_ARRAY['COPY'][0])){
+                    $tmp_html_output = '<div class="cb_10"></div>
+    <a href="#" onclick="copy_output_' . $tmp_serial . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>&nbsp;&nbsp;&nbsp;<span id="jony5_search_meta_clipboard_state_' . $tmp_serial . '" class="jony5_search_meta_clipboard_state"></span>
+    <script>
+        function copy_output_' . $tmp_serial . '(){
 
-                            //
-                            // LOWERCASE.
-                            $tmp_copy_str = strtolower($tmp_verse_meta_ARRAY['COPY'][0]);
-                            $tmp_vvid_meta = $this->str_sanitize($tmp_copy_str, 'search_jony5_vvid_content');
+                        //
+                        // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                        // COMMENT :: https://stackoverflow.com/a/1173319
+                        // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                        if(document.selection){ // IE
 
-                            switch($vvid){
-                                case 'jehovah_has_revealed_dl':
-                                case 'jehovah_has_revealed_audio':
-                                case 'jehovah_has_revealed_chords':
+                            var range = document.body.createTextRange();
+                            range.moveToElementText(document.getElementById("jony5_search_meta_www_data_' . $tmp_serial . '"));
+                            range.select();
 
-                                    $tmp_vvid_meta = 'capoiv';
+                        }else if(window.getSelection){
 
-                                break;
-                                case 'jony5_home_page':
-                                    // projects/crnrstn/philosophy/
-
-                                break;
-
-                            }
-
-                            //error_log(__LINE__ . ' precious [' . print_r($tmp_verse_meta_ARRAY, true) . '] $tmp_vvid_meta[' . $tmp_vvid_meta . ']. $this->vvid[' . $this->vvid . '].');
-
-                            $tmp_php_generated_html .= '$tmp_search_meta_vvid_ARRAY[] = array(\'' . $vvid . '\' => \'' . $tmp_vvid_meta . '\');
-';
-
-                        }else{
-
-                            error_log(__LINE__ . ' '. __METHOD__ . ' MISSING COPY DATA FOR THE vvid, [' . $this->vvid . '].');
+                            var range = document.createRange();
+                            range.selectNode(document.getElementById("jony5_search_meta_www_data_' . $tmp_serial . '"));
+                            window.getSelection().removeAllRanges();
+                            window.getSelection().addRange(range);
 
                         }
 
-                    }
+                        //
+                        // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                        /* Copy the text inside the text field */
+                        document.execCommand(\'copy\');
+
+            /* Alert the copied text */
+            //alert("Copied the text: " + document.getElementById("crnrstn_print_r_source_' . $tmp_serial . '").innerHTML);
+            document.getElementById("jony5_search_meta_www_data_' . $tmp_serial . '").style.backgroundColor = "#60bbff;";
+            document.getElementById("jony5_search_meta_clipboard_state_' . $tmp_serial . '").innerHTML = "' . $this->formatBytes(self::$bytes_processed, 3) . ' Copied!";
+
+        }
+    </script>
+    <div class="cb_5"></div>
+    <textarea id="jony5_search_meta_www_data_' . $tmp_serial . '" class="jony5_search_meta_www_data_textarea" onclick="copy_output_' . $tmp_serial . '(); return false;" cols="80" rows="8">$tmp_search_meta_www_ARRAY[] = array(
+                                                                array(\'SEARCH_CONTENT\'        => \'' . $tmp_search_content . '\'),
+                                                                array(\'IMAGE_PREVIEW_HTTP\'    => \'' . $tmp_social_media_preview_img_url . '\'),
+                                                                array(\'CONTENT_URL\'           => \'' . $tmp_page_content_endpoint_url . '\')
+                                                            );</textarea>
+
+<div class="jony5_meta_report_header_wrap"><p><strong>Input Meta Report:</strong></p></div>
+<div class="jony5_meta_report_body_wrap">
+    <p><strong>Content Length (original):</strong><br>
+    ' . $this->formatBytes($tmp_original_bytes, 3) . '</p>
+    <p><strong>Content Length (search compressed):</strong><br>
+    ' . $this->formatBytes(self::$bytes_processed, 3) . '</p>
+    <p><strong>Search Content Endpoint URL:</strong><br>
+    <a href="' . $tmp_page_content_endpoint_url . '" target="_blank">' . $tmp_page_content_endpoint_url . '</a>
+    </p>
+    <p><strong>Social Media Preview Image:</strong><br>
+    <a href="' . $tmp_page_content_endpoint_url . '" target="_blank"><img src="' . $tmp_social_media_preview_img_url . '" height = "300"></a></p>
+
+</div>
+
+';
+
+                    return $tmp_html_output;
+
+                }else{
+
+                    /*
+                    [INPUT] --------
+                        - Search content copy-paste words
+                        - Image URL
+                        - Anchor tag link to the www content.
+
+                    [OUTPUT] --------
+                        $tmp_search_meta_www_ARRAY[] = array(
+                                                            array('SEARCH_CONTENT' => 'cloudsanddeepdarknesssurroundhimrighteo'));
+                                                            array('IMAGE_PREVIEW_HTTP' => ''),
+                                                            array('CONTENT_URL' => 'http://jony5.com/')
+
+                                                            );
+
+                    */
+                    $tmp_php_generated_html = '<div class="cb_10"></div>
+<form action="#" method="post" name="post_search_content" id="post_search_content" enctype="multipart/form-data">
+
+    <div class="form_input_shell_search">
+        <div id="social_media_preview_img_url_form_element_label" class="form_element_label_search">Social Media Preview Image</div>
+        <div class="form_element_input_search_wrapper">
+            <div class="form_element_input_search">
+                <input frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="none" name="social_media_preview_img_url" type="text" id="social_media_preview_img_url" size="20" value="" placeholder="https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png" />
+            </div>
+            <div class="cb_10"></div>
+            <div class="form_element_instruct_search"><p>Enter the HTTP image URL for social media preview image into the input box that is above.</p><p>The image should be at least 640px x 320px, and as stated <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/customizing-your-repositorys-social-media-preview" target="_blank">by Github</a>, shoot for 1280 by 640 pixels for best display.</p></div>
+            <div class="cb"></div>
+            <div class="input_validation_copy_shell"><div id="social_media_preview_img_url_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
+        </div>
+        <div class="cb"></div>
+    </div>
+
+    <div class="form_input_shell_search">
+        <div id="page_content_endpoint_url_form_element_label" class="form_element_label_search">Page Content URL</div>
+        <div class="form_element_input_search_wrapper">
+            <div class="form_element_input_search">
+                <input frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="required" name="page_content_endpoint_url" type="text" id="page_content_endpoint_url" size="20" value="" placeholder="https://jony5.com/about/bio/professional/" />
+            </div>
+            <div class="cb_10"></div>
+            <div class="form_element_instruct_search"><p>Enter a HTTP URL for this content into the input box that is above.</p></div>
+            <div class="cb"></div>
+            <div class="input_validation_copy_shell"><div id="page_content_endpoint_url_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
+        </div>
+        <div class="cb"></div>
+    </div>
+
+    <div class="form_input_shell_search">
+        <div id="search_content_form_element_label" class="form_element_label_search">Page Content to Make Searchable</div>
+        <div class="form_element_input_search_wrapper">
+            <div class="form_element_input_search">
+                <textarea frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="required" name="search_content" id="search_content" cols="80" rows="8"></textarea>
+            </div>
+            <div class="cb_10"></div>
+            <div class="form_element_instruct_search"><p>Paste the page content that is to be searchable into the textbox above.</p></div>
+            <div class="cb"></div>
+            <div class="input_validation_copy_shell"><div id="search_content_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
+       </div>
+       <div class="cb"></div>
+    </div>
+
+    <div class="cb_10"></div>
+    <div class="form_input_shell_search">
+        <div class="form_element_submit_search_wrapper">
+            <div id="form_submit_btn_search" class="form_submit_btn_search" onmouseover="submitBtnMouseOver(this, \'submit_btn_search_clear\',\'submit_btn_search_highlighted\'); return false;" onmouseout="submitBtnMouseOut(this,\'submit_btn_search_highlighted\', \'submit_btn_search_clear\'); return false;" onmouseup="document.getElementById(\'post_search_content\').submit();">GENERATE SEARCH DATA STRUCTURE</div>
+        </div>
+       <div class="cb"></div>
+    </div>
+
+    <input type="hidden" name="postid" id="postid" value="post_search_content" />
+    <input type="hidden" name="OPTIN" id="OPTIN" value="0">
+    <input type="hidden" name="uri" id="uri" value="<?php echo $_SERVER[\'REQUEST_URI\']; ?>">
+    <input type="hidden" name="post_search_content_form_serial" id="post_search_content_form_serial" value="' . time() . '">
+</form>
+';
+                    //error_log(__LINE__ . ' precious [' . print_r($tmp_verse_meta_ARRAY, true) . '] $tmp_vvid_meta[' . $tmp_vvid_meta . ']. $this->vvid[' . $this->vvid . '].');
+//                $tmp_php_generated_html .= '$tmp_search_meta_vvid_ARRAY[] = array(\'' . $vvid . '\' => \'' . $tmp_vvid_meta . '\');
+//';
 
                 }
 
             break;
 
         }
+
+        $this->count_processed_bytes($tmp_php_generated_html);
 
         return $tmp_php_generated_html;
 
@@ -1524,14 +1363,16 @@ class bringer_of_the_precious_things {
                     <div class="cb"></div>
 ';
 
+            //
+            // AGGREGATE REPORTING ON BYTES RETURNED.
+            $this->count_processed_bytes($tmp_group_by_link_html);
+
             echo $tmp_group_by_link_html;
 
             return NULL;
 
         }
 
-        $tmp_link_html_output = '';
-        $tmp_link_html_output_ARRAY = array();
         $tmp_link_vvid_ARRAY = array();
 
         if(self::$vvid_is_grouped !== false){
@@ -2039,6 +1880,10 @@ class bringer_of_the_precious_things {
                 // REMOVE TRAILING COMMA.
                 $tmp_grp_html_str = $this->strrtrim($tmp_grp_html_str,', ');
 
+                //
+                // AGGREGATE REPORTING ON BYTES RETURNED.
+                $this->count_processed_bytes($tmp_grp_html_str_open . $tmp_grp_html_str . $tmp_grp_html_str_close);
+
                 echo $tmp_grp_html_str_open . $tmp_grp_html_str . $tmp_grp_html_str_close;
 
             }
@@ -2099,6 +1944,10 @@ class bringer_of_the_precious_things {
                     }
 
                 }
+
+                //
+                // AGGREGATE REPORTING ON BYTES RETURNED.
+                $this->count_processed_bytes($tmp_vv_html_str_open . $tmp_vv_html_str . $tmp_vv_html_str_close);
 
                 echo $tmp_vv_html_str_open . $tmp_vv_html_str . $tmp_vv_html_str_close;
 
@@ -9717,6 +9566,356 @@ class bringer_of_the_precious_things {
 
     }
 
+    public function str_sanitize($str, $type){
+
+        $patterns = array();
+        $replacements = array();
+
+        $type = strtolower($type);
+
+        switch($type){
+            case 'bible_book_name':
+
+                $patterns[0] = ' ';
+                $replacements[0] = '';
+
+            break;
+            case 'index':
+
+                $patterns[0] = '&nbsp;';
+                $patterns[1] = ')';
+                $replacements[0] = ' ';
+                $replacements[1] = ') ';
+
+            break;
+            case 'search_jony5_vvid_content':
+
+                $patterns[0] = 'href="';
+                $patterns[1] = 'src="';
+                $patterns[2] = 'type="';
+                $patterns[3] = 'controls="';
+                $patterns[4] = 'style="';
+                $patterns[5] = 'target="_blank"';
+                $patterns[6] = 'id="';
+                $patterns[7] = 'class="';
+                $patterns[8] = '<audio';
+                $patterns[9] = '</audio';
+                $patterns[10] = '[if lt IE';
+                $patterns[11] = '<![endif]-->';
+                $patterns[12] = '<script>';
+                $patterns[13] = '</script>';
+                $patterns[14] = 'document.createElement';
+                $patterns[15] = 'return false;"';
+                $patterns[16] = 'onclick="launch_newwindow(';
+                $patterns[17] = '<strong>';
+                $patterns[18] = '</strong>';
+                $patterns[19] = '<img src="https://jony5.com/common/imgs/';
+                $patterns[20] = '<span class="chords"';
+                $patterns[21] = '<span class="chords" style';
+                $patterns[22] = '<div class="stanza_copy">';
+                $patterns[23] = '<div class="script_ref_num hymn_stanza"';
+                $patterns[24] = '<br>';
+                $patterns[25] = '<div class="cb_10"></div>';
+                $patterns[26] = '</div>';
+                $patterns[27] = '</span>';
+                $patterns[28] = "
+";
+                $patterns[29] = '"';
+                $patterns[30] = '=';
+                $patterns[31] = '{';
+                $patterns[32] = '}';
+                $patterns[33] = '(';
+                $patterns[34] = ')';
+                $patterns[35] = '[';
+                $patterns[36] = ']';
+                $patterns[37] = ' ';
+                $patterns[38] = '	';
+                $patterns[39] = ',';
+                $patterns[40] = '.';
+                $patterns[41] = '\n';
+                $patterns[42] = '\r';
+                $patterns[43] = '\'';
+                $patterns[44] = '/';
+                $patterns[45] = '#';
+                $patterns[46] = ':';
+                $patterns[47] = '>';
+                $patterns[48] = '<';
+                $patterns[49] = '-';
+                $patterns[50] = '+';
+                $patterns[51] = '^';
+                $patterns[52] = '%';
+                $patterns[53] = '$';
+                $patterns[54] = '@';
+                $patterns[55] = '!';
+                $patterns[56] = '?';
+                $patterns[57] = '~';
+                $patterns[58] = '`';
+                $patterns[59] = ';';
+                $patterns[60] = '|';
+                $patterns[61] = '\\';
+
+                $replacements[0] = '';
+                $replacements[1] = '';
+                $replacements[2] = '';
+                $replacements[3] = '';
+                $replacements[4] = '';
+                $replacements[5] = '';
+                $replacements[6] = '';
+                $replacements[7] = '';
+                $replacements[8] = '';
+                $replacements[9] = '';
+                $replacements[10] = '';
+                $replacements[11] = '';
+                $replacements[12] = '';
+                $replacements[13] = '';
+                $replacements[14] = '';
+                $replacements[15] = '';
+                $replacements[16] = '';
+                $replacements[17] = '';
+                $replacements[18] = '';
+                $replacements[19] = '';
+                $replacements[20] = '';
+                $replacements[21] = '';
+                $replacements[22] = '';
+                $replacements[23] = '';
+                $replacements[24] = '';
+                $replacements[25] = '';
+                $replacements[26] = '';
+                $replacements[27] = '';
+                $replacements[28] = '';
+                $replacements[29] = '';
+                $replacements[30] = '';
+                $replacements[31] = '';
+                $replacements[32] = '';
+                $replacements[33] = '';
+                $replacements[34] = '';
+                $replacements[35] = '';
+                $replacements[36] = '';
+                $replacements[37] = '';
+                $replacements[38] = '';
+                $replacements[39] = '';
+                $replacements[40] = '';
+                $replacements[41] = '';
+                $replacements[42] = '';
+                $replacements[43] = '';
+                $replacements[44] = '';
+                $replacements[45] = '';
+                $replacements[46] = '';
+                $replacements[47] = '';
+                $replacements[48] = '';
+                $replacements[49] = '';
+                $replacements[50] = '';
+                $replacements[51] = '';
+                $replacements[52] = '';
+                $replacements[53] = '';
+                $replacements[54] = '';
+                $replacements[55] = '';
+                $replacements[56] = '';
+                $replacements[57] = '';
+                $replacements[58] = '';
+                $replacements[59] = '';
+                $replacements[60] = '';
+                $replacements[61] = '';
+
+            break;
+            case 'search':
+
+                $patterns[0] = "
+";
+                $patterns[1] = '"';
+                $patterns[2] = '=';
+                $patterns[3] = '{';
+                $patterns[4] = '}';
+                $patterns[5] = '(';
+                $patterns[6] = ')';
+                $patterns[7] = ' ';
+                $patterns[8] = '	';
+                $patterns[9] = ',';
+                $patterns[10] = '\n';
+                $patterns[11] = '\r';
+                $patterns[12] = '\'';
+                $patterns[13] = '/';
+                $patterns[14] = '#';
+                $patterns[15] = ';';
+                $patterns[16] = ':';
+                //$patterns[17] = '>';
+
+                $replacements[0] = '';
+                $replacements[1] = '';
+                $replacements[2] = '';
+                $replacements[3] = '';
+                $replacements[4] = '';
+                $replacements[5] = '';
+                $replacements[6] = '';
+                $replacements[7] = '';
+                $replacements[8] = '';
+                $replacements[9] = '';
+                $replacements[10] = '';
+                $replacements[11] = '';
+                $replacements[12] = '';
+                $replacements[13] = '';
+                $replacements[14] = '';
+                $replacements[15] = '';
+                $replacements[16] = '';
+                //$replacements[17] = '';
+
+            break;
+            case 'email_private':
+
+                $tmp_new_post_at_ARRAY = array();
+                $clean_str = '';
+                $last_dot_flag = false;
+                $tmp_at_split_ARRAY = explode('@', $str);
+                $tmp_post_at_len = strlen($tmp_at_split_ARRAY[1]);
+                $tmp_str_ARRAY = $this->str_split_unicode($str);
+                $tmp_post_at_str_ARRAY = $this->str_split_unicode($tmp_at_split_ARRAY[1]);
+                $tmp_post_at_str_rev_ARRAY = array_reverse($tmp_post_at_str_ARRAY);
+
+                //
+                // PREP POST @ SITUATION
+                for($i = 0; $i < $tmp_post_at_len; $i++){
+
+                    if(!$last_dot_flag){
+
+                        if($tmp_post_at_str_rev_ARRAY[$i] == '.'){
+
+                            $last_dot_flag = true;
+
+                        }
+
+                        $tmp_new_post_at_ARRAY[] = $tmp_post_at_str_rev_ARRAY[$i];
+
+                        if($last_dot_flag){
+
+                            $i = $tmp_post_at_len + 420;
+                            $tmp_new_post_at_ARRAY = array_reverse($tmp_new_post_at_ARRAY);
+
+                        }
+
+                    }
+
+                }
+
+                $tmp_str_len = sizeof($tmp_str_ARRAY);
+                for($i = 0; $i < $tmp_str_len; $i++){
+
+                    if($i == 0){
+
+                        $clean_str .= $tmp_str_ARRAY[$i] . '*****';
+
+                    }else{
+
+                        if($tmp_str_ARRAY[$i] == '@'){
+
+                            $at_flag = true;
+                            $tmp_plus_one = $i + 1;
+                            $clean_str .= $tmp_str_ARRAY[$i] . $tmp_str_ARRAY[$tmp_plus_one] . '*****';
+                            $clean_str .= implode($tmp_new_post_at_ARRAY);
+                            $i = $tmp_str_len + 420;
+
+                        }
+
+                    }
+
+                }
+
+                return $clean_str;
+
+            break;
+            case 'http_protocol_simple':
+
+                $patterns[0] = '_';
+                $patterns[1] = '$';
+                $patterns[2] = ' ';
+                $replacements[0] = '';
+                $replacements[1] = '';
+                $replacements[2] = '';
+
+            break;
+            case 'max_storage_utilization':
+
+                $patterns[0] = '%';
+                $patterns[1] = 'percent';
+                $patterns[2] = ' ';
+                $patterns[3] = '!';
+
+                $replacements[0] = '';
+                $replacements[1] = '';
+                $replacements[2] = '';
+                $replacements[3] = '';
+
+            break;
+            case 'custom_mobi_detect_alg':
+
+                $patterns[0] = '(';
+                $patterns[1] = ')';
+                $replacements[0] = '';
+                $replacements[1] = '';
+
+            break;
+            case 'select_statement':
+
+                $patterns[0] = "`";
+                $replacements[0] = '';
+
+            break;
+            case 'select_field_name':
+
+                $patterns[0] = "
+";
+                $patterns[1] = '"';
+                $patterns[2] = '=';
+                $patterns[3] = '{';
+                $patterns[4] = '}';
+                $patterns[5] = '(';
+                $patterns[6] = ')';
+                $patterns[7] = ' ';
+                $patterns[8] = '    ';
+                $patterns[9] = ',';
+                $patterns[10] = '\n';
+                $patterns[11] = '\r';
+                $patterns[12] = '\'';
+                $patterns[13] = '/';
+                $patterns[14] = '#';
+                $patterns[15] = ';';
+                $patterns[16] = ':';
+                $patterns[17] = '>';
+
+                $replacements = array();
+                $replacements[0] = '';
+                $replacements[1] = '';
+                $replacements[2] = '';
+                $replacements[3] = '';
+                $replacements[4] = '';
+                $replacements[5] = '';
+                $replacements[6] = '';
+                $replacements[7] = '';
+                $replacements[8] = '';
+                $replacements[9] = '';
+                $replacements[10] = '';
+                $replacements[11] = '';
+                $replacements[12] = '';
+                $replacements[13] = '';
+                $replacements[14] = '';
+                $replacements[15] = '';
+                $replacements[16] = '';
+                $replacements[17] = '';
+
+            break;
+            default:
+
+                return $str;
+
+            break;
+
+        }
+
+        $str = str_replace($patterns, $replacements, $str);
+
+        return $str;
+
+    }
+
     //
     // SOURCE :: https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
     // COMMENT :: https://stackoverflow.com/a/13733588
@@ -9881,6 +10080,65 @@ class bringer_of_the_precious_things {
         // re-assemble what remains
         return implode($strip, array_merge($lines, array($last)));
 
+    }
+
+    public function wall_time(){
+
+        $timediff = $this->microtime_float() - $this->starttime;
+
+        return substr($timediff, 0, -8);
+
+    }
+
+    /**
+     * SOURCE :: NUSOAP.PHP - http://sourceforge.net/projects/nusoap/
+     * returns the time in ODBC canonical form with microseconds
+     *
+     * @return string The time in ODBC canonical form with microseconds
+     * @access public
+     */
+    public function microtime_float(){
+
+        //list($usec, $sec) = explode(' ', microtime());
+        //return ((float)$usec + (float)$sec);
+
+        if(function_exists('gettimeofday')){
+
+            $tod = gettimeofday();
+            $sec = $tod['sec'];
+            $usec = $tod['usec'];
+
+        }else{
+
+            $sec = time();
+            $usec = 0;
+
+        }
+
+        return $sec . '.' . sprintf('%06d', $usec);
+
+    }
+
+    private function return_strlen_integer($str){
+
+
+
+
+    }
+
+    //
+    // SOURCE :: https://stackoverflow.com/questions/2510434/format-bytes-to-kilobytes-megabytes-gigabytes
+    // AUTHOR :: https://stackoverflow.com/users/227532/leo
+    public function formatBytes($bytes, $precision = 2) {
+        $units = array('bytes', 'KiB', 'MiB', 'GiB', 'TiB');
+
+        $bytes = max($bytes, 0);
+        $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
+        $pow = min($pow, count($units) - 1);
+
+        $bytes /= pow(1024, $pow);
+
+        return round($bytes, $precision) . ' ' . $units[$pow];
     }
 
     public function __destruct() {
