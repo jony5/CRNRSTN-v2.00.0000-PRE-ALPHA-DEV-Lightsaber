@@ -139,80 +139,6 @@ class bringer_of_the_precious_things {
 
     }
 
-    public function return_performance_report_html(){
-
-        $tmp_report_html = '';
-        $tmp_report_html_open = '<div id="static_jony5_performance_report_return" class="hidden">';
-        $tmp_report_html_close = '</div>';
-
-        $tmp_report_html .= $this->formatBytes(self::$bytes_processed, 3) . ' of data was returned in '  . $this->wall_time() . ' seconds.';
-
-        return $tmp_report_html_open . $tmp_report_html . $tmp_report_html_close;
-
-    }
-
-    private function count_processed_bytes($data, $nerf_reporting_these_bytes = false){
-
-        $tmp_int = 0;
-        $tmp_type = gettype($data);
-
-        switch($tmp_type){
-            case 'float':
-            case 'double':
-                //NO CHANGE IS POSSIBLE WITHOUT DATA LOSS.
-            case 'int':
-            case 'integer':
-
-                $tmp_int += self::$mbstring_func_overload ? mb_strlen((string) $data, '8bit') : strlen((string) $data);
-
-            break;
-            case 'bool':
-            case 'boolean':
-
-                $tmp_int += 8;
-
-            break;
-            case 'str':
-            case 'string':
-
-                //
-                // SOURCE :: https://stackoverflow.com/questions/7568949/measure-string-size-in-bytes-in-php
-                // AUTHOR :: Ulver :: https://stackoverflow.com/users/1773335/ulver
-                // COMMENT :: https://stackoverflow.com/a/25299281
-                //
-                // Further to PhoneixS answer to get the correct length of string in bytes - Since mb_strlen()
-                // is slower than strlen(), for the best performance one can check "mbstring.func_overload" ini
-                // setting so that mb_strlen() is used only when it is really required:
-                //
-                // Thankfully, this check is no longer needed as of PHP 8.0.0. The function overloading
-                // "feature" has been removed as of PHP 8.0.0, and deprecated in 7.2.0.
-                // - Buttle Butkus, 2022, https://stackoverflow.com/a/7568984
-                //
-                // CRNRSTN :: PHP SUPPORT.
-                // PHP 5 >= 5.5, PHP 6, PHP 7, PHP 8.
-                $tmp_int += self::$mbstring_func_overload ? mb_strlen((string) $data, '8bit') : strlen((string) $data);
-
-            break;
-            default:
-
-                $tmp_int += self::$mbstring_func_overload ? mb_strlen((string) serialize($data), '8bit') : strlen((string) serialize($data));
-
-            break;
-
-        }
-
-    if(!($nerf_reporting_these_bytes !== false)){
-
-            self::$bytes_processed += $tmp_int;
-
-            return self::$bytes_processed;
-
-        }
-
-        return $tmp_int;
-
-    }
-
     private function vvid_control_struct($search_all_jony5 = false){
 
         $tmp_search_meta_vvid_ARRAY = array();
@@ -9470,10 +9396,25 @@ class bringer_of_the_precious_things {
 
     }
 
+    public function return_performance_report_html(){
+
+        $tmp_report_html = '';
+        $tmp_report_html_open = '<div id="static_jony5_performance_report_return" class="hidden">';
+        $tmp_report_html_close = '</div>';
+
+        $tmp_report_html .= $this->formatBytes(self::$bytes_processed, 3) . ' of data was returned in '  . $this->wall_time() . ' seconds.';
+
+        return $tmp_report_html_open . $tmp_report_html . $tmp_report_html_close;
+
+    }
+
     public function seo_out($vv){
 
+        //
+        // WE STORE VVID SO THAT IT CAN
+        // BE REVERTED BACK TO THE ORIGINAL
+        // AT THE END OF SEO GENERATION.
         $tmp_vvid = $this->vvid;
-
         $this->vvid = $vv;
 
         //
@@ -9490,7 +9431,7 @@ class bringer_of_the_precious_things {
 
         if(isset($tmp_footnote['REFERENCE'][0])){
 
-            if (sizeof($tmp_footnote['REFERENCE']) > 0){
+            if(sizeof($tmp_footnote['REFERENCE']) > 0){
 
                 $tmp_ftnt = $tmp_footnote['REFERENCE'][0] . ' ' . $tmp_footnote['COPY'][0];
 
@@ -10119,10 +10060,65 @@ class bringer_of_the_precious_things {
 
     }
 
-    private function return_strlen_integer($str){
+    private function count_processed_bytes($data, $nerf_reporting_these_bytes = false){
 
+        $tmp_int = 0;
+        $tmp_type = gettype($data);
 
+        switch($tmp_type){
+            case 'float':
+            case 'double':
+                //NO CHANGE IS POSSIBLE WITHOUT DATA LOSS.
+            case 'int':
+            case 'integer':
 
+                $tmp_int += self::$mbstring_func_overload ? mb_strlen((string) $data, '8bit') : strlen((string) $data);
+
+                break;
+            case 'bool':
+            case 'boolean':
+
+                $tmp_int += 8;
+
+                break;
+            case 'str':
+            case 'string':
+
+                //
+                // SOURCE :: https://stackoverflow.com/questions/7568949/measure-string-size-in-bytes-in-php
+                // AUTHOR :: Ulver :: https://stackoverflow.com/users/1773335/ulver
+                // COMMENT :: https://stackoverflow.com/a/25299281
+                //
+                // Further to PhoneixS answer to get the correct length of string in bytes - Since mb_strlen()
+                // is slower than strlen(), for the best performance one can check "mbstring.func_overload" ini
+                // setting so that mb_strlen() is used only when it is really required:
+                //
+                // Thankfully, this check is no longer needed as of PHP 8.0.0. The function overloading
+                // "feature" has been removed as of PHP 8.0.0, and deprecated in 7.2.0.
+                // - Buttle Butkus, 2022, https://stackoverflow.com/a/7568984
+                //
+                // CRNRSTN :: PHP SUPPORT.
+                // PHP 5 >= 5.5, PHP 6, PHP 7, PHP 8.
+                $tmp_int += self::$mbstring_func_overload ? mb_strlen((string) $data, '8bit') : strlen((string) $data);
+
+                break;
+            default:
+
+                $tmp_int += self::$mbstring_func_overload ? mb_strlen((string) serialize($data), '8bit') : strlen((string) serialize($data));
+
+                break;
+
+        }
+
+        if(!($nerf_reporting_these_bytes !== false)){
+
+            self::$bytes_processed += $tmp_int;
+
+            return self::$bytes_processed;
+
+        }
+
+        return $tmp_int;
 
     }
 
