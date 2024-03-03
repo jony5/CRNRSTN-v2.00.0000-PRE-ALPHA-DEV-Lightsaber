@@ -123,6 +123,136 @@ class bringer_of_the_precious_things {
                 $replacements[1] = ') ';
 
             break;
+            case 'search_jony5_vvid_content':
+
+                $patterns[0] = 'href="';
+                $patterns[1] = 'src="';
+                $patterns[2] = 'type="';
+                $patterns[3] = 'controls="';
+                $patterns[4] = 'style="';
+                $patterns[5] = 'target="_blank"';
+                $patterns[6] = 'id="';
+                $patterns[7] = 'class="';
+                $patterns[8] = '<audio';
+                $patterns[9] = '</audio';
+                $patterns[10] = '[if lt IE';
+                $patterns[11] = '<![endif]-->';
+                $patterns[12] = '<script>';
+                $patterns[13] = '</script>';
+                $patterns[14] = 'document.createElement';
+                $patterns[15] = 'return false;"';
+                $patterns[16] = 'onclick="launch_newwindow(';
+                $patterns[17] = '<strong>';
+                $patterns[18] = '</strong>';
+                $patterns[19] = '<img src="https://jony5.com/common/imgs/';
+                $patterns[20] = '<span class="chords"';
+                $patterns[21] = '<span class="chords" style';
+                $patterns[22] = '<div class="stanza_copy">';
+                $patterns[23] = '<div class="script_ref_num hymn_stanza"';
+                $patterns[24] = '<br>';
+                $patterns[25] = '<div class="cb_10"></div>';
+                $patterns[26] = '</div>';
+                $patterns[27] = '</span>';
+                $patterns[28] = "
+";
+                $patterns[29] = '"';
+                $patterns[30] = '=';
+                $patterns[31] = '{';
+                $patterns[32] = '}';
+                $patterns[33] = '(';
+                $patterns[34] = ')';
+                $patterns[35] = '[';
+                $patterns[36] = ']';
+                $patterns[37] = ' ';
+                $patterns[38] = '	';
+                $patterns[39] = ',';
+                $patterns[40] = '.';
+                $patterns[41] = '\n';
+                $patterns[42] = '\r';
+                $patterns[43] = '\'';
+                $patterns[44] = '/';
+                $patterns[45] = '#';
+                $patterns[46] = ':';
+                $patterns[47] = '>';
+                $patterns[48] = '<';
+                $patterns[49] = '-';
+                $patterns[50] = '+';
+                $patterns[51] = '^';
+                $patterns[52] = '%';
+                $patterns[53] = '$';
+                $patterns[54] = '@';
+                $patterns[55] = '!';
+                $patterns[56] = '?';
+                $patterns[57] = '~';
+                $patterns[58] = '`';
+                $patterns[59] = ';';
+                $patterns[60] = '|';
+                $patterns[61] = '\\';
+
+                $replacements[0] = '';
+                $replacements[1] = '';
+                $replacements[2] = '';
+                $replacements[3] = '';
+                $replacements[4] = '';
+                $replacements[5] = '';
+                $replacements[6] = '';
+                $replacements[7] = '';
+                $replacements[8] = '';
+                $replacements[9] = '';
+                $replacements[10] = '';
+                $replacements[11] = '';
+                $replacements[12] = '';
+                $replacements[13] = '';
+                $replacements[14] = '';
+                $replacements[15] = '';
+                $replacements[16] = '';
+                $replacements[17] = '';
+                $replacements[18] = '';
+                $replacements[19] = '';
+                $replacements[20] = '';
+                $replacements[21] = '';
+                $replacements[22] = '';
+                $replacements[23] = '';
+                $replacements[24] = '';
+                $replacements[25] = '';
+                $replacements[26] = '';
+                $replacements[27] = '';
+                $replacements[28] = '';
+                $replacements[29] = '';
+                $replacements[30] = '';
+                $replacements[31] = '';
+                $replacements[32] = '';
+                $replacements[33] = '';
+                $replacements[34] = '';
+                $replacements[35] = '';
+                $replacements[36] = '';
+                $replacements[37] = '';
+                $replacements[38] = '';
+                $replacements[39] = '';
+                $replacements[40] = '';
+                $replacements[41] = '';
+                $replacements[42] = '';
+                $replacements[43] = '';
+                $replacements[44] = '';
+                $replacements[45] = '';
+                $replacements[46] = '';
+                $replacements[47] = '';
+                $replacements[48] = '';
+                $replacements[49] = '';
+                $replacements[50] = '';
+                $replacements[51] = '';
+                $replacements[52] = '';
+                $replacements[53] = '';
+                $replacements[54] = '';
+                $replacements[55] = '';
+                $replacements[56] = '';
+                $replacements[57] = '';
+                $replacements[58] = '';
+                $replacements[59] = '';
+                $replacements[60] = '';
+                $replacements[61] = '';
+
+            break;
             case 'search':
 
                 $patterns[0] = "
@@ -348,7 +478,7 @@ class bringer_of_the_precious_things {
 
     private function vvid_control_struct($search_all_jony5 = false){
 
-        $tmp_search_vvid_ARRAY = array();
+        $tmp_search_meta_vvid_ARRAY = array();
 
         if($search_all_jony5 != false){
 
@@ -356,7 +486,7 @@ class bringer_of_the_precious_things {
             // PUSH ALL CUSTOM CONTENT
             // CONTENT_IDS FOR STATIC
             // SEARCH SUPPORT.
-            $tmp_search_vvid_ARRAY[] = array('jony5_home_page' => 'jony5_home_page');
+            $tmp_search_meta_vvid_ARRAY[] = array('jony5_home_page' => 'jony5_home_page');
 
         }
 
@@ -367,309 +497,309 @@ class bringer_of_the_precious_things {
         // PLEASE SEE, THE INSTRUCTIONS LOCATED
         // WITHIN, $this->build_link_html_index(), AND
         // TITLED: "HOW TO GET MORE DATA INTO SEARCH ::".
-        $tmp_search_vvid_ARRAY[] = array('jehovah_has_revealed_dl' => 'capoiv');
-        $tmp_search_vvid_ARRAY[] = array('jehovah_has_revealed_audio' => 'capoiv');
-        $tmp_search_vvid_ARRAY[] = array('jehovah_has_revealed_chords' => 'capoiv');
-        $tmp_search_vvid_ARRAY[] = array('jehovah_has_revealed' => 'capoiv');
-        $tmp_search_vvid_ARRAY[] = array('hymn979' => 'hymns');
-        $tmp_search_vvid_ARRAY[] = array('gen1_1' => 'genesis');
-        $tmp_search_vvid_ARRAY[] = array('gen1_26' => 'genesis');
-        $tmp_search_vvid_ARRAY[] = array('gen2_7' => 'genesis');
-        $tmp_search_vvid_ARRAY[] = array('gen3_1' => 'genesis');
-        $tmp_search_vvid_ARRAY[] = array('gen3_14[COVID]' => 'genesis');
-        $tmp_search_vvid_ARRAY[] = array('gen3_14[solo]' => 'genesis');
-        $tmp_search_vvid_ARRAY[] = array('gen3_14' => 'genesis');
-        $tmp_search_vvid_ARRAY[] = array('gen26_4-5' => 'genesis');
-        $tmp_search_vvid_ARRAY[] = array('gen48_21-22|49_1,25-28' => 'genesis');
-        $tmp_search_vvid_ARRAY[] = array('gen49_1,25-28' => 'genesis');
-        $tmp_search_vvid_ARRAY[] = array('lifestudy_exo_156' => 'lifestudyofexodus');
-        $tmp_search_vvid_ARRAY[] = array('exo9_29' => 'exodus');
-        $tmp_search_vvid_ARRAY[] = array('exo15_26' => 'exodus');
-        $tmp_search_vvid_ARRAY[] = array('exo20_6' => 'exodus');
-        $tmp_search_vvid_ARRAY[] = array('exo20_13' => 'exodus');
-        $tmp_search_vvid_ARRAY[] = array('exo20_15' => 'exodus');
-        $tmp_search_vvid_ARRAY[] = array('exo30_18' => 'exodus');
-        $tmp_search_vvid_ARRAY[] = array('exo30_17-21' => 'exodus');
-        $tmp_search_vvid_ARRAY[] = array('lev2_1' => 'leviticus');
-        $tmp_search_vvid_ARRAY[] = array('lev18_1-5,24-28' => 'leviticus');
-        $tmp_search_vvid_ARRAY[] = array('lev26_3-13' => 'leviticus');
-        $tmp_search_vvid_ARRAY[] = array('lev26_3,11b-12' => 'leviticus');
-        $tmp_search_vvid_ARRAY[] = array('num14_31' => 'numbers');
-        $tmp_search_vvid_ARRAY[] = array('num14_31[000]' => 'numbers');
-        $tmp_search_vvid_ARRAY[] = array('num14_29-30' => 'numbers');
-        $tmp_search_vvid_ARRAY[] = array('num14_35' => 'numbers');
-        $tmp_search_vvid_ARRAY[] = array('num25_1-13' => 'numbers');
-        $tmp_search_vvid_ARRAY[] = array('num32_13' => 'numbers');
-        $tmp_search_vvid_ARRAY[] = array('num33_50-54' => 'numbers');
-        $tmp_search_vvid_ARRAY[] = array('deut4_1-2,39-40' => 'deuteronomy');
-        $tmp_search_vvid_ARRAY[] = array('deut5_10,29' => 'deuteronomy');
-        $tmp_search_vvid_ARRAY[] = array('deut6_1-6,16-25' => 'deuteronomy');
-        $tmp_search_vvid_ARRAY[] = array('deut6_25' => 'deuteronomy');
-        $tmp_search_vvid_ARRAY[] = array('deut7_9-26' => 'deuteronomy');
-        $tmp_search_vvid_ARRAY[] = array('deut8_1-10' => 'deuteronomy');
-        $tmp_search_vvid_ARRAY[] = array('deut10_14-22' => 'deuteronomy');
-        $tmp_search_vvid_ARRAY[] = array('deut11_14' => 'deuteronomy');
-        $tmp_search_vvid_ARRAY[] = array('deut11_1,8-15,22-28' => 'deuteronomy');
-        $tmp_search_vvid_ARRAY[] = array('deut26_16-19' => 'deuteronomy');
-        $tmp_search_vvid_ARRAY[] = array('deut28_1-14' => 'deuteronomy');
-        $tmp_search_vvid_ARRAY[] = array('deut30_11-20' => 'deuteronomy');
-        $tmp_search_vvid_ARRAY[] = array('deut33_1-4,12,29' => 'deuteronomy');
-        $tmp_search_vvid_ARRAY[] = array('josh5_6' => 'joshua');
-        $tmp_search_vvid_ARRAY[] = array('1sam4_4' => '1samuel');
-        $tmp_search_vvid_ARRAY[] = array('1kings2_1-3' => '1kings');
-        $tmp_search_vvid_ARRAY[] = array('1kings8_54-66' => '1kings');
-        $tmp_search_vvid_ARRAY[] = array('1kings18_37-40,45;19_1-18' => '1kings');
-        $tmp_search_vvid_ARRAY[] = array('neh1_1-11' => 'nehemiah');
-        $tmp_search_vvid_ARRAY[] = array('psa24' => 'psalms');
-        $tmp_search_vvid_ARRAY[] = array('psa95_10-11' => 'psalms');
-        $tmp_search_vvid_ARRAY[] = array('psa97_2' => 'psalms');
-        $tmp_search_vvid_ARRAY[] = array('psa119_103' => 'psalms');
-        $tmp_search_vvid_ARRAY[] = array('prov20_27' => 'proverbs');
-        $tmp_search_vvid_ARRAY[] = array('isa14_13' => 'isaiah');
-        $tmp_search_vvid_ARRAY[] = array('isa14_21-24' => 'isaiah');
-        $tmp_search_vvid_ARRAY[] = array('isa16_1-5' => 'isaiah');
-        $tmp_search_vvid_ARRAY[] = array('isa53_6' => 'isaiah');
-        $tmp_search_vvid_ARRAY[] = array('jer1_11-19' => 'jeremiah');
-        $tmp_search_vvid_ARRAY[] = array('jer24_7' => 'jeremiah');
-        $tmp_search_vvid_ARRAY[] = array('jer31_31-34' => 'jeremiah');
-        $tmp_search_vvid_ARRAY[] = array('jer31_33-34' => 'jeremiah');
-        $tmp_search_vvid_ARRAY[] = array('jer31_33-37' => 'jeremiah');
-        $tmp_search_vvid_ARRAY[] = array('jer31_31-37' => 'jeremiah');
-        $tmp_search_vvid_ARRAY[] = array('ezek11_17-25' => 'ezekiel');
-        $tmp_search_vvid_ARRAY[] = array('dan9_4' => 'daniel');
-        $tmp_search_vvid_ARRAY[] = array('dan9_17-27' => 'daniel');
-        $tmp_search_vvid_ARRAY[] = array('joel2_23' => 'joel');
-        $tmp_search_vvid_ARRAY[] = array('matt1_18,20' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt2_4-6' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt3_15' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt4_1-2' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt4_3' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt4_4b' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt4_5-7' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt5_10' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt5_13' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt5' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt6' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt7' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt7_13-14' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt10_10b' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt10_16-33' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt11_28-30' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt12_1-8' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt12_5' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt13_4' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt16_25-26' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt19_12' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt24_8-14' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt24_14' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt24_15-22' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt25_4' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt25_23,10b' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt26_33-35,69-75' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('matt27_46' => 'matthew');
-        $tmp_search_vvid_ARRAY[] = array('mark7_19-23' => 'mark');
-        $tmp_search_vvid_ARRAY[] = array('mark9_50' => 'mark');
-        $tmp_search_vvid_ARRAY[] = array('mark14_27-31,66-72' => 'mark');
-        $tmp_search_vvid_ARRAY[] = array('luke1_26-33' => 'luke');
-        $tmp_search_vvid_ARRAY[] = array('luke9_1-6' => 'luke');
-        $tmp_search_vvid_ARRAY[] = array('luke9_5-6' => 'luke');
-        $tmp_search_vvid_ARRAY[] = array('luke10_19' => 'luke');
-        $tmp_search_vvid_ARRAY[] = array('luke12_35' => 'luke');
-        $tmp_search_vvid_ARRAY[] = array('luke12_34-44' => 'luke');
-        $tmp_search_vvid_ARRAY[] = array('luke13_17' => 'luke');
-        $tmp_search_vvid_ARRAY[] = array('luke14_31-32' => 'luke');
-        $tmp_search_vvid_ARRAY[] = array('luke14_34-35' => 'luke');
-        $tmp_search_vvid_ARRAY[] = array('luke18_11-12' => 'luke');
-        $tmp_search_vvid_ARRAY[] = array('luke18_13' => 'luke');
-        $tmp_search_vvid_ARRAY[] = array('luke19_12,14,15,27' => 'luke');
-        $tmp_search_vvid_ARRAY[] = array('luke22_24-30' => 'luke');
-        $tmp_search_vvid_ARRAY[] = array('luke22_33-34,54-62' => 'luke');
-        $tmp_search_vvid_ARRAY[] = array('luke22_42' => 'luke');
-        $tmp_search_vvid_ARRAY[] = array('luke22_42[solo]' => 'luke');
-        $tmp_search_vvid_ARRAY[] = array('luke23_27-30' => 'luke');
-        $tmp_search_vvid_ARRAY[] = array('luke23_38,42-43' => 'luke');
-        $tmp_search_vvid_ARRAY[] = array('luke24_31-32' => 'luke');
-        $tmp_search_vvid_ARRAY[] = array('john2_20-21' => 'john');
-        $tmp_search_vvid_ARRAY[] = array('john2_21' => 'john');
-        $tmp_search_vvid_ARRAY[] = array('john5_24-25' => 'john');
-        $tmp_search_vvid_ARRAY[] = array('john8_1-11' => 'john');
-        $tmp_search_vvid_ARRAY[] = array('john8_6' => 'john');
-        $tmp_search_vvid_ARRAY[] = array('john8_51-59' => 'john');
-        $tmp_search_vvid_ARRAY[] = array('john9_41' => 'john');
-        $tmp_search_vvid_ARRAY[] = array('john13_3-17' => 'john');
-        $tmp_search_vvid_ARRAY[] = array('john13_34' => 'john');
-        $tmp_search_vvid_ARRAY[] = array('john13_34[solo]' => 'john');
-        $tmp_search_vvid_ARRAY[] = array('john13_37-38' => 'john');
-        $tmp_search_vvid_ARRAY[] = array('john13_37-38;18_14-27' => 'john');
-        $tmp_search_vvid_ARRAY[] = array('john14_10' => 'john');
-        $tmp_search_vvid_ARRAY[] = array('john14_10-14' => 'john');
-        $tmp_search_vvid_ARRAY[] = array('john14_12-14' => 'john');
-        $tmp_search_vvid_ARRAY[] = array('john14_15,20-21' => 'john');
-        $tmp_search_vvid_ARRAY[] = array('john16_15' => 'john');
-        $tmp_search_vvid_ARRAY[] = array('acts1_5' => 'acts');
-        $tmp_search_vvid_ARRAY[] = array('acts2_22-25' => 'acts');
-        $tmp_search_vvid_ARRAY[] = array('acts8_29' => 'acts');
-        $tmp_search_vvid_ARRAY[] = array('acts10_15-16b,19-21' => 'acts');
-        $tmp_search_vvid_ARRAY[] = array('acts16_6,7' => 'acts');
-        $tmp_search_vvid_ARRAY[] = array('acts11_12' => 'acts');
-        $tmp_search_vvid_ARRAY[] = array('acts11_18' => 'acts');
-        $tmp_search_vvid_ARRAY[] = array('rom2_6-7' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom5_1-5[000]' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom5_1-5' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom5_10' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom5_14,17,21' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom6_3' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom6_8' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom6_8-11' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom6_9-11' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom6_18-19[000]' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom6_18-19' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom6_22' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom7_2-4,6' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom8_2' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom8_2,4' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom8_14' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom8_16-17,24-25' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom8_14-23' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom8_33-39' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom9_31-33' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom10_2-3' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom12_2' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom12_11' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom12_11-12' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom13_14' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom14_1' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom14_7-12' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom15_4[000]' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('rom15_4' => 'romans');
-        $tmp_search_vvid_ARRAY[] = array('1cor1_22-25' => '1corinthians');
-        $tmp_search_vvid_ARRAY[] = array('1cor3_21-23' => '1corinthians');
-        $tmp_search_vvid_ARRAY[] = array('1cor5_1,5' => '1corinthians');
-        $tmp_search_vvid_ARRAY[] = array('1cor6_12' => '1corinthians');
-        $tmp_search_vvid_ARRAY[] = array('1cor6_17' => '1corinthians');
-        $tmp_search_vvid_ARRAY[] = array('1cor9_8-11,13' => '1corinthians');
-        $tmp_search_vvid_ARRAY[] = array('1cor10_5' => '1corinthians');
-        $tmp_search_vvid_ARRAY[] = array('1cor10_23' => '1corinthians');
-        $tmp_search_vvid_ARRAY[] = array('1cor10_26,29b-31' => '1corinthians');
-        $tmp_search_vvid_ARRAY[] = array('1cor11_4' => '1corinthians');
-        $tmp_search_vvid_ARRAY[] = array('1cor15_58' => '1corinthians');
-        $tmp_search_vvid_ARRAY[] = array('1cor15_55,58' => '1corinthians');
-        $tmp_search_vvid_ARRAY[] = array('2cor1_9-10' => '2corinthians');
-        $tmp_search_vvid_ARRAY[] = array('2cor1_20-22[000]' => '2corinthians');
-        $tmp_search_vvid_ARRAY[] = array('2cor1_20-22' => '2corinthians');
-        $tmp_search_vvid_ARRAY[] = array('2cor3_6-9' => '2corinthians');
-        $tmp_search_vvid_ARRAY[] = array('2cor3_12' => '2corinthians');
-        $tmp_search_vvid_ARRAY[] = array('2cor3_12,17' => '2corinthians');
-        $tmp_search_vvid_ARRAY[] = array('2cor11_2a' => '2corinthians');
-        $tmp_search_vvid_ARRAY[] = array('2cor11_2b-3' => '2corinthians');
-        $tmp_search_vvid_ARRAY[] = array('1cor11_22' => '1corinthians');
-        $tmp_search_vvid_ARRAY[] = array('2cor3_3' => '2corinthians');
-        $tmp_search_vvid_ARRAY[] = array('2cor3_17-18' => '2corinthians');
-        $tmp_search_vvid_ARRAY[] = array('2cor3_18' => '2corinthians');
-        $tmp_search_vvid_ARRAY[] = array('gal1_14' => 'galatians');
-        $tmp_search_vvid_ARRAY[] = array('gal2_20' => 'galatians');
-        $tmp_search_vvid_ARRAY[] = array('gal2_20_x' => 'galatians');
-        $tmp_search_vvid_ARRAY[] = array('gal3_1' => 'galatians');
-        $tmp_search_vvid_ARRAY[] = array('gal5_1,7' => 'galatians');
-        $tmp_search_vvid_ARRAY[] = array('gal5_1' => 'galatians');
-        $tmp_search_vvid_ARRAY[] = array('gal5_5-6' => 'galatians');
-        $tmp_search_vvid_ARRAY[] = array('gal4_11' => 'galatians');
-        $tmp_search_vvid_ARRAY[] = array('gal5_13,16' => 'galatians');
-        $tmp_search_vvid_ARRAY[] = array('gal5_16,18,22-23,25' => 'galatians');
-        $tmp_search_vvid_ARRAY[] = array('gal6_14' => 'galatians');
-        $tmp_search_vvid_ARRAY[] = array('eph1_3' => 'ephesians');
-        $tmp_search_vvid_ARRAY[] = array('eph1_3-12' => 'ephesians');
-        $tmp_search_vvid_ARRAY[] = array('eph1_3-14[000]' => 'ephesians');
-        $tmp_search_vvid_ARRAY[] = array('eph1_3-14' => 'ephesians');
-        $tmp_search_vvid_ARRAY[] = array('eph1_9' => 'ephesians');
-        $tmp_search_vvid_ARRAY[] = array('eph1_9-14,18-23' => 'ephesians');
-        $tmp_search_vvid_ARRAY[] = array('phil1_6' => 'philippians');
-        $tmp_search_vvid_ARRAY[] = array('phil1_20' => 'philippians');
-        $tmp_search_vvid_ARRAY[] = array('phil1_27' => 'philippians');
-        $tmp_search_vvid_ARRAY[] = array('phil2_3' => 'philippians');
-        $tmp_search_vvid_ARRAY[] = array('phil2_5-8' => 'philippians');
-        $tmp_search_vvid_ARRAY[] = array('phil2_5-16[000]' => 'philippians');
-        $tmp_search_vvid_ARRAY[] = array('phil2_5-16' => 'philippians');
-        $tmp_search_vvid_ARRAY[] = array('phil2_5-9' => 'philippians');
-        $tmp_search_vvid_ARRAY[] = array('phil2_8' => 'philippians');
-        $tmp_search_vvid_ARRAY[] = array('phil2_13[001]' => 'philippians');
-        $tmp_search_vvid_ARRAY[] = array('phil2_13[000]' => 'philippians');
-        $tmp_search_vvid_ARRAY[] = array('phil2_13' => 'philippians');
-        $tmp_search_vvid_ARRAY[] = array('col1_5' => 'colossians');
-        $tmp_search_vvid_ARRAY[] = array('col1_27' => 'colossians');
-        $tmp_search_vvid_ARRAY[] = array('col1_5-6,21-23,26-27' => 'colossians');
-        $tmp_search_vvid_ARRAY[] = array('col1_16' => 'colossians');
-        $tmp_search_vvid_ARRAY[] = array('col2_9' => 'colossians');
-        $tmp_search_vvid_ARRAY[] = array('col2_8,12,20-23' => 'colossians');
-        $tmp_search_vvid_ARRAY[] = array('col3_5' => 'colossians');
-        $tmp_search_vvid_ARRAY[] = array('col3_6' => 'colossians');
-        $tmp_search_vvid_ARRAY[] = array('1thes1_2-3' => '1thessalonians');
-        $tmp_search_vvid_ARRAY[] = array('1thes5_7-11' => '1thessalonians');
-        $tmp_search_vvid_ARRAY[] = array('2thes2_8-12' => '2thessalonians');
-        $tmp_search_vvid_ARRAY[] = array('2thes2_16-17' => '2thessalonians');
-        $tmp_search_vvid_ARRAY[] = array('1tim1_1' => '1timothy');
-        $tmp_search_vvid_ARRAY[] = array('1tim4_1-5' => '1timothy');
-        $tmp_search_vvid_ARRAY[] = array('1tim6_17' => '1timothy');
-        $tmp_search_vvid_ARRAY[] = array('2tim1_6' => '2timothy');
-        $tmp_search_vvid_ARRAY[] = array('2tim1_6-8' => '2timothy');
-        $tmp_search_vvid_ARRAY[] = array('titus1_1-3' => 'titus');
-        $tmp_search_vvid_ARRAY[] = array('titus2_11-15' => 'titus');
-        $tmp_search_vvid_ARRAY[] = array('titus3_7[000]' => 'titus');
-        $tmp_search_vvid_ARRAY[] = array('titus3_7' => 'titus');
-        $tmp_search_vvid_ARRAY[] = array('heb2_14-15' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('heb3_6[000]' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('heb3_6' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('heb3_7-19[000]' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('heb3_7-19' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('heb4_8-16' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('heb4_11' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('heb6_17-20' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('heb7_17-19' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('heb8_10[000]' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('heb8_10' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('heb9_14' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('heb10_22,19' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('heb10_22' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('heb10_21-23' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('heb10_23' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('heb10_35' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('heb10_35,38-39' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('heb11_1' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('heb12_1' => 'hebrews');
-        $tmp_search_vvid_ARRAY[] = array('james3_1-2' => 'james');
-        $tmp_search_vvid_ARRAY[] = array('1pet1_3-9,13,21' => '1peter');
-        $tmp_search_vvid_ARRAY[] = array('1pet1_3-5' => '1peter');
-        $tmp_search_vvid_ARRAY[] = array('1pet1_13' => '1peter');
-        $tmp_search_vvid_ARRAY[] = array('1pet2_16' => '1peter');
-        $tmp_search_vvid_ARRAY[] = array('1pet2_20' => '1peter');
-        $tmp_search_vvid_ARRAY[] = array('1pet2_7-8' => '1peter');
-        $tmp_search_vvid_ARRAY[] = array('1pet2_24' => '1peter');
-        $tmp_search_vvid_ARRAY[] = array('1pet3_15' => '1peter');
-        $tmp_search_vvid_ARRAY[] = array('1pet3_5-7,14-22' => '1peter');
-        $tmp_search_vvid_ARRAY[] = array('1pet5_8' => '1peter');
-        $tmp_search_vvid_ARRAY[] = array('1john2_15-17' => '1john');
-        $tmp_search_vvid_ARRAY[] = array('1john3_1-10' => '1john');
-        $tmp_search_vvid_ARRAY[] = array('rev2_10-11' => 'revelation');
-        $tmp_search_vvid_ARRAY[] = array('rev2_12-17' => 'revelation');
-        $tmp_search_vvid_ARRAY[] = array('rev2_18-23' => 'revelation');
-        $tmp_search_vvid_ARRAY[] = array('rev2_14[solo]' => 'revelation');
-        $tmp_search_vvid_ARRAY[] = array('rev2_14' => 'revelation');
-        $tmp_search_vvid_ARRAY[] = array('rev2_11|2_17,26-28|3_5,12,21' => 'revelation');
-        $tmp_search_vvid_ARRAY[] = array('rev2_21-22' => 'revelation');
-        $tmp_search_vvid_ARRAY[] = array('rev3_8' => 'revelation');
-        $tmp_search_vvid_ARRAY[] = array('rev3_7-13' => 'revelation');
-        $tmp_search_vvid_ARRAY[] = array('rev3_19' => 'revelation');
-        $tmp_search_vvid_ARRAY[] = array('rev6_16-17' => 'revelation');
-        $tmp_search_vvid_ARRAY[] = array('rev12_3-4,9' => 'revelation');
-        $tmp_search_vvid_ARRAY[] = array('rev12_3-4,13,17;13:2,4' => 'revelation');
-        $tmp_search_vvid_ARRAY[] = array('rev20_6' => 'revelation');
-        $tmp_search_vvid_ARRAY[] = array('rev21_2,9-27' => 'revelation');
-        $tmp_search_vvid_ARRAY[] = array('rev21_7' => 'revelation');
-        $tmp_search_vvid_ARRAY[] = array('rev21_3-5' => 'revelation');
-        $tmp_search_vvid_ARRAY[] = array('rev21_21' => 'revelation');
-        $tmp_search_vvid_ARRAY[] = array('rev22_2' => 'revelation');
+        $tmp_search_meta_vvid_ARRAY[] = array('jehovah_has_revealed_dl' => 'capoiv');
+        $tmp_search_meta_vvid_ARRAY[] = array('jehovah_has_revealed_audio' => 'capoiv');
+        $tmp_search_meta_vvid_ARRAY[] = array('jehovah_has_revealed_chords' => 'capoiv');
+        $tmp_search_meta_vvid_ARRAY[] = array('jehovah_has_revealed' => 'capoiv');
+        $tmp_search_meta_vvid_ARRAY[] = array('hymn979' => 'hymns');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen1_1' => 'genesis');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen1_26' => 'genesis');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen2_7' => 'genesis');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen3_1' => 'genesis');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen3_14[COVID]' => 'genesis');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen3_14[solo]' => 'genesis');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen3_14' => 'genesis');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen26_4-5' => 'genesis');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen48_21-22|49_1,25-28' => 'genesis');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen49_1,25-28' => 'genesis');
+        $tmp_search_meta_vvid_ARRAY[] = array('lifestudy_exo_156' => 'lifestudyofexodus');
+        $tmp_search_meta_vvid_ARRAY[] = array('exo9_29' => 'exodus');
+        $tmp_search_meta_vvid_ARRAY[] = array('exo15_26' => 'exodus');
+        $tmp_search_meta_vvid_ARRAY[] = array('exo20_6' => 'exodus');
+        $tmp_search_meta_vvid_ARRAY[] = array('exo20_13' => 'exodus');
+        $tmp_search_meta_vvid_ARRAY[] = array('exo20_15' => 'exodus');
+        $tmp_search_meta_vvid_ARRAY[] = array('exo30_18' => 'exodus');
+        $tmp_search_meta_vvid_ARRAY[] = array('exo30_17-21' => 'exodus');
+        $tmp_search_meta_vvid_ARRAY[] = array('lev2_1' => 'leviticus');
+        $tmp_search_meta_vvid_ARRAY[] = array('lev18_1-5,24-28' => 'leviticus');
+        $tmp_search_meta_vvid_ARRAY[] = array('lev26_3-13' => 'leviticus');
+        $tmp_search_meta_vvid_ARRAY[] = array('lev26_3,11b-12' => 'leviticus');
+        $tmp_search_meta_vvid_ARRAY[] = array('num14_31' => 'numbers');
+        $tmp_search_meta_vvid_ARRAY[] = array('num14_31[000]' => 'numbers');
+        $tmp_search_meta_vvid_ARRAY[] = array('num14_29-30' => 'numbers');
+        $tmp_search_meta_vvid_ARRAY[] = array('num14_35' => 'numbers');
+        $tmp_search_meta_vvid_ARRAY[] = array('num25_1-13' => 'numbers');
+        $tmp_search_meta_vvid_ARRAY[] = array('num32_13' => 'numbers');
+        $tmp_search_meta_vvid_ARRAY[] = array('num33_50-54' => 'numbers');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut4_1-2,39-40' => 'deuteronomy');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut5_10,29' => 'deuteronomy');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut6_1-6,16-25' => 'deuteronomy');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut6_25' => 'deuteronomy');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut7_9-26' => 'deuteronomy');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut8_1-10' => 'deuteronomy');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut10_14-22' => 'deuteronomy');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut11_14' => 'deuteronomy');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut11_1,8-15,22-28' => 'deuteronomy');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut26_16-19' => 'deuteronomy');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut28_1-14' => 'deuteronomy');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut30_11-20' => 'deuteronomy');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut33_1-4,12,29' => 'deuteronomy');
+        $tmp_search_meta_vvid_ARRAY[] = array('josh5_6' => 'joshua');
+        $tmp_search_meta_vvid_ARRAY[] = array('1sam4_4' => '1samuel');
+        $tmp_search_meta_vvid_ARRAY[] = array('1kings2_1-3' => '1kings');
+        $tmp_search_meta_vvid_ARRAY[] = array('1kings8_54-66' => '1kings');
+        $tmp_search_meta_vvid_ARRAY[] = array('1kings18_37-40,45;19_1-18' => '1kings');
+        $tmp_search_meta_vvid_ARRAY[] = array('neh1_1-11' => 'nehemiah');
+        $tmp_search_meta_vvid_ARRAY[] = array('psa24' => 'psalms');
+        $tmp_search_meta_vvid_ARRAY[] = array('psa95_10-11' => 'psalms');
+        $tmp_search_meta_vvid_ARRAY[] = array('psa97_2' => 'psalms');
+        $tmp_search_meta_vvid_ARRAY[] = array('psa119_103' => 'psalms');
+        $tmp_search_meta_vvid_ARRAY[] = array('prov20_27' => 'proverbs');
+        $tmp_search_meta_vvid_ARRAY[] = array('isa14_13' => 'isaiah');
+        $tmp_search_meta_vvid_ARRAY[] = array('isa14_21-24' => 'isaiah');
+        $tmp_search_meta_vvid_ARRAY[] = array('isa16_1-5' => 'isaiah');
+        $tmp_search_meta_vvid_ARRAY[] = array('isa53_6' => 'isaiah');
+        $tmp_search_meta_vvid_ARRAY[] = array('jer1_11-19' => 'jeremiah');
+        $tmp_search_meta_vvid_ARRAY[] = array('jer24_7' => 'jeremiah');
+        $tmp_search_meta_vvid_ARRAY[] = array('jer31_31-34' => 'jeremiah');
+        $tmp_search_meta_vvid_ARRAY[] = array('jer31_33-34' => 'jeremiah');
+        $tmp_search_meta_vvid_ARRAY[] = array('jer31_33-37' => 'jeremiah');
+        $tmp_search_meta_vvid_ARRAY[] = array('jer31_31-37' => 'jeremiah');
+        $tmp_search_meta_vvid_ARRAY[] = array('ezek11_17-25' => 'ezekiel');
+        $tmp_search_meta_vvid_ARRAY[] = array('dan9_4' => 'daniel');
+        $tmp_search_meta_vvid_ARRAY[] = array('dan9_17-27' => 'daniel');
+        $tmp_search_meta_vvid_ARRAY[] = array('joel2_23' => 'joel');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt1_18,20' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt2_4-6' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt3_15' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt4_1-2' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt4_3' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt4_4b' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt4_5-7' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt5_10' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt5_13' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt5' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt6' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt7' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt7_13-14' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt10_10b' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt10_16-33' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt11_28-30' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt12_1-8' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt12_5' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt13_4' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt16_25-26' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt19_12' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt24_8-14' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt24_14' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt24_15-22' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt25_4' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt25_23,10b' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt26_33-35,69-75' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt27_46' => 'matthew');
+        $tmp_search_meta_vvid_ARRAY[] = array('mark7_19-23' => 'mark');
+        $tmp_search_meta_vvid_ARRAY[] = array('mark9_50' => 'mark');
+        $tmp_search_meta_vvid_ARRAY[] = array('mark14_27-31,66-72' => 'mark');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke1_26-33' => 'luke');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke9_1-6' => 'luke');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke9_5-6' => 'luke');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke10_19' => 'luke');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke12_35' => 'luke');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke12_34-44' => 'luke');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke13_17' => 'luke');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke14_31-32' => 'luke');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke14_34-35' => 'luke');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke18_11-12' => 'luke');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke18_13' => 'luke');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke19_12,14,15,27' => 'luke');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke22_24-30' => 'luke');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke22_33-34,54-62' => 'luke');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke22_42' => 'luke');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke22_42[solo]' => 'luke');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke23_27-30' => 'luke');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke23_38,42-43' => 'luke');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke24_31-32' => 'luke');
+        $tmp_search_meta_vvid_ARRAY[] = array('john2_20-21' => 'john');
+        $tmp_search_meta_vvid_ARRAY[] = array('john2_21' => 'john');
+        $tmp_search_meta_vvid_ARRAY[] = array('john5_24-25' => 'john');
+        $tmp_search_meta_vvid_ARRAY[] = array('john8_1-11' => 'john');
+        $tmp_search_meta_vvid_ARRAY[] = array('john8_6' => 'john');
+        $tmp_search_meta_vvid_ARRAY[] = array('john8_51-59' => 'john');
+        $tmp_search_meta_vvid_ARRAY[] = array('john9_41' => 'john');
+        $tmp_search_meta_vvid_ARRAY[] = array('john13_3-17' => 'john');
+        $tmp_search_meta_vvid_ARRAY[] = array('john13_34' => 'john');
+        $tmp_search_meta_vvid_ARRAY[] = array('john13_34[solo]' => 'john');
+        $tmp_search_meta_vvid_ARRAY[] = array('john13_37-38' => 'john');
+        $tmp_search_meta_vvid_ARRAY[] = array('john13_37-38;18_14-27' => 'john');
+        $tmp_search_meta_vvid_ARRAY[] = array('john14_10' => 'john');
+        $tmp_search_meta_vvid_ARRAY[] = array('john14_10-14' => 'john');
+        $tmp_search_meta_vvid_ARRAY[] = array('john14_12-14' => 'john');
+        $tmp_search_meta_vvid_ARRAY[] = array('john14_15,20-21' => 'john');
+        $tmp_search_meta_vvid_ARRAY[] = array('john16_15' => 'john');
+        $tmp_search_meta_vvid_ARRAY[] = array('acts1_5' => 'acts');
+        $tmp_search_meta_vvid_ARRAY[] = array('acts2_22-25' => 'acts');
+        $tmp_search_meta_vvid_ARRAY[] = array('acts8_29' => 'acts');
+        $tmp_search_meta_vvid_ARRAY[] = array('acts10_15-16b,19-21' => 'acts');
+        $tmp_search_meta_vvid_ARRAY[] = array('acts16_6,7' => 'acts');
+        $tmp_search_meta_vvid_ARRAY[] = array('acts11_12' => 'acts');
+        $tmp_search_meta_vvid_ARRAY[] = array('acts11_18' => 'acts');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom2_6-7' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom5_1-5[000]' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom5_1-5' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom5_10' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom5_14,17,21' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom6_3' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom6_8' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom6_8-11' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom6_9-11' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom6_18-19[000]' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom6_18-19' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom6_22' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom7_2-4,6' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom8_2' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom8_2,4' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom8_14' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom8_16-17,24-25' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom8_14-23' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom8_33-39' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom9_31-33' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom10_2-3' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom12_2' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom12_11' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom12_11-12' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom13_14' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom14_1' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom14_7-12' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom15_4[000]' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom15_4' => 'romans');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor1_22-25' => '1corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor3_21-23' => '1corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor5_1,5' => '1corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor6_12' => '1corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor6_17' => '1corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor9_8-11,13' => '1corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor10_5' => '1corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor10_23' => '1corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor10_26,29b-31' => '1corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor11_4' => '1corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor15_58' => '1corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor15_55,58' => '1corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor1_9-10' => '2corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor1_20-22[000]' => '2corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor1_20-22' => '2corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor3_6-9' => '2corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor3_12' => '2corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor3_12,17' => '2corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor11_2a' => '2corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor11_2b-3' => '2corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor11_22' => '1corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor3_3' => '2corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor3_17-18' => '2corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor3_18' => '2corinthians');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal1_14' => 'galatians');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal2_20' => 'galatians');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal2_20_x' => 'galatians');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal3_1' => 'galatians');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal5_1,7' => 'galatians');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal5_1' => 'galatians');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal5_5-6' => 'galatians');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal4_11' => 'galatians');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal5_13,16' => 'galatians');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal5_16,18,22-23,25' => 'galatians');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal6_14' => 'galatians');
+        $tmp_search_meta_vvid_ARRAY[] = array('eph1_3' => 'ephesians');
+        $tmp_search_meta_vvid_ARRAY[] = array('eph1_3-12' => 'ephesians');
+        $tmp_search_meta_vvid_ARRAY[] = array('eph1_3-14[000]' => 'ephesians');
+        $tmp_search_meta_vvid_ARRAY[] = array('eph1_3-14' => 'ephesians');
+        $tmp_search_meta_vvid_ARRAY[] = array('eph1_9' => 'ephesians');
+        $tmp_search_meta_vvid_ARRAY[] = array('eph1_9-14,18-23' => 'ephesians');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil1_6' => 'philippians');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil1_20' => 'philippians');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil1_27' => 'philippians');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil2_3' => 'philippians');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil2_5-8' => 'philippians');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil2_5-16[000]' => 'philippians');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil2_5-16' => 'philippians');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil2_5-9' => 'philippians');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil2_8' => 'philippians');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil2_13[001]' => 'philippians');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil2_13[000]' => 'philippians');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil2_13' => 'philippians');
+        $tmp_search_meta_vvid_ARRAY[] = array('col1_5' => 'colossians');
+        $tmp_search_meta_vvid_ARRAY[] = array('col1_27' => 'colossians');
+        $tmp_search_meta_vvid_ARRAY[] = array('col1_5-6,21-23,26-27' => 'colossians');
+        $tmp_search_meta_vvid_ARRAY[] = array('col1_16' => 'colossians');
+        $tmp_search_meta_vvid_ARRAY[] = array('col2_9' => 'colossians');
+        $tmp_search_meta_vvid_ARRAY[] = array('col2_8,12,20-23' => 'colossians');
+        $tmp_search_meta_vvid_ARRAY[] = array('col3_5' => 'colossians');
+        $tmp_search_meta_vvid_ARRAY[] = array('col3_6' => 'colossians');
+        $tmp_search_meta_vvid_ARRAY[] = array('1thes1_2-3' => '1thessalonians');
+        $tmp_search_meta_vvid_ARRAY[] = array('1thes5_7-11' => '1thessalonians');
+        $tmp_search_meta_vvid_ARRAY[] = array('2thes2_8-12' => '2thessalonians');
+        $tmp_search_meta_vvid_ARRAY[] = array('2thes2_16-17' => '2thessalonians');
+        $tmp_search_meta_vvid_ARRAY[] = array('1tim1_1' => '1timothy');
+        $tmp_search_meta_vvid_ARRAY[] = array('1tim4_1-5' => '1timothy');
+        $tmp_search_meta_vvid_ARRAY[] = array('1tim6_17' => '1timothy');
+        $tmp_search_meta_vvid_ARRAY[] = array('2tim1_6' => '2timothy');
+        $tmp_search_meta_vvid_ARRAY[] = array('2tim1_6-8' => '2timothy');
+        $tmp_search_meta_vvid_ARRAY[] = array('titus1_1-3' => 'titus');
+        $tmp_search_meta_vvid_ARRAY[] = array('titus2_11-15' => 'titus');
+        $tmp_search_meta_vvid_ARRAY[] = array('titus3_7[000]' => 'titus');
+        $tmp_search_meta_vvid_ARRAY[] = array('titus3_7' => 'titus');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb2_14-15' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb3_6[000]' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb3_6' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb3_7-19[000]' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb3_7-19' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb4_8-16' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb4_11' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb6_17-20' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb7_17-19' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb8_10[000]' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb8_10' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb9_14' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb10_22,19' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb10_22' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb10_21-23' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb10_23' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb10_35' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb10_35,38-39' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb11_1' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb12_1' => 'hebrews');
+        $tmp_search_meta_vvid_ARRAY[] = array('james3_1-2' => 'james');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet1_3-9,13,21' => '1peter');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet1_3-5' => '1peter');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet1_13' => '1peter');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet2_16' => '1peter');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet2_20' => '1peter');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet2_7-8' => '1peter');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet2_24' => '1peter');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet3_15' => '1peter');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet3_5-7,14-22' => '1peter');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet5_8' => '1peter');
+        $tmp_search_meta_vvid_ARRAY[] = array('1john2_15-17' => '1john');
+        $tmp_search_meta_vvid_ARRAY[] = array('1john3_1-10' => '1john');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev2_10-11' => 'revelation');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev2_12-17' => 'revelation');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev2_18-23' => 'revelation');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev2_14[solo]' => 'revelation');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev2_14' => 'revelation');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev2_11|2_17,26-28|3_5,12,21' => 'revelation');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev2_21-22' => 'revelation');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev3_8' => 'revelation');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev3_7-13' => 'revelation');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev3_19' => 'revelation');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev6_16-17' => 'revelation');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev12_3-4,9' => 'revelation');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev12_3-4,13,17;13:2,4' => 'revelation');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev20_6' => 'revelation');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev21_2,9-27' => 'revelation');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev21_7' => 'revelation');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev21_3-5' => 'revelation');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev21_21' => 'revelation');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev22_2' => 'revelation');
 
-        return $tmp_search_vvid_ARRAY;
+        return $tmp_search_meta_vvid_ARRAY;
 
     }
 
@@ -695,12 +825,12 @@ class bringer_of_the_precious_things {
                     break;
 
                 [OUTPUT] --------
-                    $tmp_search_vvid_ARRAY[] = array('{vvid}' => '{IMAGE_PREVIEW_SALT}');
+                    $tmp_search_meta_vvid_ARRAY[] = array('{vvid}' => '{IMAGE_PREVIEW_SALT}');
                     - - - - -
-                    $tmp_search_vvid_ARRAY[] = array('1kings2_1-3' => '1kings');
-                    $tmp_search_vvid_ARRAY[] = array('1kings18_37-40,45;19_1-18' => '1kings');
-                    $tmp_search_vvid_ARRAY[] = array('1sam4_4' => '1samuel');
-                    $tmp_search_vvid_ARRAY[] = array('psa97_2' => 'psalms');
+                    $tmp_search_meta_vvid_ARRAY[] = array('1kings2_1-3' => '1kings');
+                    $tmp_search_meta_vvid_ARRAY[] = array('1kings18_37-40,45;19_1-18' => '1kings');
+                    $tmp_search_meta_vvid_ARRAY[] = array('1sam4_4' => '1samuel');
+                    $tmp_search_meta_vvid_ARRAY[] = array('psa97_2' => 'psalms');
 
                 */
 
@@ -758,7 +888,7 @@ class bringer_of_the_precious_things {
 
                             //error_log(__LINE__ . ' precious [' . print_r($tmp_vnav_vvid_ARRAY, true) . '] $tmp_vvid_meta[' . $tmp_vvid_meta . ']. $this->vvid[' . $this->vvid . '].');
 
-                            $tmp_php_generated_html .= '$tmp_search_vvid_ARRAY[] = array(\'' . $vvid . '\' => \'' . $tmp_vvid_meta . '\');
+                            $tmp_php_generated_html .= '$tmp_search_meta_vvid_ARRAY[] = array(\'' . $vvid . '\' => \'' . $tmp_vvid_meta . '\');
 ';
 
                         }else{
@@ -786,7 +916,7 @@ class bringer_of_the_precious_things {
                     break;
 
                 [OUTPUT] --------
-                    $tmp_search_vvid_ARRAY[] = array(array('IMAGE_RESOURCE_HTTP' => ''), array('psa97_2' => 'cloudsanddeepdarknesssurroundhimrighteo'));
+                    $tmp_search_meta_vvid_ARRAY[] = array(array('ASSET_RESOURCE_HTTP' => ''), array('psa97_2' => 'cloudsanddeepdarknesssurroundhimrighteo'));
 
                 */
                 foreach($tmp_search_meta_vvid_ARRAY as $tmp_index => $tmp_vvid_meta_CHUNKARRAY0){
@@ -808,17 +938,14 @@ class bringer_of_the_precious_things {
                                 Array\n        (\n
                                     [0] => <a href="#" onclick="launch_newwindow('https://jony5.com/downloads/audio/jehovah_has_revealed_his_heart.php'); return false;" target="_blank">Click \n                here</a> to download.\n        )\n\n)\n] $tmp_vvid_meta[capoiv]. $this->vvid[jehovah_has_revealed_dl].
 
-
-
-
-
                         */
+
                         if(isset($tmp_verse_meta_ARRAY['COPY'][0])){
 
                             //
                             // LOWERCASE.
-                            $tmp_book_str = strtolower($tmp_verse_meta_ARRAY['COPY'][0]);
-                            $tmp_vvid_meta = $this->str_sanitize($tmp_book_str, 'bible_book_name');
+                            $tmp_copy_str = strtolower($tmp_verse_meta_ARRAY['COPY'][0]);
+                            $tmp_vvid_meta = $this->str_sanitize($tmp_copy_str, 'search_jony5_vvid_content');
 
                             switch($vvid){
                                 case 'jehovah_has_revealed_dl':
@@ -837,7 +964,75 @@ class bringer_of_the_precious_things {
 
                             //error_log(__LINE__ . ' precious [' . print_r($tmp_verse_meta_ARRAY, true) . '] $tmp_vvid_meta[' . $tmp_vvid_meta . ']. $this->vvid[' . $this->vvid . '].');
 
-                            $tmp_php_generated_html .= '$tmp_search_vvid_ARRAY[] = array(\'' . $vvid . '\' => \'' . $tmp_vvid_meta . '\');
+                            $tmp_php_generated_html .= '$tmp_search_meta_vvid_ARRAY[] = array(array(\'ASSET_RESOURCE_HTTP\' => \'\'), array(\'' . $vvid . '\' => \'' . $tmp_vvid_meta . '\'));
+';
+
+                        }else{
+
+                            error_log(__LINE__ . ' '. __METHOD__ . ' MISSING COPY DATA FOR THE vvid, [' . $this->vvid . '].');
+
+                        }
+
+                    }
+
+                }
+
+            break;
+            case 'JONY5_COMPRESSED_SEARCH_CONTENT':
+
+                /*
+                [INPUT] --------
+
+                [OUTPUT] --------
+                    $tmp_search_meta_vvid_ARRAY[] = array(array('ASSET_RESOURCE_HTTP' => ''), array('psa97_2' => 'cloudsanddeepdarknesssurroundhimrighteo'));
+
+                */
+                foreach($tmp_search_meta_vvid_ARRAY as $tmp_index => $tmp_vvid_meta_CHUNKARRAY0){
+
+                    foreach($tmp_vvid_meta_CHUNKARRAY0 as $vvid => $meta_content){
+
+                        $this->vvid = $vvid;
+                        $tmp_verse_meta_ARRAY = $this->return_verse_preciousness();
+
+                        //error_log(__LINE__ . ' precious [' . print_r($tmp_verse_meta_ARRAY, true) . '] $tmp_vvid_meta[' . $meta_content . ']. $this->vvid[' . $this->vvid . '].');
+                        /*
+                        [Sat Mar 02 07:09:09.364794 2024] [:error] [pid 6891] [client 172.16.225.1:63241] 799 precious [
+                        Array\n(\n
+                            [REFERENCE] => Array\n        (\n            [0] => \n        )\n\n
+                            [SOCIAL_PREVIEW] =>
+                                Array\n        (\n
+                                    [0] => Download Jehovah Has Revealed (Ashes). Vocals: Sister Doris K., Brother Jonathan H. African Djembe Hand Bongo: Brother Kenton W. Guitar: Brother Jonathan H.Jehovah has revealed / His heart to me. / To Him I thus would consecrated be. / As Daniel purposed in his heart...I'll be. / And pray; that God could move on earth through me. / Lord, You need me.\n        )\n\n
+                            [COPY] =>
+                                Array\n        (\n
+                                    [0] => <a href="#" onclick="launch_newwindow('https://jony5.com/downloads/audio/jehovah_has_revealed_his_heart.php'); return false;" target="_blank">Click \n                here</a> to download.\n        )\n\n)\n] $tmp_vvid_meta[capoiv]. $this->vvid[jehovah_has_revealed_dl].
+
+                        */
+
+                        if(isset($tmp_verse_meta_ARRAY['COPY'][0])){
+
+                            //
+                            // LOWERCASE.
+                            $tmp_copy_str = strtolower($tmp_verse_meta_ARRAY['COPY'][0]);
+                            $tmp_vvid_meta = $this->str_sanitize($tmp_copy_str, 'search_jony5_vvid_content');
+
+                            switch($vvid){
+                                case 'jehovah_has_revealed_dl':
+                                case 'jehovah_has_revealed_audio':
+                                case 'jehovah_has_revealed_chords':
+
+                                    $tmp_vvid_meta = 'capoiv';
+
+                                break;
+                                case 'jony5_home_page':
+                                    // projects/crnrstn/philosophy/
+
+                                break;
+
+                            }
+
+                            //error_log(__LINE__ . ' precious [' . print_r($tmp_verse_meta_ARRAY, true) . '] $tmp_vvid_meta[' . $tmp_vvid_meta . ']. $this->vvid[' . $this->vvid . '].');
+
+                            $tmp_php_generated_html .= '$tmp_search_meta_vvid_ARRAY[] = array(\'' . $vvid . '\' => \'' . $tmp_vvid_meta . '\');
 ';
 
                         }else{
@@ -867,10 +1062,307 @@ class bringer_of_the_precious_things {
         // STRUCT OF SCRIPTURES META.
         $tmp_search_meta_vvid_ARRAY = '[' . time() . '] from return_search_meta_scriptures(UGC LEN=' . strlen($ugc_str) . ')';
 
-        /*
-        $tmp_search_meta_ARRAY[] = array('rev21_3-5' => '{IMAGE_PREVIEW_SALT}', 'rev21_21' => '{IMAGE_PREVIEW_SALT}', 'rev22_2' => '{IMAGE_PREVIEW_SALT}');
-
-        */
+        $tmp_search_meta_vvid_ARRAY[] = array('jehovah_has_revealed_dl' => 'capoiv');
+        $tmp_search_meta_vvid_ARRAY[] = array('jehovah_has_revealed_audio' => 'capoiv');
+        $tmp_search_meta_vvid_ARRAY[] = array('jehovah_has_revealed_chords' => 'capoiv');
+        $tmp_search_meta_vvid_ARRAY[] = array('jehovah_has_revealed' => 'divcb_10divstanza_copyspanstanza_copychordsasus2spanstanza_copychordspaddingleft228pxdsus2dsus2adivcbdivscript_ref_numhymn_stanza1divstanza_copyjehovahhasrevealedhishearttomespanchordsasus2spanchordspaddingleft215pxdsus2dsus2atohimithuswouldconsecratedbespanchordspaddingleft30pxfmspanchordspaddingleft215pxeasdanielpurposedinhisheartillbespanchordspaddingleft40pxbmspanchordspaddingleft307pxaspanchordspaddingleft30pxeandpraythatgodcouldmoveonearththroughmespanchordspaddingleft120pxasus2spanchordspaddingleft100pxdsus2dsus2alordyouneedmedivcb_10divscript_ref_numhymn_stanza2divstanza_copysohereiamlordstandingbeforeyouirealizethatmynaturalmanisthroughonlychristhimselfcansatisfymygodhesabsolutemyburntofferingtruelordineedyoudivcb_10divscript_ref_numhymn_stanza3divstanza_copylordyouaretheonewhomeetsgodsneedallmynaturalgoodnessimustleaveuponthealteriwouldfindmyresttobecomeintheendashesatbestwhollyforgoddivcb_10divscript_ref_numhymn_stanza4divstanza_copyohthereisnothingsweetertomylordthanthosewhowouldtheirwholebeingoutpourlivingsacrificesuntogodthroughthemyoudgainyourbrideyourwifeyourlovenewjerusalemnewjerusalem');
+        $tmp_search_meta_vvid_ARRAY[] = array('hymn979' => 'divscript_ref_numhymn_stanzafloatleft1divstanza_copyhowglorioushowbrightitshinestheholynewjerusalemitisgodsdwellingplacewithmanthespotlessbrideofchristthelambdivcb_10divscript_ref_numhymn_stanza2divstanza_copysaintsoftheoldandofthenewheirsofthepromisegodbestowedcomponentsofthecityaretogetherbuiltforgodsabodedivcb_10divscript_ref_numhymn_stanza3divstanza_copyperfectlysquarethecityliesallsidesareequal&ndash&ndashlengthwidthheightnomeasurementmorelongorshortnopartobliqueitstandsuprightdivcb_10spanscript_ref_numhymn_stanza4divstanza_copythecitywithitsstreetpuregoldasclearasglasstransparentisshowingthatgodstranscendentlifeitsqualityandnatureisdivcb_10divscript_ref_numhymn_stanza5divstanza_copytwelvecitygatesareeachonepearlthusmanisthroughredemptionshownrebornandasapearltransformedenteringtoarealmgodsowndivcb_10divscript_ref_numhymn_stanza6divstanza_copythetwelvefoundationsofitswallarewithtwelvepreciousstonesadornedthroughfireandpressurerecomposedandwitheternalvalueformeddivcb_10divscript_ref_numhymn_stanza7divstanza_copythewallofjaspercrystalcleargodsglorybyitfullyshownhisgloriouslightthroughitdoesshineandheappearsasjasperstonedivcb_10divscript_ref_numhymn_stanza8divstanza_copythewallaseparationmakesexcludingallthatisuncleangoldpearlsandpreciousstonesalonetheholycityhaswithindivcb_10divscript_ref_numhymn_stanza9divstanza_copygodandthelambthetempleareweshallbeholdhisgloriousfacehispresenceneverwilldepartwellworshiphimthruendlessdaysdivcb_10spanscript_ref_numhymn_stanza10divstanza_copythecityneedsnosunnormoonforgodsowngloryisitslightthelambsthelampthecitybearsinalldirectionsblazingbrightdivcb_10divscript_ref_numhymn_stanza11divstanza_copyoutfromthethroneofgodandthelambflowsmidstthestreetalivingstreamandonitsbanksoneithersidethetreeoflifeisthrivingseendivcb_10divscript_ref_numhymn_stanza12divstanza_copythissignifiesthelifeofgodnotjustforfoodorwaterflowsbutcarriesgodsauthorityasitthroughoutthecitygoesdivcb_10divscript_ref_numhymn_stanza13divstanza_copythestreetofpurestgoldthereingodsnatureasthewaydothshowariverinitflowsfordrinkandfruitsoflifeabundantgrowdivcb_10spanscript_ref_numhymn_stanza14divstanza_copythenumbertwelvemeansgovernmentperfectionwhicheternalisgodblentwithmanitalsotells&ndash&ndashthreemultipliedbyfourshowsthisdivcb_10divscript_ref_numhymn_stanza15divstanza_copydarknessanddeathshallbenomoresorrowandpainshallpassawayoldwillbegoneandallbenewgodwillabidewithmanforayedivcb_10divscript_ref_numhymn_stanza16divstanza_copythecityhasgodsimagefullitrulesforhimthesovereignkingfulfillinghiseternalplancompletecontenttohimtobring');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen1_1' => 'inthebeginninggodcreatedtheheavensandtheearth');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen1_26' => 'andgodsaidletusmakemaninourimageaccordingtoourlikenessandletthemhavedominionoverthefishoftheseaandoverthebirdsofheavenandoverthecattleandoveralltheearthandovereverycreepingthingthatcreepsupontheearth');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen2_7' => 'jehovahgodformedmanfromthedustofthegroundandbreathedintohisnostrilsthebreathoflifeandmanbecamealivingsoul');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen3_1' => 'nowtheserpentwasmorecraftythananyemotheremanimalofthefieldthatjehovahgodhadmadeandhesaidtothewomandidgodreallysayyoushallnoteatofanytreeofthegarden');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen3_14[COVID]' => 'andjehovahgodsaidtotheserpentbecauseyouhavedonethis&nbsp&nbsp&nbspyouarecursedmorethanallthecattle&nbsp&nbsp&nbspandmorethanalltheanimalsofthefielduponyourstomachyouwillgo&nbsp&nbsp&nbspanddustyouwilleat&nbsp&nbsp&nbspallthedaysofyourlife');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen3_14[solo]' => 'andjehovahgodsaidtotheserpentbecauseyouhavedonethis&nbsp&nbsp&nbspyouarecursedmorethanallthecattle&nbsp&nbsp&nbspandmorethanalltheanimalsofthefielduponyourstomachyouwillgo&nbsp&nbsp&nbspanddustyouwilleat&nbsp&nbsp&nbspallthedaysofyourlife');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen3_14' => 'andjehovahgodsaidtotheserpentbecauseyouhavedonethis&nbsp&nbsp&nbspyouarecursedmorethanallthecattle&nbsp&nbsp&nbspandmorethanalltheanimalsofthefielduponyourstomachyouwillgo&nbsp&nbsp&nbspanddustyouwilleat&nbsp&nbsp&nbspallthedaysofyourlife');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen26_4-5' => 'andiwillmultiplyyourseedasthestarsofheavenandwillgivetoyourseedalltheselandsandinyourseedallthenationsoftheearthwillbeblessedbecauseabrahamobeyedmyvoiceandkeptmychargemycommandmentsmystatutesandmylaws');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen48_21-22|49_1,25-28' => 'spanscript_ref_num21andisraelsaidtojosephnowiamabouttodiebutgodwillbewithyouandwillbringyouagaintothelandofyourfathersmoreoverihavegiventoyouoneportionmorethanyourbrotherswhichitookoutofthehandoftheamoritewithmyswordandwithmybowandjacobcalledtohissonsandsaidgatheryourselvestogetherthatimaytellyouwhatwillhappentoyouinthelastdaysdivcb_10spanscript_ref_num25fromthegodofyourfatherwhowillhelpyou&nbsp&nbsp&nbspandfromtheallsufficientonewhowillblessyouwithblessingsofheavenabove&nbsp&nbsp&nbspblessingsofthedeepthatliesbeneath&nbsp&nbsp&nbspblessingsofthebreastsandofthewombdivcb_5theblessingsofyourfathersurpass&nbsp&nbsp&nbsptheblessingsofmyancestors&nbsp&nbsp&nbsptotheutmostboundoftheeverlastinghillstheywillbeontheheadofjoseph&nbsp&nbsp&nbspandonthecrownoftheheadoftheonewhowasseparatefrom&nbsp&nbsp&nbsp&nbsp&nbsp&nbsphisbrothersdivcb_5benjaminisaspanscript_sup1ravenouswolf&nbsp&nbsp&nbspinthemorningdevouringtheprey&nbsp&nbsp&nbspandintheeveningdividingthespoildivcb_5allthesearethetwelvetribesofisraelandthisiswhattheirfatherspoketothemwhenheblessedthemheblessedthemeachoneaccordingtohisblessing');
+        $tmp_search_meta_vvid_ARRAY[] = array('gen49_1,25-28' => 'spanscript_ref_num1andjacobcalledtohissonsandsaidgatheryourselvestogetherthatimaytellyouwhatwillhappentoyouinthelastdaysdivcb_10spanscript_ref_num25fromthegodofyourfatherwhowillhelpyou&nbsp&nbsp&nbspandfromtheallsufficientonewhowillblessyouwithblessingsofheavenabove&nbsp&nbsp&nbspblessingsofthedeepthatliesbeneath&nbsp&nbsp&nbspblessingsofthebreastsandofthewombdivcb_5theblessingsofyourfathersurpass&nbsp&nbsp&nbsptheblessingsofmyancestors&nbsp&nbsp&nbsptotheutmostboundoftheeverlastinghillstheywillbeontheheadofjoseph&nbsp&nbsp&nbspandonthecrownoftheheadoftheonewhowasseparatefrom&nbsp&nbsp&nbsp&nbsp&nbsp&nbsphisbrothersdivcb_5benjaminisaspanscript_sup1ravenouswolf&nbsp&nbsp&nbspinthemorningdevouringtheprey&nbsp&nbsp&nbspandintheeveningdividingthespoildivcb_5allthesearethetwelvetribesofisraelandthisiswhattheirfatherspoketothemwhenheblessedthemheblessedthemeachoneaccordingtohisblessing');
+        $tmp_search_meta_vvid_ARRAY[] = array('lifestudy_exo_156' => 'theresultofservinginthetabernaclewithoutfirstwashinginthelaverdivcb_10whenwepraytooffersomethingtothelordwefirstneedtowashourhandsandevenourfeetinthelavertocometothemeetingtofunctionisactuallytocomeintothetabernacletoservethelordbeforeweservethelordinthetabernacleweneedtowashhoweverinthechristianlifeofmanybelieversandintheirservicetogodtheredoesnotseemtobealaverwhentheycometothealtertomakeanofferingtogodtheyhaveuncleanhandstheymaycomeintothechurchmeetingsandservewithoutwashingtheirhandsinthelaverthiskindofservicebringsindeaththisisthereasonexodus3021says&quotthentheyshallwashtheirhandsandtheirfeetthattheymaynotdie&quotdivcb_10weshouldbecarefulnottotouchgodsserviceunlesswehavefirstwashedourhandsinthelaverifwetrytoservegodinthetabernaclewithuncleanhandsweshalldiespirituallyspeakinghowmuchdeaththereisamongchristianstodaythemoretheyservethemoredeaththeyhavebecausetheyservewithuncleanhandsprayingandservingwithuncleanhandsbringsindeathdivcb_10ifwedonotprayinthemeetingsorfunctioninasensewemaybesomewhatlivingbutifweprayorfunctionwithoutwashinginthelaverweshallbringdeathtoourselvesandalsospreaddeathtoothersdeathistheresultofourtryingtoprayorservewithoutwashinginthelaver');
+        $tmp_search_meta_vvid_ARRAY[] = array('exo9_29' => 'andmosessaidtohimassoonasihavegoneoutofthecityiwillspreadoutmyhandstojehovahthethunderwillceaseandtherewillnotbeanymorehailthatyoumayknowthattheearthisjehovahs');
+        $tmp_search_meta_vvid_ARRAY[] = array('exo15_26' => 'andhesaidifyouwilllistencarefullytothevoiceofjehovahyourgodanddowhatisrightinhiseyesandgiveeartohiscommandmentsandkeepallhisstatutesiwillputnoneofthediseasesonyouwhichihaveputontheegyptiansforiamjehovahwhohealsyou');
+        $tmp_search_meta_vvid_ARRAY[] = array('exo20_6' => 'yetshowinglovingkindnesstothousandsofgenerationsofthosewholovemeandkeepmycommandments');
+        $tmp_search_meta_vvid_ARRAY[] = array('exo20_13' => 'youshallnotkill');
+        $tmp_search_meta_vvid_ARRAY[] = array('exo20_15' => 'youshallnotsteal');
+        $tmp_search_meta_vvid_ARRAY[] = array('exo30_18' => 'youshallalsomakeaspanscript_sup1laverofbronzewithitsbaseofbronzeforwashingandyoushallputitbetweenthetentofmeetingandthealterandyoushallputwaterinit');
+        $tmp_search_meta_vvid_ARRAY[] = array('exo30_17-21' => 'andjehovahspoketomosessayingyoushallalsomakealaverofbronzewithitsbaseofbronzeforwashingandyoushallputitbetweenthetentofmeetingandthealterandyoushallputwaterinitandaaronandhissonsshallwashtheirhandsandtheirfeetemwithwateremfromitwhentheygointothetentofmeetingtheyshallwashwithwaterthattheymanynotdieorwhentheycomeneartothealtertoministertoburnanofferingbyfiretojehovahtheyshallwashtheirhandsandtheirfeetthattheymaynotdieanditshallbeaperpetualstatutetothemforhimandforhisseedthroughouttheirgenerations');
+        $tmp_search_meta_vvid_ARRAY[] = array('lev2_1' => 'andwhenanyonepresentsanofferingofamealofferingtojehovahhisofferingshallbeofspanscript_sup2fineflourandheshallpouroilonitandputfrankincenseonit');
+        $tmp_search_meta_vvid_ARRAY[] = array('lev18_1-5,24-28' => 'spanscript_ref_num1thenjehovahspoketomosessayingspeaktothechildrenofisraelandsaytothemiamjehovahyourgodyoushallnotdoastheydointhelandofegyptinwhichyoudweltandyoushallnotdoastheydointhelandofcanaanwhereiambringingyounorshallyouwalkintheirstatutesdivcb_10youshallobservemyordinancesandyoushallkeepmystatutestowalkinthemiamjehovahyourgodsoyoushallkeepmystatutesandmyordinancesbywhichifamandoesthemhewilllivedivcb_10iamjehovahdivcb_10spanscript_ref_num24donotdefileyourselvesinanyofthesethingsforbyallthesethenationswhichiamcastingoutbeforeyouhavedefiledthemselvesbecausethelandhasbecomedefiledivisiteditsiniquityuponitandthelandvomitedoutitsinhabitantsdivcb_10youthereforeshallkeepmystatutesandmyordinancesandshallnotdoanyoftheseabominationsneitherthenativenorthesojournerwhosojournsamongyouforthemenofthelandwhowerebeforeyouhavedonealltheseabominationsandthelandhasbecomedefileddivcb_10thatthelanddoesnotvomityououtwhenyoudefileitasitvomitedoutthenationwhichwasbeforeyouforallwhodoanyoftheseabominationsthosepersonswhodothemshallbecutofffromamongtheirpeoplethereforeyoushallkeepmychargesothatyoudonotcommitanyoftheseabominablecustomswhichwerecommittedbeforeyouandyoudonotdefileyourselvesbythemdivcb_10iamjehovahyourgod');
+        $tmp_search_meta_vvid_ARRAY[] = array('lev26_3-13' => 'ifyouwalkinmystatutesandkeepmycommandmentsanddothemtheniwillgiveyouyourrainsintheirseasonandthelandwillyielditsproduceandthetreesofthefieldwillyieldtheirfruitdivcb_10indeedyourthreshingwillovertakethevintageandthevintagewillovertakethesowingtimethusyouwilleatyourbreaduntosatisfactionanddwellsecurelyinyourlandandiwillgiveyoupeaceinthelandsothatyouwillliedownandnoonewillmakeyouafraidandiwillcausewildbeaststoceaseoutofyourlandandnoswordwillpassthroughyourlanddivcb_10andyouwillchaseyourenemiesandtheywillfallbytheswordbeforeyouandfiveofyouwillchaseahundredandahundredofyouwillchasetenthousandandyourenemieswillfallbytheswordbeforeyouandiwillturnmyfacetowardyouandmakeyoufruitfulandmultiplyyouandiwillestablishmycovenantwithyouandyouwilleattheoldsupplylongstoredandwillhavetoclearouttheoldbecauseofthenewdivcb_10andiwillsetmytabernacleamongyouandmysoulwillnotabhoryouandiwillwalkamongyouandbeyourgodandyouwillbemypeopleiamjehovahyourgodwhobroughtyououtofthelandofegyptsothatyoushouldnotbetheirslavesandihavebrokenthebarsofyouryokeandmadeyouwalkupright');
+        $tmp_search_meta_vvid_ARRAY[] = array('lev26_3,11b-12' => 'spanscript_ref_num3ifyouwalkinmystatutesandkeepmycommandmentsanddothemdivcb_10spanscript_ref_num11bmysoulwillnotabhoryouandiwillwalkamongyouandbeyourgodandyouwillbemypeople');
+        $tmp_search_meta_vvid_ARRAY[] = array('num14_31' => 'butyourlittleoneswhomyousaidwouldbecomeplunderiwillbringinandtheywillknowthelandwhichyouhaverejected');
+        $tmp_search_meta_vvid_ARRAY[] = array('num14_31[000]' => 'butyourlittleoneswhomyousaidwouldbecomeplunderiwillbringinandtheywillknowthelandwhichyouhaverejected');
+        $tmp_search_meta_vvid_ARRAY[] = array('num14_29-30' => 'yourcorpsesshallfallinthiswildernessandnoneofyouwhowerenumberedaccordingtothenumberyoucountedfromtwentyyearsoldandupwardwhohavemurmuredagainstmeshallcomeintothelandinwhichisworetosettleyouexceptcalebthesonofjephunnehandjoshuathesonnun');
+        $tmp_search_meta_vvid_ARRAY[] = array('num14_35' => 'ijehovahhavespokensurelyiwilldothistoallthisevilassemblywhoaregatheredtogetheragainstmeinthiswildernesstheyshallbeconsumedandtheretheyshalldie');
+        $tmp_search_meta_vvid_ARRAY[] = array('num25_1-13' => 'whileisraeldweltinshittimthepeoplebegantocommitfornicationwiththedaughtersofmoabfortheyinvitedthepeopletothesacrificesoftheirgodsandthepeopleateandboweddowntotheirgodsandisraeljoineditselftobaalpeorandtheangerofjehovahwaskindledagainstisraelandjehovahsaidtomosestakealltheleadersofthepeopleandhangthemuptojehovahbeforethesunsothatthefierceangerofjehovahmayturnawayfromisraelandmosessaidtothejudgesofisraeleachofyouslayhismenwhohavejoinedthemselvestobaalpeordivcb_10justthenoneofthechildrenofisraelcameandbroughtamidianitewomantohisbrothersinthesightofmosesandonthesightofthewholeassemblyofthechildrenofisraelwhiletheywereweepingattheentranceofthetentofmeetingandwhenphinehasthesonofeleazarthesonofaaronthepriestsawitheroseupfromthemidstoftheassemblyandtookaspearinhishanddivcb_10andhewentafterthemanofisraelintothetentandpiercedbothofthemthemanofisraelandthewomanthroughherstomachsotheplagueamongthechildrenofisraelwasstoppedandthosewhodiedbytheplagueweretwentyfourthousanddivcb_10thenjehovahspoketomosessayingphinehasthesonofeleazarthesonofaaronthepriesthasturnedmywrathawayfromthechildrenofisraelinthathewasjealouswithmyjealousyamongthemsothatididnotconsumethechildrenofisraelinmyjealousydivcb_10thereforesayinowgivehimmycovenantofpeaceanditshallbetohimandtohisseedafterhimthecovenantofaneverlastingpriesthoodbecausehewasjealousforhisgodandmadeexpiationforthechildrenofisrael');
+        $tmp_search_meta_vvid_ARRAY[] = array('num32_13' => 'andjehovahsangerwaskindledagainstisraelhemadethemwanderinthewildernessfortyyearsuntilthewholegenerationwhichhaddoneevilinthesightofjehovahwasconsumed');
+        $tmp_search_meta_vvid_ARRAY[] = array('num33_50-54' => 'thenjehovahspoketomosesintheplainsofmoabbythejordanatjerichosayingspeaktothechildrenofisraelandsaytothemwhenyoupassoverthejordanintothelandofcanaanyoushalldriveoutalltheinhabitantsofthelandfrombeforeyouandyoushalldestroyalltheirfiguredstonesanddestroyalltheirmoltenimagesanddemolishalltheirhighplacesdivcb_10andyoushalltakepossessionofthelandanddwellinitfortoyouihavegiventhelandtopossessitandyoushallinheritthelandbylotaccordingtoyourfamiliestothelargeryoushallgivealargerinheritanceandtothesmalleryoushallgiveasmallerinheritancewhereverthelotfallstoanyonethatshallbehisyoushallinheritaccordingtothetribesofyourfathersdivcb_10butifyoudonotdriveouttheinhabitantsofthelandfrombeforeyouthenthosewhomyouletremainofthemwillbecomeassplintersinyoureyesandasthornsinyoursidesandtheywilltroubleyouinthelandinwhichyouaredwellingandjustasithoughttodotothemsowillidotoyou');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut4_1-2,39-40' => 'spanscript_ref_num1andnowoisraellistentothestatutesandtheordinanceswhichiamteachingyoutodoinorderthatyoumayliveandgoinandpossessthelandwhichjehovahthegodofyourfathersisgivingyouyoushallnotaddtothewordwhichiamcommandingyounorshallyoutakeawayfromitthatyoumaykeepthecommandmentsofjehovahyourgodwhichiamcommandingyoudivcb_10spanscript_ref_num39knowthereforetodayandbringittoheartthatjehovahisgodinheavenaboveandupontheearthbelowthereisnootherthereforekeephisstatutesandhiscommandmentswhichiamcommandingyoutodaythatitmaygowellwithyouandwithyourchildrenafteryousothatyoumayextendyourdaysuponthelandwhichjehovahyourgodisgivingyouforever');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut5_10,29' => 'spanscript_ref_num10yetshowinglovingkindnesstothousandsofgenerationsofthosewholovemeandkeepmycommandmentsdivcb_10spanscript_ref_num29ohthatthisheartoftheirswouldbeinthemalwaystofearmeandkeepallmycommandmentssothatitmaygowellwiththemandwiththeirchildrenforever');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut6_1-6,16-25' => 'spanscript_ref_num1nowthisisthecommandmentthestatutesandtheordinanceswhichjehovahyourgodhascommandedmetoteachyouthatyoumaydotheminthelandintowhichyouarecrossingovertopossessthatyoumayfearjehovahyourgodandkeepallhisstatutesandhiscommandmentswhichiamcommandingyouyouandyoursonandyourgrandsonallthedaysofyourlifeandthatyourdaysmaybeextendeddivcb_10thereforehearoisraelandbecertaintodoitthatitmaygowellwithyouandthatyoumaybegreatlyincreasedinalandflowingwithmilkandhoneyevenasjehovahthegodofyourfatherspromisedyoudivcb_10hearoisraeljehovahisourgodjehovahisoneandyoushalllovejehovahyourgodwithallyourheartandwithallyoursoulandwithallyourmightandthesewordswhichicommandyoutodayshallbeuponyourheartdivcb_10spanscript_ref_num16youshallnottestjehovahyourgodasyoutestedhimatmassahyoushalldiligentlykeepthecommandmentsofjehovahyourgodandhistestimoniesandhisstatuteswhichhehascommandedyouandyoushalldothatwhichisrightandgoodinthesightofjehovahsothatitmaygowellwithyouandyoumayenterandpossessthegoodlandconcerningwhichjehovahsworetoyourfatherstodriveoutallyourenemiesfrombeforeyouasjehovahhasspokendivcb_10whenyoursonasksyouinthefuturesayingwhatisthesignificanceofthetestimoniesandthestatutesandtheordinancesthatjehovahourgodcommandedyouthenyouwillsaytoyoursonwewerepharaohsslavesinegyptandjehovahbroughtusoutofegyptwithamightyhandandjehovahputforthbeforeoureyesgreatandgrievoussignsandwondersinegyptagainstpharaohandallhishousethenhebroughtusoutfromthereinordertobringusinthathemightgiveusthelandwhichhesworetoourfathersdivcb_10andjehovahcommandedustodoallthesestatutessothatwewouldfearjehovahourgodforourgoodalwaysandhewouldpreserveusaliveaswearethisdayanditwillberighteousnesstousifwearecertaintodoallthiscommandmentbeforejehovahourgodashecommandedus');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut6_25' => 'anditwillberighteousnesstousifwearecertaintodoallthiscommandmentbeforejehovahourgodashecommandedus');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut7_9-26' => 'knowthereforethatitisjehovahyourgodwhoisgodthefaithfulgodwhokeepscovenantandlovingkindnesstothethousandthgenerationwiththosewholovehimandkeephiscommandmentsbutrepaysdirectlythosewhohatehimbydestroyingthemhewillnotbeslowtowardhimwhohateshimhewillrepayhimdirectlydivcb_10thereforeyoushallkeepthecommandmentandthestatutesandtheordinanceswhichiamcommandingyoutodaytodoanditwillbethatbecauseyoulistentotheseordinancesandkeepthemanddothemjehovahyourgodwillkeepwithyouthecovenantandthelovingkindnesswhichhesworetoyourfathersdivcb_10andhewillloveyouandblessyouandmultiplyyouhewillalsoblessthefruitofyourwombandthefruitofyourgroundyourgrainandyournewwineandyourfreshoiltheoffspringofyourcattleandtheyoungofyourflockonthelandwhichhesworetoyourfatherstogiveyoudivcb_10youwillbemoreblessedthanallotherpeoplestherewillnotbeanybarrenmaleorfemaleamongyouoramongyouranimalsandjehovahwillremoveeverysicknessfromyouandnoneoftheevilillnessesofegyptwhichyouknowaboutwillheputuponyoubuthewillgivethemtoallwhohateyoudivcb_10andyoushalldevourallthepeopleswhichjehovahyourgodisgivingyouyoureyeshallnotpitythemnorshallyouservetheirgodsforthatwouldbeasnaretoyoudivcb_10ifyousayinyourheartthesenationsaregreaterthanihowwillibeabletodispossessthemyoushallnotbeafraidofthemyoumustrememberwhatjehovahyourgoddidtopharaohandtoallegyptthegreattrialsthatyoureyessawandthesignsandthewondersandthemightyhandandtheoutstretchedarmwithwhichjehovahyourgodbroughtyououtsowilljehovahyourgoddotoallthepeopleswhomyouareafraidofdivcb_10furthermorejehovahyourgodwillsendthehornetamongthemuntilthosewhoareleftandthosewhohidethemselvesfromyouaredestroyedyoushallnotbeterrifiedofthemforjehovahyourgodisinyourmidstagreatandawesomegoddivcb_10andjehovahyourgodwillclearawaythesenationsfrombeforeyoulittlebylittleyoushallnotdevourallofthemimmediatelylestthebeastsofthefieldmultiplyagainstyoubutjehovahyourgodwilldeliverthemupbeforeyouandroutthemutterlyuntiltheyaredestroyeddivcb_10andhewilldelivertheirkingsintoyourhandandyoushalldestroytheirnamefromunderheavennomanwillbeabletostandagainstyouuntilyoudestroythemtheidolsoftheirgodsyoushallburnwithfireyoushallnotdesirethesilverorgolduponthemnortakeitforyourselflestyoubeensnaredbyitforitisanabominationtojehovahyourgodandyoushallnotbringanabominationintoyourhouselestyoubecomeacursedthinglikeityoushallutterlydetestitandutterlyabhoritforitisacursedthing');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut8_1-10' => 'thewholecommandmentwhichiamcommandingyoutodayyoushallkeepanddosothatyoumayliveandmultiplyandenterandpossessthelandwhichjehovahsworetoyourfathersandyoushallrememberallthewaythatjehovahyourgodhasledyouthesefortyyearsinthewildernessinordertohumbleyouandtestyoutoknowwhatwasinyourheartwhetheryouwouldkeephiscommandmentsornotdivcb_10andhehumbledyouandletyougohungryandfedyouthemannawhichyouhadneverknownnoryourfathershadeverknownsothathemightmakeyouknowthatmanlivesnotbybreadalonebutthatmanlivesbyeverythingthatproceedsoutfromthemouthofjehovahdivcb_10yourclothingdidnotwearoutfromuponyounordidyourfootswellthesefortyyearsknowtheninyourheartthatasamandisciplineshissonsojehovahyourgodwasdiscipliningyoudivcb_10thereforekeepthecommandmentsofjehovahyourgodwalkinginhiswaysandfearinghimdivcb_10forjehovahyourgodisbringingyoutoagoodlandalandofwaterbrooksofspringsandoffountainsflowingforthinvalleysandinmountiansalandofwheatandbarleyandvinesandfigtreesandpomegranatesalandofolivetreeswithoilandofhoneyalandinwhichyouwilleatbreadwithoutscarcityyouwillnotlackanythinginitalandwhosestonesareironandfromwhosemountainsyoucanminecopperdivcb_10andyoushalleatandbesatisfiedandyoushallblessjehovahyourgodforthegoodlandwhichhehasgivenyou');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut10_14-22' => 'beholdheavenandtheheavenofheavensbelongtojehovahyourgodtheearthandallthatisinitbutonyourfathersjehovahsethisaffectiontolovethemandtochoosetheirseedafterthemthatisyouaboveallthepeoplesasitisthisdaycircumcisethentheforeskinofyourheartanddonotbestiffneckedanylongerforitisjehovahyourgodwhoisthegodofgodsandthelordoflordsthegreatgodmightyandawesomewhodoesnotregardpersonsanddoesnottakebribesheexecutesjusticefortheorphanandthewidowandhelovesthesojournergivinghimfoodandclothingdivcb_10thereforelovethesojournerforyouweresojournersinthelandofegyptyoushallfearjehovahyourgodhimshallyouserveandtohimshallyouholdfastandbyhisnameshallyouswearheisyourpraiseandheisyourgodwhohasdonethesegreatandawesomethingsforyouwhichyoureyeshaveseenyourfatherswentdownintoegyptasseventysoulsandnowjehovahyourgodhasmadeyouasthestarsofheaveninmultitude');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut11_14' => 'iwillgiverainforyourlandinitsseasontheearlyrainandthelaterainsothatyoumaygatheryourgrainandyournewwineandyourfreshoil');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut11_1,8-15,22-28' => 'spanscript_ref_num1thereforeyoushalllovejehovahyourgodandkeephischargeandhisstatutesandhisordinancesandhiscommandmentsalwaysdivcb_10spanscript_ref_num8thereforeyoushallkeepthewholecommandmentwhichiamcommandingyoutodaysothatyoumaybestrongandthatyoumaygoinandpossessthelandintowhichyouarecrossingovertopossessandsothatyoumayextendyourdaysuponthegroundwhichjehovahsworetoyourfatherstogivetothemandtotheirseedalandflowingwithmilkandhoneydivcb_10forthelandwhichyouareenteringintopossessisnotlikethelandofegyptfromwhichyoucameforthwhereyouusedtosowyourseedandwaterbyfootasinavegetablegardenbutthelandintowhichyouarecrossingovertopossessisalandofmountainsandvalleysbyvirtueofheavensrainitdrinksinwaterdivcb_10itisalandwhichjehovahyourgodcaresforalwaystheeyesofjehovahyourgodareuponitfromthebeginningoftheyeareventotheendoftheyearandifyouarecertaintolistentomycommandmentswhichiamcommandingyoutodaytolovejehovahyourgodandservehimwithallyourheartandwithallyoursouliwillgiverainforyourlandinitsseasontheearlyrainandthelaterainsothatyoumaygatheryourgrainandyournewwineandyourfreshoilandiwillputgrassinyourfieldforyourcattleandyouwilleatandbesatisfieddivcb_10spanscript_ref_num22forifyouarecertaintokeepallthiscommandmentwhichiamcommandingyoutodotolovejehovahyourgodtowalkinallhiswaysandholdfasttohimjehovahwilldispossessallthesenationsfrombeforeyouandyouwilldispossessnationsgreaterandmightierthanyoudivcb_10everyplaceonwhichthesoleofyourfoottreadswillbeyoursfromthewildernessandlebanonfromtherivertherivereuphrateseventothefarmostseawillbeyourterritorynomanwillbeabletostandagainstyoujehovahyourgodwillputthedreadandfearofyouuponallthelandonwhichyoutreadashehasspokentoyoudivcb_10seeiamsettingbeforeyoutodayablessingandacursetheblessingifyoulistentothecommandmentsofjehovahyourgodwhichiamcommandingyoutodayandthecurseifyoudonotlistentothecommandmentsofjehovahyourgodandyouturnasidefromthewaywhichiamcommandingyoutodaytogoafterothergodswhomyouhavenotknown');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut26_16-19' => 'thisdayjehovahyourgodiscommandingyoutodothesestatutesandordinancesthereforeyoushallkeepthemanddothemwithallyourheartandwithallyoursoulitisjehovahwhomyouhavetodaydeclaredtobeyourgodandthatyouwillwalkinhiswaysandkeephisstatutesandhiscommandmentsandhisordinancesandwilllistentohisvoicedivcb_10anditisjehovahwhohastodaydeclaredyoutobeapeopleforhispersonaltreasureevenashepromisedyouandthatyouwillkeepallhiscommandmentsandthathewillsetyouhighaboveallthenationswhichhehasmadeforpraiseandforanameandforhonorandthatyouwillbeaholypeopletojehovahyourgodashehasspoken');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut28_1-14' => 'andifyoulistendiligentlytothevoiceofjehovahyourgodandarecertaintodoallhiscommandmentswhichiamcommandingyoutodayjehovahyourgodwillsetyouhighaboveallthenationsoftheearthandalltheseblessingswillcomeuponyouandovertakeyouifyoulistentothevoiceofjehovahyourgoddivcb_10blessedshallyoubeinthecityandblessedshallyoubeinthefieldblessedshallbethefruitofyourwombandthefruitofyourgroundandthefruitofyouranimalstheoffspringofyourcattleandtheyoungofyourflockdivcb_10blessedshallbeyourbasketandyourkneadingbowlblessedshallyoubewhenyoucomeinandblessedshallyoubewhenyougooutjehovahwillcauseyourenemieswhoriseupagainstyoutobestruckdownbeforeyouononeroadtheywillcomeoutagainstyoubutonsevenroadstheywillfleebeforeyoudivcb_10jehovahwillcommandtheblessinguponyouinyourstorehousesandinallyourundertakingsandhewillblessyouinthelandwhichjehovahyourgodisgivingyoujehovahwillestablishyouasaholypeopletohimselfashesworetoyouifyoukeepthecommandmentsofjehovahyourgodandwalkinhiswaysdivcb_10andallthepeoplesoftheearthwillseethatyouarecalledbyjehovahsnameandtheywillbeafraidofyouandjehovahwillgiveyouanexcessofprosperityinthefruitofyourwombandinthefruitofyouranimalsandinthefruitofyourgrounduponthegroundwhichjehovahsworetoyourfatherstogiveyoudivcb_10jehovahwillopenuptoyouhisgoodtreasurytheheavenstogiverainforyourlandinitsseasonandtoblessallyourundertakingsandyouwilllendtomanynationsbutyouwillnotborrowandjehovahwillmakeyoutheheadandnotthetailandyouwilltendonlyupwardandyouwillnottenddownwardifyouwilllistentothecommandmentsofjehovahyourgodwhichiamcommandingyoutodaytokeepandtododivcb_10andyoushallnotturnasidefromanyofthewordswhichiamcommandingyoutodaytotherightortothelefttogoafterothergodstoservethem');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut30_11-20' => 'forthiscommandmentwhichiamcommandingyoutodayitisnottoodifficultforyounorisitdistantitisnotinheaventhatyoushouldsaywhowillascendtoheavenforusandbringittoustomakeushearitanddoitnorisitacrosstheseathatyoushouldsaywhowillgoacrosstheseaforusandbringittoustomakeushearitanddoitdivcb_10butthewordisveryneartoyoueveninyourmouthandinyourheartthatyoumaydoitseeihaveputbeforeyoutodaylifeandgoodanddeathandevilifyouobeythecommandmentsofjehovahyourgodwhichiamcommandingyoutodaytolovejehovahyourgodandwalkinhiswaysandkeephiscommandmentsandhisstatutesandhisordinancesthenyouwillliveandmultiplyandjehovahyourgodwillblessyouinthelandwhichyouareenteringtopossessdivcb_10butifyourheartturnsandyoudonotlistenbutratheryouaredrawnawayinworshiptoothergodsandservethemideclaretoyoutodaythatyoushallsurelyperishyourdayswillnotbeextendeduponthelandintowhichyouarecrossingoverthejordantogoandpossessdivcb_10icallheavenandearthtowitnessagainstyoutodayihavesetbeforeyoulifeanddeathblessingandcursethereforechooselifethatyouandyourseedmayliveinlovingjehovahyourgodbylisteningtohisvoiceandholdingfasttohimforheisyourlifeandthelengthofyourdaysthatyoumaydwelluponthelandwhichjehovahsworetoyourfatherstoabrahamtoissacandtojacobtogivethem');
+        $tmp_search_meta_vvid_ARRAY[] = array('deut33_1-4,12,29' => 'spanscript_ref_num1andthisistheblessingwithwhichmosesthemanofgodblessedthechildrenofisraelbeforehisdeathdivcb_5andhesaidjehovahcamefromsinai&nbsp&nbsp&nbspandhedawneduponthemfromseirheshinedforthfrommountparan&nbsp&nbsp&nbspandheapproachedfromthemyriadsofholyones&nbsp&nbsp&nbspfromhisrighthandafierylawemwentemouttothemdivcb_5indeedhelovesthepeople&nbsp&nbsp&nbspallhissaintswereinyourhandandtheysatdownatyourfeet&nbsp&nbsp&nbspemeveryoneemreceivesofyourwordsdivcb_5mosescommandedusalaw&nbsp&nbsp&nbspapossessionofthecongregationofjacobdivcb_10spanscript_ref_num12concerningbenjaminhesaidthebelovedofjehovahshalldwellsecurelybesidehim&nbsp&nbsp&nbspemjehovahemshallcoveroverhimalltheday&nbsp&nbsp&nbspandheshalldwellbetweenhisshouldersdivcb_10spanscript_ref_num29happyareyouoisraelwhoislikeyou&nbsp&nbsp&nbspapeoplesavedbyjehovahtheshieldofyourhelp&nbsp&nbsp&nbspandemheemwhoistheswordofyourmajestysoyourenemiesshallcomecringingtoyou&nbsp&nbsp&nbspandyoushalltreadupontheirhighplaces');
+        $tmp_search_meta_vvid_ARRAY[] = array('josh5_6' => 'forthechildrenofisraelwentforfortyyearsthroughthewildernessuntilallthenationthemenofwarwhohadcomeoutofegyptwereconsumedbecausetheydidnotlistentothevoiceofjehovahtheytowhomjehovahsworethattheywouldnotseethelandthatjehovahhassworntotheirfatherstogiveusalandflowingwithmilkandhoney');
+        $tmp_search_meta_vvid_ARRAY[] = array('1sam4_4' => 'sothepeoplesentemmenemtoshilohandtheytookupfromtherethearkofthecovenantofjehovahofhostswhoisenthronedembetweenemthecherubimandthetwosonsofelihophniandphinehasweretherewiththearkofthecovenantofgod');
+        $tmp_search_meta_vvid_ARRAY[] = array('1kings2_1-3' => 'whendavidstimetodiedrewnearhecommandedsolomonhissonsayingiamgoingthewayofalltheearthbestrongthereforeandbeamanandkeepthechargeofjehovahyourgodbywalkinginhiswaysbykeepinghisstatuteshiscommandmentsandhisordinancesandhistestimoniesastheyarewritteninthelawofmosesthatyoumayprosperinallthatyoudoandwhereveryouturn');
+        $tmp_search_meta_vvid_ARRAY[] = array('1kings8_54-66' => 'andwhensolomonhasfinishedprayingallthisprayerandsupplicationtojehovahheroseupfrombeforethealterofjehovahfromkneelingonhiskneeswithhishandsspreadtowardtheheavensandhestoodandblessedthewholecongregationofisraelwithaloudvoicesayingdivcb_10blessedbejehovahwhohasgivenresttohispeopleisraelaccordingtoallthathepromisednotonewordofallhisgoodpromiseswhichhespokethroughmoseshisservanthasfailedmayjehovahourgodbewithusashewaswithourfatherslethimnotforsakeusnorabandonusthathemayinclineourheartstohimselftowalkinallhiswaysandtokeephiscommandmentsandhisstatutesandhisordinanceswhichhecommandedourfathersdivcb_10andletthesewordsofminewithwhichimadesupplicationtojehovahbeneartojehovahourgoddayandnighttomaintainthecauseofhisservantandthecauseofhispeopleisraelaseachdayrequiresthatallthepeoplesoftheearthmayknowthatjehovahisgodthereisnoneelseletyourheartthereforebeperfectwithjehovahourgodtowalkinhisstatutesandtokeephiscommandmentsasonthisdaydivcb_10andthekingandallisraelwithhimofferedsacrificesbeforejehovahandsolomonofferedasacrificeofpeaceofferingswhichheofferedtojehovahtwentytwothousandoxenandonehundredandtwentythousandsheepthusthekingandallthechildrenofisraeldedicatedthehouseofjehovahdivcb_10onthatdaythekingsanctifiedthemiddleofthecourtthatwasbeforethehouseofjehovahforthereheofferedtheburntofferingandthemealofferingandthefatofpeaceofferingsbecausethebronzealterwhichwasbeforejehovahwastoosmalltoreceivetheburntofferingandthemealofferingandthefatofpeaceofferingsdivcb_10andsolomonheldafeastatthattimeandallisraelwithhimagreatcongregationfromtheentranceofhamathtothebrookofegyptbeforejehovahourgodsevendaysandsevenmoredaysfourteendaysinallontheeightdayhesentthepeopleawayandtheyblessedthekingandwenttotheirtentsjoyfulandhappyinheartforallthegoodnesswhichjehovahhadshowntodavidhisservantandtoisraelhispeople');
+        $tmp_search_meta_vvid_ARRAY[] = array('1kings18_37-40,45;19_1-18' => 'spanscript_ref_num37answermeojehovahanswermethatthispeoplemayknowthatyouojehovaharegodandthatyouhaveturnedtheirheartbackagainandthefireofjehovahfellandconsumedtheburntofferingandthewoodandthestonesandthedustanditlickedupthewaterthatwasinthetrenchdivcb_10andwhenthepeoplesawthistheyfellontheirfacesandsaidjehovah&ndash&ndashheisgodjehovah&ndash&ndashheisgoddivcb_10andelijahsaidtothemseizetheprophetsofbaalletnotoneofthemescapeandtheyseizedthemandelijahbroughtthemdowntothebrookkishonandslaughteredthemtheredivcb_10spanscript_ref_num45andinthemeantimetheheavensbecameblackwithcloudsandtherewaswindandagreatrainandahabmountedhischariotandwenttojezreeldivcb_10andthehandofjehovahwasuponelijahandhegirdeduphisloinsandranbeforeahabtotheentranceofjezreelandahabtoldjezebelallthatelijahhaddoneandallabouthowhehadslainalltheprophetswiththeswordandjezebelsentamessengertoelijahsayingthegodsdosotomeandevenmoreifbythistimetomorrowidonotmakeyourlifelikethelifeofoneofthemdivcb_10andbecausehewasafraidheroseupandwentawayforhislifeandhecametobeershebawhichbelongstojudahandlefthisattendantthereandhehimselfwentadaysjourneyintothewildernessandcameandsatdownunderacertainbroomshrubandherequestedforhimselfthathemightdieandsaiditisenoughnowojehovahtakemylifeforiamnobetterthanmyfathersdivcb_10andhelaydownandsleptunderthebroomshrubandsuddenlyanangeltouchedhimandsaidtohimriseupandeatandhelookedandthereathisheadwasacakebakedonhotstonesandajarofwaterandheateanddrankandlaydownagainandtheangelofjehovahcameagainthesecondtimeandtouchedhimandsaidriseupandeatforthejourneyistoogreatforyoudivcb_10andheroseupandateanddrankandhewentinthestrengthofthatfoodfortydaysandfortynightstohorebthemountofgodandtherehewentintoacaveandlodgedthereandatthattimethewordofjehovahcametohimandhesaidtohimwhatareyoudoinghereelijahdivcb_10andhesaidihavebeenveryjealousforjehovahthegodofhostsforthechildrenofisraelhaveforsakenyourcovenantthrowndownyouraltersandslainyourprophetswiththeswordandialoneamleftandtheyseektotakemylifedivcb_10andhesaidgooutandstanduponthemountainbeforejehovahandsuddenlyjehovahpassedbyandagreatstrongwindrentthemountainsandbroketherocksinpiecesbeforejehovah&ndash&ndashjehovahwasnotinthewindandafterthewindanearthquake&ndash&ndashjehovahwasnotintheearthquakedivcb_10andaftertheearthquakeafire&ndash&ndashjehovahwasnotinthefireandafterthefireagentlequietvoiceandwhenelijahheardithewrappedhisfaceinhismantleandwentoutandstoodattheentranceofthecaveandthenavoicecametohimandsaidwhatareyoudoinghereelijahdivcb_10andhesaidihavebeenveryjealousforjehovahthegodofhostsforthechildrenofisraelhaveforsakenyourcovenantthrowndownyouraltersandslainyourprophetswiththeswordandialoneamleftandtheyseektotakemylifedivcb_10andjehovahsaidtohimgoreturnonyourwaytothewildernessofdamascusandwhenyoucomethereanointhazaelaskingoversyriaandjehuthesonofnimshiyoushallanointaskingoverisraelandelishathesonofshaphatofabelmeholahyoushallanointasprophetinyourplacedivcb_10andhimwhoescapestheswordofhazaeljehuwillkillandhimwhoescapestheswordofjehuelishawillkilldivcb_10yetihaveleftmyselfseventhousandinisraelallthekneesthathavenotboweduntobaalandeverymouththathasnotkissedhim');
+        $tmp_search_meta_vvid_ARRAY[] = array('neh1_1-11' => 'thewordsofnehemiahthesonofhacaliahnowinthemonthofchislevinthetwentiethyearwhileiwasinsusathecapitalhananioneofmybrotherscameheandsomemenfromjudahandiaskedthemaboutthejewswhohadescapedwhowereleftfromthecaptivityandaboutjerusalemdivcb_10andtheysaidtometheremnantwhoareleftfromthecaptivitythereintheprovinceareinanexceedinglybadstateandreproachandthewallofjerusalemisbrokendownanditsgateshavebeenburnedwithfiredivcb_10andwheniheardthesewordsisatdownandweptandimournedforsomedaysandifastedandprayedbeforethegodofheavenandisaidibeseechyouojehovahthegodofheaventhegreatandawesomegodwhokeepscovenantandlovingkindnesswiththosewholovehimandkeephiscommandmentsletyourearbeattentiveandyoureyesopentoheartheprayerofyourservantwhichipraybeforeyounowdayandnightconcerningthechildrenofisraelyourservantswhileiconfessthesinsofthechildrenofisraelthatwehavesinnedagainstyoudivcb_10indeediandthehouseofmyfatherhavesinnedwehavebeenmostcorrupttowardyouandhavenotkeptthecommandmentsandthestatutesandtheordinancesthatyoucommandedmosesyourservantremembernowthewordthatyoucommandedmosesyourservantsayingifyouareunfaithfuliwillscatteryouamongthepeoplesbutifyoureturntomeandkeepmycommandmentsandperformthemthoughyouroutcastsareundertheendsofheavenfromthereiwillgatherthemandbringthemtotheplacewhereihavechosentocausemynametodwelldivcb_10nowtheseareyourservantsandyourpeoplewhomyouhaveredeemedbyyourgreatpowerandbyyourstronghandibeseechyouolordletyourearbeattentivetotheprayerofyourservantandtotheprayerofyourservantswhotakedelightinfearingyournameandcauseyourservanttoprospertodayandgranthimtofindcompassionbeforethismandivcb_10nowiwascupbearertotheking');
+        $tmp_search_meta_vvid_ARRAY[] = array('psa24' => 'apsalmofdaviddivcb_10theearthisjehovahsanditsfullness&nbsp&nbsp&nbspthehabitablelandandthosewhodwellinitforitishewhofoundeditupontheseas&nbsp&nbsp&nbspandestablishedituponthestreamsdivcb_5whomayascendthemountainofjehovah&nbsp&nbsp&nbspandwhomaystandinhisholyplacehewhohascleanhandsandapureheart&nbsp&nbsp&nbspwhohasnotlifteduphissoultofalsehood&nbsp&nbsp&nbsporsworndeceitfullyhewillreceiveblessingfromjehovah&nbsp&nbsp&nbspandrighteousnessfromthegodofhissalvationthisisthegenerationofthosewhoseekhim&nbsp&nbsp&nbspthosewhoseekyourfaceevenjacobselahdivcb_5liftupyourheadsogates&nbsp&nbsp&nbspandbeliftedupolongenduringdoors&nbsp&nbsp&nbspandthekingofglorywillcomeinwhoisthekingofglory&nbsp&nbsp&nbspjehovahstrongandmighty&nbsp&nbsp&nbspjehovahmightyinbattleliftupyourheadsogates&nbsp&nbsp&nbspandliftupolongenduringdoors&nbsp&nbsp&nbspandthekingofglorywillcomeinwhoisthiskingofglory&nbsp&nbsp&nbspjehovahofhosts&ndash&ndash&nbsp&nbsp&nbspheisthekingofgloryselah');
+        $tmp_search_meta_vvid_ARRAY[] = array('psa95_10-11' => 'forfortyyearsiloathedthatgeneration&nbsp&nbsp&nbspandisaidtheyareapeoplewhogoastrayinheart&nbsp&nbsp&nbspandtheydonotknowmywaysthereforeisworeinmyanger&nbsp&nbsp&nbsptheyshallbynomeansenterintomyrest');
+        $tmp_search_meta_vvid_ARRAY[] = array('psa97_2' => 'cloudsanddeepdarknesssurroundhim&nbsp&nbsp&nbsprighteousnessandjusticearethefoundationofhisthrone');
+        $tmp_search_meta_vvid_ARRAY[] = array('psa119_103' => 'howsweetareyourwordstomytaste&nbsp&nbsp&nbspemsweeteremthanhoneytomymouth');
+        $tmp_search_meta_vvid_ARRAY[] = array('prov20_27' => 'thespiritofmanisthelampofjehovah&nbsp&nbsp&nbspsearchingalltheinnermostpartsoftheinnerbeing');
+        $tmp_search_meta_vvid_ARRAY[] = array('isa14_13' => 'butyouyousaidinyourheart&nbsp&nbsp&nbspiwillascendtoheavenabovethestarsofgod&nbsp&nbsp&nbspiwillexaltmythroneandiwillsituponthemountofassembly&nbsp&nbsp&nbspinthespanscript_sup2uttermostpartsofthenorth');
+        $tmp_search_meta_vvid_ARRAY[] = array('isa14_21-24' => 'prepareaslaughterhouseforhischildren&nbsp&nbsp&nbspbecauseoftheiniquityoftheirfatherssothattheydonotriseupandpossesstheland&nbsp&nbsp&nbspandfillthesurfaceoftheworldwithcitiesdivcb_5andiwillriseupagainstthem&nbsp&nbsp&nbspdeclaresjehovahofhostsandiwillcutofffrombabylonnameandremnant&nbsp&nbsp&nbspandposterityandprogenydeclaresjehovahdivcb_5andiwillmakeitapossessionforporcupines&nbsp&nbsp&nbspandmuddiedpoolsofwaterandiwillsweepitwiththebroomofdestruction&nbsp&nbsp&nbspdeclaresjehovahofhostsdivcb_5jehovahofhostshasswornsayingsurelyjustasiconceiveditsohasithappened&nbsp&nbsp&nbspandjustasihavepurposeditsoshallthisstand');
+        $tmp_search_meta_vvid_ARRAY[] = array('isa16_1-5' => 'sendalambemoftributeem&nbsp&nbsp&nbsptotherulerofthelandfromselaacrossthewilderness&nbsp&nbsp&nbsptothemountainofthedaughterofziondivcb_5likewanderingbirds&nbsp&nbsp&nbspemlikeemascatterednestwillthedaughtersofmoabbe&nbsp&nbsp&nbspatthefordsofthearnondivcb_5giveemusemcounsel&nbsp&nbsp&nbspmakeajudgementemconcerningusemmakeyourshadowathighnoon&nbsp&nbsp&nbsplikenightemtousemhidetheoutcasts&nbsp&nbsp&nbspdonotexposehimwhowandersdivcb_5lettheoutcastsofmoab&nbsp&nbsp&nbspdwellwithyoubeahidingplacetothem&nbsp&nbsp&nbspfromthedestroyerwhentheextortionerfinishes&nbsp&nbsp&nbspemandemdestructionends&nbsp&nbsp&nbspemwhenemtheoppressoriscompletelyemgoneemfromthelanddivcb_5thenwillathronebeestablishedinlovingkindness&nbsp&nbsp&nbspanduponitonewillsitintruth&nbsp&nbsp&nbspinthetentofdavidjudgingandpursuingjustice&nbsp&nbsp&nbspandhasteningrighteousness');
+        $tmp_search_meta_vvid_ARRAY[] = array('isa53_6' => 'wealllikesheephavegoneastray&nbsp&nbsp&nbspeachofushasturnedtohisownwayandjehovahhascausedtheiniquityofusall&nbsp&nbsp&nbsptofallonhim');
+        $tmp_search_meta_vvid_ARRAY[] = array('jer1_11-19' => 'thenthewordofjehovahcametomesayingwhatdoyouseejeremiahandisaidiseearodofanalmondtreeandjehovahsaidtomeyouhaveseenwellforiamwatchingovermywordtoperformitthenthewordofjehovahcametomeasecondtimesayingwhatdoyouseeandisaidiseeaboilingpotanditisfacingawayfromthenorthdivcb_10andjehovahsaidtomeoutofthenorthevilwillbeletlooseuponalltheinhabitantsofthelandforiamnowcallingallthefamiliesfromthekingdomsofthenorthdeclaresjehovahandtheywillcomeandseteachonehisthroneattheentranceofthegatesofjerusalemandagainstallitswallsallaroundandagainstallthecitiesofjudahandiwilluttermyjudgementonthemconcerningalltheirwickednessbywhichtheyhaveforsakenmeandhaveburnedincensetoothergodsandhaveworshippedtheworksoftheirownhandsdivcb_10youthereforegirdupyourloinsandriseupandspeaktothemeverythingthaticommandyoudonotbedismayedbeforethemlestidismayyouintheirpresenceandiamnowmakingyoutodayintoafortifiedcityandintoanironpillarandintobronzewallsagainstthewholelandagainstthekingsofjudahagainstitsprincesagainstitspriestsandagainstthepeopleofthelandandtheywillfightagainstyoubuttheywillnotprevailagainstyouforiamwithyoudeclaresjehovahtodeliveryou');
+        $tmp_search_meta_vvid_ARRAY[] = array('jer24_7' => 'andiwillgivethemahearttoknowmethatiamjehovahandtheywillbemypeopleandiwillbetheirgodfortheywillreturntomewiththeirwholeheart');
+        $tmp_search_meta_vvid_ARRAY[] = array('jer31_31-34' => 'indeeddaysarecomingdeclaresjehovahwheniwillmakeanewcovenantwiththehouseofisraelandwiththehouseofjudahnotlikethecovenantwhichimadewiththeirfathersinthedayitookthembytheirhandtobringthemoutfromthelandofegyptmycovenantwhichtheybrokealthoughiwastheirhusbanddeclaresjehovahdivcb_10butthisisthecovenantwhichiwillmakewiththehouseofisraelafterthosedaysdeclaresjehovahiwillputmylawintheirinwardpartsandwriteitupontheirheartsandiwillbetheirgodandtheywillbemypeopledivcb_10andtheywillnolongerteacheachmanhisneighborandeachmanhisbrothersayingknowjehovahforallofthemwillknowmefromthelittleoneamongthemeventothegreatoneamongthemdeclaresjehovahforiwillforgivetheiriniquityandtheirsiniwillremembernomore');
+        $tmp_search_meta_vvid_ARRAY[] = array('jer31_33-34' => 'butthisisthecovenantwhichiwillmakewiththehouseofisraelafterthosedaysdeclaresjehovahiwillputmylawintheirinwardpartsandwriteitupontheirheartsandiwillbetheirgodandtheywillbemypeopledivcb_10andtheywillnolongerteacheachmanhisneighborandeachmanhisbrothersayingknowjehovahforallofthemwillknowmefromthelittleoneamongthemeventothegreatoneamongthemdeclaresjehovahforiwillforgivetheiriniquityandtheirsiniwillremembernomore');
+        $tmp_search_meta_vvid_ARRAY[] = array('jer31_33-37' => 'butthisisthecovenantwhichiwillmakewiththehouseofisraelafterthosedaysdeclaresjehovahiwillputmylawintheirinwardpartsandwriteitupontheirheartsandiwillbetheirgodandtheywillbemypeopleandtheywillnolongerteacheachmanhisneighborandeachmanhisbrothersayingknowjehovahforallofthemwillknowmefromthelittleoneamongthemeventothegreatoneamongthemdeclaresjehovahforiwillforgivetheiriniquityandtheirsiniwillremembernomoredivcb_10thussaysjehovahwhogivesthesunforlightbyday&nbsp&nbsp&nbspandtheorderofthemoonandthestarsforlightbynightwhostirsuptheseasothatitswavesroar&ndash&ndash&nbsp&nbsp&nbspjehovahofhostsishisname&ndash&ndashdivcb_10ifthisorderdeparts&nbsp&nbsp&nbspfrombeforemedeclaresjehovahthentheseedofisraelwillalsocease&nbsp&nbsp&nbspfrombeinganationbeforemeforeverdivcb_10thussaysjehovahiftheheavensabovecanbemeasured&nbsp&nbsp&nbspandthefoundationsoftheearthbelowcanbeexaminedcarefullytheniwillalsocastoffalltheseedofisrael&nbsp&nbsp&nbspforalltheyhavedonedeclaresjehovah');
+        $tmp_search_meta_vvid_ARRAY[] = array('jer31_31-37' => 'indeeddaysarecomingdeclaresjehovahwheniwillmakeanewcovenantwiththehouseofisraelandwiththehouseofjudahnotlikethecovenantwhichimadewiththeirfathersinthedayitookthembytheirhandtobringthemoutfromthelandofegyptmycovenantwhichtheybrokealthoughiwastheirhusbanddeclaresjehovahdivcb_10butthisisthecovenantwhichiwillmakewiththehouseofisraelafterthosedaysdeclaresjehovahiwillputmylawintheirinwardpartsandwriteitupontheirheartsandiwillbetheirgodandtheywillbemypeopleandtheywillnolongerteacheachmanhisneighborandeachmanhisbrothersayingknowjehovahforallofthemwillknowmefromthelittleoneamongthemeventothegreatoneamongthemdeclaresjehovahforiwillforgivetheiriniquityandtheirsiniwillremembernomoredivcb_10thussaysjehovahwhogivesthesunforlightbyday&nbsp&nbsp&nbspandtheorderofthemoonandthestarsforlightbynightwhostirsuptheseasothatitswavesroar&ndash&ndash&nbsp&nbsp&nbspjehovahofhostsishisname&ndash&ndashdivcb_10ifthisorderdeparts&nbsp&nbsp&nbspfrombeforemedeclaresjehovahthentheseedofisraelwillalsocease&nbsp&nbsp&nbspfrombeinganationbeforemeforeverdivcb_10thussaysjehovahiftheheavensabovecanbemeasured&nbsp&nbsp&nbspandthefoundationsoftheearthbelowcanbeexaminedcarefullytheniwillalsocastoffalltheseedofisrael&nbsp&nbsp&nbspforalltheyhavedonedeclaresjehovah');
+        $tmp_search_meta_vvid_ARRAY[] = array('ezek11_17-25' => 'thereforesaythussaysthelordjehovahiwillgatheryoufromthepeoplesandassembleyoufromthecountriesamongwhichyouhavebeenscatteredandiwillgiveyouthelandofisraelandtheywillcomethereandtakeawayallitsdetestablethingsandallitsabominationsfromitdivcb_10andiwillgivethemoneheartandanewspiritiwillputwithinthemandiwilltaketheheartofstoneoutoftheirfleshandgivethemaheartoffleshthattheymaywalkinmystatutesandkeepmyordinancesanddothemandtheywillbemypeopleandiwillbetheirgoddivcb_10butasforthosewhoseheartgoesaftertheirdetestablethingsandtheirabominationsiwillbringtheirwaysupontheirheadsdeclaresthelordjehovahdivcb_10thenthecherubimlifteduptheirwingsandthewheelswerenexttothemandthegloryofthegodofisraelwasoverthemaboveandthegloryofjehovahwentupfromthemidstofthecityandstooduponthemountainwhichiseastofthecityandthespiritliftedmeupandbroughtmetochaldeatothecaptivesinavisionbythespiritofgodandthevisionthatihadseenwentupfrommedivcb_10thenitoldthecaptivesallthethingsthatjehovahhadshownme');
+        $tmp_search_meta_vvid_ARRAY[] = array('dan9_4' => 'andiprayedtojehovahmygodandconfessedandisaidahlordthegreatandawesomegodwhokeepscovenantandlovingkindnesswiththosewholovehimandkeephiscommandments');
+        $tmp_search_meta_vvid_ARRAY[] = array('dan9_17-27' => 'andnowhearoourgodtheprayerofyourservantandhissupplicationsandcauseyourfacetoshineuponyoursanctuarythathasbeendesolatedforthelordssakeomygodinclineyourearandhearopenyoureyesandseeourdesolationsandthecitythatiscalledbyyournameforwearenotpresentingoursupplicationsbeforeyoubaseduponanyrighteousdoingsthatwehavedonebutbaseduponyourgreatcompassiondivcb_10olordhearolordforgiveolordlistenandtakeactiondonotdelayforyourownsakeomygodforyourcityandyourpeoplearecalledbyyouremownemnamedivcb_10andwhileiwasstillspeakingandprayingandconfessingmysinandthesinofmypeopleisraelandpresentingmysupplicationbeforejehovahmygodfortheholymountainofmygodevenwhileiwasspeakinginprayerthemangabrielwhomihadseeninthevisionatthebeginningreachedmeinemmyemutterexhaustionaboutthetimeoftheeveningoblationdivcb_10andheinformedemmeemandtalkedwithmeandsaiddanielihavenowcomeforthtogiveyouinsightandunderstandingatthebeginningofyoursupplicationsthecommandwentforthandihavecometotellemyouemforyouarepreciousnessitselfthereforeunderstandthematterandconsiderthevisiondivcb_10seventyweeksareapportionedforyourpeopleandforyourholycitytoclosethetransgressionandtomakeanendofsinsandtomakepropitiationforiniquityandtobringintherighteousnessoftheagesandtosealupvisionandprophetandtoanointtheholyofholiesdivcb_10knowthereforeandcomprehendfromtheissuingofthedecreetorestoreandrebuildjerusalemuntilemthetimeofemmessiahtheprincewillbesevenweeksandsixtytwoweeksitwillbebuiltagainwithstreetandtrenchevenindistressfultimesandafterthesixtytwoweeksmessiahwillbecutoffandwillhavenothingandthepeopleoftheprincewhowillcomewilldestroythecityandthesanctuaryandtheendofitwillbeafloodandeventotheendemtherewillbeemwardesolationsaredetermineddivcb_10andhewillmakeafirmcovenantwiththemanyforoneweekandinthemiddleoftheweekhewillasup_ftnt_1script_suponclickjony5_vv_scroll_toftnt_11acausethesacrificeandtheoblationtoceaseandwillreplacethesacrificeandtheoblationwithabominationsofthedesolatorevenuntilthecompletedestructionthathasbeendeterminedispouredoutuponthedesolator');
+        $tmp_search_meta_vvid_ARRAY[] = array('joel2_23' => 'ochildrenofzion&nbsp&nbsp&nbspbegladandrejoice&nbsp&nbsp&nbspinjehovahyourgodforhegivesyou&nbsp&nbsp&nbsptheearlyraininrighteousness&nbsp&nbsp&nbspandhemakestheraincomedownforyoutheasup_ftnt_1script_suponclickjony5_vv_scroll_toftnt_11aearlyrainandtheasup_ftnt_1script_suponclickjony5_vv_scroll_toftnt_11alaterain&nbsp&nbsp&nbspatthebeginningoftheseason');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt1_18,20' => 'spanscript_ref_num18nowtheoriginofjesuschristwasinthiswayhismothermaryaftershehadbeenengagedtojosephbeforetheycametogetherwasfoundtobewithchildoftheholyspiritdivcb_10spanscript_ref_num20butwhileheponderedthesethingsbeholdanangelofthelordappearedtohiminadreamsayingjosephsonofdaviddonotbeafraidtotakemaryyourwifeforthatwhichhasbeenspanscript_sup1begotteninherisoftheholyspirit');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt2_4-6' => 'andgatheringtogetherallthechiefpriestsandscribesofthepeopleheinquiredofthemwherethechristwastobebornandtheysaidtohiminbethlehemofjudeaforsoitiswrittenthroughtheprophet&quotandyoubethlehemlandofjudahbynomeansareyoutheleastamongtheprincesofjudahforoutofyoushallcomefortharuleronewhowillshepherdmypeopleisrael&quot');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt3_15' => 'butjesusansweredandsaidtohimpermititfornowforitisfittingforusinthiswaytofulfillallspanscript_sup1righteousnessthenhepermittedhim');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt4_1-2' => 'thenjesuswasledupintothewildernessbythespirittobetemptedbythedevilandwhenhehadfastedfortydaysandfortynightsafterwardhebecamehungry');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt4_3' => 'andthetemptercameandsaidtohimifyouarethesonofgodspeakthatthesestonesmaybecomeloavesofbread');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt4_4b' => 'manshallnotliveonbreadalonebutoneverywordthatproceedsoutthroughthemouthofgod');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt4_5-7' => 'thenthedeviltookhimintotheholycityandsethimonthewingofthetempleandsaidtohimifyouarethesonofgodcastyourselfdownforitiswritten&quottohisangelsheshallgivechargeconcerningyouandonemtheiremhandstheyshallbearyouuplestyoustrikeyourfootagainstastone&quotjesussaidtohimagainitiswritten&quotyoushallnottestthelordyourgod&quot');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt5_10' => 'blessedarethosewhoarepersecutedforthesakeofrighteousnessfortheirsisthekingdomoftheheavens');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt5_13' => 'youarethesaltoftheearthbutifthesalthasbecometastelesswithwhatshallitbesalteditisnolongergoodforanythingexcepttobecastoutandtrampledunderfootbymen');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt5' => 'andwhenhesawthecrowdshewentuptothemountainandafterhesatdownhisdisciplescametohimandopeninghismouthhetaughtthemsayingblessedarethepoorinspiritfortheirsisthekingdomoftheheavensblessedarethosewhomournfortheyshallbecomfortedblessedarethemeekfortheyshallinherittheearthblessedarethosewhohungerandthirstforrighteousnessfortheyshallbesatisfiedblessedarethemercifulfortheyshallbeshownmercyblessedarethepureinheartfortheyshallseegodblessedarethepeacemakersfortheyshallbecalledthesonsofgodblessedarethosewhoarepersecutedforthesakeofrighteousnessfortheirsisthekingdomoftheheavensblessedareyouwhentheyreproachandpersecuteyouandwhilespeakingliessayeveryevilthingagainstyoubecauseofmerejoiceandexultforyourrewardisgreatintheheavensforsotheypersecutedtheprophetswhowerebeforeyoudivcb_10youarethesaltoftheearthbutifthesalthasbecometastelesswithwhatshallitbesalteditisnolongergoodforanythingexcepttobecastoutandtrampledunderfootbymenyouarethelightoftheworlditisimpossibleforacitysituateduponamountaintobehiddennordoemmenemlightalampandplaceitunderthebushelbutonthelampstandanditshinestoallwhoareinthehouseinthesamewayletyourlightshinebeforemensothattheymayseeyourgoodworksandglorifyyourfatherwhoisintheheavensdivcb_10donotthinkthatihavecometoabolishthelawortheprophetsihavenotcometoabolishbuttofulfillfortrulyisaytoyouuntilheavenandearthpassawayoneiotaoroneserifshallbynomeanspassawayfromthelawuntilallcometopassthereforewhoeverannulsoneoftheleastofthesecommandmentsandteachesmensoshallbecalledtheleastinthekingdomoftheheavensbutwhoeverpracticesandteachesemthememheshallbecalledgreatinthekingdomoftheheavensforisaytoyouthatunlessyourrighteousnesssurpassesthatofthescribesandphariseesyoushallbynomeansenterintothekingdomoftheheavensyouhaveheardthatitwassaidtotheancients&quotyoushallnotmurderandwhoevermurdersshallbeliabletothejudgement&quotbutisaytoyouthateveryonewhoisangrywithhisbrothershallbeliabletothejudgementandwhoeversaystohisbrotherracashallbeliabletoemthejudgementofemthesanhedrinandwhoeversaysmorehshallbeliabletothegehennaoffirethereforeifyouareofferingyourgiftatthealterandthereyourememberthatyourbrotherhassomethingagainstyouleaveyourgifttherebeforethealterandfirstgoandbereconciledtoyourbrotherandthencomeandofferyourgiftbewelldisposedquicklytowardyouropponentatlawwhileyouarewithhimonthewaylesttheopponentdeliveryoutothejudgeandthejudgetotheofficerandyoubethrownintoprisontrulyisaytoyouyoushallbynomeanscomeoutfromthereuntilyoupaythelastquadransyouhaveheardthatitwassaid&quotyoushallnotcommitadultery&quotbutisaytoyouthateveryonewholooksatawomaninordertolustafterherhasalreadycommittedadulterywithherinhisheartsoifyourrighteyestumblesyoupluckitoutandcastemitemfromyouforitismoreprofitableforyouthatoneofyourmembersperishthanforyourwholebodytobecastintogehennaandifyourrighthandstumblesyoucutitoffandcastemitemfromyouforitismoreprofitableforyouthatoneofyourmembersperishthanforyourwholebodytopassawayintogehennaanditwassaidwhoeverdivorceshiswifelethimgiveheracertificateofdivorcebutisaytoyouthateveryonewhodivorceshiswifeexceptforthecauseoffornicationcauseshertocommitadulteryandwhoevermarriesherwhohasbeendivorcedcommitsadulteryagainyouhaveheardthatitwassaidtotheancients&quotyoushallnotbreakanoathbutyoushallrendertothelordyouroaths&quotbutitellyounottoswearatallneitherbyheavenbecauseitisthethroneofgodnorbytheearthbecauseitisthefootstoolofhisfeetnoruntojerusalembecauseitisthecityofthegreatkingneithershallyouswearbyyourheadbecauseyoucannotmakeonehairwhiteorblackbutletyourwordbeyesyesnonoforanythingmorethantheseisoftheeviloneyouhaveheardthatitwassaid&quotaneyeforaneyeandatoothforatooth&quotbutitellyounottoresisthimwhoisevilratherwhoeverslapsyouonyourrightcheekturntohimtheotheralsoandtohimwhowishestosueyouandtakeyourtunicyieldtohimyourcloakalsoandwhoevercompelsyoutogoonemilegowithhimtwotohimwhoasksofyougiveandfromhimwhowantstoborrowfromyoudonotturnawayyouhaveheardthatitwassaid&quotyoushallloveyourneighborandhateyourenemy&quotbutisaytoyouloveyourenemiesandprayforthosewhopersecuteyousothatyoumaybecomesonsofyourfatherwhoisintheheavensbecausehecauseshissuntoriseontheevilandthegoodandsendsrainonthejustandtheunjustforifyoulovethosewholoveyouwhatrewarddoyouhavedonoteventhetaxcollectorsdothesameandifyougreetonlyyourbrotherswhatbetterthingareyoudoingdonoteventhegentilesdothesameyouthereforeshallbeperfectasyourheavenlyfatherisperfect');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt6' => 'buttakecarenottodoyourrighteousnessbeforemeninordertobegazedatbythemotherwiseyouhavenorewardwithyourfatherwhoisintheheavensthereforewhenyougivealmsdonotsoundatrumpetbeforeyouasthehypocritesdointhesynagoguesandinthestreetssothattheymaybeglorifiedbymentrulyisaytoyoutheyhavetheirrewardinfullbutyouwhenyougivealmsdonotletyourlefthandknowwhatyourrighthandisdoingsothatyouralmsmaybeinsecretandyourfatherwhoseesinsecretwillrepayyouandwhenyouprayyoushallnotbelikethehypocritesbecausetheylovetopraystandinginthesynagoguesandonthestreetcornerssothattheymaybeseenbymentrulyisaytoyoutheyhavetheirrewardinfullbutyouwhenyouprayenterintoyourprivateroomandshutyourdoorandpraytoyourfatherwhoisinsecretandyourfatherwhoseesinsecretwillrepayyouandinprayingdonotbabbleemptywordsasthegentilesdofortheysupposethatintheirmultiplicityofwordstheywillbeheardthereforedonotbelikethemforyourfatherknowsthethingsthatyouhaveneedofbeforeyouaskhimyouthenprayinthiswayourfatherwhoisintheheavensyournamebesanctifiedyourkingdomcomeyourwillbedoneasinheavenemsoemalsoonearthgiveustodayourdailybreadandforgiveusourdebtsaswealsohaveforgivenourdebtorsanddonotbringusintotemptationbutdeliverusfromtheeviloneforyoursisthekingdomandthepowerandthegloryforeveramenforifyouforgivementheiroffensesyourheavenlyfatherwillforgiveyoualsobutifyoudonotforgivementheiroffensesneitherwillyourfatherforgiveyouroffensesandwhenyoufastdonotbelikethesullenfacedhypocritesfortheydisfiguretheirfacessothattheymayappeartomentobefastingtrulyisaytoyoutheyhavetheirrewardinfullbutyouwhenyoufastanointyourheadandwashyourfacesothatyoumaynotappeartomentobefastingbuttoyourfatherwhoisinsecretandyourfatherwhoseesinsecretwillrepayyoudivcb_10donotstoreupforyourselvestreasuresontheearthwheremothandrustconsumeandwherethievesdigthroughandstealbutstoreupforyourselvestreasuresinheavenwhereneithermothnorrustconsumesandwherethievesdonotdigthroughnorstealforwhereyourtreasureistherewillyourheartbealsothelampofthebodyistheeyeifthereforeyoureyeissingleyourwholebodywillbefulloflightbutifyoureyeisevilyourwholebodywillbedarkifthenthelightthatisinyouisdarknesshowgreatisthedarknessnoonecanservetwomastersforeitherhewillhatetheoneandlovetheotherorhewillholdtooneanddespisetheotheryoucannotservegodandmammonbecauseofthisisaytoyoudonotbeanxiousforyourlifewhatyoushouldeatorwhatyoushoulddrinknorforyourbodywhatyoushouldputonisnotthelifemorethanfoodandthebodythanclothinglookatthebirdsofheaventheydonotsownorreapnorgatherintobarnsyetyourheavenlyfathernourishesthemareyounotofmorevaluethantheywhoamongyoubybeinganxiouscanaddonecubittohisstatureandwhyareyouanxiousconcerningclothingconsiderwelltheliliesofthefieldhowtheygrowtheydonottoilneitherdotheyspinemthreadembutitellyouthatnotevensolomoninallhisglorywasclothedlikeoneoftheseandifgodsoarraysthegrassofthefieldwhichisemhereemtodayandtomorrowiscastintothefurnaceemwillheemnotmuchmoreemclotheemyouyouoflittlefaiththereforedonotbeanxioussayingwhatshallweeatorwhatshallwedrinkorwithwhatshallwebeclothedforallthesethingsthegentilesareanxiouslyseekingforyourheavenlyfatherknowsthatyouneedallthesethingsbutseekfirsthiskingdomandhisrighteousnessandallthesethingswillbeaddedtoyouthereforedonotbeanxiousfortomorrowfortomorrowwillbeanxiousforitselfsufficientforthedayisitsemownemevil');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt7' => 'donotjudgethatyoubenotjudgedforwithwhatjudgementyoujudgeyoushallbejudgedandwithwhatmeasureyoumeasureitshallbemeasuredtoyouandwhydoyoulookatthesplinterwhichisinyourbrothersseyebutthebeaminyoureyeyoudonotconsiderorhowcanyousaytoyourbrotherletmeremovethesplinterfromyoureyeandbeholdthebeamisinyoureyehypocritefirstremovethebeamfromyoureyeandthenyouwillseeclearlytoremovethesplinterfromyourbrotherseyedonotgivethatwhichisholytothedogsneithercastyourpearlsbeforethehogslesttheytramplethemwiththeirfeetandturnandtearyouaskanditshallbegiventoyouseekandyoushallfindknockanditshallbeopenedtoyouforeveryonewhoasksreceivesandhewhoseeksfindsandtohimwhoknocksitshallbeopenedorwhatmanisthereamongyouwhowhenhissonaskshimforaloafwillgivehimastoneoralsowhenheasksforafishwillgivehimaserpentifyouthenbeingevilknowemhowemtogivegoodgiftstoyourchildrenhowmuchmorewillyourfatherwhoisintheheavensgivegoodthingstothosewhoaskhimthereforeallthatyouwishmenwoulddotoyousoalsoyoudotothemforthisisthelawandtheprophetsdivcb_10enterthroughthenarrowgateforwideisthegateandbroadisthewaythatleadstodestructionandmanyarethosewhoenterthroughitbecausenarrowisthegateandconstrictedisthewaythatleadstolifeandfewarethosewhofinditbewareoffalseprophetswhocometoyouinsheepsclothingbutinwardlytheyareravenouswolvesbytheirfruitsyouwillrecognizethemdoemmenemgathergrapesfromthornsorfigsfromthistlesevensoeverygoodtreeproducesgoodfruitbutthecorrupttreeproducesbadfruitagoodtreecannotproducebadfruitneithercanacorrupttreeproducegoodfruiteverytreethatdoesnotproducegoodfruitiscutdownandcastintothefiresothenbytheirfruitsyouwillrecognizethemnoteveryonewhosaystomelordlordwillenterintothekingdomoftheheavensbuthewhodoesthewillofmyfatherwhoisintheheavensmanywillsaytomeinthatdaylordlordemwasitemnotinyournameemthatemweprophesiedandinyournamecastoutdemonsandinyournamedidmanyworksofpowerandtheniwilldeclaretothemineverknewyoudepartfrommeyouworkersoflawlessnesseveryonethereforewhohearsthesewordsofmineanddoesthemshallbelikenedtoaprudentmanwhobuilthishouseupontherockandtheraindescendedandtheriverscameandthewindsblewandtheybeatagainstthathouseanditdidnotfallforitwasfoundedontherockandeveryonewhohearsthesewordsofmineanddoesnotdothemshallbelikenedtoafoolishmanwhobuilthishouseuponthesandandtheraindescendedandtheriverscameandthewindsblewandtheydashedagainstthathouseanditfellanditsfallwasgreatandwhenjesusfinishedthesewordsthecrowdswereastoundedathisteachingforhetaughtthemasonehavingauthorityandnotliketheirscribes');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt7_13-14' => 'enterinthroughthenarrowgateforwideisthegateandbroadisthewaythatleadstodestructionandmanyarethosewhoenterthroughitbecausenarrowisthegateandconstrictedisthewaythatleadstolifeandfewarethosewhofindit');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt10_10b' => 'fortheworkerisworthyofhisfood');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt10_16-33' => 'beholdisendyouforthassheepinthemidstofwolvesbethereforeprudentasserpentsandguilelessasdovesandbewareofmenfortheywilldeliveryouuptosanhedrinsandintheirsynagoguestheywillscourgeyouandyouwillalsobebroughtbeforegovernorsandkingsformysakeforatestimonytothemandtothegentilesdivcb_10butwhentheydeliveryouupdonotbeanxiousabouthoworwhatyoushouldspeakforitwillbegiventoyouinthathourwhatyoushouldspeakforyouarenottheonesspeakingbutthespiritofyourfatheristheonespeakinginyoudivcb_10andbrotherwilldeliverupbrothertodeathandfatheremhisemchildandchildrenwillriseupagainstemtheiremparentsandputthemtodeathandyouwillbehatedbyallbecauseofmynamebuthewhohasenduredtotheendthisoneshallbesaveddivcb_10andwhentheypersecuteyouinthiscityfleeintoanotherfortrulyisaytoyouyoushallbynomeansfinishthecitiesofisraeluntilthesonofmancomesadiscipleisnotabovetheteachernoraslaveabovehismasteritissufficientforthedisciplethathebecomelikehisteacherandtheslavelikehismasteriftheyhavecalledthemasterofthehousebeelzebulhowmuchmorethoseofhishouseholddivcb_10thereforedonotfearthemforthereisnothingcoveredwhichwillnotberevealedandhiddenwhichwillnotbemadeknownwhatisaytoyouinthedarknessspeakinthelightandwhatyouhearintheearproclaimonthehousetopsanddonotfearthosewhokillthebodybutarenotabletokillthesoulbutratherfearhimwhoisabletodestroybothsoulandbodyingehennadivcb_10arenottwosparrowssoldforanassarionandnotoneofthemwillfalltotheearthapartfromyourfatherbuteventhehairsofyourheadareallnumberedthereforedonotfearyouareofmorevaluethanmanysparrowsdivcb_10everyonethereforewhowillconfessinmebeforemenialsowillconfessinhimbeforemyfatherwhoisintheheavensbutwhoeverwilldenymebeforemenialsowilldenyhimbeforemyfatherwhoisintheheavens');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt11_28-30' => 'cometomeallwhotoilandareburdenedandiwillgiveyouresttakemyyokeuponyouandlearnfrommeforiammeekandlowlyinheartandyouwillfindrestforyoursoulsformyyokeiseasyandmyburdenislight');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt12_1-8' => 'atthattimejesuswentonthesabbaththroughthegrainfieldsandhisdisciplesbecamehungryandbegantopickearsofgrainandeatbutthephariseesseeingemthisemsaidtohimbeholdyourdisciplesaredoingwhatisnotlawfultodoonthesabbathbuthesaidtothemhaveyounotreadwhatdaviddidwhenhebecamehungryandthosewhowerewithhimhowheenteredintothehouseofgodandtheyatethebreadofthepresencewhichwasnotlawfulforhimtoeatnorforthosewhowerewithhimexceptforthepriestsonlyorhaveyounotreadinthelawthatonthesabbaththepriestsinthetempleprofanethesabbathandareguiltlessdivcb_10butisaytoyouthatsomethinggreaterthanthetempleisherebutifyouknewwhatemthisemmeans&quotidesiremercyandnotsacrifice&quotyouwouldnothavecondemnedtheguiltlessforthesonofmanislordofthesabbath');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt12_5' => 'orhaveyounotreadinthelawthatonthesabbaththepriestsinthetempleprofanethesabbathandareguiltless');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt13_4' => 'andashesowedsomeasup_ftnt_1script_suponclickjony5_vv_scroll_toftnt_11aemseedsemfellasup_ftnt_2script_suponclickjony5_vv_scroll_toftnt_22abesidethewayandthebirdscameanddevouredthem');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt16_25-26' => 'forwhoeverwantstosavehissoullifeshallloseitbutwhoeverloseshissoullifeformysakeshallitforwhatshallamanbeprofitedifhegainsthewholeworldbutforfeitshissoullifeorwhatshallamangiveinexchangeforhissoullife');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt19_12' => 'forthereareeunuchswhowerebornsofromtheirmotherswombandthereareeunuchswhoweremadeeunuchsbymenandthereareeunuchswhomadethemselveseunuchsbecauseofthekingdomoftheheavenshewhocanemacceptitemlethimacceptemitem');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt24_8-14' => 'allthesethingsarethebeginningofbirthpangsthentheywilldeliveryouuptotribulationandwillkillyouandyouwillbehatedbyallthenationsbecauseofmynameandatthattimemanywillbestumbledandwilldeliveruponeanotherandwillhateoneanotherandmanyfalseprophetswillariseandwillleadmanyastrayandbecauselawlessnesswillbemultipliedtheloveofthemanywillgrowcolddivcb_10buthewhohasenduredtotheendthisoneshallbesavedandthisgospelofthekingdomwillbepreachedinthewholeinhabitedearthforatestimonytoallthenationsandthentheendwillcome');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt24_14' => 'andthisgospelofthekingdomwillbepreachedinthewholeinhabitedearthforatestimonytoallthenationsandthentheendwillcome');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt24_15-22' => 'thereforewhenyouseetheabominationofdesolationwhichwasspokenofthroughdanieltheprophetstandingintheholyplaceletasup_ftnt_1script_suponclickjony5_vv_scroll_toftnt_11ahimwhoreadsunderstandthenletthoseinjudeafleetothemountainslethimwhoisonthehousetopnotcomedowntotakethethingsoutofhishouseandlethimwhoisinthefieldnotturnbacktotakehisgarmentbutwoetothosewhoarepregnantandtothosewhoarenursingembabieseminthosedaysandpraythatyourflightmaynotbeinwinternoronasabbathdivcb_10foratthattimetherewillbegreattribulationsuchashasnotoccurredfromthebeginningoftheworlduntilnownorshallbyanymeanseveroccurandunlessthosedayshadbeencutshortnofleshwouldbesavedbutonaccountofthechosenthosedayswillbecutshort');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt25_4' => 'buttheprudenttookoilintheirvesselswiththeirlamps');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt25_23,10b' => 'spanscript_ref_num23hismastersaidtohimwellemdoneemgoodandfaithfulslaveyouwerefaithfuloverafewthingsiwillsetyouovermanythingsenterintothejoyofyourmasterdivcb_10spanscript_ref_num10bandthosewhowerereadywentinwithhimtotheweddingfeastandthedoorwasshut');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt26_33-35,69-75' => 'spanscript_ref_num33thenpeteransweredandsaidtohimifallwillbestumbledbecauseofyouiwillneverbestumbledjesussaidtohimtrulyisaytoyouthatinthisnightbeforearoostercrowsyouwilldenymethreetimespetersaidtohimevenifimustdiewithyouiwillbynomeansdenyyouandallthedisciplessaidlikewisedivcb_10spanscript_ref_num69nowpeterwassittingoutsideinthecourtyardandaservantgirlcametohimandsaidyoualsowerewithjesusthegalileanbuthedeniedemitembeforeallsayingidonotknowwhatyouaretalkingaboutandafterhehadgoneouttotheporchanothergirlsawhimandsaidtothosewhoweretherethismanwaswithjesusthenazarenedivcb_10andagainhedeniedwithanoathidonotknowthemanandafteralittlewhilethosewhowerestandingemthereemcametopeterandsaidsurelyyoualsoareoneofthemforyourspeechalsomakesitclearemthatemyouemareemthenhebegantocurseandtoswearidonotknowthemanandimmediatelyaroostercroweddivcb_10andpeterrememberedthewordwhichjesushassaidbeforearoostercrowsyouwilldenymethreetimesandhewentoutandweptbitterly');
+        $tmp_search_meta_vvid_ARRAY[] = array('matt27_46' => 'andabouttheninthhourjesuscriedoutwithaloudvoicesayingelielilamasabachthanithatismygodmygodwhyhaveyouforsakenme');
+        $tmp_search_meta_vvid_ARRAY[] = array('mark7_19-23' => 'becauseitdoesnotenterintohisheartbutintothestomachandgoesoutintothedraineminsayingthisemhemadeallfoodscleanandhesaidthatwhichgoesoutofthemanthatdefilesthemanforfromwithinoutoftheheartofmenproceedevilreasoningsfornicationstheftsmurdersadulteriescovetousnesswickednessdeceitlicentiousnessenvyblasphemyarrogancefoolishnessallthesewickedthingsproceedfromwithinanddefiletheman');
+        $tmp_search_meta_vvid_ARRAY[] = array('mark9_50' => 'saltisgoodbutifthesaltbecomesunsaltywithwhatwillyourestoreitssaltinesshavesaltinyourselvesandbeatpeacewithoneanother');
+        $tmp_search_meta_vvid_ARRAY[] = array('mark14_27-31,66-72' => 'spanscript_ref_num27andjesussaidtothemyouwillallbestumbledbecauseitiswritten&quotiwillsmitetheshepherdandthesheepwillbescattered&quotbutafterihavebeenraisediwillgobeforeyouintogalileedivcb_10butpetersaidtohimevenifallwillbestumbledyetiwillnotandjesussaidtohimtrulyisaytoyouthattodayinthisnightbeforearoostercrowstwiceyouwilldenymethreetimesbuthewentonspeakingmoreintenselyemevenemifimustdiewithyouiwillbynomeansdenyyouandtheyallsaidsimilarlydivcb_10spanscript_ref_num66andwhilepeterwasbelowinthecourtyardoneoftheservantgirlsofthehighpriestcameandseeingpeterwarminghimselfshelookedathimandsaidyoualsowerewiththenazarenejesusbuthedeniedemitemsayingineitherknownorunderstandwhatyouaretalkingaboutandhewentoutsideintotheforecourtandaroostercroweddivcb_10andtheservantgirlseeinghimbeganagaintosaytothosestandingbythismanisemoneemofthembutagainhedeniedemitemandafteralittlewhilethosestandingbyagainsaidtopetersurelyyouareemoneemofthemforyouareagalileanaswellbuthebegantocurseandtoswearidonotknowthismanofwhomyouspeakdivcb_10andimmediatelyaroostercrowedasecondtimeandpeterrememberedthewordhowjesushadsaidtohimbeforearoostercrowstwiceyouwilldenymethreetimesandthinkinguponithewept');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke1_26-33' => 'andinthesixthmonththeangelgabrielwassentfromgodtoacityofgalileenamednazarethtoavirginengagedtoamannamedjosephofthehouseofdavidandthevirginsnamewasmaryandhecametoherandsaidrejoiceyouwhohavebeengracedthelordiswithyoudivcb_10andshewasgreatlytroubledatthissayingandbeganreasoningwhatkindofgreetingthismightbeandtheangelsaidtoherdonotbeafraidmaryforyouhavefoundgracewithgodandbeholdyouwillconceiveinemyouremwombandbearasonandyoushallcallhisnamejesusdivcb_10hewillbegreatandwillbecalledsonofthemosthighandthelordgodwillgivetohimthethroneofdavidhisfatherandhewillreignoverthehouseofjacobforeverandofhiskingdomtherewillbenoend');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke9_1-6' => 'andhecalledtogetherthetwelveandgavethempowerandauthorityoverallthedemonsandtohealdiseasesandhesentthemtoproclaimthekingdomofgodandtohealthesickandhesaidtothemtakenothingforthejourneyneitherastaffnorabagnorbreadnormoneynorhavetwotunicsapieceandintowhateverhouseyouenterremainthereandfromtheregooutandasmanyasdonotreceiveyouasyougooutfromthatcityshakeoffthedustfromyourfeetforatestimonyagainstthemdivcb_10andtheywentoutandpassedthroughvillageaftervillageannouncingthegospelandhealingeverywhere');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke9_5-6' => 'andasmanyasdonotreceiveyouasyougooutfromthatcityshakeoffthedustfromyourfeetforatestimonyagainstthemandtheywentoutandpassedthroughvillageaftervillageannouncingthegospelandhealingeverywhere');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke10_19' => 'beholdihavegivenyoutheauthoritytotreaduponserpentsandscorpionsandoverallthepoweroftheenemyandnothingshallbyanymeanshurtyou');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke12_35' => 'letyourloinsbegirdedandyourlampsburning');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke12_34-44' => 'forwhereyourtreasureistherealsoyourheartwillbeletyourloinsbegirdedandyourlampsburningandyoubelikemenwaitingfortheirownmasterwhenhereturnsfromtheweddingfeastsothatwhenhecomesandknockstheymayopentohimimmediatelyblessedarethoseslaveswhomthemasterwhenhecomeswillfindwatchingtrulyitellyouthathewillgirdhimselfandwillhavethemreclineemattableemandhewillcometoemthememandservethemdivcb_10andifhecomesinthesecondwatchorifinthethirdandfindsemthememsoblessedarethoseemslavesembutknowthisthatifthemasterofthehousehadknowninwhathourthethiefwascominghewouldnothaveallowedhishousetobebrokenintoyoualsobereadybecauseatanhourwhenyoudonotexpectemitemthesonofmaniscomingdivcb_10andpetersaidlordareyousayinghisparabletousoralsotoallandthelordsaidwhothenisthefaithfulemandemprudentstewardwhomthemasterwillsetoverhisservicetogiveemthememtheirportionoffoodatthepropertimedivcb_10blessedisthatslavewhomhismasterwhenhecomeswillfindsodoingtrulyitellyouthathewillsethimoverallhispossessions');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke13_17' => 'andwhenhesaidthesethingsallthoseopposinghimwereputtoshameandallthecrowdrejoicedoverallthegloriousthingsthatwerebeingdonebyhim');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke14_31-32' => 'orwhatkinggoingtoengageanotherkinginwarwillnotfirstsitdownanddeliberatewhetherheisablewithtenthousandtomeettheonecomingagainsthimwithtwentythousandotherwisewhileheisyetatadistancehesendsanenvoyandasksfortheemtermsemofpeace');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke14_34-35' => 'thereforesaltisgoodbutifeventhesaltbecomestastelesswithwhatwillitssaltinessberestoreditisfitneitherforthelandnorforthemanurepiletheywillthrowitouthewhohasearstohearlethimhear');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke18_11-12' => 'thephariseestoodandprayedthesethingstohimselfgodithankyouthatiamnotliketherestofmen&ndash&ndashextortionersunjustadulterersorevenlikethistaxcollectorifasttwiceaweekigiveatenthofallthatiget');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke18_13' => 'butthetaxcollectorstandingatadistancewouldnotevenliftuphiseyestoheavenbutbeathisbreastsayinggodbepropitiatedtomethesinner');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke19_12,14,15,27' => 'spanscript_ref_num12hesaidthereforeacertainmanofnoblebirthwenttoadistantcountrytoreceiveforhimselfakingdomandtoreturndivcb_10spanscript_ref_num14buthiscitizenshatedhimandsentanenvoyafterhimsayingwedonotwantthismantoreignoverusdivcb_10spanscript_ref_num15andwhenhecamebackhavingreceivedthekingdomhecommandedthatthoseslavestowhomhehadgiventhemoneyshouldbecalledtohimsothathemightknowwhattheyhadgainedbydoingbusinessdivcb_10spanscript_ref_num27howevertheseenemiesofminewhodidnotwantmetoreignoverthembringemthememhereandslaythembeforeme');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke22_24-30' => 'andacontentionalsooccurredamongthemastowhichofthemseemedtobegreatestandhesaidtothemthekingsofthegentileslorditoverthemandthosewhohaveauthorityoverthemarecalledbenefactorsdivcb_10butyoushallnotbesobutletthegreatestamongyoubecomeliketheyoungestandtheonewholeadsliketheonewhoservesdivcb_10forwhoisgreatertheonewhoreclinesemattableemortheonewhoservesisitnottheonewhoreclinesemattableembutiaminyourmidstastheonewhoservesbutyouarethosewhohaveremainedwithmethroughoutmytrialsandiappointtoyouevenasmyfatherhasappointedtomeakingdomthatyoumayeatanddrinkatmytableinmykingdomandyouwillsitonthronesjudgingthetwelvetribesofisrael');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke22_33-34,54-62' => 'spanscript_ref_num33andhesaidtohimlordiamreadytogowithyoubothtoprisonandtodeathbuthesaiditellyoupeteraroosterwillnotcrowtodayuntilyoudenythreetimesthatyouknowmedivcb_10spanscript_ref_num54andhavingarrestedhimtheyledemhimawayemandbroughtemhimemintothehouseofthehighpriestbutpeterfollowedatadistanceandwhentheyhadlitafireinthemiddleofthecourtyardandsatdowntogetherpetersatamongthemandacertainservantgirlseeinghimseatedinthelightemofthefireemlookedintentlyathimandsaidthismanwaswithhimtoodivcb_10buthedeniedemitemsayingidonotknowhimwomanandafterashorttimeanotherpersonseeinghimsaidyoualsoareoneofthembutpetersaidmaniamnotdivcb_10andafteraboutonehourhadpassedanotheroneinsistedsayingsurelythismanwasalsowithhimforheisalsoagalileanbutpetersaidmanidonotknowwhatyouaresayingandinstantlywhilehewasstillspeakingaroostercroweddivcb_10andthelordturnedandlookedatpeterandpeterrememberedthewordofthelordhowhehadsaidtohimbeforearoostercrowstodayyouwilldenymethreetimesdivcb_10andhewentoutsideandweptbitterly');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke22_42' => 'sayingfatherifyouarewillingremovethiscupfrommeyetnotmywillbutyoursbedone');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke22_42[solo]' => 'sayingfatherifyouarewillingremovethiscupfrommeyetnotmywillbutyoursbedone');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke23_27-30' => 'andagreatmultitudeofthepeopleandofwomenwhoweremourningandlamentinghimfollowedhimbutjesusturnedtothemandsaiddaughtersofjerusalemdonotweepovermebutweepoveryourselvesandoveryourchildrenforbeholdthedaysarecominginwhichtheywillsayblessedarethebarrenandthewombswhichhavenotborneandthebreastswhichhavenotnourishedthentheywillbegintosaytothemountainsfallonusandtothehillscoverus');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke23_38,42-43' => 'spanscript_ref_num38andtherewasalsoaninscriptionoverhimthisisthekingofthejewsdivcb_10spanscript_ref_num42andhesaidjesusremembermewhenyoucomeintoyourkingdomandhesaidtohimtrulyisaytoyoutodayyoushallbewithmeinparadise');
+        $tmp_search_meta_vvid_ARRAY[] = array('luke24_31-32' => 'andtheireyeswereopenedandtheyrecognizedhimandhedisappearedfromthemandtheysaidtooneanotherwasnotourheartburningwithinuswhilehewasspeakingtousontheroadwhilehewasopeningtousthescriptures');
+        $tmp_search_meta_vvid_ARRAY[] = array('john2_20-21' => 'thenthejewssaidthistemplewasbuiltinfortysixyearsandyouwillraiseitupinthreedaysbuthespokeofthetempleofhisbody');
+        $tmp_search_meta_vvid_ARRAY[] = array('john2_21' => 'buthespokeofthetempleofhisbody');
+        $tmp_search_meta_vvid_ARRAY[] = array('john5_24-25' => 'trulytrulyisaytoyouhewhohearsmywordandbelieveshimwhosentmehaseternallifeanddoesnotcomeintojudgementbuthaspassedoutofdeathintolifetrulytrulyisaytoyouanhouriscominganditisnowwhenthedeadwillhearthevoiceofthesonofgodandthosewhohearwilllive');
+        $tmp_search_meta_vvid_ARRAY[] = array('john8_1-11' => 'butjesuswenttothemountofolivesandearlyinthemorninghecameagainintothetempleandallthepeoplecametohimandhesatdownandtaughtthemdivcb_10andthescribesandphariseesbroughtawomancaughtinadulteryandhavingsetherinthemidsttheysaidtohimteacherthiswomanhasbeencaughtcommittingadulteryintheveryactnowinthelawmosescommandedustostonesuchwomenwhatthendoyousaydivcb_10buttheysaidthistotempthimsothattheymighthavetoaccusehimbutjesusstoopeddownandasup_ftnt_1script_suponclickjony5_vv_scroll_toftnt_11awrotewithhisfingeronthegroundbutwhentheypersistedinquestioninghimhestoodupandsaidtothemhewhoiswithoutsinamongyoulethimembetheemfirsttothrowastoneatherdivcb_10andagainhestoopeddownandwroteonthegroundandwhentheyheardemthatemtheywentoutonebyonebeginningwiththeolderonesandjesuswasleftaloneandthewomanemstoodemwhereshewasinthemidstdivcb_10andjesusstoodupandsaidtoherwomanwherearetheyhasnoonecondemnedyouandshesaidnoonelordandjesussaidneitherdoicondemnyougoandfromnowonsinnomore');
+        $tmp_search_meta_vvid_ARRAY[] = array('john8_6' => 'buttheysaidthistotempthimsothattheymighthavetoaccusehimbutjesusstoopeddownandwrotewithhisfingerontheground');
+        $tmp_search_meta_vvid_ARRAY[] = array('john8_51-59' => 'trulytrulyisaytoyouifanyonekeepsmywordheshallbynomeansseedeathforeverthejewsthereforesaidtohimnowweknowthatyouhaveademonabrahamdiedandtheprophetsemtooemyetyousayifanyonekeepsmywordheshallbynomeanstastedeathforeverareyougreaterthanourfatherabrahamwhodiedtheprophetsdiedtoowhoareyoumakingyourselfdivcb_10jesusansweredifiglorifymyselfmygloryisnothingitismyfatherwhoglorifiesmeofwhomyousaythatheisyourgodyetyouhavenotknownhimbutiknowhimandifisaythatidonotknowhimiwillbelikeyoualiarbutidoknowhimandikeephiswordyourfatherabrahamexultedthathewouldseemydayandhesawemitemandrejoiceddivcb_10thejewsthensaidtohimyouarenotyetfiftyyearsoldandhaveyouseenabrahamjesussaidtothemtrulytrulyisaytoyoubeforeabrahamcameintobeingiamsotheypickedupstonestothrowathimbutjesuswashiddenandwentoutofthetemple');
+        $tmp_search_meta_vvid_ARRAY[] = array('john9_41' => 'jesussaidtothemifyouwereblindyouwouldnothavesinbutnowyousayweseeyoursinremains');
+        $tmp_search_meta_vvid_ARRAY[] = array('john13_3-17' => 'emjesusemknowingthatthefatherhadgivenallintohishandsandthathehadcomeforthfromgodandwasgoingtogodrosefromsupperandlaidasidehisoutergarmentsandtakingatowelhegirdedhimselfdivcb_10thenhepouredwaterintothebasinandbegantowashthedisciplesfeetandtowipeemthememwiththetowelwithwhichhewasgirdedhecamethentosimonpeterempeteremsaidtohimlorddoyouwashmyfeetjesusansweredandsaidtohimwhatiamdoingyoudonotknownowbutyouwillknowafterthesethingsdivcb_10petersaidtohimyoushallbynomeanswashmyfeetforeverjesusansweredhimunlessiwashyouyouhavenopartwithmesimonpetersaidtohimlordnotmyfeetonlybutalsomyhandsandmyheadjesussaidtohimhewhoisbathedhasnoneedexcepttowashhisfeetbutiswhollycleanandyouarecleanbutnotallemofyouemforheknewtheonebetrayinghimforthisemreasonemhesaidnotallofyouarecleandivcb_10thenwhenhehaswashedtheirfeetandtakenhisoutergarmentsandreclinedematthetableagainemhesaidtothemdoyouknowwhatihavedonetoyouyoucallmetheteacherandthelordandyousayrightlyforiamifithenthelordandtheteacherhavewashedyourfeetyoualsooughttowashoneanothersfeetdivcb_10forihavegivenyouanexamplesothatyoualsomaydoevenasihavedonetoyoutrulytrulyisaytoyouaslaveisnotgreaterthanhismasternoronewhoissentgreaterthantheonewhosendshimdivcb_10ifyouknowthesethingsblessedareyouifyoudothem');
+        $tmp_search_meta_vvid_ARRAY[] = array('john13_34' => 'anewcommandmentigivetoyouthatyouloveoneanotherevenasihavelovedyouthatyoualsoloveoneanother');
+        $tmp_search_meta_vvid_ARRAY[] = array('john13_34[solo]' => 'anewcommandmentigivetoyouthatyouloveoneanotherevenasihavelovedyouthatyoualsoloveoneanother');
+        $tmp_search_meta_vvid_ARRAY[] = array('john13_37-38' => 'petersaidtohimlordwhycantifollowyounowiwilllaydownmylifeforyoujesusansweredwillyoulaydownyourlifeformetrulytrulyisaytoyouaroostershallbynomeanscrowuntilyoudenymethreetimes');
+        $tmp_search_meta_vvid_ARRAY[] = array('john13_37-38;18_14-27' => 'spanscript_ref_num1337petersaidtohimlordwhycantifollowyounowiwilllaydownmylifeforyoujesusansweredwillyoulaydownyourlifeformetrulytrulyisaytoyouaroostershallbynomeanscrowuntilyoudenymethreetimesdivcb_10spanscript_ref_num1814nowitwascaiaphaswhohadadvisedthejewsthatitwasexpedientforonemantodieforthepeopleandsimonpeterfollowedjesusaswellasanotherdiscipleandthatdisciplewasknowntothehighpriestandheenteredwithjesusintothecourtofthehighpriestbutpeterstoodatthedooroutsidethentheotherdiscipletheoneknowntothehighpriestwentoutandspoketoemthemaidemwhokeptthedoorandbroughtpeterindivcb_10thenthemaidwhokeptthedoorsaidtopeterareyounotalsoemoneemofthismansdiscipleshesaidiamnotnowtheslavesandtheattendantswerestandingemthereemhavingmadeafireofcoalsforitwascoldandtheywerewarmingthemselvesandpeteralsowaswiththemstandingandwarminghimselfdivcb_10thehighpriestthenquestionedjesusconcerninghisdisciplesandconcerninghisteachingjesusansweredhimihavespokenopenlytotheworldialwaystaughtinthesynagogueandinthetemplewhereallthejewscometogetherandispokenothinginsecretwhydoyouquestionmequestionthosewhohaveheardemmeconcerningemwhatispoketothembeholdtheseknowwhatisaiddivcb_10andwhenhesaidthesethingsoneoftheattendantsstandingbyslappedjesussayingisthathowyouanswerthehighpriestjesusansweredhimifihavespokenwronglytestifyconcerningthewrongbutifrightlywhydoyoustrikemeannasthensenthimboundtocaiaphasthehighpriestdivcb_10nowsimonpeterwasstandingandwarminghimselfthentheysaidtohimareyounotalsoemoneemofhisdiscipleshedeniedandsaidiamnotoneoftheslavesofthehighpriestwhowasarelativeofhimwhoseearpeterhadcutoffsaiddidinotseeyouinthegardenwithhimthenpeterdeniedagainandimmediatelyaroostercrowed');
+        $tmp_search_meta_vvid_ARRAY[] = array('john14_10' => 'doyounotbelievethatiaminthefatherandthefatherisinmethewordsthatisaytoyouidonotspeakfrommyselfbutthefatherwhoabidesinmedoeshisworks');
+        $tmp_search_meta_vvid_ARRAY[] = array('john14_10-14' => 'doyounotbelievethatiaminthefatherandthefatherisinmethewordsthatisaytoyouidonotspeakfrommyselfbutthefatherwhoabidesinmedoeshisworksbelievemethatiaminthefatherandthefatherisinmebutifnotbelievebecauseoftheworksthemselvesdivcb_10trulytrulyisaytoyouhewhobelievesintometheworkswhichidoheshalldoalsoandgreaterthantheseheshalldobecauseiamgoingtothefatherdivcb_10andwhateveryouaskinmynamethatiwilldothatthefathermaybeglorifiedinthesonifyouaskmeanythinginmynameiwilldoemitem');
+        $tmp_search_meta_vvid_ARRAY[] = array('john14_12-14' => 'trulytrulyisaytoyouhewhobelievesintometheworkswhichidoheshalldoalsoandgreaterthantheseheshalldobecauseiamgoingtothefatherandwhateveryouaskinmynamethatiwilldothatthefathermaybeglorifiedinthesonifyouaskmeanythinginmynameiwilldoemitem');
+        $tmp_search_meta_vvid_ARRAY[] = array('john14_15,20-21' => 'spanscript_ref_num15ifyoulovemeyouwillkeepmycommandmentsdivcb_10spanscript_ref_num20inthatdayyouwillknowthatiaminmyfatherandyouinmeandiinyouhewhohasmycommandmentsandkeepsthemheistheonewholovesmeandhewholovesmewillbelovedbymyfatherandiwilllovehimandwillmanifestmyselftohim');
+        $tmp_search_meta_vvid_ARRAY[] = array('john16_15' => 'allthatthefatherhasismineforthisemreasonemihavesaidthathereceivesofmineandwilldeclareemitemtoyou');
+        $tmp_search_meta_vvid_ARRAY[] = array('acts1_5' => 'forjohnbaptizedwithwaterbutyoushallbebaptizedintheholyspiritnotmanydaysfromnow');
+        $tmp_search_meta_vvid_ARRAY[] = array('acts2_22-25' => 'menofisraelhearthesewordsjesusthenazareneamanshownbygodtoyoutobeapprovedbyworksofpowerandwondersandsignswhichgoddidthroughhiminyourmidstevenasyouyourselvesknow&ndash&ndashthismandeliveredupbythedeterminedcounselandforeknowledgeofgodyouthroughthehandoflawlessmennailedtoemacrossemandkilleddivcb_10whomgodhasraiseduphavingloosedthepangsofdeathsinceitwasnotpossibleforhimtobeheldbyitfordavidsaysregardinghim&quotisawthelordcontinuallybeforemebecauseheisonmyrighthandthatimaynotbeshaken&quot');
+        $tmp_search_meta_vvid_ARRAY[] = array('acts8_29' => 'andthespiritsaidtophilipapproachandjointhischariot');
+        $tmp_search_meta_vvid_ARRAY[] = array('acts10_15-16b,19-21' => 'spanscript_ref_num15andavoiceemcameemtohimagainasecondtimethethingsthatgodhascleanseddonotmakecommonandthisoccurredthreetimesdivcb_10spanscript_ref_num19andwhilepeterwasponderingoverthevisionthespiritsaidtohimbeholdemthereareemthreemenseekingyoubutriseupgodownandgowiththemdoubtingnothingbecauseihavesentthemandpeterwentdowntothemenandsaidbeholdiamhewhomyouseekwhatisthecauseforwhichyouhavecome');
+        $tmp_search_meta_vvid_ARRAY[] = array('acts16_6,7' => 'spanscript_ref_num6andtheypassedthroughtheregionofphrygiaandgalatiahavingbeenforbiddenbytheholyspirittospeakthewordinasiadivcb_10spanscript_ref_num7andwhentheyhadcometomysiatheytriedtogointobithyniayetthespiritofjesusdidnotallowthem');
+        $tmp_search_meta_vvid_ARRAY[] = array('acts11_12' => 'andthespirittoldmetogowiththemdoubtingnothingandthesesixbrotherswentwithmealsoandweenteredintothemanshouse');
+        $tmp_search_meta_vvid_ARRAY[] = array('acts11_18' => 'andwhentheyheardthesethingstheybecamesilentandglorifiedgodsayingthentothegentilesalsogodhasgivenrepentanceuntolife');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom2_6-7' => 'whowillrendertoeachaccordingtohisworkstothosewhobyenduranceingoodworkseekgloryandhonorandincorruptibilitylifeeternal');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom5_1-5[000]' => 'thereforehavingbeenjustifiedoutoffaithwehavepeacetowardgodthroughourlordjesuschristthroughwhomalsowehaveobtainedaccessbyfaithintothisgraceinwhichwestandandboastbecauseofthehopeofthegloryofgoddivcb_10andnotonlysobutwealsoboastinourtribulationsknowingthattribulationproducesenduranceandenduranceapprovednessandapprovednesshopedivcb_10andhopedoesnotputemusemtoshamebecausetheloveofgodhasbeenpouredoutinourheartsthroughtheholyspiritwhohasbeengiventous');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom5_1-5' => 'thereforehavingbeenjustifiedoutoffaithwehavepeacetowardgodthroughourlordjesuschristthroughwhomalsowehaveobtainedaccessbyfaithintothisgraceinwhichwestandandboastbecauseofthehopeofthegloryofgoddivcb_10andnotonlysobutwealsoboastinourtribulationsknowingthattribulationproducesenduranceandenduranceapprovednessandapprovednesshopedivcb_10andhopedoesnotputemusemtoshamebecausetheloveofgodhasbeenpouredoutinourheartsthroughtheholyspiritwhohasbeengiventous');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom5_10' => 'forifwebeingenemieswerereconciledtogodthroughthedeathofhissonmuchmorewewillbesavedinhislifehavingbeenreconciled');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom5_14,17,21' => 'spanscript_ref_num14butdeathreignedfromadamuntilmosesevenoverthosewhohadnotsinnedafterthelikenessofadamstransgressionwhoisatypeofhimwhowastocomedivcb_10spanscript_ref_num17forifbytheoffenseoftheonedeathreignedthroughtheonemuchmorethosewhoreceivetheabundanceofgraceandofthegiftofrighteousnesswillreigninlifethroughtheonejesuschristdivcb_10spanscript_ref_num21inorderthatjustassinreignedindeathsoalsogracemightreignthroughrighteousnessuntoeternallifethroughjesuschristourlord');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom6_3' => 'orareyouignorantthatallofuswhohavebeenbaptizedintochristjesushavebeenbaptizedintohisdeath');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom6_8' => 'nowifwehavediedwithchristwebelievethatwewillalsolivewithhim');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom6_8-11' => 'nowifwehavediedwithchristwebelievethatwewillalsolivewithhimknowingthatchristhavingbeenraisedfromthedeaddiesnomoredeathlordsitoverhimnomoreforemthedeathemwhichhediedhediedtosinonceforallbutemthelifeemwhichheliveshelivestogodsoalsoyoureckonyourselvestobedeadtosinbutlivingtogodinchristjesus');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom6_9-11' => 'knowingthatchristhavingbeenraisedfromthedeaddiesnomoredeathlordsitoverhimnomoreforemthedeathemwhichhediedhediedtosinonceforallbutemthelifeemwhichheliveshelivestogodsoalsoyoureckonyourselvestobedeadtosinbutlivingtogodinchristjesus');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom6_18-19[000]' => 'andhavingbeenfreedfromsinyouwereenslavedtorighteousnessispeakinhumanemtermsembecauseoftheweaknessofyourfleshforjustasyoupresentedyourmembersasslavestouncleannessandlawlessnessuntolawlessnesssonowpresentyourmembersasslavestorighteousnessuntosanctification');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom6_18-19' => 'andhavingbeenfreedfromsinyouwereenslavedtorighteousnessispeakinhumanemtermsembecauseoftheweaknessofyourfleshforjustasyoupresentedyourmembersasslavestouncleannessandlawlessnessuntolawlessnesssonowpresentyourmembersasslavestorighteousnessuntosanctification');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom6_22' => 'butnowhavingbeenfreedfromsinandenslavedtogodyouhaveyourfruituntosanctificationandtheendeternallife');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom7_2-4,6' => 'spanscript_ref_num2forthemarriedwomanisboundbythelawtoherhusbandwhileheislivingbutifthehusbanddiessheisdischargedfromthelawregardingthehusbandsothenifwhilethehusbandislivingsheisjoinedtoanothermanshewillbecalledanadulteressbutifthehusbanddiessheisfreefromthelawsothatsheisnotanadulteressthoughsheisjoinedtoanothermansothenmybrothersyoualsohavebeenmadedeadtothelawthroughthebodyofchristsothatyoumightbejoinedtoanothertohimwhohasbeenraisedfromthedeadthatwemightbearfruittogoddivcb_10spanscript_ref_num6butnowwehavebeendischargedfromthelawhavingdiedtothatinwhichwewereheldsothatweserveinnewnessofspiritandnotinoldnessofletter');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom8_2' => 'forthelawofthespiritoflifehasfreedmeinchristjesusfromthelawofsinandofdeath');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom8_2,4' => 'spanscript_ref_num2forthelawofthespiritoflifehasfreedmeinchristjesusfromthelawofsinandofdeathdivcb_10spanscript_ref_num4thattherighteousrequirementofthelawmightbefulfilledinuswhodonotwalkaccordingtothefleshbutaccordingtothespirit');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom8_14' => 'forasmanyasareledbythespiritofgodthesearesonsofgod');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom8_16-17,24-25' => 'spanscript_ref_num16thespirithimselfwitnesseswithourspiritthatwearechildrenofgodandifchildrenheirsalsoontheonehandheirsofgodontheotherjointheirswithchristifindeedwesufferwithemhimemthatwemayalsobeglorifiedwithemhimemdivcb_10spanscript_ref_num24forweweresavedinhopebutahopethatisseenisnothopeforwhohopesforwhatheseesbutifwehopeforwhatwedonotseeweeagerlyawaitemitemthroughendurance');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom8_14-23' => 'forasmanyasareledbythespiritofgodthesearesonsofgodforyouhavenotreceivedaspiritofslaveryembringingyouemintofearagainbutyouhavereceivedaspiritofsonshipinwhichwecryabbafatherthespirithimselfwitnesseswithourspiritthatwearechildrenofgodandifchildrenheirsalsoontheonehandheirsofgodontheotherjointheirswithchristifindeedwesufferwithemhimemthatwemayalsobeglorifiedwithemhimemdivcb_10foriconsiderthatthesufferingsofthispresenttimearenotworthytobecomparedwiththecomingglorytoberevealeduponusdivcb_10fortheanxiouswatchingofthecreationeagerlyawaitstherevelationofthesonsofgodforthecreationwasmadesubjecttovanitynotofitsownwillbutbecauseofhimwhosubjectedemiteminhopethatthecreationitselfwillalsobefreedfromtheslaveryofcorruptionintothefreedomofthegloryofthechildrenofgodforweknowthatthewholecreationgroanstogetherandtravailsinpaintogetheruntilnowdivcb_10andnotonlyemsoembutweourselvesalsowhohavethefirstfruisofthespiritevenweourselvesgroaninourselveseagerlyawaitingsonshiptheredemptionofourbody');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom8_33-39' => 'whoshallbringachargeagainstgodschosenonesitisgodwhojustifieswhoishewhocondemnsitischristjesuswhodiedandratherwhowasraisedwhoisalsoattherighthandofgodwhoalsointercedesforuswhoshallseparateusfromtheloveofchristshalltribulationoranguishorpersecutionorfamineornakednessorperilorswordasitiswritten&quotforyoursakewearebeingputtodeathalldaylongwehavebeenaccountedassheepforslaughter&quotbutinallthesethingswemorethanconquerthroughhimwholovedusdivcb_10foriampersuadedthatneitherdeathnorlifenorangelsnorprincipalitiesnorthingspresentnorthingstocomenorpowersnorheightnordepthnoranyothercreaturewillbeabletoseparateusfromtheloveofgodwhichisinchristjesusourlord');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom9_31-33' => 'butisraelpursuingalawofrighteousnessdidnotattaintoemthatemlawwhybecauseemtheypursueditemnotoutoffaithbutasitwereoutofworkstheystumbledatthestoneofstumblingasitiswritten&quotbeholdilayinzionastoneofstumblingarockofoffenseandhewhobelievesonhimshallnotbeputtoshame&quot');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom10_2-3' => 'foribearthemwitnessthattheyhaveazealforgodbutnotaccordingtofullknowledgeforbecausetheywereignorantofgodsrighteousnessandsoughttoestablishtheirownrighteousnesstheywerenotsubjecttotherighteousnessofgod');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom12_2' => 'anddonotbefashionedaccordingtothisagebutbetransformedbytherenewingofthemindthatyoumayprovewhatthewillofgodisthatwhichisgoodandwellpleasingandperfect');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom12_11' => 'donotbeslothfulinzealembutembeburninginspiritservingthelord');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom12_11-12' => 'donotbeslothfulinzealembutembeburninginspiritservingthelordrejoiceinhopeendureintribulationpersevereinprayer');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom13_14' => 'butputonthelordjesuschristandmakenoprovisionforthefleshtoemfulfillemitslusts');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom14_1' => 'nowhimwhoisweakinfaithreceiveembutemnotforthepurposeofpassingjudgementonemhisemconsiderations');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom14_7-12' => 'fornoneofuslivestohimselfandnonediestohimselfforwhetherwelivewelivetothelordandwhetherwediewedietothelordthereforewhetherweliveorwediewearethelordsforchristdiedandlivedemagainemforthisthathemightbelordbothofthedeadandofthelivingdivcb_10butyouwhydoyoujudgeyourbrotheroryouwhydoyoudespiseyourbrotherforwewillallstandbeforethejudgementseatofgodforitiswritten&quotasilivesaysthelordeverykneeshallbowtomeandeverytongueshallopenlyconfesstogod&quotdivcb_10sotheneachoneofuswillgiveanaccountconcerninghimselftogod');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom15_4[000]' => 'forthethingsthatwerewrittenpreviouslywerewrittenforourinstructioninorderthatthroughenduranceandthroughtheencouragementofthescriptureswemighthavehope');
+        $tmp_search_meta_vvid_ARRAY[] = array('rom15_4' => 'forthethingsthatwerewrittenpreviouslywerewrittenforourinstructioninorderthatthroughenduranceandthroughtheencouragementofthescriptureswemighthavehope');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor1_22-25' => 'forindeedjewsrequiresignsandgreeksseekwisdombutwepreachchristcrucifiedtojewsastumblingblockandtogentilesfoolishnessbuttothosewhoarecalledbothjewsandgreekschristthepowerofgodandthewisdomofgodbecausethefoolishnessofgodiswiserthanmenandtheweaknessofgodisstrongerthanmen');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor3_21-23' => 'sothenletnooneboastinmenforallthingsareyourswhetherpaulorapollosorcephasortheworldorlifeordeathorthingspresentorthingstocomeallareyoursbutyouarechristsandchristisgods');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor5_1,5' => 'spanscript_ref_num1itisactuallyreportedthatthereisfornicationamongyouandsuchfornicationthatemdoesemnotevenemoccuremamongthegentilesthatsomeonehashisstepmotherdivcb_10spanscript_ref_num5todeliversuchaonetosatanforthedestructionofhisfleshthathisspiritmaybesavedinthedayofthelord');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor6_12' => 'allthingsarelawfultomebutnotallthingsareprofitableallthingsarelawfultomebutiwillnotbebroughtunderthepowerofanything');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor6_17' => 'buthewhoisjoinedtothelordisonespirit');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor9_8-11,13' => 'spanscript_ref_num8amispeakingthesethingsaccordingtomanordoesthelawnotalsosaythesethingsforinthelawofmosesitiswritten&quotyoushallnotmuzzletheoxwhileitistreadingoutthegrain&quotisitforoxenthatgodcaresordoeshesayemitemaltogetherforoursakedivcb_10yesforoursakeitwaswrittenbecausetheplowmanshouldplowinhopeandhewhothreshesinhopeofpartakingifwehavesowntoyouthespiritualthingsisitagreatthingifweshallreapfromyouthefleshlythingsdivcb_10spanscript_ref_num13doyounotknowthatthosewholaboronthesacredthingseatthethingsofthesacredtempleemthatemthosewhoattendtothealterhavetheirportionwiththealter');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor10_5' => 'butwithmostofthemgodwasnotwellpleasedfortheywerestrewnalonginthewilderness');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor10_23' => 'allthingsarelawfulbutnotallthingsareprofitableallthingsarelawfulbutnotallthingsbuildup');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor10_26,29b-31' => 'spanscript_ref_num26fortheearthisthelordsandthefullnessthereofdivcb_10spanscript_ref_num29bforwhyismyfreedomjudgedbyemsomeemotherconscienceifipartakewiththankfulnesswhyamispokenevilofconcerningthatforwhichigivethanksthereforewhetheryoueatordrinkorwhateveryoudodoalltothegloryofgod');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor11_4' => 'everymanprayingorprophesyingwithhisheadcoveredspanscript_sup2disgraceshishead');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor15_58' => 'thereforemybelovedbrothersbesteadfastimmovablealwaysaboundingintheworkoflordknowingthatyourlaborisnotinvaininthelord');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor15_55,58' => 'spanscript_ref_num55whereodeathisyourvictorywhereodeathisyourstingdivcb_10spanscript_ref_num58thereforemybelovedbrothersbesteadfastimmovablealwaysaboundingintheworkofthelordknowingthatyourlaborisnotinvaininthelord');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor1_9-10' => 'indeedweourselveshadtheresponseofdeathinourselvesthatweshouldnotbaseourconfidenceonourselvesbutongodwhoraisesthedeadwhohasdeliveredusoutofsogreatadeathandwilldeliveremuseminwhomwehavehopedthathewillalsoyetdeliveremusem');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor1_20-22[000]' => 'forasmanypromisesofgodasemthereareeminhimistheyesthereforealsothroughhimistheamentogodforglorythroughusemtogodembuttheonewhofirmlyattachesuswithyouuntochristandhasanointedusisgodhewhohasalsosealedusandgiventhespiritinourheartsasapledge');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor1_20-22' => 'forasmanypromisesofgodasemthereareeminhimistheyesthereforealsothroughhimistheamentogodforglorythroughusemtogodembuttheonewhofirmlyattachesuswithyouuntochristandhasanointedusisgodhewhohasalsosealedusandgiventhespiritinourheartsasapledge');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor3_6-9' => 'whohasalsomadeussufficientasministersofanewcovenantemministersemnotoftheletterbutofthespiritfortheletterkillsbutthespiritgiveslifemoreoveriftheministryofdeathengravedinstoneinletterscameaboutinglorysothatthesonsofisraelwerenotabletogazeatthefaceofmosesbecauseofthegloryofhisfaceemagloryemwhichwasbeingdoneawaywithhowshalltheministryofthespiritnotbemoreingloryforifthereisglorywiththeministryofcondemnationmuchmoretheministryofrighteousnessaboundswithglory');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor3_12' => 'thereforesincewehavesuchhopeweusemuchboldness');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor3_12,17' => 'spanscript_ref_num12thereforesincewehavesuchhopeweusemuchboldnessdivcb_10spanscript_ref_num17andthelordisthespiritandwherethespiritofthelordisthereisfreedom');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor11_2a' => 'foriamjealousoveryouwithajealousyofgod');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor11_2b-3' => 'foribetrothedyoutoonehusbandtopresentemyouasemapurevirgintochristbutifearlestsomehowastheserpentdeceivedevebyhiscraftinessyourthoughtswouldbecorruptedfromthesimplicityandthepuritytowardchrist');
+        $tmp_search_meta_vvid_ARRAY[] = array('1cor11_22' => 'doyounothavehousestoeatanddrinkinordoyoudespisethechurchofgodandputthosetoshamewhohavenotwhatshallisaytoyoushallipraiseyouinthisidonotpraiseemyouem');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor3_3' => 'sinceyouarebeingmanifestedthatyouarealetterofchristministeredbyusinscribednotwithinkbutwiththespiritofthelivinggodnotintabletsofstonebutintabletsofheartsofflesh');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor3_17-18' => 'andthelordisthespiritandwherethespiritofthelordisthereisfreedombutweallwithunveiledfacebeholdingandreflectinglikeamirrorthegloryofthelordarebeingtransformedintothesameimagefromglorytogloryevenasfromthelordspirit');
+        $tmp_search_meta_vvid_ARRAY[] = array('2cor3_18' => 'butweallwithunveiledfacebeholdingandreflectinglikeamirrorthegloryofthelordarebeingtransformedintothesameimagefromglorytogloryevenasfromthelordspirit');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal1_14' => 'andiadvancedinjudaismbeyondmanycontemporariesinmyracebeingmoreabundantlyazealotforthetraditionsofmyfathers');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal2_20' => 'iamcrucifiedwithchristandnolongeriemwhoemlivebutemitisemchristemwhoemlivesinmeandtheemlifeemwhichinowliveinthefleshiliveinfaiththeemfaithemofthesonofgodwholovedmeandgavehimselfupforme');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal2_20_x' => 'iamcrucifiedwithchristandnolongeriemwhoemlivebutemitisemchristemwhoemlivesinmeandtheemlifeemwhichinowliveinthefleshiliveinfaiththeemfaithemofthesonofgodwholovedmeandgavehimselfupforme');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal3_1' => 'ofoolishgalatianswhohasbewitchedyoubeforewhoseeyesjesuschristwasopenlyportrayedcrucified');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal5_1,7' => 'spanscript_ref_num1emitisemforfreedomemthatemchristhassetusfreestandfastthereforeanddonotbeentangledwithayokeofslaveryagaindivcb_10spanscript_ref_num7youwererunningwellwhohinderedyouthatyouwouldnotbelieveandobeythetruth');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal5_1' => 'emitisemforfreedomemthatemchristhassetusfreestandfastthereforeanddonotbeentangledwithayokeofslaveryagain');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal5_5-6' => 'forwebythespiritoutoffaitheagerlyawaitthehopeofrighteousnessforinchristjesusneithercircumcisionavailsanythingnoruncircumcisionbutfaithemavailsemoperatingthroughlove');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal4_11' => 'ifearforyoulestihavelaboreduponyouinvain');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal5_13,16' => 'spanscript_ref_num13foryouwerecalledforfreedombrothersonlydonotemturnemthisfreedomintoanopportunityforthefleshbutthroughloveserveoneanotherdivcb_10spanscript_ref_num16butisaywalkbythespiritandyoushallbynomeansfulfillthelustoftheflesh');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal5_16,18,22-23,25' => 'spanscript_ref_num16butisaywalkbythespiritandyoushallbynomeansfulfillthelustofthefleshdivcb_10spanscript_ref_num18butifyouareledbythespirityouarenotunderthelawdivcb_10spanscript_ref_num22butthefruitofthespiritislovejoypeacelongsufferingkindnessgoodnessfaithfulnessmeeknessselfcontrolagainstsuchthingsthereisnolawdivcb_10spanscript_ref_num25ifwelivebythespiritletusalsowalkbythespirit');
+        $tmp_search_meta_vvid_ARRAY[] = array('gal6_14' => 'butfarbeitfrommetoboastexceptinthecrossofourlordjesuschristthroughwhomtheworldhasbeencrucifiedtomeanditotheworld');
+        $tmp_search_meta_vvid_ARRAY[] = array('eph1_3' => 'blessedbethegodandfatherofourlordjesuschristwhohasblesseduswitheveryspiritualblessingintheheavenliesinchrist');
+        $tmp_search_meta_vvid_ARRAY[] = array('eph1_3-12' => 'blessedbethegodandfatherofourlordjesuschristwhohasblesseduswitheveryspiritualblessingintheheavenliesinchristevenashechoseusinhimbeforethefoundationoftheworldtobeholyandwithoutblemishbeforehiminlovepredestinatingusuntosonshipthroughjesuschristtohimselfaccordingtothegoodpleasureofhiswilldivcb_10tothepraiseofthegloryofhisgracewithwhichhegracedusinthebelovedinwhomwehaveredemptionthroughhisbloodtheforgivenessofoffensesaccordingtotherichesofhisgracewhichhecausedtoaboundtousinallwisdomandprudencedivcb_10makingknowntousthemysteryofhiswillaccordingtohisgoodpleasurewhichhepurposedinhimselfuntotheeconomyofthefullnessofthetimestoheadupallthingsinchristthethingsintheheavensandthethingsontheearthinhiminwhomalsoweweredesignatedasaninheritancehavingbeenpredestinatedaccordingtothepurposeoftheonewhoworksallthingsaccordingtothecounselofhiswillthatwewouldbetothepraiseofhisglorywhohavefirsthopedinchrist');
+        $tmp_search_meta_vvid_ARRAY[] = array('eph1_3-14[000]' => 'blessedbethegodandfatherofourlordjesuschristwhohasblesseduswitheveryspiritualblessingintheheavenliesinchristevenashechoseusinhimbeforethefoundationoftheworldtobeholyandwithoutblemishbeforehiminlovepredestinatingusuntosonshipthroughjesuschristtohimselfaccordingtothegoodpleasureofhiswilldivcb_10tothepraiseofthegloryofhisgracewithwhichhegracedusinthebelovedinwhomwehaveredemptionthroughhisbloodtheforgivenessofoffensesaccordingtotherichesofhisgracewhichhecausedtoaboundtousinallwisdomandprudencedivcb_10makingknowntousthemysteryofhiswillaccordingtohisgoodpleasurewhichhepurposedinhimselfuntotheeconomyofthefullnessofthetimestoheadupallthingsinchristthethingsintheheavensandthethingsontheearthinhiminwhomalsoweweredesignatedasaninheritancehavingbeenpredestinatedaccordingtothepurposeoftheonewhoworksallthingsaccordingtothecounselofhiswillthatwewouldbetothepraiseofhisglorywhohavefirsthopedinchristdivcb_10inwhomyoualsohavingheardthewordofthetruththegospelofyoursalvationinhimalsobelievingyouweresealedwiththeholyspiritofthepromisewhoisthepledgeofourinheritanceuntotheredemptionoftheacquiredpossessiontothepraiseofhisglory');
+        $tmp_search_meta_vvid_ARRAY[] = array('eph1_3-14' => 'blessedbethegodandfatherofourlordjesuschristwhohasblesseduswitheveryspiritualblessingintheheavenliesinchristevenashechoseusinhimbeforethefoundationoftheworldtobeholyandwithoutblemishbeforehiminlovepredestinatingusuntosonshipthroughjesuschristtohimselfaccordingtothegoodpleasureofhiswilldivcb_10tothepraiseofthegloryofhisgracewithwhichhegracedusinthebelovedinwhomwehaveredemptionthroughhisbloodtheforgivenessofoffensesaccordingtotherichesofhisgracewhichhecausedtoaboundtousinallwisdomandprudencedivcb_10makingknowntousthemysteryofhiswillaccordingtohisgoodpleasurewhichhepurposedinhimselfuntotheeconomyofthefullnessofthetimestoheadupallthingsinchristthethingsintheheavensandthethingsontheearthinhiminwhomalsoweweredesignatedasaninheritancehavingbeenpredestinatedaccordingtothepurposeoftheonewhoworksallthingsaccordingtothecounselofhiswillthatwewouldbetothepraiseofhisglorywhohavefirsthopedinchristdivcb_10inwhomyoualsohavingheardthewordofthetruththegospelofyoursalvationinhimalsobelievingyouweresealedwiththeholyspiritofthepromisewhoisthepledgeofourinheritanceuntotheredemptionoftheacquiredpossessiontothepraiseofhisglory');
+        $tmp_search_meta_vvid_ARRAY[] = array('eph1_9' => 'makingknowntousthemysteryofhiswillaccordingtohisgoodpleasurewhichhepurposedinhimself');
+        $tmp_search_meta_vvid_ARRAY[] = array('eph1_9-14,18-23' => 'spanscript_ref_num9makingknowntousthemysteryofhiswillaccordingtohisgoodpleasurewhichhepurposedinhimselfuntotheeconomyofthefullnessofthetimestoheadupallthingsinchristthethingsintheheavensandthethingsontheearthinhimdivcb_10inwhomalsoweweredesignatedasaninheritancehavingbeenpredestinatedaccordingtothepurposeoftheonewhoworksallthingsaccordingtothecounselofhiswillthatwewouldbetothepraiseofhisglorywhohavefirsthopedinchristdivcb_10inwhomyoualsohavingheardthewordofthetruththegospelofyoursalvationinhimalsobelievingyouweresealedwiththeholyspiritofthepromisewhoisthepledgeofourinheritanceuntotheredemptionoftheacquiredpossessiontothepraiseofhisglorydivcb_10spanscript_ref_num18theeyesofyourhearthavingbeenenlightenedthatyoumayknowwhatisthehopeofhiscallingandwhataretherichesofthegloryofhisinheritanceinthesaintsandwhatisthesurpassinggreatnessofhispowertowarduswhobelieveaccordingtotheoperationofthemightofhisstrengthwhichhecausedtooperateinchristinraisinghimfromthedeadandseatinghimathisrighthandintheheavenliesfaraboveallruleandauthorityandpowerandlordshipandeverynamethatisnamednotonlyinthisagebutalsointhatwhichistocomedivcb_10andhesubjectedallthingsunderhisfeetandgavehimemtobeemheadoverallthingstothechurchwhichishisbodythefullnessoftheonewhofillsallinall');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil1_6' => 'beingconfidentofthisverythingthathewhohasbeguninyouagoodworkwillcompleteituntilthedayofchristjesus');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil1_20' => 'accordingtomyearnestexpectationandhopethatinnothingiwillbeputtoshamebutwithallboldnessasalwaysevennowchristwillbemagnifiedinmybodywhetherthroughlifeorthroughdeath');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil1_27' => 'onlyconductyourselvesinamannerworthyofthegospelofchristthatwhethercomingandseeingyouorbeingabsentimayhearofthethingsconcerningyouthatyoustandfirminonespiritwithonesoulstrivingtogetheremalongemwiththefaithofthegospel');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil2_3' => 'emdoingemnothingbywayofselfishambitionnorbywayofvainglorybutinlowlinessofmindconsideringoneanothermoreexcellentthanyourselves');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil2_5-8' => 'letthismindbeinyouwhichwasalsoinchristjesuswhoexistingintheformofgoddidnotconsiderbeingequalwithgodatreasuretobegraspedbutemptiedhimselftakingtheformofaslavebecominginthelikenessofmendivcb_10andbeingfoundinfashionasamanhehumbledhimselfbecomingobedientevenuntodeathandemthatemthedeathofacross');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil2_5-16[000]' => 'letthismindbeinyouwhichwasalsoinchristjesuswhoexistingintheformofgoddidnotconsiderbeingequalwithgodatreasuretobegraspedbutemptiedhimselftakingtheformofaslavebecominginthelikenessofmenandbeingfoundinfashionasamanhehumbledhimselfbecomingobedientevenuntodeathandemthatemthedeathofacrossdivcb_10thereforealsogodhighlyexaltedhimandbestowedonhimthenamewhichisaboveeverynamethatinthenameofjesuseverykneeshouldbowofthosewhoareinheavenandonearthandundertheearthandeverytongueshouldopenlyconfessthatjesuschristislordtothegloryofgodthefatherdivcb_10sothenmybelovedevenasyouhavealwaysobeyednotasinmypresenceonlybutnowmuchratherinmyabsenceworkoutyourownsalvationwithfearandtremblingforitisgodwhooperatesinyouboththewillingandtheworkingforemyouremgoodpleasuredoallthingswithoutmurmuringsandreasoningsthatyoumaybeblamelessandguilelesschildrenofgodwithoutblemishinthemidstofacrookedandpervertedgenerationamongwhomyoushineasluminariesintheworldholdingforththewordoflifesothatimayhaveaboastinthedayofchristthatididnotruninvainnorlaborinvain');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil2_5-16' => 'letthismindbeinyouwhichwasalsoinchristjesuswhoexistingintheformofgoddidnotconsiderbeingequalwithgodatreasuretobegraspedbutemptiedhimselftakingtheformofaslavebecominginthelikenessofmenandbeingfoundinfashionasamanhehumbledhimselfbecomingobedientevenuntodeathandemthatemthedeathofacrossdivcb_10thereforealsogodhighlyexaltedhimandbestowedonhimthenamewhichisaboveeverynamethatinthenameofjesuseverykneeshouldbowofthosewhoareinheavenandonearthandundertheearthandeverytongueshouldopenlyconfessthatjesuschristislordtothegloryofgodthefatherdivcb_10sothenmybelovedevenasyouhavealwaysobeyednotasinmypresenceonlybutnowmuchratherinmyabsenceworkoutyourownsalvationwithfearandtremblingforitisgodwhooperatesinyouboththewillingandtheworkingforemyouremgoodpleasuredoallthingswithoutmurmuringsandreasoningsthatyoumaybeblamelessandguilelesschildrenofgodwithoutblemishinthemidstofacrookedandpervertedgenerationamongwhomyoushineasluminariesintheworldholdingforththewordoflifesothatimayhaveaboastinthedayofchristthatididnotruninvainnorlaborinvain');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil2_5-9' => 'letthismindbeinyouwhichwasalsoinchristjesuswhoexistingintheformofgoddidnotconsiderbeingequalwithgodatreasuretobegraspedbutemptiedhimselftakingtheformofaslavebecominginthelikenessofmenandbeingfoundinfashionasamanhehumbledhimselfbecomingobedientevenuntodeathandemthatemthedeathofacrossdivcb_10thereforealsogodhighlyexaltedhimandbestowedonhimthenamewhichisaboveeveryname');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil2_8' => 'andbeingfoundinfashionasamanhehumbledhimselfbecomingobedientevenuntodeathandemthatemthedeathofacross');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil2_13[001]' => 'foritisgodwhooperatesinyouboththewillingandtheworkingforemyouremgoodpleasure');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil2_13[000]' => 'foritisgodwhooperatesinyouboththewillingandtheworkingforemyouremgoodpleasure');
+        $tmp_search_meta_vvid_ARRAY[] = array('phil2_13' => 'foritisgodwhooperatesinyouboththewillingandtheworkingforemyouremgoodpleasure');
+        $tmp_search_meta_vvid_ARRAY[] = array('col1_5' => 'becauseofthehopelaidupforyouintheheavensofwhichyouheardbeforeinthewordofthetruthofthegospel');
+        $tmp_search_meta_vvid_ARRAY[] = array('col1_27' => 'towhomgodwilledtomakeknownwhataretherichesofthegloryofthismysteryamongthegentileswhichischristinyouthehopeofglory');
+        $tmp_search_meta_vvid_ARRAY[] = array('col1_5-6,21-23,26-27' => 'spanscript_ref_num5becauseofthehopelaidupforyouintheheavensofwhichyouheardbeforeinthewordofthetruthofthegospelwhichhascometoyouevenasitisalsoinalltheworldbearingfruitandgrowingasalsoinyousincethedayyouheardandknewthegraceofgodintruthdivcb_10spanscript_ref_num21andyouthoughoncealienatedandenemiesinyourmindbecauseofyourevilworkshenowhasreconciledinthebodyofhisfleshthroughdeathtopresentyouholyandwithoutblemishandwithoutreproachbeforehimifindeedyoucontinueinthefaithgroundedandsteadfastandnotbeingmovedawayfromthehopeofthegospelwhichyouheardwhichwasproclaimedinallcreationunderheavenofwhichipaulbecameaministerdivcb_10spanscript_ref_num26themysterywhichhasbeenhiddenfromtheagesandfromthegenerationsbutnowhasbeenmanifestedtohissaintstowhomgodwilledtomakeknownwhataretherichesofthegloryofthismysteryamongthegentileswhichischristinyouthehopeofglory');
+        $tmp_search_meta_vvid_ARRAY[] = array('col1_16' => 'becauseinhimallthingswerecreatedintheheavensandontheearththevisibleandtheinvisiblewhetherthronesorlordshipsorrulersorauthoritiesallthingshavebeencreatedthroughhimanduntohim');
+        $tmp_search_meta_vvid_ARRAY[] = array('col2_9' => 'forinhimdwellsallthefullnessofthegodheadbodily');
+        $tmp_search_meta_vvid_ARRAY[] = array('col2_8,12,20-23' => 'spanscript_ref_num8bewarethatnoonecarriesyouoffasspoilthroughhisphilosophyandemptydeceitaccordingtothetraditionofmenaccordingtotheelementsoftheworldandnotaccordingtochristdivcb_10spanscript_ref_num12buriedtogetherwithhiminbaptisminwhichalsoyouwereraisedtogetherwithemhimemthroughthefaithoftheoperationofgodwhoraisedhimfromthedeaddivcb_10spanscript_ref_num20ifyoudiedwithchristfromtheelementsoftheworldwhyaslivingintheworlddoyousubjectyourselvestoordinancesdonothandlenortastenortouchemregardingemthingswhicharealltoperishwhenusedaccordingtothecommandmentsandteachingsofmensuchthingsindeedhaveareputationofwisdominselfimposedworshipandlowlinessandseveretreatmentofthebodyembutemarenotofanyvalueagainsttheindulgenceoftheflesh');
+        $tmp_search_meta_vvid_ARRAY[] = array('col3_5' => 'puttodeaththereforeyourmemberswhichareontheearthfornicationuncleannesspassionevildesireandgreedinesswhichisidolatry');
+        $tmp_search_meta_vvid_ARRAY[] = array('col3_6' => 'becauseofwhichthingsthewrathofgodiscominguponthesonsofdisobedience');
+        $tmp_search_meta_vvid_ARRAY[] = array('1thes1_2-3' => 'wethankgodalwaysconcerningallofyoumakingmentionemofyoueminourprayersrememberingunceasinglyyourworkoffaithandlaborofloveandenduranceofhopeinourlordjesuschristbeforeourgodandfather');
+        $tmp_search_meta_vvid_ARRAY[] = array('1thes5_7-11' => 'forthosewhosleepsleepduringthenightandthosewhogetdrunkaredrunkduringthenightbutsinceweareofthedayletusbesoberputtingonthebreastplateoffaithandloveandahelmetthehopeofsalvationdivcb_10forgoddidnotappointustowrathbuttotheobtainingofsalvationthroughourlordjesuschristwhodiedforusinorderthatwhetherwewatchorsleepwemaylivetogetherwithhimthereforecomfortoneanotherandbuildupeachonetheotherevenasyoualsodo');
+        $tmp_search_meta_vvid_ARRAY[] = array('2thes2_8-12' => 'andthenthelawlessonewillberevealedwhomthelordjesuswillslaybythebreathofhismouthandbringtonothingbythemanifestationofhiscomingthecomingofwhomisaccordingtosatansoperationinallpowerandsignsandwondersofalieandinalldeceitofunrighteousnessamongthosewhoareperishingbecausetheydidnotreceivetheloveofthetruththattheymightbesaveddivcb_10andbecauseofthisgodsendstothemanoperationoferrorthattheymightbelievetheliesothatallwhohavenotbelievedthetruthbuthavetakenpleasureinunrighteousnessmightbejudged');
+        $tmp_search_meta_vvid_ARRAY[] = array('2thes2_16-17' => 'nowourlordjesuschristhimselfandgodourfatherwhohaslovedusandgivenuseternalcomfortandgoodhopeingracecomfortyourheartsandestablishemyouemineverygoodworkandword');
+        $tmp_search_meta_vvid_ARRAY[] = array('1tim1_1' => 'paulanapostleofchristjesusaccordingtothecommandofgodoursaviorandofchristjesusourhope');
+        $tmp_search_meta_vvid_ARRAY[] = array('1tim4_1-5' => 'butthespiritsaysexpresslythatinlatertimessomewilldepartfromthefaithgivingheedtodeceivingspiritsandteachingsofdemonsbymeansofthehypocrisyofmenwhospeakliesofmenwhoarebrandedintheirownconscienceaswithahotirondivcb_10whoforbidmarriageemandcommandemabstainingfromfoodswhichgodhascreatedtobepartakenofwiththanksgivingbythosewhobelieveandhavefullknowledgeofthetruthdivcb_10foreverycreatureofgodisgoodandnothingistoberejectedifreceivedwiththanksgivingforitissanctifiedthroughthewordofgodandintercession');
+        $tmp_search_meta_vvid_ARRAY[] = array('1tim6_17' => 'chargethosewhoarerichinthepresentagenottobehighmindednortosettheirhopeontheuncertaintyofrichesbutongodwhoaffordsusallthingsrichlyforemouremenjoyment');
+        $tmp_search_meta_vvid_ARRAY[] = array('2tim1_6' => 'forwhichcauseiremindyoutofanintoflamethegiftofgodwhichisinyouthroughthelayingonofmyhands');
+        $tmp_search_meta_vvid_ARRAY[] = array('2tim1_6-8' => 'forwhichcauseiremindyoutofanintoflamethegiftofgodwhichisinyouthroughthelayingonofmyhandsforgodhasnotgivenusaspiritofcowardicebutofpowerandofloveandofsobermindednessthereforedonotbeashamedofthetestimonyofourlordnorofmehisprisonerbutsufferevilwiththegospelaccordingtothepowerofgod');
+        $tmp_search_meta_vvid_ARRAY[] = array('titus1_1-3' => 'paulaslaveofgodandanapostleofjesuschristaccordingtothefaithofgodschosenonesandthefullknowledgeofthetruthwhichisaccordingtogodlinessinthehopeofeternallifewhichgodwhocannotliepromisedbeforethetimesoftheagesbutinitsowntimesmanifestedhiswordintheproclamationwithwhichiwasentrustedaccordingtothecommandofoursaviorgod');
+        $tmp_search_meta_vvid_ARRAY[] = array('titus2_11-15' => 'forthegraceofgodbringingsalvationtoallmenhasappearedtrainingusthatdenyingungodlinessandworldlylustsweshouldlivesoberlyandrighteouslyandgodlyinthepresentagedivcb_10awaitingtheblessedhopeeventheappearingofthegloryofourgreatgodandsaviorjesuschristwhogavehimselfforusthathemightredeemusfromalllawlessnessandpurifytohimselfaparticularpeopleashisuniquepossessionzealousofgoodworksdivcb_10thesethingsspeakandexhortandconvictwithallauthorityletnoonedespiseyou');
+        $tmp_search_meta_vvid_ARRAY[] = array('titus3_7[000]' => 'inorderthathavingbeenjustifiedbyhisgracewemightbecomeheirsaccordingtothehopeofeternallife');
+        $tmp_search_meta_vvid_ARRAY[] = array('titus3_7' => 'inorderthathavingbeenjustifiedbyhisgracewemightbecomeheirsaccordingtothehopeofeternallife');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb2_14-15' => 'sincethereforethechildrenhavesharedinbloodandfleshhealsohimselfinlikemannerpartookofthesamethatthroughdeathhemightdestroyhimwhohasthemightofdeaththatisthedevilandmightreleasethosewhobecauseofthefearofdeaththroughalltheirlifewereheldinslavery');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb3_6[000]' => 'butchristemwasfaithfulemasasonoverhishousewhosehouseweareifindeedweholdfasttheboldnessandtheboastofhopefirmtotheend');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb3_6' => 'butchristemwasfaithfulemasasonoverhishousewhosehouseweareifindeedweholdfasttheboldnessandtheboastofhopefirmtotheend');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb3_7-19[000]' => 'thereforeevenastheholyspiritsays&quottodayifyouhearhisvoicedonothardenyourheartsasintheprovocationinthedayoftrialinthewildernesswhereyourfatherstriedemmeembytestingemmeemandsawmyworksforfortyyearsthereforeiwasdispleasedwiththisgenerationandisaidtheyalwaysgoastrayintheirheartandtheyhavenotknownmywaysdivcb_10asisworeinmywraththeyshallnotenterintomyrest&quotdivcb_10bewarebrotherslestperhapstherebeinanyoneofyouanevilheartofunbeliefinfallingawayfromthelivinggodbutexhortoneanothereachdayaslongasitiscalled&quottoday&quotlestanyoneofyoubehardenedbythedeceitfulnessofsin&ndash&ndashdivcb_10forwehavebecomepartnersofchristifindeedweholdfastthebeginningoftheassurancefirmtotheend&ndash&ndashdivcb_10whileitissaid&quottodayifyouhearhisvoicedonothardenyourheartsasintheprovocation&quotforwhoprovokedemhimemwhentheyheardindeedwasitnotallwhocameoutofegyptbymosesandwithwhomwashedispleasedforfortyyearswasitnotwiththosewhosinnedwhosecarcassesfellinthewildernessdivcb_10andtowhomdidheswearthattheyshouldnotenterintohisrestexcepttothedisobedientandweseethattheywerenotabletoenterinbecauseofunbelief');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb3_7-19' => 'thereforeevenastheholyspiritsays&quottodayifyouhearhisvoicedonothardenyourheartsasintheprovocationinthedayoftrialinthewildernesswhereyourfatherstriedemmeembytestingemmeemandsawmyworksforfortyyearsthereforeiwasdispleasedwiththisgenerationandisaidtheyalwaysgoastrayintheirheartandtheyhavenotknownmywaysdivcb_10asisworeinmywraththeyshallnotenterintomyrest&quotdivcb_10bewarebrotherslestperhapstherebeinanyoneofyouanevilheartofunbeliefinfallingawayfromthelivinggodbutexhortoneanothereachdayaslongasitiscalled&quottoday&quotlestanyoneofyoubehardenedbythedeceitfulnessofsin&ndash&ndashdivcb_10forwehavebecomepartnersofchristifindeedweholdfastthebeginningoftheassurancefirmtotheend&ndash&ndashdivcb_10whileitissaid&quottodayifyouhearhisvoicedonothardenyourheartsasintheprovocation&quotforwhoprovokedemhimemwhentheyheardindeedwasitnotallwhocameoutofegyptbymosesandwithwhomwashedispleasedforfortyyearswasitnotwiththosewhosinnedwhosecarcassesfellinthewildernessdivcb_10andtowhomdidheswearthattheyshouldnotenterintohisrestexcepttothedisobedientandweseethattheywerenotabletoenterinbecauseofunbelief');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb4_8-16' => 'forifjoshuahadbroughtthemintoresthewouldnothavespokenconcerninganotherdayafterthesethingssothenthereremainsasabbathrestforthepeopleofgodforhewhohasenteredintohisresthashimselfalsorestedfromhisworksasgoddidfromhisownletusthereforebediligenttoenterintothatrestlestanyonefallafterthesameexampleofdisobediencedivcb_10forthewordofgodislivingandoperativeandsharperthananytwoedgedswordandpiercingeventothedividingofsoulandspiritandofjointsandmarrowandabletodiscernthethoughtsandintentionsoftheheartandthereisnocreaturethatisnotmaifestbeforehimbutallthingsarenakedandlaidbaretotheeyesofhimtowhomweareemtogiveemouraccountdivcb_10havingthereforeagreathighpriestwhohaspassedthroughtheheavensjesusthesonofgodletusholdfasttheconfessionforwedonothaveahighpriestwhocannotbetouchedwiththefeelingofourweaknessesbutonewhohasbeentemptedinallrespectslikeemusyetemwithoutsinletusthereforecomeforwardwithboldnesstothethroneofgracethatwemayrecievemercyandfindgracefortimelyhelp');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb4_11' => 'letusthereforebediligenttoenterintothatrestlestanyonefallafterthesameexampleofdisobedience');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb6_17-20' => 'thereforegodintendingtoshowmoreabundantlytotheheirsofthepromisetheunchangeablenessofhiscounselinterposedwithanoathinorderthatbytwounchangeablethingsinwhichitwasimpossibleforgodtoliewemayhavestrongencouragementwewhohavefledforrefugetolayholdofthehopesetbeforeemusemdivcb_10whichwehaveasananchorofthesoulbothsecureandfirmandwhichenterswithintheveilwheretheforerunnerjesushasenteredforushavingbecomeforeverahighpriestaccordingtotheorderofmelchizedek');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb7_17-19' => 'foritistestified&quotyouareapriestforeveraccordingtotheorderofmelchizedek&quotforthereisontheonehandthesettingasideoftheprecedingcommandmentbecauseofitsweaknessandunprofitablenessforthelawperfectednothingandontheotherhandthebringinginthereuponofabetterhopethroughwhichwedrawneartogoddivcb_10andinasmuchasemhewasemnotemmadeapriestemwithoutthetakingofanoathfortheyareappointedpriestswithoutthetakingofanoathbuthewiththetakingofanoathbyhimwhosaidtohim&quotthelordhasswornandwillnotregretemitemyouareapriestforever&quotdivcb_10bysomuchjesushasalsobecomethesuretyofabettercovenant');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb8_10[000]' => 'forthisisthecovenantwhichiwillcovenantwiththehouseofisraelafterthosedayssaysthelordiwillimpartmylawsintotheirmindandontheirheartsiwillinscribethemandiwillbegodtothemandtheywillbeapeopletome');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb8_10' => 'forthisisthecovenantwhichiwillcovenantwiththehouseofisraelafterthosedayssaysthelordiwillimpartmylawsintotheirmindandontheirheartsiwillinscribethemandiwillbegodtothemandtheywillbeapeopletome');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb9_14' => 'howmuchmorewillthebloodchristwhothroughtheeternalspiritofferedhimselfwithoutblemishtogodpurifyourconsciencefromdeadworkstoservethelivinggod');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb10_22,19' => 'spanscript_ref_num22letuscomeforwardtoemtheholyofholiesemwithatrueheartinfullassuranceoffaithhavingourheartssprinkledfromanevilconscienceandhavingourbodieswashedwithpurewaterdivcb_10spanscript_ref_num19havingthereforebrothersboldnessforenteringtheemholyofemholiesinthebloodofjesus');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb10_22' => 'letuscomeforwardtoemtheholyofholiesemwithatrueheartinfullassuranceoffaithhavingourheartssprinkledfromanevilconscienceandhavingourbodieswashedwithpurewater');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb10_21-23' => 'andemhavingemagreatpriestoverthehouseofgodletuscomeforwardtoemtheholyofholiesemwithatrueheartinfullassuranceoffaithhavingourheartssprinkledfromanevilconscienceandhavingourbodieswashedwithpurewaterdivcb_10letusholdfasttheconfessionofourhopeunwaveringforhewhohaspromisedisfaithful');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb10_23' => 'letusholdfasttheconfessionofourhopeunwaveringforhewhohaspromisedisfaithful');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb10_35' => 'donotcastawaythereforeyourboldnesswhichhasgreatreward');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb10_35,38-39' => 'spanscript_ref_num35donotcastawaythereforeyourboldnesswhichhasgreatrewarddivcb_10spanscript_ref_num38butmyrighteousoneshalllivebyfaithandifheshrinksbackmysouldoesnotdelightinhimbutwearenotofthosewhoshrinkbacktoruinbutofthosewhohavefaithtothegainingofthesoul');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb11_1' => 'nowfaithisthesubstantiationofthingshopedfortheconvictionofthingsnotseen');
+        $tmp_search_meta_vvid_ARRAY[] = array('heb12_1' => 'thereforeletusalsohavingsogreatacloudofwitnessessurroundingusputawayeveryencumbranceandthesinwhichsoeasilyentanglesemusemandrunwithendurancetheracewhichissetbeforeus');
+        $tmp_search_meta_vvid_ARRAY[] = array('james3_1-2' => 'donotbecomemanyteachersmybrothersknowingthatwewillreceivegreaterjudgementforinmanythingsweallstumbleifanyonedoesnotstumbleinwordthisoneisaperfectmanabletobridlethewholebodyaswell');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet1_3-9,13,21' => 'spanscript_ref_num3blessedbethegodandfatherofourlordjesuschristwhoaccordingtohisgreatmercyhasregeneratedusuntoalivinghopethroughtheresurrectionofjesuschristfromthedeaduntoaninheritanceincorruptibleandundefiledandunfadingkeptintheheavensforyouwhoarebeingguardedbythepowerofgodthroughfaithuntoasalvationreadytoberevealedatthelasttimedivcb_10inwhichemtimeemyouexultthoughforalittlewhileatpresentifitmustbeyouhavebeenmadesorrowfulbyvarioustrialssothattheprovingofyourfaithmuchmorepreciousthanofgoldwhichperishesthoughitisprovedbyfiremaybefounduntopraiseandgloryandhonorattherevelationofjesuschristdivcb_10whomhavingnotseenyouloveintowhomthoughnotseeingemhimematpresentyetbelievingyouexultwithjoyemthatisemunspeakableandfullofgloryreceivingtheendofyourfaiththesalvationofyoursoulsdivcb_10spanscript_ref_num13thereforegirdinguptheloinsofyourmindemandembeingsobersetyourhopeperfectlyonthegracebeingbroughttoyouattherevelationofjesuschristdivcb_10spanscript_ref_num21whothroughhimbelieveintogodwhoraisedhimfromthedeadandgavehimglorysothatyourfaithandhopeareingod');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet1_3-5' => 'blessedbethegodandfatherofourlordjesuschristwhoaccordingtohisgreatmercyhasregeneratedusuntoalivinghopethroughtheresurrectionofjesuschristfromthedeaduntoaninheritanceincorruptibleandundefiledandunfadingkeptintheheavensforyouwhoarebeingguardedbythepowerofgodthroughfaithuntoasalvationreadytoberevealedatthelasttime');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet1_13' => 'thereforegirdinguptheloinsofyourmindemandembeingsobersetyourhopeperfectlyonthegracebeingbroughttoyouattherevelationofjesuschrist');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet2_16' => 'asfreeandyetnothavingfreedomasacoveringforevilbutasslavesofgod');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet2_20' => 'forwhatgloryisitifwhilesinningandbeingbuffetedyouendurebutifwhiledoinggoodandsufferingyouendurethisisgracewithgod');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet2_7-8' => 'toyouthereforewhobelieveisthepreciousnessbuttotheunbelieving&quotthestonewhichthebuildersrejectedthishasbecometheheadofthecorner&quotand&quotastoneofstumblingandarockofoffense&quotwhostumbleatthewordbeingdisobedienttowhichalsotheywereappointed');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet2_24' => 'whohimselfboreupoursinsinhisbodyonthetreeinorderthatwehavingdiedtosinsmightlivetorighteousnessbywhosebruiseyouwerehealed');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet3_15' => 'butsanctifychristaslordinyourheartsbeingalwaysreadyforadefensetoeveryonewhoasksofyouanaccountconcerningthehopewhichisinyou');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet3_5-7,14-22' => 'spanscript_ref_num5forinthismannerformerlytheholywomenalsowhohopedingodadornedthemselvesbeingsubjecttotheirownhusbandsassarahobeyedabrahamcallinghimlordwhosechildrenyouhavebecomeifyoudogoodanddonotfearanyterrordivcb_10husbandsinlikemannerdwelltogetherwithemthememaccordingtoknowledgeaswiththeweakerfemalevesselassigninghonortoemthememasalsotofellowheirsofthegraceoflifethatyourprayersmaynotbehindereddivcb_10spanscript_ref_num14butevenifyousufferbecauseofrighteousnessyouareblessedanddonotbeafraidemwithemfearfromthemnorbetroubledbutsanctifychristaslordinyourheartsbeingalwaysreadyforadefensetoeveryonewhoasksofyouanaccountconcerningthehopewhichisinyouyetwithmeeknessandfearhavingagoodconsciencesothatinthemannerinwhichyouarespokenagainstthosewhorevileyourgoodmanneroflifeinchristmaybeputtoshamedivcb_10foritisbetterifthewillofgodshouldwillemitemtosufferfordoinggoodthanfordoingevilforchristalsohassufferedonceforsinstherighteousonbehalfoftheunrighteousthathemightbringyoutogodontheonehandbeingputtodeathinthefleshbutontheothermadealiveinthespiritdivcb_10inwhichalsohewentandproclaimedtothespiritsinprisonwhohadformerlydisobeyedwhenthelongsufferingofgodwaitedinthedaysofnoahwhilethearkwasbeingpreparedementeringemintowhichafewthatiseightsoulswerebroughtsafelythroughbywaterdivcb_10whichemwateremastheantitypealsonowsavesyouemthatisembaptismnotaputtingawayofthefilthofthefleshbuttheappealofagoodconscienceuntogodthroughtheresurrectionofjesuschristwhoisattherighthandofgodhavinggoneintoheavenangelsandauthoritiesandpowersbeingsubjectedtohim');
+        $tmp_search_meta_vvid_ARRAY[] = array('1pet5_8' => 'besoberwatchyouradversarythedevilasaroaringlionwalksaboutseekingsomeonetodevour');
+        $tmp_search_meta_vvid_ARRAY[] = array('1john2_15-17' => 'donotlovetheworldnorthethingsintheworldifanyonelovestheworldloveforthefatherisnotinhimbecauseallthatisintheworldthelustofthefleshandthelustoftheeyesandthevaingloryoflifeisnotofthefatherbutisoftheworldandtheworldispassingawayanditslustbuthewhodoesthewillofgodabidesforever');
+        $tmp_search_meta_vvid_ARRAY[] = array('1john3_1-10' => 'beholdwhatmanneroflovethefatherhasgiventousthatweshouldbecalledchildrenofgodandwearebecauseofthistheworlddoesnotknowusbecauseitdidnotknowhimbelovednowwearechildrenofgodandithasnotyetbeenmanifestedwhatwewillbeweknowthatifheismanifestedwewillbelikehimbecausewewillseehimevenasheisdivcb_10andeveryonewhohasthishopeemsetemonhimpurifieshimselfevenasheispureeveryonewhopracticessinpracticeslawlessnessalsoandsinislawlessnessandyouknowthathewasmanifestedthathemighttakeawaysinsandsinisnotinhimdivcb_10everyonewhoabidesinhimdoesnotsineveryonewhosinshasnotseenhimorknownhimlittlechildrenletnooneleadyouastrayhewhopracticesrighteousnessisrighteousevenasheisrighteousdivcb_10hewhopracticessinisofthedevilbecausethedevilhassinnedfromthebeginningforthispurposethesongodwasmanifestedthathemightdestroytheworksofthedevileveryonewhohasbeenbegottenofgoddoesnotpracticesinbecausehisseedabidesinhimandhecannotsinbecausehehasbeenbegottenofgoddivcb_10inthisthechildrenofgodandthechildrenofthedevilaremanifesteveryonewhodoesnotpracticerighteousnessisnotofgodneitherhewhodoesnotlovehisbrother');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev2_10-11' => 'donotfearthethingsthatyouareabouttosufferbeholdthedevilisabouttocastsomeofyouintoprisonthatyoumaybetriedandyouwillhavetribulationfortendaysbefaithfuluntodeathandiwillgiveyouthecrownoflifehewhohasanearlethimhearwhatthespiritsaystothechurcheshewhoovercomesshallbynomeansbehurtoftheseconddeath');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev2_12-17' => 'andtothemessengerofthechurchinpergamoswritethesethingssayshewhohasthesharptwoedgedswordiknowwhereyoudwellwheresatansthroneisandyouholdfastmynameandhavenotdeniedmyfaitheveninthedaysofantipasmywitnessmyfaithfulonewhowaskilledamongyouwheresatandwellsdivcb_10butihaveafewthingsagainstyouthatyouhavesometherewhoholdtheteachingofbalaamwhotaughtbalaktoputastumblingblockbeforethesonsofisraeltoeatidolsacrificesandtocommitfornicationdivcb_10inthesamewayyoualsohavesomewhoholdinlikemannertheteachingofthenicolaitansrepentthereforebutifnotiamcomingtoyouquicklyandiwillmakewarwiththemwiththeswordofmymouthdivcb_10hewhohasanearlethimhearwhatthespiritsaystothechurchestohimwhoovercomestohimiwillgiveofthehiddenmannaandtohimiwillgiveawhitestoneanduponthestoneanewnamewrittenwhichnooneknowsexcepthimwhoreceivesemitem');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev2_18-23' => 'andtothemessengerofthechurchinthyatirawritethesethingssaysthesonofgodhewhohaseyeslikeaflameoffireandhisfeetarelikeshiningbronzeiknowyourworksandloveandfaithandserviceandyourenduranceandthatyourlastworksaremorethanthefirstbutihaveemsomethingemagainstyouthatyoutoleratethewomanjezebelshewhocallsherselfaprophetessandteachesandleadsmyslavesastraytocommitfornicationandtoeatidolsacrificesdivcb_10andigavehertimethatshemightrepentandsheisnotwillingtorepentofherfornicationbeholdicastherintoabedandthosewhocommitadulterywithherintogreattribulationunlesstheyrepentofherworksandherchildreniwillkillwithdeathandallthechurcheswillknowthatiamhewhosearchestheinwardpartsandtheheartsandiwillgivetoeachoneofyouaccordingtoyourworks');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev2_14[solo]' => 'butihaveafewthingsagainstyouthatyouhavesometherewhoholdtheteachingofbalaamwhotaughtbalaktoputastumblingblockbeforethesonsofisraeltoeatidolsacrificesandtocommitfornication');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev2_14' => 'butihaveafewthingsagainstyouthatyouhavesometherewhoholdtheteachingofbalaamwhotaughtbalaktoputastumblingblockbeforethesonsofisraeltoeatidolsacrificesandtocommitfornication');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev2_11|2_17,26-28|3_5,12,21' => 'spanscript_ref_num11hewhohasanearlethimhearwhatthespiritsaystothechurcheshewhoovercomesshallbynomeansbehurtoftheseconddeathdivcb_10spanscript_ref_num17hewhohasanearlethimhearwhatthespiritsaystothechurchestohimwhoovercomestohimiwillgiveofthehiddenmannaandtohimiwillgiveawhitestoneanduponthestoneanewnamewrittenwhichnooneknowsexcepthimwhoreceivesemitemdivcb_10spanscript_ref_num26andhewhoovercomesandhewhokeepsmyworksuntiltheendtohimiwillgiveauthorityoverthenationsandhewillshepherdthemwithanironrodasvesselsofpotteryarebrokeninpiecesasialsohavereceivedfrommyfatherandtohimiwillgivethemorningstardivcb_10spanscript_ref_num5hewhoovercomeswillbeclothedthusinwhitegarmentsandishallbynomeanserasehisnameoutofthebookoflifeandiwillconfesshisnamebeforemyfatherandbeforehisangelsdivcb_10spanscript_ref_num12hewhoovercomeshimiwillmakeapillarinthetempleofmygodandheshallbynomeansgooutanymoreandiwillwriteuponhimthenameofmygodandthenameofthecityofmygodthenewjerusalemwhichdescendsoutofheavenfrommygodandmynewnamedivcb_10spanscript_ref_num21hewhoovercomestohimiwillgivetositwithmeonmythroneasialsoovercameandsatwithmyfatheronhisthrone');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev2_21-22' => 'andigavehertimethatshemightrepentandsheisnotwillingtorepentofherfornicationbeholdicastherintoabedandthosewhocommitadulterywithherintogreattribulationunlesstheyrepentofherworks');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev3_8' => 'iknowyourworksbeholdihaveputbeforeyouanopeneddoorwhichnoonecanshutbecauseyouhavealittlepowerandhavekeptmywordandhavenotdeniedmyname');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev3_7-13' => 'andtotheasup_ftnt_1script_suponclickjony5_vv_scroll_toftnt_11amessengerofthechurchinphiladelphiawritethesethingssaysasup_ftnt_2script_suponclickjony5_vv_scroll_toftnt_2displaynone2atheholyonethetrueonetheonewhohasthekeyofdavidtheonewhoopensandnoonewillshutandshutsandnooneopensdivcb_10iknowyourasup_ftnt_3script_suponclickjony5_vv_scroll_toftnt_3displaynone3aworksbeholdihaveputbeforeyouanasup_ftnt_4script_suponclickjony5_vv_scroll_toftnt_4displaynone4aopeneddoorwhichnoonecanshutbecauseyouhaveaasup_ftnt_5script_suponclickjony5_vv_scroll_toftnt_5displaynone5alittlepowerandhaveasup_ftnt_6script_suponclickjony5_vv_scroll_toftnt_6displaynone6akeptmywordandhaveasup_ftnt_7script_suponclickjony5_vv_scroll_toftnt_7displaynone7anotdeniedmynamebeholdiwillmakeasup_ftnt_8script_suponclickjony5_vv_scroll_toftnt_8displaynone8athoseofthesynagogueofsatanthosewhocallthemselvesjewsandarenotbutlie&ndash&ndashbeholdiwillcausethemtocomeandfallprostratebeforeyourfeetandtoknowthatihavelovedyoudivcb_10asup_ftnt_9script_suponclickjony5_vv_scroll_toftnt_9displaynone9abecauseyouhavekepttheasup_ftnt_10script_suponclickjony5_vv_scroll_toftnt_10displaynone10awordofmyenduranceialsowillkeepyououtoftheasup_ftnt_11script_suponclickjony5_vv_scroll_toftnt_11displaynone11ahouroftrialwhichisabouttocomeonthewholeinhabitedearthtotrythemwhodwellontheearthasup_ftnt_12script_suponclickjony5_vv_scroll_toftnt_12displaynone12aicomequicklyasup_ftnt_13script_suponclickjony5_vv_scroll_toftnt_13displaynone13aholdfastwhatyouhavethatnoonetakeyourcrowndivcb_10asup_ftnt_14script_suponclickjony5_vv_scroll_toftnt_14displaynone14ahewhoovercomeshimiwillmakeapillarinthetempleofmygodandheshallbynomeansgooutanymoreandiwillwriteuponhimthenameofmygodandthenameofthecityofmygodthenewjerusalemwhichdescendsoutofheavenfrommygodandmynewnamehewhohasanearlethimhearwhatthespiritsaystothechurches');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev3_19' => 'asmanyasiloveireproveanddisciplinebezealousthereforeandrepent');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev6_16-17' => 'andtheysaytothemountainsandtotherocksfallonusandhideusfromthefaceofhimwhositsuponthethroneandfromthewrathofthelambforthegreatdayoftheirwrathhascomeandwhoisabletostand');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev12_3-4,9' => 'spanscript_ref_num3andanothersignwasseeninheavenandbeholdemtherewasemagreatreddragonhavingsevenheadsandtenhornsandonhisheadssevendiademsandhistaildragsawaythethirdpartofthestarsofheavenandhecastthemtotheearthandthedragonstoodbeforethewomanwhowasabouttobringforthsothatwhenshebringsforthhemightdevourherchilddivcb_10spanscript_ref_num9andthegreatdragonwascastdowntheancientserpenthewhoiscalledthedevilandsatanhewhodeceivesthewholeinhabitedearthhewascasttotheearthandhisangelswerecastdownwithhim');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev12_3-4,13,17;13:2,4' => 'spanscript_ref_num3andanothersignwasseeninheavenandbeholdemtherewasemagreatreddragonhavingsevenheadsandtenhornsandonhisheadssevendiademsandhistaildragsawaythethirdpartofthestarsofheavenandhecastthemtotheearthandthedragonstoodbeforethewomanwhowasabouttobringforthsothatwhenshebringsforthhemightdevourherchilddivcb_10spanscript_ref_num13andwhenthedragonsawthathewascasttotheearthhepersecutedthewomanwhobroughtforththemanchilddivcb_10spanscript_ref_num17andthedragonbecameangrywiththewomanandwentawaytomakewarwiththerestofherseedwhokeepthecommandmentsofgodandhavethetestimonyofjesusdivcb_10spanscript_ref_num132andthebeastwhichisawwaslikealeopardandhisfeetlikethoseofabearandhismouthlikethemouthofalionandthedragongavehimhispowerandhisthroneandgreatauthoritydivcb_10spanscript_ref_num4andtheyworshippedthedragonbecausehegavehisauthoritytothebeastandtheyworshippedthebeastsayingwhoislikethebeastandwhocanmakewarwithhim');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev20_6' => 'blessedandholyishewhohaspartinthefirstresurrectionoverthesetheseconddeathhasnoauthoritybuttheywillbepriestsofgodandofchristandwillreignwithhimforathousandyears');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev21_2,9-27' => 'spanscript_ref_num2andisawtheholycitynewjerusalemcomingdownoutofheavenfromgodpreparedasabrideadornedforherhusbanddivcb_10spanscript_ref_num9andoneofthesevenangelswhohadthesevenbowlsfullofthesevenlastplaguescameandspokewithmesayingcomehereiwillshowyouthebridethewifeofthelambandhecarriedmeawayinspiritontoagreatandhighmountainandshowedmetheholycityjerusalemcomingdownoutofheavenfromgodhavingthegloryofgodherlightwaslikeamostpreciousstonelikeajasperstoneasclearascrystalithadagreatandhighwallandhadtwelvegatesandatthegatestwelveangelsandnamesinscribedwhicharethenamesofthetwelvetribesofthesonsofisraelontheeastthreegatesandonthenorththreegatesandonthesouththreegatesandonthewestthreegatesandthewallofthecityhadtwelvefoundationsandonthemthetwelvenamesofthetwelveapostlesofthelambandhewhospokewithmehadagoldenreedasameasurethathemightmeasurethecityanditsgatesanditswallandthecityliessquareanditslengthisasgreatasthebreadthandhemeasuredthecitywiththereedtoemalengthofemtwelvethousandstadiathelengthandthebreadthandtheheightofitareequalandhemeasureditswallahundredandfortyfourcubitsemaccordingtoemthemeasureofamanthatisofanangelandthebuildingworkofitswallwasjasperandthecitywaspuregoldlikeclearglassthefoundationsofthewallofthecitywereadornedwitheverypreciousstonethefirstfoundationwasjasperthesecondsapphirethethirdchalcedonythefourthemeraldthefifthsardonyxthesixthsardiustheseventhchrysolitetheeightberyltheninthtopazthetenthchrysoprasetheeleventhjacinththetwelfthamethystandthetwelvegatesweretwelvepearlseachoneofthegateswasrespectivelyofonepearlandthestreetofthecitywaspuregoldliketransparentglassandisawnotempleinitforthelordgodthealmightyandthelambareitstempleandthecityhasnoneedofthesunorofthemoonthattheyshouldshineinitforthegloryofgodillumineditanditslampisthelambandthenationswillwalkbyitslightandthekingsoftheearthbringtheirgloryintoitanditsgatesshallbynomeansbeshutbydayfortherewillbenonightthereandtheywillbringthegloryandthehonorofthenationsintoitandanythingcommonandhewhomakesanabominationandalieshallbynomeansenterintoitbutonlythosewhoarewritteninthelambsbookoflife');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev21_7' => 'hewhoovercomeswillinheritthesethingsandiwillbegodtohimandhewillbeasontome');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev21_3-5' => 'andiheardaloudvoiceoutofthethronesayingbeholdthetabernacleofgodiswithmenandhewilltabernaclewiththemandtheywillbehispeoplesandgodhimselfwillbewiththememandbeemtheirgodandhewillwipeawayeverytearfromtheireyesanddeathwillbenomorenorwilltherebesorroworcryingorpainanymorefortheformerthingshavepassedawayandhewhositsonthethronesaidbeholdimakeallthingsnewandhesaidwriteforthesewordsarefaithfulandtrue');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev21_21' => 'andthetwelvegatesweretwelvepearlseachoneofthegateswasrespectivelyofonepearlandtheasup_ftnt_3script_suponclickjony5_vv_scroll_toftnt_33astreetofthecitywaspuregoldliketransparentglass');
+        $tmp_search_meta_vvid_ARRAY[] = array('rev22_2' => 'andonthissideandonthatsideoftheriverwasthetreeoflifeproducingtwelvefruitsyieldingitsfruiteachmonthandtheleavesofthetreeoflifeareforthehealingofthenations');
 
         return $tmp_search_meta_vvid_ARRAY;
 
@@ -3578,7 +4070,7 @@ class bringer_of_the_precious_things {
                 <p><strong>Vocals:</strong> Sister Doris K., Brother Jonathan H.<br><strong>African Djembe Hand 
                 Bongo:</strong> Brother Kenton W.<br><strong>Guitar:</strong> Brother Jonathan H.</p>
                 <div class="cb_10"></div>
-                <div class="script_ref_num hymn_stanza" >1</div>	
+                <div class="script_ref_num hymn_stanza">1</div>	
                 <div class="stanza_copy">Jehovah has revealed 
                     His heart to me.<br>
                     To Him I thus would consecrated be.<br>
@@ -3587,7 +4079,7 @@ class bringer_of_the_precious_things {
                     Lord, You need me.
                 </div>
                 <div class="cb_10"></div>
-                <div class="script_ref_num hymn_stanza" >2</div>	
+                <div class="script_ref_num hymn_stanza">2</div>	
                 <div class="stanza_copy">So here I am Lord standing before You.<br>
                     I realize that my natural man is through.<br>
                     Only Christ Himself can satisfy my God.<br>
@@ -3595,7 +4087,7 @@ class bringer_of_the_precious_things {
                     Lord, I need You.
                 </div>
                 <div class="cb_10"></div>
-                <div class="script_ref_num hymn_stanza" >3</div>	
+                <div class="script_ref_num hymn_stanza">3</div>	
                 <div class="stanza_copy">Lord, You are the One who meets God\'s need.<br>
                     All my natural goodness I must leave.<br>
                     Upon the alter I would find my rest.<br>
@@ -3603,7 +4095,7 @@ class bringer_of_the_precious_things {
                     Wholly for God.
                 </div>
                 <div class="cb_10"></div>
-                <div class="script_ref_num hymn_stanza" >4</div>	
+                <div class="script_ref_num hymn_stanza">4</div>	
                 <div class="stanza_copy">Oh, there is nothing sweeter to my Lord.<br>
                     Than those who would their whole being outpour.<br>
                     Living sacrifices unto God.<br>
@@ -3629,7 +4121,7 @@ class bringer_of_the_precious_things {
                     <span class="stanza_copy chords">Asus2</span> <span class="stanza_copy chords" style="padding-left:228px;">Dsus2 - Dsus2+A</span>
                 </div>
                 <div class="cb"></div>
-                <div class="script_ref_num hymn_stanza" >1</div>	
+                <div class="script_ref_num hymn_stanza">1</div>	
                 <div class="stanza_copy">Jehovah has revealed His heart to me.<br>
                     <span class="chords">Asus2</span><span class="chords" style="padding-left:215px;">Dsus2 - Dsus2+A</span><br>
                     To Him I thus would consecrated be.<br>
@@ -3641,7 +4133,7 @@ class bringer_of_the_precious_things {
                     Lord, You need me.
                 </div>
                 <div class="cb_10"></div>
-                <div class="script_ref_num hymn_stanza" >2</div>
+                <div class="script_ref_num hymn_stanza">2</div>
                 <div class="stanza_copy">So here I am Lord standing before You.<br>
                     I realize that my natural man is through.<br>
                     Only Christ Himself can satisfy my God.<br>
@@ -3649,7 +4141,7 @@ class bringer_of_the_precious_things {
                     Lord, I need You.
                 </div>
                 <div class="cb_10"></div>
-                <div class="script_ref_num hymn_stanza" >3</div>
+                <div class="script_ref_num hymn_stanza">3</div>
                 <div class="stanza_copy">Lord, You are the One who meets God\'s need.<br>
                     All my natural goodness I must leave.<br>
                     Upon the alter I would find my rest.<br>
@@ -3657,7 +4149,7 @@ class bringer_of_the_precious_things {
                     Wholly for God.
                 </div>
                 <div class="cb_10"></div>
-                <div class="script_ref_num hymn_stanza" >4</div>
+                <div class="script_ref_num hymn_stanza">4</div>
                 <div class="stanza_copy">Oh, there is nothing sweeter to my Lord.<br>
                     Than those who would their whole being outpour.<br>
                     Living sacrifices unto God.<br>
@@ -3671,7 +4163,7 @@ class bringer_of_the_precious_things {
 
                 $tmp_verse_array['REFERENCE'][0]        = '#979*';
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'HYMNS #979. How glorious, how bright it shines, / The holy, new Jerusalem; / It is God\'s dwelling place with man, / The spotless bride of Christ, the Lamb. 2. Saints of the Old and of the New, /Heirs of the promise God bestowed, / Components of the city are, / Together built for God\'s abode.';
-                $tmp_verse_array['COPY'][0]             = '<div class="script_ref_num hymn_stanza" style="float:left;" >1</div> 
+                $tmp_verse_array['COPY'][0]             = '<div class="script_ref_num hymn_stanza" style="float:left;">1</div> 
                 <div class="stanza_copy">How glorious, how bright it shines,<br>
                     The holy, new Jerusalem;<br>
                     It is God\'s dwelling place with man,<br>
@@ -3679,7 +4171,7 @@ class bringer_of_the_precious_things {
                 </div>
                 <div class="cb_10"></div>
 
-                <div class="script_ref_num hymn_stanza" >2</div> 
+                <div class="script_ref_num hymn_stanza">2</div> 
                 <div class="stanza_copy">Saints of the Old and of the New,<br>
                     Heirs of the promise God bestowed,<br>
                     Components of the city are,<br>
