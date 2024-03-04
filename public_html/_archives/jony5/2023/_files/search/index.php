@@ -180,7 +180,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
                 <div class="content_title">SEARCH RESULTS ::</div>
                 <div id="static_jony5_performance_report_wrapper">&nbsp;</div>
                 <div class="content_copy">
-                    <div class="col" style="width:600px;">
+                    <div class="col" style="width:800px;">
                         <?php
                         //$oBringer->search_for_all_preciousness();
                         //echo $oBringer->generate_optimized_search_content();

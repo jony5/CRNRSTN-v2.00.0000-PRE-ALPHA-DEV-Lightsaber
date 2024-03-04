@@ -41,6 +41,7 @@ class bringer_of_the_precious_things {
     private static $bytes_processed = 0;
     private static $mbstring_func_overload = false;
     private static $valid_session = false;
+    private static $shhh_passphase = '01100110110100111001111100101101001001110111000000';
 
     public function __construct($oCRNRSTN_USR, $page = 'home'){
 
@@ -147,21 +148,137 @@ class bringer_of_the_precious_things {
 
         switch($data_key){
             case 'JONY5':
-                
+
                 //
                 // PUSH ALL CUSTOM CONTENT
-                // CONTENT_IDS FOR STATIC
-                // SEARCH SUPPORT.
+                // ARRAY DATA PACKETS FOR
+                // STATIC SEARCH SUPPORT.
                 //
                 // PAGE URL:                https://jony5.com/?scroll=welcome
+                // DATE CREATED:            2024-03-04 02:38:45.749152
+                // DATA PACKET ID:          eFWeblrJSGEQHH2gvE7Kyqm22E3ABRcaASZETInBDG
+                // DATA PACKET SIZE:        2.197 KiB
+                // # # C # R # N # R # S # T # N # : : # # # #
                 // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
-                // DATE CREATED:            2024-03-03 20:17:19.788213
                 // CLIENT IP:               104.15.178.8
                 // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
                 $tmp_search_meta_ARRAY[] = array(
-                    array('SEARCH_CONTENT'                => 'WelcomeImJonathanJ5HarrisRev3713Gen4912528Deut33141229Isa1615Dan91727Matt24152224814James312Num25113Jer11119Luke123444awebprofessionallivingandworkinginAtlantaGAWith6yearsofsolidagencyexperience18yearsofprogrammingexperienceinopensourcewebtechnologiesbehindmeIamalwaysopentoinvestigatefreshopportunitiestoworkwithactivegrowinganddigitallyfueledcompaniesinordertostrengthenandbroadenaspectsoftheirserviceofferingsfromatechnicalperspectiveFormypreviousemployerIworkedwithcorporateclientstoformulateandexecutewithmyownbarehandsinthecodewhenevernecessarymultichannelbusinessmarketinginitiativesDigitalbrandstrategyandexecutionaremycorecompetenciesIn2004IworkedasafreelancedesignerwebapplicationdeveloperandserialentrepreneurAftertheimplosionofmy8personstartupcompanyCommercialNetIncIenteredtheworldofinteractivemarketingandadvertisingbyacceptingaUIdeveloperpositionwiththeAtlantabasedagencyMoxieIn2007IhelpedatalentedanddiverseteamofpeopleatMoxietostarttheeCRMdepartmentLeadbyDarrylBolducTinaWestandSapanaNanuwaandwithover50yearsofcombinedemailmarketingexperienceweworkedwithourclientstodesignandexecutebothawardwinningandstateoftheartemailmarketingprogramsinsupportoftheirglobalstrategicinitiativesBornonNov10th2005mydognamedJ5properispartKoreanJindoGermanShepherdandTimberWolfGalleryWhenIworkedatagencyJ5accompaniedmetotheofficeonoccasionaswellastolocalparkscoffeeshopsneighborhoodbarsandeventheoccasionalhousepartyOnthemorningofMondayAug162021at0345hrsandwhilelayingundermyarmJ5wentthewayofalltheearth1Kings213evenwithmuchencouragementandcelebrationfrommebyhissideInthewoodsbehindmyhouseinthedarkofnightat0500hrsasIwasreturningJ5totheearthfromwhencehecamewhilstshovelingthedirtbackinplaceIthankedhimrepeatedlyforeverythinghegavetomeduringoursojourntogetheruponthefaceoftheearthinthisGodsoldcreationIthankedhimforbringingmeintopracticalparticipationwithandintothepropheticfulfillmentoftheblessingsofIsraeltohistwelvesonsGen4821224912528whichareforallofthepeopleofGodacrossallspaceandalltimeEvenallthenationsoftheearthwillbeblessedThebonefromhislastwholesteaka100raretomahawkribeyefromRuthsChrisisstillclutchedagainsthischestinthearmofhisfrontrightpawLaterIcametorealizethatIburiedhimfacingtowardsthedirectionoftherisingofthesuntotheeastClickheretodownloadthelatestversionofmyresumeorvisitmyLinkedInprofile'),
-                    array('SOCIAL_PREVIEW_IMAGE_HTTP'     => 'https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0'),
-                    array('RESOURCE_ENDPOINT_URI'         => 'https://jony5.com/?scroll=welcome')
+                    array('SEARCH_CONTENT'                        => 'WelcomeImJonathanJ5HarrisRev3713Gen4912528Deut33141229Isa1615Dan91727Matt24152224814James312Num25113Jer11119Luke123444awebprofessionallivingandworkinginAtlantaGAWith6yearsofsolidagencyexperience18yearsofprogrammingexperienceinopensourcewebtechnologiesbehindmeIamalwaysopentoinvestigatefreshopportunitiestoworkwithactivegrowinganddigitallyfueledcompaniesinordertostrengthenandbroadenaspectsoftheirserviceofferingsfromatechnicalperspectiveFormypreviousemployerIworkedwithcorporateclientstoformulateandexecutewithmyownbarehandsinthecodewhenevernecessarymultichannelbusinessmarketinginitiatives'),
+                    array('SEARCH_CONTENT_PREVIEW'                => 'Welcome! I\'m Jonathan \'J5\' Harris (Rev. 3:7-13; Gen. 49:1, 25-28; Deut. 33:1-4, 12, 29; Isa. 16:1-5; Dan. 9:17-27; Matt. 24:15-22; 24:8-14; James 3:1-2; Num. 25:1-13; Jer. 1:11-19; Luke 12:34-44 ), a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+18 years of programming experience in open source web technologies) behind me, I am always open to investigate fresh opportunities to work with active, growing and digitally fueled companies in order to strengthen and broaden aspects of their service offerings from a technical perspective. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands in the code whenever necessary) multi-channel business marketing initiatives.'),
+                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0'),
+                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
+                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=I%27m%20Jonathan%20%27J5,business%20marketing%20initiatives.'),
+                    array('DATA_PACKET_ID'                        => 'eFWeblrJSGEQHH2gvE7Kyqm22E3ABRcaASZETInBDG')
+                );
+
+                //
+                // PAGE URL:                https://jony5.com/?scroll=welcome
+                // DATE CREATED:            2024-03-04 02:41:28.264794
+                // DATA PACKET ID:          dM2MXrbbauczDh9yVmo2ZFCIj7kXNKsw4C9RB4dCkc
+                // DATA PACKET SIZE:        1.51 KiB
+                // # # C # R # N # R # S # T # N # : : # # # #
+                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
+                // CLIENT IP:               104.15.178.8
+                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
+                $tmp_search_meta_ARRAY[] = array(
+                    array('SEARCH_CONTENT'                        => 'DigitalbrandstrategyandexecutionaremycorecompetenciesIn2004IworkedasafreelancedesignerwebapplicationdeveloperandserialentrepreneurAftertheimplosionofmy8personstartupcompanyCommercialNetIncIenteredtheworldofinteractivemarketingandadvertisingbyacceptingaUIdeveloperpositionwiththeAtlantabasedagencyMoxie'),
+                    array('SEARCH_CONTENT_PREVIEW'                => 'Digital brand strategy and execution are my core competencies. In 2004 I worked as a freelance designer, web application developer and serial entrepreneur. After the implosion of my 8 person startup company, CommercialNet Inc., I entered the world of interactive marketing and advertising by accepting a UI developer position with the Atlanta based agency, Moxie.'),
+                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0'),
+                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
+                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=Digital%20brand%20strategy,Atlanta%20based%20agency%2C'),
+                    array('DATA_PACKET_ID'                        => 'dM2MXrbbauczDh9yVmo2ZFCIj7kXNKsw4C9RB4dCkc')
+                );
+
+                //
+                // PAGE URL:                https://jony5.com/
+                // DATE CREATED:            2024-03-04 02:21:28.383189
+                // DATA PACKET ID:          dJpzH4zHNKL5pmGLUtoreeLVwdQMgK8z1O9muPt91y
+                // DATA PACKET SIZE:        1.652 KiB
+                // # # C # R # N # R # S # T # N # : : # # # #
+                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
+                // CLIENT IP:               104.15.178.8
+                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
+                $tmp_search_meta_ARRAY[] = array(
+                    array('SEARCH_CONTENT'                        => 'In2007IhelpedatalentedanddiverseteamofpeopleatMoxietostarttheeCRMdepartmentLeadbyDarrylBolducTinaWestandSapanaNanuwaandwithover50yearsofcombinedemailmarketingexperienceweworkedwithourclientstodesignandexecutebothawardwinningandstateoftheartemailmarketingprogramsinsupportoftheirglobalstrategicinitiativesBornonNov10th2005mydognamedJ5properispartKoreanJindoGermanShepherdandTimberWolf'),
+                    array('SEARCH_CONTENT_PREVIEW'                => 'In 2007 I helped a talented and diverse team of people at Moxie to start the eCRM department. Lead by Darryl Bolduc, Tina West and Sapana Nanuwa (and with over 50 years of combined email marketing experience), we worked with our clients to design and execute both award-winning and state-of-the-art email marketing programs in support of their global strategic initiatives.
+
+Born on Nov. 10th, 2005, my dog...named \'J5\' (proper)...is part Korean Jindo, German Shepherd and Timber Wolf.'),
+                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/j5_my_boy/2010_10_30_11.11.56_j5_octane_01.png'),
+                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
+                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=In%202007%20I,and%20Timber%20Wolf.'),
+                    array('DATA_PACKET_ID'                        => 'dJpzH4zHNKL5pmGLUtoreeLVwdQMgK8z1O9muPt91y')
+                );
+
+                //
+                // PAGE URL:                https://jony5.com/?scroll=welcome
+                // DATE CREATED:            2024-03-04 02:43:00.251667
+                // DATA PACKET ID:          XNApYrujNEzmOStqOl7VXw4Ou4Q7ZcKtKKTrdHhV5x
+                // DATA PACKET SIZE:        1.292 KiB
+                // # # C # R # N # R # S # T # N # : : # # # #
+                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
+                // CLIENT IP:               104.15.178.8
+                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
+                $tmp_search_meta_ARRAY[] = array(
+                    array('SEARCH_CONTENT'                        => 'WhenIworkedatagencyJ5accompaniedmetotheofficeonoccasionaswellastolocalparkscoffeeshopsneighborhoodbarsandeventheoccasionalhouseparty'),
+                    array('SEARCH_CONTENT_PREVIEW'                => 'When I worked at agency, J5 accompanied me to the office on occasion as well as to local parks, coffee shops, neighborhood bars and even the occasional house party.'),
+                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/j5_my_boy/2010_10_30_11.11.56_j5_octane_00.png'),
+                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
+                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=When%20I%20worked%20at%20agency%2C%20J5%20accompanied%20me%20to%20the%20office%20on%20occasion%20as%20well%20as%20to%20local%20parks%2C%20coffee%20shops%2C%20neighborhood%20bars%20and%20even%20the%20occasional%20house%20party.'),
+                    array('DATA_PACKET_ID'                        => 'XNApYrujNEzmOStqOl7VXw4Ou4Q7ZcKtKKTrdHhV5x')
+                );
+
+                //
+                // PAGE URL:                https://jony5.com/?scroll=welcome
+                // DATE CREATED:            2024-03-04 02:44:25.547565
+                // DATA PACKET ID:          46I75Km4acths7znZsABBEX0imaLhHD4XcxLoq1bS7
+                // DATA PACKET SIZE:        2.196 KiB
+                // # # C # R # N # R # S # T # N # : : # # # #
+                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
+                // CLIENT IP:               104.15.178.8
+                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
+                $tmp_search_meta_ARRAY[] = array(
+                    array('SEARCH_CONTENT'                        => 'OnthemorningofMondayAug162021at0345hrsandwhilelayingundermyarmJ5wentthewayofalltheearth1Kings213evenwithmuchencouragementandcelebrationfrommebyhissideInthewoodsbehindmyhouseinthedarkofnightat0500hrsasIwasreturningJ5totheearthfromwhencehecamewhilstshovelingthedirtbackinplaceIthankedhimrepeatedlyforeverythinghegavetomeduringoursojourntogetheruponthefaceoftheearthinthisGodsoldcreationIthankedhimforbringingmeintopracticalparticipationwithandintothepropheticfulfillmentoftheblessingsofIsraeltohistwelvesonsGen4821224912528whichareforallofthepeopleofGodacrossallspaceandalltimeEvenallthenationsoftheearthwillbeblessed'),
+                    array('SEARCH_CONTENT_PREVIEW'                => 'On the morning of Monday, Aug. 16, 2021 at 0345 hrs and while laying under my arm, J5 went the way of all the earth (1 Kings 2:1-3 ) even with much encouragement and celebration from me by his side. In the woods behind my house in the dark of night, at 0500 hrs, as I was returning J5 to the earth from whence he came...whilst shoveling the dirt back in place, I thanked him repeatedly for everything he gave to me during our sojourn together upon the face of the earth in this God\'s old creation. I thanked him for bringing me into practical participation with and into the prophetic fulfillment of the blessings of Israel to his twelve sons (Gen. 48:21-22; 49:1, 25-28 ) which are for all of the people of God across all space and all time. Even all the nations of the earth will be blessed.'),
+                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/j5_my_boy/2010_10_30_11.11.56_j5_octane_02.png'),
+                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
+                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=On%20the%20morning,will%20be%20blessed.'),
+                    array('DATA_PACKET_ID'                        => '46I75Km4acths7znZsABBEX0imaLhHD4XcxLoq1bS7')
+                );
+
+                //
+                // PAGE URL:                https://jony5.com/?scroll=welcome
+                // DATE CREATED:            2024-03-04 02:46:03.009425
+                // DATA PACKET ID:          1E78I2mrelwg0N23Rk5VFF2VjKAQyxuf39UVvGZart
+                // DATA PACKET SIZE:        1.275 KiB
+                // # # C # R # N # R # S # T # N # : : # # # #
+                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
+                // CLIENT IP:               104.15.178.8
+                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
+                $tmp_search_meta_ARRAY[] = array(
+                    array('SEARCH_CONTENT'                        => 'Thebonefromhislastwholesteaka100raretomahawkribeyefromRuthsChrisisstillclutchedagainsthischestinthearmofhisfrontrightpawLaterIcametorealizethatIburiedhimfacingtowardsthedirectionoftherisingofthesuntotheeast'),
+                    array('SEARCH_CONTENT_PREVIEW'                => 'The bone from his last whole steak, a +$100 rare tomahawk ribeye from Ruth\'s Chris, is still clutched against his chest in the arm of his front right paw. Later, I came to realize that I buried him facing towards the direction of the rising of the sun to the east.'),
+                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/j5_my_boy/2010_10_30_11.11.56_j5_octane_01.png'),
+                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
+                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=The%20bone%20from,to%20the%20east.'),
+                    array('DATA_PACKET_ID'                        => '1E78I2mrelwg0N23Rk5VFF2VjKAQyxuf39UVvGZart')
+                );
+
+                //
+                // PAGE URL:                https://jony5.com/?scroll=welcome
+                // DATE CREATED:            2024-03-04 02:56:23.976282
+                // DATA PACKET ID:          qva2S4b5GquWhepSqoW0mcEK8rIaqJJFHwhSUvZL24
+                // DATA PACKET SIZE:        1.067 KiB
+                // # # C # R # N # R # S # T # N # : : # # # #
+                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
+                // CLIENT IP:               104.15.178.8
+                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
+                $tmp_search_meta_ARRAY[] = array(
+                    array('SEARCH_CONTENT'                        => 'ClickheretodownloadthelatestversionofmyresumeorvisitmyLinkedInprofile'),
+                    array('SEARCH_CONTENT_PREVIEW'                => 'Click here to download the latest version of my resume or visit my LinkedIn profile.'),
+                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0'),
+                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
+                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=Click%20here%20to%20download%20the%20latest%20version%20of%20my%20resume%20or%20visit%20my%20LinkedIn%20profile.'),
+                    array('DATA_PACKET_ID'                        => 'qva2S4b5GquWhepSqoW0mcEK8rIaqJJFHwhSUvZL24')
                 );
 
             break;
@@ -690,24 +807,32 @@ class bringer_of_the_precious_things {
                         $tmp_www_jony5_ARRAY = $this->return_search_controller_static_struct('JONY5');
 
                         /*
-                        [Sun Mar 03 20:55:19.539639 2024] [:error] [pid 20182] [client 172.16.225.1:49152] 694 precious [].
-                        $tmp_vvid_jony5_ARRAY[
+                        [Mon Mar 04 02:50:00.892829 2024] [:error] [pid 27174] [client 172.16.225.1:50836] 806
+                        $tmp_www_jony5_ARRAY[
                         Array\n(\n
                             [0] => Array\n        (\n
-                                [0] => Array\n                (\n
-                                        [SEARCH_CONTENT] => WelcomeImJonathanJ5HarrisRev3713Gen4912528Deut33141229Isa1615Dan91727Matt24152224814James312Num25113Jer11119Luke123444awebprofessionallivingandworkinginAtlantaGAWith6yearsofsolidagencyexperience18yearsofprogrammingexperienceinopensourcewebtechnologiesbehindmeIamalwaysopentoinvestigatefreshopportunitiestoworkwithactivegrowinganddigitallyfueledcompaniesinordertostrengthenandbroadenaspectsoftheirserviceofferingsfromatechnicalperspectiveFormypreviousemployerIworkedwithcorporateclientstoformulateandexecutewithmyownbarehandsinthecodewhenevernecessarymultichannelbusinessmarketinginitiativesDigitalbrandstrategyandexecutionaremycorecompetenciesIn2004IworkedasafreelancedesignerwebapplicationdeveloperandserialentrepreneurAftertheimplosionofmy8personstartupcompanyCommercialNetIncIenteredtheworldofinteractivemarketingandadvertisingbyacceptingaUIdeveloperpositionwiththeAtlantabasedagencyMoxieIn2007IhelpedatalentedanddiverseteamofpeopleatMoxietostarttheeCRMdepartmentLeadbyDarrylBolducTinaWestandSapanaNanuwaandwithover50yearsofcombinedemailmarketingexperienceweworkedwithourclientstodesignandexecutebothawardwinningandstateoftheartemailmarketingprogramsinsupportoftheirglobalstrategicinitiativesBornonNov10th2005mydognamedJ5properispartKoreanJindoGermanShepherdandTimberWolfGalleryWhenIworkedatagencyJ5accompaniedmetotheofficeonoccasionaswellastolocalparkscoffeeshopsneighborhoodbarsandeventheoccasionalhousepartyOnthemorningofMondayAug162021at0345hrsandwhilelayingundermyarmJ5wentthewayofalltheearth1Kings213evenwithmuchencouragementandcelebrationfrommebyhissideInthewoodsbehindmyhouseinthedarkofnightat0500hrsasIwasreturningJ5totheearthfromwhencehecamewhilstshovelingthedirtbackinplaceIthankedhimrepeatedlyforeverythinghegavetomeduringoursojourntogetheruponthefaceoftheearthinthisGodsoldcreationIthankedhimforbringingmeintopracticalparticipationwithandintothepropheticfulfillmentoftheblessingsofIsraeltohistwelvesonsGen4821224912528whichareforallofthepeopleofGodacrossallspaceandalltimeEvenallthenationsoftheearthwillbeblessedThebonefromhislastwholesteaka100raretomahawkribeyefromRuthsChrisisstillclutchedagainsthischestinthearmofhisfrontrightpawLaterIcametorealizethatIburiedhimfacingtowardsthedirectionoftherisingofthesuntotheeastClickheretodownloadthelatestversionofmyresumeorvisitmyLinkedInprofile\n                )\n\n
-                                [1] => Array\n                (\n
+                                    [0] => Array\n                (\n
+                                        [SEARCH_CONTENT] => WelcomeImJonathanJ5HarrisRev3713Gen4912528Deut33141229Isa1615Dan91727Matt24152224814James312Num25113Jer11119Luke123444awebprofessionallivingandworkinginAtlantaGAWith6yearsofsolidagencyexperience18yearsofprogrammingexperienceinopensourcewebtechnologiesbehindmeIamalwaysopentoinvestigatefreshopportunitiestoworkwithactivegrowinganddigitallyfueledcompaniesinordertostrengthenandbroadenaspectsoftheirserviceofferingsfromatechnicalperspectiveFormypreviousemployerIworkedwithcorporateclientstoformulateandexecutewithmyownbarehandsinthecodewhenevernecessarymultichannelbusinessmarketinginitiatives\n                )\n\n
+                                    [1] => Array\n                (\n
+                                        [SEARCH_CONTENT_PREVIEW] => Welcome! I'm Jonathan 'J5' Harris (Rev. 3:7-13; Gen. 49:1, 25-28; Deut. 33:1-4, 12, 29; Isa. 16:1-5; Dan. 9:17-27; Matt. 24:15-22; 24:8-14; James 3:1-2; Num. 25:1-13; Jer. 1:11-19; Luke 12:34-44 ), a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+18 years of programming experience in open source web technologies) behind me, I am always open to investigate fresh opportunities to work with active, growing and digitally fueled companies in order to strengthen and broaden aspects of their service offerings from a technical perspective. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands in the code whenever necessary) multi-channel business marketing initiatives.\n                )\n\n
+                                    [2] => Array\n                (\n
                                         [SOCIAL_PREVIEW_IMAGE_HTTP] => https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0\n                )\n\n
-                                [2] => Array\n                (\n
-                                        [RESOURCE_ENDPOINT_URI] => https://jony5.com/?scroll=welcome\n                )\n\n        )\n\n)\n]., referer: http://172.16.225.139/jony5.com/search/
+                                    [3] => Array\n                (\n
+                                        [RESOURCE_ENDPOINT_URI] => https://jony5.com/?scroll=welcome\n                )\n\n
+                                    [4] => Array\n                (\n
+                                        [RESOURCE_HIGHLIGHT_ENDPOINT_URI] => https://jony5.com/#:~:text=I%27m%20Jonathan%20%27J5,business%20marketing%20initiatives.\n                )\n\n
+                                    [5] => Array\n                (\n
+                                        [DATA_PACKET_ID] => eFWeblrJSGEQHH2gvE7Kyqm22E3ABRcaASZETInBDG\n                )\n\n        )\n\n
 
                         */
 
+                        //error_log(__LINE__ . ' $tmp_www_jony5_ARRAY[' . print_r($tmp_www_jony5_ARRAY, true) . ']. ');
+
                         foreach($tmp_www_jony5_ARRAY as $img_index => $img_CHUNKARRAY0){
 
-                            if(isset($img_CHUNKARRAY0[1]['SOCIAL_PREVIEW_IMAGE_HTTP'])){
+                            if(isset($img_CHUNKARRAY0[2]['SOCIAL_PREVIEW_IMAGE_HTTP'])){
 
-                                $tmp_social_media_preview_img_url = $img_CHUNKARRAY0[1]['SOCIAL_PREVIEW_IMAGE_HTTP'];  //'https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0';
+                                $tmp_social_media_preview_img_url = $img_CHUNKARRAY0[2]['SOCIAL_PREVIEW_IMAGE_HTTP'];  //'https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0';
 
                                 if(strlen($tmp_social_media_preview_img_url) > 0){
 
@@ -723,8 +848,12 @@ class bringer_of_the_precious_things {
 
                     }
 
-                    $tmp_resource_endpoint_uri = self::$oEnv->oHTTP_MGR->extractData($_POST, 'page_content_endpoint_url');
+                    $tmp_data_packet_id = $this->generate_new_key(42);
+                    $tmp_resource_endpoint_uri = self::$oEnv->oHTTP_MGR->extractData($_POST, 'resource_endpoint_uri');
+                    $tmp_page_content_highlight_url = self::$oEnv->oHTTP_MGR->extractData($_POST, 'page_content_highlight_url');
                     $tmp_search_content = self::$oEnv->oHTTP_MGR->extractData($_POST, 'search_content');
+                    $tmp_search_content_text_preview = self::$oEnv->oHTTP_MGR->extractData($_POST, 'search_content_text_preview');
+
                     $tmp_page_uri = self::$oEnv->paramTunnelDecrypt(self::$oEnv->oHTTP_MGR->extractData($_POST, 'uri'));
                     $tmp_search_content_compress_passphase = self::$oEnv->oHTTP_MGR->extractData($_POST, 'search_content_compress_passphase');
 
@@ -736,17 +865,30 @@ class bringer_of_the_precious_things {
 
                     $tmp_search_bytes_original = $this->count_processed_bytes($tmp_search_content,true);
                     $tmp_original_bytes = $tmp_search_bytes_original + $this->count_processed_bytes($tmp_social_media_preview_img_url . $tmp_resource_endpoint_uri, true);
+                    $tmp_original_preview_bytes = $this->count_processed_bytes($tmp_search_content_text_preview, true);
 
                     $this->count_processed_bytes($tmp_social_media_preview_img_url);
                     $this->count_processed_bytes($tmp_resource_endpoint_uri);
 
                     $tmp_search_content = $this->str_sanitize($tmp_search_content, 'search_jony5_vvid_content');
+                    $tmp_search_content_text_preview = $this->str_sanitize($tmp_search_content_text_preview, 'php_code_escape_single_quotes');
 
                     //
                     // SOURCE :: https://stackoverflow.com/questions/3760816/remove-new-lines-from-string-and-replace-with-one-empty-space
                     // AUTHOR :: jwueller :: https://stackoverflow.com/users/427328/jwueller
                     // COMMENT :: https://stackoverflow.com/a/3760830
                     $tmp_search_content = trim(preg_replace('/\s+/', '', $tmp_search_content));
+
+                    //
+                    // REPLACE ALL LINE BREAKS WITH A SPACE IN THE
+                    // TEXT PREVIEW FOR SEARCH CONTENT.
+                    $tmp_search_content_text_preview = trim(preg_replace('/\s+/', ' ', $tmp_search_content_text_preview));
+
+                    //
+                    // REMOVE USELESS SPACES LEFT BY THE ABOVE preg_replace()
+                    // REPLACEMENT OF LINE BREAKS WITH A SPACE.
+                    $tmp_search_content_text_preview = $this->str_sanitize($tmp_search_content_text_preview, 'php_code_remove_preg_replace_spaces');
+
 
                     $this->count_processed_bytes($tmp_search_content);
                     $tmp_serial = $this->generate_new_key(50, '01');
@@ -770,10 +912,21 @@ class bringer_of_the_precious_things {
 
                     }
 
+                    $tmp_packet_output_str = '$tmp_search_meta_ARRAY[] = array(
+                                                                array(\'SEARCH_CONTENT\'                    => \'' . $tmp_search_content . '\'),
+                                                                array(\'SEARCH_CONTENT_PREVIEW\'            => \'' . $tmp_search_content_text_preview . '\'),
+                                                                array(\'SOCIAL_PREVIEW_IMAGE_HTTP\'         => \'' . $tmp_social_media_preview_img_url . '\'),
+                                                                array(\'RESOURCE_ENDPOINT_URI\'             => \'' . $tmp_resource_endpoint_uri . '\'),
+                                                                array(\'RESOURCE_HIGHLIGHT_ENDPOINT_URI\'   => \'' . $tmp_page_content_highlight_url . '\')
+                                                            );';
+
+                    $tmp_packet_output_bytes = $this->formatBytes($this->count_processed_bytes($tmp_packet_output_str, true), 3);
+                    $tmp_packet_output_str = '';
+
                     //
                     // CHECK FOR A VALID PASSPHRASE OR A
                     // PRE-EXISTING AND VALID ADMIN SESSION.
-                    if(($tmp_search_content_compress_passphase == '011011100101101001000') || (self::$valid_session == true)){
+                    if(($tmp_search_content_compress_passphase == self::$shhh_passphase) || (self::$valid_session == true)){
 
                         //
                         // AUTHENTICATE THIS SESSION...I.E. LOGIN.
@@ -818,25 +971,36 @@ class bringer_of_the_precious_things {
     <div class="cb_5"></div>
     <textarea id="jony5_search_meta_www_data_' . $tmp_serial . '" class="jony5_search_meta_www_data_textarea" onclick="copy_output_' . $tmp_serial . '(); return false;" cols="80" rows="8">//
                                                             // PAGE URL:                ' . $tmp_resource_endpoint_uri . '
-                                                            // DATA CAPTURE ENDPOINT:   ' . $tmp_page_uri . '
                                                             // DATE CREATED:            ' . self::$oEnv->return_micro_time() . '
+                                                            // DATA PACKET ID:          ' . $tmp_data_packet_id . '
+                                                            // DATA PACKET SIZE:        ' . $tmp_packet_output_bytes . '
+                                                            // # # C # R # N # R # S # T # N # : : # # # #
+                                                            // DATA CAPTURE ENDPOINT:   ' . $tmp_page_uri . '
                                                             // CLIENT IP:               ' . self::$oEnv->oCRNRSTN_IPSECURITY_MGR->clientIpAddress() . '
                                                             // SESSION ID:              ' . session_id() . '
                                                             $tmp_search_meta_ARRAY[] = array(
-                                                                array(\'SEARCH_CONTENT\'                => \'' . $tmp_search_content . '\'),
-                                                                array(\'SOCIAL_PREVIEW_IMAGE_HTTP\'     => \'' . $tmp_social_media_preview_img_url . '\'),
-                                                                array(\'RESOURCE_ENDPOINT_URI\'         => \'' . $tmp_resource_endpoint_uri . '\')
+                                                                array(\'SEARCH_CONTENT\'                        => \'' . $tmp_search_content . '\'),
+                                                                array(\'SEARCH_CONTENT_PREVIEW\'                => \'' . $tmp_search_content_text_preview . '\'),
+                                                                array(\'SOCIAL_PREVIEW_IMAGE_HTTP\'             => \'' . $tmp_social_media_preview_img_url . '\'),
+                                                                array(\'RESOURCE_ENDPOINT_URI\'                 => \'' . $tmp_resource_endpoint_uri . '\'),
+                                                                array(\'RESOURCE_HIGHLIGHT_ENDPOINT_URI\'       => \'' . $tmp_page_content_highlight_url . '\'),
+                                                                array(\'DATA_PACKET_ID\'                        => \'' . $tmp_data_packet_id . '\')
                                                             );</textarea>
 
 <div class="jony5_meta_report_header_wrap"><p><strong>Input Meta Report:</strong></p></div>
 <div class="jony5_meta_report_body_wrap">
-    <p><strong>Content Length (original):</strong><br>
+    <p><strong>Content <span class="jony5_search_highlight_copy">&nbsp;Preview&nbsp;</span> Length:</strong><br>
+    ' . $this->formatBytes($tmp_original_preview_bytes, 3) . '</p>
+    <p><strong>Search Content Length (original):</strong><br>
     ' . $this->formatBytes($tmp_original_bytes, 3) . '</p>
     <p><strong>Content Length (search compressed):</strong><br>
     ' . $this->formatBytes(self::$bytes_processed, 3) . '</p>
     <p><strong>Search Content Endpoint URL:</strong><br>
     <a href="' . $tmp_resource_endpoint_uri . '" target="_blank">' . $tmp_resource_endpoint_uri . '</a>
     </p>
+    <p><strong><span class="jony5_search_highlight_copy">&nbsp;HIGHLIGHT&nbsp;</span> Content URL:</strong><br>
+        <a href="' . $tmp_page_content_highlight_url . '" target="_blank">' . $tmp_page_content_highlight_url . '</a>
+    </p>  
     <p><strong>Social Media Preview Image:</strong><br>
     <a href="' . $tmp_resource_endpoint_uri . '" target="_blank"><img src="' . $tmp_social_media_preview_img_url . '" height = "300"></a></p>
 
@@ -886,25 +1050,36 @@ class bringer_of_the_precious_things {
     <div class="cb_5"></div>
     <textarea id="jony5_search_meta_www_data_' . $tmp_serial . '" class="jony5_search_meta_www_data_textarea" onclick="copy_output_' . $tmp_serial . '(); return false;" cols="80" rows="8">//
                                                             // PAGE URL:                [CONTENT LEN=' . strlen($tmp_resource_endpoint_uri) . ']
-                                                            // DATA CAPTURE ENDPOINT:   ' . $tmp_page_uri . '
                                                             // DATE CREATED:            ' . self::$oEnv->return_micro_time() . '
+                                                            // DATA PACKET ID:          ' . $tmp_data_packet_id . '
+                                                            // DATA PACKET SIZE:        ' . $tmp_packet_output_bytes . '
+                                                            // # # C # R # N # R # S # T # N # : : # # # #
+                                                            // DATA CAPTURE ENDPOINT:   ' . $tmp_page_uri . '
                                                             // CLIENT IP:               ' . self::$oEnv->oCRNRSTN_IPSECURITY_MGR->clientIpAddress() . '
                                                             // SESSION ID:              ' . session_id() . '
                                                             $tmp_search_meta_ARRAY[] = array(
-                                                                array(\'SEARCH_CONTENT\'                => [CONTENT LEN=' . strlen($tmp_search_content) . ']),
-                                                                array(\'SOCIAL_PREVIEW_IMAGE_HTTP\'     => [CONTENT LEN=' . strlen($tmp_social_media_preview_img_url) . ']),
-                                                                array(\'RESOURCE_ENDPOINT_URI\'         => [CONTENT LEN=' . strlen($tmp_resource_endpoint_uri) . '])
+                                                                array(\'SEARCH_CONTENT\'                    => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_search_content, true), 3) . ']),
+                                                                array(\'SEARCH_CONTENT_PREVIEW\'            => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_search_content_text_preview, true), 3) . ']),
+                                                                array(\'SOCIAL_PREVIEW_IMAGE_HTTP\'         => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_social_media_preview_img_url, true), 3) . ']),
+                                                                array(\'RESOURCE_ENDPOINT_URI\'             => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_resource_endpoint_uri, true), 3) . ']),
+                                                                array(\'RESOURCE_HIGHLIGHT_ENDPOINT_URI\'   => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_page_content_highlight_url, true), 3) . ']),
+                                                                array(\'DATA_PACKET_ID\'                    => \'' . $tmp_data_packet_id . '\')
                                                             );</textarea>
 
 <div class="jony5_meta_report_header_wrap"><p><strong>Input Meta Report:</strong></p></div>
 <div class="jony5_meta_report_body_wrap">
-    <p><strong>Content Length (original):</strong><br>
+    <p><strong>Content <span class="jony5_search_highlight_copy">&nbsp;Preview&nbsp;</span> Length:</strong><br>
+    ' . $this->formatBytes($tmp_original_preview_bytes, 3) . '</p>
+    <p><strong>Search Content Length (original):</strong><br>
     ' . $this->formatBytes($tmp_original_bytes, 3) . '</p>
     <p><strong>Content Length (search compressed):</strong><br>
-    ' . $this->formatBytes(self::$bytes_processed, 3) . '</p>
+    ' . $this->formatBytes($this->count_processed_bytes($tmp_search_content, true), 3) . '</p>
     <p><strong>Search Content Endpoint URL:</strong><br>
     [CONTENT LEN=' . strlen($tmp_resource_endpoint_uri) . ']
     </p>
+    <p><strong><span class="jony5_search_highlight_copy">&nbsp;HIGHLIGHT&nbsp;</span> Content URL:</strong><br>
+    [CONTENT LEN=' . strlen($tmp_page_content_highlight_url) . ']
+    </p>    
     <p><strong>Social Media Preview Image:</strong><br>
     [CONTENT LEN=' . strlen($tmp_social_media_preview_img_url) . ']</p>
 
@@ -940,7 +1115,7 @@ class bringer_of_the_precious_things {
         <div id="social_media_preview_img_url_form_element_label" class="form_element_label_search">Social Media Preview Image</div>
         <div class="form_element_input_search_wrapper">
             <div class="form_element_input_search">
-                <input frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="none" name="social_media_preview_img_url" type="text" id="social_media_preview_img_url" size="20" value="" placeholder="https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png" />
+                <input frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="none" name="social_media_preview_img_url" type="text" id="social_media_preview_img_url" size="80" value="" placeholder="https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png" />
             </div>
             <div class="cb_10"></div>
             <div class="form_element_instruct_search"><p>Enter the HTTP image URL for social media preview image into the input box that is above.</p><p>The image should be at least 640px x 320px, and as stated <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/customizing-your-repositorys-social-media-preview" target="_blank">by Github</a>, shoot for 1280 by 640 pixels for best display.</p></div>
@@ -951,17 +1126,45 @@ class bringer_of_the_precious_things {
     </div>
 
     <div class="form_input_shell_search">
-        <div id="page_content_endpoint_url_form_element_label" class="form_element_label_search">Page Content URL</div>
+        <div id="resource_endpoint_uri_form_element_label" class="form_element_label_search">Page Content URL</div>
         <div class="form_element_input_search_wrapper">
             <div class="form_element_input_search">
-                <input frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="required" name="page_content_endpoint_url" type="text" id="page_content_endpoint_url" size="20" value="" placeholder="https://jony5.com/about/bio/professional/" />
+                <input frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="required" name="resource_endpoint_uri" type="text" id="resource_endpoint_uri" size="80" value="" placeholder="https://jony5.com/projects/cannabis/atmospheric/" />
             </div>
             <div class="cb_10"></div>
-            <div class="form_element_instruct_search"><p>Enter a HTTP URL for this content into the input box that is above.</p></div>
+            <div class="form_element_instruct_search"><p>Enter the HTTP URL for this content into the input box that is above.</p></div>
             <div class="cb"></div>
-            <div class="input_validation_copy_shell"><div id="page_content_endpoint_url_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
+            <div class="input_validation_copy_shell"><div id="resource_endpoint_uri_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
         </div>
         <div class="cb"></div>
+    </div>
+
+    <div class="form_input_shell_search">
+        <div id="resource_endpoint_uri_form_element_label" class="form_element_label_search"><span class="jony5_search_highlight_copy">&nbsp;HIGHLIGHT&nbsp;</span> Content URL</div>
+        <div class="form_element_input_search_wrapper">
+            <div class="form_element_input_search">
+                <input frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="required" name="page_content_highlight_url" type="text" id="page_content_highlight_url" size="80" value="" placeholder="https://jony5.com/" />
+            </div>
+            <div class="cb_10"></div>
+            <div class="form_element_instruct_search"><p>Enter the HTTP URL that will highlight this search content into the input box that is above.</p></div>
+            <div class="cb"></div>
+            <div class="input_validation_copy_shell"><div id="page_content_highlight_url_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
+        </div>
+        <div class="cb"></div>
+    </div>
+
+    <div class="form_input_shell_search">
+        <div id="search_content_text_preview_form_element_label" class="form_element_label_search"><span class="jony5_search_highlight_copy">&nbsp;Preview Copy&nbsp;</span> of Search Content</div>
+        <div class="form_element_input_search_wrapper">
+            <div class="form_element_input_search">
+                <textarea frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="required" name="search_content_text_preview" id="search_content_text_preview" cols="80" rows="8"></textarea>
+            </div>
+            <div class="cb_10"></div>
+            <div class="form_element_instruct_search"><p>Paste an introductory preview of the search content into the textbox above.</p></div>
+            <div class="cb"></div>
+            <div class="input_validation_copy_shell"><div id="search_content_text_preview_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
+       </div>
+       <div class="cb"></div>
     </div>
 
     <div class="form_input_shell_search">
@@ -979,13 +1182,13 @@ class bringer_of_the_precious_things {
     </div>
 
     <div class="form_input_shell_search">
-        <div id="social_media_preview_img_url_form_element_label" class="form_element_label_search">Passphrase</div>
+        <div id="social_media_preview_img_url_form_element_label" class="form_element_label_search" style="padding-top: 7px;">Passphrase</div>
         <div class="form_element_input_search_wrapper">
             <div class="form_element_input_search">
                 <input frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="none" name="search_content_compress_passphase" type="text" id="search_content_compress_passphase" size="20" value="" placeholder="' . $this->generate_new_key(25) . '" />
             </div>
             <div class="cb_10"></div>
-            <div class="form_element_instruct_search"><p>Enter the pass phrase.</p></div>
+            <div class="form_element_instruct_search"><p>Enter the passphrase. Type \'exit\' to log out.</p></div>
             <div class="cb"></div>
             <div class="input_validation_copy_shell"><div id="social_media_preview_img_url_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
         </div>
@@ -9768,6 +9971,22 @@ class bringer_of_the_precious_things {
                 $patterns[1] = ')';
                 $replacements[0] = ' ';
                 $replacements[1] = ') ';
+
+            break;
+            case 'php_code_remove_preg_replace_spaces':
+
+                $patterns[0] = ' ;';
+                $replacements[0] = ';';
+
+            break;
+            case 'php_code_escape_single_quotes':
+
+                //
+                // Monday, March 4, 2024 @ 0117 hrs.
+                $patterns[0] = "'";
+                $patterns[1] = '"';
+                $replacements[0] = "\'";
+                $replacements[1] = '&quot;';
 
             break;
             case 'search_jony5_vvid_content':
