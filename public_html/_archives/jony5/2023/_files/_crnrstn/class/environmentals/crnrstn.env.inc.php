@@ -203,15 +203,21 @@ class crnrstn_environmentals {
 				
 			}
 
-
 		}else{
 			
 			//
 			// THIS IS A SIMPLE CONFIG CHECK.
 			self::$oLogger->logDebug("crnrstn_environmentals :: __construct() performing simple config check prior to loading of defineEnvResource() in the CRNRSTN config file.");
-			
+
 		}
+
 	}
+
+	public function return_micro_time(){
+
+        return  self::$oLogger->return_micro_time();
+
+    }
 	
 	public function isConfigured($oCRNRSTN){
 		
@@ -264,20 +270,22 @@ class crnrstn_environmentals {
 						}
 																		
 						//
-						// INITIALIZE IP ADDRESS RESTRICTIONS from denyAccess()
+						// INITIALIZE IP ADDRESS RESTRICTIONS from denyAccess().
 						if(isset($oCRNRSTN->deny_accessIP_ARRAY[crc32($this->configSerial)][self::$resourceKey])){
 							$this->initDenyAccess($oCRNRSTN);
 						}
 						
 						//
-						// INITIALIZE DATABASE
+						// INITIALIZE DATABASE.
 						$this->oMYSQLI_CONN_MGR = clone $oCRNRSTN->oMYSQLI_CONN_MGR;
 						$this->oMYSQLI_CONN_MGR->setEnvironment($this);
 						
 						//
-						// BEFORE ALLOCATING ADDITIONAL MEMORY RESOURCES, PROCESS IP AUTHENTICATION
+						// BEFORE ALLOCATING ADDITIONAL MEMORY
+                        // RESOURCES, PROCESS IP AUTHENTICATION
 						if(isset($oCRNRSTN->grant_accessIP_ARRAY[crc32($this->configSerial)][self::$resourceKey]) || isset($oCRNRSTN->deny_accessIP_ARRAY[crc32($this->configSerial)][self::$resourceKey])){
-							self::$oLogger->logDebug("crnrstn_environmentals :: we have IP restrictions to process and apply for CRNRSTN config serial [".$this->configSerial."] and environment key [".self::$resourceKey."].");
+
+						    self::$oLogger->logDebug("crnrstn_environmentals :: we have IP restrictions to process and apply for CRNRSTN config serial [".$this->configSerial."] and environment key [".self::$resourceKey."].");
 							if(!$this->oCRNRSTN_IPSECURITY_MGR->authorizeEnvAccess($this, self::$resourceKey)){
 							
 								//
@@ -286,11 +294,15 @@ class crnrstn_environmentals {
 								// PERHAPS SOME FUTURE RELEASE OF CRNRSTN CAN 
 								$this->returnSrvrRespStatus(403);
 								exit();
+
 							}
+
 						}else{
+
 							self::$oLogger->logDebug("crnrstn_environmentals :: there are NO IP restrictions to process and apply for CRNRSTN config serial [".$this->configSerial."] and environment key [".self::$resourceKey."].");
+
 						}
-						
+
 						//
 						// END OF CRNRSTN ENVIRONMENTAL CONFIG OPERATION
 						self::$oLogger->logDebug("crnrstn_environmentals :: You have reached the end of the CRNRSTN environmental detection and configuration process. All remaining config data exists in (and will be pulled from) session[".session_id()."] for optimized loading experience.");
@@ -298,21 +310,22 @@ class crnrstn_environmentals {
 						return true;
 						
 					}
-			
-				} catch( Exception $e ) {
+
+				}catch(Exception $e){
 				
 				//
 				// SEND THIS THROUGH THE LOGGER OBJECT
 				self::$oLogger->captureNotice('oCRNRSTN_ENV->isConfigured()', LOG_ALERT, $e->getMessage());
-				
+
 			}
-			
+
 		}else{
 			
 			//
 			// NO SESSION SET
-			self::$oLogger->logDebug("crnrstn_environmentals :: session[".session_id()."] has not been initialized with CRNRSTN configuration yet. process all config parameters and initialize.");
+			self::$oLogger->logDebug("crnrstn_environmentals :: session[" . session_id() . "] has not been initialized with CRNRSTN configuration yet. process all config parameters and initialize.");
 			return false;
+
 		}
 
 	}
@@ -324,8 +337,7 @@ class crnrstn_environmentals {
 	public function getEnvSerial(){
 		return 	$this->configSerial;
 	}
-	
-	
+
 	private function initEnvLoggingProfile(){
 
 		//
@@ -342,18 +354,20 @@ class crnrstn_environmentals {
 					//
 					// DO NOTHING
 				break;
+
 			}
-			
 		
 		self::$oLogger->logDebug("crnrstn_environmentals :: CRNRSTN logging initialized to sessionid[".session_id()."] as _CRNRSTN_LOG_PROFILE[".$this->log_profl_ARRAY[crc32($this->configSerial)][self::$resourceKey]."]  _CRNRSTN_LOG_ENDPOINT[".$this->log_endpt_ARRAY[crc32($this->configSerial)][self::$resourceKey]."].");
+
 		}else{
-			$_SESSION["CRNRSTN_".crc32($this->configSerial)]["CRNRSTN_".self::$resourceKey]["_CRNRSTN_LOG_PROFILE"] = 'DEFAULT';
+
+            $_SESSION["CRNRSTN_".crc32($this->configSerial)]["CRNRSTN_".self::$resourceKey]["_CRNRSTN_LOG_PROFILE"] = 'DEFAULT';
 			self::$oLogger->logDebug("crnrstn_environmentals :: CRNRSTN logging NOT initialized for sessionid[".session_id()."]. Setting to default -> _CRNRSTN_LOG_PROFILE[".$_SESSION["CRNRSTN_".crc32($this->configSerial)]["CRNRSTN_".self::$resourceKey]["_CRNRSTN_LOG_PROFILE"]."]  _CRNRSTN_LOG_ENDPOINT[N/A].");
+
 		}
-		
+
 	}
-	
-	
+
 	private function initRuntimeConfig(){
 		
 		//
@@ -361,7 +375,7 @@ class crnrstn_environmentals {
 		$_SESSION['CRNRSTN_CONFIG_SERIAL'] = $this->configSerial;
 		$_SESSION['CRNRSTN_'.crc32($this->configSerial)]['CRNRSTN_RESOURCE_KEY'] = self::$resourceKey;		
 		self::$oLogger->logDebug("crnrstn_environmentals :: initialize session[".session_id()."] with CRNRSTN config serial [".$this->configSerial."] and environmental resource key [".self::$resourceKey."].");
-		
+
 	}
 	
 	private function initializeErrorReporting($oCRNRSTN){
@@ -461,7 +475,7 @@ class crnrstn_environmentals {
 		
 		#self::$oLogger->logDebug("crnrstn_environmentals :: cookie encryption configured to _CRNRSTN_COOKIE_ENCRYPT_CIPHER[".$oCRNRSTN->opensslTunnelEncryptCipher[crc32($this->configSerial)][self::$resourceKey]."] _CRNRSTN_COOKIE_ENCRYPT_HMAC_ALG[".$oCRNRSTN->tunnelHmac_algorithm[crc32($this->configSerial)][self::$resourceKey]."].");
 		self::$oLogger->logDebug("crnrstn_environmentals :: cookie encryption configured to _CRNRSTN_COOKIE_ENCRYPT_CIPHER[##### REDACTED #####] _CRNRSTN_COOKIE_ENCRYPT_HMAC_ALG[##### REDACTED #####].");
-		
+
 	}
 	
 	public function paramTunnelEncrypt($data=NULL, $secret_key=NULL){
@@ -489,12 +503,14 @@ class crnrstn_environmentals {
 				
 			}
 			
-		}catch( Exception $e ) {
-			
+		}catch(Exception $e){
+
 			//
 			// SEND THIS THROUGH THE LOGGER OBJECT
 			self::$oLogger->captureNotice('crnrstn_environmentals->paramTunnelEncrypt()', LOG_EMERG, $e->getMessage());
+
 		}
+
 	}
 	
 	public function paramTunnelDecrypt($data=NULL, $secret_key=NULL){
@@ -701,8 +717,9 @@ background-color:#555555;}
 	}
 	
 	public function wallTime(){
+
 		$timediff = $this->microtime_float() - $this->starttime;
-		
+
 		return substr($timediff,0,-8);
 		
 	}

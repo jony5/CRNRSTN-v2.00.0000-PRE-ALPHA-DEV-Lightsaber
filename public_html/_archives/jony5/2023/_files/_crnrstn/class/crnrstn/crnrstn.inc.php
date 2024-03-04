@@ -145,7 +145,6 @@ class crnrstn {
 		return true;
 	}
 
-
 	private function addServerEnv($configSerial, $key, $errRptProfl) {
 		try{
 			if(!isset($this->handle_env_ARRAY[$configSerial][$key])){

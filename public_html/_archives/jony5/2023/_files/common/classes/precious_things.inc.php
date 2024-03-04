@@ -40,6 +40,7 @@ class bringer_of_the_precious_things {
     private static $vvid_is_grouped = false;
     private static $bytes_processed = 0;
     private static $mbstring_func_overload = false;
+    private static $valid_session = false;
 
     public function __construct($oCRNRSTN_USR, $page = 'home'){
 
@@ -149,7 +150,19 @@ class bringer_of_the_precious_things {
             // PUSH ALL CUSTOM CONTENT
             // CONTENT_IDS FOR STATIC
             // SEARCH SUPPORT.
-            $tmp_search_meta_vvid_ARRAY[] = array('jony5_home_page' => 'jony5_home_page');
+            //
+            // PAGE URL:                https://jony5.com/?scroll=welcome
+            // DATA CAPTURE ENDPOINT:   http://172.16.225.139/jony5.com/search/
+            // DATE CREATED:            2024-03-03 19:36:39.576597
+            // CLIENT IP:               172.16.225.1
+            // SESSION ID:              ci49p4347ni03n23uu6j4j3lk6
+            $tmp_search_meta_www_ARRAY[] = array(
+                array('SEARCH_CONTENT'        => 'WelcomeImJonathanJ5HarrisRev3713Gen4912528Deut33141229Isa1615Dan91727Matt24152224814James312Num25113Jer11119Luke123444awebprofessionallivingandworkinginAtlantaGAWith6yearsofsolidagencyexperience18yearsofprogrammingexperienceinopensourcewebtechnologiesbehindmeIamalwaysopentoinvestigatefreshopportunitiestoworkwithactivegrowinganddigitallyfueledcompaniesinordertostrengthenandbroadenaspectsoftheirserviceofferingsfromatechnicalperspectiveFormypreviousemployerIworkedwithcorporateclientstoformulateandexecutewithmyownbarehandsinthecodewhenevernecessarymultichannelbusinessmarketinginitiativesDigitalbrandstrategyandexecutionaremycorecompetenciesIn2004IworkedasafreelancedesignerwebapplicationdeveloperandserialentrepreneurAftertheimplosionofmy8personstartupcompanyCommercialNetIncIenteredtheworldofinteractivemarketingandadvertisingbyacceptingaUIdeveloperpositionwiththeAtlantabasedagencyMoxieIn2007IhelpedatalentedanddiverseteamofpeopleatMoxietostarttheeCRMdepartmentLeadbyDarrylBolducTinaWestandSapanaNanuwaandwithover50yearsofcombinedemailmarketingexperienceweworkedwithourclientstodesignandexecutebothawardwinningandstateoftheartemailmarketingprogramsinsupportoftheirglobalstrategicinitiativesBornonNov10th2005mydognamedJ5properispartKoreanJindoGermanShepherdandTimberWolfGalleryWhenIworkedatagencyJ5accompaniedmetotheofficeonoccasionaswellastolocalparkscoffeeshopsneighborhoodbarsandeventheoccasionalhousepartyOnthemorningofMondayAug162021at0345hrsandwhilelayingundermyarmJ5wentthewayofalltheearth1Kings213evenwithmuchencouragementandcelebrationfrommebyhissideInthewoodsbehindmyhouseinthedarkofnightat0500hrsasIwasreturningJ5totheearthfromwhencehecamewhilstshovelingthedirtbackinplaceIthankedhimrepeatedlyforeverythinghegavetomeduringoursojourntogetheruponthefaceoftheearthinthisGodsoldcreationIthankedhimforbringingmeintopracticalparticipationwithandintothepropheticfulfillmentoftheblessingsofIsraeltohistwelvesonsGen4821224912528whichareforallofthepeopleofGodacrossallspaceandalltimeEvenallthenationsoftheearthwillbeblessedThebonefromhislastwholesteaka100raretomahawkribeyefromRuthsChrisisstillclutchedagainsthischestinthearmofhisfrontrightpawLaterIcametorealizethatIburiedhimfacingtowardsthedirectionoftherisingofthesuntotheeastClickheretodownloadthelatestversionofmyresumeorvisitmyLinkedInprofile'),
+                array('IMAGE_PREVIEW_HTTP'    => 'https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0'),
+                array('CONTENT_URL'           => 'https://jony5.com/?scroll=welcome')
+            );
+
+
 
         }
 
@@ -646,6 +659,14 @@ class bringer_of_the_precious_things {
 
                 $tmp_html_output = '';
 
+                if(self::$oEnv->oSESSION_MGR->issetSessionParam('JONY5_ADMIN_SESSION') !== false){
+
+                    //
+                    // INITIALIZE ADMIN SESSION.
+                    self::$valid_session = self::$oEnv->oSESSION_MGR->getSessionParam('JONY5_ADMIN_SESSION');
+
+                }
+
                 if(self::$oEnv->oHTTP_MGR->issetHTTP($_POST)){
 
                     //
@@ -653,6 +674,14 @@ class bringer_of_the_precious_things {
                     $tmp_social_media_preview_img_url = self::$oEnv->oHTTP_MGR->extractData($_POST, 'social_media_preview_img_url');
                     $tmp_page_content_endpoint_url = self::$oEnv->oHTTP_MGR->extractData($_POST, 'page_content_endpoint_url');
                     $tmp_search_content = self::$oEnv->oHTTP_MGR->extractData($_POST, 'search_content');
+                    $tmp_page_uri = self::$oEnv->paramTunnelDecrypt(self::$oEnv->oHTTP_MGR->extractData($_POST, 'uri'));
+                    $tmp_search_content_compress_passphase = self::$oEnv->oHTTP_MGR->extractData($_POST, 'search_content_compress_passphase');
+
+                    if(strlen($tmp_page_uri) < 1){
+
+                        $tmp_page_uri = self::$oEnv->currentLocation();
+
+                    }
 
                     $tmp_search_bytes_original = $this->count_processed_bytes($tmp_search_content,true);
                     $tmp_original_bytes = $tmp_search_bytes_original + $this->count_processed_bytes($tmp_social_media_preview_img_url . $tmp_page_content_endpoint_url, true);
@@ -662,11 +691,38 @@ class bringer_of_the_precious_things {
 
                     $tmp_search_content = $this->str_sanitize($tmp_search_content, 'search_jony5_vvid_content');
 
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/3760816/remove-new-lines-from-string-and-replace-with-one-empty-space
+                    // AUTHOR :: jwueller :: https://stackoverflow.com/users/427328/jwueller
+                    // COMMENT :: https://stackoverflow.com/a/3760830
+                    $tmp_search_content = trim(preg_replace('/\s+/', '', $tmp_search_content));
+
                     $this->count_processed_bytes($tmp_search_content);
                     $tmp_serial = $this->generate_new_key(50, '01');
 
-                    $tmp_html_output = '<div class="cb_10"></div>
-    <a href="#" onclick="copy_output_' . $tmp_serial . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>&nbsp;&nbsp;&nbsp;<span id="jony5_search_meta_clipboard_state_' . $tmp_serial . '" class="jony5_search_meta_clipboard_state"></span>
+                    //
+                    // CHECK FOR A COMMAND TO EXIT THE
+                    // ADMIN SESSION.
+                    if(trim(strtolower($tmp_search_content_compress_passphase)) == 'exit') {
+
+                        //
+                        // LOG OUT.
+                        self::$oEnv->oSESSION_MGR->setSessionParam('JONY5_ADMIN_SESSION', false);
+                        self::$valid_session = false;
+
+                    }
+
+                    //
+                    // CHECK FOR A VALID PASSPHRASE OR A
+                    // PRE-EXISTING AND VALID ADMIN SESSION.
+                    if(($tmp_search_content_compress_passphase == '01110110110000111001111100101101001001110101000100') || (self::$valid_session == true)){
+
+                        //
+                        // AUTHENTICATE THIS SESSION...I.E. LOGIN.
+                        self::$oEnv->oSESSION_MGR->setSessionParam('JONY5_ADMIN_SESSION', true);
+
+                        $tmp_html_output = '<div class="cb_10"></div>
+    <span><a href="' . $tmp_page_uri . '" target="_self"style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: left;">New</a></span>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_serial . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: left;">Copy to clipboard</a>&nbsp;&nbsp;&nbsp;<span id="jony5_search_meta_clipboard_state_' . $tmp_serial . '" class="jony5_search_meta_clipboard_state"></span>
     <script>
         function copy_output_' . $tmp_serial . '(){
 
@@ -702,7 +758,13 @@ class bringer_of_the_precious_things {
         }
     </script>
     <div class="cb_5"></div>
-    <textarea id="jony5_search_meta_www_data_' . $tmp_serial . '" class="jony5_search_meta_www_data_textarea" onclick="copy_output_' . $tmp_serial . '(); return false;" cols="80" rows="8">$tmp_search_meta_www_ARRAY[] = array(
+    <textarea id="jony5_search_meta_www_data_' . $tmp_serial . '" class="jony5_search_meta_www_data_textarea" onclick="copy_output_' . $tmp_serial . '(); return false;" cols="80" rows="8">//
+                                                            // PAGE URL:                ' . $tmp_page_content_endpoint_url . '
+                                                            // DATA CAPTURE ENDPOINT:   ' . $tmp_page_uri . '
+                                                            // DATE CREATED:            ' . self::$oEnv->return_micro_time() . '
+                                                            // CLIENT IP:               ' . self::$oEnv->oCRNRSTN_IPSECURITY_MGR->clientIpAddress() . '
+                                                            // SESSION ID:              ' . session_id() . '
+                                                            $tmp_search_meta_www_ARRAY[] = array(
                                                                 array(\'SEARCH_CONTENT\'        => \'' . $tmp_search_content . '\'),
                                                                 array(\'IMAGE_PREVIEW_HTTP\'    => \'' . $tmp_social_media_preview_img_url . '\'),
                                                                 array(\'CONTENT_URL\'           => \'' . $tmp_page_content_endpoint_url . '\')
@@ -721,8 +783,77 @@ class bringer_of_the_precious_things {
     <a href="' . $tmp_page_content_endpoint_url . '" target="_blank"><img src="' . $tmp_social_media_preview_img_url . '" height = "300"></a></p>
 
 </div>
-
 ';
+
+                    }else{
+
+                        //
+                        // THE SESSION IS NOT AUTHENTICATED.
+                        $tmp_html_output = '<div class="cb_10"></div>
+    <span><a href="' . $tmp_page_uri . '" target="_self"style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: left;">New</a></span>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_serial . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: left;">Copy to clipboard</a>&nbsp;&nbsp;&nbsp;<span id="jony5_search_meta_clipboard_state_' . $tmp_serial . '" class="jony5_search_meta_clipboard_state"></span>
+    <script>
+        function copy_output_' . $tmp_serial . '(){
+
+                        //
+                        // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                        // COMMENT :: https://stackoverflow.com/a/1173319
+                        // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                        if(document.selection){ // IE
+
+                            var range = document.body.createTextRange();
+                            range.moveToElementText(document.getElementById("jony5_search_meta_www_data_' . $tmp_serial . '"));
+                            range.select();
+
+                        }else if(window.getSelection){
+
+                            var range = document.createRange();
+                            range.selectNode(document.getElementById("jony5_search_meta_www_data_' . $tmp_serial . '"));
+                            window.getSelection().removeAllRanges();
+                            window.getSelection().addRange(range);
+
+                        }
+
+                        //
+                        // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                        /* Copy the text inside the text field */
+                        document.execCommand(\'copy\');
+
+            /* Alert the copied text */
+            //alert("Copied the text: " + document.getElementById("crnrstn_print_r_source_' . $tmp_serial . '").innerHTML);
+            document.getElementById("jony5_search_meta_www_data_' . $tmp_serial . '").style.backgroundColor = "#60bbff;";
+            document.getElementById("jony5_search_meta_clipboard_state_' . $tmp_serial . '").innerHTML = "' . $this->formatBytes(self::$bytes_processed, 3) . ' Copied!";
+
+        }
+    </script>
+    <div class="cb_5"></div>
+    <textarea id="jony5_search_meta_www_data_' . $tmp_serial . '" class="jony5_search_meta_www_data_textarea" onclick="copy_output_' . $tmp_serial . '(); return false;" cols="80" rows="8">//
+                                                            // PAGE URL:                [CONTENT LEN=' . strlen($tmp_page_content_endpoint_url) . ']
+                                                            // DATA CAPTURE ENDPOINT:   ' . $tmp_page_uri . '
+                                                            // DATE CREATED:            ' . self::$oEnv->return_micro_time() . '
+                                                            // CLIENT IP:               ' . self::$oEnv->oCRNRSTN_IPSECURITY_MGR->clientIpAddress() . '
+                                                            // SESSION ID:              ' . session_id() . '
+                                                            $tmp_search_meta_www_ARRAY[] = array(
+                                                                array(\'SEARCH_CONTENT\'        => [CONTENT LEN=' . strlen($tmp_search_content) . ']),
+                                                                array(\'IMAGE_PREVIEW_HTTP\'    => [CONTENT LEN=' . strlen($tmp_social_media_preview_img_url) . ']),
+                                                                array(\'CONTENT_URL\'           => [CONTENT LEN=' . strlen($tmp_page_content_endpoint_url) . '])
+                                                            );</textarea>
+
+<div class="jony5_meta_report_header_wrap"><p><strong>Input Meta Report:</strong></p></div>
+<div class="jony5_meta_report_body_wrap">
+    <p><strong>Content Length (original):</strong><br>
+    ' . $this->formatBytes($tmp_original_bytes, 3) . '</p>
+    <p><strong>Content Length (search compressed):</strong><br>
+    ' . $this->formatBytes(self::$bytes_processed, 3) . '</p>
+    <p><strong>Search Content Endpoint URL:</strong><br>
+    [CONTENT LEN=' . strlen($tmp_page_content_endpoint_url) . ']
+    </p>
+    <p><strong>Social Media Preview Image:</strong><br>
+    [CONTENT LEN=' . strlen($tmp_social_media_preview_img_url) . ']</p>
+
+</div>
+';
+
+                    }
 
                     return $tmp_html_output;
 
@@ -743,6 +874,7 @@ class bringer_of_the_precious_things {
                                                             );
 
                     */
+
                     $tmp_php_generated_html = '<div class="cb_10"></div>
 <form action="#" method="post" name="post_search_content" id="post_search_content" enctype="multipart/form-data">
 
@@ -788,6 +920,20 @@ class bringer_of_the_precious_things {
        <div class="cb"></div>
     </div>
 
+    <div class="form_input_shell_search">
+        <div id="social_media_preview_img_url_form_element_label" class="form_element_label_search">Passphrase</div>
+        <div class="form_element_input_search_wrapper">
+            <div class="form_element_input_search">
+                <input frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="none" name="search_content_compress_passphase" type="text" id="search_content_compress_passphase" size="20" value="" placeholder="' . $this->generate_new_key(25) . '" />
+            </div>
+            <div class="cb_10"></div>
+            <div class="form_element_instruct_search"><p>Enter the pass phrase.</p></div>
+            <div class="cb"></div>
+            <div class="input_validation_copy_shell"><div id="social_media_preview_img_url_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
+        </div>
+        <div class="cb"></div>
+    </div>
+
     <div class="cb_10"></div>
     <div class="form_input_shell_search">
         <div class="form_element_submit_search_wrapper">
@@ -798,7 +944,7 @@ class bringer_of_the_precious_things {
 
     <input type="hidden" name="postid" id="postid" value="post_search_content" />
     <input type="hidden" name="OPTIN" id="OPTIN" value="0">
-    <input type="hidden" name="uri" id="uri" value="<?php echo $_SERVER[\'REQUEST_URI\']; ?>">
+    <input type="hidden" name="uri" id="uri" value="' . self::$oEnv->paramTunnelEncrypt(self::$oEnv->currentLocation()) . '">
     <input type="hidden" name="post_search_content_form_serial" id="post_search_content_form_serial" value="' . time() . '">
 </form>
 ';
@@ -8274,11 +8420,48 @@ class bringer_of_the_precious_things {
         // [0][n+1] = REFERENCE
         // [1][n+1] = COPY
         $tmp_footnote_array = array();
-        $tmp_top_lnk_html = '                    <div style="width:100%;">
+        $tmp_top_lnk_html = '';
+
+        if(self::$oEnv->oHTTP_MGR->issetHTTP($_GET)){
+
+            //
+            // STORE THE $_GET[] DATA THAT HAS BEEN SENT.
+            $tmp_vvid = self::$oEnv->oHTTP_MGR->extractData($_GET, 'vv');
+
+            //
+            // ?vv=deut33_1-4,12,29
+            if(strlen($tmp_vvid) != 0){
+
+                $tmp_request_uri = $_SERVER['REQUEST_URI'];
+
+                $patterns = array();
+                $patterns[0] = 'vv=' . $tmp_vvid;
+                $patterns[1] = self::$oEnv->getEnvParam('DOCUMENT_ROOT_DIR');       // ALIGN SOCIAL SHARE URI DEEP LINK TESTING ON LOCALHOST_CHAD_MACBOOKPRO TO PRODUCTION.
+                $patterns[2] = '/';                                                 // ALIGN SOCIAL SHARE URI DEEP LINK TESTING ON LOCALHOST_CHAD_MACBOOKPRO TO PRODUCTION.
+
+                $replacements = array();
+                $replacements[0] = '';
+                $replacements[1] = '';
+                $replacements[2] = '';
+                $tmp_request_uri = str_replace($patterns, $replacements, $tmp_request_uri);
+
+                //
+                // Sunday, March 3, 2024 @ 1659 hrs.
+                //error_log(__LINE__ . ' precious $tmp_request_uri[' . $tmp_request_uri . ']. vvid[' . $tmp_vvid . ']. REQUEST_URI[' . $_SERVER['REQUEST_URI'] . '].');
+
+                if(strlen($tmp_request_uri) > 1){
+
+                    $tmp_top_lnk_html = '                    <div style="width:100%;">
                     <div style="position:relative; float:right;">
                         <div style="position:absolute;"><a href="#" onclick="jony5_vv_scroll_to(\'script_scroll\');" style=\'color:#0066CC; text-decoration:none; font-family: "Courier New", Courier, monospace; font-size: 16px;\'>top</a></div>
                     </div>
                 </div>';
+
+                }
+
+            }
+
+        }
 
         switch($this->vvid){
             case 'gen49_1,25-28':
@@ -9559,8 +9742,8 @@ class bringer_of_the_precious_things {
                 $patterns[25] = '<div class="cb_10"></div>';
                 $patterns[26] = '</div>';
                 $patterns[27] = '</span>';
-                $patterns[28] = "
-";
+                $patterns[28] = '
+';
                 $patterns[29] = '"';
                 $patterns[30] = '=';
                 $patterns[31] = '{';
@@ -9594,6 +9777,8 @@ class bringer_of_the_precious_things {
                 $patterns[59] = ';';
                 $patterns[60] = '|';
                 $patterns[61] = '\\';
+                $patterns[62] = '\n\r';
+                $patterns[63] = 'tmp_search_meta_www_ARRAYarrayarraySEARCH_CONTENT';
 
                 $replacements[0] = '';
                 $replacements[1] = '';
@@ -9657,6 +9842,8 @@ class bringer_of_the_precious_things {
                 $replacements[59] = '';
                 $replacements[60] = '';
                 $replacements[61] = '';
+                $replacements[62] = '';
+                $replacements[63] = '';
 
             break;
             case 'search':
@@ -10074,13 +10261,13 @@ class bringer_of_the_precious_things {
 
                 $tmp_int += self::$mbstring_func_overload ? mb_strlen((string) $data, '8bit') : strlen((string) $data);
 
-                break;
+            break;
             case 'bool':
             case 'boolean':
 
                 $tmp_int += 8;
 
-                break;
+            break;
             case 'str':
             case 'string':
 
@@ -10101,12 +10288,12 @@ class bringer_of_the_precious_things {
                 // PHP 5 >= 5.5, PHP 6, PHP 7, PHP 8.
                 $tmp_int += self::$mbstring_func_overload ? mb_strlen((string) $data, '8bit') : strlen((string) $data);
 
-                break;
+            break;
             default:
 
                 $tmp_int += self::$mbstring_func_overload ? mb_strlen((string) serialize($data), '8bit') : strlen((string) serialize($data));
 
-                break;
+            break;
 
         }
 
@@ -10125,7 +10312,8 @@ class bringer_of_the_precious_things {
     //
     // SOURCE :: https://stackoverflow.com/questions/2510434/format-bytes-to-kilobytes-megabytes-gigabytes
     // AUTHOR :: https://stackoverflow.com/users/227532/leo
-    public function formatBytes($bytes, $precision = 2) {
+    public function formatBytes($bytes, $precision = 2){
+
         $units = array('bytes', 'KiB', 'MiB', 'GiB', 'TiB');
 
         $bytes = max($bytes, 0);
@@ -10135,9 +10323,10 @@ class bringer_of_the_precious_things {
         $bytes /= pow(1024, $pow);
 
         return round($bytes, $precision) . ' ' . $units[$pow];
+
     }
 
-    public function __destruct() {
+    public function __destruct(){
 
     }
 

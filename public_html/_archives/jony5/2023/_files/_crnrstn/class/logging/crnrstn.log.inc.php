@@ -80,20 +80,33 @@ class crnrstn_logging {
 	private static $debugMode;
 	public $debugStr;
 	
-	public function __construct($debugMode=NULL) {
+	public function __construct($debugMode=NULL){
+
 		if(isset($debugMode)){
+
 			self::$debugMode = (int) $debugMode;
+
 		}
+
 	}
+
+	public function return_micro_time(){
+
+	    return $this->getmicrotime();
+
+    }
 					
 	public function captureNotice($logSource, $logPriority, $msg){
+
 		$tmp_priority = "UNKNOWN";
 		$tmp_configserial = "";
 		$tmp_key = "";
+
 		if(isset($_SESSION['CRNRSTN_CONFIG_SERIAL'])){
+
 			$tmp_key = $_SESSION['CRNRSTN_'.crc32($_SESSION['CRNRSTN_CONFIG_SERIAL'])]['CRNRSTN_RESOURCE_KEY'];
 			$tmp_configserial = $_SESSION['CRNRSTN_CONFIG_SERIAL'];
-			
+
 			switch($logPriority){
 				case 0:
 					$tmp_priority = "LOG_EMERG :: system is unusable.";
@@ -122,9 +135,11 @@ class crnrstn_logging {
 				default:
 					$tmp_priority = "UNKNOWN";
 				break;
+
 			}
+
 		}
-		
+
 		if(isset($_SESSION["CRNRSTN_".crc32($tmp_configserial)]["CRNRSTN_".$tmp_key]["_CRNRSTN_LOG_PROFILE"])){
 			switch($_SESSION["CRNRSTN_".crc32($tmp_configserial)]["CRNRSTN_".$tmp_key]["_CRNRSTN_LOG_PROFILE"]){
 				case 'EMAIL':
