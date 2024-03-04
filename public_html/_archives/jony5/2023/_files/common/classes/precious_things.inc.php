@@ -145,7 +145,7 @@ class bringer_of_the_precious_things {
         $tmp_output_ARRAY = array();
         $tmp_search_meta_ARRAY = array();
 
-        switch($data_key){    
+        switch($data_key){
             case 'JONY5':
                 
                 //
@@ -754,25 +754,32 @@ class bringer_of_the_precious_things {
                     //
                     // CHECK FOR A COMMAND TO EXIT THE
                     // ADMIN SESSION.
-                    if(trim(strtolower($tmp_search_content_compress_passphase)) == 'exit') {
+                    if(trim(strtolower($tmp_search_content_compress_passphase)) == 'exit'){
 
                         //
                         // LOG OUT.
                         self::$oEnv->oSESSION_MGR->setSessionParam('JONY5_ADMIN_SESSION', false);
                         self::$valid_session = false;
 
+                        $tmp_search_logout_msg = '<div class="cb_20"></div><p>Goodbye!</p>
+<div class="cb_30"></div>
+<p><span><a href="' . $tmp_page_uri . '" target="_self"style="color: #0066CC; text-align: left;">Back</a></span></p>';
+                        $this->count_processed_bytes($tmp_search_logout_msg);
+
+                        return $tmp_search_logout_msg;
+
                     }
 
                     //
                     // CHECK FOR A VALID PASSPHRASE OR A
                     // PRE-EXISTING AND VALID ADMIN SESSION.
-                    if(($tmp_search_content_compress_passphase == '01100110110100111001111100101101001001110111000000') || (self::$valid_session == true)){
+                    if(($tmp_search_content_compress_passphase == '011011100101101001000') || (self::$valid_session == true)){
 
                         //
                         // AUTHENTICATE THIS SESSION...I.E. LOGIN.
                         self::$oEnv->oSESSION_MGR->setSessionParam('JONY5_ADMIN_SESSION', true);
 
-                        $tmp_html_output = '<div class="cb_10"></div>
+                        $tmp_html_output = '<div class="cb_20"></div>
     <span><a href="' . $tmp_page_uri . '" target="_self"style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: left;">New</a></span>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_serial . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: left;">Copy to clipboard</a>&nbsp;&nbsp;&nbsp;<span id="jony5_search_meta_clipboard_state_' . $tmp_serial . '" class="jony5_search_meta_clipboard_state"></span>
     <script>
         function copy_output_' . $tmp_serial . '(){
@@ -840,7 +847,7 @@ class bringer_of_the_precious_things {
 
                         //
                         // THE SESSION IS NOT AUTHENTICATED.
-                        $tmp_html_output = '<div class="cb_10"></div>
+                        $tmp_html_output = '<div class="cb_20"></div>
     <span><a href="' . $tmp_page_uri . '" target="_self"style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: left;">New</a></span>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_serial . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: left;">Copy to clipboard</a>&nbsp;&nbsp;&nbsp;<span id="jony5_search_meta_clipboard_state_' . $tmp_serial . '" class="jony5_search_meta_clipboard_state"></span>
     <script>
         function copy_output_' . $tmp_serial . '(){
@@ -926,7 +933,7 @@ class bringer_of_the_precious_things {
 
                     */
 
-                    $tmp_php_generated_html = '<div class="cb_10"></div>
+                    $tmp_php_generated_html = '<div class="cb_30"></div>
 <form action="#" method="post" name="post_search_content" id="post_search_content" enctype="multipart/form-data">
 
     <div class="form_input_shell_search">
@@ -1470,7 +1477,7 @@ class bringer_of_the_precious_things {
             // TOGGLE SCRIPTURES PARENTHETICAL GROUPING "ON AND OFF".
             $tmp_group_by_link_html = '<div class="cb"></div>
                     <div style="float:left; padding-left:0; margin-left: 0; width:280px; cursor:pointer;" id="chkbx_JONY5_SCRIPTURES_INDEXED_BY_GROUP" class="crnrstn_chkbx_wrapper" onclick="crnrstn_vv_chkbxSel(this, \'JONY5_SCRIPTURES_INDEXED_BY_GROUP\');">
-                        <form action="#" method="post" name="post_scriptures_group_by" id="post_scriptures_group_by"  enctype="multipart/form-data">
+                        <form action="#" method="post" name="post_scriptures_group_by" id="post_scriptures_group_by" enctype="multipart/form-data">
                             <div style="float:left;"><input type="checkbox" id="scriptures_group_by_chkbx" name="scriptures_group_by_chkbx" style="width:22px; height:22px;" ' . $tmp_checkbox_state . '></div>
                             <div class="crnrstn_chkbx_copy" style="float:left; width:240px; padding-left: 5px;"><span class="script_lnk" style="font-size: 15px; color:#0066CC;">Display by Parenthetical Grouping</span></div>
                             <div class="cb"></div>
@@ -2054,7 +2061,7 @@ class bringer_of_the_precious_things {
 
                             //
                             // SOURCE :: https://stackoverflow.com/questions/4915753/how-can-i-remove-three-characters-at-the-end-of-a-string-in-php
-                            // AUTHOR :: bensiu ::  https://stackoverflow.com/users/367878/bensiu
+                            // AUTHOR :: bensiu :: https://stackoverflow.com/users/367878/bensiu
                             // COMMENT :: https://stackoverflow.com/a/4915787
                             $vvid_social_share_preview_copy = trim(substr($vvid_social_share_preview_copy, 0, strlen($vvid_social_share_preview_copy) - 3));
 
@@ -9129,9 +9136,9 @@ class bringer_of_the_precious_things {
                 . ') the will of God made known to them through their recognition of what is pleasurable or 
                 most delightful to their soul (' .
 
-                    $this->link_html('2cor3_3','2 Cor. 3:3', 'popup', 295) .'; ' .
-                    $this->link_html('heb8_10[000]','Heb. 8:10', 'popup', 295) .'; ' .
-                    $this->link_html('jer31_31-34','Jer. 31:31-34', 'popup', 295)
+                $this->link_html('2cor3_3','2 Cor. 3:3', 'popup', 295) .'; ' .
+                $this->link_html('heb8_10[000]','Heb. 8:10', 'popup', 295) .'; ' .
+                $this->link_html('jer31_31-34','Jer. 31:31-34', 'popup', 295)
 
                 . ') which at this very moment and in 
                 this demonstration of a hope or of a spiritual blessing kept in the heavenlies ('.
@@ -9188,7 +9195,7 @@ class bringer_of_the_precious_things {
                 . ') holds our person with its\' God created natural delights 
                 (' .
 
-                    $this->link_html('phil2_13[001]','Phil. 2:13', 'popup', 295)
+                $this->link_html('phil2_13[001]','Phil. 2:13', 'popup', 295)
 
                 . ') or what one may even call soulish pleasures, and our vessel also holds God the Father 
                 in Christ the Son as the Spirit with all of Their (' .
@@ -9636,7 +9643,7 @@ class bringer_of_the_precious_things {
         $tmp_report_html_open = '<div id="static_jony5_performance_report_return" class="hidden">';
         $tmp_report_html_close = '</div>';
 
-        $tmp_report_html .= $this->formatBytes(self::$bytes_processed, 3) . ' of data was returned in '  . $this->wall_time() . ' seconds.';
+        $tmp_report_html .= $this->formatBytes(self::$bytes_processed, 3) . ' of data was returned in ' . $this->wall_time() . ' seconds.';
 
         return $tmp_report_html_open . $tmp_report_html . $tmp_report_html_close;
 
