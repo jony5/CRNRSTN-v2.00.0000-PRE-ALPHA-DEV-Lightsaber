@@ -152,16 +152,15 @@ class bringer_of_the_precious_things {
             // SEARCH SUPPORT.
             //
             // PAGE URL:                https://jony5.com/?scroll=welcome
-            // DATA CAPTURE ENDPOINT:   http://172.16.225.139/jony5.com/search/
-            // DATE CREATED:            2024-03-03 19:36:39.576597
-            // CLIENT IP:               172.16.225.1
-            // SESSION ID:              ci49p4347ni03n23uu6j4j3lk6
+            // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
+            // DATE CREATED:            2024-03-03 20:17:19.788213
+            // CLIENT IP:               104.15.178.8
+            // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
             $tmp_search_meta_www_ARRAY[] = array(
-                array('SEARCH_CONTENT'        => 'WelcomeImJonathanJ5HarrisRev3713Gen4912528Deut33141229Isa1615Dan91727Matt24152224814James312Num25113Jer11119Luke123444awebprofessionallivingandworkinginAtlantaGAWith6yearsofsolidagencyexperience18yearsofprogrammingexperienceinopensourcewebtechnologiesbehindmeIamalwaysopentoinvestigatefreshopportunitiestoworkwithactivegrowinganddigitallyfueledcompaniesinordertostrengthenandbroadenaspectsoftheirserviceofferingsfromatechnicalperspectiveFormypreviousemployerIworkedwithcorporateclientstoformulateandexecutewithmyownbarehandsinthecodewhenevernecessarymultichannelbusinessmarketinginitiativesDigitalbrandstrategyandexecutionaremycorecompetenciesIn2004IworkedasafreelancedesignerwebapplicationdeveloperandserialentrepreneurAftertheimplosionofmy8personstartupcompanyCommercialNetIncIenteredtheworldofinteractivemarketingandadvertisingbyacceptingaUIdeveloperpositionwiththeAtlantabasedagencyMoxieIn2007IhelpedatalentedanddiverseteamofpeopleatMoxietostarttheeCRMdepartmentLeadbyDarrylBolducTinaWestandSapanaNanuwaandwithover50yearsofcombinedemailmarketingexperienceweworkedwithourclientstodesignandexecutebothawardwinningandstateoftheartemailmarketingprogramsinsupportoftheirglobalstrategicinitiativesBornonNov10th2005mydognamedJ5properispartKoreanJindoGermanShepherdandTimberWolfGalleryWhenIworkedatagencyJ5accompaniedmetotheofficeonoccasionaswellastolocalparkscoffeeshopsneighborhoodbarsandeventheoccasionalhousepartyOnthemorningofMondayAug162021at0345hrsandwhilelayingundermyarmJ5wentthewayofalltheearth1Kings213evenwithmuchencouragementandcelebrationfrommebyhissideInthewoodsbehindmyhouseinthedarkofnightat0500hrsasIwasreturningJ5totheearthfromwhencehecamewhilstshovelingthedirtbackinplaceIthankedhimrepeatedlyforeverythinghegavetomeduringoursojourntogetheruponthefaceoftheearthinthisGodsoldcreationIthankedhimforbringingmeintopracticalparticipationwithandintothepropheticfulfillmentoftheblessingsofIsraeltohistwelvesonsGen4821224912528whichareforallofthepeopleofGodacrossallspaceandalltimeEvenallthenationsoftheearthwillbeblessedThebonefromhislastwholesteaka100raretomahawkribeyefromRuthsChrisisstillclutchedagainsthischestinthearmofhisfrontrightpawLaterIcametorealizethatIburiedhimfacingtowardsthedirectionoftherisingofthesuntotheeastClickheretodownloadthelatestversionofmyresumeorvisitmyLinkedInprofile'),
-                array('IMAGE_PREVIEW_HTTP'    => 'https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0'),
-                array('CONTENT_URL'           => 'https://jony5.com/?scroll=welcome')
+                array('SEARCH_CONTENT'                => 'WelcomeImJonathanJ5HarrisRev3713Gen4912528Deut33141229Isa1615Dan91727Matt24152224814James312Num25113Jer11119Luke123444awebprofessionallivingandworkinginAtlantaGAWith6yearsofsolidagencyexperience18yearsofprogrammingexperienceinopensourcewebtechnologiesbehindmeIamalwaysopentoinvestigatefreshopportunitiestoworkwithactivegrowinganddigitallyfueledcompaniesinordertostrengthenandbroadenaspectsoftheirserviceofferingsfromatechnicalperspectiveFormypreviousemployerIworkedwithcorporateclientstoformulateandexecutewithmyownbarehandsinthecodewhenevernecessarymultichannelbusinessmarketinginitiativesDigitalbrandstrategyandexecutionaremycorecompetenciesIn2004IworkedasafreelancedesignerwebapplicationdeveloperandserialentrepreneurAftertheimplosionofmy8personstartupcompanyCommercialNetIncIenteredtheworldofinteractivemarketingandadvertisingbyacceptingaUIdeveloperpositionwiththeAtlantabasedagencyMoxieIn2007IhelpedatalentedanddiverseteamofpeopleatMoxietostarttheeCRMdepartmentLeadbyDarrylBolducTinaWestandSapanaNanuwaandwithover50yearsofcombinedemailmarketingexperienceweworkedwithourclientstodesignandexecutebothawardwinningandstateoftheartemailmarketingprogramsinsupportoftheirglobalstrategicinitiativesBornonNov10th2005mydognamedJ5properispartKoreanJindoGermanShepherdandTimberWolfGalleryWhenIworkedatagencyJ5accompaniedmetotheofficeonoccasionaswellastolocalparkscoffeeshopsneighborhoodbarsandeventheoccasionalhousepartyOnthemorningofMondayAug162021at0345hrsandwhilelayingundermyarmJ5wentthewayofalltheearth1Kings213evenwithmuchencouragementandcelebrationfrommebyhissideInthewoodsbehindmyhouseinthedarkofnightat0500hrsasIwasreturningJ5totheearthfromwhencehecamewhilstshovelingthedirtbackinplaceIthankedhimrepeatedlyforeverythinghegavetomeduringoursojourntogetheruponthefaceoftheearthinthisGodsoldcreationIthankedhimforbringingmeintopracticalparticipationwithandintothepropheticfulfillmentoftheblessingsofIsraeltohistwelvesonsGen4821224912528whichareforallofthepeopleofGodacrossallspaceandalltimeEvenallthenationsoftheearthwillbeblessedThebonefromhislastwholesteaka100raretomahawkribeyefromRuthsChrisisstillclutchedagainsthischestinthearmofhisfrontrightpawLaterIcametorealizethatIburiedhimfacingtowardsthedirectionoftherisingofthesuntotheeastClickheretodownloadthelatestversionofmyresumeorvisitmyLinkedInprofile'),
+                array('SOCIAL_PREVIEW_IMAGE_HTTP'     => 'https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0'),
+                array('RESOURCE_ENDPOINT_URI'         => 'https://jony5.com/?scroll=welcome')
             );
-
 
 
         }
@@ -672,7 +671,16 @@ class bringer_of_the_precious_things {
                     //
                     // STORE THE $_GET[] DATA THAT HAS BEEN SENT.
                     $tmp_social_media_preview_img_url = self::$oEnv->oHTTP_MGR->extractData($_POST, 'social_media_preview_img_url');
-                    $tmp_page_content_endpoint_url = self::$oEnv->oHTTP_MGR->extractData($_POST, 'page_content_endpoint_url');
+
+//                    if(strlen($tmp_social_media_preview_img_url) < 2){
+//
+//                        $tmp_vvid_jony5_ARRAY = $this->vvid_control_struct(true);
+//
+//                        $tmp_social_media_preview_img_url =  $tmp_vvid_jony5_ARRAY[0]['CONTENTT'];  //'https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0';
+//
+//                    }
+
+                    $tmp_resource_endpoint_uri = self::$oEnv->oHTTP_MGR->extractData($_POST, 'page_content_endpoint_url');
                     $tmp_search_content = self::$oEnv->oHTTP_MGR->extractData($_POST, 'search_content');
                     $tmp_page_uri = self::$oEnv->paramTunnelDecrypt(self::$oEnv->oHTTP_MGR->extractData($_POST, 'uri'));
                     $tmp_search_content_compress_passphase = self::$oEnv->oHTTP_MGR->extractData($_POST, 'search_content_compress_passphase');
@@ -684,10 +692,10 @@ class bringer_of_the_precious_things {
                     }
 
                     $tmp_search_bytes_original = $this->count_processed_bytes($tmp_search_content,true);
-                    $tmp_original_bytes = $tmp_search_bytes_original + $this->count_processed_bytes($tmp_social_media_preview_img_url . $tmp_page_content_endpoint_url, true);
+                    $tmp_original_bytes = $tmp_search_bytes_original + $this->count_processed_bytes($tmp_social_media_preview_img_url . $tmp_resource_endpoint_uri, true);
 
                     $this->count_processed_bytes($tmp_social_media_preview_img_url);
-                    $this->count_processed_bytes($tmp_page_content_endpoint_url);
+                    $this->count_processed_bytes($tmp_resource_endpoint_uri);
 
                     $tmp_search_content = $this->str_sanitize($tmp_search_content, 'search_jony5_vvid_content');
 
@@ -715,7 +723,7 @@ class bringer_of_the_precious_things {
                     //
                     // CHECK FOR A VALID PASSPHRASE OR A
                     // PRE-EXISTING AND VALID ADMIN SESSION.
-                    if(($tmp_search_content_compress_passphase == '01110110110000111001111100101101001001110101000100') || (self::$valid_session == true)){
+                    if(($tmp_search_content_compress_passphase == '01000110100100111001110100101101001001110111000010') || (self::$valid_session == true)){
 
                         //
                         // AUTHENTICATE THIS SESSION...I.E. LOGIN.
@@ -759,15 +767,15 @@ class bringer_of_the_precious_things {
     </script>
     <div class="cb_5"></div>
     <textarea id="jony5_search_meta_www_data_' . $tmp_serial . '" class="jony5_search_meta_www_data_textarea" onclick="copy_output_' . $tmp_serial . '(); return false;" cols="80" rows="8">//
-                                                            // PAGE URL:                ' . $tmp_page_content_endpoint_url . '
+                                                            // PAGE URL:                ' . $tmp_resource_endpoint_uri . '
                                                             // DATA CAPTURE ENDPOINT:   ' . $tmp_page_uri . '
                                                             // DATE CREATED:            ' . self::$oEnv->return_micro_time() . '
                                                             // CLIENT IP:               ' . self::$oEnv->oCRNRSTN_IPSECURITY_MGR->clientIpAddress() . '
                                                             // SESSION ID:              ' . session_id() . '
                                                             $tmp_search_meta_www_ARRAY[] = array(
-                                                                array(\'SEARCH_CONTENT\'        => \'' . $tmp_search_content . '\'),
-                                                                array(\'IMAGE_PREVIEW_HTTP\'    => \'' . $tmp_social_media_preview_img_url . '\'),
-                                                                array(\'CONTENT_URL\'           => \'' . $tmp_page_content_endpoint_url . '\')
+                                                                array(\'SEARCH_CONTENT\'                => \'' . $tmp_search_content . '\'),
+                                                                array(\'SOCIAL_PREVIEW_IMAGE_HTTP\'     => \'' . $tmp_social_media_preview_img_url . '\'),
+                                                                array(\'RESOURCE_ENDPOINT_URI\'         => \'' . $tmp_resource_endpoint_uri . '\')
                                                             );</textarea>
 
 <div class="jony5_meta_report_header_wrap"><p><strong>Input Meta Report:</strong></p></div>
@@ -777,10 +785,10 @@ class bringer_of_the_precious_things {
     <p><strong>Content Length (search compressed):</strong><br>
     ' . $this->formatBytes(self::$bytes_processed, 3) . '</p>
     <p><strong>Search Content Endpoint URL:</strong><br>
-    <a href="' . $tmp_page_content_endpoint_url . '" target="_blank">' . $tmp_page_content_endpoint_url . '</a>
+    <a href="' . $tmp_resource_endpoint_uri . '" target="_blank">' . $tmp_resource_endpoint_uri . '</a>
     </p>
     <p><strong>Social Media Preview Image:</strong><br>
-    <a href="' . $tmp_page_content_endpoint_url . '" target="_blank"><img src="' . $tmp_social_media_preview_img_url . '" height = "300"></a></p>
+    <a href="' . $tmp_resource_endpoint_uri . '" target="_blank"><img src="' . $tmp_social_media_preview_img_url . '" height = "300"></a></p>
 
 </div>
 ';
@@ -827,15 +835,15 @@ class bringer_of_the_precious_things {
     </script>
     <div class="cb_5"></div>
     <textarea id="jony5_search_meta_www_data_' . $tmp_serial . '" class="jony5_search_meta_www_data_textarea" onclick="copy_output_' . $tmp_serial . '(); return false;" cols="80" rows="8">//
-                                                            // PAGE URL:                [CONTENT LEN=' . strlen($tmp_page_content_endpoint_url) . ']
+                                                            // PAGE URL:                [CONTENT LEN=' . strlen($tmp_resource_endpoint_uri) . ']
                                                             // DATA CAPTURE ENDPOINT:   ' . $tmp_page_uri . '
                                                             // DATE CREATED:            ' . self::$oEnv->return_micro_time() . '
                                                             // CLIENT IP:               ' . self::$oEnv->oCRNRSTN_IPSECURITY_MGR->clientIpAddress() . '
                                                             // SESSION ID:              ' . session_id() . '
                                                             $tmp_search_meta_www_ARRAY[] = array(
-                                                                array(\'SEARCH_CONTENT\'        => [CONTENT LEN=' . strlen($tmp_search_content) . ']),
-                                                                array(\'IMAGE_PREVIEW_HTTP\'    => [CONTENT LEN=' . strlen($tmp_social_media_preview_img_url) . ']),
-                                                                array(\'CONTENT_URL\'           => [CONTENT LEN=' . strlen($tmp_page_content_endpoint_url) . '])
+                                                                array(\'SEARCH_CONTENT\'                => [CONTENT LEN=' . strlen($tmp_search_content) . ']),
+                                                                array(\'SOCIAL_PREVIEW_IMAGE_HTTP\'     => [CONTENT LEN=' . strlen($tmp_social_media_preview_img_url) . ']),
+                                                                array(\'RESOURCE_ENDPOINT_URI\'         => [CONTENT LEN=' . strlen($tmp_resource_endpoint_uri) . '])
                                                             );</textarea>
 
 <div class="jony5_meta_report_header_wrap"><p><strong>Input Meta Report:</strong></p></div>
@@ -845,7 +853,7 @@ class bringer_of_the_precious_things {
     <p><strong>Content Length (search compressed):</strong><br>
     ' . $this->formatBytes(self::$bytes_processed, 3) . '</p>
     <p><strong>Search Content Endpoint URL:</strong><br>
-    [CONTENT LEN=' . strlen($tmp_page_content_endpoint_url) . ']
+    [CONTENT LEN=' . strlen($tmp_resource_endpoint_uri) . ']
     </p>
     <p><strong>Social Media Preview Image:</strong><br>
     [CONTENT LEN=' . strlen($tmp_social_media_preview_img_url) . ']</p>
