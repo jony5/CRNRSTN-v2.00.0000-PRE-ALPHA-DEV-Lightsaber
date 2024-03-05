@@ -51,7 +51,15 @@ class bringer_of_the_precious_things {
 
             if(get_class($oCRNRSTN_USR) == 'crnrstn_user'){
 
+                //
+                // THIS WILL ONLY RUN FOR MY LOCALHOST TESTING AGAINST
+                // A NEW-ER VERSION OF CRNRSTN :: THAT CAME AFTER THE
+                // oCRNRSTN_USER CLASS OBJECT WAS CREATED...BUT,
+                // BEFORE LIGHTSABER CAME TO BE.
+                //
+                // Tuesday, March 5, 2024 @ 0046 hrs.
                 $this->oCRNRSTN_USR = $oCRNRSTN_USR;
+
                 //
                 // INSTANTIATE THE CRNRSTN :: LOGGING CLASS OBJECT.
                 // THE CRNRSTN :: SOAP SERVICES LOGGING SERVICES
