@@ -255,14 +255,13 @@ for($i = 0; $i < $tmp_loop_size; $i++){
                 </div>
                 <div class="scripture_social_link_wrapper">
                     <!--
-                            //
-                            // TESTING IS IN PROGRESS FOR
-                            // HOLY SCRIPTURES + JONY5.COM
-                            // SEARCH INTEGRATIONS
-                            // ON LOCALHOST_CHAD_MACBOOKPRO.
-                            //
-                            // Monday, March 4, 2024 @ 2316 hrs.
-                            -->
+                    //
+                    // TESTING IS IN PROGRESS FOR
+                    // HOLY SCRIPTURES + JONY5.COM
+                    // SEARCH INTEGRATIONS
+                    // ON LOCALHOST_CHAD_MACBOOKPRO.
+                    //
+                    // Monday, March 4, 2024 @ 2316 hrs. -->
                     <?php
                     if($oCRNRSTN_ENV->getEnvParam('SERVER_ADDR') == '172.16.225.139'){
 
@@ -273,6 +272,7 @@ for($i = 0; $i < $tmp_loop_size; $i++){
 
                     }
                     ?>
+
                     <div style="padding: 0 0 10px 0; cursor: pointer;" onclick="scripture_deep_link_copy_clipboard('<?php echo $tmp_serial; ?>', '<?php echo $tmp_copy_share_lnk; ?>');">
                         <div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
                             <div style="position: relative;">
