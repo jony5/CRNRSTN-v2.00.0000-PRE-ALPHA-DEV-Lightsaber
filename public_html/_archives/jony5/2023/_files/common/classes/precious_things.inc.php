@@ -37,6 +37,7 @@ class bringer_of_the_precious_things {
 
     public $vvid;
     public $starttime;
+    private static $serial;
     private static $vvid_is_grouped = false;
     private static $bytes_processed = 0;
     private static $mbstring_func_overload = false;
@@ -111,6 +112,10 @@ class bringer_of_the_precious_things {
 
             }
 
+            //
+            // SERIALIZE THIS OBJECT.
+            self::$serial = hash('sha256', $this->generate_new_key(42));
+
         }catch(Exception $e){
 
             //
@@ -129,23 +134,137 @@ class bringer_of_the_precious_things {
 
     }
 
-    public function search_the_precious($output_mode = 'BASIC_INPUTBOX'){
+    public function search_the_precious($output_mode = 'BASIC_INPUTBOX', $serial_salt = ''){
 
-        $tmp_serial = '';
+        $tmp_serial = self::$serial . '_' . $serial_salt . '_';
         $tmp_copy_share_lnk = '';
-        $tmp_sprite_ver_size = '';
-        $tmp_sprite_ver_date = '';
+        $tmp_sprite_ver_size = filesize(self::$oEnv->getEnvParam('DOCUMENT_ROOT') . self::$oEnv->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/media_icon/sprite.png');
+        $tmp_sprite_ver_date = filemtime(self::$oEnv->getEnvParam('DOCUMENT_ROOT') . self::$oEnv->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/media_icon/sprite.png');
         $tmp_output = '';
 
-        $tmp_output .= '<div style="padding: 0 0 10px 0; cursor: pointer;" onclick="scripture_deep_link_copy_clipboard(' .  $tmp_serial . ', ' . $tmp_copy_share_lnk . ');">
-<div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
-    <div style="position: relative;">
-        <div style="position: absolute; left:-107px; top: 0;">
-            <img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/social_share/media_icon/sprite.png?ver=' . $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0" width="318" height="414" alt="Share Link." title="Share Link.">
+        /*
+        <img src="http://172.16.225.139/jony5.com/common/imgs/social_share/media_icon/sprite.png?ver=362534.1709620439.0" width="318" height="414" alt="Share Link." title="Share Link."><img src="http://172.16.225.139/jony5.com/common/imgs/social_share/media_icon/sprite.png?ver=362534.1709620439.0" width="318" height="414" alt="Share Link." title="Share Link.">
+
+        */
+        switch($output_mode){
+            case 'SEARCH_ICON':
+
+                $tmp_uri = self::$oEnv->getEnvParam("ROOT_PATH_CLIENT_HTTP") . self::$oEnv->getEnvParam("ROOT_PATH_CLIENT_HTTP_DIR") . 'search/';
+                $tmp_dom_form_wrapper_id = $tmp_serial . 'scriptures_search_form_wrapper';
+                $tmp_dom_form_id = $tmp_serial . 'scriptures_search_form';
+                $tmp_dom_ugc_input_id = $tmp_serial . 'scriptures_search_ugc_input';
+                $tmp_dom_ajax_result_set_id = $tmp_serial . 'scriptures_search_ajax_result_set';
+
+                $tmp_output .= '<div style="padding: 0 0 10px 0; onclick="launch_search_for_the_precious(\'' . $tmp_dom_form_wrapper_id . '\');">
+    <div class="social_share_link" style="display: inline-block; width:29px; height:25px; overflow: hidden; cursor: pointer;" ">
+        <div style="position: relative;">
+            <div style="position: absolute; left:-133px; top:-259px; z-index: 5;">
+                <img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/social_share/media_icon/sprite.png?ver=' . $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0" width="318" height="414" alt="Search Scriptures" title="Search Scriptures">
+            </div>
         </div>
     </div>
-</div>
+
+    <div id="' . $tmp_dom_form_wrapper_id . '" class="scriptures_search_form_wrapper">
+        <form action="' . $tmp_uri . '" method="post" name="s" id="' . $tmp_dom_form_id . '"  enctype="multipart/form-data">
+            <div class="scriptures_search_wrapper">
+                <input crnrstn_search="t" name="t" id="' . $tmp_dom_ugc_input_id . '" type="text" value="" autocomplete="off">
+                <div id="s_results_wrapper">
+                    <ul id="' . $tmp_dom_ajax_result_set_id . '"></ul>
+                </div>
+            </div>
+            <div class="hidden">
+                <div id="search_submit_btn" onMouseOver="searchBtnMouseOver(this); return false;" onMouseOut="searchBtnMouseOut(this); return false;" onClick="$(\'#' . $tmp_dom_form_id . '\').submit(); return false;">Search</div>
+                <input name="submitin" type="submit" value="submit">
+            </div>
+        </form>
+        <script>
+            $("#' . $tmp_dom_form_id . '").submit(function(event){
+
+                var tmp_sval = $("#' . $tmp_dom_ugc_input_id . '").val();
+
+                if((tmp_sval == "")  || (tmp_sval.length < 2)){
+
+                    event.preventDefault();
+
+                }
+
+            });
+
+            $("#' . $tmp_dom_ugc_input_id . '").mouseover(function(){
+
+                $(this).addClass("s_box_bg", 500, "easeOutBounce");
+
+            });
+
+        </script>
+        <div class="cb"></div>
+
+    </div>
 </div>';
+
+            break;
+            case 'BASIC_INPUTBOX':
+            default:
+
+                $tmp_uri = self::$oEnv->getEnvParam("ROOT_PATH_CLIENT_HTTP").self::$oEnv->getEnvParam("ROOT_PATH_CLIENT_HTTP_DIR").'search';
+                $tmp_dom_target_id = self::$serial . '_scriptures_search';
+
+                $tmp_output .= '<div style="padding: 0 0 10px 0; cursor: pointer;" onclick="launch_search_for_the_precious(\'' . $tmp_dom_target_id . '\');">
+    <div class="social_share_link" style="display: inline-block; width:29px; height:25px; overflow: hidden;">
+        <div style="position: relative;">
+            <div style="position: absolute; left:-133px; top:-259px; z-index: 5;">
+                <img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/social_share/media_icon/sprite.png?ver=' . $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0" width="318" height="414" alt="Search Scriptures" title="Search Scriptures">
+            </div>
+        </div>
+    </div>
+    
+    <div class="scriptures_search_magnify_component">
+        <div id="' . $tmp_dom_target_id . '" style=""></div>
+        <div id="scriptures_search_component" class="hidden">
+    <div id="search_wrapper">
+    <form action="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'search/" method="post" name="s" id="s"  enctype="multipart/form-data" >
+        <div id="search_input_wrapper">
+            <input crnrstn_search="t" name="t" id="t" type="text" maxlength="255" value="" autocomplete="off">
+            <div id="s_results_wrapper">
+                <ul id="s_results"></ul>
+            </div>
+        </div>
+        <div id="search_submit_btn" onMouseOver="searchBtnMouseOver(this); return false;" onMouseOut="searchBtnMouseOut(this); return false;" onClick="$(\'#s\').submit(); return false;">Search</div>
+        <div class="hidden">
+            <input name="submitin" type="submit" value="submit">
+        </div>
+    </form>
+    <script>
+            $( "#s" ).submit(function( event ) {
+                var tmp_sval = $("#t").val();
+
+                if(tmp_sval==""){
+
+                    event.preventDefault();
+
+                }
+
+            });
+    
+    $( "#t" ).mouseover(function() {
+        $( this ).addClass( "s_box_bg", 500, "easeOutBounce" );
+    });
+   
+    </script>
+    <div class="cb"></div>
+</div>
+        
+        <!--
+        <input type="text" name="scriptures_search" id="scriptures_search">
+        -->
+        
+        </div>
+    </div>
+</div>';
+
+            break;
+
+        }
 
         return $tmp_output;
 

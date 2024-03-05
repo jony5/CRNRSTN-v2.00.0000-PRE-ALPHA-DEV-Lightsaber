@@ -249,12 +249,25 @@ $.when(
 
 });
 
+function launch_search_for_the_precious(dom_form_wrapper_id){
+
+	//
+	// COPY THE SOURCE SEARCH UGC INPUT <FORM>
+	// TO THE TARGET DOM CONTAINER.
+	$('#' + target_element_id).html($('#' + source_element_id).html());
+
+	//
+	// EMPTY THE SOURCE DOM CONTAINER.
+	$('#' + source_element_id).html('');
+
+}
+
 function log_activity(str){
 
 	switch(log_controller){
 		case 1:
 
-			if(activity_log_FLAG!='') {
+			if(activity_log_FLAG != '') {
 
 				//
 				// LOG ACTIVITY TO SCREEN

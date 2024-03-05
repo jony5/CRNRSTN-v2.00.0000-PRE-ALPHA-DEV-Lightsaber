@@ -138,6 +138,8 @@ a                                           { color:#0066CC;}
 .convert_the_blood_to_reality_in_experience_copy { float:left; padding-left:17px; width:70%; line-height:22px; font-size:16px;}
 
 .pt_rt                              { float:right; text-align:right;}
+.scriptures_search_form_wrapper     { overflow:hidden; width:0; height:0;}
+.scriptures_search_wrapper input    { height: 32px; width:150px;}
 .scripture_lightbox_overlay         { position:absolute; z-index: 35; background-color: #000; top: 0; left: 0; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0; overflow: hidden;}
 #script_shell0                      { width:100%; text-align:center; margin:0 auto;}
 #script_shell1                      { width:1200px; text-align:center; margin:0 auto;}
