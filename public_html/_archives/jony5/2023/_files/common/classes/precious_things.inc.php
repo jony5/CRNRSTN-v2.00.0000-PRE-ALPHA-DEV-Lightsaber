@@ -52,7 +52,11 @@ class bringer_of_the_precious_things {
             if(get_class($oCRNRSTN_USR) == 'crnrstn_user'){
 
                 $this->oCRNRSTN_USR = $oCRNRSTN_USR;
-
+                //
+                // INSTANTIATE THE CRNRSTN :: LOGGING CLASS OBJECT.
+                // THE CRNRSTN :: SOAP SERVICES LOGGING SERVICES
+                // LAYER PROVIDES MULTIPLE TOUCH POINTS FOR AN
+                // ENRICHED DEBUGGING/LOG TRACE EXPERIENCE.
                 self::$oLogger = new crnrstn_logging($this->oCRNRSTN_USR->CRNRSTN_debugMode, __CLASS__, $this->oCRNRSTN_USR->log_silo_profile, $this->oCRNRSTN_USR);
                 self::$oEnv = $oCRNRSTN_USR->return_oCRNRSTN_ENV();
 
@@ -61,16 +65,19 @@ class bringer_of_the_precious_things {
                 self::$oEnv = $oCRNRSTN_USR;
 
                 //
-                // INSTANTIATE LOGGER
+                // INSTANTIATE THE CRNRSTN :: LOGGING CLASS OBJECT.
+                // THE CRNRSTN :: SOAP SERVICES LOGGING SERVICES
+                // LAYER PROVIDES MULTIPLE TOUCH POINTS FOR AN
+                // ENRICHED DEBUGGING/LOG TRACE EXPERIENCE.
                 self::$oLogger = new crnrstn_logging();
 
             }
 
             if(self::$oEnv->oHTTP_MGR->issetHTTP($_GET)){
 
-                if(self::$oEnv->oHTTP_MGR->extractData($_GET,'vv') != ""){
+                if(self::$oEnv->oHTTP_MGR->extractData($_GET, 'vv') != ""){
 
-                    $this->vvid = self::$oEnv->oHTTP_MGR->extractData($_GET,'vv');
+                    $this->vvid = self::$oEnv->oHTTP_MGR->extractData($_GET, 'vv');
                     //error_log(__LINE__ . ' pfw vvid[' . $this->vvid . '].');
 
                 }
@@ -80,11 +87,11 @@ class bringer_of_the_precious_things {
                 if($page != 'home') {
 
                     $this->vvid = self::$oEnv->oHTTP_MGR->extractData($_GET, 'vv');
-                    //error_log('issetHTTP returned FALSE for meta-key vvid['.$this->vvid.'] concerning requested preciousness.');
+                    //error_log('issetHTTP returned FALSE for meta-key vvid[' . $this->vvid . '] concerning requested preciousness.');
 
                     //
                     // HOOOSTON...VE HAF PROBLEM!
-                    throw new Exception('issetHTTP returned FALSE for meta-key vvid['.$this->vvid.'] concerning requested preciousness.');
+                    throw new Exception('issetHTTP returned FALSE for meta-key vvid[' . $this->vvid . '] concerning requested preciousness.');
 
                 }
 
@@ -99,7 +106,7 @@ class bringer_of_the_precious_things {
         }catch(Exception $e){
 
             //
-            // SEND THIS THROUGH THE LOGGER OBJECT
+            // SEND THIS THROUGH THE LOGGER OBJECT.
             if(isset($this->oCRNRSTN_USR)){
 
                 $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
@@ -114,1125 +121,36 @@ class bringer_of_the_precious_things {
 
     }
 
-    private function search_optimized_content($ugc_str){
-
-        $tmp_search_meta_ARRAY = array();
-
-        /*
-        $tmp_search_meta_ARRAY[] = array('rev21_3-5' => '{IMAGE_PREVIEW_SALT}', 'rev21_21' => '{IMAGE_PREVIEW_SALT}', 'rev22_2' => '{IMAGE_PREVIEW_SALT}');
-
-        case 'psa97_2':
-
-            $tmp_verse_array['REFERENCE'][0]        = '97:2';
-            $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Clouds and deep darkness surround Him; Righteousness and justice are the foundation of His throne.';
-            $tmp_verse_array['COPY'][0]             = 'Clouds and deep darkness surround Him;<br>
-            &nbsp;&nbsp;&nbsp;Righteousness and justice are the foundation of His throne.';
-
-        break;
-
-        $tmp_link_vvid_ARRAY[] = array(array('1kings2_1-3' => '1 Kings 2:1-3'));
-        $tmp_link_vvid_ARRAY[] = array(array('1kings18_37-40,45;19_1-18' => '1 Kings 18:37-40, 45; 19:1-18'));
-        $tmp_link_vvid_ARRAY[] = array(array('1sam4_4' => '1 Samuel 4:4'));
-        $tmp_link_vvid_ARRAY[] = array(array('psa97_2' => 'Psalm 97:2'));
-
-        */
-
-        return $tmp_search_meta_ARRAY;
-
-    }
-
-    private function return_search_controller_static_struct($data_key = 'SCRIPTURES'){
-
-        $tmp_output_ARRAY = array();
-        $tmp_search_meta_ARRAY = array();
-
-        switch($data_key){
-            case 'JONY5':
-
-                //
-                // PUSH ALL CUSTOM CONTENT
-                // ARRAY DATA PACKETS FOR
-                // STATIC SEARCH SUPPORT.
-                //
-                // PAGE URL:                https://jony5.com/?scroll=welcome
-                // DATE CREATED:            2024-03-04 02:38:45.749152
-                // DATA PACKET ID:          eFWeblrJSGEQHH2gvE7Kyqm22E3ABRcaASZETInBDG
-                // DATA PACKET SIZE:        2.197 KiB
-                // # # C # R # N # R # S # T # N # : : # # # #
-                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
-                // CLIENT IP:               104.15.178.8
-                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
-                $tmp_search_meta_ARRAY[] = array(
-                    array('SEARCH_CONTENT'                        => 'WelcomeImJonathanJ5HarrisRev3713Gen4912528Deut33141229Isa1615Dan91727Matt24152224814James312Num25113Jer11119Luke123444awebprofessionallivingandworkinginAtlantaGAWith6yearsofsolidagencyexperience18yearsofprogrammingexperienceinopensourcewebtechnologiesbehindmeIamalwaysopentoinvestigatefreshopportunitiestoworkwithactivegrowinganddigitallyfueledcompaniesinordertostrengthenandbroadenaspectsoftheirserviceofferingsfromatechnicalperspectiveFormypreviousemployerIworkedwithcorporateclientstoformulateandexecutewithmyownbarehandsinthecodewhenevernecessarymultichannelbusinessmarketinginitiatives'),
-                    array('SEARCH_CONTENT_PREVIEW'                => 'Welcome! I\'m Jonathan \'J5\' Harris (Rev. 3:7-13; Gen. 49:1, 25-28; Deut. 33:1-4, 12, 29; Isa. 16:1-5; Dan. 9:17-27; Matt. 24:15-22; 24:8-14; James 3:1-2; Num. 25:1-13; Jer. 1:11-19; Luke 12:34-44 ), a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+18 years of programming experience in open source web technologies) behind me, I am always open to investigate fresh opportunities to work with active, growing and digitally fueled companies in order to strengthen and broaden aspects of their service offerings from a technical perspective. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands in the code whenever necessary) multi-channel business marketing initiatives.'),
-                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0'),
-                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
-                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=I%27m%20Jonathan%20%27J5,business%20marketing%20initiatives.'),
-                    array('DATA_PACKET_ID'                        => 'eFWeblrJSGEQHH2gvE7Kyqm22E3ABRcaASZETInBDG')
-                );
-
-                //
-                // PAGE URL:                https://jony5.com/?scroll=welcome
-                // DATE CREATED:            2024-03-04 02:41:28.264794
-                // DATA PACKET ID:          dM2MXrbbauczDh9yVmo2ZFCIj7kXNKsw4C9RB4dCkc
-                // DATA PACKET SIZE:        1.51 KiB
-                // # # C # R # N # R # S # T # N # : : # # # #
-                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
-                // CLIENT IP:               104.15.178.8
-                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
-                $tmp_search_meta_ARRAY[] = array(
-                    array('SEARCH_CONTENT'                        => 'DigitalbrandstrategyandexecutionaremycorecompetenciesIn2004IworkedasafreelancedesignerwebapplicationdeveloperandserialentrepreneurAftertheimplosionofmy8personstartupcompanyCommercialNetIncIenteredtheworldofinteractivemarketingandadvertisingbyacceptingaUIdeveloperpositionwiththeAtlantabasedagencyMoxie'),
-                    array('SEARCH_CONTENT_PREVIEW'                => 'Digital brand strategy and execution are my core competencies. In 2004 I worked as a freelance designer, web application developer and serial entrepreneur. After the implosion of my 8 person startup company, CommercialNet Inc., I entered the world of interactive marketing and advertising by accepting a UI developer position with the Atlanta based agency, Moxie.'),
-                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0'),
-                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
-                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=Digital%20brand%20strategy,Atlanta%20based%20agency%2C'),
-                    array('DATA_PACKET_ID'                        => 'dM2MXrbbauczDh9yVmo2ZFCIj7kXNKsw4C9RB4dCkc')
-                );
-
-                //
-                // PAGE URL:                https://jony5.com/
-                // DATE CREATED:            2024-03-04 02:21:28.383189
-                // DATA PACKET ID:          dJpzH4zHNKL5pmGLUtoreeLVwdQMgK8z1O9muPt91y
-                // DATA PACKET SIZE:        1.652 KiB
-                // # # C # R # N # R # S # T # N # : : # # # #
-                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
-                // CLIENT IP:               104.15.178.8
-                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
-                $tmp_search_meta_ARRAY[] = array(
-                    array('SEARCH_CONTENT'                        => 'In2007IhelpedatalentedanddiverseteamofpeopleatMoxietostarttheeCRMdepartmentLeadbyDarrylBolducTinaWestandSapanaNanuwaandwithover50yearsofcombinedemailmarketingexperienceweworkedwithourclientstodesignandexecutebothawardwinningandstateoftheartemailmarketingprogramsinsupportoftheirglobalstrategicinitiativesBornonNov10th2005mydognamedJ5properispartKoreanJindoGermanShepherdandTimberWolf'),
-                    array('SEARCH_CONTENT_PREVIEW'                => 'In 2007 I helped a talented and diverse team of people at Moxie to start the eCRM department. Lead by Darryl Bolduc, Tina West and Sapana Nanuwa (and with over 50 years of combined email marketing experience), we worked with our clients to design and execute both award-winning and state-of-the-art email marketing programs in support of their global strategic initiatives.
-
-Born on Nov. 10th, 2005, my dog...named \'J5\' (proper)...is part Korean Jindo, German Shepherd and Timber Wolf.'),
-                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/j5_my_boy/2010_10_30_11.11.56_j5_octane_01.png'),
-                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
-                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=In%202007%20I,and%20Timber%20Wolf.'),
-                    array('DATA_PACKET_ID'                        => 'dJpzH4zHNKL5pmGLUtoreeLVwdQMgK8z1O9muPt91y')
-                );
-
-                //
-                // PAGE URL:                https://jony5.com/?scroll=welcome
-                // DATE CREATED:            2024-03-04 02:43:00.251667
-                // DATA PACKET ID:          XNApYrujNEzmOStqOl7VXw4Ou4Q7ZcKtKKTrdHhV5x
-                // DATA PACKET SIZE:        1.292 KiB
-                // # # C # R # N # R # S # T # N # : : # # # #
-                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
-                // CLIENT IP:               104.15.178.8
-                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
-                $tmp_search_meta_ARRAY[] = array(
-                    array('SEARCH_CONTENT'                        => 'WhenIworkedatagencyJ5accompaniedmetotheofficeonoccasionaswellastolocalparkscoffeeshopsneighborhoodbarsandeventheoccasionalhouseparty'),
-                    array('SEARCH_CONTENT_PREVIEW'                => 'When I worked at agency, J5 accompanied me to the office on occasion as well as to local parks, coffee shops, neighborhood bars and even the occasional house party.'),
-                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/j5_my_boy/2010_10_30_11.11.56_j5_octane_00.png'),
-                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
-                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=When%20I%20worked%20at%20agency%2C%20J5%20accompanied%20me%20to%20the%20office%20on%20occasion%20as%20well%20as%20to%20local%20parks%2C%20coffee%20shops%2C%20neighborhood%20bars%20and%20even%20the%20occasional%20house%20party.'),
-                    array('DATA_PACKET_ID'                        => 'XNApYrujNEzmOStqOl7VXw4Ou4Q7ZcKtKKTrdHhV5x')
-                );
-
-                //
-                // PAGE URL:                https://jony5.com/?scroll=welcome
-                // DATE CREATED:            2024-03-04 02:44:25.547565
-                // DATA PACKET ID:          46I75Km4acths7znZsABBEX0imaLhHD4XcxLoq1bS7
-                // DATA PACKET SIZE:        2.196 KiB
-                // # # C # R # N # R # S # T # N # : : # # # #
-                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
-                // CLIENT IP:               104.15.178.8
-                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
-                $tmp_search_meta_ARRAY[] = array(
-                    array('SEARCH_CONTENT'                        => 'OnthemorningofMondayAug162021at0345hrsandwhilelayingundermyarmJ5wentthewayofalltheearth1Kings213evenwithmuchencouragementandcelebrationfrommebyhissideInthewoodsbehindmyhouseinthedarkofnightat0500hrsasIwasreturningJ5totheearthfromwhencehecamewhilstshovelingthedirtbackinplaceIthankedhimrepeatedlyforeverythinghegavetomeduringoursojourntogetheruponthefaceoftheearthinthisGodsoldcreationIthankedhimforbringingmeintopracticalparticipationwithandintothepropheticfulfillmentoftheblessingsofIsraeltohistwelvesonsGen4821224912528whichareforallofthepeopleofGodacrossallspaceandalltimeEvenallthenationsoftheearthwillbeblessed'),
-                    array('SEARCH_CONTENT_PREVIEW'                => 'On the morning of Monday, Aug. 16, 2021 at 0345 hrs and while laying under my arm, J5 went the way of all the earth (1 Kings 2:1-3 ) even with much encouragement and celebration from me by his side. In the woods behind my house in the dark of night, at 0500 hrs, as I was returning J5 to the earth from whence he came...whilst shoveling the dirt back in place, I thanked him repeatedly for everything he gave to me during our sojourn together upon the face of the earth in this God\'s old creation. I thanked him for bringing me into practical participation with and into the prophetic fulfillment of the blessings of Israel to his twelve sons (Gen. 48:21-22; 49:1, 25-28 ) which are for all of the people of God across all space and all time. Even all the nations of the earth will be blessed.'),
-                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/j5_my_boy/2010_10_30_11.11.56_j5_octane_02.png'),
-                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
-                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=On%20the%20morning,will%20be%20blessed.'),
-                    array('DATA_PACKET_ID'                        => '46I75Km4acths7znZsABBEX0imaLhHD4XcxLoq1bS7')
-                );
-
-                //
-                // PAGE URL:                https://jony5.com/?scroll=welcome
-                // DATE CREATED:            2024-03-04 02:46:03.009425
-                // DATA PACKET ID:          1E78I2mrelwg0N23Rk5VFF2VjKAQyxuf39UVvGZart
-                // DATA PACKET SIZE:        1.275 KiB
-                // # # C # R # N # R # S # T # N # : : # # # #
-                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
-                // CLIENT IP:               104.15.178.8
-                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
-                $tmp_search_meta_ARRAY[] = array(
-                    array('SEARCH_CONTENT'                        => 'Thebonefromhislastwholesteaka100raretomahawkribeyefromRuthsChrisisstillclutchedagainsthischestinthearmofhisfrontrightpawLaterIcametorealizethatIburiedhimfacingtowardsthedirectionoftherisingofthesuntotheeast'),
-                    array('SEARCH_CONTENT_PREVIEW'                => 'The bone from his last whole steak, a +$100 rare tomahawk ribeye from Ruth\'s Chris, is still clutched against his chest in the arm of his front right paw. Later, I came to realize that I buried him facing towards the direction of the rising of the sun to the east.'),
-                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/j5_my_boy/2010_10_30_11.11.56_j5_octane_01.png'),
-                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
-                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=The%20bone%20from,to%20the%20east.'),
-                    array('DATA_PACKET_ID'                        => '1E78I2mrelwg0N23Rk5VFF2VjKAQyxuf39UVvGZart')
-                );
-
-                //
-                // PAGE URL:                https://jony5.com/?scroll=welcome
-                // DATE CREATED:            2024-03-04 02:56:23.976282
-                // DATA PACKET ID:          qva2S4b5GquWhepSqoW0mcEK8rIaqJJFHwhSUvZL24
-                // DATA PACKET SIZE:        1.067 KiB
-                // # # C # R # N # R # S # T # N # : : # # # #
-                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
-                // CLIENT IP:               104.15.178.8
-                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
-                $tmp_search_meta_ARRAY[] = array(
-                    array('SEARCH_CONTENT'                        => 'ClickheretodownloadthelatestversionofmyresumeorvisitmyLinkedInprofile'),
-                    array('SEARCH_CONTENT_PREVIEW'                => 'Click here to download the latest version of my resume or visit my LinkedIn profile.'),
-                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0'),
-                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
-                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=Click%20here%20to%20download%20the%20latest%20version%20of%20my%20resume%20or%20visit%20my%20LinkedIn%20profile.'),
-                    array('DATA_PACKET_ID'                        => 'qva2S4b5GquWhepSqoW0mcEK8rIaqJJFHwhSUvZL24')
-                );
-
-            break;
-            case 'SCRIPTURES':
-
-                //
-                // Thursday, February 29, 2024 @ 1632 hrs.
-                // FOR THE GENERATION OF A NEW MASTER CONTROL
-                // STRUCTURE (THIS STRUCT DRIVES SEARCH),
-                // PLEASE SEE, THE INSTRUCTIONS LOCATED
-                // WITHIN, $this->build_link_html_index(), AND
-                // TITLED: "HOW TO GET MORE DATA INTO SEARCH ::".
-                $tmp_search_meta_ARRAY[] = array('jehovah_has_revealed_dl' => 'capoiv');
-                $tmp_search_meta_ARRAY[] = array('jehovah_has_revealed_audio' => 'capoiv');
-                $tmp_search_meta_ARRAY[] = array('jehovah_has_revealed_chords' => 'capoiv');
-                $tmp_search_meta_ARRAY[] = array('jehovah_has_revealed' => 'capoiv');
-                $tmp_search_meta_ARRAY[] = array('hymn979' => 'hymns');
-                $tmp_search_meta_ARRAY[] = array('gen1_1' => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('gen1_26' => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('gen2_7' => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('gen3_1' => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('gen3_14[COVID]' => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('gen3_14[solo]' => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('gen3_14' => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('gen26_4-5' => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('gen48_21-22|49_1,25-28' => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('gen49_1,25-28' => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('lifestudy_exo_156' => 'lifestudyofexodus');
-                $tmp_search_meta_ARRAY[] = array('exo9_29' => 'exodus');
-                $tmp_search_meta_ARRAY[] = array('exo15_26' => 'exodus');
-                $tmp_search_meta_ARRAY[] = array('exo20_6' => 'exodus');
-                $tmp_search_meta_ARRAY[] = array('exo20_13' => 'exodus');
-                $tmp_search_meta_ARRAY[] = array('exo20_15' => 'exodus');
-                $tmp_search_meta_ARRAY[] = array('exo30_18' => 'exodus');
-                $tmp_search_meta_ARRAY[] = array('exo30_17-21' => 'exodus');
-                $tmp_search_meta_ARRAY[] = array('lev2_1' => 'leviticus');
-                $tmp_search_meta_ARRAY[] = array('lev18_1-5,24-28' => 'leviticus');
-                $tmp_search_meta_ARRAY[] = array('lev26_3-13' => 'leviticus');
-                $tmp_search_meta_ARRAY[] = array('lev26_3,11b-12' => 'leviticus');
-                $tmp_search_meta_ARRAY[] = array('num14_31' => 'numbers');
-                $tmp_search_meta_ARRAY[] = array('num14_31[000]' => 'numbers');
-                $tmp_search_meta_ARRAY[] = array('num14_29-30' => 'numbers');
-                $tmp_search_meta_ARRAY[] = array('num14_35' => 'numbers');
-                $tmp_search_meta_ARRAY[] = array('num25_1-13' => 'numbers');
-                $tmp_search_meta_ARRAY[] = array('num32_13' => 'numbers');
-                $tmp_search_meta_ARRAY[] = array('num33_50-54' => 'numbers');
-                $tmp_search_meta_ARRAY[] = array('deut4_1-2,39-40' => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut5_10,29' => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut6_1-6,16-25' => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut6_25' => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut7_9-26' => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut8_1-10' => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut10_14-22' => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut11_14' => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut11_1,8-15,22-28' => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut26_16-19' => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut28_1-14' => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut30_11-20' => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut33_1-4,12,29' => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('josh5_6' => 'joshua');
-                $tmp_search_meta_ARRAY[] = array('1sam4_4' => '1samuel');
-                $tmp_search_meta_ARRAY[] = array('1kings2_1-3' => '1kings');
-                $tmp_search_meta_ARRAY[] = array('1kings8_54-66' => '1kings');
-                $tmp_search_meta_ARRAY[] = array('1kings18_37-40,45;19_1-18' => '1kings');
-                $tmp_search_meta_ARRAY[] = array('neh1_1-11' => 'nehemiah');
-                $tmp_search_meta_ARRAY[] = array('psa24' => 'psalms');
-                $tmp_search_meta_ARRAY[] = array('psa95_10-11' => 'psalms');
-                $tmp_search_meta_ARRAY[] = array('psa97_2' => 'psalms');
-                $tmp_search_meta_ARRAY[] = array('psa119_103' => 'psalms');
-                $tmp_search_meta_ARRAY[] = array('prov20_27' => 'proverbs');
-                $tmp_search_meta_ARRAY[] = array('isa14_13' => 'isaiah');
-                $tmp_search_meta_ARRAY[] = array('isa14_21-24' => 'isaiah');
-                $tmp_search_meta_ARRAY[] = array('isa16_1-5' => 'isaiah');
-                $tmp_search_meta_ARRAY[] = array('isa53_6' => 'isaiah');
-                $tmp_search_meta_ARRAY[] = array('jer1_11-19' => 'jeremiah');
-                $tmp_search_meta_ARRAY[] = array('jer24_7' => 'jeremiah');
-                $tmp_search_meta_ARRAY[] = array('jer31_31-34' => 'jeremiah');
-                $tmp_search_meta_ARRAY[] = array('jer31_33-34' => 'jeremiah');
-                $tmp_search_meta_ARRAY[] = array('jer31_33-37' => 'jeremiah');
-                $tmp_search_meta_ARRAY[] = array('jer31_31-37' => 'jeremiah');
-                $tmp_search_meta_ARRAY[] = array('ezek11_17-25' => 'ezekiel');
-                $tmp_search_meta_ARRAY[] = array('dan9_4' => 'daniel');
-                $tmp_search_meta_ARRAY[] = array('dan9_17-27' => 'daniel');
-                $tmp_search_meta_ARRAY[] = array('joel2_23' => 'joel');
-                $tmp_search_meta_ARRAY[] = array('matt1_18,20' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt2_4-6' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt3_15' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt4_1-2' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt4_3' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt4_4b' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt4_5-7' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt5_10' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt5_13' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt5' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt6' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt7' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt7_13-14' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt10_10b' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt10_16-33' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt11_28-30' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt12_1-8' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt12_5' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt13_4' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt16_25-26' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt19_12' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt24_8-14' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt24_14' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt24_15-22' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt25_4' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt25_23,10b' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt26_33-35,69-75' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt27_46' => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('mark7_19-23' => 'mark');
-                $tmp_search_meta_ARRAY[] = array('mark9_50' => 'mark');
-                $tmp_search_meta_ARRAY[] = array('mark14_27-31,66-72' => 'mark');
-                $tmp_search_meta_ARRAY[] = array('luke1_26-33' => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke9_1-6' => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke9_5-6' => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke10_19' => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke12_35' => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke12_34-44' => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke13_17' => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke14_31-32' => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke14_34-35' => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke18_11-12' => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke18_13' => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke19_12,14,15,27' => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke22_24-30' => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke22_33-34,54-62' => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke22_42' => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke22_42[solo]' => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke23_27-30' => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke23_38,42-43' => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke24_31-32' => 'luke');
-                $tmp_search_meta_ARRAY[] = array('john2_20-21' => 'john');
-                $tmp_search_meta_ARRAY[] = array('john2_21' => 'john');
-                $tmp_search_meta_ARRAY[] = array('john5_24-25' => 'john');
-                $tmp_search_meta_ARRAY[] = array('john8_1-11' => 'john');
-                $tmp_search_meta_ARRAY[] = array('john8_6' => 'john');
-                $tmp_search_meta_ARRAY[] = array('john8_51-59' => 'john');
-                $tmp_search_meta_ARRAY[] = array('john9_41' => 'john');
-                $tmp_search_meta_ARRAY[] = array('john13_3-17' => 'john');
-                $tmp_search_meta_ARRAY[] = array('john13_34' => 'john');
-                $tmp_search_meta_ARRAY[] = array('john13_34[solo]' => 'john');
-                $tmp_search_meta_ARRAY[] = array('john13_37-38' => 'john');
-                $tmp_search_meta_ARRAY[] = array('john13_37-38;18_14-27' => 'john');
-                $tmp_search_meta_ARRAY[] = array('john14_10' => 'john');
-                $tmp_search_meta_ARRAY[] = array('john14_10-14' => 'john');
-                $tmp_search_meta_ARRAY[] = array('john14_12-14' => 'john');
-                $tmp_search_meta_ARRAY[] = array('john14_15,20-21' => 'john');
-                $tmp_search_meta_ARRAY[] = array('john16_15' => 'john');
-                $tmp_search_meta_ARRAY[] = array('acts1_5' => 'acts');
-                $tmp_search_meta_ARRAY[] = array('acts2_22-25' => 'acts');
-                $tmp_search_meta_ARRAY[] = array('acts8_29' => 'acts');
-                $tmp_search_meta_ARRAY[] = array('acts10_15-16b,19-21' => 'acts');
-                $tmp_search_meta_ARRAY[] = array('acts16_6,7' => 'acts');
-                $tmp_search_meta_ARRAY[] = array('acts11_12' => 'acts');
-                $tmp_search_meta_ARRAY[] = array('acts11_18' => 'acts');
-                $tmp_search_meta_ARRAY[] = array('rom2_6-7' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom5_1-5[000]' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom5_1-5' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom5_10' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom5_14,17,21' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom6_3' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom6_8' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom6_8-11' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom6_9-11' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom6_18-19[000]' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom6_18-19' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom6_22' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom7_2-4,6' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom8_2' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom8_2,4' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom8_14' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom8_16-17,24-25' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom8_14-23' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom8_33-39' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom9_31-33' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom10_2-3' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom12_2' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom12_11' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom12_11-12' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom13_14' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom14_1' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom14_7-12' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom15_4[000]' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom15_4' => 'romans');
-                $tmp_search_meta_ARRAY[] = array('1cor1_22-25' => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor3_21-23' => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor5_1,5' => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor6_12' => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor6_17' => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor9_8-11,13' => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor10_5' => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor10_23' => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor10_26,29b-31' => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor11_4' => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor15_58' => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor15_55,58' => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor1_9-10' => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor1_20-22[000]' => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor1_20-22' => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor3_6-9' => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor3_12' => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor3_12,17' => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor11_2a' => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor11_2b-3' => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor11_22' => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor3_3' => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor3_17-18' => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor3_18' => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('gal1_14' => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal2_20' => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal2_20_x' => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal3_1' => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal5_1,7' => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal5_1' => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal5_5-6' => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal4_11' => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal5_13,16' => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal5_16,18,22-23,25' => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal6_14' => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('eph1_3' => 'ephesians');
-                $tmp_search_meta_ARRAY[] = array('eph1_3-12' => 'ephesians');
-                $tmp_search_meta_ARRAY[] = array('eph1_3-14[000]' => 'ephesians');
-                $tmp_search_meta_ARRAY[] = array('eph1_3-14' => 'ephesians');
-                $tmp_search_meta_ARRAY[] = array('eph1_9' => 'ephesians');
-                $tmp_search_meta_ARRAY[] = array('eph1_9-14,18-23' => 'ephesians');
-                $tmp_search_meta_ARRAY[] = array('phil1_6' => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil1_20' => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil1_27' => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil2_3' => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil2_5-8' => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil2_5-16[000]' => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil2_5-16' => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil2_5-9' => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil2_8' => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil2_13[001]' => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil2_13[000]' => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil2_13' => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('col1_5' => 'colossians');
-                $tmp_search_meta_ARRAY[] = array('col1_27' => 'colossians');
-                $tmp_search_meta_ARRAY[] = array('col1_5-6,21-23,26-27' => 'colossians');
-                $tmp_search_meta_ARRAY[] = array('col1_16' => 'colossians');
-                $tmp_search_meta_ARRAY[] = array('col2_9' => 'colossians');
-                $tmp_search_meta_ARRAY[] = array('col2_8,12,20-23' => 'colossians');
-                $tmp_search_meta_ARRAY[] = array('col3_5' => 'colossians');
-                $tmp_search_meta_ARRAY[] = array('col3_6' => 'colossians');
-                $tmp_search_meta_ARRAY[] = array('1thes1_2-3' => '1thessalonians');
-                $tmp_search_meta_ARRAY[] = array('1thes5_7-11' => '1thessalonians');
-                $tmp_search_meta_ARRAY[] = array('2thes2_8-12' => '2thessalonians');
-                $tmp_search_meta_ARRAY[] = array('2thes2_16-17' => '2thessalonians');
-                $tmp_search_meta_ARRAY[] = array('1tim1_1' => '1timothy');
-                $tmp_search_meta_ARRAY[] = array('1tim4_1-5' => '1timothy');
-                $tmp_search_meta_ARRAY[] = array('1tim6_17' => '1timothy');
-                $tmp_search_meta_ARRAY[] = array('2tim1_6' => '2timothy');
-                $tmp_search_meta_ARRAY[] = array('2tim1_6-8' => '2timothy');
-                $tmp_search_meta_ARRAY[] = array('titus1_1-3' => 'titus');
-                $tmp_search_meta_ARRAY[] = array('titus2_11-15' => 'titus');
-                $tmp_search_meta_ARRAY[] = array('titus3_7[000]' => 'titus');
-                $tmp_search_meta_ARRAY[] = array('titus3_7' => 'titus');
-                $tmp_search_meta_ARRAY[] = array('heb2_14-15' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb3_6[000]' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb3_6' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb3_7-19[000]' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb3_7-19' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb4_8-16' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb4_11' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb6_17-20' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb7_17-19' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb8_10[000]' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb8_10' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb9_14' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb10_22,19' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb10_22' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb10_21-23' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb10_23' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb10_35' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb10_35,38-39' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb11_1' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb12_1' => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('james3_1-2' => 'james');
-                $tmp_search_meta_ARRAY[] = array('1pet1_3-9,13,21' => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1pet1_3-5' => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1pet1_13' => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1pet2_16' => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1pet2_20' => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1pet2_7-8' => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1pet2_24' => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1pet3_15' => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1pet3_5-7,14-22' => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1pet5_8' => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1john2_15-17' => '1john');
-                $tmp_search_meta_ARRAY[] = array('1john3_1-10' => '1john');
-                $tmp_search_meta_ARRAY[] = array('rev2_10-11' => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev2_12-17' => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev2_18-23' => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev2_14[solo]' => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev2_14' => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev2_11|2_17,26-28|3_5,12,21' => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev2_21-22' => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev3_8' => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev3_7-13' => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev3_19' => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev6_16-17' => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev12_3-4,9' => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev12_3-4,13,17;13:2,4' => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev20_6' => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev21_2,9-27' => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev21_7' => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev21_3-5' => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev21_21' => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev22_2' => 'revelation');
-                
-            break;
-
-        }
-
-        return $tmp_search_meta_ARRAY;
-
-    }
-
-    public function generate_optimized_search_content($mode = 'VVID_LOOKUP_MASTER'){
-
-        $tmp_php_generated_html = '
-';
-        
-        //
-        // $tmp_output_ARRAY = $this->return_search_controller_static_struct();
-        // WHERE, $tmp_output_ARRAY['VVID'] AND $tmp_output_ARRAY['WWW'].
-        $tmp_search_meta_ARRAY = $this->return_search_controller_static_struct();
-
-        switch($mode){
-            case 'VVID_LOOKUP_MASTER':
-                // SCRIPTURES.
-
-                /*
-                [INPUT] --------
-                    case 'psa97_2':
-
-                        $tmp_verse_array['REFERENCE'][0]        = '97:2';
-                        $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Clouds and deep darkness surround Him; Righteousness and justice are the foundation of His throne.';
-                        $tmp_verse_array['COPY'][0]             = 'Clouds and deep darkness surround Him;<br>
-                        &nbsp;&nbsp;&nbsp;Righteousness and justice are the foundation of His throne.';
-
-                    break;
-
-                [OUTPUT] --------
-                    $tmp_search_meta_ARRAY[] = array('{vvid}' => '{IMAGE_PREVIEW_SALT}');
-                    - - - - -
-                    $tmp_search_meta_ARRAY[] = array('1kings2_1-3' => '1kings');
-                    $tmp_search_meta_ARRAY[] = array('1kings18_37-40,45;19_1-18' => '1kings');
-                    $tmp_search_meta_ARRAY[] = array('1sam4_4' => '1samuel');
-                    $tmp_search_meta_ARRAY[] = array('psa97_2' => 'psalms');
-
-                */
-
-                foreach($tmp_search_meta_ARRAY as $tmp_index => $tmp_vvid_meta_CHUNKARRAY0){
-
-                    foreach($tmp_vvid_meta_CHUNKARRAY0 as $vvid => $meta_content){
-
-                        $this->vvid = $vvid;
-                        $tmp_vnav_vvid_ARRAY = $this->return_book_preciousness();
-
-                        /*
-                        [Sat Mar 02 01:49:51.201318 2024] [:error] [pid 121890] [client 172.16.225.1:55119] 693 precious [
-                            Array\n(\n
-                                [VVID] => Array\n        (\n            [0] => rev2_21-22\n        )\n\n
-                                [COPY] => Array\n        (\n            [0] => Revelation 2:21-22\n        )\n\n
-                            )\n].
-                            $this->vvid[rev2_21-22].
-
-                        [Sat Mar 02 02:38:11.375792 2024] [:error] [pid 121798] [client 172.16.225.1:56403] 693 precious [
-                            Array\n(\n
-                                [COPY] => Array\n        (\n            [0] => 1 Peter\n        )\n\n
-                            )\n].
-                            $this->vvid[1pet2_16].
-
-                        [Sat Mar 02 04:54:57.670339 2024] [:error] [pid 125740] [client 172.16.225.1:59001] 741 precious [
-                            Array\n(\n
-                                [COPY] => Array\n        (\n            [0] => 1 Thessalonians\n        )\n\n
-                            )\n]
-                            $tmp_vvid_meta[1thessalonians].
-                            $this->vvid[1thes5_7-11].
-
-                        */
-
-                        if(isset($tmp_vnav_vvid_ARRAY['COPY'][0])){
-
-                            //
-                            // LOWERCASE.
-                            $tmp_book_str = strtolower($tmp_vnav_vvid_ARRAY['COPY'][0]);
-                            $tmp_vvid_meta = $this->str_sanitize($tmp_book_str, 'bible_book_name');
-
-                            switch($vvid){
-                                case 'jehovah_has_revealed_dl':
-                                case 'jehovah_has_revealed_audio':
-                                case 'jehovah_has_revealed_chords':
-
-                                    $tmp_vvid_meta = 'capoiv';
-
-                                break;
-                                case 'jony5_home_page':
-                                    // projects/crnrstn/philosophy/
-
-                                break;
-
-                            }
-
-                            //error_log(__LINE__ . ' precious [' . print_r($tmp_vnav_vvid_ARRAY, true) . '] $tmp_vvid_meta[' . $tmp_vvid_meta . ']. $this->vvid[' . $this->vvid . '].');
-
-                            $tmp_php_generated_html .= '$tmp_search_meta_ARRAY[] = array(\'' . $vvid . '\' => \'' . $tmp_vvid_meta . '\');
-';
-
-                        }else{
-
-                            error_log(__LINE__ . ' '. __METHOD__ . ' MISSING COPY DATA FOR THE vvid, [' . $this->vvid . '].');
-
-                        }
-
-                    }
-
-                }
-
-            break;
-            case 'COMPRESSED_SEARCH_CONTENT':
-
-                /*
-                [INPUT] --------
-                    case 'psa97_2':
-
-                        $tmp_verse_array['REFERENCE'][0]        = '97:2';
-                        $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Clouds and deep darkness surround Him; Righteousness and justice are the foundation of His throne.';
-                        $tmp_verse_array['COPY'][0]             = 'Clouds and deep darkness surround Him;<br>
-                        &nbsp;&nbsp;&nbsp;Righteousness and justice are the foundation of His throne.';
-
-                    break;
-
-                [OUTPUT] --------
-                    $tmp_search_meta_ARRAY[] = array(array('ASSET_RESOURCE_HTTP' => ''), array('psa97_2' => 'cloudsanddeepdarknesssurroundhimrighteo'));
-
-                */
-                foreach($tmp_search_meta_ARRAY as $tmp_index => $tmp_vvid_meta_CHUNKARRAY0){
-
-                    foreach($tmp_vvid_meta_CHUNKARRAY0 as $vvid => $meta_content){
-
-                        $this->vvid = $vvid;
-                        $tmp_verse_meta_ARRAY = $this->return_verse_preciousness();
-
-                        //error_log(__LINE__ . ' precious [' . print_r($tmp_verse_meta_ARRAY, true) . '] $tmp_vvid_meta[' . $meta_content . ']. $this->vvid[' . $this->vvid . '].');
-                        /*
-                        [Sat Mar 02 07:09:09.364794 2024] [:error] [pid 6891] [client 172.16.225.1:63241] 799 precious [
-                        Array\n(\n
-                            [REFERENCE] => Array\n        (\n            [0] => \n        )\n\n
-                            [SOCIAL_PREVIEW] =>
-                                Array\n        (\n
-                                    [0] => Download Jehovah Has Revealed (Ashes). Vocals: Sister Doris K., Brother Jonathan H. African Djembe Hand Bongo: Brother Kenton W. Guitar: Brother Jonathan H.Jehovah has revealed / His heart to me. / To Him I thus would consecrated be. / As Daniel purposed in his heart...I'll be. / And pray; that God could move on earth through me. / Lord, You need me.\n        )\n\n
-                            [COPY] =>
-                                Array\n        (\n
-                                    [0] => <a href="#" onclick="launch_newwindow('https://jony5.com/downloads/audio/jehovah_has_revealed_his_heart.php'); return false;" target="_blank">Click \n                here</a> to download.\n        )\n\n)\n] $tmp_vvid_meta[capoiv]. $this->vvid[jehovah_has_revealed_dl].
-
-                        */
-
-                        if(isset($tmp_verse_meta_ARRAY['COPY'][0])){
-
-                            //
-                            // LOWERCASE.
-                            $tmp_copy_str = strtolower($tmp_verse_meta_ARRAY['COPY'][0]);
-                            $tmp_vvid_meta = $this->str_sanitize($tmp_copy_str, 'search_jony5_vvid_content');
-
-                            switch($vvid){
-                                case 'jehovah_has_revealed_dl':
-                                case 'jehovah_has_revealed_audio':
-                                case 'jehovah_has_revealed_chords':
-
-                                    $tmp_vvid_meta = 'capoiv';
-
-                                break;
-                                case 'jony5_home_page':
-                                    // projects/crnrstn/philosophy/
-
-                                break;
-
-                            }
-
-                            //error_log(__LINE__ . ' precious [' . print_r($tmp_verse_meta_ARRAY, true) . '] $tmp_vvid_meta[' . $tmp_vvid_meta . ']. $this->vvid[' . $this->vvid . '].');
-
-                            $tmp_php_generated_html .= '$tmp_search_meta_ARRAY[] = array(array(\'ASSET_RESOURCE_HTTP\' => \'\'), array(\'' . $vvid . '\' => \'' . $tmp_vvid_meta . '\'));
-';
-
-                        }else{
-
-                            error_log(__LINE__ . ' '. __METHOD__ . ' MISSING COPY DATA FOR THE vvid, [' . $this->vvid . '].');
-
-                        }
-
-                    }
-
-                }
-
-            break;
-            case 'JONY5_COMPRESSED_SEARCH_CONTENT':
-            default:
-
-                $tmp_html_output = '';
-
-                if(self::$oEnv->oSESSION_MGR->issetSessionParam('JONY5_ADMIN_SESSION') !== false){
-
-                    //
-                    // INITIALIZE ADMIN SESSION.
-                    self::$valid_session = self::$oEnv->oSESSION_MGR->getSessionParam('JONY5_ADMIN_SESSION');
-
-                }
-
-                if(self::$oEnv->oHTTP_MGR->issetHTTP($_POST)){
-
-                    //
-                    // STORE THE $_GET[] DATA THAT HAS BEEN SENT.
-                    $tmp_social_media_preview_img_url = self::$oEnv->oHTTP_MGR->extractData($_POST, 'social_media_preview_img_url');
-
-                    if(strlen($tmp_social_media_preview_img_url) < 2){
-
-                        //
-                        // $tmp_output_ARRAY = $this->return_search_controller_static_struct();
-                        // WHERE, $tmp_output_ARRAY['VVID'] AND $tmp_output_ARRAY['WWW'].
-                        $tmp_www_jony5_ARRAY = $this->return_search_controller_static_struct('JONY5');
-
-                        /*
-                        [Mon Mar 04 02:50:00.892829 2024] [:error] [pid 27174] [client 172.16.225.1:50836] 806
-                        $tmp_www_jony5_ARRAY[
-                        Array\n(\n
-                            [0] => Array\n        (\n
-                                    [0] => Array\n                (\n
-                                        [SEARCH_CONTENT] => WelcomeImJonathanJ5HarrisRev3713Gen4912528Deut33141229Isa1615Dan91727Matt24152224814James312Num25113Jer11119Luke123444awebprofessionallivingandworkinginAtlantaGAWith6yearsofsolidagencyexperience18yearsofprogrammingexperienceinopensourcewebtechnologiesbehindmeIamalwaysopentoinvestigatefreshopportunitiestoworkwithactivegrowinganddigitallyfueledcompaniesinordertostrengthenandbroadenaspectsoftheirserviceofferingsfromatechnicalperspectiveFormypreviousemployerIworkedwithcorporateclientstoformulateandexecutewithmyownbarehandsinthecodewhenevernecessarymultichannelbusinessmarketinginitiatives\n                )\n\n
-                                    [1] => Array\n                (\n
-                                        [SEARCH_CONTENT_PREVIEW] => Welcome! I'm Jonathan 'J5' Harris (Rev. 3:7-13; Gen. 49:1, 25-28; Deut. 33:1-4, 12, 29; Isa. 16:1-5; Dan. 9:17-27; Matt. 24:15-22; 24:8-14; James 3:1-2; Num. 25:1-13; Jer. 1:11-19; Luke 12:34-44 ), a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+18 years of programming experience in open source web technologies) behind me, I am always open to investigate fresh opportunities to work with active, growing and digitally fueled companies in order to strengthen and broaden aspects of their service offerings from a technical perspective. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands in the code whenever necessary) multi-channel business marketing initiatives.\n                )\n\n
-                                    [2] => Array\n                (\n
-                                        [SOCIAL_PREVIEW_IMAGE_HTTP] => https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0\n                )\n\n
-                                    [3] => Array\n                (\n
-                                        [RESOURCE_ENDPOINT_URI] => https://jony5.com/?scroll=welcome\n                )\n\n
-                                    [4] => Array\n                (\n
-                                        [RESOURCE_HIGHLIGHT_ENDPOINT_URI] => https://jony5.com/#:~:text=I%27m%20Jonathan%20%27J5,business%20marketing%20initiatives.\n                )\n\n
-                                    [5] => Array\n                (\n
-                                        [DATA_PACKET_ID] => eFWeblrJSGEQHH2gvE7Kyqm22E3ABRcaASZETInBDG\n                )\n\n        )\n\n
-
-                        */
-
-                        //error_log(__LINE__ . ' $tmp_www_jony5_ARRAY[' . print_r($tmp_www_jony5_ARRAY, true) . ']. ');
-
-                        foreach($tmp_www_jony5_ARRAY as $img_index => $img_CHUNKARRAY0){
-
-                            if(isset($img_CHUNKARRAY0[2]['SOCIAL_PREVIEW_IMAGE_HTTP'])){
-
-                                $tmp_social_media_preview_img_url = $img_CHUNKARRAY0[2]['SOCIAL_PREVIEW_IMAGE_HTTP'];  //'https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0';
-
-                                if(strlen($tmp_social_media_preview_img_url) > 0){
-
-                                    break 1;
-
-                                }
-
-                            }
-
-                        }
-
-                        //error_log(__LINE__ . ' precious [' . $tmp_social_media_preview_img_url . ']. $tmp_vvid_jony5_ARRAY[' . print_r($tmp_www_jony5_ARRAY, true) . '].');
-
-                    }
-
-                    $tmp_data_packet_id = $this->generate_new_key(42);
-                    $tmp_resource_endpoint_uri = self::$oEnv->oHTTP_MGR->extractData($_POST, 'resource_endpoint_uri');
-                    $tmp_page_content_highlight_url = self::$oEnv->oHTTP_MGR->extractData($_POST, 'page_content_highlight_url');
-                    $tmp_search_content = self::$oEnv->oHTTP_MGR->extractData($_POST, 'search_content');
-                    $tmp_search_content_text_preview = self::$oEnv->oHTTP_MGR->extractData($_POST, 'search_content_text_preview');
-
-                    $tmp_page_uri = self::$oEnv->paramTunnelDecrypt(self::$oEnv->oHTTP_MGR->extractData($_POST, 'uri'));
-                    $tmp_search_content_compress_passphase = self::$oEnv->oHTTP_MGR->extractData($_POST, 'search_content_compress_passphase');
-
-                    if(strlen($tmp_page_uri) < 1){
-
-                        $tmp_page_uri = self::$oEnv->currentLocation();
-
-                    }
-
-                    $tmp_search_bytes_original = $this->count_processed_bytes($tmp_search_content,true);
-                    $tmp_original_bytes = $tmp_search_bytes_original + $this->count_processed_bytes($tmp_social_media_preview_img_url . $tmp_resource_endpoint_uri, true);
-                    $tmp_original_preview_bytes = $this->count_processed_bytes($tmp_search_content_text_preview, true);
-
-                    $this->count_processed_bytes($tmp_social_media_preview_img_url);
-                    $this->count_processed_bytes($tmp_resource_endpoint_uri);
-
-                    $tmp_search_content = $this->str_sanitize($tmp_search_content, 'search_jony5_vvid_content');
-                    $tmp_search_content_text_preview = $this->str_sanitize($tmp_search_content_text_preview, 'php_code_escape_single_quotes');
-
-                    //
-                    // SOURCE :: https://stackoverflow.com/questions/3760816/remove-new-lines-from-string-and-replace-with-one-empty-space
-                    // AUTHOR :: jwueller :: https://stackoverflow.com/users/427328/jwueller
-                    // COMMENT :: https://stackoverflow.com/a/3760830
-                    $tmp_search_content = trim(preg_replace('/\s+/', '', $tmp_search_content));
-
-                    //
-                    // REPLACE ALL LINE BREAKS WITH A SPACE IN THE
-                    // TEXT PREVIEW FOR SEARCH CONTENT.
-                    $tmp_search_content_text_preview = trim(preg_replace('/\s+/', ' ', $tmp_search_content_text_preview));
-
-                    //
-                    // REMOVE USELESS SPACES LEFT BY THE ABOVE preg_replace()
-                    // REPLACEMENT OF LINE BREAKS WITH A SPACE.
-                    $tmp_search_content_text_preview = $this->str_sanitize($tmp_search_content_text_preview, 'php_code_remove_preg_replace_spaces');
-
-
-                    $this->count_processed_bytes($tmp_search_content);
-                    $tmp_serial = $this->generate_new_key(50, '01');
-
-                    //
-                    // CHECK FOR A COMMAND TO EXIT THE
-                    // ADMIN SESSION.
-                    if(trim(strtolower($tmp_search_content_compress_passphase)) == 'exit'){
-
-                        //
-                        // LOG OUT.
-                        self::$oEnv->oSESSION_MGR->setSessionParam('JONY5_ADMIN_SESSION', false);
-                        self::$valid_session = false;
-
-                        $tmp_search_logout_msg = '<div class="cb_20"></div><p>Goodbye!</p>
-<div class="cb_30"></div>
-<p><span><a href="' . $tmp_page_uri . '" target="_self"style="color: #0066CC; text-align: left;">Back</a></span></p>';
-                        $this->count_processed_bytes($tmp_search_logout_msg);
-
-                        return $tmp_search_logout_msg;
-
-                    }
-
-                    $tmp_packet_output_str = '$tmp_search_meta_ARRAY[] = array(
-                                                                array(\'SEARCH_CONTENT\'                    => \'' . $tmp_search_content . '\'),
-                                                                array(\'SEARCH_CONTENT_PREVIEW\'            => \'' . $tmp_search_content_text_preview . '\'),
-                                                                array(\'SOCIAL_PREVIEW_IMAGE_HTTP\'         => \'' . $tmp_social_media_preview_img_url . '\'),
-                                                                array(\'RESOURCE_ENDPOINT_URI\'             => \'' . $tmp_resource_endpoint_uri . '\'),
-                                                                array(\'RESOURCE_HIGHLIGHT_ENDPOINT_URI\'   => \'' . $tmp_page_content_highlight_url . '\')
-                                                            );';
-
-                    $tmp_packet_output_bytes = $this->formatBytes($this->count_processed_bytes($tmp_packet_output_str, true), 3);
-                    $tmp_packet_output_str = '';
-
-                    //
-                    // CHECK FOR A VALID PASSPHRASE OR A
-                    // PRE-EXISTING AND VALID ADMIN SESSION.
-                    if(($tmp_search_content_compress_passphase == self::$shhh_passphase) || (self::$valid_session == true)){
-
-                        //
-                        // AUTHENTICATE THIS SESSION...I.E. LOGIN.
-                        self::$oEnv->oSESSION_MGR->setSessionParam('JONY5_ADMIN_SESSION', true);
-
-                        $tmp_html_output = '<div class="cb_20"></div>
-    <span><a href="' . $tmp_page_uri . '" target="_self"style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: left;">New</a></span>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_serial . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: left;">Copy to clipboard</a>&nbsp;&nbsp;&nbsp;<span id="jony5_search_meta_clipboard_state_' . $tmp_serial . '" class="jony5_search_meta_clipboard_state"></span>
-    <script>
-        function copy_output_' . $tmp_serial . '(){
-
-                        //
-                        // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
-                        // COMMENT :: https://stackoverflow.com/a/1173319
-                        // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
-                        if(document.selection){ // IE
-
-                            var range = document.body.createTextRange();
-                            range.moveToElementText(document.getElementById("jony5_search_meta_www_data_' . $tmp_serial . '"));
-                            range.select();
-
-                        }else if(window.getSelection){
-
-                            var range = document.createRange();
-                            range.selectNode(document.getElementById("jony5_search_meta_www_data_' . $tmp_serial . '"));
-                            window.getSelection().removeAllRanges();
-                            window.getSelection().addRange(range);
-
-                        }
-
-                        //
-                        // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
-                        /* Copy the text inside the text field */
-                        document.execCommand(\'copy\');
-
-            /* Alert the copied text */
-            //alert("Copied the text: " + document.getElementById("crnrstn_print_r_source_' . $tmp_serial . '").innerHTML);
-            document.getElementById("jony5_search_meta_www_data_' . $tmp_serial . '").style.backgroundColor = "#60bbff;";
-            document.getElementById("jony5_search_meta_clipboard_state_' . $tmp_serial . '").innerHTML = "' . $this->formatBytes(self::$bytes_processed, 3) . ' Copied!";
-
-        }
-    </script>
-    <div class="cb_5"></div>
-    <textarea id="jony5_search_meta_www_data_' . $tmp_serial . '" class="jony5_search_meta_www_data_textarea" onclick="copy_output_' . $tmp_serial . '(); return false;" cols="80" rows="8">//
-                                                            // PAGE URL:                ' . $tmp_resource_endpoint_uri . '
-                                                            // DATE CREATED:            ' . self::$oEnv->return_micro_time() . '
-                                                            // DATA PACKET ID:          ' . $tmp_data_packet_id . '
-                                                            // DATA PACKET SIZE:        ' . $tmp_packet_output_bytes . '
-                                                            // # # C # R # N # R # S # T # N # : : # # # #
-                                                            // DATA CAPTURE ENDPOINT:   ' . $tmp_page_uri . '
-                                                            // CLIENT IP:               ' . self::$oEnv->oCRNRSTN_IPSECURITY_MGR->clientIpAddress() . '
-                                                            // SESSION ID:              ' . session_id() . '
-                                                            $tmp_search_meta_ARRAY[] = array(
-                                                                array(\'SEARCH_CONTENT\'                        => \'' . $tmp_search_content . '\'),
-                                                                array(\'SEARCH_CONTENT_PREVIEW\'                => \'' . $tmp_search_content_text_preview . '\'),
-                                                                array(\'SOCIAL_PREVIEW_IMAGE_HTTP\'             => \'' . $tmp_social_media_preview_img_url . '\'),
-                                                                array(\'RESOURCE_ENDPOINT_URI\'                 => \'' . $tmp_resource_endpoint_uri . '\'),
-                                                                array(\'RESOURCE_HIGHLIGHT_ENDPOINT_URI\'       => \'' . $tmp_page_content_highlight_url . '\'),
-                                                                array(\'DATA_PACKET_ID\'                        => \'' . $tmp_data_packet_id . '\')
-                                                            );</textarea>
-
-<div class="jony5_meta_report_header_wrap"><p><strong>Input Meta Report:</strong></p></div>
-<div class="jony5_meta_report_body_wrap">
-    <p><strong>Content <span class="jony5_search_highlight_copy">&nbsp;Preview&nbsp;</span> Length:</strong><br>
-    ' . $this->formatBytes($tmp_original_preview_bytes, 3) . '</p>
-    <p><strong>Search Content Length (original):</strong><br>
-    ' . $this->formatBytes($tmp_original_bytes, 3) . '</p>
-    <p><strong>Content Length (search compressed):</strong><br>
-    ' . $this->formatBytes(self::$bytes_processed, 3) . '</p>
-    <p><strong>Search Content Endpoint URL:</strong><br>
-    <a href="' . $tmp_resource_endpoint_uri . '" target="_blank">' . $tmp_resource_endpoint_uri . '</a>
-    </p>
-    <p><strong><span class="jony5_search_highlight_copy">&nbsp;HIGHLIGHT&nbsp;</span> Content URL:</strong><br>
-        <a href="' . $tmp_page_content_highlight_url . '" target="_blank">' . $tmp_page_content_highlight_url . '</a>
-    </p>  
-    <p><strong>Social Media Preview Image:</strong><br>
-    <a href="' . $tmp_resource_endpoint_uri . '" target="_blank"><img src="' . $tmp_social_media_preview_img_url . '" height = "300"></a></p>
-
+    public function search_the_precious($output_mode = 'BASIC_INPUTBOX'){
+
+        $tmp_serial = '';
+        $tmp_copy_share_lnk = '';
+        $tmp_sprite_ver_size = '';
+        $tmp_sprite_ver_date = '';
+        $tmp_output = '';
+
+        $tmp_output .= '<div style="padding: 0 0 10px 0; cursor: pointer;" onclick="scripture_deep_link_copy_clipboard(' .  $tmp_serial . ', ' . $tmp_copy_share_lnk . ');">
+<div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
+    <div style="position: relative;">
+        <div style="position: absolute; left:-107px; top: 0;">
+            <img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/social_share/media_icon/sprite.png?ver=' . $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0" width="318" height="414" alt="Share Link." title="Share Link.">
+        </div>
+    </div>
 </div>
-';
+</div>';
 
-                    }else{
-
-                        //
-                        // THE SESSION IS NOT AUTHENTICATED.
-                        $tmp_html_output = '<div class="cb_20"></div>
-    <span><a href="' . $tmp_page_uri . '" target="_self"style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: left;">New</a></span>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_serial . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: left;">Copy to clipboard</a>&nbsp;&nbsp;&nbsp;<span id="jony5_search_meta_clipboard_state_' . $tmp_serial . '" class="jony5_search_meta_clipboard_state"></span>
-    <script>
-        function copy_output_' . $tmp_serial . '(){
-
-                        //
-                        // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
-                        // COMMENT :: https://stackoverflow.com/a/1173319
-                        // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
-                        if(document.selection){ // IE
-
-                            var range = document.body.createTextRange();
-                            range.moveToElementText(document.getElementById("jony5_search_meta_www_data_' . $tmp_serial . '"));
-                            range.select();
-
-                        }else if(window.getSelection){
-
-                            var range = document.createRange();
-                            range.selectNode(document.getElementById("jony5_search_meta_www_data_' . $tmp_serial . '"));
-                            window.getSelection().removeAllRanges();
-                            window.getSelection().addRange(range);
-
-                        }
-
-                        //
-                        // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
-                        /* Copy the text inside the text field */
-                        document.execCommand(\'copy\');
-
-            /* Alert the copied text */
-            //alert("Copied the text: " + document.getElementById("crnrstn_print_r_source_' . $tmp_serial . '").innerHTML);
-            document.getElementById("jony5_search_meta_www_data_' . $tmp_serial . '").style.backgroundColor = "#60bbff;";
-            document.getElementById("jony5_search_meta_clipboard_state_' . $tmp_serial . '").innerHTML = "' . $this->formatBytes(self::$bytes_processed, 3) . ' Copied!";
-
-        }
-    </script>
-    <div class="cb_5"></div>
-    <textarea id="jony5_search_meta_www_data_' . $tmp_serial . '" class="jony5_search_meta_www_data_textarea" onclick="copy_output_' . $tmp_serial . '(); return false;" cols="80" rows="8">//
-                                                            // PAGE URL:                [CONTENT LEN=' . strlen($tmp_resource_endpoint_uri) . ']
-                                                            // DATE CREATED:            ' . self::$oEnv->return_micro_time() . '
-                                                            // DATA PACKET ID:          ' . $tmp_data_packet_id . '
-                                                            // DATA PACKET SIZE:        ' . $tmp_packet_output_bytes . '
-                                                            // # # C # R # N # R # S # T # N # : : # # # #
-                                                            // DATA CAPTURE ENDPOINT:   ' . $tmp_page_uri . '
-                                                            // CLIENT IP:               ' . self::$oEnv->oCRNRSTN_IPSECURITY_MGR->clientIpAddress() . '
-                                                            // SESSION ID:              ' . session_id() . '
-                                                            $tmp_search_meta_ARRAY[] = array(
-                                                                array(\'SEARCH_CONTENT\'                    => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_search_content, true), 3) . ']),
-                                                                array(\'SEARCH_CONTENT_PREVIEW\'            => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_search_content_text_preview, true), 3) . ']),
-                                                                array(\'SOCIAL_PREVIEW_IMAGE_HTTP\'         => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_social_media_preview_img_url, true), 3) . ']),
-                                                                array(\'RESOURCE_ENDPOINT_URI\'             => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_resource_endpoint_uri, true), 3) . ']),
-                                                                array(\'RESOURCE_HIGHLIGHT_ENDPOINT_URI\'   => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_page_content_highlight_url, true), 3) . ']),
-                                                                array(\'DATA_PACKET_ID\'                    => \'' . $tmp_data_packet_id . '\')
-                                                            );</textarea>
-
-<div class="jony5_meta_report_header_wrap"><p><strong>Input Meta Report:</strong></p></div>
-<div class="jony5_meta_report_body_wrap">
-    <p><strong>Content <span class="jony5_search_highlight_copy">&nbsp;Preview&nbsp;</span> Length:</strong><br>
-    ' . $this->formatBytes($tmp_original_preview_bytes, 3) . '</p>
-    <p><strong>Search Content Length (original):</strong><br>
-    ' . $this->formatBytes($tmp_original_bytes, 3) . '</p>
-    <p><strong>Content Length (search compressed):</strong><br>
-    ' . $this->formatBytes($this->count_processed_bytes($tmp_search_content, true), 3) . '</p>
-    <p><strong>Search Content Endpoint URL:</strong><br>
-    [CONTENT LEN=' . strlen($tmp_resource_endpoint_uri) . ']
-    </p>
-    <p><strong><span class="jony5_search_highlight_copy">&nbsp;HIGHLIGHT&nbsp;</span> Content URL:</strong><br>
-    [CONTENT LEN=' . strlen($tmp_page_content_highlight_url) . ']
-    </p>    
-    <p><strong>Social Media Preview Image:</strong><br>
-    [CONTENT LEN=' . strlen($tmp_social_media_preview_img_url) . ']</p>
-
-</div>
-';
-
-                    }
-
-                    return $tmp_html_output;
-
-                }else{
-
-                    /*
-                    [INPUT] --------
-                        - Search content copy-paste words
-                        - Image URL
-                        - Anchor tag link to the www content.
-
-                    [OUTPUT] --------
-                        $tmp_search_meta_ARRAY[] = array(
-                                                            array('SEARCH_CONTENT' => 'cloudsanddeepdarknesssurroundhimrighteo'));
-                                                            array('IMAGE_PREVIEW_HTTP' => ''),
-                                                            array('CONTENT_URL' => 'http://jony5.com/')
-
-                                                            );
-
-                    */
-
-                    $tmp_php_generated_html = '<div class="cb_30"></div>
-<form action="#" method="post" name="post_search_content" id="post_search_content" enctype="multipart/form-data">
-
-    <div class="form_input_shell_search">
-        <div id="social_media_preview_img_url_form_element_label" class="form_element_label_search">Social Media Preview Image</div>
-        <div class="form_element_input_search_wrapper">
-            <div class="form_element_input_search">
-                <input frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="none" name="social_media_preview_img_url" type="text" id="social_media_preview_img_url" size="80" value="" placeholder="https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png" />
-            </div>
-            <div class="cb_10"></div>
-            <div class="form_element_instruct_search"><p>Enter the HTTP image URL for social media preview image into the input box that is above.</p><p>The image should be at least 640px x 320px, and as stated <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/customizing-your-repositorys-social-media-preview" target="_blank">by Github</a>, shoot for 1280 by 640 pixels for best display.</p></div>
-            <div class="cb"></div>
-            <div class="input_validation_copy_shell"><div id="social_media_preview_img_url_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
-        </div>
-        <div class="cb"></div>
-    </div>
-
-    <div class="form_input_shell_search">
-        <div id="resource_endpoint_uri_form_element_label" class="form_element_label_search">Page Content URL</div>
-        <div class="form_element_input_search_wrapper">
-            <div class="form_element_input_search">
-                <input frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="required" name="resource_endpoint_uri" type="text" id="resource_endpoint_uri" size="80" value="" placeholder="https://jony5.com/projects/cannabis/atmospheric/" />
-            </div>
-            <div class="cb_10"></div>
-            <div class="form_element_instruct_search"><p>Enter the HTTP URL for this content into the input box that is above.</p></div>
-            <div class="cb"></div>
-            <div class="input_validation_copy_shell"><div id="resource_endpoint_uri_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
-        </div>
-        <div class="cb"></div>
-    </div>
-
-    <div class="form_input_shell_search">
-        <div id="resource_endpoint_uri_form_element_label" class="form_element_label_search"><span class="jony5_search_highlight_copy">&nbsp;HIGHLIGHT&nbsp;</span> Content URL</div>
-        <div class="form_element_input_search_wrapper">
-            <div class="form_element_input_search">
-                <input frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="required" name="page_content_highlight_url" type="text" id="page_content_highlight_url" size="80" value="" placeholder="https://jony5.com/" />
-            </div>
-            <div class="cb_10"></div>
-            <div class="form_element_instruct_search"><p>Enter the HTTP URL that will highlight this search content into the input box that is above.</p></div>
-            <div class="cb"></div>
-            <div class="input_validation_copy_shell"><div id="page_content_highlight_url_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
-        </div>
-        <div class="cb"></div>
-    </div>
-
-    <div class="form_input_shell_search">
-        <div id="search_content_text_preview_form_element_label" class="form_element_label_search"><span class="jony5_search_highlight_copy">&nbsp;Preview Copy&nbsp;</span> of Search Content</div>
-        <div class="form_element_input_search_wrapper">
-            <div class="form_element_input_search">
-                <textarea frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="required" name="search_content_text_preview" id="search_content_text_preview" cols="80" rows="8"></textarea>
-            </div>
-            <div class="cb_10"></div>
-            <div class="form_element_instruct_search"><p>Paste an introductory preview of the search content into the textbox above.</p></div>
-            <div class="cb"></div>
-            <div class="input_validation_copy_shell"><div id="search_content_text_preview_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
-       </div>
-       <div class="cb"></div>
-    </div>
-
-    <div class="form_input_shell_search">
-        <div id="search_content_form_element_label" class="form_element_label_search">Page Content to Make Searchable</div>
-        <div class="form_element_input_search_wrapper">
-            <div class="form_element_input_search">
-                <textarea frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="required" name="search_content" id="search_content" cols="80" rows="8"></textarea>
-            </div>
-            <div class="cb_10"></div>
-            <div class="form_element_instruct_search"><p>Paste the page content that is to be searchable into the textbox above.</p></div>
-            <div class="cb"></div>
-            <div class="input_validation_copy_shell"><div id="search_content_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
-       </div>
-       <div class="cb"></div>
-    </div>
-
-    <div class="form_input_shell_search">
-        <div id="social_media_preview_img_url_form_element_label" class="form_element_label_search" style="padding-top: 7px;">Passphrase</div>
-        <div class="form_element_input_search_wrapper">
-            <div class="form_element_input_search">
-                <input frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="none" name="search_content_compress_passphase" type="text" id="search_content_compress_passphase" size="20" value="" placeholder="' . $this->generate_new_key(25) . '" />
-            </div>
-            <div class="cb_10"></div>
-            <div class="form_element_instruct_search"><p>Enter the passphrase. Type \'exit\' to log out.</p></div>
-            <div class="cb"></div>
-            <div class="input_validation_copy_shell"><div id="social_media_preview_img_url_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
-        </div>
-        <div class="cb"></div>
-    </div>
-
-    <div class="cb_10"></div>
-    <div class="form_input_shell_search">
-        <div class="form_element_submit_search_wrapper">
-            <div id="form_submit_btn_search" class="form_submit_btn_search" onmouseover="submitBtnMouseOver(this, \'submit_btn_search_clear\',\'submit_btn_search_highlighted\'); return false;" onmouseout="submitBtnMouseOut(this,\'submit_btn_search_highlighted\', \'submit_btn_search_clear\'); return false;" onmouseup="document.getElementById(\'post_search_content\').submit();">GENERATE SEARCH DATA STRUCTURE</div>
-        </div>
-       <div class="cb"></div>
-    </div>
-
-    <input type="hidden" name="postid" id="postid" value="post_search_content" />
-    <input type="hidden" name="OPTIN" id="OPTIN" value="0">
-    <input type="hidden" name="uri" id="uri" value="' . self::$oEnv->paramTunnelEncrypt(self::$oEnv->currentLocation()) . '">
-    <input type="hidden" name="post_search_content_form_serial" id="post_search_content_form_serial" value="' . time() . '">
-</form>
-';
-                    //error_log(__LINE__ . ' precious [' . print_r($tmp_verse_meta_ARRAY, true) . '] $tmp_vvid_meta[' . $tmp_vvid_meta . ']. $this->vvid[' . $this->vvid . '].');
-//                $tmp_php_generated_html .= '$tmp_search_meta_ARRAY[] = array(\'' . $vvid . '\' => \'' . $tmp_vvid_meta . '\');
-//';
-
-                }
-
-            break;
-
-        }
-
-        $this->count_processed_bytes($tmp_php_generated_html);
-
-        return $tmp_php_generated_html;
+        return $tmp_output;
 
     }
 
-    public function return_search_meta_scriptures($ugc_str){
+    public function return_search_meta_scriptures($ugc_str_override = NULL){
         // Friday, March 1, 2024 2205 hrs.
 
         //
         // BUILD SEARCH CONTENT ARRAY.
         // BUILD AND RETURN A SEARCH
         // STRUCT OF SCRIPTURES META.
-        $tmp_search_meta_ARRAY = '[' . time() . '] from return_search_meta_scriptures(UGC LEN=' . strlen($ugc_str) . ')';
+        $tmp_search_meta_ARRAY = '[' . time() . '] from return_search_meta_scriptures(UGC LEN=' . strlen($ugc_str_override) . ')';
 
         $tmp_search_meta_ARRAY[] = array('jehovah_has_revealed_dl' => 'capoiv');
         $tmp_search_meta_ARRAY[] = array('jehovah_has_revealed_audio' => 'capoiv');
@@ -1540,14 +458,14 @@ Born on Nov. 10th, 2005, my dog...named \'J5\' (proper)...is part Korean Jindo, 
 
     }
 
-    public function return_search_meta_jony5($ugc_str){
+    public function return_search_meta_jony5($ugc_str_override = NULL){
         // Friday, March 1, 2024 2158 hrs.
 
         //
         // BUILD SEARCH CONTENT ARRAY.
         // BUILD AND RETURN A COMPLETE
         // SEARCH STRUCT OF JONY5 META.
-        $tmp_search_meta_ARRAY = '[' . time() . '] from return_search_meta_jony5(UGC LEN=' . strlen($ugc_str) . ')';
+        $tmp_search_meta_ARRAY = '[' . time() . '] from return_search_meta_jony5(UGC LEN=' . strlen($ugc_str_override) . ')';
 
         return $tmp_search_meta_ARRAY;
 
@@ -9840,6 +8758,466 @@ Born on Nov. 10th, 2005, my dog...named \'J5\' (proper)...is part Korean Jindo, 
 
     }
 
+    private function return_search_controller_static_struct($data_key = 'SCRIPTURES'){
+
+        $tmp_output_ARRAY = array();
+        $tmp_search_meta_ARRAY = array();
+
+        switch($data_key){
+            case 'JONY5':
+
+                //
+                // PUSH ALL CUSTOM CONTENT
+                // ARRAY DATA PACKETS FOR
+                // STATIC SEARCH SUPPORT.
+                //
+                // PAGE URL:                https://jony5.com/?scroll=welcome
+                // DATE CREATED:            2024-03-04 02:38:45.749152
+                // DATA PACKET ID:          eFWeblrJSGEQHH2gvE7Kyqm22E3ABRcaASZETInBDG
+                // DATA PACKET SIZE:        2.197 KiB
+                // # # C # R # N # R # S # T # N # : : # # # #
+                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
+                // CLIENT IP:               104.15.178.8
+                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
+                $tmp_search_meta_ARRAY[] = array(
+                    array('SEARCH_CONTENT'                        => 'WelcomeImJonathanJ5HarrisRev3713Gen4912528Deut33141229Isa1615Dan91727Matt24152224814James312Num25113Jer11119Luke123444awebprofessionallivingandworkinginAtlantaGAWith6yearsofsolidagencyexperience18yearsofprogrammingexperienceinopensourcewebtechnologiesbehindmeIamalwaysopentoinvestigatefreshopportunitiestoworkwithactivegrowinganddigitallyfueledcompaniesinordertostrengthenandbroadenaspectsoftheirserviceofferingsfromatechnicalperspectiveFormypreviousemployerIworkedwithcorporateclientstoformulateandexecutewithmyownbarehandsinthecodewhenevernecessarymultichannelbusinessmarketinginitiatives'),
+                    array('SEARCH_CONTENT_PREVIEW'                => 'Welcome! I\'m Jonathan \'J5\' Harris (Rev. 3:7-13; Gen. 49:1, 25-28; Deut. 33:1-4, 12, 29; Isa. 16:1-5; Dan. 9:17-27; Matt. 24:15-22; 24:8-14; James 3:1-2; Num. 25:1-13; Jer. 1:11-19; Luke 12:34-44 ), a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+18 years of programming experience in open source web technologies) behind me, I am always open to investigate fresh opportunities to work with active, growing and digitally fueled companies in order to strengthen and broaden aspects of their service offerings from a technical perspective. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands in the code whenever necessary) multi-channel business marketing initiatives.'),
+                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0'),
+                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
+                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=I%27m%20Jonathan%20%27J5,business%20marketing%20initiatives.'),
+                    array('DATA_PACKET_ID'                        => 'eFWeblrJSGEQHH2gvE7Kyqm22E3ABRcaASZETInBDG')
+                );
+
+                //
+                // PAGE URL:                https://jony5.com/?scroll=welcome
+                // DATE CREATED:            2024-03-04 02:41:28.264794
+                // DATA PACKET ID:          dM2MXrbbauczDh9yVmo2ZFCIj7kXNKsw4C9RB4dCkc
+                // DATA PACKET SIZE:        1.51 KiB
+                // # # C # R # N # R # S # T # N # : : # # # #
+                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
+                // CLIENT IP:               104.15.178.8
+                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
+                $tmp_search_meta_ARRAY[] = array(
+                    array('SEARCH_CONTENT'                        => 'DigitalbrandstrategyandexecutionaremycorecompetenciesIn2004IworkedasafreelancedesignerwebapplicationdeveloperandserialentrepreneurAftertheimplosionofmy8personstartupcompanyCommercialNetIncIenteredtheworldofinteractivemarketingandadvertisingbyacceptingaUIdeveloperpositionwiththeAtlantabasedagencyMoxie'),
+                    array('SEARCH_CONTENT_PREVIEW'                => 'Digital brand strategy and execution are my core competencies. In 2004 I worked as a freelance designer, web application developer and serial entrepreneur. After the implosion of my 8 person startup company, CommercialNet Inc., I entered the world of interactive marketing and advertising by accepting a UI developer position with the Atlanta based agency, Moxie.'),
+                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0'),
+                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
+                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=Digital%20brand%20strategy,Atlanta%20based%20agency%2C'),
+                    array('DATA_PACKET_ID'                        => 'dM2MXrbbauczDh9yVmo2ZFCIj7kXNKsw4C9RB4dCkc')
+                );
+
+                //
+                // PAGE URL:                https://jony5.com/
+                // DATE CREATED:            2024-03-04 02:21:28.383189
+                // DATA PACKET ID:          dJpzH4zHNKL5pmGLUtoreeLVwdQMgK8z1O9muPt91y
+                // DATA PACKET SIZE:        1.652 KiB
+                // # # C # R # N # R # S # T # N # : : # # # #
+                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
+                // CLIENT IP:               104.15.178.8
+                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
+                $tmp_search_meta_ARRAY[] = array(
+                    array('SEARCH_CONTENT'                        => 'In2007IhelpedatalentedanddiverseteamofpeopleatMoxietostarttheeCRMdepartmentLeadbyDarrylBolducTinaWestandSapanaNanuwaandwithover50yearsofcombinedemailmarketingexperienceweworkedwithourclientstodesignandexecutebothawardwinningandstateoftheartemailmarketingprogramsinsupportoftheirglobalstrategicinitiativesBornonNov10th2005mydognamedJ5properispartKoreanJindoGermanShepherdandTimberWolf'),
+                    array('SEARCH_CONTENT_PREVIEW'                => 'In 2007 I helped a talented and diverse team of people at Moxie to start the eCRM department. Lead by Darryl Bolduc, Tina West and Sapana Nanuwa (and with over 50 years of combined email marketing experience), we worked with our clients to design and execute both award-winning and state-of-the-art email marketing programs in support of their global strategic initiatives.
+
+Born on Nov. 10th, 2005, my dog...named \'J5\' (proper)...is part Korean Jindo, German Shepherd and Timber Wolf.'),
+                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/j5_my_boy/2010_10_30_11.11.56_j5_octane_01.png'),
+                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
+                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=In%202007%20I,and%20Timber%20Wolf.'),
+                    array('DATA_PACKET_ID'                        => 'dJpzH4zHNKL5pmGLUtoreeLVwdQMgK8z1O9muPt91y')
+                );
+
+                //
+                // PAGE URL:                https://jony5.com/?scroll=welcome
+                // DATE CREATED:            2024-03-04 02:43:00.251667
+                // DATA PACKET ID:          XNApYrujNEzmOStqOl7VXw4Ou4Q7ZcKtKKTrdHhV5x
+                // DATA PACKET SIZE:        1.292 KiB
+                // # # C # R # N # R # S # T # N # : : # # # #
+                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
+                // CLIENT IP:               104.15.178.8
+                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
+                $tmp_search_meta_ARRAY[] = array(
+                    array('SEARCH_CONTENT'                        => 'WhenIworkedatagencyJ5accompaniedmetotheofficeonoccasionaswellastolocalparkscoffeeshopsneighborhoodbarsandeventheoccasionalhouseparty'),
+                    array('SEARCH_CONTENT_PREVIEW'                => 'When I worked at agency, J5 accompanied me to the office on occasion as well as to local parks, coffee shops, neighborhood bars and even the occasional house party.'),
+                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/j5_my_boy/2010_10_30_11.11.56_j5_octane_00.png'),
+                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
+                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=When%20I%20worked%20at%20agency%2C%20J5%20accompanied%20me%20to%20the%20office%20on%20occasion%20as%20well%20as%20to%20local%20parks%2C%20coffee%20shops%2C%20neighborhood%20bars%20and%20even%20the%20occasional%20house%20party.'),
+                    array('DATA_PACKET_ID'                        => 'XNApYrujNEzmOStqOl7VXw4Ou4Q7ZcKtKKTrdHhV5x')
+                );
+
+                //
+                // PAGE URL:                https://jony5.com/?scroll=welcome
+                // DATE CREATED:            2024-03-04 02:44:25.547565
+                // DATA PACKET ID:          46I75Km4acths7znZsABBEX0imaLhHD4XcxLoq1bS7
+                // DATA PACKET SIZE:        2.196 KiB
+                // # # C # R # N # R # S # T # N # : : # # # #
+                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
+                // CLIENT IP:               104.15.178.8
+                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
+                $tmp_search_meta_ARRAY[] = array(
+                    array('SEARCH_CONTENT'                        => 'OnthemorningofMondayAug162021at0345hrsandwhilelayingundermyarmJ5wentthewayofalltheearth1Kings213evenwithmuchencouragementandcelebrationfrommebyhissideInthewoodsbehindmyhouseinthedarkofnightat0500hrsasIwasreturningJ5totheearthfromwhencehecamewhilstshovelingthedirtbackinplaceIthankedhimrepeatedlyforeverythinghegavetomeduringoursojourntogetheruponthefaceoftheearthinthisGodsoldcreationIthankedhimforbringingmeintopracticalparticipationwithandintothepropheticfulfillmentoftheblessingsofIsraeltohistwelvesonsGen4821224912528whichareforallofthepeopleofGodacrossallspaceandalltimeEvenallthenationsoftheearthwillbeblessed'),
+                    array('SEARCH_CONTENT_PREVIEW'                => 'On the morning of Monday, Aug. 16, 2021 at 0345 hrs and while laying under my arm, J5 went the way of all the earth (1 Kings 2:1-3 ) even with much encouragement and celebration from me by his side. In the woods behind my house in the dark of night, at 0500 hrs, as I was returning J5 to the earth from whence he came...whilst shoveling the dirt back in place, I thanked him repeatedly for everything he gave to me during our sojourn together upon the face of the earth in this God\'s old creation. I thanked him for bringing me into practical participation with and into the prophetic fulfillment of the blessings of Israel to his twelve sons (Gen. 48:21-22; 49:1, 25-28 ) which are for all of the people of God across all space and all time. Even all the nations of the earth will be blessed.'),
+                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/j5_my_boy/2010_10_30_11.11.56_j5_octane_02.png'),
+                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
+                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=On%20the%20morning,will%20be%20blessed.'),
+                    array('DATA_PACKET_ID'                        => '46I75Km4acths7znZsABBEX0imaLhHD4XcxLoq1bS7')
+                );
+
+                //
+                // PAGE URL:                https://jony5.com/?scroll=welcome
+                // DATE CREATED:            2024-03-04 02:46:03.009425
+                // DATA PACKET ID:          1E78I2mrelwg0N23Rk5VFF2VjKAQyxuf39UVvGZart
+                // DATA PACKET SIZE:        1.275 KiB
+                // # # C # R # N # R # S # T # N # : : # # # #
+                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
+                // CLIENT IP:               104.15.178.8
+                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
+                $tmp_search_meta_ARRAY[] = array(
+                    array('SEARCH_CONTENT'                        => 'Thebonefromhislastwholesteaka100raretomahawkribeyefromRuthsChrisisstillclutchedagainsthischestinthearmofhisfrontrightpawLaterIcametorealizethatIburiedhimfacingtowardsthedirectionoftherisingofthesuntotheeast'),
+                    array('SEARCH_CONTENT_PREVIEW'                => 'The bone from his last whole steak, a +$100 rare tomahawk ribeye from Ruth\'s Chris, is still clutched against his chest in the arm of his front right paw. Later, I came to realize that I buried him facing towards the direction of the rising of the sun to the east.'),
+                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/j5_my_boy/2010_10_30_11.11.56_j5_octane_01.png'),
+                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
+                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=The%20bone%20from,to%20the%20east.'),
+                    array('DATA_PACKET_ID'                        => '1E78I2mrelwg0N23Rk5VFF2VjKAQyxuf39UVvGZart')
+                );
+
+                //
+                // PAGE URL:                https://jony5.com/?scroll=welcome
+                // DATE CREATED:            2024-03-04 02:56:23.976282
+                // DATA PACKET ID:          qva2S4b5GquWhepSqoW0mcEK8rIaqJJFHwhSUvZL24
+                // DATA PACKET SIZE:        1.067 KiB
+                // # # C # R # N # R # S # T # N # : : # # # #
+                // DATA CAPTURE ENDPOINT:   https://jony5.com/search/
+                // CLIENT IP:               104.15.178.8
+                // SESSION ID:              99869f0a88f39cb430de9334cec4ef4e
+                $tmp_search_meta_ARRAY[] = array(
+                    array('SEARCH_CONTENT'                        => 'ClickheretodownloadthelatestversionofmyresumeorvisitmyLinkedInprofile'),
+                    array('SEARCH_CONTENT_PREVIEW'                => 'Click here to download the latest version of my resume or visit my LinkedIn profile.'),
+                    array('SOCIAL_PREVIEW_IMAGE_HTTP'             => 'https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0'),
+                    array('RESOURCE_ENDPOINT_URI'                 => 'https://jony5.com/?scroll=welcome'),
+                    array('RESOURCE_HIGHLIGHT_ENDPOINT_URI'       => 'https://jony5.com/#:~:text=Click%20here%20to%20download%20the%20latest%20version%20of%20my%20resume%20or%20visit%20my%20LinkedIn%20profile.'),
+                    array('DATA_PACKET_ID'                        => 'qva2S4b5GquWhepSqoW0mcEK8rIaqJJFHwhSUvZL24')
+                );
+
+                break;
+            case 'SCRIPTURES':
+
+                //
+                // Thursday, February 29, 2024 @ 1632 hrs.
+                // FOR THE GENERATION OF A NEW MASTER CONTROL
+                // STRUCTURE (THIS STRUCT DRIVES SEARCH),
+                // PLEASE SEE, THE INSTRUCTIONS LOCATED
+                // WITHIN, $this->build_link_html_index(), AND
+                // TITLED: "HOW TO GET MORE DATA INTO SEARCH ::".
+                $tmp_search_meta_ARRAY[] = array('jehovah_has_revealed_dl' => 'capoiv');
+                $tmp_search_meta_ARRAY[] = array('jehovah_has_revealed_audio' => 'capoiv');
+                $tmp_search_meta_ARRAY[] = array('jehovah_has_revealed_chords' => 'capoiv');
+                $tmp_search_meta_ARRAY[] = array('jehovah_has_revealed' => 'capoiv');
+                $tmp_search_meta_ARRAY[] = array('hymn979' => 'hymns');
+                $tmp_search_meta_ARRAY[] = array('gen1_1' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('gen1_26' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('gen2_7' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('gen3_1' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('gen3_14[COVID]' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('gen3_14[solo]' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('gen3_14' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('gen26_4-5' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('gen48_21-22|49_1,25-28' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('gen49_1,25-28' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('lifestudy_exo_156' => 'lifestudyofexodus');
+                $tmp_search_meta_ARRAY[] = array('exo9_29' => 'exodus');
+                $tmp_search_meta_ARRAY[] = array('exo15_26' => 'exodus');
+                $tmp_search_meta_ARRAY[] = array('exo20_6' => 'exodus');
+                $tmp_search_meta_ARRAY[] = array('exo20_13' => 'exodus');
+                $tmp_search_meta_ARRAY[] = array('exo20_15' => 'exodus');
+                $tmp_search_meta_ARRAY[] = array('exo30_18' => 'exodus');
+                $tmp_search_meta_ARRAY[] = array('exo30_17-21' => 'exodus');
+                $tmp_search_meta_ARRAY[] = array('lev2_1' => 'leviticus');
+                $tmp_search_meta_ARRAY[] = array('lev18_1-5,24-28' => 'leviticus');
+                $tmp_search_meta_ARRAY[] = array('lev26_3-13' => 'leviticus');
+                $tmp_search_meta_ARRAY[] = array('lev26_3,11b-12' => 'leviticus');
+                $tmp_search_meta_ARRAY[] = array('num14_31' => 'numbers');
+                $tmp_search_meta_ARRAY[] = array('num14_31[000]' => 'numbers');
+                $tmp_search_meta_ARRAY[] = array('num14_29-30' => 'numbers');
+                $tmp_search_meta_ARRAY[] = array('num14_35' => 'numbers');
+                $tmp_search_meta_ARRAY[] = array('num25_1-13' => 'numbers');
+                $tmp_search_meta_ARRAY[] = array('num32_13' => 'numbers');
+                $tmp_search_meta_ARRAY[] = array('num33_50-54' => 'numbers');
+                $tmp_search_meta_ARRAY[] = array('deut4_1-2,39-40' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut5_10,29' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut6_1-6,16-25' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut6_25' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut7_9-26' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut8_1-10' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut10_14-22' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut11_14' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut11_1,8-15,22-28' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut26_16-19' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut28_1-14' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut30_11-20' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut33_1-4,12,29' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('josh5_6' => 'joshua');
+                $tmp_search_meta_ARRAY[] = array('1sam4_4' => '1samuel');
+                $tmp_search_meta_ARRAY[] = array('1kings2_1-3' => '1kings');
+                $tmp_search_meta_ARRAY[] = array('1kings8_54-66' => '1kings');
+                $tmp_search_meta_ARRAY[] = array('1kings18_37-40,45;19_1-18' => '1kings');
+                $tmp_search_meta_ARRAY[] = array('neh1_1-11' => 'nehemiah');
+                $tmp_search_meta_ARRAY[] = array('psa24' => 'psalms');
+                $tmp_search_meta_ARRAY[] = array('psa95_10-11' => 'psalms');
+                $tmp_search_meta_ARRAY[] = array('psa97_2' => 'psalms');
+                $tmp_search_meta_ARRAY[] = array('psa119_103' => 'psalms');
+                $tmp_search_meta_ARRAY[] = array('prov20_27' => 'proverbs');
+                $tmp_search_meta_ARRAY[] = array('isa14_13' => 'isaiah');
+                $tmp_search_meta_ARRAY[] = array('isa14_21-24' => 'isaiah');
+                $tmp_search_meta_ARRAY[] = array('isa16_1-5' => 'isaiah');
+                $tmp_search_meta_ARRAY[] = array('isa53_6' => 'isaiah');
+                $tmp_search_meta_ARRAY[] = array('jer1_11-19' => 'jeremiah');
+                $tmp_search_meta_ARRAY[] = array('jer24_7' => 'jeremiah');
+                $tmp_search_meta_ARRAY[] = array('jer31_31-34' => 'jeremiah');
+                $tmp_search_meta_ARRAY[] = array('jer31_33-34' => 'jeremiah');
+                $tmp_search_meta_ARRAY[] = array('jer31_33-37' => 'jeremiah');
+                $tmp_search_meta_ARRAY[] = array('jer31_31-37' => 'jeremiah');
+                $tmp_search_meta_ARRAY[] = array('ezek11_17-25' => 'ezekiel');
+                $tmp_search_meta_ARRAY[] = array('dan9_4' => 'daniel');
+                $tmp_search_meta_ARRAY[] = array('dan9_17-27' => 'daniel');
+                $tmp_search_meta_ARRAY[] = array('joel2_23' => 'joel');
+                $tmp_search_meta_ARRAY[] = array('matt1_18,20' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt2_4-6' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt3_15' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt4_1-2' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt4_3' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt4_4b' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt4_5-7' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt5_10' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt5_13' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt5' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt6' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt7' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt7_13-14' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt10_10b' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt10_16-33' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt11_28-30' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt12_1-8' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt12_5' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt13_4' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt16_25-26' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt19_12' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt24_8-14' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt24_14' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt24_15-22' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt25_4' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt25_23,10b' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt26_33-35,69-75' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt27_46' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('mark7_19-23' => 'mark');
+                $tmp_search_meta_ARRAY[] = array('mark9_50' => 'mark');
+                $tmp_search_meta_ARRAY[] = array('mark14_27-31,66-72' => 'mark');
+                $tmp_search_meta_ARRAY[] = array('luke1_26-33' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke9_1-6' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke9_5-6' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke10_19' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke12_35' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke12_34-44' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke13_17' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke14_31-32' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke14_34-35' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke18_11-12' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke18_13' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke19_12,14,15,27' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke22_24-30' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke22_33-34,54-62' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke22_42' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke22_42[solo]' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke23_27-30' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke23_38,42-43' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke24_31-32' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('john2_20-21' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john2_21' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john5_24-25' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john8_1-11' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john8_6' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john8_51-59' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john9_41' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john13_3-17' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john13_34' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john13_34[solo]' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john13_37-38' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john13_37-38;18_14-27' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john14_10' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john14_10-14' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john14_12-14' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john14_15,20-21' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john16_15' => 'john');
+                $tmp_search_meta_ARRAY[] = array('acts1_5' => 'acts');
+                $tmp_search_meta_ARRAY[] = array('acts2_22-25' => 'acts');
+                $tmp_search_meta_ARRAY[] = array('acts8_29' => 'acts');
+                $tmp_search_meta_ARRAY[] = array('acts10_15-16b,19-21' => 'acts');
+                $tmp_search_meta_ARRAY[] = array('acts16_6,7' => 'acts');
+                $tmp_search_meta_ARRAY[] = array('acts11_12' => 'acts');
+                $tmp_search_meta_ARRAY[] = array('acts11_18' => 'acts');
+                $tmp_search_meta_ARRAY[] = array('rom2_6-7' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom5_1-5[000]' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom5_1-5' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom5_10' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom5_14,17,21' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom6_3' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom6_8' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom6_8-11' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom6_9-11' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom6_18-19[000]' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom6_18-19' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom6_22' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom7_2-4,6' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom8_2' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom8_2,4' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom8_14' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom8_16-17,24-25' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom8_14-23' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom8_33-39' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom9_31-33' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom10_2-3' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom12_2' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom12_11' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom12_11-12' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom13_14' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom14_1' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom14_7-12' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom15_4[000]' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom15_4' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('1cor1_22-25' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor3_21-23' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor5_1,5' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor6_12' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor6_17' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor9_8-11,13' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor10_5' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor10_23' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor10_26,29b-31' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor11_4' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor15_58' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor15_55,58' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor1_9-10' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor1_20-22[000]' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor1_20-22' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor3_6-9' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor3_12' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor3_12,17' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor11_2a' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor11_2b-3' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor11_22' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor3_3' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor3_17-18' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor3_18' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('gal1_14' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal2_20' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal2_20_x' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal3_1' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal5_1,7' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal5_1' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal5_5-6' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal4_11' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal5_13,16' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal5_16,18,22-23,25' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal6_14' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('eph1_3' => 'ephesians');
+                $tmp_search_meta_ARRAY[] = array('eph1_3-12' => 'ephesians');
+                $tmp_search_meta_ARRAY[] = array('eph1_3-14[000]' => 'ephesians');
+                $tmp_search_meta_ARRAY[] = array('eph1_3-14' => 'ephesians');
+                $tmp_search_meta_ARRAY[] = array('eph1_9' => 'ephesians');
+                $tmp_search_meta_ARRAY[] = array('eph1_9-14,18-23' => 'ephesians');
+                $tmp_search_meta_ARRAY[] = array('phil1_6' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil1_20' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil1_27' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil2_3' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil2_5-8' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil2_5-16[000]' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil2_5-16' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil2_5-9' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil2_8' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil2_13[001]' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil2_13[000]' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil2_13' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('col1_5' => 'colossians');
+                $tmp_search_meta_ARRAY[] = array('col1_27' => 'colossians');
+                $tmp_search_meta_ARRAY[] = array('col1_5-6,21-23,26-27' => 'colossians');
+                $tmp_search_meta_ARRAY[] = array('col1_16' => 'colossians');
+                $tmp_search_meta_ARRAY[] = array('col2_9' => 'colossians');
+                $tmp_search_meta_ARRAY[] = array('col2_8,12,20-23' => 'colossians');
+                $tmp_search_meta_ARRAY[] = array('col3_5' => 'colossians');
+                $tmp_search_meta_ARRAY[] = array('col3_6' => 'colossians');
+                $tmp_search_meta_ARRAY[] = array('1thes1_2-3' => '1thessalonians');
+                $tmp_search_meta_ARRAY[] = array('1thes5_7-11' => '1thessalonians');
+                $tmp_search_meta_ARRAY[] = array('2thes2_8-12' => '2thessalonians');
+                $tmp_search_meta_ARRAY[] = array('2thes2_16-17' => '2thessalonians');
+                $tmp_search_meta_ARRAY[] = array('1tim1_1' => '1timothy');
+                $tmp_search_meta_ARRAY[] = array('1tim4_1-5' => '1timothy');
+                $tmp_search_meta_ARRAY[] = array('1tim6_17' => '1timothy');
+                $tmp_search_meta_ARRAY[] = array('2tim1_6' => '2timothy');
+                $tmp_search_meta_ARRAY[] = array('2tim1_6-8' => '2timothy');
+                $tmp_search_meta_ARRAY[] = array('titus1_1-3' => 'titus');
+                $tmp_search_meta_ARRAY[] = array('titus2_11-15' => 'titus');
+                $tmp_search_meta_ARRAY[] = array('titus3_7[000]' => 'titus');
+                $tmp_search_meta_ARRAY[] = array('titus3_7' => 'titus');
+                $tmp_search_meta_ARRAY[] = array('heb2_14-15' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb3_6[000]' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb3_6' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb3_7-19[000]' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb3_7-19' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb4_8-16' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb4_11' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb6_17-20' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb7_17-19' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb8_10[000]' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb8_10' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb9_14' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb10_22,19' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb10_22' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb10_21-23' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb10_23' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb10_35' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb10_35,38-39' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb11_1' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb12_1' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('james3_1-2' => 'james');
+                $tmp_search_meta_ARRAY[] = array('1pet1_3-9,13,21' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1pet1_3-5' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1pet1_13' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1pet2_16' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1pet2_20' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1pet2_7-8' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1pet2_24' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1pet3_15' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1pet3_5-7,14-22' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1pet5_8' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1john2_15-17' => '1john');
+                $tmp_search_meta_ARRAY[] = array('1john3_1-10' => '1john');
+                $tmp_search_meta_ARRAY[] = array('rev2_10-11' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev2_12-17' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev2_18-23' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev2_14[solo]' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev2_14' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev2_11|2_17,26-28|3_5,12,21' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev2_21-22' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev3_8' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev3_7-13' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev3_19' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev6_16-17' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev12_3-4,9' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev12_3-4,13,17;13:2,4' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev20_6' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev21_2,9-27' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev21_7' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev21_3-5' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev21_21' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev22_2' => 'revelation');
+
+                break;
+
+        }
+
+        return $tmp_search_meta_ARRAY;
+
+    }
+
     public function return_performance_report_html(){
 
         $tmp_report_html = '';
@@ -9849,6 +9227,630 @@ Born on Nov. 10th, 2005, my dog...named \'J5\' (proper)...is part Korean Jindo, 
         $tmp_report_html .= $this->formatBytes(self::$bytes_processed, 3) . ' of data was returned in ' . $this->wall_time() . ' seconds.';
 
         return $tmp_report_html_open . $tmp_report_html . $tmp_report_html_close;
+
+    }
+
+    public function generate_optimized_search_content($mode = 'VVID_LOOKUP_MASTER'){
+
+        $tmp_php_generated_html = '
+';
+
+        //
+        // $tmp_output_ARRAY = $this->return_search_controller_static_struct();
+        // WHERE, $tmp_output_ARRAY['VVID'] AND $tmp_output_ARRAY['WWW'].
+        $tmp_search_meta_ARRAY = $this->return_search_controller_static_struct();
+
+        switch($mode){
+            case 'VVID_LOOKUP_MASTER':
+                // SCRIPTURES.
+
+                /*
+                [INPUT] --------
+                    case 'psa97_2':
+
+                        $tmp_verse_array['REFERENCE'][0]        = '97:2';
+                        $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Clouds and deep darkness surround Him; Righteousness and justice are the foundation of His throne.';
+                        $tmp_verse_array['COPY'][0]             = 'Clouds and deep darkness surround Him;<br>
+                        &nbsp;&nbsp;&nbsp;Righteousness and justice are the foundation of His throne.';
+
+                    break;
+
+                [OUTPUT] --------
+                    $tmp_search_meta_ARRAY[] = array('{vvid}' => '{IMAGE_PREVIEW_SALT}');
+                    - - - - -
+                    $tmp_search_meta_ARRAY[] = array('1kings2_1-3' => '1kings');
+                    $tmp_search_meta_ARRAY[] = array('1kings18_37-40,45;19_1-18' => '1kings');
+                    $tmp_search_meta_ARRAY[] = array('1sam4_4' => '1samuel');
+                    $tmp_search_meta_ARRAY[] = array('psa97_2' => 'psalms');
+
+                */
+
+                foreach($tmp_search_meta_ARRAY as $tmp_index => $tmp_vvid_meta_CHUNKARRAY0){
+
+                    foreach($tmp_vvid_meta_CHUNKARRAY0 as $vvid => $meta_content){
+
+                        $this->vvid = $vvid;
+                        $tmp_vnav_vvid_ARRAY = $this->return_book_preciousness();
+
+                        /*
+                        [Sat Mar 02 01:49:51.201318 2024] [:error] [pid 121890] [client 172.16.225.1:55119] 693 precious [
+                            Array\n(\n
+                                [VVID] => Array\n        (\n            [0] => rev2_21-22\n        )\n\n
+                                [COPY] => Array\n        (\n            [0] => Revelation 2:21-22\n        )\n\n
+                            )\n].
+                            $this->vvid[rev2_21-22].
+
+                        [Sat Mar 02 02:38:11.375792 2024] [:error] [pid 121798] [client 172.16.225.1:56403] 693 precious [
+                            Array\n(\n
+                                [COPY] => Array\n        (\n            [0] => 1 Peter\n        )\n\n
+                            )\n].
+                            $this->vvid[1pet2_16].
+
+                        [Sat Mar 02 04:54:57.670339 2024] [:error] [pid 125740] [client 172.16.225.1:59001] 741 precious [
+                            Array\n(\n
+                                [COPY] => Array\n        (\n            [0] => 1 Thessalonians\n        )\n\n
+                            )\n]
+                            $tmp_vvid_meta[1thessalonians].
+                            $this->vvid[1thes5_7-11].
+
+                        */
+
+                        if(isset($tmp_vnav_vvid_ARRAY['COPY'][0])){
+
+                            //
+                            // LOWERCASE.
+                            $tmp_book_str = strtolower($tmp_vnav_vvid_ARRAY['COPY'][0]);
+                            $tmp_vvid_meta = $this->str_sanitize($tmp_book_str, 'bible_book_name');
+
+                            switch($vvid){
+                                case 'jehovah_has_revealed_dl':
+                                case 'jehovah_has_revealed_audio':
+                                case 'jehovah_has_revealed_chords':
+
+                                    $tmp_vvid_meta = 'capoiv';
+
+                                    break;
+                                case 'jony5_home_page':
+                                    // projects/crnrstn/philosophy/
+
+                                    break;
+
+                            }
+
+                            //error_log(__LINE__ . ' precious [' . print_r($tmp_vnav_vvid_ARRAY, true) . '] $tmp_vvid_meta[' . $tmp_vvid_meta . ']. $this->vvid[' . $this->vvid . '].');
+
+                            $tmp_php_generated_html .= '$tmp_search_meta_ARRAY[] = array(\'' . $vvid . '\' => \'' . $tmp_vvid_meta . '\');
+';
+
+                        }else{
+
+                            error_log(__LINE__ . ' '. __METHOD__ . ' MISSING COPY DATA FOR THE vvid, [' . $this->vvid . '].');
+
+                        }
+
+                    }
+
+                }
+
+                break;
+            case 'COMPRESSED_SEARCH_CONTENT':
+
+                /*
+                [INPUT] --------
+                    case 'psa97_2':
+
+                        $tmp_verse_array['REFERENCE'][0]        = '97:2';
+                        $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Clouds and deep darkness surround Him; Righteousness and justice are the foundation of His throne.';
+                        $tmp_verse_array['COPY'][0]             = 'Clouds and deep darkness surround Him;<br>
+                        &nbsp;&nbsp;&nbsp;Righteousness and justice are the foundation of His throne.';
+
+                    break;
+
+                [OUTPUT] --------
+                    $tmp_search_meta_ARRAY[] = array(array('ASSET_RESOURCE_HTTP' => ''), array('psa97_2' => 'cloudsanddeepdarknesssurroundhimrighteo'));
+
+                */
+                foreach($tmp_search_meta_ARRAY as $tmp_index => $tmp_vvid_meta_CHUNKARRAY0){
+
+                    foreach($tmp_vvid_meta_CHUNKARRAY0 as $vvid => $meta_content){
+
+                        $this->vvid = $vvid;
+                        $tmp_verse_meta_ARRAY = $this->return_verse_preciousness();
+
+                        //error_log(__LINE__ . ' precious [' . print_r($tmp_verse_meta_ARRAY, true) . '] $tmp_vvid_meta[' . $meta_content . ']. $this->vvid[' . $this->vvid . '].');
+                        /*
+                        [Sat Mar 02 07:09:09.364794 2024] [:error] [pid 6891] [client 172.16.225.1:63241] 799 precious [
+                        Array\n(\n
+                            [REFERENCE] => Array\n        (\n            [0] => \n        )\n\n
+                            [SOCIAL_PREVIEW] =>
+                                Array\n        (\n
+                                    [0] => Download Jehovah Has Revealed (Ashes). Vocals: Sister Doris K., Brother Jonathan H. African Djembe Hand Bongo: Brother Kenton W. Guitar: Brother Jonathan H.Jehovah has revealed / His heart to me. / To Him I thus would consecrated be. / As Daniel purposed in his heart...I'll be. / And pray; that God could move on earth through me. / Lord, You need me.\n        )\n\n
+                            [COPY] =>
+                                Array\n        (\n
+                                    [0] => <a href="#" onclick="launch_newwindow('https://jony5.com/downloads/audio/jehovah_has_revealed_his_heart.php'); return false;" target="_blank">Click \n                here</a> to download.\n        )\n\n)\n] $tmp_vvid_meta[capoiv]. $this->vvid[jehovah_has_revealed_dl].
+
+                        */
+
+                        if(isset($tmp_verse_meta_ARRAY['COPY'][0])){
+
+                            //
+                            // LOWERCASE.
+                            $tmp_copy_str = strtolower($tmp_verse_meta_ARRAY['COPY'][0]);
+                            $tmp_vvid_meta = $this->str_sanitize($tmp_copy_str, 'search_jony5_vvid_content');
+
+                            switch($vvid){
+                                case 'jehovah_has_revealed_dl':
+                                case 'jehovah_has_revealed_audio':
+                                case 'jehovah_has_revealed_chords':
+
+                                    $tmp_vvid_meta = 'capoiv';
+
+                                    break;
+                                case 'jony5_home_page':
+                                    // projects/crnrstn/philosophy/
+
+                                    break;
+
+                            }
+
+                            //error_log(__LINE__ . ' precious [' . print_r($tmp_verse_meta_ARRAY, true) . '] $tmp_vvid_meta[' . $tmp_vvid_meta . ']. $this->vvid[' . $this->vvid . '].');
+
+                            $tmp_php_generated_html .= '$tmp_search_meta_ARRAY[] = array(array(\'ASSET_RESOURCE_HTTP\' => \'\'), array(\'' . $vvid . '\' => \'' . $tmp_vvid_meta . '\'));
+';
+
+                        }else{
+
+                            error_log(__LINE__ . ' '. __METHOD__ . ' MISSING COPY DATA FOR THE vvid, [' . $this->vvid . '].');
+
+                        }
+
+                    }
+
+                }
+
+                break;
+            case 'JONY5_COMPRESSED_SEARCH_CONTENT':
+            default:
+
+                $tmp_html_output = '';
+
+                if(self::$oEnv->oSESSION_MGR->issetSessionParam('JONY5_ADMIN_SESSION') !== false){
+
+                    //
+                    // INITIALIZE ADMIN SESSION.
+                    self::$valid_session = self::$oEnv->oSESSION_MGR->getSessionParam('JONY5_ADMIN_SESSION');
+
+                }
+
+                if(self::$oEnv->oHTTP_MGR->issetHTTP($_POST)){
+
+                    //
+                    // STORE THE $_GET[] DATA THAT HAS BEEN SENT.
+                    $tmp_social_media_preview_img_url = self::$oEnv->oHTTP_MGR->extractData($_POST, 'social_media_preview_img_url');
+
+                    if(strlen($tmp_social_media_preview_img_url) < 2){
+
+                        //
+                        // $tmp_output_ARRAY = $this->return_search_controller_static_struct();
+                        // WHERE, $tmp_output_ARRAY['VVID'] AND $tmp_output_ARRAY['WWW'].
+                        $tmp_www_jony5_ARRAY = $this->return_search_controller_static_struct('JONY5');
+
+                        /*
+                        [Mon Mar 04 02:50:00.892829 2024] [:error] [pid 27174] [client 172.16.225.1:50836] 806
+                        $tmp_www_jony5_ARRAY[
+                        Array\n(\n
+                            [0] => Array\n        (\n
+                                    [0] => Array\n                (\n
+                                        [SEARCH_CONTENT] => WelcomeImJonathanJ5HarrisRev3713Gen4912528Deut33141229Isa1615Dan91727Matt24152224814James312Num25113Jer11119Luke123444awebprofessionallivingandworkinginAtlantaGAWith6yearsofsolidagencyexperience18yearsofprogrammingexperienceinopensourcewebtechnologiesbehindmeIamalwaysopentoinvestigatefreshopportunitiestoworkwithactivegrowinganddigitallyfueledcompaniesinordertostrengthenandbroadenaspectsoftheirserviceofferingsfromatechnicalperspectiveFormypreviousemployerIworkedwithcorporateclientstoformulateandexecutewithmyownbarehandsinthecodewhenevernecessarymultichannelbusinessmarketinginitiatives\n                )\n\n
+                                    [1] => Array\n                (\n
+                                        [SEARCH_CONTENT_PREVIEW] => Welcome! I'm Jonathan 'J5' Harris (Rev. 3:7-13; Gen. 49:1, 25-28; Deut. 33:1-4, 12, 29; Isa. 16:1-5; Dan. 9:17-27; Matt. 24:15-22; 24:8-14; James 3:1-2; Num. 25:1-13; Jer. 1:11-19; Luke 12:34-44 ), a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+18 years of programming experience in open source web technologies) behind me, I am always open to investigate fresh opportunities to work with active, growing and digitally fueled companies in order to strengthen and broaden aspects of their service offerings from a technical perspective. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands in the code whenever necessary) multi-channel business marketing initiatives.\n                )\n\n
+                                    [2] => Array\n                (\n
+                                        [SOCIAL_PREVIEW_IMAGE_HTTP] => https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0\n                )\n\n
+                                    [3] => Array\n                (\n
+                                        [RESOURCE_ENDPOINT_URI] => https://jony5.com/?scroll=welcome\n                )\n\n
+                                    [4] => Array\n                (\n
+                                        [RESOURCE_HIGHLIGHT_ENDPOINT_URI] => https://jony5.com/#:~:text=I%27m%20Jonathan%20%27J5,business%20marketing%20initiatives.\n                )\n\n
+                                    [5] => Array\n                (\n
+                                        [DATA_PACKET_ID] => eFWeblrJSGEQHH2gvE7Kyqm22E3ABRcaASZETInBDG\n                )\n\n        )\n\n
+
+                        */
+
+                        //error_log(__LINE__ . ' $tmp_www_jony5_ARRAY[' . print_r($tmp_www_jony5_ARRAY, true) . ']. ');
+
+                        foreach($tmp_www_jony5_ARRAY as $img_index => $img_CHUNKARRAY0){
+
+                            if(isset($img_CHUNKARRAY0[2]['SOCIAL_PREVIEW_IMAGE_HTTP'])){
+
+                                $tmp_social_media_preview_img_url = $img_CHUNKARRAY0[2]['SOCIAL_PREVIEW_IMAGE_HTTP'];  //'https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png?vers=876321.1674187423.0';
+
+                                if(strlen($tmp_social_media_preview_img_url) > 0){
+
+                                    break 1;
+
+                                }
+
+                            }
+
+                        }
+
+                        //error_log(__LINE__ . ' precious [' . $tmp_social_media_preview_img_url . ']. $tmp_vvid_jony5_ARRAY[' . print_r($tmp_www_jony5_ARRAY, true) . '].');
+
+                    }
+
+                    $tmp_data_packet_id = $this->generate_new_key(42);
+                    $tmp_resource_endpoint_uri = self::$oEnv->oHTTP_MGR->extractData($_POST, 'resource_endpoint_uri');
+                    $tmp_page_content_highlight_url = self::$oEnv->oHTTP_MGR->extractData($_POST, 'page_content_highlight_url');
+                    $tmp_search_content = self::$oEnv->oHTTP_MGR->extractData($_POST, 'search_content');
+                    $tmp_search_content_text_preview = self::$oEnv->oHTTP_MGR->extractData($_POST, 'search_content_text_preview');
+
+                    $tmp_page_uri = self::$oEnv->paramTunnelDecrypt(self::$oEnv->oHTTP_MGR->extractData($_POST, 'uri'));
+                    $tmp_search_content_compress_passphase = self::$oEnv->oHTTP_MGR->extractData($_POST, 'search_content_compress_passphase');
+
+                    if(strlen($tmp_page_uri) < 1){
+
+                        $tmp_page_uri = self::$oEnv->currentLocation();
+
+                    }
+
+                    $tmp_search_bytes_original = $this->count_processed_bytes($tmp_search_content,true);
+                    $tmp_original_bytes = $tmp_search_bytes_original + $this->count_processed_bytes($tmp_social_media_preview_img_url . $tmp_resource_endpoint_uri, true);
+                    $tmp_original_preview_bytes = $this->count_processed_bytes($tmp_search_content_text_preview, true);
+
+                    $this->count_processed_bytes($tmp_social_media_preview_img_url);
+                    $this->count_processed_bytes($tmp_resource_endpoint_uri);
+
+                    $tmp_search_content = $this->str_sanitize($tmp_search_content, 'search_jony5_vvid_content');
+                    $tmp_search_content_text_preview = $this->str_sanitize($tmp_search_content_text_preview, 'php_code_escape_single_quotes');
+
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/3760816/remove-new-lines-from-string-and-replace-with-one-empty-space
+                    // AUTHOR :: jwueller :: https://stackoverflow.com/users/427328/jwueller
+                    // COMMENT :: https://stackoverflow.com/a/3760830
+                    $tmp_search_content = trim(preg_replace('/\s+/', '', $tmp_search_content));
+
+                    //
+                    // REPLACE ALL LINE BREAKS WITH A SPACE IN THE
+                    // TEXT PREVIEW FOR SEARCH CONTENT.
+                    $tmp_search_content_text_preview = trim(preg_replace('/\s+/', ' ', $tmp_search_content_text_preview));
+
+                    //
+                    // REMOVE USELESS SPACES LEFT BY THE ABOVE preg_replace()
+                    // REPLACEMENT OF LINE BREAKS WITH A SPACE.
+                    $tmp_search_content_text_preview = $this->str_sanitize($tmp_search_content_text_preview, 'php_code_remove_preg_replace_spaces');
+
+
+                    $this->count_processed_bytes($tmp_search_content);
+                    $tmp_serial = $this->generate_new_key(50, '01');
+
+                    //
+                    // CHECK FOR A COMMAND TO EXIT THE
+                    // ADMIN SESSION.
+                    if(trim(strtolower($tmp_search_content_compress_passphase)) == 'exit'){
+
+                        //
+                        // LOG OUT.
+                        self::$oEnv->oSESSION_MGR->setSessionParam('JONY5_ADMIN_SESSION', false);
+                        self::$valid_session = false;
+
+                        $tmp_search_logout_msg = '<div class="cb_20"></div><p>Goodbye!</p>
+<div class="cb_30"></div>
+<p><span><a href="' . $tmp_page_uri . '" target="_self"style="color: #0066CC; text-align: left;">Back</a></span></p>';
+                        $this->count_processed_bytes($tmp_search_logout_msg);
+
+                        return $tmp_search_logout_msg;
+
+                    }
+
+                    $tmp_packet_output_str = '$tmp_search_meta_ARRAY[] = array(
+                                                                array(\'SEARCH_CONTENT\'                    => \'' . $tmp_search_content . '\'),
+                                                                array(\'SEARCH_CONTENT_PREVIEW\'            => \'' . $tmp_search_content_text_preview . '\'),
+                                                                array(\'SOCIAL_PREVIEW_IMAGE_HTTP\'         => \'' . $tmp_social_media_preview_img_url . '\'),
+                                                                array(\'RESOURCE_ENDPOINT_URI\'             => \'' . $tmp_resource_endpoint_uri . '\'),
+                                                                array(\'RESOURCE_HIGHLIGHT_ENDPOINT_URI\'   => \'' . $tmp_page_content_highlight_url . '\')
+                                                            );';
+
+                    $tmp_packet_output_bytes = $this->formatBytes($this->count_processed_bytes($tmp_packet_output_str, true), 3);
+                    $tmp_packet_output_str = '';
+
+                    //
+                    // CHECK FOR A VALID PASSPHRASE OR A
+                    // PRE-EXISTING AND VALID ADMIN SESSION.
+                    if(($tmp_search_content_compress_passphase == self::$shhh_passphase) || (self::$valid_session == true)){
+
+                        //
+                        // AUTHENTICATE THIS SESSION...I.E. LOGIN.
+                        self::$oEnv->oSESSION_MGR->setSessionParam('JONY5_ADMIN_SESSION', true);
+
+                        $tmp_html_output = '<div class="cb_20"></div>
+    <span><a href="' . $tmp_page_uri . '" target="_self"style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: left;">New</a></span>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_serial . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: left;">Copy to clipboard</a>&nbsp;&nbsp;&nbsp;<span id="jony5_search_meta_clipboard_state_' . $tmp_serial . '" class="jony5_search_meta_clipboard_state"></span>
+    <script>
+        function copy_output_' . $tmp_serial . '(){
+
+                        //
+                        // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                        // COMMENT :: https://stackoverflow.com/a/1173319
+                        // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                        if(document.selection){ // IE
+
+                            var range = document.body.createTextRange();
+                            range.moveToElementText(document.getElementById("jony5_search_meta_www_data_' . $tmp_serial . '"));
+                            range.select();
+
+                        }else if(window.getSelection){
+
+                            var range = document.createRange();
+                            range.selectNode(document.getElementById("jony5_search_meta_www_data_' . $tmp_serial . '"));
+                            window.getSelection().removeAllRanges();
+                            window.getSelection().addRange(range);
+
+                        }
+
+                        //
+                        // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                        /* Copy the text inside the text field */
+                        document.execCommand(\'copy\');
+
+            /* Alert the copied text */
+            //alert("Copied the text: " + document.getElementById("crnrstn_print_r_source_' . $tmp_serial . '").innerHTML);
+            document.getElementById("jony5_search_meta_www_data_' . $tmp_serial . '").style.backgroundColor = "#60bbff;";
+            document.getElementById("jony5_search_meta_clipboard_state_' . $tmp_serial . '").innerHTML = "' . $this->formatBytes(self::$bytes_processed, 3) . ' Copied!";
+
+        }
+    </script>
+    <div class="cb_5"></div>
+    <textarea id="jony5_search_meta_www_data_' . $tmp_serial . '" class="jony5_search_meta_www_data_textarea" onclick="copy_output_' . $tmp_serial . '(); return false;" cols="80" rows="8">//
+                                                            // PAGE URL:                ' . $tmp_resource_endpoint_uri . '
+                                                            // DATE CREATED:            ' . self::$oEnv->return_micro_time() . '
+                                                            // DATA PACKET ID:          ' . $tmp_data_packet_id . '
+                                                            // DATA PACKET SIZE:        ' . $tmp_packet_output_bytes . '
+                                                            // # # C # R # N # R # S # T # N # : : # # # #
+                                                            // DATA CAPTURE ENDPOINT:   ' . $tmp_page_uri . '
+                                                            // CLIENT IP:               ' . self::$oEnv->oCRNRSTN_IPSECURITY_MGR->clientIpAddress() . '
+                                                            // SESSION ID:              ' . session_id() . '
+                                                            $tmp_search_meta_ARRAY[] = array(
+                                                                array(\'SEARCH_CONTENT\'                        => \'' . $tmp_search_content . '\'),
+                                                                array(\'SEARCH_CONTENT_PREVIEW\'                => \'' . $tmp_search_content_text_preview . '\'),
+                                                                array(\'SOCIAL_PREVIEW_IMAGE_HTTP\'             => \'' . $tmp_social_media_preview_img_url . '\'),
+                                                                array(\'RESOURCE_ENDPOINT_URI\'                 => \'' . $tmp_resource_endpoint_uri . '\'),
+                                                                array(\'RESOURCE_HIGHLIGHT_ENDPOINT_URI\'       => \'' . $tmp_page_content_highlight_url . '\'),
+                                                                array(\'DATA_PACKET_ID\'                        => \'' . $tmp_data_packet_id . '\')
+                                                            );</textarea>
+
+<div class="jony5_meta_report_header_wrap"><p><strong>Input Meta Report:</strong></p></div>
+<div class="jony5_meta_report_body_wrap">
+    <p><strong>Content <span class="jony5_search_highlight_copy">&nbsp;Preview&nbsp;</span> Length:</strong><br>
+    ' . $this->formatBytes($tmp_original_preview_bytes, 3) . '</p>
+    <p><strong>Search Content Length (original):</strong><br>
+    ' . $this->formatBytes($tmp_original_bytes, 3) . '</p>
+    <p><strong>Content Length (search compressed):</strong><br>
+    ' . $this->formatBytes(self::$bytes_processed, 3) . '</p>
+    <p><strong>Search Content Endpoint URL:</strong><br>
+    <a href="' . $tmp_resource_endpoint_uri . '" target="_blank">' . $tmp_resource_endpoint_uri . '</a>
+    </p>
+    <p><strong><span class="jony5_search_highlight_copy">&nbsp;HIGHLIGHT&nbsp;</span> Content URL:</strong><br>
+        <a href="' . $tmp_page_content_highlight_url . '" target="_blank">' . $tmp_page_content_highlight_url . '</a>
+    </p>
+    <p><strong>Social Media Preview Image:</strong><br>
+    <a href="' . $tmp_resource_endpoint_uri . '" target="_blank"><img src="' . $tmp_social_media_preview_img_url . '" height = "300"></a></p>
+
+</div>
+';
+
+                    }else{
+
+                        //
+                        // THE SESSION IS NOT AUTHENTICATED.
+                        $tmp_html_output = '<div class="cb_20"></div>
+    <span><a href="' . $tmp_page_uri . '" target="_self"style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: left;">New</a></span>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_serial . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: left;">Copy to clipboard</a>&nbsp;&nbsp;&nbsp;<span id="jony5_search_meta_clipboard_state_' . $tmp_serial . '" class="jony5_search_meta_clipboard_state"></span>
+    <script>
+        function copy_output_' . $tmp_serial . '(){
+
+                        //
+                        // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                        // COMMENT :: https://stackoverflow.com/a/1173319
+                        // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                        if(document.selection){ // IE
+
+                            var range = document.body.createTextRange();
+                            range.moveToElementText(document.getElementById("jony5_search_meta_www_data_' . $tmp_serial . '"));
+                            range.select();
+
+                        }else if(window.getSelection){
+
+                            var range = document.createRange();
+                            range.selectNode(document.getElementById("jony5_search_meta_www_data_' . $tmp_serial . '"));
+                            window.getSelection().removeAllRanges();
+                            window.getSelection().addRange(range);
+
+                        }
+
+                        //
+                        // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                        /* Copy the text inside the text field */
+                        document.execCommand(\'copy\');
+
+            /* Alert the copied text */
+            //alert("Copied the text: " + document.getElementById("crnrstn_print_r_source_' . $tmp_serial . '").innerHTML);
+            document.getElementById("jony5_search_meta_www_data_' . $tmp_serial . '").style.backgroundColor = "#60bbff;";
+            document.getElementById("jony5_search_meta_clipboard_state_' . $tmp_serial . '").innerHTML = "' . $this->formatBytes(self::$bytes_processed, 3) . ' Copied!";
+
+        }
+    </script>
+    <div class="cb_5"></div>
+    <textarea id="jony5_search_meta_www_data_' . $tmp_serial . '" class="jony5_search_meta_www_data_textarea" onclick="copy_output_' . $tmp_serial . '(); return false;" cols="80" rows="8">//
+                                                            // PAGE URL:                [CONTENT LEN=' . strlen($tmp_resource_endpoint_uri) . ']
+                                                            // DATE CREATED:            ' . self::$oEnv->return_micro_time() . '
+                                                            // DATA PACKET ID:          ' . $tmp_data_packet_id . '
+                                                            // DATA PACKET SIZE:        ' . $tmp_packet_output_bytes . '
+                                                            // # # C # R # N # R # S # T # N # : : # # # #
+                                                            // DATA CAPTURE ENDPOINT:   ' . $tmp_page_uri . '
+                                                            // CLIENT IP:               ' . self::$oEnv->oCRNRSTN_IPSECURITY_MGR->clientIpAddress() . '
+                                                            // SESSION ID:              ' . session_id() . '
+                                                            $tmp_search_meta_ARRAY[] = array(
+                                                                array(\'SEARCH_CONTENT\'                    => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_search_content, true), 3) . ']),
+                                                                array(\'SEARCH_CONTENT_PREVIEW\'            => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_search_content_text_preview, true), 3) . ']),
+                                                                array(\'SOCIAL_PREVIEW_IMAGE_HTTP\'         => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_social_media_preview_img_url, true), 3) . ']),
+                                                                array(\'RESOURCE_ENDPOINT_URI\'             => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_resource_endpoint_uri, true), 3) . ']),
+                                                                array(\'RESOURCE_HIGHLIGHT_ENDPOINT_URI\'   => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_page_content_highlight_url, true), 3) . ']),
+                                                                array(\'DATA_PACKET_ID\'                    => \'' . $tmp_data_packet_id . '\')
+                                                            );</textarea>
+
+<div class="jony5_meta_report_header_wrap"><p><strong>Input Meta Report:</strong></p></div>
+<div class="jony5_meta_report_body_wrap">
+    <p><strong>Content <span class="jony5_search_highlight_copy">&nbsp;Preview&nbsp;</span> Length:</strong><br>
+    ' . $this->formatBytes($tmp_original_preview_bytes, 3) . '</p>
+    <p><strong>Search Content Length (original):</strong><br>
+    ' . $this->formatBytes($tmp_original_bytes, 3) . '</p>
+    <p><strong>Content Length (search compressed):</strong><br>
+    ' . $this->formatBytes($this->count_processed_bytes($tmp_search_content, true), 3) . '</p>
+    <p><strong>Search Content Endpoint URL:</strong><br>
+    [CONTENT LEN=' . strlen($tmp_resource_endpoint_uri) . ']
+    </p>
+    <p><strong><span class="jony5_search_highlight_copy">&nbsp;HIGHLIGHT&nbsp;</span> Content URL:</strong><br>
+    [CONTENT LEN=' . strlen($tmp_page_content_highlight_url) . ']
+    </p>
+    <p><strong>Social Media Preview Image:</strong><br>
+    [CONTENT LEN=' . strlen($tmp_social_media_preview_img_url) . ']</p>
+
+</div>
+';
+
+                    }
+
+                    return $tmp_html_output;
+
+                }else{
+
+                    /*
+                    [INPUT] --------
+                        - Search content copy-paste words
+                        - Image URL
+                        - Anchor tag link to the www content.
+
+                    [OUTPUT] --------
+                        $tmp_search_meta_ARRAY[] = array(
+                                                            array('SEARCH_CONTENT' => 'cloudsanddeepdarknesssurroundhimrighteo'));
+                                                            array('IMAGE_PREVIEW_HTTP' => ''),
+                                                            array('CONTENT_URL' => 'http://jony5.com/')
+
+                                                            );
+
+                    */
+
+                    $tmp_php_generated_html = '<div class="cb_30"></div>
+<form action="#" method="post" name="post_search_content" id="post_search_content" enctype="multipart/form-data">
+
+    <div class="form_input_shell_search">
+        <div id="social_media_preview_img_url_form_element_label" class="form_element_label_search">Social Media Preview Image</div>
+        <div class="form_element_input_search_wrapper">
+            <div class="form_element_input_search">
+                <input frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="none" name="social_media_preview_img_url" type="text" id="social_media_preview_img_url" size="80" value="" placeholder="https://jony5.com/common/imgs/social_share/preview/jony5_social_preview_00.png" />
+            </div>
+            <div class="cb_10"></div>
+            <div class="form_element_instruct_search"><p>Enter the HTTP image URL for social media preview image into the input box that is above.</p><p>The image should be at least 640px x 320px, and as stated <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/customizing-your-repositorys-social-media-preview" target="_blank">by Github</a>, shoot for 1280 by 640 pixels for best display.</p></div>
+            <div class="cb"></div>
+            <div class="input_validation_copy_shell"><div id="social_media_preview_img_url_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
+        </div>
+        <div class="cb"></div>
+    </div>
+
+    <div class="form_input_shell_search">
+        <div id="resource_endpoint_uri_form_element_label" class="form_element_label_search">Page Content URL</div>
+        <div class="form_element_input_search_wrapper">
+            <div class="form_element_input_search">
+                <input frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="required" name="resource_endpoint_uri" type="text" id="resource_endpoint_uri" size="80" value="" placeholder="https://jony5.com/projects/cannabis/atmospheric/" />
+            </div>
+            <div class="cb_10"></div>
+            <div class="form_element_instruct_search"><p>Enter the HTTP URL for this content into the input box that is above.</p></div>
+            <div class="cb"></div>
+            <div class="input_validation_copy_shell"><div id="resource_endpoint_uri_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
+        </div>
+        <div class="cb"></div>
+    </div>
+
+    <div class="form_input_shell_search">
+        <div id="resource_endpoint_uri_form_element_label" class="form_element_label_search"><span class="jony5_search_highlight_copy">&nbsp;HIGHLIGHT&nbsp;</span> Content URL</div>
+        <div class="form_element_input_search_wrapper">
+            <div class="form_element_input_search">
+                <input frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="required" name="page_content_highlight_url" type="text" id="page_content_highlight_url" size="80" value="" placeholder="https://jony5.com/" />
+            </div>
+            <div class="cb_10"></div>
+            <div class="form_element_instruct_search"><p>Enter the HTTP URL that will highlight this search content into the input box that is above.</p></div>
+            <div class="cb"></div>
+            <div class="input_validation_copy_shell"><div id="page_content_highlight_url_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
+        </div>
+        <div class="cb"></div>
+    </div>
+
+    <div class="form_input_shell_search">
+        <div id="search_content_text_preview_form_element_label" class="form_element_label_search"><span class="jony5_search_highlight_copy">&nbsp;Preview Copy&nbsp;</span> of Search Content</div>
+        <div class="form_element_input_search_wrapper">
+            <div class="form_element_input_search">
+                <textarea frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="required" name="search_content_text_preview" id="search_content_text_preview" cols="80" rows="8"></textarea>
+            </div>
+            <div class="cb_10"></div>
+            <div class="form_element_instruct_search"><p>Paste an introductory preview of the search content into the textbox above.</p></div>
+            <div class="cb"></div>
+            <div class="input_validation_copy_shell"><div id="search_content_text_preview_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
+       </div>
+       <div class="cb"></div>
+    </div>
+
+    <div class="form_input_shell_search">
+        <div id="search_content_form_element_label" class="form_element_label_search">Page Content to Make Searchable</div>
+        <div class="form_element_input_search_wrapper">
+            <div class="form_element_input_search">
+                <textarea frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="required" name="search_content" id="search_content" cols="80" rows="8"></textarea>
+            </div>
+            <div class="cb_10"></div>
+            <div class="form_element_instruct_search"><p>Paste the page content that is to be searchable into the textbox above.</p></div>
+            <div class="cb"></div>
+            <div class="input_validation_copy_shell"><div id="search_content_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
+       </div>
+       <div class="cb"></div>
+    </div>
+
+    <div class="form_input_shell_search">
+        <div id="social_media_preview_img_url_form_element_label" class="form_element_label_search" style="padding-top: 7px;">Passphrase</div>
+        <div class="form_element_input_search_wrapper">
+            <div class="form_element_input_search">
+                <input frm_init="crnrstn_frm_handle" crnrstn_frm_valtype="none" name="search_content_compress_passphase" type="text" id="search_content_compress_passphase" size="20" value="" placeholder="' . $this->generate_new_key(25) . '" />
+            </div>
+            <div class="cb_10"></div>
+            <div class="form_element_instruct_search"><p>Enter the passphrase. Type \'exit\' to log out.</p></div>
+            <div class="cb"></div>
+            <div class="input_validation_copy_shell"><div id="social_media_preview_img_url_input_validation_copy" class="input_validation_copy" style="display:none;">Required</div></div>
+        </div>
+        <div class="cb"></div>
+    </div>
+
+    <div class="cb_10"></div>
+    <div class="form_input_shell_search">
+        <div class="form_element_submit_search_wrapper">
+            <div id="form_submit_btn_search" class="form_submit_btn_search" onmouseover="submitBtnMouseOver(this, \'submit_btn_search_clear\',\'submit_btn_search_highlighted\'); return false;" onmouseout="submitBtnMouseOut(this,\'submit_btn_search_highlighted\', \'submit_btn_search_clear\'); return false;" onmouseup="document.getElementById(\'post_search_content\').submit();">GENERATE SEARCH DATA STRUCTURE</div>
+        </div>
+       <div class="cb"></div>
+    </div>
+
+    <input type="hidden" name="postid" id="postid" value="post_search_content" />
+    <input type="hidden" name="OPTIN" id="OPTIN" value="0">
+    <input type="hidden" name="uri" id="uri" value="' . self::$oEnv->paramTunnelEncrypt(self::$oEnv->currentLocation()) . '">
+    <input type="hidden" name="post_search_content_form_serial" id="post_search_content_form_serial" value="' . time() . '">
+</form>
+';
+                    //error_log(__LINE__ . ' precious [' . print_r($tmp_verse_meta_ARRAY, true) . '] $tmp_vvid_meta[' . $tmp_vvid_meta . ']. $this->vvid[' . $this->vvid . '].');
+//                $tmp_php_generated_html .= '$tmp_search_meta_ARRAY[] = array(\'' . $vvid . '\' => \'' . $tmp_vvid_meta . '\');
+//';
+
+                }
+
+                break;
+
+        }
+
+        $this->count_processed_bytes($tmp_php_generated_html);
+
+        return $tmp_php_generated_html;
 
     }
 

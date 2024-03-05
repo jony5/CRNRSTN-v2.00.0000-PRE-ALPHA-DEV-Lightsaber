@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
 // J5
 // Code is Poetry */
 require('_crnrstn.root.inc.php');
@@ -62,7 +62,7 @@ $tmp_sprite_ver_date = filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $
 //
 // NAVIGATION
 //
-// LOOP THROUGH $pfw TO OUTPUT RETURNED VERSE NAV LINKS
+// LOOP THROUGH $pfw TO OUTPUT RETURNED VERSE NAV LINKS.
 // $tmp_vnav_array['VVID'][1] = 'col2_9';
 // $tmp_vnav_array['COPY'][1] = 'Colossians 2:9';
 $tmp_flag = '';
@@ -93,7 +93,8 @@ for($i = 0; $i < $tmp_loop_size; $i++){
         }
 
         //
-        // CSS NAV ACTIVE INDICATION
+        // HERE, WE STORE INDICATION THAT
+        // THE CSS NAV STATE IS ACTIVE.
         $tmp_flag = ' now';
 
     }
@@ -148,7 +149,7 @@ for($i = 0; $i < $tmp_loop_size; $i++){
         $primary_desc = $social_desc = trim(substr($tmp_description_str_social_preview, 0, 160));
 
     ?>
-<meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>favicon.ico?v=420" />
     <meta name="distribution" content="Global" />
     <meta name="robots" content="index,follow" />
@@ -184,7 +185,7 @@ for($i = 0; $i < $tmp_loop_size; $i++){
 
         gtag('config', 'G-VEL8JKG7SG');
     </script>
-   <?php
+    <?php
         }
 
     ?>
@@ -204,11 +205,11 @@ for($i = 0; $i < $tmp_loop_size; $i++){
 
     <style>
 
-        .script_fade_bdr                    { background-image: url("<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/imgs/scriptures_fade_edge_grey.png"); }
-        .script_footer_vv_index_rel         { position:relative; float:left; width:5px; padding:0 0 10px 10px; }
-        .script_footer_vv_index_abs         { position:absolute; width: 200px; }
-        .script_footer_holy_bible_rel       { position:relative; width: 5px; float:right; padding:0 10px; 10px 0; }
-        .script_footer_holy_bible_abs       { position:absolute; left:-250px; width: 300px; }
+        .script_fade_bdr                    { background-image: url("<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/imgs/scriptures_fade_edge_grey.png");}
+        .script_footer_vv_index_rel         { position:relative; float:left; width:5px; padding:0 0 10px 10px;}
+        .script_footer_vv_index_abs         { position:absolute; width: 200px;}
+        .script_footer_holy_bible_rel       { position:relative; width: 5px; float:right; padding:0 10px; 10px 0;}
+        .script_footer_holy_bible_abs       { position:absolute; left:-250px; width: 300px;}
 
     </style>
 </head>
@@ -253,7 +254,25 @@ for($i = 0; $i < $tmp_loop_size; $i++){
 
                 </div>
                 <div class="scripture_social_link_wrapper">
+                    <!--
+                            //
+                            // TESTING IS IN PROGRESS FOR
+                            // HOLY SCRIPTURES + JONY5.COM
+                            // SEARCH INTEGRATIONS
+                            // ON LOCALHOST_CHAD_MACBOOKPRO.
+                            //
+                            // Monday, March 4, 2024 @ 2316 hrs.
+                            -->
+                    <?php
+                    if($oCRNRSTN_ENV->getEnvParam('SERVER_ADDR') == '172.16.225.139'){
 
+                        //
+                        // RETURN THE HTML STRING OUTPUT FOR
+                        // AN EMBEDDED SEARCH COMPONENT.
+                        echo $oBringer->search_the_precious('SEARCH_ICON');
+
+                    }
+                    ?>
                     <div style="padding: 0 0 10px 0; cursor: pointer;" onclick="scripture_deep_link_copy_clipboard('<?php echo $tmp_serial; ?>', '<?php echo $tmp_copy_share_lnk; ?>');">
                         <div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
                             <div style="position: relative;">
@@ -314,8 +333,11 @@ for($i = 0; $i < $tmp_loop_size; $i++){
         <div class="script_vv_wrapper">
             <?php
             //
-            // LOOP THROUGH $pfw TO OUTPUT RETURNED BOOK TITLE - SHOULD NEVER BE MORE THAN ONE FROM CURRENT REQUIREMENTS
-            // TITLE STRUCTURE IS AS FOLLOWS
+            // LOOP THROUGH $pfw TO OUTPUT RETURNED
+            // BOOK TITLE - SHOULD NEVER BE MORE THAN
+            // ONE FROM CURRENT REQUIREMENTS.
+            //
+            // TITLE STRUCTURE IS AS FOLLOWS.
             // ['COPY'][n+1] = COPY
             if(isset($pfw[1]['COPY'])){
 
@@ -336,7 +358,9 @@ for($i = 0; $i < $tmp_loop_size; $i++){
             <div class="script_verse_wrapper">
                 <?php
                 //
-                // LOOP THROUGH $pfw TO OUTPUT RETURNED VERSES FOR CURRENT PRECIOUSNESS
+                // LOOP THROUGH $pfw TO OUTPUT RETURNED
+                // VERSES FOR CURRENT PRECIOUSNESS.
+                //
                 // VERSE ARRAY STRUCTURE IS AS FOLLOWS
                 // ['REFERENCE'][n+1] = REFERENCE
                 // ['COPY'][n+1] = COPY
@@ -362,8 +386,10 @@ for($i = 0; $i < $tmp_loop_size; $i++){
             <div class="script_ftnt_wrapper">
                 <?php
                 //
-                // LOOP THROUGH $pfw TO OUTPUT RETURNED FOOTNOTES FOR CURRENT PRECIOUSNESS
-                // FOOTNOTE ARRAY STRUCTURE IS AS FOLLOWS
+                // LOOP THROUGH $pfw TO OUTPUT RETURNED FOOTNOTES
+                // FOR CURRENT PRECIOUSNESS.
+                //
+                // FOOTNOTE ARRAY STRUCTURE IS AS FOLLOWS.
                 // ['REFERENCE'][n+1] = REFERENCE
                 // ['COPY'][n+1] = COPY
                 $tmp_loop_size = sizeof($pfw[3]['REFERENCE']);
