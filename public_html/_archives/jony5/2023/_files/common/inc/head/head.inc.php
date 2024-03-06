@@ -69,6 +69,37 @@ switch($_SERVER['SCRIPT_NAME']){
             //
             // - Jeremiah 15:19-21
             //
+            // And to the messenger of the church in Philadelphia write:
+            //   These things says the Holy One, the true One, the One
+            //   who has the key of David, the One who opens and no
+            //   one will shut, and shuts and no one opens:
+            //
+            //   I know your works; behold, I have put before you an
+            //   opened door which no one can shut, because you have a
+            //   little power and have kept My word and have not denied
+            //   My name.
+            //
+            //   Behold, I will make those of the synagogue of Satan,
+            //   those who call themselves Jews and are not, but lie––
+            //   behold, I will cause them to come and fall prostrate
+            //   before your feet and to know that I have loved you.
+            //
+            //   Because you have kept the word of My endurance, I also
+            //   will keep you out of the hour of trial, which is about
+            //   to come on the whole inhabited earth, to try them who
+            //   dwell on the earth. I come quickly; hold fast what you
+            //   have that no one take your crown.
+            //
+            //   He who overcomes, him I will make a pillar in the
+            //   temple of My God, and he shall by no means go out
+            //   anymore, and I will write upon him the name of My God
+            //   and the name of the city of My God, the New Jerusalem,
+            //   which descends out of heaven from My God, and My new
+            //   name. He who has an ear, let him hear what the Spirit
+            //   says to the churches.
+            //
+            //  - Revelation 3:7-13
+            //
             // INSTANTIATE A bringer_of_the_precious_things CLASS OBJECT.
             $oBringer = new bringer_of_the_precious_things($oCRNRSTN_ENV);
             $pfw = $precious_from_the_worthless = $oBringer->return_to_me_the_precious();

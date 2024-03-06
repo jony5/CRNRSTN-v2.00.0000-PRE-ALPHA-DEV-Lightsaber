@@ -24,6 +24,37 @@
 //
 // - Jeremiah 15:19-21
 //
+// And to the messenger of the church in Philadelphia write:
+//   These things says the Holy One, the true One, the One
+//   who has the key of David, the One who opens and no
+//   one will shut, and shuts and no one opens:
+//
+//   I know your works; behold, I have put before you an
+//   opened door which no one can shut, because you have a
+//   little power and have kept My word and have not denied
+//   My name.
+//
+//   Behold, I will make those of the synagogue of Satan,
+//   those who call themselves Jews and are not, but lie––
+//   behold, I will cause them to come and fall prostrate
+//   before your feet and to know that I have loved you.
+//
+//   Because you have kept the word of My endurance, I also
+//   will keep you out of the hour of trial, which is about
+//   to come on the whole inhabited earth, to try them who
+//   dwell on the earth. I come quickly; hold fast what you
+//   have that no one take your crown.
+//
+//   He who overcomes, him I will make a pillar in the
+//   temple of My God, and he shall by no means go out
+//   anymore, and I will write upon him the name of My God
+//   and the name of the city of My God, the New Jerusalem,
+//   which descends out of heaven from My God, and My new
+//   name. He who has an ear, let him hear what the Spirit
+//   says to the churches.
+//
+//  - Revelation 3:7-13
+//
 // CLASS :: bringer_of_the_precious_things
 // AUTHOR :: Jonathan 'J5' Harris <jharris@evifweb.com>
 // VERSION :: 1.0.0
@@ -137,7 +168,6 @@ class bringer_of_the_precious_things {
     public function search_the_precious($output_mode = 'BASIC_INPUTBOX', $serial_salt = ''){
 
         $tmp_serial = self::$serial . '_' . $serial_salt . '_';
-        $tmp_copy_share_lnk = '';
         $tmp_sprite_ver_size = filesize(self::$oEnv->getEnvParam('DOCUMENT_ROOT') . self::$oEnv->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/media_icon/sprite.png');
         $tmp_sprite_ver_date = filemtime(self::$oEnv->getEnvParam('DOCUMENT_ROOT') . self::$oEnv->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/media_icon/sprite.png');
         $tmp_output = '';
@@ -178,6 +208,7 @@ class bringer_of_the_precious_things {
             </div>
         </form>
         <script>
+
             $("#' . $tmp_dom_form_id . '").submit(function(event){
 
                 var tmp_sval = $("#' . $tmp_dom_ugc_input_id . '").val();
@@ -217,47 +248,46 @@ class bringer_of_the_precious_things {
             </div>
         </div>
     </div>
-    
+
     <div class="scriptures_search_magnify_component">
         <div id="' . $tmp_dom_target_id . '" style=""></div>
         <div id="scriptures_search_component" class="hidden">
-    <div id="search_wrapper">
-    <form action="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'search/" method="post" name="s" id="s"  enctype="multipart/form-data" >
-        <div id="search_input_wrapper">
-            <input crnrstn_search="t" name="t" id="t" type="text" maxlength="255" value="" autocomplete="off">
-            <div id="s_results_wrapper">
-                <ul id="s_results"></ul>
+            <div id="search_wrapper">
+                <form action="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'search/" method="post" name="s" id="s"  enctype="multipart/form-data" >
+                    <div id="search_input_wrapper">
+                        <input crnrstn_search="t" name="t" id="t" type="text" maxlength="255" value="" autocomplete="off">
+                        <div id="s_results_wrapper">
+                            <ul id="s_results"></ul>
+                        </div>
+                    </div>
+                    <div id="search_submit_btn" onMouseOver="searchBtnMouseOver(this); return false;" onMouseOut="searchBtnMouseOut(this); return false;" onClick="$(\'#s\').submit(); return false;">Search</div>
+                    <div class="hidden">
+                        <input name="submitin" type="submit" value="submit">
+                    </div>
+                </form>
+                <script>
+                    $("#s").submit(function(event){
+
+                        var tmp_sval = $("#t").val();
+
+                        if(tmp_sval == ""){
+
+                            event.preventDefault();
+
+                        }
+
+                    });
+
+                    $("#t").mouseover(function(){
+
+                        $(this).addClass("s_box_bg", 500, "easeOutBounce");
+
+                    });
+
+                </script>
+                <div class="cb"></div>
             </div>
-        </div>
-        <div id="search_submit_btn" onMouseOver="searchBtnMouseOver(this); return false;" onMouseOut="searchBtnMouseOut(this); return false;" onClick="$(\'#s\').submit(); return false;">Search</div>
-        <div class="hidden">
-            <input name="submitin" type="submit" value="submit">
-        </div>
-    </form>
-    <script>
-            $( "#s" ).submit(function( event ) {
-                var tmp_sval = $("#t").val();
 
-                if(tmp_sval==""){
-
-                    event.preventDefault();
-
-                }
-
-            });
-    
-    $( "#t" ).mouseover(function() {
-        $( this ).addClass( "s_box_bg", 500, "easeOutBounce" );
-    });
-   
-    </script>
-    <div class="cb"></div>
-</div>
-        
-        <!--
-        <input type="text" name="scriptures_search" id="scriptures_search">
-        -->
-        
         </div>
     </div>
 </div>';
