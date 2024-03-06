@@ -9055,7 +9055,7 @@ Born on Nov. 10th, 2005, my dog...named \'J5\' (proper)...is part Korean Jindo, 
                     array('DATA_PACKET_ID'                        => 'qva2S4b5GquWhepSqoW0mcEK8rIaqJJFHwhSUvZL24')
                 );
 
-                break;
+            break;
             case 'SCRIPTURES':
 
                 //
@@ -9367,7 +9367,7 @@ Born on Nov. 10th, 2005, my dog...named \'J5\' (proper)...is part Korean Jindo, 
                 $tmp_search_meta_ARRAY[] = array('rev21_21' => 'revelation');
                 $tmp_search_meta_ARRAY[] = array('rev22_2' => 'revelation');
 
-                break;
+            break;
 
         }
 
@@ -9466,11 +9466,11 @@ Born on Nov. 10th, 2005, my dog...named \'J5\' (proper)...is part Korean Jindo, 
 
                                     $tmp_vvid_meta = 'capoiv';
 
-                                    break;
+                                break;
                                 case 'jony5_home_page':
                                     // projects/crnrstn/philosophy/
 
-                                    break;
+                                break;
 
                             }
 
@@ -9489,7 +9489,7 @@ Born on Nov. 10th, 2005, my dog...named \'J5\' (proper)...is part Korean Jindo, 
 
                 }
 
-                break;
+            break;
             case 'COMPRESSED_SEARCH_CONTENT':
 
                 /*
@@ -9542,11 +9542,11 @@ Born on Nov. 10th, 2005, my dog...named \'J5\' (proper)...is part Korean Jindo, 
 
                                     $tmp_vvid_meta = 'capoiv';
 
-                                    break;
+                                break;
                                 case 'jony5_home_page':
                                     // projects/crnrstn/philosophy/
 
-                                    break;
+                                break;
 
                             }
 
@@ -9636,6 +9636,13 @@ Born on Nov. 10th, 2005, my dog...named \'J5\' (proper)...is part Korean Jindo, 
 
                     $tmp_data_packet_id = $this->generate_new_key(42);
                     $tmp_resource_endpoint_uri = self::$oEnv->oHTTP_MGR->extractData($_POST, 'resource_endpoint_uri');
+
+                    //
+                    // PROCESS THE RESOURCE ENDPOINT
+                    // URI FOR ADDITIONAL HTML
+                    // PAGE META.
+                    $tmp_resource_html_meta_struct_str = $this->return_html_page_meta_attribute_data($tmp_resource_endpoint_uri);
+
                     $tmp_page_content_highlight_url = self::$oEnv->oHTTP_MGR->extractData($_POST, 'page_content_highlight_url');
                     $tmp_search_content = self::$oEnv->oHTTP_MGR->extractData($_POST, 'search_content');
                     $tmp_search_content_text_preview = self::$oEnv->oHTTP_MGR->extractData($_POST, 'search_content_text_preview');
@@ -9705,8 +9712,7 @@ Born on Nov. 10th, 2005, my dog...named \'J5\' (proper)...is part Korean Jindo, 
                                                                 array(\'RESOURCE_ENDPOINT_URI\'             => \'' . $tmp_resource_endpoint_uri . '\'),
                                                                 array(\'DATA_PACKET_ID\'                    => \'' . $tmp_data_packet_id . '\'),
                                                                 array(\'RESOURCE_HIGHLIGHT_ENDPOINT_URI\'   => \'' . $tmp_page_content_highlight_url . '\'),
-                                                                array(\'RESOURCE_TITLE\'                    => \'' . $tmp_page_content_highlight_url . '\'),
-                                                                array(\'RESOURCE_HTML_PAGE_META\'           => \'' . $tmp_page_content_highlight_url . '\')
+                                                                ' . $tmp_resource_html_meta_struct_str . '
                                                             );';
 
                     $tmp_packet_output_bytes = $this->formatBytes($this->count_processed_bytes($tmp_packet_output_str, true), 3);
@@ -9779,8 +9785,7 @@ Born on Nov. 10th, 2005, my dog...named \'J5\' (proper)...is part Korean Jindo, 
                                                                 array(\'RESOURCE_ENDPOINT_URI\'                 => \'' . $tmp_resource_endpoint_uri . '\'),
                                                                 array(\'RESOURCE_HIGHLIGHT_ENDPOINT_URI\'       => \'' . $tmp_page_content_highlight_url . '\'),
                                                                 array(\'DATA_PACKET_ID\'                        => \'' . $tmp_data_packet_id . '\'),
-                                                                array(\'RESOURCE_TITLE\'                        => \'' . $tmp_page_content_highlight_url . '\'),
-                                                                array(\'RESOURCE_HTML_PAGE_META\'               => \'' . $tmp_page_content_highlight_url . '\')
+                                                                ' . $tmp_resource_html_meta_struct_str . '
                                                             );</textarea>
 
 <div class="jony5_meta_report_header_wrap"><p><strong>Input Meta Report:</strong></p></div>
@@ -9860,8 +9865,7 @@ Born on Nov. 10th, 2005, my dog...named \'J5\' (proper)...is part Korean Jindo, 
                                                                 array(\'RESOURCE_ENDPOINT_URI\'                 => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_resource_endpoint_uri, true), 3) . ']),
                                                                 array(\'RESOURCE_HIGHLIGHT_ENDPOINT_URI\'       => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_page_content_highlight_url, true), 3) . ']),
                                                                 array(\'DATA_PACKET_ID\'                        => \'' . $tmp_data_packet_id . '\'),
-                                                                array(\'RESOURCE_TITLE\'                        => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_data_packet_id, true), 3) . ']),
-                                                                array(\'RESOURCE_HTML_PAGE_META\'               => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_data_packet_id, true), 3) . '])
+                                                                ' . $tmp_resource_html_meta_struct_str . '
                                                             );</textarea>
 
 <div class="jony5_meta_report_header_wrap"><p><strong>Input Meta Report:</strong></p></div>
@@ -10020,6 +10024,201 @@ Born on Nov. 10th, 2005, my dog...named \'J5\' (proper)...is part Korean Jindo, 
         $this->count_processed_bytes($tmp_php_generated_html);
 
         return $tmp_php_generated_html;
+
+    }
+
+    private function return_html_page_meta_attribute_data($endpoint_uri){
+
+        $tmp_output_str = '';
+
+        //
+        // LOAD ALL HTML <META> ATTRIBUTE KEYS FOR
+        // SUPPORT OF SEARCH, DEEP LINKS, AND
+        // SOCIAL INTEGRATIONS. PLEASE SEE,
+        //      SOURCE :: https://developers.facebook.com/docs/sharing/webmasters#markup
+        //      SOURCE :: https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started
+        //      SOURCE :: https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image
+        $tmp_html_meta_keys_ARRAY = $this->return_html_meta_keys();
+
+        /*
+        $tmp_packet_output_str = '$tmp_search_meta_ARRAY[] = array(
+                                                                array(\'SEARCH_CONTENT\'                    => \'' . $tmp_search_content . '\'),
+                                                                array(\'SEARCH_CONTENT_PREVIEW\'            => \'' . $tmp_search_content_text_preview . '\'),
+                                                                array(\'SOCIAL_PREVIEW_IMAGE_HTTP\'         => \'' . $tmp_social_media_preview_img_url . '\'),
+                                                                array(\'RESOURCE_ENDPOINT_URI\'             => \'' . $tmp_resource_endpoint_uri . '\'),
+                                                                array(\'DATA_PACKET_ID\'                    => \'' . $tmp_data_packet_id . '\'),
+                                                                array(\'RESOURCE_HIGHLIGHT_ENDPOINT_URI\'   => \'' . $tmp_page_content_highlight_url . '\'),
+                                                                ' . $tmp_resource_html_meta_struct_str . '
+
+                                                                [SESSION :: ACTIVE]
+                                                                array(\'RESOURCE_TITLE\'                    => \'' . $tmp_page_content_highlight_url . '\'),
+                                                                array(\'RESOURCE_HTML_PAGE_META\'           => \'' . $tmp_page_content_highlight_url . '\')
+
+                                                                [SESSION :: IN-ACTIVE]
+                                                                array(\'RESOURCE_TITLE\'                        => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_data_packet_id, true), 3) . ']),
+                                                                array(\'RESOURCE_HTML_PAGE_META\'               => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_data_packet_id, true), 3) . '])
+
+        */
+
+        if(self::$valid_session !== false){
+
+            $tmp_output_str .= '// TODO :: EXTRACT PAGE META FROM ENDPOINT [' . $endpoint_uri . ']. USING ' . $this->formatBytes($this->count_processed_bytes($tmp_html_meta_keys_ARRAY, true), 3) . ' OF META KEY DATA.';
+
+        }else{
+
+            $tmp_output_str .= '// TODO :: EXTRACT PAGE META FROM ENDPOINT [' . strlen($endpoint_uri) . ']. USING ' . $this->formatBytes($this->count_processed_bytes($tmp_html_meta_keys_ARRAY, true), 3) . ' OF META KEY DATA.';
+
+        }
+
+        return $tmp_output_str;
+
+    }
+
+    private function return_html_meta_keys(){
+
+        //
+        // SOURCE :: https://developers.facebook.com/docs/sharing/webmasters#markup
+        // SOURCE :: https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started
+        // SOURCE :: https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image
+        // SOURCE :: https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML
+        //
+        // Wednesday, March 6, 2024 @ 0049 hrs.
+        //
+        // THE SCREEN SCRAPE ALGORITHM FOR THE PAGE META
+        // DATA POPULATION FOR SEARCH WILL BE:
+        //      1) CASE-INSENSITIVE,
+        //      2) <META> ATTRIBUTE NAME/PROPERTY AGNOSTIC,
+        //      3) AND ATTEMPT TO RETURN DATA IN THE FORMAT:
+        //          array('twitter:card' => '{THE SCREEN SCRAPED DATA FOR THE "twitter:card" META IN A RESPONSE 200 PAGE RETURN}').
+        //
+        $tmp_html_meta_keys_ARRAY[] = array(
+            array('name' =>
+                array(
+                    array('twitter:card'        => 'Must be set to a value of "summary_large_image". Yes, this is required.'),
+                    array('twitter:site'        => 'The Twitter @username to which the card should be attributed. This is not required.'),
+                    array('twitter:title'       => 'A concise title for the related content. Platform specific behaviors: iOS, Android: Truncated to two lines in timeline and expanded Tweet. Web: Truncated to one line in timeline and expanded Tweet. Yes, this is required.'),
+                    array('twitter:description' => 'A description that concisely summarizes the content as appropriate for presentation within a Tweet. You should not re-use the title as the description or use this field to describe the general services provided by the website. Platform specific behaviors: iOS, Android: Not displayed. Web: Truncated to three lines in timeline and expanded Tweet. This is not required.'),
+                    array('twitter:image'       => 'A URL to a unique image representing the content of the page. You should not use a generic image such as your website logo, author photo, or other image that spans multiple pages. Images for this Card support an aspect ratio of 2:1 with minimum dimensions of 300x157 or maximum of 4096x4096 pixels. Images must be less than 5MB in size. JPG, PNG, WEBP and GIF formats are supported. Only the first frame of an animated GIF will be used. SVG is not supported. This is not required.'),
+                    array('twitter:image:alt'   => 'A text description of the image conveying the essential nature of an image to users who are visually impaired. Maximum 420 characters. This is not required.'),
+                    array('twitter:creator'     => '@username for the content creator / author. This is not required.'),
+                    array('description'         => 'A concise description of the page. This is not required.'),
+                    array('keywords'            => 'The keyword <meta> element (<meta name="keywords" content="fill, in, your, keywords, here">) — which is supposed to provide keywords for search engines to determine the relevance of that page for different search terms — is ignored by search engines, because spammers were just filling the keyword list with hundreds of keywords, biasing results.')
+                )
+            ),
+            array('property' =>
+                array(
+                    array('og:url'              => 'The canonical URL for your page. This should be the undecorated URL, without session variables, user identifying parameters, or counters. Likes and Shares for this URL will aggregate at this URL. For example, mobile domain URLs should point to the desktop version of the URL as the canonical URL to aggregate Likes and Shares across different versions of the page.'),
+                    array('og:title'            => 'The title of your article without any branding such as your site name.'),
+                    array('og:description'      => 'A brief description of the content, usually between 2 and 4 sentences. This will displayed below the title of the post on Facebook.'),
+                    array('og:image'            => 'The URL of the image that appears when someone shares the content to Facebook. See below for more info, and check out Facebook\'s best practices guide to learn how to specify a high quality preview image.'),
+                    array('fb:app_id'           => 'In order to use Facebook Insights you must add the app ID to your page. Insights lets you view analytics for traffic to your site from Facebook. Find the app ID in your App Dashboard.'),
+                    array('og:type'             => 'The type of media of your content. This tag impacts how your content shows up in Feed. If you don\'t specify a type,the default is website. Each URL should be a single object, so multiple og:type values are not possible. Find the full list of object types in Object Types Reference.'),
+                    array('og:locale'           => 'The locale of the resource. Defaults to en_US. You can also use og:locale:alternate if you have other available language translations available. Learn about the locales we support in Facebook\'s documentation on localization.'),
+                    array('og:video'            => 'The URL for the video. If you want the video to play in-line in Feed, you should use the https:// URL if possible.'),
+                    array('og:video:url'        => 'Equivalent to og:video.'),
+                    array('og:video:secure_url' => 'Secure URL for the video. Include this even if you set the secure URL in og:video.'),
+                    array('og:video:type'       => 'MIME type of the video. Either application/x-shockwave-flash or video/mp4.'),
+                    array('og:video:width'      => 'Width of video in pixels. This property is required for videos.'),
+                    array('og:video:height'     => 'Height of video in pixels. This property is required for videos.'),
+                    array('og:image'            => 'Specify an image for a high quality preview in Feed.'),
+                    array('og:image'            => 'URL for the image. To update an image after it\'s been published, use a new URL for the new image. Images are cached based on the URL and won\'t be updated unless the URL changes.'),
+                    array('og:image:url'        => 'Equivalent to og:image.'),
+                    array('og:image:secure_url' => 'https:// URL for the image.'),
+                    array('og:image:type'       => 'MIME type of the image. One of image/jpeg, image/gif or image/png.'),
+                    array('og:image:width'      => 'Width of image in pixels. Specify height and width for your image to ensure that the image loads properly the first time it\'s shared.'),
+                    array('og:image:height'     => 'Height of image in pixels. Specify height and width for your image to ensure that the image loads properly the first time it\'s shared.'),
+                    array('og:url'              => 'The canonical URL for your page. This should be the undecorated URL, without session variables, user identifying parameters, or counters. Likes and Shares for this URL will aggregate at this URL. For example, mobile domain URLs should point to the desktop version of the URL as the canonical URL to aggregate Likes and Shares across different versions of the page.'),
+                    array('og:title'            => 'The title of your article without any branding such as your site name.'),
+                    array('og:description'      => 'A brief description of the content, usually between 2 and 4 sentences. This will displayed below the title of the post on Facebook.'),
+                    array('og:image'            => 'The URL of the image that appears when someone shares the content to Facebook. See below for more info, and check out Facebook\'s best practices guide to learn how to specify a high quality preview image.'),
+                    array('fb:app_id'           => 'In order to use Facebook Insights you must add the app ID to your page. Insights lets you view analytics for traffic to your site from Facebook. Find the app ID in your App Dashboard.'),
+                    array('og:type'             => 'The type of media of your content. This tag impacts how your content shows up in Feed. If you don\'t specify a type,the default is website. Each URL should be a single object, so multiple og:type values are not possible. Find the full list of object types in Object Types Reference.'),
+                    array('og:locale'           => 'The locale of the resource. Defaults to en_US. You can also use og:locale:alternate if you have other available language translations available. Learn about the locales we support in Facebook\'s documentation on localization.'),
+                    array('og:locale:alternate' => 'The locale of the resource. Defaults to en_US. You can also use og:locale:alternate if you have other available language translations available. Learn about the locales we support in Facebook\'s documentation on localization.'),
+                    array('og:video'            => 'The URL for the video. If you want the video to play in-line in Feed, you should use the https:// URL if possible.'),
+                    array('og:video:url'        => 'Equivalent to og:video.'),
+                    array('og:video:secure_url' => 'Secure URL for the video. Include this even if you set the secure URL in og:video.'),
+                    array('og:video:type'       => 'MIME type of the video. Either application/x-shockwave-flash or video/mp4.'),
+                    array('og:video:width'      => 'Width of video in pixels. This property is required for videos.'),
+                    array('og:video:height'     => 'Height of video in pixels. This property is required for videos.'),
+                    array('og:image'            => 'URL for the image. Specify an image for a high quality preview in Feed. To update an image after it\'s been published, use a new URL for the new image. Images are cached based on the URL and won\'t be updated unless the URL changes.'),
+                    array('og:image:url'        => 'Equivalent to og:image.'),
+                    array('og:image:secure_url' => 'https:// URL for the image.'),
+                    array('og:image:type'       => 'MIME type of the image. One of image/jpeg, image/gif or image/png.'),
+                    array('og:image:width'      => 'Width of image in pixels. Specify height and width for your image to ensure that the image loads properly the first time it\'s shared.'),
+                    array('og:image:height'     => 'Height of image in pixels. Specify height and width for your image to ensure that the image loads properly the first time it\'s shared.')
+                )
+            ),
+            array('dom_tag' =>
+                array(
+                    array('title'               => 'The <title> element is metadata that represents the title of the overall HTML document (not the document\'s content.)')
+                )
+            )
+        );
+
+        return $tmp_html_meta_keys_ARRAY;
+
+        /*
+        //
+        // Wednesday, March 6, 2024 @ 0157 hrs.
+        //
+        // [TWITTER]
+        twitter:card 	        The card type, which will be one of "summary", "summary_large_image", "app", or "player".
+
+            <meta name="twitter:card" content="summary"></meta>
+
+        Card Property                                                                               Required
+        ____________________________________________________________________________________________________
+        twitter:card            Must be set to a value of "summary_large_image"                     Yes
+        twitter:site 	        The Twitter @username to which the card should be attributed.       No
+        twitter:title	        A concise title for the related content.                            Yes
+                                    Platform specific behaviors:
+                                        iOS, Android: Truncated to two lines
+                                                      in timeline and expanded Tweet.
+                                                 Web: Truncated to one line in timeline
+                                                      and expanded Tweet.
+        twitter:description	    A description that concisely summarizes the content as              No
+                                appropriate for presentation within a Tweet. You should
+                                not re-use the title as the description or use this field
+                                to describe the general services provided by the website.
+                                Platform specific behaviors:
+                                        iOS, Android: Not displayed.
+                                                 Web: Truncated to three lines in
+                                                      timeline and expanded Tweet.
+
+        twitter:image           A URL to a unique image representing the content of the page.       No
+                                You should not use a generic image such as your website logo,
+                                author photo, or other image that spans multiple pages. Images
+                                for this Card support an aspect ratio of 2:1 with minimum
+                                dimensions of 300x157 or maximum of 4096x4096 pixels. Images
+                                must be less than 5MB in size. JPG, PNG, WEBP and GIF formats
+                                are supported. Only the first frame of an animated GIF will be
+                                used. SVG is not supported.
+        twitter:image:alt       A text description of the image conveying the essential nature      No
+                                of an image to users who are visually impaired. Maximum
+                                420 characters.
+        twitter:creator 	    @username for the content creator / author. 	                    No
+
+        //
+        // E.G.
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@nytimes">
+        <meta name="twitter:creator" content="@SarahMaslinNir">
+        <meta name="twitter:title" content="Parade of Fans for Houston’s Funeral">
+        <meta name="twitter:description" content="NEWARK - The guest list and parade of limousines with celebrities emerging from them seemed more suited to a red carpet event in Hollywood or New York than than a gritty stretch of Sussex Avenue near the former site of the James M. Baxter Terrace public housing project here.">
+        <meta name="twitter:image" content="http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg">
+
+        //
+        // E.G.
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@nytimesbits" />
+        <meta name="twitter:creator" content="@nickbilton" />
+        <meta property="og:url" content="http://bits.blogs.nytimes.com/2011/12/08/a-twitter-for-my-sister/" />
+        <meta property="og:title" content="A Twitter for My Sister" />
+        <meta property="og:description" content="In the early days, Twitter grew so quickly that it was almost impossible to add new features because engineers spent their time trying to keep the rocket ship from stalling." />
+        <meta property="og:image" content="http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg" />
+
+        */
 
     }
 
