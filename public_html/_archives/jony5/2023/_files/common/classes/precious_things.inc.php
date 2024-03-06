@@ -9854,12 +9854,14 @@ Born on Nov. 10th, 2005, my dog...named \'J5\' (proper)...is part Korean Jindo, 
                                                             // CLIENT IP:               ' . self::$oEnv->oCRNRSTN_IPSECURITY_MGR->clientIpAddress() . '
                                                             // SESSION ID:              ' . session_id() . '
                                                             $tmp_search_meta_ARRAY[] = array(
-                                                                array(\'SEARCH_CONTENT\'                    => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_search_content, true), 3) . ']),
-                                                                array(\'SEARCH_CONTENT_PREVIEW\'            => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_search_content_text_preview, true), 3) . ']),
-                                                                array(\'SOCIAL_PREVIEW_IMAGE_HTTP\'         => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_social_media_preview_img_url, true), 3) . ']),
-                                                                array(\'RESOURCE_ENDPOINT_URI\'             => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_resource_endpoint_uri, true), 3) . ']),
-                                                                array(\'RESOURCE_HIGHLIGHT_ENDPOINT_URI\'   => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_page_content_highlight_url, true), 3) . ']),
-                                                                array(\'DATA_PACKET_ID\'                    => \'' . $tmp_data_packet_id . '\')
+                                                                array(\'SEARCH_CONTENT\'                        => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_search_content, true), 3) . ']),
+                                                                array(\'SEARCH_CONTENT_PREVIEW\'                => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_search_content_text_preview, true), 3) . ']),
+                                                                array(\'SOCIAL_PREVIEW_IMAGE_HTTP\'             => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_social_media_preview_img_url, true), 3) . ']),
+                                                                array(\'RESOURCE_ENDPOINT_URI\'                 => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_resource_endpoint_uri, true), 3) . ']),
+                                                                array(\'RESOURCE_HIGHLIGHT_ENDPOINT_URI\'       => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_page_content_highlight_url, true), 3) . ']),
+                                                                array(\'DATA_PACKET_ID\'                        => \'' . $tmp_data_packet_id . '\'),
+                                                                array(\'RESOURCE_TITLE\'                        => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_data_packet_id, true), 3) . ']),
+                                                                array(\'RESOURCE_HTML_PAGE_META\'               => [CONTENT BYTES=' . $this->formatBytes($this->count_processed_bytes($tmp_data_packet_id, true), 3) . '])
                                                             );</textarea>
 
 <div class="jony5_meta_report_header_wrap"><p><strong>Input Meta Report:</strong></p></div>
