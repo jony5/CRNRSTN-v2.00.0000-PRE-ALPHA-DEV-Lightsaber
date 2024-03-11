@@ -128,7 +128,7 @@ class bringer_of_the_precious_things {
 
             }else{
 
-                if($page != 'home') {
+                if($page != 'home'){
 
                     $this->vvid = self::$oEnv->oHTTP_MGR->extractData($_GET, 'vv');
                     //error_log('issetHTTP returned FALSE for meta-key vvid[' . $this->vvid . '] concerning requested preciousness.');
