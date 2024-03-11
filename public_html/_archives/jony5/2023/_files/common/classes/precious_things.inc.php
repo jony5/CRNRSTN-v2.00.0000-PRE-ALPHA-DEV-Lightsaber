@@ -62,7 +62,7 @@
 // CLASS :: bringer_of_the_precious_things
 // AUTHOR :: Jonathan 'J5' Harris <jharris@evifweb.com>
 // VERSION :: 1.0.0
-// DATE :: 4.5.2019 1519 hrs
+// DATE :: 4.5.2019 1519 hrs.
 */
 class bringer_of_the_precious_things {
 
