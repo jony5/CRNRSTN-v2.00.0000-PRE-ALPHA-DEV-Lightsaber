@@ -33,7 +33,9 @@ try{
     //
     // - Jeremiah 15:19-21
     //
+    //
     // And to the messenger of the church in Philadelphia write:
+    //
     //   These things says the Holy One, the true One, the One
     //   who has the key of David, the One who opens and no
     //   one will shut, and shuts and no one opens:
@@ -58,9 +60,11 @@ try{
     //   temple of My God, and he shall by no means go out
     //   anymore, and I will write upon him the name of My God
     //   and the name of the city of My God, the New Jerusalem,
-    //   which descends out of heaven from My God, and My new
-    //   name. He who has an ear, let him hear what the Spirit
-    //   says to the churches.
+    //   which descends out of heaven from My God, and
+    //   My new name.
+    //
+    //   He who has an ear, let him hear what the Spirit says
+    //   to the churches.
     //
     //  - Revelation 3:7-13
     echo "<div style='padding:20px;'><h1>Hello Wethrbug!</h1></div>";
