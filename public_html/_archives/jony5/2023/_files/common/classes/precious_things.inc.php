@@ -60,7 +60,7 @@
 //  - Revelation 3:7-13
 //
 // CLASS :: bringer_of_the_precious_things
-// AUTHOR :: Jonathan 'J5' Harris <jharris@evifweb.com>
+// AUTHOR :: Jonathan 'J5' Harris <jharris@eVifweb.com>
 // VERSION :: 1.0.0
 // DATE :: 4.5.2019 1519 hrs.
 */
@@ -6734,7 +6734,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['REFERENCE'][0]        = '3:6';
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'But Christ as a Son over His house, whose house we are if indeed we hold fast the boldness and the boast of hope firm to the end.';
                 $tmp_verse_array['COPY'][0]             = 'But Christ <em>was faithful</em> as a Son over His house, whose house we 
-                are if indeed we hold fast the boldness and the boast of hope firm to<br>the end.';
+                are if indeed we hold fast the boldness and the boast of hope firm to the end.';
 
             break;
             case 'heb3_7-19[000]':
