@@ -29,7 +29,7 @@ Last Modified on Friday, March 22, 2024 @ 1430 hrs.
      MMM    MMM    YMM "YmmMMMM""  MMM     YM  MMMMP"`   """"YUMMMMMMM   "W"   "YUMMMMMP"YMM   ""`  MMM      "YMmMY"
 
 
-# ARTWORK TITLE                      :: Cosmike (I like it for the "Fade" effect, Jermaine Holloway; you don't mess with fades anymore though,...right, "Mr. Stars and Stripes"?)
+# ARTWORK TITLE                      :: Cosmike (I like it for the "Fade" effect, Jermaine Holloway; you don't mess with fades anymore though,...do you, "Mr. Stars and Stripes"?)
 # DATE GENERATED                     :: Thu Mar 21 22:21:48.856994 2024
 # LAST MODIFIED                      :: Fri Mar 22 14:29:35.721377 2024
 # CREATIVE SOURCE                    :: https://patorjk.com/software/taag/#p=display&f=Cosmike&t=Thundercats
