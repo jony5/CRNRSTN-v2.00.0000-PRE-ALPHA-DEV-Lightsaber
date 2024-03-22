@@ -121,27 +121,27 @@ YSSS~S%SSSSSP  .SS    SS.  .SS       SS.  .SS~YS%%b   .SS~YS%%b    d%%SP  .SS~YS
 
 
 
-                                         ;
-                                         ED.
-                   :      L.             E#Wi                 ,;                 .,                                 .
-       .    .      Ef     EW:        ,ft E###G.             f#i j.              ,Wt                                ;W
-GEEEEEEELDi   Dt     E#t    E##;       t#E E#fD#W;          .E#t  EW,            i#D.            .. GEEEEEEEL       f#E
-,;;L#K;;.E#i  E#i    E#t    E###t      t#E E#t t##L        i#W,   E##j          f#f             ;W, ,;;L#K;;.     .E#f
- t#E   E#t  E#t    E#t    E#fE#f     t#E E#t  .E#K,     L#D.    E###D.      .D#i             j##,    t#E       iWW;
- t#E   E#t  E#t    E#t fi E#t D#G    t#E E#t    j##f  :K#Wfff;  E#jG#W;    :KW,             G###,    t#E      L##Lffi
- t#E   E########f. E#t L#jE#t  f#E.  t#E E#t    :E#K: i##WLLLLt E#t t##f   t#f            :E####,    t#E     tLLG##L
- t#E   E#j..K#j... E#t L#LE#t   t#K: t#E E#t   t##L    .E#L     E#t  :K#E:  ;#G          ;W#DG##,    t#E       ,W#i
- t#E   E#t  E#t    E#tf#E:E#t    ;#W,t#E E#t .D#W;       f#E:   E#KDDDD###i  :KE.       j###DW##,    t#E      j#E.
- t#E   E#t  E#t    E###f  E#t     :K#D#E E#tiW#G.         ,WW;  E#f,t#Wi,,,   .DW:     G##i,,G##,    t#E    .D#j
- t#E   f#t  f#t    E#K,   E#t      .E##E E#K##i            .D#; E#t  ;#W:       L#,  :K#K:   L##,    t#E   ,WK,
-  fE    ii   ii    EL     ..         G#E E##D.               tt DWi   ,KK:       jt ;##D.    L##,     fE   EG.
-   :               :                  fE E#t                                        ,,,      .,,       :   ,
-                                       , L:
+                                             ;
+                                             ED.
+                       :      L.             E#Wi                 ,;                 .,                                 .
+           .    .      Ef     EW:        ,ft E###G.             f#i j.              ,Wt                                ;W
+  GEEEEEEELDi   Dt     E#t    E##;       t#E E#fD#W;          .E#t  EW,            i#D.            .. GEEEEEEEL       f#E
+  ,;;L#K;;.E#i  E#i    E#t    E###t      t#E E#t t##L        i#W,   E##j          f#f             ;W, ,;;L#K;;.     .E#f
+     t#E   E#t  E#t    E#t    E#fE#f     t#E E#t  .E#K,     L#D.    E###D.      .D#i             j##,    t#E       iWW;
+     t#E   E#t  E#t    E#t fi E#t D#G    t#E E#t    j##f  :K#Wfff;  E#jG#W;    :KW,             G###,    t#E      L##Lffi
+     t#E   E########f. E#t L#jE#t  f#E.  t#E E#t    :E#K: i##WLLLLt E#t t##f   t#f            :E####,    t#E     tLLG##L
+     t#E   E#j..K#j... E#t L#LE#t   t#K: t#E E#t   t##L    .E#L     E#t  :K#E:  ;#G          ;W#DG##,    t#E       ,W#i
+     t#E   E#t  E#t    E#tf#E:E#t    ;#W,t#E E#t .D#W;       f#E:   E#KDDDD###i  :KE.       j###DW##,    t#E      j#E.
+     t#E   E#t  E#t    E###f  E#t     :K#D#E E#tiW#G.         ,WW;  E#f,t#Wi,,,   .DW:     G##i,,G##,    t#E    .D#j
+     t#E   f#t  f#t    E#K,   E#t      .E##E E#K##i            .D#; E#t  ;#W:       L#,  :K#K:   L##,    t#E   ,WK,
+      fE    ii   ii    EL     ..         G#E E##D.               tt DWi   ,KK:       jt ;##D.    L##,     fE   EG.
+       :               :                  fE E#t                                        ,,,      .,,       :   ,
+                                           , L:
 
 
 # ARTWORK TITLE                      :: Def Leppard
 # DATE GENERATED                     :: Thu Mar 21 22:31:36.536007 2024
-# LAST MODIFIED                      :: Thu Mar 21 22:31:36.536007 2024
+# LAST MODIFIED                      :: Fri Mar 22 17:16:47.003195 2024
 # CREATIVE SOURCE                    :: https://patorjk.com/software/taag/#p=display&f=Def%20Leppard&t=Thundercats
 
 
