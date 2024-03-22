@@ -77,7 +77,7 @@ class bringer_of_the_precious_things {
     private static $bytes_processed = 0;
     private static $mbstring_func_overload = false;
     private static $valid_session = false;
-    private static $shhh_passphase = '01100110110100111001111100101101001001110111000000';
+    private static $shhh_passphase = '0011110110000111011100100000100110001110111110011011111010111';       //'01100110110100111001111100101101001001110111000000';
 
     public function __construct($oCRNRSTN_USR, $page = 'home'){
 
