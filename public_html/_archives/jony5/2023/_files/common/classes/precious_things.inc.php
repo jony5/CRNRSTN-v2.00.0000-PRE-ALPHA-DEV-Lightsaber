@@ -3449,7 +3449,7 @@ class bringer_of_the_precious_things {
                 feet <em>with water</em> from it; When they go into the Tent of Meeting, they shall wash with water, 
                 that they many not die; or when they come near to the alter to minister, to burn an offering by fire 
                 to Jehovah, They shall wash their hands and their feet, that they may not die. And it shall be a 
-                perpetual statute to them, for him and for his seed throughout<br>their generations.';
+                perpetual statute to them, for him and for his seed throughout their generations.';
 
             break;
             case 'lev2_1':
@@ -3775,7 +3775,7 @@ class bringer_of_the_precious_things {
                 <div class="cb_10"></div>
                 And He humbled you and let you go hungry and fed you the manna, which you had never known nor your 
                 fathers had ever known, so that He might make you know that man lives not by bread alone, but that man 
-                lives by everything that proceeds out from the mouth<br>of Jehovah.
+                lives by everything that proceeds out from the mouth of Jehovah.
 
                 <div class="cb_10"></div>
                 Your clothing did not wear out from upon you, nor did your foot swell these forty years. Know then in 
@@ -3883,7 +3883,7 @@ class bringer_of_the_precious_things {
                 And it is Jehovah who has today declared you to be a people for His personal treasure, even as He 
                 promised you; and that you will keep all His commandments; And that He will set you high above all the 
                 nations which He has made, for praise and for a name and for honor; and that you will be a holy people 
-                to Jehovah your God, as He<br>has spoken.';
+                to Jehovah your God, as He has spoken.';
 
             break;
             case 'deut28_1-14':
@@ -4788,7 +4788,7 @@ class bringer_of_the_precious_things {
                 we be clothed? For all these things the Gentiles are anxiously seeking. For your heavenly Father 
                 knows that you need all these things. But seek first His kingdom and His righteousness, and all 
                 these things will be added to you. Therefore do not be anxious for tomorrow, for tomorrow will be 
-                anxious for itself; sufficient for the day is its<br><em>own</em> evil.';
+                anxious for itself; sufficient for the day is its <em>own</em> evil.';
 
             break;
             case 'matt7':
@@ -4808,7 +4808,7 @@ class bringer_of_the_precious_things {
                 when he asks for a fish, will give him a serpent? If you then being evil know <em>how</em> to give 
                 good gifts to your children, how much more will your Father who is in the heavens give good things 
                 to those who ask Him! Therefore all that you wish men would do to you, so also you do to them; for 
-                this is the law and<br>the prophets.
+                this is the law and the prophets.
 
                 <div class="cb_10"></div>
                 Enter through the narrow gate, for wide is the gate and broad is the way that leads to destruction, 
@@ -4911,7 +4911,7 @@ class bringer_of_the_precious_things {
                 to them, Have you not read what David did when he became hungry, and those who were with him; How he 
                 entered into the house of God, and they ate the bread of the Presence, which was not lawful for him 
                 to eat, nor for those who were with him, except for the priests only? Or have you not read in the 
-                law that on the Sabbath the priests in the temple profane the Sabbath and<br>are guiltless?<br>
+                law that on the Sabbath the priests in the temple profane the Sabbath and<br>are guiltless?
 
                 <div class="cb_10"></div>
                 But I say to you that something greater than the temple is here. But if you knew 
@@ -4962,7 +4962,7 @@ class bringer_of_the_precious_things {
                 deliver you up to tribulation and will kill you, and you will be hated by all the nations because of 
                 My name. And at that time many will be stumbled and will deliver up one another and will hate one 
                 another. And many false prophets will arise and will lead many astray. And because lawlessness will 
-                be multiplied, the love of the many will grow cold.<br>
+                be multiplied, the love of the many will grow cold.
 
                 <div class="cb_10"></div>
                 But he who has endured to the end, this one shall be saved. And this gospel of the kingdom will be 
@@ -4988,7 +4988,7 @@ class bringer_of_the_precious_things {
                 who reads understand), Then let those in Judea flee to the mountains; Let him who is on the housetop 
                 not come down to take the things out of his house; And let him who is in the field not turn back to 
                 take his garment. But woe to those who are pregnant and to those who are nursing <em>babies</em> in 
-                those days. And pray that your flight may not be in winter, nor on a Sabbath,<br>
+                those days. And pray that your flight may not be in winter, nor on a Sabbath,
 
                 <div class="cb_10"></div>
                 For at that time there will be great tribulation, such as has not occurred from the beginning of the 
@@ -5029,7 +5029,7 @@ class bringer_of_the_precious_things {
                 <span class="script_ref_num">69</span> Now Peter was sitting outside in the courtyard, and a servant 
                 girl came to him and said, You also were with Jesus the Galilean. But he denied <em>it</em> before all, 
                 saying, I do not know what you are talking about! And after he had gone out to the porch, another girl 
-                saw him and said to those who were there, This man was with Jesus<br>the Nazarene.
+                saw him and said to those who were there, This man was with Jesus the Nazarene.
 
                 <div class="cb_10"></div>
                 And again he denied with an oath, I do not know the man! And after a little while those who were 
@@ -5088,7 +5088,7 @@ class bringer_of_the_precious_things {
                 <span class="script_ref_num">66</span> And while Peter was below in the courtyard, one of the servant 
                 girls of the high priest came, And seeing Peter warming himself, she looked at him and said, You also 
                 were with the Nazarene, Jesus. But he denied <em>it</em>, saying, I neither know nor understand what you 
-                are talking about. And he went outside into the forecourt, and a<br>rooster crowed.
+                are talking about. And he went outside into the forecourt, and a rooster crowed.
 
                 <div class="cb_10"></div>
                 And the servant girl, seeing him, began again to say to those standing by, This man is <em>one</em> of 
@@ -5097,8 +5097,9 @@ class bringer_of_the_precious_things {
                 I do not know this man of whom you speak!
 
                 <div class="cb_10"></div>And immediately a rooster crowed a second time. And Peter remembered the word, 
-                how Jesus had said to him, Before a rooster crows twice, you will deny Me three times. And thinking upon 
-                it,<br>he wept.';
+                how Jesus had said to him, Before a rooster crows twice, you will deny Me three times.
+                
+                <div class="cb_10"></div>And thinking upon it, he wept.';
 
             break;
             case 'luke1_26-33':
@@ -5118,7 +5119,7 @@ class bringer_of_the_precious_things {
                 <div class="cb_10"></div>
                 He will be great and will be called Son of the Most High; and the Lord God will give to Him the 
                 throne of David His father, And He will reign over the house of Jacob forever, and of His kingdom 
-                there will be<br>no end.';
+                there will be no end.';
 
             break;
             case 'luke9_1-6':
@@ -5176,14 +5177,14 @@ class bringer_of_the_precious_things {
                 And if he comes in the second watch, or if in the third, and finds <em>them</em> so, blessed are 
                 those <em>slaves</em>. But know this, that if the master of the house had known in what hour the 
                 thief was coming, he would not have allowed his house to be broken into. You also, be ready, because 
-                at an hour when you do not expect <em>it</em>, the Son of Man<br>is coming. 
+                at an hour when you do not expect <em>it</em>, the Son of Man is coming. 
 
                 <div class="cb_10"></div>
                 And Peter said, Lord, are You saying his parable to us, or also to all? And the Lord said, Who then 
                 is the faithful <em>and</em> prudent steward, whom the master will set over his service to give <em>them</em>
                 their portion of food at the proper time?
-                <div class="cb_10"></div>
 
+                <div class="cb_10"></div>
                 Blessed is that slave whom his master, when he comes, will find so doing. Truly I tell you that he 
                 will set him over all his possessions.';
 
@@ -5202,7 +5203,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Or what king, going to engage another king in war, will not first sit down and deliberate whether he is able with ten thousand to meet the one coming against him with twenty thousand? Otherwise, while he is yet at a distance, he sends an envoy and asks for the of peace.';
                 $tmp_verse_array['COPY'][0]             = 'Or what king, going to engage another king in war, will not first sit 
                 down and deliberate whether he is able with ten thousand to meet the one coming against him with twenty 
-                thousand? Otherwise, while he is yet at a distance, he sends an envoy and asks for the <em>terms</em><br> 
+                thousand? Otherwise, while he is yet at a distance, he sends an envoy and asks for the <em>terms</em> 
                 of peace.';
 
             break;
@@ -5552,7 +5553,7 @@ class bringer_of_the_precious_things {
 
                 <div class="cb_10"></div>
                 And whatever you ask in My name, that I will do, that the Father may be glorified in the Son. If you ask 
-                Me anything in My name, I will<br>do <em>it</em>.';
+                Me anything in My name, I will do <em>it</em>.';
 
             break;
             case 'john14_12-14':
@@ -5655,7 +5656,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['REFERENCE'][0]        = '11:18';
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'And when they heard these things, they became silent and glorified God, saying, Then to the Gentiles also God has given repentance unto life.';
                 $tmp_verse_array['COPY'][0]             = 'And when they heard these things, they became silent and glorified 
-                God, saying, Then to the Gentiles also God has given repentance<br>unto life.';
+                God, saying, Then to the Gentiles also God has given repentance unto life.';
 
             break;
             case 'rom2_6-7':
@@ -5663,7 +5664,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['REFERENCE'][0]        = '2:6-7';
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Who will render to each according to his works: To those who by endurance in good work seek glory and honor and incorruptibility, life eternal;';
                 $tmp_verse_array['COPY'][0]             = 'Who will render to each according to his works: To those who by endurance 
-                in good work seek glory and honor and incorruptibility,<br>life eternal;';
+                in good work seek glory and honor and incorruptibility, life eternal;';
 
             break;
             case 'rom5_1-5[000]':
@@ -5858,7 +5859,7 @@ class bringer_of_the_precious_things {
                 also at the right hand of God, who also intercedes for us. Who shall separate us from the love of
                 Christ? Shall tribulation or anguish or persecution or famine or nakedness or peril or sword? As it 
                 is written, &quot;For Your sake we are being put to death all day long; we have been accounted as 
-                sheep for slaughter.&quot; But in all these things we more than conquer through Him who<br>loved us.
+                sheep for slaughter.&quot; But in all these things we more than conquer through Him who loved us.
 
                 <div class="cb_10"></div>
                 For I am persuaded that neither death nor life nor angels nor principalities nor things present nor 
@@ -6198,7 +6199,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['COPY'][0]             = 'I am crucified with Christ; and no longer I <em>who</em> 
                 live, but <em>it is</em> Christ <em>who</em> lives in me; and the <em>life</em> which I now live in 
                 the flesh I live in faith, the <em>faith</em> of the Son of God, who loved me and gave Himself 
-                up<br>for me.';
+                up for me.';
 
             break;
             case 'gal3_1':
@@ -6234,9 +6235,9 @@ class bringer_of_the_precious_things {
 
                 $tmp_verse_array['REFERENCE'][0]        = '5:5-6';
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'For we by the Spirit out of faith eagerly await the hope of righteousness.';
-                $tmp_verse_array['COPY'][0]             = 'For we by the Spirit out of faith eagerly await the hope<br> 
-                of righteousness. For in Christ Jesus neither circumcision avails anything nor uncircumcision, but faith 
-                <em>avails</em>, operating through love.';
+                $tmp_verse_array['COPY'][0]             = 'For we by the Spirit out of faith eagerly await the hope of 
+                righteousness. For in Christ Jesus neither circumcision avails anything nor uncircumcision, but faith 
+                <em>avails</em>, operating<br>through love.';
 
             break;
             case 'gal4_11':
@@ -6252,7 +6253,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = '13 For you were called for freedom, brothers; only do not this freedom into an opportunity for the flesh, but through love serve one another. 16 But I say, Walk by the Spirit and you shall by no means fulfill the lust of the flesh.';
                 $tmp_verse_array['COPY'][0]             = '<span class="script_ref_num">13</span> For you were called for 
                 freedom, brothers; only do not <em>turn</em> this freedom into an opportunity for the flesh, but 
-                through love serve<br>one another.
+                through love serve one another.
 
                 <div class="cb_10"></div>
                 <span class="script_ref_num">16</span> But I say, Walk by the Spirit and 
@@ -6282,7 +6283,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['REFERENCE'][0]        = '6:14';
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'But far be it from me to boast except in the cross of our Lord Jesus Christ, through whom the world has been crucified to me and I to the world.';
                 $tmp_verse_array['COPY'][0]             = 'But far be it from me to boast except in the cross of our Lord Jesus 
-                Christ, through whom the world has been crucified to me and I to<br>the world.';
+                Christ, through whom the world has been crucified to me and I to the world.';
 
             break;
             case 'eph1_3':
@@ -6417,7 +6418,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['REFERENCE'][0]        = '2:3';
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Nothing by way of selfish ambition nor by way of vainglory, but in lowliness of mind considering one another more excellent than yourselves.';
                 $tmp_verse_array['COPY'][0]             = '<em>Doing</em> nothing by way of selfish ambition nor by way of 
-                vainglory, but in lowliness of mind considering one another more excellent<br>than yourselves.';
+                vainglory, but in lowliness of mind considering one another more excellent than yourselves.';
 
             break;
             case 'phil2_5-8':
@@ -6454,7 +6455,7 @@ class bringer_of_the_precious_things {
                 the willing and the working for <em>your</em> good pleasure. Do all things without murmurings and 
                 reasonings That you may be blameless and guileless, children of God without blemish in the midst of a 
                 crooked and perverted generation, among whom you shine as luminaries in the world, Holding forth the 
-                word of life, so that I may have a boast in the day of Christ that I did not run in vain nor labor<br> 
+                word of life, so that I may have a boast in the day of Christ that I did not run in vain nor labor  
                 in vain.';
 
             break;
@@ -7064,7 +7065,7 @@ class bringer_of_the_precious_things {
                 <div class="cb_10"></div> 
                 In which also He went and proclaimed to the spirits in prison, Who had formerly disobeyed when the 
                 long-suffering of God waited in the days of Noah, while the ark was being prepared; <em>entering</em> 
-                into which, a few, that is, eight souls, were brought safely through by water.
+                into which, a few, that is, eight souls, were brought safely through<br>by water.
 
                 <div class="cb_10"></div> 
                 Which <em>water</em>, as the antitype, also now saves you, <em>that is</em>, baptism, not a putting away 
@@ -7114,7 +7115,7 @@ class bringer_of_the_precious_things {
                 He who practices sin is of the devil, because the devil has sinned from the beginning. For this purpose 
                 the Son God was manifested, that He might destroy the works of the devil. Everyone who has been begotten 
                 of God does not practice sin, because His seed abides in him; and he cannot sin, because he has been 
-                begotten of God.
+                begotten<br>of God.
 
                 <div class="cb_10"></div>
                 In this the children of God and the children of the devil are manifest. Everyone who does not practice 
@@ -7148,7 +7149,7 @@ class bringer_of_the_precious_things {
 
                 <div class="cb_10"></div>
                 In the same way you also have some who hold in like manner the teaching of the Nicolaitans. Repent 
-                therefore; but if not, I am coming to you quickly, and I will make war with them with the sword of<br> 
+                therefore; but if not, I am coming to you quickly, and I will make war with them with the sword of 
                 My mouth.
 
                 <div class="cb_10"></div>
@@ -7165,7 +7166,7 @@ class bringer_of_the_precious_things {
                 the Son of God, He who has eyes like a flame of fire, and His feet are like shining bronze: I know your 
                 works and love and faith and service and your endurance and that your last works are more than the 
                 first. But I have <em>something</em> against you, that you tolerate the woman Jezebel, she who calls 
-                herself a prophetess and teaches and leads My slaves astray to commit fornication and to eat<br>idol 
+                herself a prophetess and teaches and leads My slaves astray to commit fornication and to eat idol 
                 sacrifices.
 
                 <div class="cb_10"></div>
@@ -7266,7 +7267,7 @@ class bringer_of_the_precious_things {
 
                 <a id="sup_ftnt_12" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_12\');" style="display: none;">12</a>I 
                 come quickly; <a id="sup_ftnt_13" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_13\');" style="display: none;">13</a>hold 
-                fast what you have that no one take your crown.<br>
+                fast what you have that no one take your crown.
 
                 <div class="cb_10"></div>
                 <a id="sup_ftnt_14" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_14\');" style="display: none;">14</a>He 
@@ -7713,7 +7714,7 @@ class bringer_of_the_precious_things {
                 <div class="cb_10"></div>
                 Only the Lord Jesus, who saw no sin in the woman, was qualified to throw a stone at the woman, and the 
                 scriptural record indicates that the Lord did not condemn her to death. Neither will our heavenly Master 
-                condemn us, dear saints; His burden is easy, and His yoke<br>is light.
+                condemn us, dear saints; His burden is easy, and His yoke is light.
 
                 <div class="cb_10"></div>Furthermore, the woman was told to &quot;go, and from now on sin no more.&quot; 
                 This was a command from the king of kings for the believing woman to simply live out her life...to 
@@ -7766,7 +7767,7 @@ class bringer_of_the_precious_things {
                 with Asherah idol sacrifice (savage appreciation of fairytale white dress marriage ceremony). This is a 
                 business model that is powered by fornication (marriage contract violators are 
                 expected...even taught...to feel bad (Rev. 2:14, 20, 24)). And this is a business model that is promoted 
-                by Catholicism along with her many daughters. 
+                by Catholicism along with her<br>many daughters. 
 
                 <div class="cb_10"></div>
                 The king of kings has judged this satanic system in its entirety, and He is returning soon (Matt. 
@@ -7782,7 +7783,7 @@ class bringer_of_the_precious_things {
                 saint (Matt. 1:19). And as a righteous saint, Joseph will hence be feasting and fucking forever. Any 
                 Christian that is seeking to have a testimony of righteousness before God and man will honor the 
                 testimony of this husband that is recorded in the Bible with their Christian life and with a healthy 
-                fear of the Lord God the Almighty presiding over their heart. 
+                fear of the Lord God the Almighty presiding over<br>their heart. 
 
                 <div class="cb_10"></div>
                 This is the testimony of the Gospel.
@@ -8030,7 +8031,8 @@ class bringer_of_the_precious_things {
                 $this->link_html('jer31_33-37','Jer. 31:33-37', 'popup', 295) .
                 '). And yet, many of God\'s people, lacking repentance (' . $this->link_html('rev2_21-22','Rev. 2:21-22', 'popup', 295) . ') and even rejecting this 
                 very revelation, will be measured by the Lord in that day, will be found by the Lord to be wanting, 
-                and will have thus fallen in the wilderness (' . $this->link_html('heb4_11','Heb. 4:11', 'popup', 295) . ') due to their unbelief in God\'s word.<br>
+                and will have thus fallen in the wilderness (' . $this->link_html('heb4_11','Heb. 4:11', 'popup', 295) . ') 
+                due to their unbelief in<br>God\'s word.<br>
 
                 ' . $tmp_top_lnk_html . '
                 <div class="cb_10"></div>
@@ -8052,7 +8054,7 @@ class bringer_of_the_precious_things {
                 lb. lobster&quot; people! We are the &quot;stone become factory fresh <a onclick=\'window.open("https://www.bugatti.com/discover-chiron-pur-sport/", "jony5BlessingsInChristTab");\' href="#" target="_blank" style="color#0066CC; text-decoration:none;">Bugatti 
                 Chiron PUR Sport</a>&quot; people (' . $this->link_html('john14_12-14','John 14:12-14', 'popup', 295) . ')! 
                 God our Father has blessed us with every spiritual blessing in the heavenlies to the praise of the glory 
-                of His grace (' . $this->link_html('eph1_3-14[000]','Eph. 1:3-14', 'popup', 295) . ').
+                of<br>His grace (' . $this->link_html('eph1_3-14[000]','Eph. 1:3-14', 'popup', 295) . ').
 
                 ' . $tmp_top_lnk_html . '
                 <div class="cb_10"></div>
@@ -8258,7 +8260,7 @@ class bringer_of_the_precious_things {
                 teaching) the perfect carbon copy of a pure and apostolically sourced Christian living,...with 
                 exceptions being on account of maybe the internet existing and the popularity of human rights...oh 
                 yeah, and we have penicillin. Hey, don\'t knock it; penicillin is the next best thing to having a 
-                son of God with leaves in your midst (' .
+                son of God with leaves in<br>your midst (' .
 
                 $this->link_html('rev22_2','Rev. 22:2', 'popup', 295)
 
@@ -8299,7 +8301,7 @@ class bringer_of_the_precious_things {
                 enjoyment at your Masters beckoning and for your Master\'s sake&ndash;&ndash; ...well, our Lord 
                 suffered loss as He faithfully walked in obedience to the Father, so the company is good if one is 
                 hanging around in that place. We will follow our Master spontaneously as we consider one another in 
-                love under the light of the truth of<br>the Gospel. 
+                love under the light of the truth of the Gospel. 
 
                 ' . $tmp_top_lnk_html . '
                 <div class="cb_10"></div>
@@ -8481,7 +8483,7 @@ class bringer_of_the_precious_things {
                 . '). The prayers 
                 of the saint (above) indicate that there exists a certain delight within the soul of this Christian. The 
                 saint builds regularly at this place in their soul. Then the saint destroys what they built in 
-                confession (Gal. 2:18). Jesus, forgive me for doing &quot;<em>A-B-C-X-Y-Z</em>&quot; again.
+                confession (Gal. 2:18). Jesus, forgive me for doing<br>&quot;<em>A-B-C-X-Y-Z</em>&quot; again.
 
                 ' . $tmp_top_lnk_html . '
                 <div class="cb_10"></div>The saint despises their God-given portion of the good land (their God 
