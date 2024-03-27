@@ -197,7 +197,7 @@ if($tmp_uri !== '/index.php'){
                         </div>
                     </div>
 
-                    <div class="social_link" onclick="launch_newwindow('https://www.instagram.com/j00000101/?hl=en'); return false;" style="display: inline-block; width:30px; height:30px; overflow: hidden;">
+                    <div class="social_link" onclick="launch_newwindow('https://www.instagram.com/j00000101/'); return false;" style="display: inline-block; width:30px; height:30px; overflow: hidden;">
                         <div style="position: relative;">
                             <div style="position: absolute; left:-65px; top: 0;">
                                 <img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/media_icon/sprite_hq.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="379" height="505" alt="Instagram" title="Link to Instagram feed.">
@@ -205,7 +205,7 @@ if($tmp_uri !== '/index.php'){
                         </div>
                     </div>
 
-                    <div class="social_link" onclick="launch_newwindow('https://www.linkedin.com/in/jonathan-harris-6397143'); return false;" style="display: inline-block; width:30px; height:30px; overflow: hidden;">
+                    <div class="social_link" onclick="launch_newwindow('https://www.linkedin.com/in/j00000101/'); return false;" style="display: inline-block; width:30px; height:30px; overflow: hidden;">
                         <div style="position: relative;">
                             <div style="position: absolute; left:0; top: -100px;">
                                 <img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/media_icon/sprite_hq.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="379" height="505" alt="LinkedIn" title="Link to LinkedIn related resource.">

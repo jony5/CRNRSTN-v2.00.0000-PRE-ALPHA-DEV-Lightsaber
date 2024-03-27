@@ -64,10 +64,10 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
         </div>
     
     	<div id="content">
-    		<div class="content_title">Connect with me on Facebook<sup>&reg;</sup></div>
+    		<div class="content_title">Connect with me on Facebook<sup style="font-size:60%;">&reg;</sup></div>
             <div class="content_copy">
             	<div class="col" style="width:900px;">
-           			<p>You can find me on Facebook<sup>&reg;</sup> here <a href="https://www.facebook.com/j00000101" target="_blank">facebook.com/j00000101</a>. I typically only add people as friends whom I 
+           			<p>You can find me on Facebook<sup style="font-size:60%;">&reg;</sup> here <a href="https://www.facebook.com/j00000101" target="_blank">facebook.com/j00000101</a>. I typically only add people as friends whom I
                     have met in real life, but if you can connect with me perhaps you'll get the add :).</p>
                     <div class="cb_200"></div>
                     <div class="cb_50"></div>

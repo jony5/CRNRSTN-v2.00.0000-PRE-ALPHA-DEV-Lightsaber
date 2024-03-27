@@ -64,10 +64,10 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
         </div>
     
     	<div id="content">
-    		<div class="content_title">View my professional profile on LinkedIn<sup>&reg;</sup></div>
+    		<div class="content_title">View my professional profile on LinkedIn<sup style="font-size:60%;">&reg;</sup></div>
             <div class="content_copy">
             	<div class="col" style="width:900px;">
-           			<p>Click <a href="https://www.linkedin.com/in/jonathan-harris-6397143" target="_blank">here</a> to view my profile. When last I checked, if you have an account with LinkedIn<sup>&reg;</sup>, you can view my full profile for free.</p>
+           			<p>Click <a href="https://www.linkedin.com/in/j00000101/" target="_blank">here</a> to view my profile. When last I checked, if you have an account with LinkedIn<sup style="font-size:60%;">&reg;</sup>, you can view my full profile for free.</p>
                     <div class="cb_200"></div>
                     <div class="cb_50"></div>
             	</div>

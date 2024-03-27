@@ -64,11 +64,11 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
         </div>
     
     	<div id="content">
-    		<div class="content_title">Follow me on Twitter<sup>&reg;</sup></div>
+    		<div class="content_title">Follow me on Twitter<sup style="font-size:60%;">&reg;</sup></div>
             <div class="content_copy">
             	<div class="col" style="width:900px;">
-           			<p>I have two (2) accounts and am taking my time to decide how they are going to be used moving forward. Account #1 (<a href="https://twitter.com/j00000101" target="_blank">@j00000101</a>) was originally created for logging time spend on client billables. Presently, this account is tied to my mobile device and so will occassionally be tweeted to when inspiration strikes.</p>
-                    <p>Twitter<sup>&reg;</sup> account #2 (<a href="https://twitter.com/jony5" target="_blank">@jony5</a>) is accessed primarily from my laptop, and so it seems to be more inclined to get tweets which are nothing more than links to content of interest garnered from time spent perusing the interwebs.</p>
+           			<p>I have two (2) accounts and am taking my time to decide how they are going to be used moving forward. Account #1 (<a href="https://twitter.com/j00000101" target="_blank">@j00000101</a>) was originally created for logging time spend on client billables. Presently, this account is tied to my mobile device and so will occasionally be tweeted to when inspiration strikes.</p>
+                    <p>Twitter<sup style="font-size:60%;">&reg;</sup> account #2 (<a href="https://twitter.com/jony5" target="_blank">@jony5</a>) is accessed primarily from my laptop, and so it seems to be more inclined to get tweets which are nothing more than links to content of interest garnered from time spent perusing the interwebs.</p>
                     <div class="cb_200"></div>
                     <div class="cb_50"></div>
             	</div>

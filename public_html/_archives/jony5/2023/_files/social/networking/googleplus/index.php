@@ -64,7 +64,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
         </div>
     
     	<div id="content">
-    		<div class="content_title">Add me to one of your circles on Google+<sup>&reg;</sup></div>
+    		<div class="content_title">Add me to one of your circles on Google+<sup style="font-size:60%;">&reg;</sup></div>
             <div class="content_copy">
             	<div class="col" style="width:900px;">
            			<p>You can find me here <a href="https://google.com/+JonathanHarrisJ5" target="_blank">google.com/+JonathanHarrisJ5</a>.</p>

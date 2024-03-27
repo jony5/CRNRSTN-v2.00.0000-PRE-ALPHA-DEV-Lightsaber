@@ -64,10 +64,10 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
         </div>
     
     	<div id="content">
-    		<div class="content_title">Follow me on Instragram<sup>&reg;</sup></div>
+    		<div class="content_title">Follow me on Instagram<sup style="font-size:60%;">&reg;</sup></div>
             <div class="content_copy">
             	<div class="col" style="width:900px;">
-           			<p>Click <a href="https://www.instagram.com/j00000101/?hl=en" target="_blank">here</a> to check out some sweet pics!</p>
+           			<p>Click <a href="https://www.instagram.com/j00000101/" target="_blank">here</a> to check out some sweet pics!</p>
                     <div class="cb_200"></div>
                     <div class="cb_50"></div>
             	</div>

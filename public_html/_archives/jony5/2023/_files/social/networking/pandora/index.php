@@ -64,7 +64,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
         </div>
     
     	<div id="content">
-    		<div class="content_title">Share your favorite artist station with me on Pandora<sup>&reg;</sup></div>
+    		<div class="content_title">Share your favorite artist station with me on Pandora<sup style="font-size:60%;">&reg;</sup></div>
             <div class="content_copy">
             	<div class="col" style="width:900px;">
            			<p>My profile can be found <a href="http://www.pandora.com/profile/c00000101" target="_blank">here</a>.</p>
