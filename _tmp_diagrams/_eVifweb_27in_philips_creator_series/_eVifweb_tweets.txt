@@ -1,0 +1,13 @@
+CRNRSTN_v2_0_0
+
+https://twitter.com/CRNRSTN_v2_0_0
+
+=====
+Minor social preview Scripture edits for jony5 dot com (2023) using a 27" Philips Creator Series 27E2F7901 4K UHD IPS Black display in portrait.
+
+GitHub Push :: aa892752
+
+Machine :: LOCALHOST_CHAD_MACBOOKPRO
+Pushed 1 commit to origin/master on 3/8/24 @ 3:51 AM.
+
+https://github.com/jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber
