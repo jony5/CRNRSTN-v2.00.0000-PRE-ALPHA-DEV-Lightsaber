@@ -1,3 +1,9 @@
+eVifweb Company Website URLs:
+https://evifweb.com/
+http://evifweb.jony5.com/
+
+
+Social Media Post:
 HAPPY 20th BIRTHDAY to eVifweb! At $37/hr for HTML dev in Q2 of 2004, eVifweb earned its very first dollar. At that time, I was still completing my undergrad in Computer Information Systems at GSU.
 
 GitHub Push :: 07ad29a2
@@ -9,7 +15,6 @@ https://github.com/jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber
 
 
 # [END OF POST]
-
 
 
 Social Share Images Directory:
@@ -47,4 +52,4 @@ eVifweb_2004_ATLANTA_invoice_Q2_first_dollar_FULLPAGE.png
 
 
 File Last Modified:
-Sun Apr 14 09:12:42.592383 2024.
+Sun Apr 14 09:39:01.498260 2024.
