@@ -1,0 +1,64 @@
+Finance program Logic:
+2 program or branches of the program
+	1. What do you want to solve for? 
+		- Then What informaion do you have?
+
+		- Request more relative info first, then other info from which you can 
+		  derive the necessary		  
+
+	2. Need to separate solution tree into separate programs for easy calling of methods
+
+//////////////////////////////////////////////////////////
+First, for each element...define it based on minimum number of elements needed
+Second, As time permits, add elements derived futher down on the chain
+
+
+
+*********************************************************
+Solve for ROE-
+
+	- Given
+		Net Profit Margin
+		Sales
+		Debt
+		Total Asset
+ROE = NI/TE
+
+NPM = NI / NS
+
+A = L + OE
+
+ROA = NI / TA
+*********************************************************
+Solve for Debt Ratio-
+
+	- Given
+		ROA
+		ROE
+		Tot. Asset turnover
+
+Debt ratio = Tot liab/tot asset
+ROA = NI/TA
+ROE = NI/TE
+
+Asset turnover = Sales/Ta
+
+assumptions, TA = 1, sales = 3.0
+*********************************************************
+Solve for Net Profit Margin
+
+	- Given
+		Net Income
+		Total Equity
+		Total liability
+		Total asset
+		Sales
+
+NPM = Net income / Net sales
+*********************************************************
+Solve for Change in accumulated depreciation
+
+delta gross fixed assets - delta net fixed assets = delta acc. dep
+*********************************************************
+
+number of share common stock @ par value = (revenue from Common stock / par value)

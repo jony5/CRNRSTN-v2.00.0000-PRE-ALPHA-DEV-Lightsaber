@@ -1,0 +1,98 @@
+Fi 2.6.2003
+
+Exam 1 (20 questions M/C, 5 points per, partial questions): 
+
+
+CH 1	Goal of a financial manager (Only question)
+
+	- Maximize Shareholder's Wealth
+
+CH 2	Dividends per share (similiar to first quiz)
+	Depreciation on income statement
+	At what price did the new share sell
+
+	- change in retained earnings = Net income - Dividends Paid
+	- Dividends paid / number of outstanding shares = div per share
+	- Income statement Depreciation = delta Net fixed assets - delta gross fixed assets
+	- understand relationship between paid-in-capital, common stock, and par value
+
+Ch 3	Cash Flow from operating, investing and financing (5 questions)
+	2 Conceptual questions
+
+*********************************************************
+	NI
+	+ Depreciation				in direct
+	- Increase in Accounts receivable	in-direct
+	+ Decrease in Inventories		in-Direct
+	+ Increase in Accounts Payable		direct
+	+ Increase in Accruals			direct
+	=NET CASH FLOW FROM OPERATING ACTIVITIES
+
+	Purchase of Gross  Fixd Assets
+	=NET CASH FLOW FROM INVESTING ACTIVITIES
+
+	Reduction in Notes payable (Bank loan)
+	Repayment of long-term debt
+	Payment of Dividends
+	=NET CASH FLOW FROM FINANCING ACTIVITIES
+*********************************************************
+
+
+CH 5	Compute ROE
+	Debt Ratio (maybe use dupont equation) [Table 5.3 will be given]
+	Use ratios to complete Balance sheet (3 questions)
+	3 Conceptual questions
+
+	- Debt Ratio =  tot. Liabilities / tot. equity
+
+CH 6	Outside Funds needed
+	2 conceptual questions
+
+	- Outside funds needed = Total assets x growth rate - (spontaneous liability x growth rate + delta RE)
+
+	where TA x g = funds needed
+	where SL x g - deltaRE = money generated internally
+
+QUIZ 2 70%
+
+//*************************************************************************
+
+Chapter 6 Notes		Outside Funds Needed
+
+Outside Funds:
+	- loans
+	- stocks
+
+Percent of sales method assume each asset and spontaneous liability item grow at the same rate.
+
+Outside funds needed = Total assets x growth rate - (spontaneous liability x growth rate + delta RE)
+
+where [TA x g] is money needed
+where [SL x g - delta RE] is money generated internally
+
+OFN for 2003 = TA of '02 x growth rate - (SL of '02 x g + NI of '03 - DIV of '03)
+most of the time we don't know the net income but we can predict from the NPM '03 which is (NI/sales)..both from 2003
+
+NPM = NI,03/Sales,03 = NI,03 / (Sales,02 x g)
+
+Use the above relationships to find the NEt Income
+
+//**************************************************
+Example on page 196-197:
+
+Given:	Cash
+		1997 = $24,000		("Ignore 1997 cash...just look at 1998")
+		1998 = $22,000
+	NI = 30,000
+
+OFN99 = [TA98] x g - (([SL98] x g) + [NI99] -Div99)
+       = 433,000 x 0.4-((57,000+5,000) x 0.4 + NI99 - 24,000)
+
+NPM99 = NPM98 = NI98/sales98 = 30,000 / 600,000 = 0.05
+
+
+NPM99 = 0.05 = NI99 / Slaes98 + (sales98 +g)
+      	     = NI99 / 600,000 + (600,000 x 0.4)
+     	     = NI99 / 840,000
+	0.05 = NI99 / 840,000
+      42,000 = NI99

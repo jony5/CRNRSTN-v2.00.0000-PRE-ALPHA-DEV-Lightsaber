@@ -1,0 +1,193 @@
+Finance Notes			3.20.2003
+
+//****************************************************
+//****************************************************
+Quiz 4 (3 questions) only Bond (chapter 10)
+
+Conceptual
+
+compute market interest rate
+
+how many years until maturity
+
+each is worth 15 points
+//****************************************************
+//****************************************************
+
+4/3 - ch 11
+4/10 - exam 2
+//****************************************************
+//****************************************************
+
+
+Chapter 10 Valuation of Bonds and Stocks
+
+The value(price) of any security is the present value of all of the future cash flows
+from owing the security.
+
+(1) Consol:	A bond that pays coupon every period until forever
+
+	coupon		coupon
+|----------|---------------|---------------------------------------------infinite
+t=0	   1		   2
+
+Price = c\r, where c = coupon payment = face value x coupon rate
+
+
+
+
+r = discount rate
+    market rate
+    cost of debt
+    yield to maturity
+    required rate of return
+
+
+face value = 1000
+coupon rate = 8%....remains the same until maturity
+r = 10%...changes all the time
+
+price = (1000 x 8%) / 0.1  =  80/0.1 = 800
+	
+
+//***************************************************************
+
+Zero coupon Bond: No coupon; receive face value at maturity
+
+|---------|-----|-------|----------------|--->
+0	  1     2                       20
+
+t = 20yrs
+r = 10%
+===========
+FV = 1000
+n = 20
+I/Y = 10
+PMT = 0
+
+
+price = CPT PV = 148.64
+
+//***************************************************************
+
+Fixed coupon bond: receive fixed coupon payments and face value at maturity
+
+	coupon     coupon  		        $1000 coupon
+|---------|----------|--------------|---------------|------------->
+0         1          2				  20
+
+r = 10%
+coupon rate = 8%
+===================
+FV 	= 1000
+PMT 	= 80
+n	= 20 yrs
+I/Y	= 10
+CPT PV	= 829.73
+
+//***************************************************************
+CPT PV == price
+
+coupon rate == PMT
+
+Years to maturity == n
+ 
+market interest == I/Y
+
+//***************************************************************
+Properties of bonds
+
+1. the higher the coupon rate, the higher the price.....face value == par value =1000
+		PMT	n = 20	   I/Y=10   FV=1000   price
+coupon 	= 5%	50				      574.32 => selling at discount, coupon rate < market rate, price < face value
+	= 10%	100				       1000    =>            PAR                 ==                   ==
+	= 15%	150				       1425.68 =>	    PREMIUM              >                    >
+
+
+2. The higher the required rate of return, the lower the price, for a given coupon rate
+		PMT	n	   I/Y=10   FV=1000   price
+coupon 	= 5%	50	20	     10	              574.32
+	= 5%	100	20	     15 	      347.07
+
+
+3. If selling at Par, price == face value, no matter coupon is paid annually or semi-annually
+//***************************************************************
+//***************************************************************
+Example Problems:
+
+10.13 (294)
+
+PV	= -940...for Bond is always negative, otherwise error in clac
+FV	= 1000
+n	= 20
+I/Y	= 11
+CPT PMT	= 102.4655 = 1000 x c
+
+coupon rate = 102.46555 / 1000 = 10.2465%
+
+------------------------------------------------
+
+10.14 (294)
+
+FV	= 1000
+PMT	= 1000 x (10%/4) = 25
+PV	= -1075
+I/Y	= 9/4 = 2.25
+CPT n	= 50.5123...this is how many quarters...so when you divide by 4 you get # years
+
+------------------------------------------------
+
+10.4 (309)
+
+FV	= 1000
+PV	= -1092
+n	= 20x2 = 40
+PMT	= 1000 x (10%/2) = 50
+I/Y 	= 4.5 (6 month)x 2 = 9 p.a.
+
+------------------------------------------------
+
+10.3
+
+(1) [t = 6]
+
+FV	= 1000
+I/Y	= 7
+PMT	= 80
+n	= 14...at t=6, the bond still has 14 years to go
+CPT PV	= 1087.45
+
+------------------------------------------------
+
+10.1
+When you see "at par" you should realize that coupon rate = mkt rate = 9%
+
+FV	= 1000
+PMT	= 9% x 1000 = 90
+n	= 25 (years to go)
+PV	= 1000 + (1000x10%) = -1100
+CPT I/Y	= 8.06
+
+------------------------------------------------
+
+10.10 (310)
+
+10 points to quiz 5
+par 	= 1000
+FV	= 100000000
+PMT	= 
+n	= 30
+PV	= 
+CPT I/Y	= 
+
+//***************************************************************
+(semi-annual)
+par 	= 1000
+FV	= 100000000
+PMT	= 
+n	= 30x2 = 60
+PV	= 
+CPT I/Y	= 
+
+
+

@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0042)http://members.fullnet.net/jbowen/FG11.htm -->
+<HTML><HEAD><TITLE>user enters xMin and xMax, then ZFit</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 6.00.2800.1126" name=GENERATOR></HEAD>
+<BODY background="user enters xMin and xMax, then ZFit_files/WB00760_.gif">
+<P align=center><FONT face="Arial Black" color=#ff0000><BIG><BIG>Functions and 
+Graphs - Lesson 11</BIG></BIG></FONT></P>
+<HR color=#000000 SIZE=8>
+
+<P>This lesson will demonstrate how the <FONT 
+color=#0000ff><STRONG>ZFit</STRONG></FONT> instruction may be used to provide 
+automatic scaling of the graph display window to ensure that the entire graph is 
+contained within the viewing area.</P>
+<P>In this program, the user enters a function to be graphed and then enters 
+values for <FONT color=#0000ff><STRONG>xMin</STRONG></FONT> and <FONT 
+color=#0000ff><STRONG>xMax</STRONG></FONT>. The program then uses the <FONT 
+color=#0000ff><STRONG>ZFit</STRONG></FONT> instruction to recalculate the values 
+of <FONT color=#0000ff><STRONG>yMin</STRONG></FONT> and <FONT 
+color=#0000ff><STRONG>yMax</STRONG></FONT> so that the entire graph of the 
+function is contained within the graph window. This makes the most efficient use 
+of the graph window when displaying the graph of the function.</P>
+<P><U><STRONG>New Instructions Introduced:</STRONG></U> 
+<UL>
+  <LI><STRONG><FONT color=#0000ff>InpSt</FONT> - </STRONG>This instruction 
+  allows the user to enter the function as a string and store it in the program. 
+  </LI></UL>
+<UL>
+  <LI><STRONG><FONT color=#0000ff>St&gt;Eq</FONT> ( Y , y1 ) - </STRONG>This 
+  instruction converts the string variable <STRONG>Y</STRONG> into a function 
+  and stores it in <FONT color=#000000>the equation variable</FONT><STRONG><FONT 
+  color=#0000ff> </FONT><FONT color=#000000>y1.<BR></FONT></STRONG>
+  <LI><FONT color=#0000ff><STRONG>ZFit</STRONG></FONT> - This instruction 
+  recalculates <FONT color=#0000ff><STRONG>yMin</STRONG></FONT> and <FONT 
+  color=#0000ff><STRONG>yMax</STRONG></FONT> to include the minimum and maximum 
+  <STRONG><BIG>y</BIG></STRONG> values of the selected functions between the 
+  current <FONT color=#0000ff><STRONG>xMin</STRONG></FONT> and <FONT 
+  color=#0000ff><STRONG>xMax</STRONG></FONT>. </LI></UL>
+<P>The <FONT color=#0000ff><STRONG>InpSt</STRONG></FONT> instruction is found in 
+the <FONT color=#008000><STRONG>[ PRGM ], [ I / O ]</STRONG></FONT> menu.</P>
+<P>The <FONT color=#0000ff><STRONG>St&gt;Eq</STRONG></FONT> instruction is found 
+in the <STRONG><FONT color=#ff8000>[ 2nd ]</FONT>, <FONT color=#ff8000>[ STRNG 
+]</FONT></STRONG> menu.</P>
+<P>The <FONT color=#0000ff><STRONG>ZFit</STRONG></FONT> instruction is found in 
+the <FONT color=#008000><STRONG>[ GRAPH ], [ ZOOM ]</STRONG></FONT> menu.</P>
+<P><FONT color=#ff0000><STRONG>Note:</STRONG></FONT> The function must be 
+entered in terms of&nbsp; <STRONG>x</STRONG>. It is suggested that you use the 
+<FONT color=#008000><STRONG>[ x-VAR ]</STRONG></FONT> key to enter&nbsp; 
+<STRONG>x</STRONG>&nbsp; in the function.</P>
+<HR color=#000000 SIZE=4>
+
+<P>This example will demonstrate how the user can enter a function into a 
+program and store the function in the equation variable <FONT 
+color=#000000><STRONG>y1</STRONG></FONT>. First, the function must be entered as 
+a string and stored in the string variable <STRONG>Y</STRONG> using the <FONT 
+color=#0000ff><STRONG>InpSt</STRONG></FONT> instruction. Then, the <FONT 
+color=#0000ff><STRONG>St&gt;Eq</STRONG></FONT> instruction is used to convert 
+the string variable <STRONG>Y</STRONG> into a function and store it in the 
+equation variable <FONT color=#000000><STRONG>y1</STRONG></FONT>.</P>
+<P>The user is then allowed to enter values for <FONT 
+color=#0000ff><STRONG>xMin</STRONG></FONT> and <FONT 
+color=#0000ff><STRONG>xMax</STRONG></FONT>. The program then uses the <FONT 
+color=#0000ff><STRONG>ZFit</STRONG></FONT> instruction to recalculate <FONT 
+color=#0000ff><STRONG>yMin</STRONG></FONT> and <FONT 
+color=#0000ff><STRONG>yMax</STRONG></FONT> as necessary to fit the entire graph 
+of the function within the graph window.</P>
+<P><U><FONT color=#ff0000><STRONG><BIG>Note:</BIG></STRONG></FONT></U> I suggest 
+that you call the <STRONG>SETUP86</STRONG> program to reset the calculator 
+settings before running any program that involves graphing to insure that the 
+program runs the way you are expecting it to. If you don't do this, you may be 
+surprised by some unexpected results! </P>
+<P><FONT color=#ff0000><STRONG>Tip:</STRONG></FONT> If you place a <FONT 
+color=#0000ff><STRONG>Pause</STRONG></FONT> instruction immediately following 
+the <FONT color=#0000ff><STRONG>DispG</STRONG></FONT> instruction, the program 
+will pause until the user hits the<FONT color=#008000><STRONG> [ ENTER 
+]</STRONG></FONT> key. This will allow time for the user to examine the graph 
+before the bottom of the graph is covered up by the graph menu!</P>
+<HR color=#000000 SIZE=4>
+
+<DIV align=center>
+<CENTER>
+<TABLE cellSpacing=0 cellPadding=10 width=600 border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top width=300 height=162 rowSpan=4><STRONG><FONT 
+      color=#000000>:</FONT>SETUP86<BR><FONT color=#000000>:</FONT><FONT 
+      color=#0000ff>ClLCD<BR></FONT><FONT color=#000000>:</FONT><FONT 
+      color=#0000ff>Disp </FONT><FONT color=#000000>"ENTER THE 
+      FUNCTION"<BR>:</FONT><FONT color=#0000ff>Disp </FONT><FONT 
+      color=#000000>"( USE x-VAR KEY FOR x )"<BR>:</FONT><FONT 
+      color=#0000ff>InpSt </FONT><FONT color=#000000>"Y(x) = &nbsp; ", 
+      Y<BR></FONT>:<FONT color=#0000ff>St&gt;Eq</FONT> ( Y , y1 )<BR>:<FONT 
+      color=#0000ff>ClLCD</FONT><BR>:<FONT color=#0000ff>Disp</FONT> 
+      "Enter&nbsp; LOWER&nbsp; and UPPER"<BR>:<FONT color=#0000ff>Disp</FONT> 
+      "values&nbsp; for&nbsp; x"<BR>:<FONT color=#0000ff>Disp</FONT> " 
+      "<BR>:<FONT color=#0000ff>Prompt</FONT>&nbsp; <FONT 
+      color=#0000ff>xMin</FONT><BR>:<FONT color=#0000ff>Prompt</FONT>&nbsp; 
+      <FONT color=#0000ff>xMax</FONT><BR>:<FONT 
+      color=#0000ff>ClLCD</FONT><BR>:<FONT color=#0000ff>Disp</FONT> 
+      "Scaling&nbsp; graph..."<BR>:<FONT color=#0000ff>Disp</FONT> "PLEASE&nbsp; 
+      WAIT !"<BR><FONT color=#000000>:</FONT><FONT 
+      color=#0000ff>ZFit<BR></FONT><FONT color=#000000>:</FONT><FONT 
+      color=#0000ff>Pause<BR></FONT></STRONG>
+      <P><FONT color=#ff0000><STRONG><U>Note:</U> In this example, ZFit 
+      recalculates yMin to be -15 and yMax to be 49</STRONG></FONT></P></TD>
+    <TD width=275 height=81>
+      <DIV align=center>
+      <CENTER>
+      <TABLE borderColor=#000000 height=150 cellSpacing=0 cellPadding=0 
+      width=275 bgColor=#ffffff border=5>
+        <TBODY>
+        <TR>
+          <TD vAlign=top align=left width="100%" 
+            bgColor=#ffffff><STRONG>&nbsp;&nbsp; ENTER THE 
+            FUNCTION<BR>&nbsp;&nbsp; ( USE x-VAR KEY FOR x )<BR>&nbsp;&nbsp; 
+            Y(x) = x^2&nbsp; -&nbsp; 
+      15<BR></STRONG></TD></TR></TBODY></TABLE></CENTER></DIV></TD></TR>
+  <TR>
+    <TD width=275 height=41>&nbsp;
+      <DIV align=center>
+      <CENTER>
+      <TABLE borderColor=#000000 height=150 cellSpacing=0 cellPadding=0 
+      width=275 bgColor=#ffffff border=5>
+        <TBODY>
+        <TR>
+          <TD vAlign=top align=left width="100%" 
+            bgColor=#ffffff><STRONG>&nbsp;&nbsp; Enter LOWER and 
+            UPPER<BR>&nbsp;&nbsp; values&nbsp; for&nbsp; x<BR><BR>&nbsp;&nbsp; 
+            xMin=?&nbsp; - 5<BR>&nbsp;&nbsp; xMax=?&nbsp; 
+        8</STRONG></TD></TR></TBODY></TABLE></CENTER></DIV></TD></TR>
+  <TR>
+    <TD width=275 height=20>&nbsp;
+      <DIV align=center>
+      <CENTER>
+      <TABLE borderColor=#000000 height=150 cellSpacing=0 cellPadding=0 
+      width=275 bgColor=#ffffff border=5>
+        <TBODY>
+        <TR>
+          <TD vAlign=top align=left width="100%" 
+            bgColor=#ffffff><STRONG>&nbsp; &nbsp;Scaling &nbsp; 
+            graph...<BR>&nbsp;&nbsp; PLEASE&nbsp; WAIT 
+      !</STRONG></TD></TR></TBODY></TABLE></CENTER></DIV></TD></TR>
+  <TR>
+    <TD width=275 height=20><IMG height=150 alt="wpe6.jpg (1825 bytes)" 
+      src="user enters xMin and xMax, then ZFit_files/FG11.gif" width=270 
+      border=6></TD></TR></TBODY></TABLE></CENTER></DIV>
+<P>&nbsp;</P>
+<HR color=#000000 SIZE=4>
+
+<DIV align=center>
+<CENTER>
+<TABLE borderColor=#000000 cellSpacing=3 cellPadding=3 width="80%" 
+bgColor=#ffff80 border=5>
+  <TBODY>
+  <TR>
+    <TD align=middle width="33%"><A 
+      href="http://members.fullnet.net/jbowen/FGMenu.htm"><STRONG>F&amp;G Lesson 
+      Menu</STRONG></A></TD>
+    <TD align=middle width="33%"><A 
+      href="http://members.fullnet.net/jbowen/FG10.htm"><STRONG>Previous 
+      Lesson</STRONG></A></TD>
+    <TD align=middle width="34%"><A 
+      href="http://members.fullnet.net/jbowen/FG12.htm"><STRONG>Next 
+      Lesson</STRONG></A></TD></TR></TBODY></TABLE></CENTER></DIV>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </P></BODY></HTML>

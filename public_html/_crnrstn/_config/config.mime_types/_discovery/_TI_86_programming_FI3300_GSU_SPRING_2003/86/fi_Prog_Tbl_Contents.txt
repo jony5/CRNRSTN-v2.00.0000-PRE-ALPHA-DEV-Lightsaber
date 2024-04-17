@@ -1,0 +1,85 @@
+A:
+Average Collection Period 	(Running)
+Accounts Receivable
+Annual Credit sales
+Accounts Payable
+Assets---------------->(Total Asset)
+Assets Turnover
+
+B:
+****Balance Sheet****
+
+C:
+Current Assets
+Current Ratio
+Current Liabilities
+Collection Period------>(average collection period)
+Cost of Goods sold
+Credit Sales per day
+
+D:
+Debt Ratio
+
+
+E:
+Equity----------------->(Owners equity)------->(Net Worth)
+Earnings per Share
+
+F:
+Fixed Assets
+
+
+G:
+Gross Sales
+Gross Profit------------>(Net Profit)
+H:
+
+I:
+Interest
+Inventory Turnover
+Inventories
+****Income Statement****
+
+J:
+K:
+L:
+M:
+
+N:
+Net Income
+Net Profit
+Net Sales
+Net Profit Margin
+Net Accounts Receivable
+
+O:
+Operating Profit
+Operating Profit Margin
+Owners Equity
+
+
+P:
+Payables Period
+
+Q:
+Quick Ratio
+
+R:
+Return on Equity	(Running)
+Return on Assets
+
+S:
+****Statement of Cash flows****
+
+t:
+Total Assets---------------->Assets
+Total Liabilities----------->(?Debt?)
+Total Equity
+Times Interest Earned
+
+u:
+v:
+W:
+X:
+Y:
+Z:

@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0041)http://members.fullnet.net/jbowen/FG4.htm -->
+<HTML><HEAD><TITLE>Compound interest formula</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 6.00.2800.1126" name=GENERATOR></HEAD>
+<BODY background="Compound interest formula_files/WB00760_.gif">
+<P align=center><FONT face="Arial Black" color=#ff0000><BIG><BIG>Functions and 
+Graphs - Lesson 4</BIG></BIG></FONT></P>
+<HR color=#000000 SIZE=8>
+
+<P>This lesson will demonstrate how a formula may be stored in a program and 
+then evaluated using input from the user.</P>
+<P>A common problem in an Algebra class is to use the formula for compound 
+interest to determine the future value of money.</P>
+<P>The formula for simple interest is:&nbsp;&nbsp; <BIG><STRONG>F&nbsp; =&nbsp; 
+P ( 1 + R / N ) ^ ( N * T )</STRONG></BIG></P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Where :&nbsp; <STRONG>F</STRONG> &nbsp; =&nbsp; final 
+amount<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<STRONG>P</STRONG> &nbsp; =&nbsp; initial 
+amount<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<STRONG>R</STRONG> &nbsp; = interest 
+rate<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<STRONG>N</STRONG> &nbsp; = number of compounding 
+periods<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<STRONG>T</STRONG> &nbsp; = Time ( in years 
+)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</P>
+<HR color=#000000 SIZE=4>
+
+<P>This example will first display the formula to the user, and then allow the 
+user to enter values for <STRONG>P</STRONG>, <STRONG>R</STRONG>, 
+<STRONG>N</STRONG>, and <STRONG>T</STRONG>. The program will then convert the 
+interest rate to a decimal value by dividing by 100.</P>
+<P>The program will then evaluate the formula and display the value of&nbsp; 
+<STRONG>F</STRONG>.</P>
+<HR color=#000000 SIZE=4>
+
+<DIV align=center>
+<CENTER>
+<TABLE cellSpacing=0 cellPadding=10 width=600 border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top width=300 height=162><STRONG><FONT 
+      color=#000000>:</FONT><FONT color=#0000ff>ClLCD<BR></FONT><FONT 
+      color=#000000>:</FONT><FONT color=#0000ff>Disp </FONT><FONT 
+      color=#000000>"F = P ( 1 + R / N ) ^ ( N * T )"<BR>:</FONT><FONT 
+      color=#0000ff>Disp </FONT><FONT color=#000000>" "<BR>:</FONT><FONT 
+      color=#0000ff>Prompt </FONT><FONT color=#000000>P<BR></FONT>:<FONT 
+      color=#0000ff>Prompt </FONT><FONT color=#000000>R</FONT><BR>:<FONT 
+      color=#0000ff>Prompt </FONT><FONT color=#000000>N</FONT><BR>:<FONT 
+      color=#0000ff>Prompt </FONT><FONT color=#000000>T</FONT><BR>:R / 100 
+      </STRONG><FONT color=#0000ff>--&gt;</FONT><STRONG> R<BR>:P ( 1 + R / N ) ^ 
+      ( N * T ) </STRONG><FONT color=#0000ff>--&gt;</FONT><STRONG><FONT 
+      color=#000000> F<BR>:</FONT><FONT color=#0000ff>Outpt</FONT><FONT 
+      color=#000000>( 8 , 1 , "F&nbsp; = &nbsp; $ ")<BR>:</FONT><FONT 
+      color=#0000ff>Outpt</FONT><FONT color=#000000>( 8 , 6 , </FONT><FONT 
+      color=#0000ff>round</FONT><FONT color=#000000>( F, 2 ) 
+      )<BR></FONT></STRONG></TD>
+    <TD width=275 height=81>
+      <DIV align=center>
+      <CENTER>
+      <TABLE borderColor=#000000 height=150 cellSpacing=0 cellPadding=0 
+      width=275 bgColor=#ffffff border=5>
+        <TBODY>
+        <TR>
+          <TD vAlign=top align=left width="100%" 
+            bgColor=#ffffff><STRONG>&nbsp;&nbsp; F = P ( 1 + R / N ) ^ ( N * T 
+            )<BR><BR>&nbsp;&nbsp;&nbsp; P=?&nbsp; 1000<BR>&nbsp;&nbsp;&nbsp; 
+            R=?&nbsp; 6<BR>&nbsp;&nbsp;&nbsp; N=?&nbsp; 12<BR>&nbsp;&nbsp;&nbsp; 
+            T=?&nbsp; 5<BR><BR>&nbsp;&nbsp;&nbsp; F = 
+        $1348.85</STRONG></TD></TR></TBODY></TABLE></CENTER></DIV></TD></TR></TBODY></TABLE></CENTER></DIV>
+<P>&nbsp;</P>
+<HR color=#000000 SIZE=4>
+
+<DIV align=center>
+<CENTER>
+<TABLE borderColor=#000000 cellSpacing=3 cellPadding=3 width="80%" 
+bgColor=#ffff80 border=5>
+  <TBODY>
+  <TR>
+    <TD align=middle width="33%"><A 
+      href="http://members.fullnet.net/jbowen/FGMenu.htm"><STRONG>F&amp;G Lesson 
+      Menu</STRONG></A></TD>
+    <TD align=middle width="33%"><A 
+      href="http://members.fullnet.net/jbowen/FG3.htm"><STRONG>Previous 
+      Lesson</STRONG></A></TD>
+    <TD align=middle width="34%"><A 
+      href="http://members.fullnet.net/jbowen/FG5.htm"><STRONG>Next 
+      Lesson</STRONG></A></TD></TR></TBODY></TABLE></CENTER></DIV>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </P></BODY></HTML>

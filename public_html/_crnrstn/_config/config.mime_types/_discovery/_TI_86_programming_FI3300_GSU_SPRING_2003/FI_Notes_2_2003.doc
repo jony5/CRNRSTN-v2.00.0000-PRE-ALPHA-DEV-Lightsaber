@@ -1,0 +1,236 @@
+{\rtf1\ansi\ansicpg1252\uc1\deff0\stshfdbch0\stshfloch0\stshfhich0\stshfbi0\deflang1033\deflangfe1033{\fonttbl{\f0\froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}{\f10\fnil\fcharset2\fprq2{\*\panose 05000000000000000000}Wingdings;}
+{\f64\froman\fcharset238\fprq2 Times New Roman CE;}{\f65\froman\fcharset204\fprq2 Times New Roman Cyr;}{\f67\froman\fcharset161\fprq2 Times New Roman Greek;}{\f68\froman\fcharset162\fprq2 Times New Roman Tur;}
+{\f69\froman\fcharset177\fprq2 Times New Roman (Hebrew);}{\f70\froman\fcharset178\fprq2 Times New Roman (Arabic);}{\f71\froman\fcharset186\fprq2 Times New Roman Baltic;}{\f72\froman\fcharset163\fprq2 Times New Roman (Vietnamese);}}
+{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;
+\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;}{\stylesheet{\ql \li0\ri0\widctlpar\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0 
+\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 \snext0 Normal;}{\*\cs10 \additive \ssemihidden Default Paragraph Font;}{\*
+\ts11\tsrowd\trftsWidthB3\trpaddl108\trpaddr108\trpaddfl3\trpaddft3\trpaddfb3\trpaddfr3\trcbpat1\trcfpat1\tscellwidthfts0\tsvertalt\tsbrdrt\tsbrdrl\tsbrdrb\tsbrdrr\tsbrdrdgl\tsbrdrdgr\tsbrdrh\tsbrdrv 
+\ql \li0\ri0\widctlpar\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0 \fs20\lang1024\langfe1024\cgrid\langnp1024\langfenp1024 \snext11 \ssemihidden Normal Table;}}{\*\rsidtbl \rsid2708077\rsid4785108\rsid8064431\rsid9780450\rsid11284592\rsid13781762}
+{\*\generator Microsoft Word 10.0.2627;}{\info{\title Time Value of Money: Chapter 7 and 8}{\author Jonathan Harris}{\operator Jonathan Harris}{\creatim\yr2003\mo2\dy27\hr23\min49}{\revtim\yr2003\mo2\dy27\hr23\min49}{\version2}{\edmins26}{\nofpages5}
+{\nofwords648}{\nofchars3694}{\*\company student}{\nofcharsws4334}{\vern16437}}\widowctrl\ftnbj\aenddoc\noxlattoyen\expshrtn\noultrlspc\dntblnsbdb\nospaceforul\formshade\horzdoc\dgmargin\dghspace180\dgvspace180\dghorigin1800\dgvorigin1440\dghshow1
+\dgvshow1\jexpand\viewkind1\viewscale100\pgbrdrhead\pgbrdrfoot\splytwnine\ftnlytwnine\htmautsp\nolnhtadjtbl\useltbaln\alntblind\lytcalctblwd\lyttblrtgr\lnbrkrule\rsidroot13781762 \fet0\sectd \linex0\endnhere\sectlinegrid360\sectdefaultcl\sftnbj 
+{\*\pnseclvl1\pnucrm\pnstart1\pnindent720\pnhang {\pntxta .}}{\*\pnseclvl2\pnucltr\pnstart1\pnindent720\pnhang {\pntxta .}}{\*\pnseclvl3\pndec\pnstart1\pnindent720\pnhang {\pntxta .}}{\*\pnseclvl4\pnlcltr\pnstart1\pnindent720\pnhang {\pntxta )}}
+{\*\pnseclvl5\pndec\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl6\pnlcltr\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl7\pnlcrm\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl8
+\pnlcltr\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl9\pnlcrm\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}\pard\plain \ql \li0\ri0\widctlpar\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0\pararsid13781762 
+\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\b\fs28\insrsid13781762\charrsid13781762 Time Value of Money: Chapter 7 and 8\tab \tab \tab \tab 2.20.2003
+\par }{\insrsid8064431 ----------------------------------------------------------------}{\insrsid13781762 
+\par }{\b\i\insrsid13781762\charrsid8064431 Chapter 8 
+\par }{\ul\insrsid13781762\charrsid13781762 
+\par }{\i\insrsid13781762\charrsid13781762 \tab - Will be in 50% of the 2nd exam
+\par \tab - Will be in 25% of the final exam
+\par }\pard \ql \li0\ri0\widctlpar\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0\pararsid8064431 {\insrsid8064431 ----------------------------------------------------------------
+\par }\pard \ql \li0\ri0\widctlpar\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0\pararsid13781762 {\insrsid13781762 
+\par 
+\par $100 today or set amount in the future?
+\par 
+\par Investment opportunities...getting today is better
+\par Consumption...getting today is better
+\par \tab - }{\insrsid8064431 Even}{\insrsid13781762  without investment opportunities, money still has time value
+\par 
+\par \tab \tab \tab 100\tab 100\tab 100
+\par Time line ------------------------------------------>
+\par \tab \tab 0\tab 1\tab 2\tab 3
+\par 
+\par }{\b\insrsid13781762\charrsid13781762 **You cannot add sums of amount that are received at different points in time**
+\par }{\insrsid13781762 
+\par 
+\par *******************************************
+\par 
+\par }{\b\i\insrsid13781762\charrsid8064431 Present Value (PV) and Future value (FV)
+\par }{\insrsid13781762 
+\par r = interest rate = 10%
+\par 
+\par 100 + (100*10%) = 110
+\par 
+\par  100 * (1+10%) = 110, 
+\par \tab \tab ,}{\insrsid8064431  }{\insrsid13781762 where 100 = PV
+\par \tab \tab ,}{\insrsid8064431  }{\insrsid13781762 where 10% = discount rate or required rate of return 
+\par \tab \tab ,}{\insrsid8064431  }{\insrsid13781762 where 110 = FV
+\par 
+\par \tab ****     PV}{\insrsid8064431  }{\insrsid13781762 (1+r) = FV     ****
+\par 
+\par 
+\par \tab - }{\b\insrsid13781762\charrsid13781762 compounding}{\insrsid13781762 : convert current cashflows into future value
+\par 
+\par *******************************************
+\par 
+\par t=1, 100 * (1 + 10%) = 110
+\par t=2, 110 * (1 + 10%) = 100 * }{\insrsid8064431 (1}{\insrsid13781762  + 10}{\insrsid8064431 %) (1}{\insrsid13781762  + 10}{\insrsid8064431 %)}{\insrsid13781762  = 100 * }{\insrsid8064431 (1}{\insrsid13781762  + 10%)}{
+\super\insrsid13781762\charrsid13781762 2}{\insrsid13781762  = |2|
+\par 
+\par 
+\par FV = PV (1+r)}{\super\insrsid13781762\charrsid13781762 n}{\insrsid13781762 \tab ,where n is number of periods
+\par 
+\par *******************************************
+\par 
+\par }{\b\i\insrsid13781762\charrsid8064431 Financial calculator instructions:
+\par }{\insrsid13781762 
+\par \tab - To set the decimal places to 2:
+\par \tab \tab * 2nd --}{\insrsid8064431 > \'93PERIOD BUTTON\'94 }{\insrsid13781762 --> Dec --> 4 --> ENTER
+\par 
+\par \tab - compute screen}{\insrsid8064431 :}{\insrsid13781762 
+\par \tab \tab * 2ND --> CPT
+\par 
+\par \tab - 2nd --> I/Y --> 1 --> ENTER ...means payment per year (one payment per year)
+\par 
+\par \tab - N }{\insrsid8064431 \tab =}{\insrsid13781762  number of periods
+\par \tab - I/Y }{\insrsid8064431 \tab }{\insrsid13781762 = interest rate
+\par \tab - PV }{\insrsid8064431 \tab }{\insrsid13781762 = present value
+\par \tab - PMT }{\insrsid8064431 \tab }{\insrsid13781762 = payment, fixed cash flows (every period receive set amount of money)
+\par }\pard \ql \li0\ri0\widctlpar\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0\pararsid8064431 {\insrsid13781762 \tab - FV }{\insrsid8064431 \tab }{\insrsid13781762 = future value amounts received at the end that}{\insrsid8064431 \rquote s}{
+\insrsid13781762  }{\b\ul\insrsid13781762\charrsid8064431 above}{\insrsid8064431  }{\insrsid13781762 the }{\b\ul\insrsid8064431\charrsid8064431 fixed cash}{\insrsid8064431 \tab \tab \tab     }{\b\ul\insrsid13781762\charrsid8064431 flows}{\insrsid13781762 
+
+\par }\pard \ql \li0\ri0\widctlpar\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0\pararsid13781762 {\insrsid13781762 
+\par \tab 100\tab 100
+\par ---------------------->, }{\insrsid8064431 \tab \tab }{\insrsid13781762 PMT = 100, FV = 0, PV }{\insrsid8064431 =???}{\insrsid13781762 
+\par 0\tab 1\tab 2
+\par 
+\par 
+\par 
+\par \tab \tab $20
+\par \tab 100\tab 100
+\par ---------------------->, }{\insrsid8064431 \tab \tab }{\insrsid13781762 PMT = 100, FV = 20
+\par 0\tab 1\tab 2
+\par 
+\par 
+\par ********************************************
+\par 
+\par 
+\par 100
+\par ---------------------->, }{\insrsid8064431 \tab \tab }{\insrsid13781762 PMT = 100, FV = 0, PV =}{\insrsid8064431 ??}{\insrsid13781762 ?
+\par 0\tab 1\tab 2
+\par 
+\par PV \tab = 100\tab \tab Press 100, "PV"
+\par I/Y \tab = 10\tab \tab press 10, "I/Y"
+\par n \tab = 2\tab \tab press 2, "N"
+\par }{\insrsid8064431 PV \tab = -100\tab \tab press \'93PV\'94, -100\tab }{\insrsid13781762 <---this prevents the calculator from solving for }{\insrsid8064431 0\tab \tab \tab \tab \tab \tab \tab and giving you bad data}{\insrsid13781762 
+\par PMT \tab = 0\tab \tab press 0, }{\insrsid8064431 \'93}{\insrsid13781762 PMT}{\insrsid8064431 \'94}{\insrsid13781762 
+\par FV}{\insrsid8064431   ?}{\insrsid13781762 ?\tab \tab \tab }{\insrsid8064431 Press}{\insrsid13781762  }{\insrsid8064431 \'93}{\insrsid13781762 CPT}{\insrsid8064431 \'94}{\insrsid13781762 , "FV"
+\par 
+\par ********************************************
+\par 
+\par }{\b\i\insrsid13781762\charrsid8064431 Problem 7.13 (page 212}{\b\insrsid13781762\charrsid8064431 )
+\par }{\insrsid13781762 
+\par \tab \tab 28,650
+\par ------------------>
+\par 0\tab 1\tab 2\tab 
+\par 
+\par r = 12%
+\par 
+\par What is the max amount you will pay for this investment?...i.e. what is the PV?
+\par 
+\par FV}{\insrsid8064431 \tab }{\insrsid13781762 =}{\insrsid8064431  }{\insrsid13781762 28}{\insrsid8064431 ,}{\insrsid13781762 650
+\par N }{\insrsid8064431 \tab }{\insrsid13781762 =}{\insrsid8064431  }{\insrsid13781762 2
+\par I/Y }{\insrsid8064431 \tab }{\insrsid13781762 =}{\insrsid8064431  }{\insrsid13781762 12
+\par PMT }{\insrsid8064431 \tab = 0}{\insrsid13781762 , }{\insrsid8064431 because you }{\insrsid13781762 only receive money at the end
+\par 
+\par CPT PV...}{\insrsid8064431 ,\tab (compute the PV)}{\insrsid13781762 
+\par 
+\par ********************************************
+\par 
+\par }{\b\i\insrsid8064431\charrsid8064431 Problem}{\b\i\insrsid13781762\charrsid8064431  7.14 (page 213)
+\par }{\insrsid13781762 
+\par PV \tab = -31,500...insert negative for outflow
+\par FV \tab = 39,700
+\par N  \tab = 2
+\par PMT\tab = 0
+\par 
+\par CPT}{\insrsid8064431 , }{\insrsid13781762 I/Y\tab ===}{\insrsid8064431 > 12.2639}{\insrsid13781762 
+\par 
+\par ********************************************
+\par 
+\par }{\insrsid8064431 Assignment}{\insrsid13781762  7.1 #1 (pg 217)
+\par 
+\par ********************************************
+\par 
+\par Annuity = a cash flow stream where a fixed amoun}{\insrsid8064431 t is received for a fixed number }{\insrsid13781762 of periods
+\par \tab 100\tab 100\tab 100
+\par ----------------------------->
+\par 0\tab 1\tab 2\tab 3
+\par 
+\par }{\insrsid8064431 FV???, 100 * (1+10%)}{\super\insrsid13781762\charrsid8064431 2}{\insrsid13781762  + 100}{\insrsid8064431 *(1+10%)}{\super\insrsid13781762\charrsid8064431 1}{\insrsid13781762  + 100}{\insrsid8064431 (1 + 10%)}{
+\super\insrsid8064431\charrsid8064431 0}{\insrsid13781762 
+\par 
+\par  
+\par PV = 100}{\insrsid9780450  }{\insrsid13781762 /}{\insrsid9780450  }{\insrsid13781762 (1}{\insrsid9780450  }{\insrsid13781762 +}{\insrsid9780450  }{\insrsid13781762 10}{\insrsid9780450 %) + 100 / (1 + 10)}{\super\insrsid9780450\charrsid9780450 2}{
+\insrsid9780450  + 100 / (1 + 10%)}{\super\insrsid13781762\charrsid9780450 3}{\insrsid13781762 
+\par 
+\par 
+\par 
+\par PMT \tab = 100
+\par N\tab = 3
+\par I/Y\tab = 10
+\par PV\tab = 0
+\par CPT}{\insrsid4785108 , }{\insrsid13781762  FV-----> 331??}{\insrsid4785108  [I am not sure about this value]}{\insrsid13781762 
+\par 
+\par 
+\par PMT\tab = 100
+\par N\tab = 3
+\par I/Y\tab = 10
+\par FV\tab = 0
+\par 
+\par CPT}{\insrsid4785108 ,}{\insrsid13781762  PV=====> 248.69
+\par ********************************************
+\par 
+\par }{\b\i\insrsid13781762\charrsid4785108 Annuity due: annuity that makes payments at the beginning of each period
+\par }{\insrsid13781762 
+\par 100\tab 100\tab 100\tab 
+\par ---------------------------------->
+\par 0\tab 1\tab 2\tab 3
+\par 
+\par 
+\par }{\insrsid4785108 FV?}{\insrsid11284592 ?}{\insrsid4785108 , 100 * }{\insrsid13781762 (1}{\insrsid4785108  }{\insrsid13781762 +}{\insrsid4785108  10%)}{\super\insrsid13781762\charrsid4785108 3}{\insrsid13781762  + 100}{\insrsid4785108  * }{
+\insrsid13781762 (1}{\insrsid4785108  }{\insrsid13781762 +}{\insrsid4785108  }{\insrsid13781762 10%)}{\super\insrsid13781762\charrsid4785108 2}{\insrsid13781762  + 100}{\insrsid4785108  * }{\insrsid13781762 (1}{\insrsid4785108  }{\insrsid13781762 +}{
+\insrsid4785108  }{\insrsid13781762 10%)
+\par 
+\par P}{\insrsid4785108 V}{\insrsid13781762 ?}{\insrsid11284592 ?}{\insrsid13781762 , 100}{\insrsid4785108  }{\insrsid13781762 /}{\insrsid4785108  }{\insrsid13781762 (1}{\insrsid4785108  }{\insrsid13781762 +}{\insrsid4785108  10%)}{
+\super\insrsid13781762\charrsid4785108 2}{\insrsid13781762  + 100}{\insrsid4785108  }{\insrsid13781762 /}{\insrsid4785108  }{\insrsid13781762 (1}{\insrsid4785108  }{\insrsid13781762 +}{\insrsid4785108  }{\insrsid13781762 10%)}{
+\super\insrsid13781762\charrsid4785108 1}{\insrsid4785108  + 100,  one \'93100\'94 is discounted two}{\insrsid13781762  pe}{\insrsid4785108 riods, 1 }{\insrsid4785108 {\field{\*\fldinst SYMBOL 224 \\f "Wingdings" \\s 12}{\fldrslt\f10\fs24}}}{
+\insrsid4785108 1 period, and 1}{\insrsid4785108 {\field{\*\fldinst SYMBOL 224 \\f "Wingdings" \\s 12}{\fldrslt\f10\fs24}}}{\insrsid4785108  no periods}{\insrsid13781762 
+\par 
+\par FV}{\insrsid4785108  }{\insrsid13781762 (annuity due) = FV}{\insrsid11284592  }{\insrsid13781762 (annuity) }{\insrsid11284592 *}{\insrsid13781762  }{\insrsid11284592 (1+r)\tab [}{\b\insrsid11284592\charrsid11284592 Double check these formulas}{
+\insrsid11284592\charrsid11284592 ]}{\insrsid13781762 
+\par PV}{\insrsid4785108  }{\insrsid13781762 (annuity due) = PV}{\insrsid11284592  (annuity) *}{\insrsid13781762  (1+r)
+\par 
+\par 
+\par FV = [100}{\insrsid11284592  * }{\insrsid13781762 (1}{\insrsid11284592  }{\insrsid13781762 +}{\insrsid11284592  }{\insrsid13781762 10%)}{\super\insrsid13781762\charrsid11284592 2}{\insrsid13781762  + 100}{\insrsid11284592  * }{\insrsid13781762 (1}{
+\insrsid11284592  }{\insrsid13781762 +}{\insrsid11284592  }{\insrsid13781762 10%)}{\super\insrsid13781762\charrsid11284592 1}{\insrsid13781762  + 100] }{\insrsid11284592 *}{\insrsid13781762  (1}{\insrsid11284592  }{\insrsid13781762 +}{\insrsid11284592  }{
+\insrsid13781762 10%)
+\par PV = [100}{\insrsid11284592  }{\insrsid13781762 /}{\insrsid11284592  }{\insrsid13781762 (1}{\insrsid11284592  }{\insrsid13781762 +}{\insrsid11284592  }{\insrsid13781762 10%) + 100}{\insrsid11284592  }{\insrsid13781762 /}{\insrsid11284592  }{
+\insrsid13781762 (1}{\insrsid11284592  }{\insrsid13781762 +}{\insrsid11284592  }{\insrsid13781762 10%)}{\super\insrsid13781762\charrsid11284592 2}{\insrsid13781762  + 100}{\insrsid11284592  }{\insrsid13781762 /}{\insrsid11284592  }{\insrsid13781762 (1}{
+\insrsid11284592  }{\insrsid13781762 +}{\insrsid11284592  }{\insrsid13781762 10%)}{\super\insrsid13781762\charrsid11284592 3}{\insrsid13781762 ] }{\insrsid11284592 *}{\insrsid13781762  (1}{\insrsid11284592  }{\insrsid13781762 +}{\insrsid11284592  }{
+\insrsid13781762 10%)
+\par 
+\par }{\insrsid11284592 CF}{\sub\insrsid13781762\charrsid11284592 0}{\insrsid11284592 \tab CO}{\sub\insrsid11284592\charrsid11284592 1}{\insrsid13781762 
+\par 
+\par 100\tab 100\tab 100
+\par -------------------------------------->
+\par 0\tab 1\tab 2\tab 3\tab 
+\par 
+\par }{\insrsid11284592 CF}{\sub\insrsid13781762\charrsid11284592 0}{\insrsid13781762  \tab = 100, }{\insrsid11284592 [}{\insrsid13781762 ENTER}{\insrsid11284592 ]}{\insrsid13781762 , }{\insrsid11284592 [}{\insrsid13781762 DOWN ARROW}{\insrsid11284592 ]}{
+\insrsid13781762 
+\par }{\insrsid11284592 CO}{\sub\insrsid13781762\charrsid11284592 1}{\insrsid13781762 \tab = 100, }{\insrsid11284592 [}{\insrsid13781762 ENTER}{\insrsid11284592 ]}{\insrsid13781762 , }{\insrsid11284592 [}{\insrsid13781762 DOWN ARROW}{\insrsid11284592 ]}{
+\insrsid13781762 
+\par }{\insrsid11284592 FO}{\sub\insrsid13781762\charrsid11284592 1}{\insrsid13781762 \tab = 2,   }{\insrsid11284592 [}{\insrsid13781762 ENTER}{\insrsid11284592 ]}{\insrsid13781762 , }{\insrsid11284592 [}{\insrsid13781762 DOWN ARROW}{\insrsid11284592 ]}{
+\insrsid13781762  ----> THIS IS THE FREQUENCY OF CO.1
+\par NPV I \tab = 10   }{\insrsid11284592 [}{\insrsid13781762 ENTER}{\insrsid11284592 ]}{\insrsid13781762 , }{\insrsid11284592 [}{\insrsid13781762 DOWN ARROW}{\insrsid11284592 ]}{\insrsid13781762 
+\par 
+\par NPV CPT 273.55
+\par 
+\par }{\b\insrsid13781762\charrsid11284592 **ATTN: ALWAYS CLEAR OUT OLD DATA
+\par }{\insrsid13781762 
+\par ********************************************
+\par }{\b\i\insrsid13781762\charrsid11284592 ASSIGNMENT 8.1, #2
+\par }{\insrsid13781762 
+\par PV}{\insrsid11284592  }{\insrsid13781762 (3,000}{\insrsid11284592  }{\insrsid13781762 =}{\insrsid11284592  }{\insrsid13781762 12,719.16}{\insrsid11284592 )     }{\insrsid11284592 {\field{\*\fldinst SYMBOL 223 \\f "Wingdings" \\s 12}{\fldrslt\f10\fs24}}}{
+\insrsid11284592 ?????????}{\insrsid13781762 ?}{\insrsid11284592   [I think that this is correct.]}{\insrsid13781762 
+\par -------------------------------------->
+\par 0\tab 1\tab 2\tab 3\tab 4
+\par 
+\par }{\insrsid11284592 PV}{\insrsid13781762  \tab = 12,719.16
+\par }{\insrsid11284592 PMT}{\insrsid13781762 \tab = 0
+\par }{\insrsid11284592 I/Y}{\insrsid13781762 \tab = 9
+\par N\tab = 4
+\par 
+\par CPT FV = }{\insrsid11284592 $}{\insrsid13781762 17,954}{\insrsid11284592 .00}{\insrsid13781762 
+\par }}

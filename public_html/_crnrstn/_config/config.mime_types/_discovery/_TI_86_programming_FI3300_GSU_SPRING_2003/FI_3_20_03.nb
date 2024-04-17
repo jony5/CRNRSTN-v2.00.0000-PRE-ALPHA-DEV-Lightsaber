@@ -1,0 +1,184 @@
+(***********************************************************************
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used on any computer system with Mathematica 4.0,
+MathReader 4.0, or any compatible application. The data for the notebook 
+starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do one of 
+the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing the 
+word CacheID, otherwise Mathematica-compatible applications may try to 
+use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+***********************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      5264,        136]*)
+(*NotebookOutlinePosition[      5921,        159]*)
+(*  CellTagsIndexPosition[      5877,        155]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell[BoxData[
+    \(20, 
+    000\  + \ \([\(\(\(500\/\((1 + r)\)\)\(+\)\) ... \) + 
+          500\/\((1 + r)\)\^50]\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(=\)\(\ \)\(\(\(\(2100\/\((1 + r)\)\)\(+\)\) ... \) + 
+        2100\/\((1 + r)\)\^50\)\)\)], "Input"],
+
+Cell[BoxData[
+    \(20, 
+    000 = \ \(\(\(1600\/\((1 + r)\)\)\(+\)\) ... \) + 
+        1600\/\((1 + r)\)\^50\)], "Input"],
+
+Cell[BoxData[{
+    \(PV\  = \ 20, 000\), "\[IndentingNewLine]", 
+    \(PMT\  = \ 1600\), "\[IndentingNewLine]", 
+    \(n\  = \ 50\), "\[IndentingNewLine]", 
+    \(FV\  = \ 0\), "\[IndentingNewLine]", 
+    \(CPT\ I/Y\  = \ 7.81\)}], "Input"],
+
+Cell[BoxData[
+    \(Problem\ \(\(Set\)\(:\)\)\)], "Input"],
+
+Cell[BoxData[
+    \(#3\)], "Input"],
+
+Cell[BoxData[
+    \(\(-24\), 
+    307.85\[IndentingNewLine]\  | \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+2000\ \ \ \ \ \ \ \ \ \ \ \ \ 2000\ \ \ \ \ \ \ \ \ \ \ \ \ 2000\ \ \ \ \ \ \ \ \ \ \ x\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 10000\)], "Input"],
+
+Cell[BoxData[{
+    \(\ \ \ \(\(|\)\(--\(--\(--\ \ \ -\)\)\)\(|\)\(--\(--\(---\)\)\)\(|\)\(\
+--\(--\(----\)\)\)\(|\)\(--\(--\(---\)\)\)\(|\)\(----\)\(|\)\(---\)\(|\)\) \
+\[Rule] \[IndentingNewLine]t = 
+      0\ \ \ \ \ \ \ \ \ \ \ \ \ 1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 3\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 4\ \ \ \ \ \ \ \ \ 9\ \ \ \ \ \ \ 10\), "\
+\[IndentingNewLine]", 
+    \(\((1)\)\ PV \((assume\ x\  = \ 0)\)\), "\[IndentingNewLine]", 
+    \(\((2)\)\ FV\ at\ t = 3\), "\[IndentingNewLine]", 
+    \(PV\  \[Equal] FV, \ CPT\ PMT\)}], "Input"],
+
+Cell[BoxData[
+    \(\(\(#17\)\(\ \)\)\)], "Input"],
+
+Cell[BoxData[{
+    \(\((Draw\ timeline)\)\), "\[IndentingNewLine]", 
+    \(\ \ 3  
+        rd\ \ \ \ \ \ \ \ \ \ \(\(\(\(\(\(\(\(\(\(\(\(\(\(\(2000--\)--\)--\)\
+--\)--\)--\)--\)--\)--\)--\)--\)--\)--\)--\)--\) - 
+      2000\), "\[IndentingNewLine]", 
+    \(\ \ 2  
+      nd\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\
+\(\(\(\(\(\(10000--\)--\)--\)--\)--\)--\)--\) 
+      10000\), "\[IndentingNewLine]", 
+    \(\ \ 1  st\ \ \ \ \ \ \ \ \ \ \ \(\(\(\(\(10000--\)--\)--\)--\)--\) 
+            10000\[IndentingNewLine] | \(--\(--\(---\)\)\) | \
+\(--\(--\(---\)\)\) | \(--\(----\)\) | \(----\) | \(--\(---\)\) | \
+\(--\(----\)\) | - \[Rule] \[IndentingNewLine]t = \(0\ \ \ \ \ \ \ \ \ \ t = \
+\(1\ \ \ \ \ \ \ \ \ \ \ \ \ t = \(4\ \ \ \ \ \ \ \ \ \ t = \
+\(12\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t = \(15\ \ \ \ \ \ \ \ \ t = 
+                30\)\)\)\)\)\)}], "Input"],
+
+Cell[BoxData[{
+    \("\<Need to add up the amount that occur at the same point in time\>"\), \
+"\[IndentingNewLine]", 
+    \(CF\_1 = \ 12000, \ PV\  = \ 250000\[Times]80  %\)}], "Input"],
+
+Cell[BoxData[
+    \(#10\)], "Input"],
+
+Cell[BoxData[{
+    \(\ \ \ \ \ \ \ \ \ \(\(|\)\(--\(--\(--\(----\)\)\)\)\(|\)\(2  
+            xPMT\)\(\[IndentingNewLine]\)\(|\)\(--\(--\(--\(----\)\)\)\)\(|\)\
+\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(----\)\)\)\)\)\)\)\)\)\)\
+\)\)\)\)\(|\)\(--\)\) \[Rule] \[IndentingNewLine]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ t = 
+      5  yr\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 3\
+0  y\), "\[IndentingNewLine]", 
+    \(First\ Compute\ the\ payment . \[IndentingNewLine]Then\ know\ the\ \
+balance\ after\ 5\ years . \[IndentingNewLine]Then\ the\ balance\ becomes\ \
+the\ PV . \[IndentingNewLine]PMT\_\(after\ 5  yr\)\  = \ 
+      2\[Times]previous\ payment\ \ or\ 2\[Times]
+        PMT\_\(1 - 5  yrs\)\)}], "Input"]
+},
+FrontEndVersion->"4.0 for Microsoft Windows",
+ScreenRectangle->{{0, 1920}, {0, 1387}},
+WindowSize->{495, 740},
+WindowMargins->{{Automatic, 143}, {Automatic, -2}}
+]
+
+
+(***********************************************************************
+Cached data follows.  If you edit this Notebook file directly, not using
+Mathematica, you must remove the line containing CacheID at the top of 
+the file.  The cache data will then be recreated when you save this file 
+from within Mathematica.
+***********************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1717, 49, 130, 3, 44, "Input"],
+Cell[1850, 54, 124, 2, 44, "Input"],
+Cell[1977, 58, 122, 3, 44, "Input"],
+Cell[2102, 63, 240, 5, 110, "Input"],
+Cell[2345, 70, 58, 1, 30, "Input"],
+Cell[2406, 73, 35, 1, 30, "Input"],
+Cell[2444, 76, 245, 4, 50, "Input"],
+Cell[2692, 82, 594, 9, 130, "Input"],
+Cell[3289, 93, 50, 1, 30, "Input"],
+Cell[3342, 96, 884, 16, 130, "Input"],
+Cell[4229, 114, 186, 3, 90, "Input"],
+Cell[4418, 119, 36, 1, 30, "Input"],
+Cell[4457, 122, 803, 12, 150, "Input"]
+}
+]
+*)
+
+
+
+
+(***********************************************************************
+End of Mathematica Notebook file.
+***********************************************************************)
+

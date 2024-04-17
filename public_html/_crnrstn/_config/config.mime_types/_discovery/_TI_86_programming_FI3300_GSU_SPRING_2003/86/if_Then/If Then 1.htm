@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0041)http://members.fullnet.net/jbowen/IF1.htm -->
+<HTML><HEAD><TITLE>If Then 1</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 6.00.2800.1126" name=GENERATOR></HEAD>
+<BODY background="If Then 1_files/WB00760_.gif">
+<P align=center><FONT face="Arial Black" color=#ff0000><BIG><BIG>If-Then Lesson 
+1</BIG></BIG></FONT></P>
+<HR color=#000000 SIZE=8>
+
+<P align=left>This lesson will demonstrate how the <FONT 
+color=#0000ff><STRONG>If -Then</STRONG></FONT> instruction allows the program to 
+make decisions and then branch to alternative courses of action.</P>
+<P align=left><FONT color=#000000><BR>The format of the </FONT><FONT 
+color=#0000ff><STRONG>If - Then</STRONG></FONT><FONT color=#000000> instruction 
+is:</FONT></P>
+<P align=left><BIG><FONT color=#000000>&nbsp;&nbsp; 
+<STRONG>&nbsp;&nbsp;&nbsp;&nbsp; : </FONT><FONT color=#0000ff>If</FONT><FONT 
+color=#000000> condition<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 
+</FONT><FONT color=#0000ff>Then</FONT><FONT 
+color=#000000><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+:&nbsp;&nbsp;&nbsp;&nbsp; statement 
+1<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp; 
+statement 2<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+:&nbsp;&nbsp;&nbsp;&nbsp; etc.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 
+</FONT><FONT color=#0000ff>End</FONT></STRONG></BIG></P>
+<P align=left><FONT color=#ff0000><STRONG>Note:</STRONG></FONT><FONT 
+color=#000000> </FONT><FONT color=#0000ff><STRONG>If</STRONG></FONT><FONT 
+color=#000000>, </FONT><FONT color=#0000ff><STRONG>Then</STRONG></FONT><FONT 
+color=#000000>, and </FONT><FONT color=#0000ff><STRONG>End</STRONG></FONT><FONT 
+color=#000000> are all separate statements and you must select each one 
+individually from the </FONT><FONT color=#008000><STRONG>[PRGM] 
+[CTL]</STRONG></FONT><FONT color=#000000> menu</FONT></P>
+<P align=left><FONT color=#ff0000><BR></FONT><FONT 
+color=#000000>The</FONT><STRONG><FONT color=#ff0000> </FONT><FONT 
+color=#0000ff>If - Then</FONT><FONT color=#ff0000> </FONT></STRONG><FONT 
+color=#000000>instruction works by first evaluating the condition to see if it 
+is true or false. If the condition is true, the block of statements between 
+</FONT><FONT color=#0000ff><STRONG>Then</STRONG></FONT><FONT color=#000000> and 
+</FONT><FONT color=#0000ff><STRONG>End</STRONG></FONT><FONT color=#000000> are 
+executed. If the condition is false, the block of statements between 
+</FONT><FONT color=#0000ff><STRONG>Then</STRONG></FONT><FONT color=#000000> and 
+</FONT><FONT color=#0000ff><STRONG>End</STRONG></FONT><FONT color=#000000> are 
+ignored, and execution of the program resumes at the first statement following 
+the </FONT><FONT color=#0000ff><STRONG>End</STRONG></FONT><FONT color=#000000> 
+statement.</FONT></P>
+<P align=left><FONT color=#000000>The condition is evaluated using the following 
+relational operators:</FONT></P>
+<DIV align=center>
+<CENTER>
+<TABLE borderColor=#000000 cellSpacing=0 cellPadding=0 width="40%" border=3>
+  <TBODY>
+  <TR>
+    <TD width="100%"><STRONG>&nbsp; = = Equal to</STRONG>
+      <P><STRONG>&nbsp; =/= Not equal to</STRONG></P>
+      <P><STRONG>&nbsp; &gt; Greater than</STRONG></P>
+      <P><STRONG>&nbsp; &lt; Less than</STRONG></P>
+      <P><STRONG>&nbsp; &gt;= Greater than or equal to</STRONG></P>
+      <P><STRONG>&nbsp; &lt;= Less than or equal 
+to</STRONG></P></TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align=left><FONT color=#ff0000><STRONG>Note:</STRONG></FONT><FONT 
+color=#000000> The relational operators are found in the </FONT><FONT 
+color=#ff8000><STRONG>[2nd] [TEST]</STRONG></FONT><FONT color=#000000> 
+menu.</FONT></P>
+<P align=left><FONT color=#000000>In the following example, the output is 
+displayed only if the user is 16 or older:</FONT></P>
+<HR color=#000000 SIZE=4>
+
+<DIV align=center>
+<CENTER>
+<TABLE cellSpacing=0 cellPadding=10 width=600 border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top width=300 height=162 rowSpan=2><STRONG><FONT 
+      color=#000000>:</FONT><FONT color=#0000ff>ClLCD<BR></FONT><FONT 
+      color=#000000>:</FONT><FONT color=#0000ff>Input</FONT><FONT color=#000000> 
+      "ENTER YOUR AGE&nbsp; ", A<BR>:</FONT><FONT color=#0000ff>If </FONT><FONT 
+      color=#000000>A&nbsp; &gt;=&nbsp; 16<BR>:</FONT><FONT 
+      color=#0000ff>Then</FONT><FONT color=#000000><BR>:</FONT><FONT 
+      color=#0000ff>Disp</FONT><FONT color=#000000> "YOU CAN 
+      DRIVE"<BR>:</FONT><FONT color=#0000ff>Disp</FONT><FONT color=#000000> "A 
+      CAR"<BR>:</FONT><FONT color=#0000ff>End</FONT><FONT 
+      color=#000000><BR>:</FONT><FONT color=#0000ff>Disp</FONT><FONT 
+      color=#000000> "&nbsp; "<BR>:</FONT><FONT color=#0000ff>Disp</FONT><FONT 
+      color=#000000> "FINISHED"</FONT></STRONG></TD>
+    <TD width=275 height=81>
+      <DIV align=center>
+      <CENTER>
+      <TABLE borderColor=#000000 height=150 cellSpacing=0 cellPadding=0 
+      width=275 bgColor=#ffffff border=5>
+        <TBODY>
+        <TR>
+          <TD vAlign=top align=left width="100%" 
+            bgColor=#ffffff><STRONG>&nbsp;&nbsp; ENTER YOUR AGE &nbsp; 
+            16<BR>&nbsp;&nbsp; YOU CAN DRIVE<BR>&nbsp;&nbsp; A 
+            CAR<BR><BR>&nbsp;&nbsp; 
+      FINISHED</STRONG></TD></TR></TBODY></TABLE></CENTER></DIV>
+      <P>&nbsp;</P></TD></TR>
+  <TR>
+    <TD width=275 height=81>
+      <DIV align=center>
+      <CENTER>
+      <TABLE borderColor=#000000 height=150 cellSpacing=0 cellPadding=0 
+      width=275 bgColor=#ffffff border=5>
+        <TBODY>
+        <TR>
+          <TD vAlign=top width="100%"><STRONG>&nbsp;&nbsp; ENTER YOUR 
+            AGE&nbsp; 14<BR><BR>&nbsp;&nbsp; 
+      FINISHED</STRONG></TD></TR></TBODY></TABLE></CENTER></DIV></TD></TR></TBODY></TABLE></CENTER></DIV>
+<P>&nbsp;</P>
+<HR color=#000000 SIZE=4>
+
+<DIV align=center>
+<CENTER>
+<TABLE borderColor=#000000 cellSpacing=3 cellPadding=3 width="80%" 
+bgColor=#ffff80 border=5>
+  <TBODY>
+  <TR>
+    <TD align=middle width="33%"><A 
+      href="http://members.fullnet.net/jbowen/IfMenu.htm"><STRONG>If-Then Lesson 
+      Menu</STRONG></A></TD>
+    <TD align=middle width="33%">&nbsp;</TD>
+    <TD align=middle width="34%"><A 
+      href="http://members.fullnet.net/jbowen/IF2.htm"><STRONG>Next 
+      Lesson</STRONG></A></TD></TR></TBODY></TABLE></CENTER></DIV>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </P></BODY></HTML>

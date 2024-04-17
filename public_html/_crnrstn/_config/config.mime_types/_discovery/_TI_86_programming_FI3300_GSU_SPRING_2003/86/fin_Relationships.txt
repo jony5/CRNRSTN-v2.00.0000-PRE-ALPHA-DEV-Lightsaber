@@ -1,0 +1,48 @@
+TI 86 Financial Programs:
+
+Variables:
+Current ratio
+	- current asset
+	- current liability
+Quick Ratio
+	- current asset
+	- investment
+	- current liability
+Average Collection Period
+	- accounts receivable
+	- bcredit sales per day
+	- annual credit sales
+Payables period
+	- Accounts payable
+	- COGS
+Inventory Turnover
+	- COGS
+	- inventories
+Inventory Conversion period
+	- inventory
+	- COGS
+Assets Turnover
+	- sales
+	- Total assets
+Debt Ratio
+	- Total liabilities
+	- total assets
+Times interest earned
+	- operating income
+	- interest
+Profitability ratio
+	-ROA
+		~ Net income
+		~ Total assets
+	-ROE
+		~ Net income
+		~ Total equity
+Gross Profit Margin
+	- Gross profit
+	- net sales
+Operating Profit margin
+	- operating profit
+	- net sales
+Net Profit Margin
+	- net income
+	- net sales

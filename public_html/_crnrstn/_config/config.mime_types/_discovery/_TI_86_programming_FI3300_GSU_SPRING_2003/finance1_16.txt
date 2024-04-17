@@ -1,0 +1,83 @@
+Fi3300	1.16.2003 Notes
+
+Quiz 1. (4 questions)
+
+	- Goal of a financial manager
+	- dividend per share
+	- how many new shares were issued
+	- at what price
+
+NOtes:	Each question is worth 10 points
+
+	40 + 20 + 10 * 4 = 100, where 20pts. come from the in-class exercise
+
+
+
+
+Gross Fixed Assets - Allowance for Doubtful = Net Fixed Assets
+
+change in GFA - change in accumulated deprec = change in NFA
+
+GFA = GFA 2002 B/s - GFA 2001 B/s = assets purchased this period
+
+delta AD = accumulated deprec. 2002 B/s - accumulated deprec. 2001 = deprec. on 2002 income
+
+
+****************************************	Quiz Question
+Page 58, Assignment 2.3, #3
+****************************************
+
+****************************************	Quiz Question
+page 65, Problem #10
+****************************************
+
+
+
+**************************************************	Chapter 3: Statement of Cash flows
+
+MCI Worldcom
+
+June 26, 2002, Former CFO book expenses as capital expenditure, therefore the comapany was
+overstated by $3.9 Billion...NI was $1.4 Billion instead of ($1.5 Billion)
+
+1st reported by CNBC, and the stock price dropped 76% to .70(from $64 in 1999)
+
+June 19, 2002 found more errors of $9 Billion
+
+*************************************************
+
+
+
+//***********************************************
+Cash flow from operating activities (income statement related items)
+
+	NI
++	Depreciation
++	decrease(- increase) in asset accounts related to income statements(AR, inventories)
++	increase(-decrease) liability related to income statement(AP, Accruals)
+
+//***********************************************
+Cash flows form Investing Activities
+
+Note:
+		Assets		Liability and Equity
+INcrease	'-'			'+'
+Decrease	'+'			'-'
+
+
++	Decrease(-increase) in gross fixed assets
++	Decrease(-increase) in L.T. investments
+
+//***********************************************
+Cash Flow from Financing
+
++	Increase (-decrease) in loans(NP,current portion L.T. debt)
++	increase (-decrease) in Common stock, Pref. stock, paid-in capital
+-	Dividends [Net Income - dividends = delta RE]
+
+//***********************************************
+
+Handout: Construct a statement of cash flows
+
+
+Quiz next Thursday

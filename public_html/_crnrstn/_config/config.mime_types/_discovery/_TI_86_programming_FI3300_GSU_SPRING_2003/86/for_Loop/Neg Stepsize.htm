@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0041)http://members.fullnet.net/jbowen/FL4.htm -->
+<HTML><HEAD><TITLE>Neg Stepsize</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 6.00.2800.1126" name=GENERATOR></HEAD>
+<BODY background="Neg Stepsize_files/WB00760_.gif">
+<P align=center><FONT face="Arial Black" color=#ff0000><BIG><BIG>For Loop Lesson 
+4</BIG></BIG></FONT></P>
+<HR color=#000000 SIZE=8>
+
+<P>Although it may be used in several ways, the <FONT 
+color=#0000ff><STRONG>For</STRONG></FONT> loop is generally used to repeat a 
+block of statements a fixed number of times.</P>
+<P><STRONG>The format of the <FONT color=#0000ff>For</FONT> loop 
+is:</STRONG></P>
+<P><STRONG>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <FONT 
+color=#0000ff>For</FONT> ( var, initial, final, stepsize 
+)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : statement 
+1<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : statement 
+2<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 
+etc.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <FONT 
+color=#0000ff>End</FONT><BR></STRONG><BR><STRONG>where:&nbsp;&nbsp;&nbsp; 
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var </STRONG>-<STRONG> 
+</STRONG>This is the loop control 
+variable.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <STRONG>initial</STRONG> 
+- This is the initial value of the loop control 
+variable.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <STRONG>final</STRONG> - 
+This is the final value of the loop control 
+variable.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<STRONG>stepsize</STRONG> - This is the incremental value.</P>
+<P><FONT color=#ff0000><STRONG>Note:</STRONG></FONT> The <FONT 
+color=#0000ff><STRONG>For</STRONG></FONT> instruction is found in the <FONT 
+color=#008000><STRONG>[PRGM] [CTL]</STRONG></FONT> menu.</P>
+<P>The <FONT color=#0000ff><STRONG>For</STRONG></FONT> loop works by first 
+setting the loop control variable equal to the initial value. The loop then 
+repeats all the statements between <FONT 
+color=#0000ff><STRONG>For</STRONG></FONT> and <FONT 
+color=#0000ff><STRONG>End</STRONG></FONT>, incrementing the control variable 
+with each pass through the loop. The amount of the increment is given by the 
+stepsize value. The looping action finally stops when the value of the control 
+variable exceeds the final value. The execution of the program resumes at the 
+first statement following the <FONT color=#0000ff><STRONG>End</STRONG></FONT> 
+statement.</P>
+<P><FONT color=#ff0000><STRONG>Note:</STRONG></FONT> The stepsize is optional 
+and if omitted is assumed to be + 1</P>
+<P>&nbsp;</P>
+<P>This example will demonstrate how the stepsize can be used to run the loop 
+backwards by using a negative stepsize.</P>
+<HR color=#000000 SIZE=4>
+
+<DIV align=center>
+<CENTER>
+<TABLE cellSpacing=0 cellPadding=10 width=600 border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top width=300 height=162><STRONG><FONT 
+      color=#000000>:</FONT><FONT color=#0000ff>ClLCD<BR></FONT><FONT 
+      color=#000000>:</FONT><FONT color=#0000ff>For</FONT><FONT color=#000000> ( 
+      M , 5 , 1 , </STRONG>-<STRONG>1&nbsp; )<BR>:</FONT><FONT 
+      color=#0000ff>Disp</FONT><FONT color=#000000>&nbsp; M<BR>:</FONT><FONT 
+      color=#0000ff>End</FONT></STRONG></TD>
+    <TD width=275 height=162>
+      <DIV align=center>
+      <CENTER>
+      <TABLE borderColor=#000000 height=150 cellSpacing=0 cellPadding=0 
+      width=275 bgColor=#ffffff border=5>
+        <TBODY>
+        <TR>
+          <TD vAlign=top align=left width="100%" 
+            bgColor=#ffffff><STRONG>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            5<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            4<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            3<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            2<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            1<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            </STRONG></TD></TR></TBODY></TABLE></CENTER></DIV></TD></TR></TBODY></TABLE></CENTER></DIV>
+<P>&nbsp;</P>
+<HR color=#000000 SIZE=4>
+
+<DIV align=center>
+<CENTER>
+<TABLE borderColor=#000000 cellSpacing=3 cellPadding=3 width="80%" 
+bgColor=#ffff80 border=5>
+  <TBODY>
+  <TR>
+    <TD align=middle width="33%"><A 
+      href="http://members.fullnet.net/jbowen/FLMenu.htm"><STRONG>For Lesson 
+      Menu</STRONG></A></TD>
+    <TD align=middle width="33%"><A 
+      href="http://members.fullnet.net/jbowen/FL3.htm"><STRONG>Previous 
+      Lesson</STRONG></A></TD>
+    <TD align=middle width="34%"><A 
+      href="http://members.fullnet.net/jbowen/FL5.htm"><STRONG>Next 
+      Lesson</STRONG></A></TD></TR></TBODY></TABLE></CENTER></DIV>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </P></BODY></HTML>

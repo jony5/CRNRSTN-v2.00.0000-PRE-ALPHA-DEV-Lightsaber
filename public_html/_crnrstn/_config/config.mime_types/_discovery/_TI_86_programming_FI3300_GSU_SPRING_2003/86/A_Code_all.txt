@@ -1,0 +1,109 @@
+// Program for Average Collection Period	Program Name: SOLA
+
+/////////////////////////////////	Solve for Average collection Period
+:InpSt "AvgCollectPer?",CHOICE
+:If CHOICE = "Y"
+:Then
+:   Prompt AR			//Input AR
+:   Prompt Credit sales per year	//Input sales or 0
+:   Prompt Credit sales per day	//Input Sales or 0
+
+:If CrdtsalY != 0
+:Then
+:   Disp "ACP = (ARx360/slaes)"
+:   Disp " "
+:   ARx360 / CrdtsalY->ACP
+:   Disp "AvgCollPer = ",ACP
+:Else
+:If CrdtsalD != 0
+:Then
+:   Disp "ACP = (AR/crdtsal)"
+:   Disp " "
+:   AR/crdtsalD->ACP
+:   Disp "AvgCollPer = ", ACP
+:Else
+:Disp "Not enough INfo for now"		// Could define AR from Gross AR - Allowance
+:End
+
+
+
+//Program to Solve for Return on equity		Program Name: SOLR1
+///////////////////////////////		
+
+
+
+:Inpst "Solve for ROE?",CHOICE
+:If CHOICE == "Y"
+:Then
+
+:Prompt NI		// NI/TE
+:If NI == 0		// if no NI, then NI = NPM x NS
+:Then 
+:   Prompt NPM		// Net profit Margin
+:   Prompt NetSales	// Net sales, total Sales
+:   NPM *NetSales -> NI
+:Else
+:      SOLN1		// Program to solve for NI
+:End
+
+:Prompt TE		// NI/TE
+:If TE == 0
+:Then
+:   Prompt TL		// Or Debt, Liability
+:   Prompt TA		// Liability + OE
+:   If TL!=0
+:   Then
+:      If TA != 0
+:      Then
+:         TA-TL->TE
+:         Disp "Here is TE...",TE
+:End			// TA - TL = TE
+
+:If TE != 0		// need to solve with ROA
+:Then
+:   NI/TE -> ROE
+:   Disp "NI/TE is ROE...",ROE
+:Else
+:   Prompt ROA
+:   If ROA==0
+:   Then
+:   Disp "Please try again"
+:   End
+
+
+
+//Program to solve for NI			Program Name: SOLN1
+///////////////////////////////	
+
+:Inpst "Solve for NI?, CHOICE
+:If CHOICE == "Y"
+:Then
+:   Prompt DeltaRE		// Change in RE + Dividends Paid
+:   Prompt DivPaid
+:   DeltaRE+DivPaid -> NI
+:   If DeltaRE==0
+:   Then
+:   Prompt EPS			// EPS x shares
+:   If EPS==0
+:   Then
+:   Prompt ROA			// ROA x TA
+
+
+
+//Program to solve for ROA			Program Name: SOLR2
+///////////////////////////////	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

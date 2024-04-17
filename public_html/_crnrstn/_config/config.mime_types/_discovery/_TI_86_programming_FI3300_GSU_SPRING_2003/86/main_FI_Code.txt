@@ -1,0 +1,23 @@
+///////////////////////		Main Program Name: SOLV1
+
+:Count == 0
+:CHOICE == Y			// Var initialization
+
+
+:Disp "Master, What do you want"
+:Disp " to solve for?"
+:Disp " Give me the first upper case 
+:Disp " letter please."		// Begin search for element to solve for 
+
+:InpSt "Alpha1 = ",Alpha1	// store first char in string
+
+:Disp "Y or N..."
+:If Alpha1 = "A"
+:Then
+
+:SOLA				//Run program for Average collection period
+
+:xxxxxxx			// Other A's to solve for
+
+:End
+

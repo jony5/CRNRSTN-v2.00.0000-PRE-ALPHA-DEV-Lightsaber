@@ -1,0 +1,73 @@
+Notes FI3300			3.27.2003
+
+Valuation of stocks
+
+
+price of security 	== 	pv (future cash flows)
+
+price of stock 		==	pv (future dividends)
+
+dividends convey information of future earnings
+
+
+GM
+93	94	95	96	97	98	99	00
+.8	.8	1.1	1.6	2	2	2	2
+//**************************************************************
+
+//*********************************************
+
+Valuation of Stocks
+
+Preffered stock: receives a fixed dividend until forever
+
+
+P = D1 / r	, where D1 = dividend at t=1 and r == cost of equity...required rate of return
+
+Constant growth: Assume dividends grow at a constant dividend growth rate
+
+
+P == D1 / (r-g)
+
+g == g(population)
+
+where g: divdend growth rate...capital gains yield
+
+D1 = dividend at t==1
+//****************************
+D0 == 2, g = 6%, r = 16%
+
+*D1 	= D0 x (1+g)
+    	= 2  x (1+6%)
+	= 2.12
+
+ P = D1 / (r-g)		<---[....**oNLY VALID WHEN r > g**....]
+   = 2.12 / (.16-.06)
+   = 21.2
+
+//*******************************************
+
+p == D1 /(r-g)
+
+p(r-g) == D1
+pr - pg == D1
+pr == D1 +pg
+
+*r = D1/P +g
+
+     |-^-|---> dividend yield
+
+
+
+//***********************************
+
+non-constant growth:
+
+D0 == 2
+g1 == 20%
+g2 == 10%
+g3 == 6%
+r == 16%
+
+
+1st step: Compute all the dividends up to and including the 1t year of constant growth

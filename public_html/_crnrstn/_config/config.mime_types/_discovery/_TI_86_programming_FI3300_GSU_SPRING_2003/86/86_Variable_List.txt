@@ -1,0 +1,126 @@
+List of Variables:
+
+Program: SOLA
+- ACP    	-> Average Colection Period
+- CHOICE 	-> temporary storage
+- AR     	-> account receivables
+- CrdtsalY 	-> credit sales per year
+- CrdtsalD	-> credit sales per day
+
+Program SOLR1
+- NPM		-> Net profit Margin
+- NetSales	-> Net Sales
+- TL		-> total liabilities
+- TA		-> total Assets
+- ROA		-> return on assets
+- DbtRatio	-> Debt Ratio
+
+
+Select and choose from list of variables to:
+	- enter value
+	- request for solution
+
+//*****************************************
+
+:ClLCD		// Prompt_Disp
+:Prompt F
+:Prompt S , T
+:ClLCD
+:Disp "FIRST = ", F
+:Disp "SECOND = ", S
+:Disp "THIRD = ", T 
+ 
+////////////////////////////////////////////
+:ClLCD
+:Input " 5 + 2 = ", A
+:While A  =/=  7
+:Disp "WRONG"
+:Disp "TRY AGAIN"
+:Input " 5 + 2 = ", A
+:End
+:Disp "CORRECT" 
+///////////////////////////////////////////
+        : If condition
+        : Then
+        :     statement 1
+        :     statement 2
+        :     etc.
+        : Else
+        :    statement 1
+        :    statement 2
+        :    etc.
+        :End
+///////////////////////////////////////////
+Variable Name Rules:
+1. From one to eight characters in length.
+2. Must begin with a letter.
+3. May be upper or lower case. ( TAX and Tax 
+   are considered to be different ! )
+   ( The TI-86 is case sensitive! )
+4. You cannot use TI-86 reserved names as 
+   variable names.
+//****************************************
+
+//Variable to request for solving
+assets
+sales
+liabilities
+.
+.
+.
+
+
+//////////////////////////////////	Solve for Assets
+				// 	Program name: SOLA2
+
+:Input "Solve for-"
+:Inpst "Assets?,CHOICE
+:If CHOICE = "Y"
+:Then
+:	Prompt TotDebt
+:	Prompt 
+.
+.
+.
+
+//********************************************
+:Else
+
+
+:If Alpha1 = "B"
+:Then
+:   statememt
+:   statement
+:   statement
+:Else
+
+:If Alpha1 = "C"
+:Then
+:   statememt
+:   statement
+:   statement
+:Else
+If Alpha1 = "D"
+If Alpha1 = "E"
+If Alpha1 = "F"
+
+
+//Display some list from which a Variable can be selected
+//************************************************
+Inpst "Y or N"
+
+
+//************************************************
+
+:InpSt "Initialize vars with given data"
+:While EndInput =/= 999999
+
+:Prompt Assets
+:EndInput = Assets
+:Prompt TotLiab
+:EndInput = TotLiab
+:Prompt OE/NtWrt
+
+:End
+:Input "Select variable to solve for."
+//Based on input, possible solutions are listed.

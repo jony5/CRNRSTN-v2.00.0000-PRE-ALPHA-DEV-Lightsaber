@@ -1,0 +1,199 @@
+Time Value of Money: Chapter 7 and 8				2.20.2003
+
+CHapter 8 
+	- 50% of 2nd exam
+	- 25% of final exam
+
+$100 toady or set amount in the future
+
+
+Investment opportunities...get today
+Consumption...get today
+	- even without investmnent opportunities, money still has time value
+
+			100	100	100
+Time line ------------------------------------------>
+		0	1	2	3
+
+**You cannot add sums of amount that are received at different points in time
+
+
+*******************************************
+
+Present Value (PV) and Future value(FV)
+
+r = interest rate = 10%
+
+100 + (100*10%) = 110
+
+ 100 * (1+10%) = 110, 
+		where 100 = PV
+		where 10% = discount rate or required rate of return 
+		where 110 = FV
+
+	****PV(1+r) = FV****
+
+	- compounding = convert current cashflows into future value
+
+*******************************************
+
+t=1, 100x(1+10%) = 110
+t=2, 110x(1+10%) = 100x(1+10%)(1+10%) = 100x(1+10%)^2 = |2|xx
+
+
+FV = PV(1+r)^n
+	where n is number of periods
+
+*******************************************
+Financial calculator:
+
+	- set the decimal places to 2
+		* 2nd --> . --> Dec --> 4 --> ENTER
+
+	- compute screen
+		* 2ND --> CPT
+
+	- 2nd --> I/Y --> 1 --> ENTER ...means payment per year (one payment per year)
+
+	- N means number of periods
+	- I/Y = interest rate
+	- PV = present value
+	- PMT = payment, fixed cash flows (every period receive set amount of money)
+	- FV = future value amounts received at the end that !!!above!!! the fixed cash flows
+
+	100	100
+---------------------->, PMT = 100, FV = 0, PV = ?
+0	1	2
+
+
+
+		$20
+	100	100
+---------------------->, PMT = 100, FV = 20
+0	1	2
+
+
+********************************************
+
+
+100
+---------------------->, PMT = 100, FV = 0, PV = ?
+0	1	2
+
+PV 	= 100		Press 100, "PV"
+I/Y 	= 10		press 10, "I/Y"
+n 	= 2		press 2, "N"
+PV 	= -100		press PV, -100		<---this prevents the calculator from solving for zero
+PMT 	= 0		press 0, PMT
+FV?			press CPT, "FV"
+
+********************************************
+
+Problem 7.13 (page 212)
+
+		28,650
+------------------>
+0	1	2	
+
+r = 12%
+
+What is the max amount you will pay for this investment?...i.e. what is the PV?
+
+FV =	28650
+N =	2
+I/Y =	12
+PMT = 	0, only receive money at the end
+
+CPT PV...
+
+********************************************
+
+problem 7.14 (page 213)
+
+PV 	= -31,500...insert negative for outflow
+FV 	= 39,700
+N  	= 2
+PMT	= 0
+
+CPT I/Y	===>  12.2639
+
+********************************************
+
+assignment 7.1 #1 (pg 217)
+
+********************************************
+
+Annuity = a cash flow stream where a fixed amount is received for a fixed number
+	  of periods
+	100	100	100
+----------------------------->
+0	1	2	3
+
+FV?,  100x(1+10%)^2 + 100x(1+10%)^1 + 100
+
+ 
+PV = 100/(1+10%) + 100/(1+10)^2 + 100/(1+10%)^3
+
+
+
+PMT 	= 100
+N	= 3
+I/Y	= 10
+PV	= 0
+CPT FV-----> 331??
+
+
+PMT	= 100
+N	= 3
+I/Y	= 10
+FV	= 0
+
+CPT PV=====> 248.69
+********************************************
+
+Annuity due: annuity that makes payments at the beginning of each period
+
+100	100	100	
+---------------------------------->
+0	1	2	3
+
+
+FV?, 100x(1+10%)^3 + 100x(1+10%)^2 + 100x(1+10%)
+
+Pv?, 100/(1+10%)^2 + 100/(1+10%)^1 + 100,  1 one0hundred is discounted 2 periods, 1 -->1 period, and 1 none
+
+FV(annuity due) = FV(annuity) x (1+r)**
+PV(annuity due) = PV(annuity) x (1+r)
+
+
+FV = [100x(1+10%)^2 + 100x(1+10%)^1 + 100] x (1+10%)
+PV = [100/(1+10%) + 100/(1+10%)^2 + 100/(1+10%)^3] x (1+10%)
+
+CF.0	CO.1
+
+100	100	100
+-------------------------------------->
+0	1	2	3	
+
+CF.0 	= 100, ENTER, DOWN ARROW
+CO.1	= 100, ENTER, DOWN ARROW
+FO.1	= 2,   ENTER, DOWN ARROW ----> THIS IS THE FREQUENCY OF CO.1
+NPV I 	= 10   ENTER, DOWN ARROW
+
+NPV CPT 273.55
+
+**ATTN: ALWAYS CLEAR OUT OLD DATA
+
+********************************************
+ASSIGNMENT 8.1, #2
+
+PV(3,000=12,719.16			?
+-------------------------------------->
+0	1	2	3	4
+
+pv 	= 12,719.16
+pmt	= 0
+I/y	= 9
+N	= 4
+
+CPT FV = 17,954....this is after one period???

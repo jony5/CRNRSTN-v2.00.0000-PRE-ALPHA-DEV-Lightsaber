@@ -1,0 +1,308 @@
+Main File Name:		FICALC
+
+VARIABLES:
+PV	->	Present Value
+FV	->	Future Value (above fixed cash flows)
+r	-> 	Interest rate == discount rate == required rate of return
+IperY	->	interest rate compound rate...[1 = once a year]
+PMT	->	payment == fixed cash flows
+N	->	number of periods
+Annuity	->	annuity due, annuity that makes PMT at the beginning of each period
+
+-----------------------------------------------------------------------------
+Formulae:	
+
+	- PV(1+r) = FV
+
+Solve for:
+	- Present Value
+	- Future Value
+	- Interest rate == discount rate == required rate of return
+
+-----------------------------------------------------------------------------
+Formulae:
+	- FV = PV(1+r)^n + PV(1+r)^(n-1)...	, where n is number of periods
+
+		FV?,  100x(1+10%)^2 + 100x(1+10%)^1 + 100
+
+	- PV = 100/(1+10%) + 100/(1+10)^2 + 100/(1+10%)^3
+
+
+=========================PROG NAME: 	VARCLR	DONE
+:0 -> PV
+:0 -> FV
+:0 -> r
+:1 -> IY		// interest compounded once a year by default
+:0 -> PMT
+:0 -> n
+:0 -> ANNUITY
+
+=========================
+
+=========================PROG NAME: 	SOLV1 ( FICALC )
+PSEUDO-CODE
+:Disp "Master, what would"
+:Disp "you like to solve"
+:Disp "for (enter FIN for"
+:Disp "financial calc)?"
+
+:Input "?=", SEL	// receive selection
+:IF SEL == "FIN"
+:Then
+:FICALC			// call program for financial calculator
+:Else 
+:Disp "No other funct yet."
+:End
+
+=========================
+
+=========================PROG NAME: 	FICALC ( VARCLR )
+:VARCLR			// module to initialize all variables
+:CILCD
+:Disp "Solve for:"
+:Disp "[1]PV  [2]FV  [3]r"	// or use 1)PV notation if no space for display off all
+:Disp "[4]I/y [5]PMT [6]n"
+:Disp "[7]Annuity"
+:Disp "[8]Formulae
+
+:Input"SelectionNUM= ",SEL	// store int selection in var
+:CILCD
+:If SEL == 1
+:Then
+	:PVCALC			// solve for PV
+	:MORE
+:Else
+	:If SEL == 2
+	:Then
+		:FVCALC			// solve for FV
+		:MORE
+	:Else
+		:If SEL == 3
+		:Then
+			:RCALC			// !Not important to solve for r
+		:Else
+			:If SEL == 4
+			:Then
+				:IYCALC			// solve for I[y]
+			:Else
+				:If SEL == 5
+				:Then
+					:PMTCALC			// solve for PMT
+				:Else
+					:If SEL == 6
+					:Then
+						:NCALC			// solve for N
+					:Else
+						:If SEL == 7
+						:Then
+							:ANNCALC			// solve for Annuity
+						:Else
+							:If SEL == 8
+							:Then
+								:FDISP
+							:Else
+							:Disp "No selection made."
+							:End
+						:End
+					:End
+				:End
+			:End
+		:End
+	:End
+:End
+========================
+
+=========================PROG NAME: 	MORE
+:CILCD
+:Disp "[1]CONTINUE"
+:Disp "[2]ADD VALUE"
+:Disp "[3]END"
+:Input " = ",more
+:If more == 3
+:Then
+	:Stop
+:Else
+	:If more == 2
+	:Then
+		:FICALC
+	:Else
+		:If more == 1
+		:Then
+			:VARCLR
+			:FICALC
+		:End
+	:End
+:End
+=========================
+
+=========================PROG NAME: 	BRANCH
+:If SEL == 1
+:Then
+	:L
+=========================
+
+=========================PROG NAME: 	PVCALC
+--------------------------------------------------------
+PV = FV/(1+r)
+PV = 100/(1+10%) + 100/(1+10)^2 + 100/(1+10%)^3
+--------------------------------------------------------
+:CILCD
+:0->PV
+:Prompt FV
+
+:Input "rate in % =? ", r
+:r/100 -> rdec			// convert r to decimal
+:VADDSLV
+:Input "#N since last $",N
+:While n > 0
+:PV + (FV/((1 + rdec)^n)) -> PV	// store result in PV
+:n - 1 -> n
+:End
+:Lbl PVlbl
+:CILCD
+:Disp FV,r,N
+:PVtot+PV->PVtot
+:If more ==2
+:Disp "*PVtot* =$", PVtot
+:Else
+:Disp "*PV* = $",PVtot
+:End
+:Disp "PRESS ENTER"
+:Pause
+:MORE
+=========================
+
+//The following code is irrelevant... 
+=========================PROG NAME:	INTCALC
+	:Input "#periods = ",N
+	:If SEL == 1			// i.e. solving for PV
+	:Then
+		:While N >= 0
+			:PV + (FV/((1 + IperY)^N)) -> PV	// store result in PV
+			:N - 3 -> N
+		:End
+	:Else
+		:If SEL == 2		// i.e. solving for FV
+		:Then
+			:While N>0
+				:PV(1+IperY)->PVnew
+				:PVnew->PV
+				:N-1->N
+			:End
+			:If FV==0
+			:Then
+				:PVnew->FV
+			:Else
+				:PVnew + FV ->FV
+			:End
+		:End
+	:End
+=========================
+
+=========================PROG NAME: 	FVCALC
+-------------------------------------------------------
+FV = PV(1+r)
+FV = PV(1+r)^n + PV(1+r)^(n-1)...where n is number of periods
+-------------------------------------------------------
+:Prompt PV
+:0->FV
+:Input "IperY(not r)= ",IperY
+:If IperY!=0
+:Then
+	:IperY/100->IperY
+	:INTCLAC
+	:Goto FVlbl
+:Else
+	:Input "rate in % =?",r
+	:r/100 -> rdec
+	:Prompt n
+	:While n >= 0
+		:FV + (PV((1 + rdec)^n)) -> FVnew
+		:n - 1 -> n
+	:End
+	:Lbl FVlbl
+	:CILCD
+	:Disp PV,r,N
+	:FVtot+FV->FVtot
+	:If more==2
+		:Then
+		:Disp "*FVtot* = $",FVtot
+	:Else
+		:Disp "*FV* = $", FVtot
+	:End
+	:Disp "	PRESS ENTER"
+	:Pause
+	:CILCD
+	:Disp "Loading...."
+:End
+=========================
+
+=========================PROG NAME: 	RCALC
+------------------------------------------------------
+r = (FV*PV) - 1.....this equation is not complete!!!
+------------------------------------------------------
+:Prompt PV
+:Prompt FV
+:Prompt N
+:(FV * PV) - 1...
+:
+=========================
+
+=========================PROG NAME: 	IYCALC
+interest rate compound rate...[1 = once a year]...NO formula, just initialize variable
+=========================
+
+=========================PROG NAME: 	PMTCALC
+payment == fixed cash flows
+=========================
+
+=========================PROG NAME: 	NCALC
+=========================
+
+=========================PROG NAME: 	ANNCALC
+=========================
+
+=========================PROG NAME: 	FICALC
+=========================
+
+=========================PROG NAME: 	VADDSLV
+:CILCD
+:0->pv
+:Disp "Enter number of"
+:Disp "periods with diff"
+:Disp "$ flows or zero"
+:Prompt N
+:If N==0
+:Then
+:	Stop
+:Else
+:	0->PVtot
+:	If SEL==1		// pVCALC
+:	Then
+:	Disp "From last $t to 1st"
+:		While N>0
+:			Input "$",pymnt
+:			PV+(pymnt/(1+rdec)^N)->PV
+:			(N-1)->N
+:		End
+:	Else
+:		If SEL==2
+:		Then
+:			Disp "$from 1st to last."
+:			While
+:			N>0
+:				Input "$",pymnt
+:			FV+(pymnt*(1+rdec)^N)->FV
+:			(N-1)->N
+:			End
+:		ENd
+:	End
+:End
+=========================
+
+	
+
+
+
+
+
