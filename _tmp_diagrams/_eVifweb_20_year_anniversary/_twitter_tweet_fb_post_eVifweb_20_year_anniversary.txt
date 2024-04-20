@@ -13,7 +13,6 @@ Pushed 1 commit to origin/master on Saturday, April 20, 2024 @ 04:20:00.000427.
 
 https://github.com/jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber
 
-
 # [END OF POST]
 
 
@@ -34,6 +33,11 @@ https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/_eVifweb_20_year_anniversary/
 https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/_eVifweb_20_year_anniversary/eVifweb_2004_ATLANTA_first_production_website_CONTACTUS.png
 https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/_eVifweb_20_year_anniversary/eVifweb_2004_ATLANTA_invoice_Q1_first_dollar_FULLPAGE.png
 https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/_eVifweb_20_year_anniversary/eVifweb_2004_ATLANTA_invoice_Q2_first_dollar_FULLPAGE.png
+https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/_eVifweb_20_year_anniversary/eVifweb_2019_ATLANTA_NORTHYARDS_MOXIE_5_and_J5_on_JUNE_27_TOP_FLOOR_DECK_00.jpg
+https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/_eVifweb_20_year_anniversary/eVifweb_2019_ATLANTA_NORTHYARDS_MOXIE_5_and_J5_on_JUNE_27_TOP_FLOOR_DECK_01.jpg
+https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/_eVifweb_20_year_anniversary/eVifweb_2019_ATLANTA_NORTHYARDS_MOXIE_5_and_J5_on_JUNE_27_TOP_FLOOR_DECK_02.jpg
+https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/_eVifweb_20_year_anniversary/eVifweb_2019_ATLANTA_NORTHYARDS_MOXIE_5_and_J5_on_JUNE_27_TOP_FLOOR_DECK_03.jpg
+https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/_eVifweb_20_year_anniversary/eVifweb_2019_ATLANTA_NORTHYARDS_MOXIE_5_and_J5_on_JUNE_27_TOP_FLOOR_DECK_original.jpg
 
 
 Social Share Images Upload Sequence:
@@ -49,6 +53,11 @@ eVifweb_2004_ATLANTA_first_production_website_SERVICES.png
 eVifweb_2004_ATLANTA_first_production_website_CONTACTUS.png
 eVifweb_2004_ATLANTA_invoice_Q1_first_dollar_FULLPAGE.png
 eVifweb_2004_ATLANTA_invoice_Q2_first_dollar_FULLPAGE.png
+eVifweb_2019_ATLANTA_NORTHYARDS_MOXIE_5_and_J5_on_JUNE_27_TOP_FLOOR_DECK_00.jpg
+eVifweb_2019_ATLANTA_NORTHYARDS_MOXIE_5_and_J5_on_JUNE_27_TOP_FLOOR_DECK_01.jpg
+eVifweb_2019_ATLANTA_NORTHYARDS_MOXIE_5_and_J5_on_JUNE_27_TOP_FLOOR_DECK_02.jpg
+eVifweb_2019_ATLANTA_NORTHYARDS_MOXIE_5_and_J5_on_JUNE_27_TOP_FLOOR_DECK_03.jpg
+eVifweb_2019_ATLANTA_NORTHYARDS_MOXIE_5_and_J5_on_JUNE_27_TOP_FLOOR_DECK_original.jpg
 
 
 eVifweb's First Corporate Client:
@@ -64,4 +73,4 @@ https://lightsaber.crnrstn.jony5.com/_crnrstn/_config/config.mime_types/applicat
 
 
 File Last Modified:
-Sat Apr 20 04:49:10.184182 2024.
+Sat Apr 20 06:37:18.344763 2024.
