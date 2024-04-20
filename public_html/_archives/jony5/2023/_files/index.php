@@ -674,7 +674,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                         </div>
                         <div class="cb"></div>
 
-                        <p><!--Today is Thursday, April 4, 2019. [original] -->Today is Saturday, April 20, 2024 @ 0420 hrs. For 21 years now, the Lord has had mercy upon me to shepard me through a living that is according to the revelation of
+                        <p><!--Today is Thursday, April 4, 2019. [original] -->Today is Saturday, April 20, 2024 @ 1620 hrs. For 21 years now, the Lord has had mercy upon me to shepard me through a living that is according to the revelation of
                         <em>the two pillars and our response</em> as they are presented above. Within a month or so of <strong>the beginning of such a Christian living</strong>, <strong>my Bible</strong>, which I
                         prayed over every morning, <strong>became a different book to me</strong>. It tasted differently; <strong>the Word of God was bursting forth and overflowing</strong> directly in my mouth (<a vvid="psa119_103" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Psa. 119:103</a><?php echo $oBringer->seo_out('psa119_103'); ?>) as I ate it. At that time in the brother's house, I was praying before the Lord from the book of Philippians.</p>
 
