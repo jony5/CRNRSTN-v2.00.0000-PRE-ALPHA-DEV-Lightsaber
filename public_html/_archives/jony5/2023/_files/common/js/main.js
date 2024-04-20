@@ -8,6 +8,7 @@ var myAjax = "";
 var ajax_root;
 var requestedmodule = "";
 
+var banner_pause_buffer_ttl = 2500;		// APPLIES TO SCRIPTURE <A> CLICKS.
 var bannerImageIndexARRAY = [];
 var objectArrayBannerImageIndex = 0;
 var imageHTML_ARRAY = [];
@@ -410,9 +411,22 @@ function initGlobal(){
 
 								//
 								// PAUSE LIFESTYLE BANNER ROTATION.
-								toggle_banner_mode();
+								//toggle_banner_mode();
+
+								if($('#vv_deep_link_active').length){
+
+									scripture_vv = extract_http_get_param_data('vv');
+
+									if(scripture_vv.length < 1){
+
+										jony5_scroll_to();
+
+									}
+
+								}
 
 							}
+
 						});
 
 					}
@@ -2985,6 +2999,11 @@ function displayScriptures(resp){
 		$("#script_popup").html('');
 		$("#script_popup").append(fragment);
 
+		//
+		// THIS MAY AFFECT THE LIFESTYLE BANNER
+		// IMAGE ROTATION MODE.
+		jony5_scroll_to('display_scriptures_xhr');
+
 	}
 
 }
@@ -4437,6 +4456,41 @@ function launch_newwindow(pageUri){
 function jony5_scroll_to(target){
 
 	switch(target){
+		case 'display_scriptures_xhr':
+
+			//
+			// CHECK ON THE LIFESTYLE BANNER IMAGE ROTATION MODE, AND
+			// TURN OFF BANNER IMAGE ROTATION IF IT IS ON.
+			// Saturday, April 20, 2024 @ 0149 hrs.
+			tmp_mode = $("#banner_mode_track").html();
+
+			if(tmp_mode != 'PAUSE'){
+
+				//
+				// APPLY A 2.5 SECOND TTL ON A PAUSE BUFFER, AND
+				// TOGGLE THE LIFESTYLE BANNER IMAGE ROTATION MODE
+				// WHEN THE TTL EXPIRES.
+				$('#animation_05_delay').animate({
+					opacity: 0
+				}, {
+					duration: banner_pause_buffer_ttl,
+					queue: false,
+					specialEasing: {
+						left: "swing"
+					},
+					complete: function(){
+
+						//
+						// PAUSE LIFESTYLE BANNER ROTATION.
+						toggle_banner_mode();
+
+					}
+
+				});
+
+			}
+
+		break;
 		case  'top':
 
 			$("html, body").animate({
@@ -4467,24 +4521,36 @@ function jony5_scroll_to(target){
 			deep_link_content_highlight(target);
 
 			//
-			// STALL FOR 2 SECONDS, THEN PAUSE
-			// LIFESTYLE BANNER IMAGE ROTATION.
-			$("#" + target).animate({
-				opacity: 1
-			}, {
-				duration: 2000,
-				queue: false,
-				specialEasing: {
-					opacity: "linear"
-				},
-				complete: function(){
+			// CHECK ON THE LIFESTYLE BANNER IMAGE ROTATION MODE, AND
+			// TURN OFF BANNER IMAGE ROTATION IF IT IS ON.
+			// Saturday, April 20, 2024 @ 0149 hrs.
+			tmp_mode = $("#banner_mode_track").html();
 
-					//
-					// PAUSE LIFESTYLE BANNER ROTATION.
-					toggle_banner_mode();
+			if(tmp_mode != 'PAUSE'){
 
-				}
-			});
+				//
+				// APPLY A 2.5 SECOND TTL ON A PAUSE BUFFER, AND
+				// TOGGLE THE LIFESTYLE BANNER IMAGE ROTATION MODE
+				// WHEN THE TTL EXPIRES.
+				$('#animation_05_delay').animate({
+					opacity: 0
+				}, {
+					duration: banner_pause_buffer_ttl,
+					queue: false,
+					specialEasing: {
+						left: "swing"
+					},
+					complete: function(){
+
+						//
+						// PAUSE LIFESTYLE BANNER ROTATION.
+						toggle_banner_mode();
+
+					}
+
+				});
+
+			}
 
 		break;
 

@@ -28,7 +28,7 @@ require($CRNRSTN_ROOT.'/_crnrstn/class/xxxxxxx/crnrstn.finiteexpress.inc.php');	
 //
 // SET DEBUG MODE [0=OFF, 1=ON]
 $CRNRSTN_debugMode = 1;
-$oCRNRSTN = new crnrstn('s3ria11zati0n-k3y', $CRNRSTN_debugMode);
+$oCRNRSTN = new crnrstn('s3ria11zat10n-k3y-2023', $CRNRSTN_debugMode);
 
 ##
 # REFERENCE OF ERROR LEVEL CONSTANTS
@@ -80,7 +80,9 @@ The error level constants are always available as part of the PHP core.
 $oCRNRSTN->addEnvironment('LOCALHOST_MAC', E_ALL);
 $oCRNRSTN->addEnvironment('BLUEHOST_2018', E_ALL & ~E_NOTICE & ~E_STRICT);
 $oCRNRSTN->addEnvironment('BLUEHOST_WWW_2018', E_ALL & ~E_NOTICE & ~E_STRICT);
-	
+$oCRNRSTN->addEnvironment('JONY5_SUBDOMAIN_EVIFWEB', E_ALL & ~E_NOTICE & ~E_STRICT);
+
+
 //
 // INITIALIZE LOGGING FUNCTIONALITY FOR EACH ENVIRONMENT. IF NULL OR UNDEFINED, WILL LOG TO SCREEN.
 # $oCRNRSTN->initLogging([environment-key], [logging-constant], [additional-logging-parameters]);
@@ -96,12 +98,13 @@ $oCRNRSTN->addEnvironment('BLUEHOST_WWW_2018', E_ALL & ~E_NOTICE & ~E_STRICT);
 # $oCRNRSTN->initLogging('000WEBHOSTJONY5', 'DEFAULT');					// SYSTEM DEFAULT FILE LOGGING
 # $oCRNRSTN->initLogging('000WEBHOSTJONY5', 'FILE', '/var/logFolder');	// INCLUDE PATH TO DIRECTORY FOR CUSTOM LOG FILE
 
-$oCRNRSTN->initLogging('BLUEHOST_2018','EMAIL','J00000101@GMAIL.COM,j5@jony5.com,jharris@evifweb.com');							// SYSTEM DEFAULT ERROR LOGGING
-$oCRNRSTN->initLogging('BLUEHOST_WWW_2018','EMAIL','J00000101@GMAIL.COM,j5@jony5.com,jharris@evifweb.com');	
+$oCRNRSTN->initLogging('BLUEHOST_2018','EMAIL','C00000101@GMAIL.COM,j5@jony5.com,jharris@evifweb.com');							// SYSTEM DEFAULT ERROR LOGGING
+$oCRNRSTN->initLogging('BLUEHOST_WWW_2018','EMAIL','C00000101@GMAIL.COM,j5@jony5.com,jharris@evifweb.com');
 $oCRNRSTN->initLogging('LOCALHOST_MAC', 'DEFAULT'); 							// OUTPUT LOG INFO TO SCREEN
+$oCRNRSTN->initLogging('JONY5_SUBDOMAIN_EVIFWEB', 'DEFAULT');
 #$oCRNRSTN->initLogging('LOCALHOST_PC', 'EMAIL','email1@domain.com,email2@domain.com');			// EMAIL LOG INFO TO LIST OF COMMA DELIMITED EMAIL ACCOUNTS
 #$oCRNRSTN->initLogging('LOCALHOST_MAC', 'FILE','/var/log/customlogs/crnrstnlogs');			    // PATH TO FOLDER & FILE WHERE LOG DATA WILL BE APPENDEED
-#$oCRNRSTN->initLogging('LOCALHOST_MAC', 'SCREEN');												// SYSTEM DEFAULT ERROR LOGGING
+#$oCRNRSTN->initLogging('JONY5_SUBDOMAIN_EVIFWEB', 'SCREEN');												// SYSTEM DEFAULT ERROR LOGGING
 
 //
 // SPECIFY DATABASE TECHNOLOGY - PER ENVIRONMENT...APPROPRIATE DATABASE TECH CAN BE SPECIFIED. THE GOAL FOR IMPLEMENTATION OF THIS IS TO TRY TO KEEP
@@ -110,6 +113,8 @@ $oCRNRSTN->initLogging('LOCALHOST_MAC', 'DEFAULT'); 							// OUTPUT LOG INFO TO
 $oCRNRSTN->specifyDatabaseExtension('LOCALHOST_MAC', $oCRNRSTN->returnDbType(0));
 $oCRNRSTN->specifyDatabaseExtension('BLUEHOST_2018', $oCRNRSTN->returnDbType(0));
 $oCRNRSTN->specifyDatabaseExtension('BLUEHOST_WWW_2018', $oCRNRSTN->returnDbType(0));
+$oCRNRSTN->specifyDatabaseExtension('JONY5_SUBDOMAIN_EVIFWEB', $oCRNRSTN->returnDbType(0));
+
 
 //
 // INITIALIZE DATABASE FUNCTIONALITY FOR EACH ENVIRONMENT. 2 WAYS TO USE THIS METHOD.
@@ -117,6 +122,7 @@ $oCRNRSTN->specifyDatabaseExtension('BLUEHOST_WWW_2018', $oCRNRSTN->returnDbType
 $oCRNRSTN->addDatabase('LOCALHOST_MAC', '/var/www/html/evifweb/config.database.secure/_crnrstn.db.config.inc.php');
 $oCRNRSTN->addDatabase('BLUEHOST_2018', '/home3/evifwebc/public_html/config.database.secure/_crnrstn.db.config.inc.php');
 $oCRNRSTN->addDatabase('BLUEHOST_WWW_2018', '/home3/evifwebc/public_html/config.database.secure/_crnrstn.db.config.inc.php');
+$oCRNRSTN->addDatabase('JONY5_SUBDOMAIN_EVIFWEB', '/home2/jonyfivc/public_html/evifweb_jony5_com/config.database.secure/_crnrstn.db.config.inc.php');
 
 #METHOD TWO# $oCRNRSTN->addDatabase([environment-key], [db-host], [db-user-name], [db-user-pswd], [db-database-name], [optional-db-port]);
 //$oCRNRSTN->addDatabase('LOCALHOST_PC', 'mx.localhost.com', 'crnrstn_assets', '222222222222222', 'db_crnrstn_assets', 80);
@@ -151,225 +157,261 @@ $oCRNRSTN->addDatabase('BLUEHOST_WWW_2018', '/home3/evifwebc/public_html/config.
 #$oCRNRSTN->denyAccess('LOCALHOST_MAC','192.168.2.1,0.0.0.0-172.18.15.12');
 #$oCRNRSTN->denyAccess('LOCALHOST_PC','127.0.0.10, 127.0.0.2, 127.0.0.3, 127.0.0.4, 127.0.0.5');
 
-	
+
 $oCRNRSTN_ENV = new crnrstn_environmentals($oCRNRSTN,'session_initialization_ping');
 if(!$oCRNRSTN_ENV->isConfigured($oCRNRSTN)){
 
-	//
-	// TRANSFER LOG DEBUG OUTPUT TO oCRNTSTN FROM oCRNRSTN_ENV FOR SAFE KEEPING FOR THE TIME BEING
-	$oCRNRSTN->debugTransfer($oCRNRSTN_ENV->getDebug());
-	unset($oCRNRSTN_ENV);
+    //
+    // TRANSFER LOG DEBUG OUTPUT TO oCRNTSTN FROM oCRNRSTN_ENV FOR SAFE KEEPING FOR THE TIME BEING
+    $oCRNRSTN->debugTransfer($oCRNRSTN_ENV->getDebug());
+    unset($oCRNRSTN_ENV);
 
-	//
-	// INITIALIZATION FOR ENCRYPTION :: CRNRSTN SESSION DATA :: ADVANCED CONFIGURATION PARAMETERS
-	/*
-	To configure any of your SERVER environments to hide persistent CRNRSTN configuration session data behind a layer of encryption,
-	run $oCRNRSTN->initSessionEncryption(x,x,x,..)...as defined below...specifying the environmental key for
-	each environment where encryption is desired. CAUTION: This feature will increase server load. CAUTION: CRNRSTN applies a combination
-	of encryption cipher and HMAC keyed hash value data manipulationas and comparisons to store and verify CRNRSTN session data. Some
-	encryption-cipher / HMAC-algoirthm combinations will not be compatible with CRNRSTN due to how they are
-	applied to the data when encryption is initialized...so please test your encryption configuration before applying to production environment.
-	
-	*Note that the available cipher methods can differ between your dev server and your production server! They will depend on the installation
-	and compilation options used for OpenSSL in your machine(s).
-	$oCRNRSTN->initSessionEncryption([environment-key], [openssl-encryption-cipher], [openssl-encryption-key], [openssl-encryption-options], [hmac-algorithm]);
-	$oCRNRSTN->initSessionEncryption([environment-key] -> Specify one of your previously defined addEnvironment() environment keys ,
-									   [openssl-encryption-cipher] -> For a list of recommended and available openssl cipher methods...run $oCRNRSTN->openssl_get_cipher_methods(),
-									   [openssl-encryption-key] -> specify an encryption key to be used by the CRNRSTN encryption layer for encryptable session data,
-									   [openssl-encryption-options] -> a bitwise disjunction of the flags OPENSSL_RAW_DATA and OPENSSL_ZERO_PADDING,
-									   [hmac-algorithm] -> Specify the algorithm to be used by CRNRSTN when using the HMAC library to generate a keyed hash value. For a list
-														   of available algorithms run hash_algos().
-									);
-	CAUTION :: Some hash_algos() returned methods will NOT be compatible
-	with hash_hmac() which CRNRSTN uses in validating its decryption. And certain openssl encryption cipher / hash_algos
-	algorithm combinations will not be compatible. Please test the compatibility of your desired combination of
-	encryption cipher and hmac algoritm for each environment...especially before releasing to production code base. 
+    //
+    // INITIALIZATION FOR ENCRYPTION :: CRNRSTN SESSION DATA :: ADVANCED CONFIGURATION PARAMETERS
+    /*
+    To configure any of your SERVER environments to hide persistent CRNRSTN configuration session data behind a layer of encryption,
+    run $oCRNRSTN->initSessionEncryption(x,x,x,..)...as defined below...specifying the environmental key for
+    each environment where encryption is desired. CAUTION: This feature will increase server load. CAUTION: CRNRSTN applies a combination
+    of encryption cipher and HMAC keyed hash value data manipulationas and comparisons to store and verify CRNRSTN session data. Some
+    encryption-cipher / HMAC-algoirthm combinations will not be compatible with CRNRSTN due to how they are
+    applied to the data when encryption is initialized...so please test your encryption configuration before applying to production environment.
 
-	CAUTION. If session encryption is enabled and then changed some time later. It is possible for active clients to have session data that was
-	encrypted with a "no-longer-in-production" encryption cipher or HMAC algorithm...and hence be unreadable to the application. Developer
-	needs to take this into consideration and plan for use case where session data is unreadable...with graceful degradation or session reset.
+    *Note that the available cipher methods can differ between your dev server and your production server! They will depend on the installation
+    and compilation options used for OpenSSL in your machine(s).
+    $oCRNRSTN->initSessionEncryption([environment-key], [openssl-encryption-cipher], [openssl-encryption-key], [openssl-encryption-options], [hmac-algorithm]);
+    $oCRNRSTN->initSessionEncryption([environment-key] -> Specify one of your previously defined addEnvironment() environment keys ,
+                                       [openssl-encryption-cipher] -> For a list of recommended and available openssl cipher methods...run $oCRNRSTN->openssl_get_cipher_methods(),
+                                       [openssl-encryption-key] -> specify an encryption key to be used by the CRNRSTN encryption layer for encryptable session data,
+                                       [openssl-encryption-options] -> a bitwise disjunction of the flags OPENSSL_RAW_DATA and OPENSSL_ZERO_PADDING,
+                                       [hmac-algorithm] -> Specify the algorithm to be used by CRNRSTN when using the HMAC library to generate a keyed hash value. For a list
+                                                           of available algorithms run hash_algos().
+                                    );
+    CAUTION :: Some hash_algos() returned methods will NOT be compatible
+    with hash_hmac() which CRNRSTN uses in validating its decryption. And certain openssl encryption cipher / hash_algos
+    algorithm combinations will not be compatible. Please test the compatibility of your desired combination of
+    encryption cipher and hmac algoritm for each environment...especially before releasing to production code base.
 
-	*/
-	//$oCRNRSTN->initSessionEncryption('LOCALHOST_PC', 'AES-192-OFB', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'sha256');
-	$oCRNRSTN->initSessionEncryption('LOCALHOST_MAC', 'AES-192-OFB', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'sha256');
-	$oCRNRSTN->initSessionEncryption('BLUEHOST_2018', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
-	$oCRNRSTN->initSessionEncryption('BLUEHOST_WWW_2018', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
-	
-	//
-	// INITIALIZATION FOR ENCRYPTION :: CRNRSTN COOKIE DATA :: ADVANCED CONFIGURATION PARAMETERS
-	/*
-	CAUTION :: Some hash_algos() returned methods will NOT be compatible
-	with hash_hmac() which CRNRSTN uses in validating its decryption. And certain openssl encryption cipher / hash_algos 
-	algorithm combinations will not be compatible. Please test the compatibility of your desired combination of 
-	encryption cipher and hmac algoritm for each environment...especially before releasing to production code base. 
-	
-	CAUTION. If cookie encryption is enabled and then changed some time later. It is possible for clients to have cookie data that was
-	encrypted with a "no-longer-in-production" encryption cipher or HMAC algorithm...and hence be unreadable to the application. Developer
-	needs to take this into consideration and plan for use case where cookie data is unreadable...with graceful degradation or cookie reset.
-	*/
-	#$oCRNRSTN->initCookieEncryption([environment-key], [openssl-encryption-cipher], [openssl-encryption-key], [openssl-encryption-options], [hmac-algorithm]);
-	$oCRNRSTN->initCookieEncryption('LOCALHOST_MAC', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
-	$oCRNRSTN->initCookieEncryption('BLUEHOST_2018', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
-	$oCRNRSTN->initCookieEncryption('BLUEHOST_WWW_2018', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
-	
-	//
-	// INITIALIZATION FOR ENCRYPTION :: CRNRSTN TUNNEL DATA :: ADVANCED CONFIGURATION PARAMETERS
-	/*
-	CAUTION :: Some hash_algos() returned methods will NOT be compatible
-	with hash_hmac() which CRNRSTN uses in validating its decryption. And certain openssl encryption cipher / hash_algos 
-	algorithm combinations will not be compatible. Please test the compatibility of your desired combination of 
-	encryption cipher and hmac algoritm for each environment...especially before releasing to production code base. 
-	
-	*/
-	#$oCRNRSTN->initCookieEncryption([environment-key], [openssl-encryption-cipher], [openssl-encryption-key], [openssl-encryption-options], [hmac-algorithm]);
-	$oCRNRSTN->initTunnelEncryption('LOCALHOST_MAC', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
-	$oCRNRSTN->initTunnelEncryption('BLUEHOST_2018', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
-	$oCRNRSTN->initTunnelEncryption('BLUEHOST_WWW_2018', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
-	
-	//
-	// TO ACHIEVE SLIGHT OPTIMIZATION AT FIRST RUNTIME, PASS AN APPROPRIATE INTEGER VALUE TO requiredDetectionMatches(). WHEN THAT QUANTITY OF PROVIDED $_SERVER PARAMETERS MATCH FOR ANY GIVEN 
-	// DEFINED ENVIRONMENT'S defineEnvResource() KEYS, THE RUNNING ENVIRONMENT WILL BE FLAGGED. FURTHER PROCESSING OF ANY REMAINING defineEnvResource() KEYS CAN BE STEAMLINED.
-	$oCRNRSTN->requiredDetectionMatches(3);
+    CAUTION. If session encryption is enabled and then changed some time later. It is possible for active clients to have session data that was
+    encrypted with a "no-longer-in-production" encryption cipher or HMAC algorithm...and hence be unreadable to the application. Developer
+    needs to take this into consideration and plan for use case where session data is unreadable...with graceful degradation or session reset.
 
-	//
-	// FOR EACH ENVIRONMENT ABOVE, DEFINE RELEVANT CORE SERVER CONFIG SETTINGS + ADD ANY CUSTOM KEYS/VALUES OF YOUR OWN
-	# # # # # # # #
-	# RESOURCE KEY DEFINITIONS FOR CORE AND CUSTOM ATTRIBUTES THAT CAN BE USED FOR EACH ENVIRONMENT RUNNING YOUR APPLICATION ::
-	# * HERE ARE EXAMPLES OF CORE/RESERVED SERVER SUPER GLOBAL PARAMETERS. 
-	# * SUPER GLOBAL SERVER VALUES FROM THESE DEFINITIONS WILL BE USED TO CONFIGURE CRNRSTN TO ITS ENV PER REAL-TIME SERVER SETTINGS
-	#___{KEY}__<-- custom or $_SERVER[] value_______{EXAMPLE OF CONTENT}________________
-	# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-	# DOCUMENT_ROOT									(e.g. 'C:\\[path]\\[to]\\[site-root]\\[folder]\\' or '/var/www/')
-	# SERVER_NAME									(e.g. 'localhost' or 'stage.mydomain.com' or 'mydomain.com')
-	# REMOTE_ADDR									(e.g. '127.0.0.1' or '265.121.2.110')
-	# SERVER_SIGNATURE
-	# ...{ANY OTHER $_SERVER[] SUPER GLOBAL PARAMETER MAY BE USED TO SUPPORT CRNRSTN SERVER DETECTION}...
-	# 
-	# For a more complete list of available super global array parameters, please see :: 
-	# http://php.net/manual/en/reserved.variables.server.php
-	#
-	# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-	# EXAMPLES OF ADDITIONAL AND CUSTOM KEYS/VALUES THAT ONE MAY DECIDE TO INITIALIZE THROUGH CRNRSTN
-	# DOMAIN									(e.g. 'www.domain.com' or 'localhost')
-	# SSL_ENABLED								(i.e. true or false/NULL)
-	# ROOT_PATH_CLIENT_HTTP						(e.g. NULL for hosting off root {DOMAIN} or '{DOMAIN}/[your-folder]/[your-folder]/')
-	#
-	# So...for example, here is how one would programatically add/define keys to initialize their crnrstn 
-	# application where, $oCRNRSTN->defineEnvResource([environment-key], [resource-key], [value]) ::
-	# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-	# $oCRNRSTN->defineEnvResource('STAGE_TESTING_WhAtEvEr', 'SSL_ENABLED', false);
-	# $oCRNRSTN->defineEnvResource('PRODUCTION_ZEDS_DEAD', 'ABSPATH', '/home/a8537844/public_html/');
-	# $oCRNRSTN->defineEnvResource('LOCALHOST_AN_OLD_MACINTOSH', 'YoUr-custom-resource-key', 'value-for-key');
-	# 
-	# or, for example...adding some keys (wordpress specific) to run a wordpress blog on top of crnrstn
-	# $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'DATABASE_TABLE_PREFIX', 'wp_');
-	# $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'DATABASE_CHARSET', 'utf8');
-	# $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'DATABASE_COLLATE', '');
-	# $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'AUTH_KEY', 				'p19~FS%rRR4C,U8Is3?GsL%T=x2HWO~7PY^NVg}%G0e41:VRDx$u$B75nBDo[z%-');
-	# $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'SECURE_AUTH_KEY', 		'V4L<.%eLV2Ni_~02FT#7bwjuBxAOsbq/q6{RhL)ox^^u8Xy(6[|%+S9v5$rXpD39');
-	# $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'LOGGED_IN_KEY', 		'$O##gm<>u[WdJCD-pnh)5hNIqAyc3=is<WV%*k]3O%F^p%-l3@$//8?wmHyJ^gY#');
-	# $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'NONCE_KEY', 			'Pv2bduy|>4}zP2L-<aJNBza?!#bLf{!wc1$1k$;cs=fFO~u}DI2K;TN:nn8Qm{U0');
-	# $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'AUTH_SALT', 			'OvEKNG`wc0*o8uguR8f^<RrInhDluX0^J:<3@mV:<:LA-V8eaeBr/~DDnJ#,={_1');
-	# $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'SECURE_AUTH_SALT', 		'%lGQeL#3p9o;lhgsQ1UF_A_`*K-V+y}b8M.lL`!/G4$_,JCidTBz.!Xzy`)[/D*&');
-	# $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'LOGGED_IN_SALT', 		'*<2 .FW;wq;4gYUkz5Q*7-OClKjrC^ZIDM3IQ|1NS|z>LDfuq$?h!L-=C:-.v,0Y');
-	# $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'NONCE_SALT', 			'Ai=LA9lW:, @DO6-j)kg}]h}9P)4XUrEXTn{/.Hp]gDw$:V%6@^VP;rs0Lp)%n80');
-	# $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'WPLANG', '');
-	# $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'WP_DEBUG', false);
-	# $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'ABSPATH', 'C:\\DATA_GOVT_SURVEILLANCE\\_wwwroot\\xampp\\htdocs\\jony5.com\\');
-	# # # # # # # #
-	
-	//
-	// BEGIN CONFIG FOR PRODUCTION ENVIRONMENT. BECAUSE I HAVE SET 
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'SERVER_NAME', 'evifweb.com');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'SERVER_ADDR', '50.87.249.11');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'DOCUMENT_ROOT', '/home3/evifwebc/public_html'); # VALUE FOR YOUR SERVER['DOCUMENT_ROOT']
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'DOCUMENT_ROOT_DIR', '');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ROOT_PATH_CLIENT_HTTP_MSG', 'http://evifweb.com/');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ROOT_PATH_CLIENT_HTTP_MSG_DIR', '');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ROOT_PATH_CLIENT_HTTP', 'http://evifweb.com/');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ROOT_PATH_CLIENT_HTTP_DIR', '');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'DOMAIN', 'evifweb.com');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'SESSION_EXPIRE', 'INTERVAL 30 MINUTE');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'PWD_RESET_LINK_EXPIRE', 'INTERVAL 30 MINUTE');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ADMIN_NOTIFICATIONS_EMAIL', 'J00000101@gmail.com');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ADMIN_NOTIFICATIONS_RECIPIENTNAME', 'Evifweb CEO');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'SMS_NOTIFICATIONS_ENDPOINT', '7708838879@messaging.sprintpcs.com');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'SYSTEM_MSG_FROM_EMAIL', 'jharris@evifweb.com');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'SYSTEM_MSG_FROM_NAME', 'Jonathan J5 Harris');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'FORCE_SSL', false);
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'BANNER_IMG_XML_DIR_PATH', '/common/xml/banner_images_1180x250/banner_images.txt');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ASSET_POST_ENDPOINT', 'http://evifweb.com/assets/upload/');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ASSET_UPLOAD_AUTHKEY', '8jX904o7GqgWohKnBEpVI63T');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ASSET_UPLOAD_DIR', '/home3/evifwebc/public_html/assets/_file_storage/');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'WSDL_URI', 'http://evifweb.com/assets/_soa/sync/1.0.0/wsdl/index.php?wsdl');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ASSET_DLOAD_ENDPOINT', 'http://evifweb.com/assets/download/');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ASSET_PREVIEW_ENDPOINT', 'http://www.evifweb.com/assets/preview/');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ASSET_ACCESS_IP_LOCK', true);
+    */
+    //$oCRNRSTN->initSessionEncryption('LOCALHOST_PC', 'AES-192-OFB', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'sha256');
+    $oCRNRSTN->initSessionEncryption('LOCALHOST_MAC', 'AES-192-OFB', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'sha256');
+    $oCRNRSTN->initSessionEncryption('BLUEHOST_2018', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
+    $oCRNRSTN->initSessionEncryption('BLUEHOST_WWW_2018', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
+    $oCRNRSTN->initSessionEncryption('JONY5_SUBDOMAIN_EVIFWEB', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
+
+    //
+    // INITIALIZATION FOR ENCRYPTION :: CRNRSTN COOKIE DATA :: ADVANCED CONFIGURATION PARAMETERS
+    /*
+    CAUTION :: Some hash_algos() returned methods will NOT be compatible
+    with hash_hmac() which CRNRSTN uses in validating its decryption. And certain openssl encryption cipher / hash_algos
+    algorithm combinations will not be compatible. Please test the compatibility of your desired combination of
+    encryption cipher and hmac algoritm for each environment...especially before releasing to production code base.
+
+    CAUTION. If cookie encryption is enabled and then changed some time later. It is possible for clients to have cookie data that was
+    encrypted with a "no-longer-in-production" encryption cipher or HMAC algorithm...and hence be unreadable to the application. Developer
+    needs to take this into consideration and plan for use case where cookie data is unreadable...with graceful degradation or cookie reset.
+    */
+    #$oCRNRSTN->initCookieEncryption([environment-key], [openssl-encryption-cipher], [openssl-encryption-key], [openssl-encryption-options], [hmac-algorithm]);
+    $oCRNRSTN->initCookieEncryption('LOCALHOST_MAC', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
+    $oCRNRSTN->initCookieEncryption('BLUEHOST_2018', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
+    $oCRNRSTN->initCookieEncryption('BLUEHOST_WWW_2018', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
+    $oCRNRSTN->initCookieEncryption('JONY5_SUBDOMAIN_EVIFWEB', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
+
+    //
+    // INITIALIZATION FOR ENCRYPTION :: CRNRSTN TUNNEL DATA :: ADVANCED CONFIGURATION PARAMETERS
+    /*
+    CAUTION :: Some hash_algos() returned methods will NOT be compatible
+    with hash_hmac() which CRNRSTN uses in validating its decryption. And certain openssl encryption cipher / hash_algos
+    algorithm combinations will not be compatible. Please test the compatibility of your desired combination of
+    encryption cipher and hmac algoritm for each environment...especially before releasing to production code base.
+
+    */
+    #$oCRNRSTN->initCookieEncryption([environment-key], [openssl-encryption-cipher], [openssl-encryption-key], [openssl-encryption-options], [hmac-algorithm]);
+    $oCRNRSTN->initTunnelEncryption('LOCALHOST_MAC', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
+    $oCRNRSTN->initTunnelEncryption('BLUEHOST_2018', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
+    $oCRNRSTN->initTunnelEncryption('BLUEHOST_WWW_2018', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
+    $oCRNRSTN->initTunnelEncryption('JONY5_SUBDOMAIN_EVIFWEB', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
+
+    //
+    // TO ACHIEVE SLIGHT OPTIMIZATION AT FIRST RUNTIME, PASS AN APPROPRIATE INTEGER VALUE TO requiredDetectionMatches(). WHEN THAT QUANTITY OF PROVIDED $_SERVER PARAMETERS MATCH FOR ANY GIVEN
+    // DEFINED ENVIRONMENT'S defineEnvResource() KEYS, THE RUNNING ENVIRONMENT WILL BE FLAGGED. FURTHER PROCESSING OF ANY REMAINING defineEnvResource() KEYS CAN BE STEAMLINED.
+    $oCRNRSTN->requiredDetectionMatches(3);
+
+    //
+    // FOR EACH ENVIRONMENT ABOVE, DEFINE RELEVANT CORE SERVER CONFIG SETTINGS + ADD ANY CUSTOM KEYS/VALUES OF YOUR OWN
+    # # # # # # # #
+    # RESOURCE KEY DEFINITIONS FOR CORE AND CUSTOM ATTRIBUTES THAT CAN BE USED FOR EACH ENVIRONMENT RUNNING YOUR APPLICATION ::
+    # * HERE ARE EXAMPLES OF CORE/RESERVED SERVER SUPER GLOBAL PARAMETERS.
+    # * SUPER GLOBAL SERVER VALUES FROM THESE DEFINITIONS WILL BE USED TO CONFIGURE CRNRSTN TO ITS ENV PER REAL-TIME SERVER SETTINGS
+    #___{KEY}__<-- custom or $_SERVER[] value_______{EXAMPLE OF CONTENT}________________
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    # DOCUMENT_ROOT									(e.g. 'C:\\[path]\\[to]\\[site-root]\\[folder]\\' or '/var/www/')
+    # SERVER_NAME									(e.g. 'localhost' or 'stage.mydomain.com' or 'mydomain.com')
+    # REMOTE_ADDR									(e.g. '127.0.0.1' or '265.121.2.110')
+    # SERVER_SIGNATURE
+    # ...{ANY OTHER $_SERVER[] SUPER GLOBAL PARAMETER MAY BE USED TO SUPPORT CRNRSTN SERVER DETECTION}...
+    #
+    # For a more complete list of available super global array parameters, please see ::
+    # http://php.net/manual/en/reserved.variables.server.php
+    #
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    # EXAMPLES OF ADDITIONAL AND CUSTOM KEYS/VALUES THAT ONE MAY DECIDE TO INITIALIZE THROUGH CRNRSTN
+    # DOMAIN									(e.g. 'www.domain.com' or 'localhost')
+    # SSL_ENABLED								(i.e. true or false/NULL)
+    # ROOT_PATH_CLIENT_HTTP						(e.g. NULL for hosting off root {DOMAIN} or '{DOMAIN}/[your-folder]/[your-folder]/')
+    #
+    # So...for example, here is how one would programatically add/define keys to initialize their crnrstn
+    # application where, $oCRNRSTN->defineEnvResource([environment-key], [resource-key], [value]) ::
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    # $oCRNRSTN->defineEnvResource('STAGE_TESTING_WhAtEvEr', 'SSL_ENABLED', false);
+    # $oCRNRSTN->defineEnvResource('PRODUCTION_ZEDS_DEAD', 'ABSPATH', '/home/a8537844/public_html/');
+    # $oCRNRSTN->defineEnvResource('LOCALHOST_AN_OLD_MACINTOSH', 'YoUr-custom-resource-key', 'value-for-key');
+    #
+    # or, for example...adding some keys (wordpress specific) to run a wordpress blog on top of crnrstn
+    # $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'DATABASE_TABLE_PREFIX', 'wp_');
+    # $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'DATABASE_CHARSET', 'utf8');
+    # $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'DATABASE_COLLATE', '');
+    # $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'AUTH_KEY', 				'p19~FS%rRR4C,U8Is3?GsL%T=x2HWO~7PY^NVg}%G0e41:VRDx$u$B75nBDo[z%-');
+    # $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'SECURE_AUTH_KEY', 		'V4L<.%eLV2Ni_~02FT#7bwjuBxAOsbq/q6{RhL)ox^^u8Xy(6[|%+S9v5$rXpD39');
+    # $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'LOGGED_IN_KEY', 		'$O##gm<>u[WdJCD-pnh)5hNIqAyc3=is<WV%*k]3O%F^p%-l3@$//8?wmHyJ^gY#');
+    # $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'NONCE_KEY', 			'Pv2bduy|>4}zP2L-<aJNBza?!#bLf{!wc1$1k$;cs=fFO~u}DI2K;TN:nn8Qm{U0');
+    # $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'AUTH_SALT', 			'OvEKNG`wc0*o8uguR8f^<RrInhDluX0^J:<3@mV:<:LA-V8eaeBr/~DDnJ#,={_1');
+    # $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'SECURE_AUTH_SALT', 		'%lGQeL#3p9o;lhgsQ1UF_A_`*K-V+y}b8M.lL`!/G4$_,JCidTBz.!Xzy`)[/D*&');
+    # $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'LOGGED_IN_SALT', 		'*<2 .FW;wq;4gYUkz5Q*7-OClKjrC^ZIDM3IQ|1NS|z>LDfuq$?h!L-=C:-.v,0Y');
+    # $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'NONCE_SALT', 			'Ai=LA9lW:, @DO6-j)kg}]h}9P)4XUrEXTn{/.Hp]gDw$:V%6@^VP;rs0Lp)%n80');
+    # $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'WPLANG', '');
+    # $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'WP_DEBUG', false);
+    # $oCRNRSTN->defineEnvResource('LOCALHOST_PC', 'ABSPATH', 'C:\\DATA_GOVT_SURVEILLANCE\\_wwwroot\\xampp\\htdocs\\jony5.com\\');
+    # # # # # # # #
+
+    //
+    // BEGIN CONFIG FOR PRODUCTION ENVIRONMENT. BECAUSE I HAVE SET
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'SERVER_NAME', 'evifweb.jony5.com');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'SERVER_ADDR', '162.241.252.206');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'DOCUMENT_ROOT', '/home2/jonyfivc/public_html/evifweb_jony5_com'); # VALUE FOR YOUR SERVER['DOCUMENT_ROOT']
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'DOCUMENT_ROOT_DIR', '');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'ROOT_PATH_CLIENT_HTTP_MSG', 'https://evifweb.jony5.com/');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'ROOT_PATH_CLIENT_HTTP_MSG_DIR', '');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'ROOT_PATH_CLIENT_HTTP', 'https://evifweb.jony5.com/');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'ROOT_PATH_CLIENT_HTTP_DIR', '');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'DOMAIN', 'evifweb.com');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'SESSION_EXPIRE', 'INTERVAL 30 MINUTE');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'PWD_RESET_LINK_EXPIRE', 'INTERVAL 30 MINUTE');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'ADMIN_NOTIFICATIONS_EMAIL', 'c00000101@gmail.com');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'ADMIN_NOTIFICATIONS_RECIPIENTNAME', 'eVifweb CEO');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'SMS_NOTIFICATIONS_ENDPOINT', '7708838879@messaging.sprintpcs.com');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'SYSTEM_MSG_FROM_EMAIL', 'jharris@evifweb.com');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'SYSTEM_MSG_FROM_NAME', 'Jonathan J5 Harris');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'FORCE_SSL', false);
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'BANNER_IMG_XML_DIR_PATH', '/common/xml/banner_images_1180x250/banner_images.txt');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'ASSET_POST_ENDPOINT', 'https://evifweb.jony5.com/assets/upload/');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'ASSET_UPLOAD_AUTHKEY', '8jX904o7GqgWohKnBEpVI63T');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'ASSET_UPLOAD_DIR', '/home2/jonyfivc/public_html/evifweb_jony5_com/assets/_file_storage/');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'WSDL_URI', 'https://evifweb.jony5.com/assets/_soa/sync/1.0.0/wsdl/index.php?wsdl');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'ASSET_DLOAD_ENDPOINT', 'https://evifweb.jony5.com/assets/download/');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'ASSET_PREVIEW_ENDPOINT', 'https://evifweb.jony5.com/assets/preview/');
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'ASSET_ACCESS_IP_LOCK', true);
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'MOBILE_WEB_STREAM_DEPTH', 3);
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'MOBILE_WEB_MAX_REPLY_COUNT', 2);
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'DESKTOP_WEB_STREAM_DEPTH', 7);
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'DESKTOP_WEB_MAX_REPLY_COUNT', 5);
+    $oCRNRSTN->defineEnvResource('JONY5_SUBDOMAIN_EVIFWEB', 'EXTERNAL_URI_PROXY_PATH', 'evifweb.jony5.com/resource/proxy/');
+
+    //
+    // BEGIN CONFIG FOR PRODUCTION ENVIRONMENT. BECAUSE I HAVE SET
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'SERVER_NAME', 'evifweb.com');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'SERVER_ADDR', '50.87.249.11');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'DOCUMENT_ROOT', '/home3/evifwebc/public_html'); # VALUE FOR YOUR SERVER['DOCUMENT_ROOT']
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'DOCUMENT_ROOT_DIR', '');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ROOT_PATH_CLIENT_HTTP_MSG', 'https://evifweb.com/');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ROOT_PATH_CLIENT_HTTP_MSG_DIR', '');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ROOT_PATH_CLIENT_HTTP', 'https://evifweb.com/');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ROOT_PATH_CLIENT_HTTP_DIR', '');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'DOMAIN', 'evifweb.com');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'SESSION_EXPIRE', 'INTERVAL 30 MINUTE');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'PWD_RESET_LINK_EXPIRE', 'INTERVAL 30 MINUTE');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ADMIN_NOTIFICATIONS_EMAIL', 'c00000101@gmail.com');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ADMIN_NOTIFICATIONS_RECIPIENTNAME', 'eVifweb CEO');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'SMS_NOTIFICATIONS_ENDPOINT', '7708838879@messaging.sprintpcs.com');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'SYSTEM_MSG_FROM_EMAIL', 'jharris@evifweb.com');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'SYSTEM_MSG_FROM_NAME', 'Jonathan J5 Harris');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'FORCE_SSL', false);
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'BANNER_IMG_XML_DIR_PATH', '/common/xml/banner_images_1180x250/banner_images.txt');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ASSET_POST_ENDPOINT', 'https://evifweb.com/assets/upload/');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ASSET_UPLOAD_AUTHKEY', '8jX904o7GqgWohKnBEpVI63T');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ASSET_UPLOAD_DIR', '/home3/evifwebc/public_html/assets/_file_storage/');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'WSDL_URI', 'https://evifweb.com/assets/_soa/sync/1.0.0/wsdl/index.php?wsdl');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ASSET_DLOAD_ENDPOINT', 'https://evifweb.com/assets/download/');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ASSET_PREVIEW_ENDPOINT', 'https://www.evifweb.com/assets/preview/');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'ASSET_ACCESS_IP_LOCK', true);
     $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'MOBILE_WEB_STREAM_DEPTH', 3);
     $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'MOBILE_WEB_MAX_REPLY_COUNT', 2);
     $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'DESKTOP_WEB_STREAM_DEPTH', 7);
     $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'DESKTOP_WEB_MAX_REPLY_COUNT', 5);
     $oCRNRSTN->defineEnvResource('BLUEHOST_2018', 'EXTERNAL_URI_PROXY_PATH', 'evifweb.com/resource/proxy/');
 
-	//
-	// PRODUCTION SET TO REDIRECT WWW TO NON-WWW. NEED TO KEEP ALL ASSET UPLOADS ON SAME BRANCH.
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'SERVER_NAME', 'www.evifweb.com');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'SERVER_ADDR', '50.87.249.11');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'DOCUMENT_ROOT', '/home3/evifwebc/public_html'); # VALUE FOR YOUR SERVER['DOCUMENT_ROOT']
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'DOCUMENT_ROOT_DIR', '');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ROOT_PATH_CLIENT_HTTP_MSG', 'http://www.evifweb.com/');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ROOT_PATH_CLIENT_HTTP_MSG_DIR', '');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ROOT_PATH_CLIENT_HTTP', 'http://www.evifweb.com/');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ROOT_PATH_CLIENT_HTTP_DIR', '');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'DOMAIN', 'www.evifweb.com');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'SESSION_EXPIRE', 'INTERVAL 30 MINUTE');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'PWD_RESET_LINK_EXPIRE', 'INTERVAL 30 MINUTE');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ADMIN_NOTIFICATIONS_EMAIL', 'J00000101@gmail.com');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ADMIN_NOTIFICATIONS_RECIPIENTNAME', 'eVifweb CEO');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'SMS_NOTIFICATIONS_ENDPOINT', '7708838879@messaging.sprintpcs.com');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'SYSTEM_MSG_FROM_EMAIL', 'jharris@evifweb.com');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'SYSTEM_MSG_FROM_NAME', 'Jonathan J5 Harris');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'FORCE_SSL', false);
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'BANNER_IMG_XML_DIR_PATH', '/common/xml/banner_images_1180x250/banner_images.txt');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ASSET_POST_ENDPOINT', 'http://www.evifweb.com/assets/upload/');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ASSET_UPLOAD_AUTHKEY', '8jX904o7GqgWohKnBEpVI63T');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ASSET_UPLOAD_DIR', '/home3/evifwebc/public_html/assets/_file_storage/');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'WSDL_URI', 'http://www.evifweb.com/assets/_soa/sync/1.0.0/wsdl/index.php?wsdl');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ASSET_DLOAD_ENDPOINT', 'http://www.evifweb.com/assets/download/');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ASSET_PREVIEW_ENDPOINT', 'http://www.evifweb.com/assets/preview/');
-	$oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ASSET_ACCESS_IP_LOCK', true);
+    //
+    // PRODUCTION SET TO REDIRECT WWW TO NON-WWW. NEED TO KEEP ALL ASSET UPLOADS ON SAME BRANCH.
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'SERVER_NAME', 'www.evifweb.com');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'SERVER_ADDR', '50.87.249.11');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'DOCUMENT_ROOT', '/home3/evifwebc/public_html'); # VALUE FOR YOUR SERVER['DOCUMENT_ROOT']
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'DOCUMENT_ROOT_DIR', '');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ROOT_PATH_CLIENT_HTTP_MSG', 'https://www.evifweb.com/');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ROOT_PATH_CLIENT_HTTP_MSG_DIR', '');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ROOT_PATH_CLIENT_HTTP', 'https://www.evifweb.com/');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ROOT_PATH_CLIENT_HTTP_DIR', '');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'DOMAIN', 'www.evifweb.com');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'SESSION_EXPIRE', 'INTERVAL 30 MINUTE');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'PWD_RESET_LINK_EXPIRE', 'INTERVAL 30 MINUTE');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ADMIN_NOTIFICATIONS_EMAIL', 'c00000101@gmail.com');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ADMIN_NOTIFICATIONS_RECIPIENTNAME', 'eVifweb CEO');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'SMS_NOTIFICATIONS_ENDPOINT', '7708838879@messaging.sprintpcs.com');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'SYSTEM_MSG_FROM_EMAIL', 'jharris@evifweb.com');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'SYSTEM_MSG_FROM_NAME', 'Jonathan J5 Harris');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'FORCE_SSL', false);
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'BANNER_IMG_XML_DIR_PATH', '/common/xml/banner_images_1180x250/banner_images.txt');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ASSET_POST_ENDPOINT', 'https://www.evifweb.com/assets/upload/');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ASSET_UPLOAD_AUTHKEY', '8jX904o7GqgWohKnBEpVI63T');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ASSET_UPLOAD_DIR', '/home3/evifwebc/public_html/assets/_file_storage/');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'WSDL_URI', 'https://www.evifweb.com/assets/_soa/sync/1.0.0/wsdl/index.php?wsdl');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ASSET_DLOAD_ENDPOINT', 'https://www.evifweb.com/assets/download/');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ASSET_PREVIEW_ENDPOINT', 'https://www.evifweb.com/assets/preview/');
+    $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'ASSET_ACCESS_IP_LOCK', true);
     $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'MOBILE_WEB_STREAM_DEPTH', 3);
     $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'MOBILE_WEB_MAX_REPLY_COUNT', 2);
     $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'DESKTOP_WEB_STREAM_DEPTH', 7);
     $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'DESKTOP_WEB_MAX_REPLY_COUNT', 5);
     $oCRNRSTN->defineEnvResource('BLUEHOST_WWW_2018', 'EXTERNAL_URI_PROXY_PATH', 'evifweb.com/resource/proxy/');
-	
-	//
-	// BEGIN CONFIG FOR NEXT ENVIRONMENT
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'SERVER_NAME', '172.16.225.139');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'SERVER_ADDR', '172.16.225.139');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'DOCUMENT_ROOT', '/var/www/html'); # VALUE FOR YOUR SERVER['DOCUMENT_ROOT']
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'DOCUMENT_ROOT_DIR', '/evifweb');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ROOT_PATH_CLIENT_HTTP_MSG', 'http://172.16.225.139/');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ROOT_PATH_CLIENT_HTTP_MSG_DIR', 'evifweb/');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ROOT_PATH_CLIENT_HTTP', 'http://172.16.225.139/');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ROOT_PATH_CLIENT_HTTP_DIR', 'evifweb/');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'DOMAIN', '172.16.110.130');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'SESSION_EXPIRE', 'INTERVAL 30 MINUTE');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'PWD_RESET_LINK_EXPIRE', 'INTERVAL 30 MINUTE');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ADMIN_NOTIFICATIONS_EMAIL', 'jharris@evifweb.com');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ADMIN_NOTIFICATIONS_RECIPIENTNAME', 'Evifweb CEO');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'SMS_NOTIFICATIONS_ENDPOINT', '7708838879@messaging.sprintpcs.com');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'SYSTEM_MSG_FROM_EMAIL', 'jharris@evifweb.com');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'SYSTEM_MSG_FROM_NAME', 'Jonathan J5 Harris');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'FORCE_SSL', false);
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ASSET_POST_ENDPOINT', 'http://172.16.225.139/evifweb/assets/upload/');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ASSET_UPLOAD_AUTHKEY', '8jX904o7GqgWohKnBEpVI63T');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ASSET_UPLOAD_DIR', '/var/www/html/evifweb/assets/_file_storage/');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'WSDL_URI', 'http://172.16.225.139/evifweb/assets/_soa/sync/1.0.0/wsdl/index.php?wsdl');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ASSET_DLOAD_ENDPOINT', 'http://172.16.225.139/evifweb/assets/download/');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ASSET_PREVIEW_ENDPOINT', 'http://172.16.225.139/evifweb/assets/preview/');
-	$oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ASSET_ACCESS_IP_LOCK', true);
+
+    //
+    // BEGIN CONFIG FOR NEXT ENVIRONMENT
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'SERVER_NAME', '172.16.225.139');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'SERVER_ADDR', '172.16.225.139');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'DOCUMENT_ROOT', '/var/www/html'); # VALUE FOR YOUR SERVER['DOCUMENT_ROOT']
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'DOCUMENT_ROOT_DIR', '/evifweb');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ROOT_PATH_CLIENT_HTTP_MSG', 'http://172.16.225.139/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ROOT_PATH_CLIENT_HTTP_MSG_DIR', 'evifweb/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ROOT_PATH_CLIENT_HTTP', 'http://172.16.225.139/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ROOT_PATH_CLIENT_HTTP_DIR', 'evifweb/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'DOMAIN', '172.16.110.130');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'SESSION_EXPIRE', 'INTERVAL 30 MINUTE');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'PWD_RESET_LINK_EXPIRE', 'INTERVAL 30 MINUTE');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ADMIN_NOTIFICATIONS_EMAIL', 'jharris@evifweb.com');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ADMIN_NOTIFICATIONS_RECIPIENTNAME', 'eVifweb CEO');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'SMS_NOTIFICATIONS_ENDPOINT', '7708838879@messaging.sprintpcs.com');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'SYSTEM_MSG_FROM_EMAIL', 'jharris@evifweb.com');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'SYSTEM_MSG_FROM_NAME', 'Jonathan J5 Harris');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'FORCE_SSL', false);
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ASSET_POST_ENDPOINT', 'http://172.16.225.139/evifweb/assets/upload/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ASSET_UPLOAD_AUTHKEY', '8jX904o7GqgWohKnBEpVI63T');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ASSET_UPLOAD_DIR', '/var/www/html/evifweb/assets/_file_storage/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'WSDL_URI', 'http://172.16.225.139/evifweb/assets/_soa/sync/1.0.0/wsdl/index.php?wsdl');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ASSET_DLOAD_ENDPOINT', 'http://172.16.225.139/evifweb/assets/download/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ASSET_PREVIEW_ENDPOINT', 'http://172.16.225.139/evifweb/assets/preview/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'ASSET_ACCESS_IP_LOCK', true);
     $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'MOBILE_WEB_STREAM_DEPTH', 2);
     $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'MOBILE_WEB_MAX_REPLY_COUNT', 2);
     $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'MOBILE_WEB_MAX_RECENT_ACTIVITY', 10);
@@ -381,21 +423,21 @@ if(!$oCRNRSTN_ENV->isConfigured($oCRNRSTN)){
     $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'EMAIL_MAX_RECENT_ACTIVITY', 10);
     $oCRNRSTN->defineEnvResource('LOCALHOST_MAC', 'EXTERNAL_URI_PROXY_PATH', '172.16.225.139/evifweb/resource/proxy/');
 
-	//
-	// RESOURCES DEFINED FOR ALL ENVIRONMENTS :: AS DESIGNATED BY PASSING '*' AS ENV KEY PARAMETER
-	$oCRNRSTN->defineEnvResource('*','WSDL_CACHE_TTL','80');	# REQUIRED BY CRNRSTN SOAP CLIENT CONNECTION MANAGER
-	$oCRNRSTN->defineEnvResource('*','NUSOAP_USECURL', true);	# REQUIRED BY CRNRSTN SOAP CLIENT CONNECTION MANAGER
+    //
+    // RESOURCES DEFINED FOR ALL ENVIRONMENTS :: AS DESIGNATED BY PASSING '*' AS ENV KEY PARAMETER
+    $oCRNRSTN->defineEnvResource('*','WSDL_CACHE_TTL','80');	# REQUIRED BY CRNRSTN SOAP CLIENT CONNECTION MANAGER
+    $oCRNRSTN->defineEnvResource('*','NUSOAP_USECURL', true);	# REQUIRED BY CRNRSTN SOAP CLIENT CONNECTION MANAGER
 //	$oCRNRSTN->defineEnvResource('*','SEARCHPAGE_INDEXSIZE','15');
 //	$oCRNRSTN->defineEnvResource('*','USERPROFILE_EXTERNALURI','3');
 //	$oCRNRSTN->defineEnvResource('*','AUTOSUGGEST_RESULT_MAX','10');
-	
-	//
-	// INSTANTIATE ENVIRONMENTAL CLASS BASED ON ABOVE DEFINED CRNRSTN CONFIGURATION 
-	$oCRNRSTN_ENV = new crnrstn_environmentals($oCRNRSTN);
-	unset($oCRNRSTN);
+
+    //
+    // INSTANTIATE ENVIRONMENTAL CLASS BASED ON ABOVE DEFINED CRNRSTN CONFIGURATION
+    $oCRNRSTN_ENV = new crnrstn_environmentals($oCRNRSTN);
+    unset($oCRNRSTN);
 
 }else{
-	unset($oCRNRSTN);
+    unset($oCRNRSTN);
 }
 
 # # # # # #
