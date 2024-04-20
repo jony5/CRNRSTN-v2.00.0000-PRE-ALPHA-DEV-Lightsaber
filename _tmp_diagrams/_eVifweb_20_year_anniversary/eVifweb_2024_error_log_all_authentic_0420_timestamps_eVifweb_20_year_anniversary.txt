@@ -2,7 +2,7 @@ Jonathan 'J5' Harris.
 eVifweb CEO, CTO, & Lead Full Stack PHP Developer.
 
 File Last Modified:
-Sat Apr 20 09:26:09.776562 2024.
+Sat Apr 20 10:15:16.871698 2024.
 
 
 URLs:
@@ -30,6 +30,12 @@ Saturday, April 20, 2024 @ 04:20:00.000427.
 
 # [END OF POST]
 
+
+Error Log Generating Endpoint URL:
+http://172.16.225.139/lightsaber.crnrstn.evifweb.com/
+
+
+Error Log Output:
 [Sat Apr 20 04:19:59.740610 2024] [:error] [pid 1339] [client 172.16.225.1:53948] 284 crnrstn_logging::__construct:: object owner[crnrstn] log object mem_salt[00100000010011001110010010111011].
 [Sat Apr 20 04:19:59.741285 2024] [:error] [pid 1339] [client 172.16.225.1:53948] 242 crnrstn_session_manager::config_init_config_serialization RESETTING SESSION CONFIGURATION. CODE[FILE_MOD_RESET].
 [Sat Apr 20 04:19:59.741327 2024] [:error] [pid 1339] [client 172.16.225.1:53948] 252 crnrstn_session_manager::config_init_config_serialization SESSION DATA IS UNINITIALIZED. COULD NOT FIND [7d701fcb11367273c3206c122ee9391b98d1c4543ac1b2e33bb46871734642a8] IN $_SESSION[].
