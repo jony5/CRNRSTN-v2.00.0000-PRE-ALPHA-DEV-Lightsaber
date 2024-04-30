@@ -181,7 +181,7 @@ $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'custom_error_reporting_profile
 //
 // CRNRSTN :: CONFIGURATION SETTINGS.
 $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'data_channel_init_sequence', 'GPHSJCDROF', 'CRNRSTN::RESOURCE::MULTI_CHANNEL');
-$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'byte_reporting_units', 'ISO_80000', 'CRNRSTN::RESOURCE::FILE_SYSTEM_REPORTING');  // ['ISO_80000', 'SI_METRIC']
+$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'byte_reporting_units', 'ISO_80000', 'CRNRSTN::RESOURCE::FILE_SYSTEM_REPORTING');              // ['ISO_80000', 'SI_METRIC']
 $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'byte_reporting_precision', 2, 'CRNRSTN::RESOURCE::FILE_SYSTEM_REPORTING');
 $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'hmac_hash_algorithm', 'sha256', 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
 $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'openssl_cipher', 'aes-256-ofb', 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
@@ -259,7 +259,7 @@ $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'system_file_max_ui_pageview_cn
 $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'header_response_option_cache_control', 'Cache-Control: public, max-age=31536000', 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
 $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'header_response_option_x_frame_options', 'X-Frame-Options: SAMEORIGIN', 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
 
-error_log(__LINE__ . ' settings START return_creative(\'CRNRSTN_LOGO\', CRNRSTN_STRING ).');
+error_log(__LINE__ . ' settings START return_creative(\'CRNRSTN_LOGO\', CRNRSTN_STRING).');
 
 //
 // IMAGE 404 DEFAULT IMAGE. APPLIES TO $_GET[] FOR MISSING PNG,

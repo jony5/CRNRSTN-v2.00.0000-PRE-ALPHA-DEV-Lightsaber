@@ -65,8 +65,8 @@
 # # C # R # N # R # S # T # N # : : # # # #
 //
 // CRNRSTN :: INTEGER CONSTANTS INITIALIZATION.
-require(CRNRSTN_ROOT . '/_crnrstn/class/crnrstn/crnrstn.constants_initialize.inc.php');	                    // CRNRSTN :: INTEGER CONSTANTS - INITIALIZE.
-require(CRNRSTN_ROOT . '/_crnrstn/class/crnrstn/crnrstn.constants_load.inc.php');	                        // CRNRSTN :: INTEGER CONSTANTS - LOAD.
+require(CRNRSTN_ROOT . '/_crnrstn/class/crnrstn/crnrstn.constants_initialize.inc.php');	                            // CRNRSTN :: INTEGER CONSTANTS - INITIALIZE.
+require(CRNRSTN_ROOT . '/_crnrstn/class/crnrstn/crnrstn.constants_load.inc.php');	                                // CRNRSTN :: INTEGER CONSTANTS - LOAD.
 
 //
 // CRNRSTN :: CLASS DEFINITIONS.
@@ -76,8 +76,8 @@ require(CRNRSTN_ROOT . '/_crnrstn/class/crnrstn/crnrstn.configuration_manager.in
 require(CRNRSTN_ROOT . '/_crnrstn/class/security/crnrstn.openssl_encryption_rotation_services_manager.inc.php');	// CRNRSTN ::
 require(CRNRSTN_ROOT . '/_crnrstn/class/crnrstn/crnrstn.bitflip_manager.inc.php');							        // CRNRSTN ::
 require(CRNRSTN_ROOT . '/_crnrstn/class/crnrstn/crnrstn.bitmask.inc.php');								    		// CRNRSTN ::
-require(CRNRSTN_ROOT . '/_crnrstn/class/environment/crnrstn.method_manager.inc.php');                         				// CRNRSTN :: SYSTEM METHOD MANAGER.
-require(CRNRSTN_ROOT . '/_crnrstn/class/environment/crnrstn.link_manager.inc.php');                         					// CRNRSTN :: SYSTEM LINK MANAGER.
+require(CRNRSTN_ROOT . '/_crnrstn/class/environment/crnrstn.method_manager.inc.php');                         		// CRNRSTN :: SYSTEM METHOD MANAGER.
+require(CRNRSTN_ROOT . '/_crnrstn/class/environment/crnrstn.link_manager.inc.php');                         		// CRNRSTN :: SYSTEM LINK MANAGER.
 require(CRNRSTN_ROOT . '/_crnrstn/class/security/crnrstn.performance_regulator.inc.php');                   		// CRNRSTN :: PERFORMANCE REGULATOR.
 require(CRNRSTN_ROOT . '/_crnrstn/class/assets/crnrstn.file_system_integrations_manager.inc.php');          		// CRNRSTN :: FILE SYSTEM INTEGRATIONS MANAGER.
 require(CRNRSTN_ROOT . '/_crnrstn/class/assets/crnrstn.system_asset_manager.inc.php');                      		// CRNRSTN :: SYSTEM ASSET MANAGER.

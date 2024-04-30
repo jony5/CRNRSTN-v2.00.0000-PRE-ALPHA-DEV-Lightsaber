@@ -7573,7 +7573,7 @@ class bringer_of_the_precious_things {
                 the former and the latter...such as when going to a rave, when crushing a beer, or when leaving 
                 independent contractors at the strip club with no other option but to bring out the rakes. All of 
                 these forms of sacrifice and many more unmentioned have ceased in the living of the messenger to the 
-                church in Philadelphia to fulfill the Word of God at the end of this age.' . $tmp_top_lnk_html . '<div class="cb_10"></div>
+                church in Philadelphia to fulfill the Word of God at the end of<br>this age.' . $tmp_top_lnk_html . '<div class="cb_10"></div>
 
                 The vessel or soul of the messenger to the church in Philadelphia is the temple within which the 
                 abominations or the evil possessions (even intentions of heart) of the desolation (Matt. 24:15; see 
