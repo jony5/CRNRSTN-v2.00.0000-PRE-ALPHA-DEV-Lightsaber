@@ -2997,7 +2997,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Download Jehovah Has Revealed (Ashes). Vocals: Sister Doris K., Brother Jonathan H. African Djembe Hand Bongo: Brother Kenton W. Guitar: Brother Jonathan H. Jehovah has revealed / His heart to me. / To Him I thus would consecrated be. / As Daniel purposed in his heart...I\'ll be. / And pray; that God could move on earth through me. / Lord, You need me.';
                 $tmp_verse_array['COPY'][0]             = '<p>Download Jehovah Has Revealed (Ashes).</p>
                 <div class="cb_10"></div>
-                <a href="#" onclick="launch_newwindow(\'https://jony5.com/downloads/audio/jehovah_has_revealed_his_heart.php\'); return false;" target="_blank">Click 
+                <a href="#" onclick="launch_newwindow(\'https://jony5.com/downloads/audio/jehovah_has_revealed_his_heart.php\'); return false;">Click 
                 here</a> to download.
                 <div class="cb_10"></div>
                 <p><strong>Vocals:</strong> Sister Doris K., Brother Jonathan H.<br><strong>African Djembe Hand 
