@@ -383,7 +383,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
 
                             <p>Later, I came to realize that I buried him facing towards the direction of the rising of the sun to the east.</p>
 
-                            <p>Click <a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>downloads/resume/jharris_resume.php" download>here</a> to download the latest version of
+                            <p>Click <a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>downloads/resume/jharris_resume.php?v=420" download>here</a> to download the latest version of
                             my resume or visit my <a href="https://www.linkedin.com/in/j00000101/" target="_blank">LinkedIn</a> profile.</p>
                     </div>
                 </div>

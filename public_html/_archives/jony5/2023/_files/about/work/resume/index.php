@@ -61,7 +61,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
     	<div id="content">
         	<div class="content_copy">
             	<div class="col" style="width:900px;">
-                    <p><a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>downloads/resume/jharris_resume.php" download>Click here</a> to download my resume.</p>
+                    <p><a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>downloads/resume/jharris_resume.php?v=420" download>Click here</a> to download my resume.</p>
                 </div>
             </div>
 
@@ -96,17 +96,19 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
            			<p><strong>Solutions Engineer, Moxie</strong> Atlanta, GA <em>[May 2006-Feb 2012]</em><br>
                     As our team expanded from 4 people to +25, I applied technology in creative ways to streamline team process, improve the quality of our agency services and remove bottlenecks. I also supported various internal agency projects, and these allowed me to test the suitability of technical concepts and theories for use in the public space. I had daily responsibilities which included managing list segmentation, email automation, email triggers, multi-channel data capture integrations, reporting and analytics testing and implementation and sending out the company holiday party invitation HTML email.</p>
 
+                    <div class="cb_10"></div>
                     <p><strong>Technical Contractor, Technisource</strong> Atlanta, GA <em>[Jan 2006-May 2006]</em><br>
                     As the primary technical resource for the growing email marketing services team, I developed web based tools (LAMP) to improve quality control and streamline QA processes. As a result, the higher quality deliverables, I was fixing fewer bugs; this gave me more time to focus on other technical projects (for other clients) within the agency.</p>
 
+                    <div class="cb_10"></div>
                     <p><strong>IT, First Discount Mortgage</strong> Atlanta, GA <em>[Aug 2005-Dec 2005]</em><br>
                     Replacing an IT team of 2 people, I was primarily responsible for end user tech support and service. I also managed updates to their hosted web services.</p>
 
+                    <div class="cb_10"></div>
                     <p><strong>Lead Developer, CommercialNet, Inc.</strong> Norcross, GA <em>[Oct 2004-Aug 2005]</em><br>
                     A coffee shop startup...I was the lead developer for the account management, payment authorization and product delivery web services.</p>
                 </div>
             </div>
-
 
             <div class="cb"></div>
             <div class="content_hr"></div>
@@ -140,7 +142,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
             <div class="content_title">Resume Download</div>
             <div class="content_copy">
                 <div class="col" style="width:900px;">
-                    <p><a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>downloads/resume/jharris_resume.php" download>Click here</a> to download my resume.</p>
+                    <p><a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>downloads/resume/jharris_resume.php?v=420" download>Click here</a> to download my resume.</p>
                 </div>
             </div>
 
