@@ -10,10 +10,11 @@ header('Content-Type: text/html; charset=UTF-8');
 header('Cache-Control: no-store');
 header('Access-Control-Allow-Origin: *');
 
-$tmp_elip = '';
+$tmp_elip = $tmp_vv = '';
 $tmp_popup_mode = false;
 $tmp_script_window_resize_handle = '';
 $tmp_ajax_root_html = '';
+
 if(isset($_GET['vv'])){
 
     $tmp_vv = $_GET['vv'];

@@ -23,7 +23,7 @@ require($CRNRSTN_ROOT.'/_crnrstn/class/xxxxxxx/crnrstn.finiteexpress.inc.php');	
 
 //
 // INSTANTIATE AN INSTANCE OF CRNRSTN BY PASSING A SERIALIZATION KEY FOR THIS CONFIG FILE.
-$oCRNRSTN = new crnrstn('hello!!Fri3nd!', 0);
+$oCRNRSTN = new crnrstn('hello!!Fri3nd  :)', 0);
 
 ##
 # REFERENCE OF ERROR LEVEL CONSTANTS
@@ -74,6 +74,7 @@ The error level constants are always available as part of the PHP core.
 //$oCRNRSTN->addEnvironment('LOCALHOST_PC', E_ERROR);
 $oCRNRSTN->addEnvironment('CYEXX_SYSTEMS', E_ALL & ~E_NOTICE & ~E_STRICT);
 $oCRNRSTN->addEnvironment('LOCALHOST_TERMINAL_MAC', E_ALL);
+$oCRNRSTN->addEnvironment('LOCALHOST_CHAD_MACBOOKPRO', E_ALL);
 
 //
 // INITIALIZE LOGGING FUNCTIONALITY FOR EACH ENVIRONMENT. IF NULL OR UNDEFINED, WILL LOG TO SCREEN.
@@ -89,15 +90,16 @@ $oCRNRSTN->addEnvironment('LOCALHOST_TERMINAL_MAC', E_ALL);
 # e.g. LOGGING TO FILE
 # $oCRNRSTN->initLogging('000WEBHOSTJONY5', 'DEFAULT');					// SYSTEM DEFAULT FILE LOGGING
 # $oCRNRSTN->initLogging('000WEBHOSTJONY5', 'FILE', '/var/logFolder');	// INCLUDE PATH TO DIRECTORY FOR CUSTOM LOG FILE
-
 $oCRNRSTN->initLogging('CYEXX_SYSTEMS', 'EMAIL','j5@jony5.com');
 $oCRNRSTN->initLogging('LOCALHOST_TERMINAL_MAC', 'DEFAULT');										// SYSTEM DEFAULT ERROR LOGGING
+$oCRNRSTN->initLogging('LOCALHOST_CHAD_MACBOOKPRO', 'DEFAULT');										// SYSTEM DEFAULT ERROR LOGGING
 
 //
 // INITIALIZE DATABASE FUNCTIONALITY FOR EACH ENVIRONMENT. 2 WAYS TO USE THIS METHOD.
 #METHOD ONE# $oCRNRSTN->addDatabase([environment-key], [path-to-db-configuration-file]);
 $oCRNRSTN->addDatabase('LOCALHOST_TERMINAL_MAC', '/var/www/html/wethrbug/config.database.secure/_crnrstn.db.config.inc.php');
 $oCRNRSTN->addDatabase('CYEXX_SYSTEMS', '/home2/jonyfivc/public_html/wethrbug.jony5.com/config.database.secure/_crnrstn.db.config.inc.php');
+$oCRNRSTN->addDatabase('LOCALHOST_CHAD_MACBOOKPRO', '/var/www/html/wethrbug/config.database.secure/_crnrstn.db.config.inc.php');
 
 #METHOD TWO# $oCRNRSTN->addDatabase([environment-key], [db-host], [db-user-name], [db-user-pswd], [db-database-name], [optional-db-port]);
 //$oCRNRSTN->addDatabase('000WEBHOSTJONY5', 'mx.localhost.com', 'crnrstn_assets', '222222222222222', 'db_crnrstn_assets', 80);
@@ -109,7 +111,6 @@ $oCRNRSTN->addDatabase('CYEXX_SYSTEMS', '/home2/jonyfivc/public_html/wethrbug.jo
 //$oCRNRSTN->addDatabase('LOCALHOST_PC', '127.0.0.3', 'crnrstn_demo2_un', 'PwdBNBvuFHrwMqCS', 'crnrstn_demo2', 80);
 //$oCRNRSTN->addDatabase('LOCALHOST_PC', '127.0.0.2', 'crnrstn_demo4_un', 'G36NQtqFXYWcVXpA', 'crnrstn_demo4', 80);
 #$oCRNRSTN->addDatabase('LOCALHOST_PC', 'localhost', 'crnrstn_demo', 'aXNTPxGPeLRwYzTS', 'crnrstn_demo', 3306);
-	
 
 //
 // INITIALIZE SECURITY PROTOCOLS FOR EXCLUSIVE RESOURCE ACCESS. 2 FORMATS.
@@ -139,16 +140,14 @@ $oCRNRSTN->addDatabase('CYEXX_SYSTEMS', '/home2/jonyfivc/public_html/wethrbug.jo
 #$oCRNRSTN->denyAccess('LOCALHOST_MAC','172.16.110.1');
 #$oCRNRSTN->denyAccess('LOCALHOST_PC','127.0.0.10, 127.0.0.2, 127.0.0.3, 127.0.0.4, 127.0.0.5');
 
-
 $oCRNRSTN_ENV = new crnrstn_environmentals($oCRNRSTN,'session_initialization_ping');
 if(!$oCRNRSTN_ENV->isConfigured($oCRNRSTN)){
 
 	//
-	// TRANSFER LOG DEBUG OUTPUT TO oCRNTSTN FROM oCRNRSTN_ENV FOR SAFE KEEPING FOR THE TIME BEING
+	// TRANSFER LOG DEBUG OUTPUT TO oCRNRSTN FROM oCRNRSTN_ENV FOR SAFE KEEPING FOR THE TIME BEING
 	$oCRNRSTN->debugTransfer($oCRNRSTN_ENV->getDebug());
 	unset($oCRNRSTN_ENV);
-	
-	
+
 	//
 	// INITIALIZATION FOR ENCRYPTION :: CRNRSTN SESSION DATA :: ADVANCED CONFIGURATION PARAMETERS
 	/*
@@ -175,6 +174,7 @@ if(!$oCRNRSTN_ENV->isConfigured($oCRNRSTN)){
 	*/
 	$oCRNRSTN->initSessionEncryption('LOCALHOST_TERMINAL_MAC', 'AES-192-OFB', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'sha256');
 	$oCRNRSTN->initSessionEncryption('CYEXX_SYSTEMS', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
+    $oCRNRSTN->initSessionEncryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'sha256');
 
 	//
 	// INITIALIZATION FOR ENCRYPTION :: CRNRSTN COOKIE DATA :: ADVANCED CONFIGURATION PARAMETERS
@@ -186,6 +186,7 @@ if(!$oCRNRSTN_ENV->isConfigured($oCRNRSTN)){
 	#$oCRNRSTN->initCookieEncryption([environment-key], [openssl-encryption-cipher], [openssl-encryption-key], [openssl-encryption-options], [hmac-algorithm])
 	$oCRNRSTN->initCookieEncryption('LOCALHOST_TERMINAL_MAC', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'gost');
 	$oCRNRSTN->initCookieEncryption('CYEXX_SYSTEMS', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
+    $oCRNRSTN->initCookieEncryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'gost');
 
     //
     // INITIALIZATION FOR ENCRYPTION :: CRNRSTN TUNNEL DATA :: ADVANCED CONFIGURATION PARAMETERS
@@ -199,11 +200,12 @@ if(!$oCRNRSTN_ENV->isConfigured($oCRNRSTN)){
     #$oCRNRSTN->initCookieEncryption([environment-key], [openssl-encryption-cipher], [openssl-encryption-key], [openssl-encryption-options], [hmac-algorithm]);
     $oCRNRSTN->initTunnelEncryption('LOCALHOST_TERMINAL_MAC', 'AES-192-OFB', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'sha256');
     $oCRNRSTN->initTunnelEncryption('CYEXX_SYSTEMS', 'AES-256-CTR', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
+    $oCRNRSTN->initTunnelEncryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'sha256');
 
     //
 	// TO ACHIEVE SLIGHT OPTIMIZATION AT FIRST RUNTIME, PASS AN APPROPRIATE INTEGER VALUE TO requiredDetectionMatches(). ONLY AND PRECISELY WHEN THAT QUANTITY OF PROVIDED $_SERVER PARAMETERS MATCH FOR ANY GIVEN 
 	// DEFINED ENVIRONMENT'S defineEnvResource() KEYS, WILL THE THE DETECTION SCRIPT STOP PROCESSING ANY FURTHER defineEnvResource() KEYS AND SELECT THE QUALIFYING ENVIRONMENT.
-	$oCRNRSTN->requiredDetectionMatches(2);
+	$oCRNRSTN->requiredDetectionMatches(3);
 
 	//
 	// FOR EACH ENVIRONMENT ABOVE, DEFINE RELEVANT CORE SERVER CONFIG SETTINGS + ADD ANY CUSTOM KEYS/VALUES OF YOUR OWN
@@ -269,20 +271,20 @@ if(!$oCRNRSTN_ENV->isConfigured($oCRNRSTN)){
     $oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'US_GOV_ZIPCODE_CSV_SOURCE_IP', 'public.opendatasoft.com');
     $oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'US_STATE_PROV_CSV_SOURCE_URI', 'https://public.opendatasoft.com/explore/dataset/natural-earth-us-states-provinces-1110m/download/?format=csv&timezone=America/New_York&lang=en&use_labels_for_header=true&csv_separator=%3B');
     $oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'US_GOV_ZIPCODE_CSV_SOURCE_URI', 'https://public.opendatasoft.com/explore/dataset/us-zip-code-latitude-and-longitude/download/?format=csv&timezone=America/New_York&lang=en&use_labels_for_header=true&csv_separator=%3B');
-    $oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'US_GOV_ZIPCODE_CSV_RESP_HEADER_DELIM','Zip;City;State;Latitude;Longitude;Timezone;Daylight savings time flag;geopoint');
-    $oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'US_STATE_PROV_CSV_RESP_HEADER_DELIM','Geo Point;Geo Shape;scalerank;featurecla;Adm1 Code;Diss Me;Adm1 Cod 1;Iso 3166 2;wikipedia;Sr Sov A3;Sr Adm0 A3;Iso A2;Adm0 Sr;Admin0 Lab;name;Name Alt;Name Local;type;Type En;Code Local;Code Hasc;note;Hasc Maybe;region;Region Cod;Region Big;Big Code;Provnum Ne;Gadm Level;Check Me;Scaleran 1;datarank;abbrev;postal;Area Sqkm;sameascity;labelrank;Featurec 1;admin;Name Len;mapcolor9;mapcolor13');
+    $oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'US_GOV_ZIPCODE_CSV_RESP_HEADER_DELIM',' Zip;City;State;Latitude;Longitude;Timezone;Daylight savings time flag;geopoint');
+    $oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'US_STATE_PROV_CSV_RESP_HEADER_DELIM', 'Geo Point;Geo Shape;scalerank;featurecla;Adm1 Code;Diss Me;Adm1 Cod 1;Iso 3166 2;wikipedia;Sr Sov A3;Sr Adm0 A3;Iso A2;Adm0 Sr;Admin0 Lab;name;Name Alt;Name Local;type;Type En;Code Local;Code Hasc;note;Hasc Maybe;region;Region Cod;Region Big;Big Code;Provnum Ne;Gadm Level;Check Me;Scaleran 1;datarank;abbrev;postal;Area Sqkm;sameascity;labelrank;Featurec 1;admin;Name Len;mapcolor9;mapcolor13');
     $oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'US_GOV_ZIPCODE_CSV_FIELD_DELIM', ';');
     $oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'US_STATE_PROV_CSV_FIELD_DELIM', ';');
-    $oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'US_CITYTYPO_CUSTOM_FILE_DIR','/_sandbox/locale_typosearch_mysql_optimize/_source/new/');
+    $oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'US_CITYTYPO_CUSTOM_FILE_DIR', '/_sandbox/locale_typosearch_mysql_optimize/_source/new/');
     $oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'US_GOV_ZIPCODE_CSV_ARCHIVE_DIR', '/_sandbox/zipcode_mysql_import/_source/_processed/');
     $oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'US_GOV_STATE_PROV_CSV_ARCHIVE_DIR', '/_sandbox/state_province_mysql_import/_source/_processed/');
-    $oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'US_GOV_ZIPCODE_CSV_NEW_DIR','/_sandbox/zipcode_mysql_import/_source/new/');
-    $oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'US_GOV_STATE-PROVINCE_CSV_NEW_DIR','/_sandbox/state_province_mysql_import/_source/new/');
+    $oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'US_GOV_ZIPCODE_CSV_NEW_DIR', '/_sandbox/zipcode_mysql_import/_source/new/');
+    $oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'US_GOV_STATE-PROVINCE_CSV_NEW_DIR', '/_sandbox/state_province_mysql_import/_source/new/');
     $oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'PROXY_GOV_WEATHER_FORECAST_ENDPOINT', 'https://api.weather.gov/gridpoints/TOP/');
     $oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'SOA_NAMESPACE', 'http://services.crnrstn.jony5.com/soap/services');
 	$oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'WSDL_URI_MGMT', 'http://services.crnrstn.jony5.com/soa/crnrstnmgmt/1.0.0/wsdl/index.php?wsdl');
 	$oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'WSDL_URI', 'http://services.crnrstn.jony5.com/soa/crnrstn/1.0.0/wsdl/index.php?wsdl');
-	$oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'WSDL_CACHE_TTL','80');	
+	$oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'WSDL_CACHE_TTL', '80');
 	$oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'MAILER_FROM_EMAIL', 'noreply_crnrstn@crnrstn.jony5.com');
 	$oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'MAILER_FROM_NAME', 'CRNRSTN Suite :: Community Mailer');
 	$oCRNRSTN->defineEnvResource('CYEXX_SYSTEMS', 'MAILER_AUTHKEY', 'Pv2bduy|>4}zP2L-<aJNBza?!#bLf{!wc1$1k$;cs=fFO~u}D');
@@ -308,20 +310,20 @@ if(!$oCRNRSTN_ENV->isConfigured($oCRNRSTN)){
     $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'US_GOV_ZIPCODE_CSV_SOURCE_IP', '172.16.195.132');
     $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'US_STATE_PROV_CSV_SOURCE_URI', 'https://public.opendatasoft.com/explore/dataset/natural-earth-us-states-provinces-1110m/download/?format=csv&timezone=America/New_York&lang=en&use_labels_for_header=true&csv_separator=%3B');
     $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'US_GOV_ZIPCODE_CSV_SOURCE_URI', 'https://public.opendatasoft.com/explore/dataset/us-zip-code-latitude-and-longitude/download/?format=csv&timezone=America/New_York&lang=en&use_labels_for_header=true&csv_separator=%3B');
-    $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'US_GOV_ZIPCODE_CSV_RESP_HEADER_DELIM','Zip;City;State;Latitude;Longitude;Timezone;Daylight savings time flag;geopoint');
-    $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'US_STATE_PROV_CSV_RESP_HEADER_DELIM','Geo Point;Geo Shape;scalerank;featurecla;Adm1 Code;Diss Me;Adm1 Cod 1;Iso 3166 2;wikipedia;Sr Sov A3;Sr Adm0 A3;Iso A2;Adm0 Sr;Admin0 Lab;name;Name Alt;Name Local;type;Type En;Code Local;Code Hasc;note;Hasc Maybe;region;Region Cod;Region Big;Big Code;Provnum Ne;Gadm Level;Check Me;Scaleran 1;datarank;abbrev;postal;Area Sqkm;sameascity;labelrank;Featurec 1;admin;Name Len;mapcolor9;mapcolor13');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'US_GOV_ZIPCODE_CSV_RESP_HEADER_DELIM', 'Zip;City;State;Latitude;Longitude;Timezone;Daylight savings time flag;geopoint');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'US_STATE_PROV_CSV_RESP_HEADER_DELIM', 'Geo Point;Geo Shape;scalerank;featurecla;Adm1 Code;Diss Me;Adm1 Cod 1;Iso 3166 2;wikipedia;Sr Sov A3;Sr Adm0 A3;Iso A2;Adm0 Sr;Admin0 Lab;name;Name Alt;Name Local;type;Type En;Code Local;Code Hasc;note;Hasc Maybe;region;Region Cod;Region Big;Big Code;Provnum Ne;Gadm Level;Check Me;Scaleran 1;datarank;abbrev;postal;Area Sqkm;sameascity;labelrank;Featurec 1;admin;Name Len;mapcolor9;mapcolor13');
     $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'US_GOV_ZIPCODE_CSV_FIELD_DELIM', ';');
     $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'US_STATE_PROV_CSV_FIELD_DELIM', ';');
-    $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'US_CITYTYPO_CUSTOM_FILE_DIR','/_sandbox/locale_typosearch_mysql_optimize/_source/new/');
-    $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'US_GOV_ZIPCODE_CSV_ARCHIVE_DIR','/_sandbox/zipcode_mysql_import/_source/_processed/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'US_CITYTYPO_CUSTOM_FILE_DIR', '/_sandbox/locale_typosearch_mysql_optimize/_source/new/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'US_GOV_ZIPCODE_CSV_ARCHIVE_DIR', '/_sandbox/zipcode_mysql_import/_source/_processed/');
     $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'US_GOV_STATE_PROV_CSV_ARCHIVE_DIR', '/_sandbox/state_province_mysql_import/_source/_processed/');
-    $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'US_GOV_ZIPCODE_CSV_NEW_DIR','/_sandbox/zipcode_mysql_import/_source/new/');
-    $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'US_GOV_STATE-PROVINCE_CSV_NEW_DIR','/_sandbox/state_province_mysql_import/_source/new/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'US_GOV_ZIPCODE_CSV_NEW_DIR', '/_sandbox/zipcode_mysql_import/_source/new/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'US_GOV_STATE-PROVINCE_CSV_NEW_DIR', '/_sandbox/state_province_mysql_import/_source/new/');
     $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'PROXY_GOV_WEATHER_FORECAST_ENDPOINT', 'https://api.weather.gov/gridpoints/TOP/');
     $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'SOA_NAMESPACE', 'http://172.16.195.132/soap/services');
     $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'WSDL_URI_MGMT', 'http://172.16.195.132/services/soa/crnrstnmgmt/1.0.0/wsdl/index.php?wsdl');
     $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'WSDL_URI', 'http://172.16.195.132/services/soa/crnrstn/1.0.0/wsdl/index.php?wsdl');
-    $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'WSDL_CACHE_TTL','80');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'WSDL_CACHE_TTL', '80');
     $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'MAILER_FROM_EMAIL', 'noreply_wethrbug@wethrbug.jony5.com');
     $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'MAILER_FROM_NAME', 'WETHRBUG Monitor :: Automated Mailer');
     $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'MAILER_AUTHKEY', 'Pv2bduy|>4}zP2L-<aJNBzta?!#bLf{!wc1$1k$;cs=fFO~u}D');
@@ -330,19 +332,62 @@ if(!$oCRNRSTN_ENV->isConfigured($oCRNRSTN)){
     $oCRNRSTN->defineEnvResource('LOCALHOST_TERMINAL_MAC', 'MOBILE_ONLY', true);
 
     //
-	// FOR ALL ENVIRONMENTS :: AS DESIGNATED BY PASSING '*' AS ENV KEY PARAMETER
+    // BEGIN CONFIG FOR NEXT ENVIRONMENT
+    // DEV ENVIRONMENT :: MACBOOK PRO 172.16.225.139
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'DOMAIN', '172.16.225.139');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'SERVER_NAME', '172.16.225.139');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'SERVER_ADDR', '172.16.225.139');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'SERVER_PORT', '80');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'SERVER_PROTOCOL', 'HTTP/1.1');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'SSL_ENABLED', false);
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'DOCUMENT_ROOT', '/var/www/html'); # VALUE FOR YOUR SERVER['DOCUMENT_ROOT']
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'DOCUMENT_ROOT_DIR', '/wethrbug');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'ROOT_PATH_CLIENT_HTTP', 'http://172.16.225.139/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'ROOT_PATH_CLIENT_HTTP_DIR', 'wethrbug/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'COPY_HASH_ALGO', 'sha512');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'MYSQLI_MAX_QUERY_BATCH_COUNT', 500);
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'US_GOV_ZIPCODE_CSV_SOURCE_IP', '172.16.225.139');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'US_STATE_PROV_CSV_SOURCE_URI', 'https://public.opendatasoft.com/explore/dataset/natural-earth-us-states-provinces-1110m/download/?format=csv&timezone=America/New_York&lang=en&use_labels_for_header=true&csv_separator=%3B');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'US_GOV_ZIPCODE_CSV_SOURCE_URI', 'https://public.opendatasoft.com/explore/dataset/us-zip-code-latitude-and-longitude/download/?format=csv&timezone=America/New_York&lang=en&use_labels_for_header=true&csv_separator=%3B');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'US_GOV_ZIPCODE_CSV_RESP_HEADER_DELIM', 'Zip;City;State;Latitude;Longitude;Timezone;Daylight savings time flag;geopoint');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'US_STATE_PROV_CSV_RESP_HEADER_DELIM',' Geo Point;Geo Shape;scalerank;featurecla;Adm1 Code;Diss Me;Adm1 Cod 1;Iso 3166 2;wikipedia;Sr Sov A3;Sr Adm0 A3;Iso A2;Adm0 Sr;Admin0 Lab;name;Name Alt;Name Local;type;Type En;Code Local;Code Hasc;note;Hasc Maybe;region;Region Cod;Region Big;Big Code;Provnum Ne;Gadm Level;Check Me;Scaleran 1;datarank;abbrev;postal;Area Sqkm;sameascity;labelrank;Featurec 1;admin;Name Len;mapcolor9;mapcolor13');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'US_GOV_ZIPCODE_CSV_FIELD_DELIM', ';');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'US_STATE_PROV_CSV_FIELD_DELIM', ';');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'US_CITYTYPO_CUSTOM_FILE_DIR', '/_sandbox/locale_typosearch_mysql_optimize/_source/new/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'US_GOV_ZIPCODE_CSV_ARCHIVE_DIR', '/_sandbox/zipcode_mysql_import/_source/_processed/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'US_GOV_STATE_PROV_CSV_ARCHIVE_DIR', '/_sandbox/state_province_mysql_import/_source/_processed/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'US_GOV_ZIPCODE_CSV_NEW_DIR', '/_sandbox/zipcode_mysql_import/_source/new/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'US_GOV_STATE-PROVINCE_CSV_NEW_DIR', '/_sandbox/state_province_mysql_import/_source/new/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'PROXY_GOV_WEATHER_FORECAST_ENDPOINT', 'https://api.weather.gov/gridpoints/TOP/');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'SOA_NAMESPACE', 'http://172.16.225.139/soap/services');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'WSDL_URI_MGMT', 'http://172.16.225.139/services/soa/crnrstnmgmt/1.0.0/wsdl/index.php?wsdl');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'WSDL_URI', 'http://172.16.225.139/services/soa/crnrstn/1.0.0/wsdl/index.php?wsdl');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'WSDL_CACHE_TTL', '80');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'MAILER_FROM_EMAIL', 'noreply_wethrbug@wethrbug.jony5.com');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'MAILER_FROM_NAME', 'WETHRBUG Monitor :: Automated Mailer');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'MAILER_AUTHKEY', 'Pv2bduy|>4}zP2L-<aJNBzta?!#bLf{!wc1$1k$;cs=fFO~u}D');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'APP_NAME', 'wethrbug');
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'BASSDRIVE_INTEGRATE', true);
+    $oCRNRSTN->defineEnvResource('LOCALHOST_CHAD_MACBOOKPRO', 'MOBILE_ONLY', true);
+
+    //
+	// FOR ALL ENVIRONMENTS :: AS DESIGNATED
+    // BY PASSING '*' AS ENV KEY PARAMETER.
 	##$oCRNRSTN->defineEnvResource('*','PAGE_INDEXSIZE','3');
 	#$oCRNRSTN->defineEnvResource('*','SEARCHPAGE_INDEXSIZE','15');
 	#$oCRNRSTN->defineEnvResource('*','USERPROFILE_EXTERNALURI','3');
 	#$oCRNRSTN->defineEnvResource('*','AUTOSUGGEST_RESULT_MAX','10');
 
 	//
-	// INSTANTIATE ENVIRONMENTAL CLASS BASED ON ABOVE DEFINED CRNRSTN CONFIGURATION 
+	// INSTANTIATE ENVIRONMENTAL CLASS BASED ON
+    // ABOVE DEFINED CRNRSTN CONFIGURATION.
 	$oCRNRSTN_ENV = new crnrstn_environmentals($oCRNRSTN);
 	unset($oCRNRSTN);
 
 }else{
+
 	unset($oCRNRSTN);
+
 }
 
 # # # # # #
@@ -361,7 +406,7 @@ require($CRNRSTN_ROOT.'/common/classes/phpmailer/class.phpmailer.php');
 require($CRNRSTN_ROOT.'/common/classes/phpmailer/class.smtp.php');
 
 //
-// INSTANTIATE USER CLASS OBJECT
+// INSTANTIATE USER CLASS OBJECT.
 $oUSER = new user($oCRNRSTN_ENV);
 
 ?>
