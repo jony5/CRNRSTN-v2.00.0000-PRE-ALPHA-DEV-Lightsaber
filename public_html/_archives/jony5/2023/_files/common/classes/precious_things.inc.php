@@ -5119,7 +5119,7 @@ class bringer_of_the_precious_things {
 
                 <div class="cb_10"></div>And immediately a rooster crowed a second time. And Peter remembered the word, 
                 how Jesus had said to him, Before a rooster crows twice, you will deny Me three times.
-                
+
                 <div class="cb_10"></div>And thinking upon it, he wept.';
 
             break;
@@ -6472,11 +6472,11 @@ class bringer_of_the_precious_things {
 
                 <div class="cb_10"></div>
                 So then, my beloved, even as you have always obeyed, not as in my presence only but now much rather in 
-                my absence, work out your own salvation with fear and trembling; For it is God who operates in you both
+                my absence, work out your own salvation with fear and trembling; For it is God who operates in you both 
                 the willing and the working for <em>your</em> good pleasure. Do all things without murmurings and 
                 reasonings That you may be blameless and guileless, children of God without blemish in the midst of a 
                 crooked and perverted generation, among whom you shine as luminaries in the world, Holding forth the 
-                word of life, so that I may have a boast in the day of Christ that I did not run in vain nor labor  
+                word of life, so that I may have a boast in the day of Christ that I did not run in vain nor labor 
                 in vain.';
 
             break;
@@ -7291,7 +7291,7 @@ class bringer_of_the_precious_things {
 
                 <div class="cb_10"></div>
                 I come quickly; hold fast what you have that no one take<br>your crown.
-                
+
                 <div class="cb_50"></div>';
 
             break;
@@ -8051,8 +8051,8 @@ class bringer_of_the_precious_things {
                 $tmp_footnote_array['REFERENCE'][0] = 'Note <span class="script_sup">1</span>';
                 $tmp_footnote_array['COPY'][0]      = '<a id="ftnt_1"></a>
                 ' . $tmp_top_lnk_html . '
-                
-                
+
+
                 <div class="cb_10"></div>
                 <div class="cb_20"></div>';
 
@@ -8062,8 +8062,8 @@ class bringer_of_the_precious_things {
                 $tmp_footnote_array['REFERENCE'][0] = 'Note <span class="script_sup">1</span>';
                 $tmp_footnote_array['COPY'][0]      = '<a id="ftnt_1"></a>
                 ' . $tmp_top_lnk_html . '
-                
-                
+
+
                 <div class="cb_10"></div>
                 <div class="cb_20"></div>';
 
@@ -8677,8 +8677,8 @@ class bringer_of_the_precious_things {
                 $tmp_footnote_array['REFERENCE'][0] = 'Note <span class="script_sup">1</span>';
                 $tmp_footnote_array['COPY'][0]      = '<a id="ftnt_1"></a>
                 ' . $tmp_top_lnk_html . '
-                
-                
+
+
                 <div class="cb_10"></div>
                 <div class="cb_20"></div>';
 
