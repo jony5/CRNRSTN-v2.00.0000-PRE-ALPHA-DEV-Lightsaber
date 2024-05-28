@@ -40,7 +40,7 @@ if($tmp_uri !== '/index.php'){
                 <div class="cb"></div>
                 <div>
                     <div style="float:left;">
-                        <div class="wethrbug_nav_btn" onclick="launch_popup('http://wethrbug.jony5.com/','350','560','wthbg');">WETHRBUG</div>
+                        <div class="wethrbug_nav_btn" onclick="launch_popup('http://wethrbug.jony5.com/','380','560','wthbg');">WETHRBUG</div>
                         <div class="cb"></div>
                         <div style="position: relative; height: 40px; padding: 17px 0 0 0;">
                             <div style="position: absolute;">
