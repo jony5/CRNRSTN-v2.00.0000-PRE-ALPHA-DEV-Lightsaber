@@ -283,8 +283,9 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                         echo $oBringer->link_html('luke12_34-44','Luke 12:34-44');
                         ?>),
                         a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder
-                        officially seated at a place prepared by God my heavenly Father in heaven at table next to Jesus Christ,
-                        the King of kings and Lord of all lords, and a web professional living and working in Atlanta, GA.</p>
+                        officially seated in heaven at a place prepared by God my heavenly Father at table next to Jesus Christ,
+                        the Son of God, the Son of David, the King of kings and Lord of all lords, and a web professional living
+                        and working in Atlanta, GA.</p>
 
                         <p>With 6 years of solid agency experience (+18 years of programming experience in open source
                         web technologies) behind me, I am always open to investigate fresh opportunities to work with active,
