@@ -269,49 +269,50 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                 <div class="content_title">Welcome!</div>
                 <div class="content_copy">
                     <div class="col">
-                        <p>I'm Jonathan 'J5' Harris (<a vvid="rev3_7-13" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Rev. 3:7-13</a><?php echo $oBringer->seo_out('rev3_7-13'); ?>;
-                            <a vvid="gen49_1,25-28" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Gen. 49:1, 25-28</a><?php echo $oBringer->seo_out('gen49_1,25-28'); ?>;
-                            <a vvid="deut33_1-4,12,29" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Deut. 33:1-4, 12, 29</a><?php echo $oBringer->seo_out('deut33_1-4,12,29'); ?>;
-                            <a vvid="isa16_1-5" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Isa. 16:1-5</a><?php echo $oBringer->seo_out('isa16_1-5'); ?>;
-                            <a vvid="dan9_17-27" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Dan. 9:17-27</a><?php echo $oBringer->seo_out('dan9_17-27'); ?>;
-                            <a vvid="matt24_15-22" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Matt. 24:15-22</a><?php echo $oBringer->seo_out('matt24_15-22'); ?>;
-                            <a vvid="matt24_8-14" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">24:8-14</a><?php echo $oBringer->seo_out('matt24_8-14'); ?>;
-                            <a vvid="james3_1-2" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">James 3:1-2</a><?php echo $oBringer->seo_out('james3_1-2'); ?>;
-                            <a vvid="num25_1-13" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Num. 25:1-13</a><?php echo $oBringer->seo_out('num25_1-13'); ?>;
-                            <a vvid="jer1_11-19" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Jer. 1:11-19</a><?php echo $oBringer->seo_out('jer1_11-19'); ?>;
-                            <?php
-                            echo $oBringer->link_html('luke12_34-44','Luke 12:34-44');
-                            ?>),
-                            a web professional living and working in Atlanta, GA.
-                            With 6 years of solid agency experience (+18 years of programming
-                            experience in open source web technologies) behind me, I am always open to
-                            investigate fresh opportunities to work with active, growing and digitally
-                            fueled companies in order to strengthen and broaden aspects of their service
-                            offerings from a technical perspective. For my previous employer, I worked
-                            with corporate clients to formulate and execute (with my own bare hands in the
-                            code whenever necessary) multi-channel business marketing initiatives.
-                            </p>
+                        <p>I'm Jonathan '5' Harris (<a vvid="rev3_7-13" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Rev. 3:7-13</a><?php echo $oBringer->seo_out('rev3_7-13'); ?>;
+                        <a vvid="gen49_1,25-28" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Gen. 49:1, 25-28</a><?php echo $oBringer->seo_out('gen49_1,25-28'); ?>;
+                        <a vvid="deut33_1-4,12,29" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Deut. 33:1-4, 12, 29</a><?php echo $oBringer->seo_out('deut33_1-4,12,29'); ?>;
+                        <a vvid="isa16_1-5" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Isa. 16:1-5</a><?php echo $oBringer->seo_out('isa16_1-5'); ?>;
+                        <a vvid="dan9_17-27" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Dan. 9:17-27</a><?php echo $oBringer->seo_out('dan9_17-27'); ?>;
+                        <a vvid="matt24_15-22" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Matt. 24:15-22</a><?php echo $oBringer->seo_out('matt24_15-22'); ?>;
+                        <a vvid="matt24_8-14" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">24:8-14</a><?php echo $oBringer->seo_out('matt24_8-14'); ?>;
+                        <a vvid="james3_1-2" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">James 3:1-2</a><?php echo $oBringer->seo_out('james3_1-2'); ?>;
+                        <a vvid="num25_1-13" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Num. 25:1-13</a><?php echo $oBringer->seo_out('num25_1-13'); ?>;
+                        <a vvid="jer1_11-19" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Jer. 1:11-19</a><?php echo $oBringer->seo_out('jer1_11-19'); ?>;
+                        <?php
+                        echo $oBringer->link_html('luke12_34-44','Luke 12:34-44');
+                        ?>),
+                        a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder
+                        officially seated at a place prepared by God my heavenly Father in heaven at table next to Jesus Christ,
+                        the King of kings and Lord of all lords, and a web professional living and working in Atlanta, GA.</p>
 
-                            <p>Digital brand strategy and execution are my core competencies.</p>
+                        <p>With 6 years of solid agency experience (+18 years of programming experience in open source
+                        web technologies) behind me, I am always open to investigate fresh opportunities to work with active,
+                        growing and digitally fueled companies in order to strengthen and broaden aspects of their service
+                        offerings from a technical perspective. For my previous employer, I worked with corporate clients
+                        to formulate and execute (with my own bare hands in the code whenever necessary) multi-channel
+                        business marketing initiatives.</p>
 
-                            <p>In 2004 I worked as a freelance designer, web application developer and
-                            serial entrepreneur. After the implosion of my 8 person startup company,
-                            CommercialNet Inc., I entered the world of interactive marketing and
-                            advertising by accepting a UI developer position with the Atlanta based
-                            agency, <a href="http://moxieusa.com" target="_blank">Moxie</a>.</p>
+                        <p>Digital brand strategy and execution are my core competencies.</p>
+
+                        <p>In 2004 I worked as a freelance designer, web application developer and
+                        serial entrepreneur. After the implosion of my 8 person startup company,
+                        CommercialNet Inc., I entered the world of interactive marketing and
+                        advertising by accepting a UI developer position with the Atlanta based
+                        agency, <a href="http://moxieusa.com" target="_blank">Moxie</a>.</p>
 
                     </div>
 
                     <div class="col">
 
-                            <p>In 2007 I helped a talented and diverse team of people at Moxie to start
-                            the eCRM department. Lead by Darryl Bolduc, Tina West and Sapana Nanuwa (and with over 50 years of combined
-                            email marketing experience), we worked with our clients to design and execute
-                            both award-winning and state-of-the-art email marketing programs in support of their global strategic
-                            initiatives. </p>
+                        <p>In 2007 I helped a talented and diverse team of people at Moxie to start
+                        the eCRM department. Lead by Darryl Bolduc, Tina West and Sapana Nanuwa (and with over 50 years of combined
+                        email marketing experience), we worked with our clients to design and execute
+                        both award-winning and state-of-the-art email marketing programs in support of their global strategic
+                        initiatives. </p>
 
-                            <p>Born on Nov. 10th, 2005, my dog...named 'J5' (proper)...is part
-                            Korean Jindo, German Shepherd and Timber Wolf.</p>
+                        <p>Born on Nov. 10th, 2005, my dog...named 'J5' (proper)...is part
+                        Korean Jindo, German Shepherd and Timber Wolf.</p>
 
                         <?php
                         $tmp_str_out = '';
@@ -364,27 +365,27 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
 
                         ?>
 
-                            <!--<p><div class="embedded_image" style="width:295px; height:221px;"><img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/j5_octane.jpg" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee"></div></p>-->
+                        <!--<p><div class="embedded_image" style="width:295px; height:221px;"><img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/j5_octane.jpg" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee"></div></p>-->
 
-                            <p>When I worked at agency, J5 accompanied me to the office on occasion as well as to local parks, coffee shops,
-                            neighborhood bars and even the occasional house party.</p>
+                        <p>When I worked at agency, J5 accompanied me to the office on occasion as well as to local parks, coffee shops,
+                        neighborhood bars and even the occasional house party.</p>
 
                     </div>
                     <div class="col">
-                            <p>On the morning of Monday, Aug. 16, 2021 at 0345 hrs and while laying under my arm, J5 went the way of all the earth (<a vvid="1kings2_1-3" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">1 Kings 2:1-3</a><?php echo $oBringer->seo_out('1kings2_1-3'); ?>)
-                            even with much encouragement and celebration from me by his side. In the woods behind my house in the dark of night,
-                            at 0500 hrs, as I was returning J5 to the earth from whence he came...whilst shoveling the dirt back in place, I thanked
-                            him repeatedly for everything he gave to me during our sojourn together upon the face of the earth in this God's old creation. I thanked him for
-                            bringing me into practical participation with and into the prophetic fulfillment of the blessings of Israel to his twelve sons (<a vvid="gen48_21-22|49_1,25-28" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Gen. 48:21-22; 49:1, 25-28</a><?php echo $oBringer->seo_out('gen48_21-22|49_1,25-28'); ?>)
-                            which are for all of the people of God across all space and all time. Even all the nations of the earth will be blessed.</p>
+                        <p>On the morning of Monday, Aug. 16, 2021 at 0345 hrs and while laying under my arm, J5 went the way of all the earth (<a vvid="1kings2_1-3" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">1 Kings 2:1-3</a><?php echo $oBringer->seo_out('1kings2_1-3'); ?>)
+                        even with much encouragement and celebration from me by his side. In the woods behind my house in the dark of night,
+                        at 0500 hrs, as I was returning J5 to the earth from whence he came...whilst shoveling the dirt back in place, I thanked
+                        him repeatedly for everything he gave to me during our sojourn together upon the face of the earth in this God's old creation. I thanked him for
+                        bringing me into practical participation with and into the prophetic fulfillment of the blessings of Israel to his twelve sons (<a vvid="gen48_21-22|49_1,25-28" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Gen. 48:21-22; 49:1, 25-28</a><?php echo $oBringer->seo_out('gen48_21-22|49_1,25-28'); ?>)
+                        which are for all of the people of God across all space and all time. Even all the nations of the earth will be blessed.</p>
 
-                            <p>The bone from his last whole steak, a +$100 rare tomahawk ribeye from <a href="https://www.ruthschris.com/" target="_blank">Ruth's Chris</a>,
-                            is still clutched against his chest in the arm of his front right paw.</p>
+                        <p>The bone from his last whole steak, a +$100 rare tomahawk ribeye from <a href="https://www.ruthschris.com/" target="_blank">Ruth's Chris</a>,
+                        is still clutched against his chest in the arm of his front right paw.</p>
 
-                            <p>Later, I came to realize that I buried him facing towards the direction of the rising of the sun to the east.</p>
+                        <p>Later, I came to realize that I buried him facing towards the direction of the rising of the sun to the east.</p>
 
-                            <p>Click <a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>downloads/resume/jharris_resume.php?v=420" download>here</a> to download the latest version of
-                            my resume or visit my <a href="https://www.linkedin.com/in/j00000101/" target="_blank">LinkedIn</a> profile.</p>
+                        <p>Click <a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>downloads/resume/jharris_resume.php?v=420" download>here</a> to download the latest version of
+                        my resume or visit my <a href="https://www.linkedin.com/in/j00000101/" target="_blank">LinkedIn</a> profile.</p>
                     </div>
                 </div>
                 <div class="cb"></div>
