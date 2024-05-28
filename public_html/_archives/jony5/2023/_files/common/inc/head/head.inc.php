@@ -207,7 +207,7 @@ switch($_SERVER['SCRIPT_NAME']){
 
             }
 
-            $site_name = 'Hi, I\'m Jonathan \'J5\' Harris, messenger of the church in Philadelphia.';
+            $site_name = 'Hi, I\'m Jonathan \'5\' Harris, a ravenous wolf of the tribe of Benjamin and one of the King\'s two swords, an eternal son of thunder, and messenger of the church in Philadelphia.';
             $social_url = $tmp_http_root . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
             if($tmp_vv == 'jehovah_has_revealed_dl'){
@@ -340,17 +340,17 @@ switch($_SERVER['SCRIPT_NAME']){
 
                     $tmp_uri                    = str_replace("index.php", "", $tmp_uri);
                     $social_url                 = "https://jony5.com" . $tmp_uri;
-                    $htmlTitle = $social_title  = "Hi, I'm Jonathan 'J5' Harris, messenger of the church in Philadelphia.";
+                    $htmlTitle = $social_title  = "Hi, I'm Jonathan '5' Harris, messenger of the church in Philadelphia.";
                     $social_img                 = 'jony5_social_preview_00.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/jony5_social_preview_00.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/jony5_social_preview_00.png') . '.0';
-                    $social_desc                = "I'm Jonathan 'J5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and a web professional living in ATL, GA. In my free time, I jump head-first into web development, email marketing, &amp; drum-n-bass music!";
-                    $primary_desc               = "I'm Jonathan 'J5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+10 years of programming experience) behind me, I am always open to finding fresh opportunities to work with growing and digitally fueled companies in order to strengthen and broaden the technical aspects of their service offerings. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands when necessary) multi-channel business marketing initiatives. Digital brand strategy and execution are my core competencies.";
+                    $social_desc                = "I'm Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and a web professional living in ATL, GA. In my free time, I jump head-first into web development, email marketing, &amp; drum-n-bass music!";
+                    $primary_desc               = "I'm Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+10 years of programming experience) behind me, I am always open to finding fresh opportunities to work with growing and digitally fueled companies in order to strengthen and broaden the technical aspects of their service offerings. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands when necessary) multi-channel business marketing initiatives. Digital brand strategy and execution are my core competencies.";
 
                 break;
                 case 'J5':
 
                     $tmp_uri                    = str_replace("index.php", "", $tmp_uri);
                     $social_url                 = "https://jony5.com" . $tmp_uri;
-                    $htmlTitle = $social_title  = "Hi, I'm Jonathan 'J5' Harris, messenger of the church in Philadelphia.";
+                    $htmlTitle = $social_title  = "Hi, I'm Jonathan '5' Harris, messenger of the church in Philadelphia.";
                     $social_img                 = 'j5_social_preview.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/j5_social_preview.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/j5_social_preview.png') . '.0';
                     $social_desc                = "How did the idea for &quot;J5&quot; come about?";
                     $primary_desc               = "This is an excellent question! You see, back in the days of dial up (late 90's), I was quite new to the world of the interwebs. I didn't even have an email address. Realizing that I needed to get some kind of messaging account called an email address, I went to the folks at Juno. They hooked me up with a free email account and dial-up internet access!";
@@ -363,17 +363,17 @@ switch($_SERVER['SCRIPT_NAME']){
                     $htmlTitle = $social_title  = "COVID: the flex of a fancy pants mud throne.";
                     $social_img                 = 'covid_dust_throne_flex_social_preview.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/covid_dust_throne_flex_social_preview.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/covid_dust_throne_flex_social_preview.png') . '.0';
                     $social_desc                = "COVID: the flex of a fancy pants mud throne whose authority over the hearts of the people is melting away out in the middle of some freak rain storm by the side of the solid gold street of the lowly man, Jesus.";
-                    $primary_desc               = "I'm Jonathan 'J5' Harris, a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+10 years of programming experience) behind me, I am always open to finding fresh opportunities to work with growing and digitally fueled companies in order to strengthen and broaden the technical aspects of their service offerings. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands when necessary) multi-channel business marketing initiatives. Digital brand strategy and execution are my core competencies.";
+                    $primary_desc               = "I'm Jonathan '5' Harris, a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+10 years of programming experience) behind me, I am always open to finding fresh opportunities to work with growing and digitally fueled companies in order to strengthen and broaden the technical aspects of their service offerings. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands when necessary) multi-channel business marketing initiatives. Digital brand strategy and execution are my core competencies.";
 
                 break;
                 case 'OVERCOMING':
 
                     $tmp_uri                    = str_replace("index.php", "", $tmp_uri);
                     $social_url                 = "https://jony5.com" . $tmp_uri;
-                    $htmlTitle = $social_title  = "Hi, I'm Jonathan 'J5' Harris, messenger of the church in Philadelphia.";
+                    $htmlTitle = $social_title  = "Hi, I'm Jonathan '5' Harris, messenger of the church in Philadelphia.";
                     $social_img                 = 'overcoming_social_preview.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/overcoming_social_preview.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/overcoming_social_preview.png') . '.0';
                     $social_desc                = "Living on this earth as an overcoming [normal] Christian according to the Truth of the Gospel of our Lord Jesus Christ.";
-                    $primary_desc               = "I'm Jonathan 'J5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+10 years of programming experience) behind me, I am always open to finding fresh opportunities to work with growing and digitally fueled companies in order to strengthen and broaden the technical aspects of their service offerings. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands when necessary) multi-channel business marketing initiatives. Digital brand strategy and execution are my core competencies.";
+                    $primary_desc               = "I'm Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+10 years of programming experience) behind me, I am always open to finding fresh opportunities to work with growing and digitally fueled companies in order to strengthen and broaden the technical aspects of their service offerings. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands when necessary) multi-channel business marketing initiatives. Digital brand strategy and execution are my core competencies.";
 
                 break;
                 default:
@@ -422,20 +422,20 @@ switch($_SERVER['SCRIPT_NAME']){
 
                             $tmp_uri                    = str_replace("index.php", "", $tmp_uri);
                             $social_url                 = $tmp_uri;
-                            $htmlTitle = $social_title  = "INDEX OF SCRIPTURES by Jonathan 'J5' Harris.";
+                            $htmlTitle = $social_title  = "INDEX OF SCRIPTURES by Jonathan '5' Harris.";
                             $social_img                 = 'scriptures_lsm_social_preview.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.0';
-                            $social_desc                = "INDEX OF SCRIPTURES by Jonathan 'J5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and messenger of the church in Philadelphia.";
-                            $primary_desc               = "INDEX OF SCRIPTURES by Jonathan 'J5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and messenger of the church in Philadelphia.";
+                            $social_desc                = "INDEX OF SCRIPTURES by Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and messenger of the church in Philadelphia.";
+                            $primary_desc               = "INDEX OF SCRIPTURES by Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and messenger of the church in Philadelphia.";
 
                         break;
                         default:
 
                             $tmp_uri                    = str_replace("index.php", "", $tmp_uri);
                             $social_url                 = $tmp_uri;
-                            $htmlTitle = $social_title  = "Hi, I'm Jonathan 'J5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and messenger of the church in Philadelphia.";
+                            $htmlTitle = $social_title  = "Hi, I'm Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and messenger of the church in Philadelphia.";
                             $social_img                 = 'jony5_social_preview_00.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/jony5_social_preview_00.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/jony5_social_preview_00.png') . '.0';
-                            $social_desc                = "I'm Jonathan 'J5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and a web professional living in the metro-Atlanta area. In my free time, I jump head-first into web development, email marketing, & drum-n-bass music!";
-                            $primary_desc               = "I'm Jonathan 'J5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+10 years of programming experience) behind me, I am always open to finding fresh opportunities to work with growing and digitally fueled companies in order to strengthen and broaden the technical aspects of their service offerings. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands when necessary) multi-channel business marketing initiatives. Digital brand strategy and execution are my core competencies.";
+                            $social_desc                = "I'm Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and a web professional living in the metro-Atlanta area. In my free time, I jump head-first into web development, email marketing, & drum-n-bass music!";
+                            $primary_desc               = "I'm Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+10 years of programming experience) behind me, I am always open to finding fresh opportunities to work with growing and digitally fueled companies in order to strengthen and broaden the technical aspects of their service offerings. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands when necessary) multi-channel business marketing initiatives. Digital brand strategy and execution are my core competencies.";
 
                         break;
 
