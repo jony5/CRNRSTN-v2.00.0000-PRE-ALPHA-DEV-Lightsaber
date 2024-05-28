@@ -722,6 +722,10 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                        echo $tmp_second_look;
                        ?>
 
+                        <div class="cb_30"></div>
+                        <p style="font-size: 90%;">Last Modified:<br>
+                        Tue May 28 14:55:40.883775 2024.</p>
+
                     </div>
                 </div>
                 <div class="cb"></div>
