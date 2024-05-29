@@ -5,7 +5,7 @@
 
 ?>
     <div id="footer_wrapper">
-    	<div id="footer-copyright">&copy; <?php  echo date("Y"); ?> Jonathan 'J5' Harris :: All Rights Reserved.</div>
+    	<div id="footer-copyright">&copy; <?php  echo date("Y"); ?> Jonathan '5' Harris :: All Rights Reserved.</div>
         <div id="5_footer"><a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>" target="_self"><img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/5.png" width="20" height="20" alt="J5" title="J5" /></a></div>
         <div id="bassdrive_standard_for_measurement"></div>
     </div>

@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
 // J5
 // Code is Poetry */
 require('_crnrstn.root.inc.php');
@@ -269,55 +269,57 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                 <div class="content_title">Welcome!</div>
                 <div class="content_copy">
                     <div class="col">
-                        <p>I'm Jonathan 'J5' Harris (<a vvid="rev3_7-13" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Rev. 3:7-13</a><?php echo $oBringer->seo_out('rev3_7-13'); ?>;
-                            <a vvid="gen49_1,25-28" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Gen. 49:1, 25-28</a><?php echo $oBringer->seo_out('gen49_1,25-28'); ?>;
-                            <a vvid="deut33_1-4,12,29" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Deut. 33:1-4, 12, 29</a><?php echo $oBringer->seo_out('deut33_1-4,12,29'); ?>;
-                            <a vvid="isa16_1-5" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Isa. 16:1-5</a><?php echo $oBringer->seo_out('isa16_1-5'); ?>;
-                            <a vvid="dan9_17-27" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Dan. 9:17-27</a><?php echo $oBringer->seo_out('dan9_17-27'); ?>;
-                            <a vvid="matt24_15-22" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Matt. 24:15-22</a><?php echo $oBringer->seo_out('matt24_15-22'); ?>;
-                            <a vvid="matt24_8-14" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">24:8-14</a><?php echo $oBringer->seo_out('matt24_8-14'); ?>;
-                            <a vvid="james3_1-2" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">James 3:1-2</a><?php echo $oBringer->seo_out('james3_1-2'); ?>;
-                            <a vvid="num25_1-13" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Num. 25:1-13</a><?php echo $oBringer->seo_out('num25_1-13'); ?>;
-                            <a vvid="jer1_11-19" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Jer. 1:11-19</a><?php echo $oBringer->seo_out('jer1_11-19'); ?>;
-                            <?php
-                            echo $oBringer->link_html('luke12_34-44','Luke 12:34-44');
-                            ?>),
-                            a web professional living and working in Atlanta, GA.
-                            With 6 years of solid agency experience (+18 years of programming
-                            experience in open source web technologies) behind me, I am always open to
-                            investigate fresh opportunities to work with active, growing and digitally
-                            fueled companies in order to strengthen and broaden aspects of their service
-                            offerings from a technical perspective. For my previous employer, I worked
-                            with corporate clients to formulate and execute (with my own bare hands in the
-                            code whenever necessary) multi-channel business marketing initiatives.
-                            </p>
+                        <p>I'm Jonathan '5' Harris (<a vvid="rev3_7-13" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Rev. 3:7-13</a><?php echo $oBringer->seo_out('rev3_7-13'); ?>;
+                        <a vvid="gen49_1,25-28" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Gen. 49:1, 25-28</a><?php echo $oBringer->seo_out('gen49_1,25-28'); ?>;
+                        <a vvid="deut33_1-4,12,29" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Deut. 33:1-4, 12, 29</a><?php echo $oBringer->seo_out('deut33_1-4,12,29'); ?>;
+                        <a vvid="isa16_1-5" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Isa. 16:1-5</a><?php echo $oBringer->seo_out('isa16_1-5'); ?>;
+                        <a vvid="dan9_17-27" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Dan. 9:17-27</a><?php echo $oBringer->seo_out('dan9_17-27'); ?>;
+                        <a vvid="matt24_15-22" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Matt. 24:15-22</a><?php echo $oBringer->seo_out('matt24_15-22'); ?>;
+                        <a vvid="matt24_8-14" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">24:8-14</a><?php echo $oBringer->seo_out('matt24_8-14'); ?>;
+                        <a vvid="james3_1-2" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">James 3:1-2</a><?php echo $oBringer->seo_out('james3_1-2'); ?>;
+                        <a vvid="num25_1-13" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Num. 25:1-13</a><?php echo $oBringer->seo_out('num25_1-13'); ?>;
+                        <a vvid="jer1_11-19" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Jer. 1:11-19</a><?php echo $oBringer->seo_out('jer1_11-19'); ?>;
+                        <?php
+                        echo $oBringer->link_html('luke12_34-44','Luke 12:34-44');
+                        ?>),
+                        a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder
+                        officially seated in heaven at a place prepared by God my heavenly Father at table next to Jesus Christ,
+                        the Son of God, the Son of David, the King of kings and Lord of all lords, and a web professional living
+                        and working in Atlanta, GA.</p>
 
-                            <p>Digital brand strategy and execution are my core competencies.</p>
+                        <p>With 6 years of solid agency experience (+18 years of programming experience in open source
+                        web technologies) behind me, I am always open to investigate fresh opportunities to work with active,
+                        growing and digitally fueled companies in order to strengthen and broaden aspects of their service
+                        offerings from a technical perspective. For my previous employer, I worked with corporate clients
+                        to formulate and execute (with my own bare hands in the code whenever necessary) multi-channel
+                        business marketing initiatives.</p>
 
-                            <p>In 2004 I worked as a freelance designer, web application developer and
-                            serial entrepreneur. After the implosion of my 8 person startup company,
-                            CommercialNet Inc., I entered the world of interactive marketing and
-                            advertising by accepting a UI developer position with the Atlanta based
-                            agency, <a href="http://moxieusa.com" target="_blank">Moxie</a>.</p>
+                        <p>Digital brand strategy and execution are my core competencies.</p>
+
+                        <p>In 2004 I worked as a freelance designer, web application developer and
+                        serial entrepreneur. After the implosion of my 8 person startup company,
+                        CommercialNet Inc., I entered the world of interactive marketing and
+                        advertising by accepting a UI developer position with the Atlanta based
+                        agency, <a href="http://moxieusa.com" target="_blank">Moxie</a>.</p>
 
                     </div>
 
                     <div class="col">
 
-                            <p>In 2007 I helped a talented and diverse team of people at Moxie to start
-                            the eCRM department. Lead by Darryl Bolduc, Tina West and Sapana Nanuwa (and with over 50 years of combined
-                            email marketing experience), we worked with our clients to design and execute
-                            both award-winning and state-of-the-art email marketing programs in support of their global strategic
-                            initiatives. </p>
+                        <p>In 2007 I helped a talented and diverse team of people at Moxie to start
+                        the eCRM department. Lead by Darryl Bolduc, Tina West and Sapana Nanuwa (and with over 50 years of combined
+                        email marketing experience), we worked with our clients to design and execute
+                        both award-winning and state-of-the-art email marketing programs in support of their global strategic
+                        initiatives. </p>
 
-                            <p>Born on Nov. 10th, 2005, my dog...named 'J5' (proper)...is part
-                            Korean Jindo, German Shepherd and Timber Wolf.</p>
+                        <p>Born on Nov. 10th, 2005, my dog...named 'J5' (proper)...is part
+                        Korean Jindo, German Shepherd and Timber Wolf.</p>
 
                         <?php
                         $tmp_str_out = '';
                         $first_img_display = false;
                         $dir_path = "common/imgs/j5_my_boy/";
-                        $thum_path = "common/imgs/j5_my_boy/_thumb/";
+                        $thumb_path = "common/imgs/j5_my_boy/_thumb/";
 
                         $tmp_dir = $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/' . $dir_path;
                         $j5_filename_array = scandir($tmp_dir, 1);
@@ -338,11 +340,11 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
 
                                         $tmp_str_out .= '<p>';
 
-                                        $tmp_str_out .= '<a class="j5_my_boy_thumb" href="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[j5_my_boy]" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs." style="line-height:11px;"><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thum_path . $j5_filename_array[$i].'" alt="" style="width:295px; height:221px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="221" alt="J5" />';
+                                        $tmp_str_out .= '<a class="j5_my_boy_thumb" href="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[j5_my_boy]" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs." style="line-height:11px;"><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . $j5_filename_array[$i].'" alt="" style="width:295px; height:221px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="221" alt="J5" />';
 
                                         $tmp_str_out .= '<span style="font-size:14px; text-decoration: underline; color: #0066CC; display: block; width:295px; text-align: right; padding: 0; margin: 0;">Gallery</span></a></p>';
 
-                                        //$tmp_str_out .= '<div style="font-size:12px; width:295px; text-align: right; padding: 3px 0 0 0;"><a href="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[j5_my_boy]" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs.">Gallery.<img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thum_path . $j5_filename_array[$i].'" alt="" style="padding:0px; margin:0px; display: none;" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee" /></a></div></p>';
+                                        //$tmp_str_out .= '<div style="font-size:12px; width:295px; text-align: right; padding: 3px 0 0 0;"><a href="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[j5_my_boy]" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs.">Gallery.<img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . $j5_filename_array[$i].'" alt="" style="padding:0px; margin:0px; display: none;" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee" /></a></div></p>';
 
                                     }
 
@@ -350,7 +352,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
 
                                     if(strlen($j5_filename_array[$i]) > 6){
 
-                                        $tmp_str_out .= '<div class="hidden"><a class="j5_my_boy_thumb" href=' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . ' rel="lightbox[j5_my_boy]" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs."><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thum_path . $j5_filename_array[$i].'" alt="" style="padding:0px; margin:0px;" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee" /></a></div>';
+                                        $tmp_str_out .= '<div class="hidden"><a class="j5_my_boy_thumb" href=' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . ' rel="lightbox[j5_my_boy]" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs."><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . $j5_filename_array[$i].'" alt="" style="padding:0px; margin:0px;" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee" /></a></div>';
 
                                     }
 
@@ -364,27 +366,366 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
 
                         ?>
 
-                            <!--<p><div class="embedded_image" style="width:295px; height:221px;"><img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/j5_octane.jpg" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee"></div></p>-->
+                        <!--<p><div class="embedded_image" style="width:295px; height:221px;"><img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/j5_octane.jpg" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee"></div></p>-->
 
-                            <p>When I worked at agency, J5 accompanied me to the office on occasion as well as to local parks, coffee shops,
-                            neighborhood bars and even the occasional house party.</p>
+                        <p>When I worked at agency, J5 accompanied me to the office on occasion as well as to local parks, coffee shops,
+                        neighborhood bars and even the occasional house party.</p>
 
                     </div>
                     <div class="col">
-                            <p>On the morning of Monday, Aug. 16, 2021 at 0345 hrs and while laying under my arm, J5 went the way of all the earth (<a vvid="1kings2_1-3" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">1 Kings 2:1-3</a><?php echo $oBringer->seo_out('1kings2_1-3'); ?>)
-                            even with much encouragement and celebration from me by his side. In the woods behind my house in the dark of night,
-                            at 0500 hrs, as I was returning J5 to the earth from whence he came...whilst shoveling the dirt back in place, I thanked
-                            him repeatedly for everything he gave to me during our sojourn together upon the face of the earth in this God's old creation. I thanked him for
-                            bringing me into practical participation with and into the prophetic fulfillment of the blessings of Israel to his twelve sons (<a vvid="gen48_21-22|49_1,25-28" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Gen. 48:21-22; 49:1, 25-28</a><?php echo $oBringer->seo_out('gen48_21-22|49_1,25-28'); ?>)
-                            which are for all of the people of God across all space and all time. Even all the nations of the earth will be blessed.</p>
+                        <p>On the morning of Monday, Aug. 16, 2021 at 0345 hrs and while laying under my arm, J5 went the way of all the earth (<a vvid="1kings2_1-3" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">1 Kings 2:1-3</a><?php echo $oBringer->seo_out('1kings2_1-3'); ?>)
+                        even with much encouragement and celebration from me by his side. In the woods behind my house in the dark of night,
+                        at 0500 hrs, as I was returning J5 to the earth from whence he came...whilst shoveling the dirt back in place, I thanked
+                        him repeatedly for everything he gave to me during our sojourn together upon the face of the earth in this God's old creation. I thanked him for
+                        bringing me into practical participation with and into the prophetic fulfillment of the blessings of Israel to his twelve sons (<a vvid="gen48_21-22|49_1,25-28" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Gen. 48:21-22; 49:1, 25-28</a><?php echo $oBringer->seo_out('gen48_21-22|49_1,25-28'); ?>)
+                        which are for all of the people of God across all space and all time. Even all the nations of the earth will be blessed.</p>
 
-                            <p>The bone from his last whole steak, a +$100 rare tomahawk ribeye from <a href="https://www.ruthschris.com/" target="_blank">Ruth's Chris</a>,
-                            is still clutched against his chest in the arm of his front right paw.</p>
+                        <p>The bone from his last whole steak, a +$100 rare tomahawk ribeye from <a href="https://www.ruthschris.com/" target="_blank">Ruth's Chris</a>,
+                        is still clutched against his chest in the arm of his front right paw.</p>
 
-                            <p>Later, I came to realize that I buried him facing towards the direction of the rising of the sun to the east.</p>
+                        <p>Later, I came to realize that I buried him facing towards the direction of the rising of the sun to the east.</p>
 
-                            <p>Click <a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>downloads/resume/jharris_resume.php?v=420" download>here</a> to download the latest version of
-                            my resume or visit my <a href="https://www.linkedin.com/in/j00000101/" target="_blank">LinkedIn</a> profile.</p>
+                        <p>Click <a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>downloads/resume/jharris_resume.php?v=420" download>here</a> to download the latest version of
+                        my resume or visit my <a href="https://www.linkedin.com/in/j00000101/" target="_blank">LinkedIn</a> profile.</p>
+                    </div>
+                </div>
+                <div class="cb"></div>
+            </div>
+
+            <div class="cb"></div>
+            <div class="content_hr"></div>
+            <div style="float:right;">
+                <div style="position:relative; line-height: 0; width: 20px; text-align: right; padding-right: 50px;">
+                    <div style="position: absolute; top: 10px;">
+                        <a href="#" onclick="jony5_scroll_to('top');" rel="crnrstn_top" style='color:#0066CC; text-decoration:none; font-family: "Courier New", Courier, monospace'>Top</a>
+                    </div>
+                </div>
+            </div>
+            <div style="float: left;">
+                <div style="position:relative;">
+                    <div style="position: absolute; left:-10px; top:-10px;">
+
+                        <div id="scripture_deep_link_<?php
+
+                        $tmp_serial = $oBringer->generate_new_key(100, '01');
+                        echo $tmp_serial;
+
+                        ?>" class="scripture_deep_link_shell" style="top:15px;">
+
+                        </div>
+                        <div class="scripture_social_link_wrapper">
+                            <?php
+
+                            $tmp_share_message = urlencode('Hi, I\'m Jonathan 5 Harris!');
+                            $tmp_copy_share_lnk = $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . '?scroll=M_AND_5_935M_ATL_2011';
+                            $tmp_share_lnk = urlencode($tmp_copy_share_lnk);
+                            $tmp_lnk_www = $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . '?scroll=M_AND_5_935M_ATL_2011';
+                            $tmp_lnk_twitter = 'https://twitter.com/intent/tweet?text=' . $tmp_share_message . '&url=' . $tmp_share_lnk;
+                            $tmp_lnk_facebook = 'https://www.facebook.com/sharer/sharer.php?u=' . $tmp_share_lnk . '&quote=' . $tmp_share_message;
+                            $tmp_lnk_linkedin = 'https://www.linkedin.com/sharing/share-offsite/?url=' . $tmp_share_lnk;
+                            $tmp_lnk_reddit = 'https://www.reddit.com/submit?url=' . $tmp_share_lnk . '&title=' . $tmp_share_message;
+
+                            ?>
+
+                            <div style="padding: 0 0 10px 0; cursor: pointer;" onclick="scripture_deep_link_copy_clipboard('<?php echo $tmp_serial; ?>', '<?php echo $tmp_copy_share_lnk; ?>');">
+                                <div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
+                                    <div style="position: relative;">
+                                        <div style="position: absolute; left:-107px; top: 0;">
+                                            <img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Share Link." title="Share Link.">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="padding: 0 0 10px 0; cursor: pointer;" onclick="window.open('<?php echo $tmp_lnk_twitter; ?>', '_blank');">
+                                <div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
+                                    <div style="position: relative;">
+                                        <div style="position: absolute; left:-80px; top: 0;">
+                                            <img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Tweet to Twitter." title="Twitter Share Link.">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="padding: 0 0 10px 0; cursor: pointer;" onclick="window.open('<?php echo $tmp_lnk_facebook; ?>', '_blank');">
+                                <div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
+                                    <div style="position: relative;">
+                                        <div style="position: absolute; left:-26px; top: 0;">
+                                            <img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="319" height="414" alt="Share to Facebook." title="Facebook Share Link.">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="padding: 0 0 10px 0; cursor: pointer;" onclick="window.open('<?php echo $tmp_lnk_linkedin; ?>', '_blank');">
+                                <div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
+                                    <div style="position: relative;">
+                                        <div style="position: absolute; left:-2px; top: -89px;">
+                                            <img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Post to Linkedin." title="Linkedin Share Link.">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="padding: 0 0 10px 0; cursor: pointer;" onclick="window.open('<?php echo $tmp_lnk_reddit; ?>', '_blank');">
+                                <div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
+                                    <div style="position: relative;">
+                                        <div style="position: absolute; left:-273px; top: -29px;">
+                                            <img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Share to Reddit." title="Reddit Share Link.">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <?php
+
+            /*
+            <p>Added all my photos of M with 5 from ATLANTA to CRNRSTN :: /_tmp_diagrams.
+
+            https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/_M/
+
+            ❤ you always, my dear.
+            - 5
+
+            -rwxr-xr-x@   1 jony5  staff  4336580 May 23 00:20 M_WITH_5_AT_935M_ATLANTA_G2x_BACKUP_APR_23_2011_IMG021.jpg
+            -rwxr-xr-x@   1 jony5  staff  5599026 May 23 00:05 M_WITH_5_AT_935M_ATLANTA_G2x_BACKUP_APR_23_2011_IMG022.jpg
+            -rwxr-xr-x@   1 jony5  staff  5361355 May 23 00:06 M_WITH_5_AT_935M_ATLANTA_G2x_BACKUP_APR_23_2011_IMG023.jpg
+            -rwxr-xr-x@   1 jony5  staff  5113037 May 23 00:13 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_A_MEGATRON_PINEAPPLE_MAY_28_2011_IMG330.jpg
+            -rwxr-xr-x@   1 jony5  staff  4494732 May 23 00:12 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG343.jpg
+            -rwxr-xr-x@   1 jony5  staff  4154440 May 23 00:05 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG344.jpg
+            -rwxr-xr-x@   1 jony5  staff  4225890 May 23 00:19 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG353.jpg
+            -rwxr-xr-x@   1 jony5  staff  5217108 May 23 00:11 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG354.jpg
+            -rwxr-xr-x@   1 jony5  staff  4592267 May 23 00:13 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG355.jpg
+            -rwxr-xr-x@   1 jony5  staff  5069214 May 23 00:12 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG356.jpg
+            -rwxr-xr-x@   1 jony5  staff  3436005 May 23 00:06 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG358.jpg
+            -rwxr-xr-x@   1 jony5  staff  4502634 May 23 00:08 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG360.jpg
+            -rwxr-xr-x@   1 jony5  staff  4726747 May 23 00:09 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG363.jpg
+            -rwxr-xr-x@   1 jony5  staff  4303682 May 23 00:19 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG366.jpg
+            -rwxr-xr-x@   1 jony5  staff  4418492 May 23 00:09 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG368.jpg
+            -rwxr-xr-x@   1 jony5  staff  4622232 May 23 00:20 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG369.jpg
+            -rwxr-xr-x@   1 jony5  staff  5036481 May 23 00:14 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG370.jpg
+            -rwxr-xr-x@   1 jony5  staff  4484635 May 23 00:21 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG372.jpg
+            -rwxr-xr-x@   1 jony5  staff  4525461 May 23 00:17 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG373.jpg
+            -rwxr-xr-x@   1 jony5  staff  3668828 May 23 00:18 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG376.jpg
+            -rw-r--r--@   1 jony5  staff   294555 May 23 00:08 M_WITH_5_IN_ATLANTA_AT_FELLINIS_PIZZA_HOWELL_MILL_RD_MAY_11_2011_123034.jpg
+            -rw-r--r--@   1 jony5  staff  1103331 May 23 00:10 M_WITH_5_IN_ATLANTA_HAVING_TACOS_OFF_PEACHTREE_STREET_DEC_31_2011_141714.jpg
+            -rw-r--r--@   1 jony5  staff  1439640 May 22 12:18 M_WITH_5_IN_ATLANTA_HAVING_TACOS_OFF_PEACHTREE_STREET_Screen Shot 2024-05-22 at 12.18.26 PM (15in_mbp).png
+            -rw-r--r--@   1 jony5  staff  3342824 May 23 00:24 M_WITH_5_IN_ATLANTA_HAVING_TACOS_OFF_PEACHTREE_STREET_Screen Shot 2024-05-22 at 12.18.26 PM (27in).png
+            -rw-r--r--@   1 jony5  staff  8312184 May 22 17:36 Screen Shot 2024-05-22 at 5.36.32 PM (15in_mbp).png
+            -rw-r--r--@   1 jony5  staff  9339185 May 23 00:15 Screen Shot 2024-05-22 at 5.36.32 PM (27in).png
+            -rw-r--r--@   1 jony5  staff  9514467 May 24 08:40 Screen Shot 2024-05-24 at 7.27.14 AM (27in).png
+            -rw-r--r--@   1 jony5  staff  1900541 May 24 08:35 Screen Shot 2024-05-24 at 7.48.51 AM (27in).png
+            -rw-r--r--@   1 jony5  staff  8318280 May 25 07:45 Screen Shot 2024-05-25 at 7.45.53 AM (15in_mbp).png
+            -rw-r--r--@   1 jony5  staff  8451040 May 26 14:19 Screen Shot 2024-05-26 at 2.18.54 PM (15in_mbp).png
+
+            */
+
+            ?>
+            <div id="scroll_M_AND_5_935M_ATL_2011_highlight_content">
+                <div class="hidden"><a id="scroll_M_AND_5_935M_ATL_2011" name="M_AND_5_935M_ATL_2011">M_AND_5_935M_ATL_2011</a></div>
+                <div class="content_title">M and 5 in Atlanta in 2011 @ 935M, APT 305. MY BEST YEAR EVER!</div>
+                <div class="content_copy">
+                    <div class="col">
+                        <p>As a ravenous wolf of the tribe of Benjamin, as one of the two sons of thunder, and according
+                            to golden incense alter fellowship before the oracles of God in the Holy of holies...before
+                            the very face of God our heavenly Father and our Lord Jesus Christ,...</p>
+
+                        <p>In the midst of my daily priestly service and according to my fellowship with God, this unprofitable
+                            servant of the Lord testifies that I will be taking the church (100% of the living christian
+                            sisters and the living certain brothers) to heaven in my house. I will take the church to heaven
+                            through my 935M apartment 305 in Atlanta; 935M is the location of many of these pictures of my
+                            girl, M, during times when I could actually be with her in life and before my 2011-2012 martyrdom.</p>
+
+                        <?php
+                        $tmp_str_out = $tmp_first_look = $tmp_second_look = '';
+                        $first_img_display = false;
+                        $dir_path = "common/imgs/_M/";
+                        $thumb_path = "common/imgs/_M/_thumb/";
+
+                        $tmp_dir = $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/' . $dir_path;
+                        $j5_filename_array = scandir($tmp_dir, 1);
+
+                        $j5_filename_array = array_reverse($j5_filename_array);
+                        $j5_array_size = sizeof($j5_filename_array);
+
+                        for($i = 0; $i < $j5_array_size; $i++){
+
+                            if($j5_filename_array[$i] != '.DS_Store' && $j5_filename_array[$i] != '.' && $j5_filename_array[$i] != '..'){
+
+                                $tmp_thumb_filename_png = $j5_filename_array[$i];
+
+                                //
+                                // PREPARE THUMB PNG FILE NAME FROM POSSIBLE JPG FILE.
+                                $tmp_filename_ARRAY = explode('.', $j5_filename_array[$i]);
+                                $tmp_ext = array_pop($tmp_filename_ARRAY);
+                                if($tmp_ext == '.jpg'){
+
+                                    //
+                                    // WE HAVE JPG IN THE FILENAME. CHANGE THIS TO PNG.
+                                    $patterns = array();
+                                    $patterns[0] = '.jpg';
+
+                                    $replacements = array();
+                                    $replacements[0] = '.png';
+
+                                    $tmp_thumb_filename_png = str_replace($patterns, $replacements, $tmp_thumb_filename_png);
+
+                                }
+
+                                if(!$first_img_display){
+
+                                    if(strlen($j5_filename_array[$i]) > 6){
+
+                                        $first_img_display = true;
+
+                                        $tmp_str_out .= '<p>';
+
+                                        $tmp_thumb_filename_png = $j5_filename_array[$i];
+                                        $tmp_jpg_pos = strpos($tmp_thumb_filename_png, '.jpg');
+                                        if($tmp_jpg_pos !== false){
+
+                                            //
+                                            // WE HAVE JPG IN THE FILENAME. CHANGE THIS TO PNG.
+                                            $patterns = array();
+                                            $patterns[0] = '.jpg';
+
+                                            $replacements = array();
+                                            $replacements[0] = '.png';
+
+                                            $tmp_thumb_filename_png = str_replace($patterns, $replacements, $tmp_thumb_filename_png);
+
+                                        }
+
+                                        $tmp_str_out .= '<a class="j5_my_boy_thumb" href="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear." style="line-height:11px;"><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; height:221px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="221" alt="M with 5 from ATLANTA." />';
+
+                                        $tmp_str_out .= '<span style="font-size:14px; text-decoration: underline; color: #0066CC; display: block; width:295px; text-align: right; padding: 0; margin: 0;">Gallery</span></a></p>';
+
+                                        if($j5_filename_array[$i] == 'Screen Shot 2024-05-24 at 7.27.14 AM (27in).png'){
+
+                                            $tmp_second_look .= '<a class="j5_my_boy_thumb" href="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[0_M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear." style="line-height:11px;"><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; height:221px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="221" alt="M with 5 from ATLANTA." />';
+                                            $tmp_second_look .= '</a></p>';
+
+                                        }else{
+
+                                            if($j5_filename_array[$i] == 'M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG344.jpg'){
+
+                                                $tmp_first_look .= '<a class="j5_my_boy_thumb" href="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[0_M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear." style="line-height:11px;"><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; height:221px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="221" alt="M with 5 from ATLANTA." />';
+                                                $tmp_first_look .= '</a></p>';
+
+                                            }
+
+                                        }
+
+                                    }
+
+                                }else{
+
+                                    if(strlen($j5_filename_array[$i]) > 6){
+
+                                        $tmp_thumb_filename_png = $j5_filename_array[$i];
+                                        $tmp_jpg_pos = strpos($tmp_thumb_filename_png, '.jpg');
+                                        if($tmp_jpg_pos !== false){
+
+                                            //
+                                            // WE HAVE JPG IN THE FILENAME. CHANGE THIS TO PNG.
+                                            $patterns = array();
+                                            $patterns[0] = '.jpg';
+
+                                            $replacements = array();
+                                            $replacements[0] = '.png';
+
+                                            $tmp_thumb_filename_png = str_replace($patterns, $replacements, $tmp_thumb_filename_png);
+
+                                        }
+
+                                        if($j5_filename_array[$i] == 'Screen Shot 2024-05-24 at 7.27.14 AM (27in).png'){
+
+                                            $tmp_second_look .= '<a class="j5_my_boy_thumb" href="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[0_M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear." style="line-height:11px;"><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; height:166px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="166 alt="M with 5 from ATLANTA." />';
+                                            $tmp_second_look .= '</a></p>';
+
+                                        }else{
+
+                                            if($j5_filename_array[$i] == 'M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG344.jpg'){
+
+                                                $tmp_first_look .= '<a class="j5_my_boy_thumb" href="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[0_M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear." style="line-height:11px;"><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; height:221px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="221" alt="M with 5 from ATLANTA." />';
+                                                $tmp_first_look .= '</a></p>';
+
+                                            }
+
+                                        }
+
+                                        $tmp_str_out .= '<div class="hidden"><a class="j5_my_boy_thumb" href=' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . ' rel="lightbox[M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear."><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="padding:0px; margin:0px;" width="295" height="221" alt="J5" title="M with 5 from ATLANTA. I will love you always, my dear." /></a></div>';
+
+                                    }
+
+                                }
+
+                            }
+
+                        }
+
+                        echo $tmp_str_out;
+
+                        ?>
+
+                        <p>Noting only a few exceptions, these living saints will never see death.</p>
+
+                    </div>
+
+                    <div class="col">
+                        <?php
+                        echo $tmp_first_look;
+                        ?>
+                        <p>My life articulates a lattice upon which any astute Bible teacher would be apt to hang and to
+                            display (and to teach) many previously hidden divine revelations. One such divine revelation is
+                            a 1-2 step to transfer the saints, the church, from earth to heaven. This will produce what could
+                            be called an hour of trial upon the earth; I would call it a sausage fest. No. let’s say &quot;welcome
+                            to sausage town!&quot;</p>
+
+                        <p>...No, we MUST call it PLANET SAUSAGE; I will be kept out of that hour of trial,...as anyone
+                            could imagine.</p>
+
+                        <p><a vvid="rev3_10-11" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">https://jony5.com/?vv=rev3_10-11</a><?php echo $oBringer->seo_out('rev3_10-11'); ?></p>
+
+                        <p>During this 1-2 step hour of trial, the King will martyr the product of my big[sic] brother
+                            Jermaine Holloway's ATL breeding activities with &quot;scared ATL girls&quot; for Jezebel
+                            (they are her children) straight into my heavenly household; others will seek for this kind
+                            of death, martyrdom, and will not find it.</p>
+
+                        <p>Revelation 2:23 is the King of kings assembling my household in heaven.</p>
+
+                        <p>Thundercats hooo!<br>
+                            <a vvid="rev2_21-23,29" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">https://jony5.com?vv=rev2_21-23,29</a><?php echo $oBringer->seo_out('rev2_21-23,29'); ?></p>
+
+                    </div>
+                    <div class="col">
+                        <p>Once in heaven, I will be seated at table next to Jesus Christ our Lord, the King of kings and
+                            Lord of all lords, for eternity, and my new creation heavenly borne household in 100% resurrection
+                            will have +50 billion sisters and gay brothers who, by the date of their first birth, their earthy
+                            birth, go back even to the 1800's.</p>
+
+                        <p>This has all been prepared for me beforehand by God my heavenly Father...Father of eternity...and,
+                            this prepared portion will be poured directly into my bosom here in space and in time, very soon.</p>
+
+                        <p>Also, the King has two swords, two seats,...two hounds. I suspect that both of the Kings dogs in
+                            office are straight wolves from the tribe of Benjamin. Therefore, the other guy is almost certainly
+                            Jewish, and I suspect that his heavenly house is much larger than mine as I look to be the more
+                            uncomely member that lacked...and but still with that brother also having never married in life
+                            whilst serving the Lord faithfully even unto death.</p>
+
+                       <?php
+                       echo $tmp_second_look;
+                       ?>
+
+                        <div class="cb_30"></div>
+                        <p style="font-size: 90%;">Last Modified:<br>
+                            Wed May 29 16:20:02.240211 2024.</p>
+
                     </div>
                 </div>
                 <div class="cb"></div>
