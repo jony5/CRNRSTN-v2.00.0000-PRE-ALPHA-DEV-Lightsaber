@@ -4,6 +4,15 @@ A significant refactoring of CRNRSTN :: This is hot in the works...with ~60% of 
 
 
 ## Production
+= = = = =
+
+I will ❤ you always, my dear. 
+
+5
+
+[https://jony5.com/?scroll=M_AND_5_935M_ATL_2011](https://jony5.com/?scroll=M_AND_5_935M_ATL_2011)
+
+= = = = =
 
 Hosting migration is still in progress --> [lightsaber.crnrstn.evifweb.com](http://lightsaber.crnrstn.evifweb.com/) 
 The SITE IS STILL AWAITING ACCOUNT SETUP with Bluehost at this time (~5 failed trys with support). 
