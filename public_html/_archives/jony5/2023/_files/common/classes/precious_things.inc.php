@@ -7255,12 +7255,12 @@ class bringer_of_the_precious_things {
                 they repent of her works;
 
                 <div class="cb_10"></div>
-                <a id="sup_ftnt_1" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_1\');">1</a>And her 
+                <span class="script_ref_num">23</span> <a id="sup_ftnt_1" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_1\');">1</a>And her 
                 children I will kill with death; and all the churches will know that I am He who searches the inward 
                 parts and the hearts; and I will give to each one of you according to your works.
 
                 <div class="cb_10"></div>
-                <span class="script_ref_num">29</span> He who has an ear, let him hear what the Spirit says to<br>
+                <span class="script_ref_num">29</span> He who has an ear, let him hear what the Spirit says to 
                 the churches.';
 
             break;
@@ -7290,7 +7290,7 @@ class bringer_of_the_precious_things {
                 dwell on the earth.
 
                 <div class="cb_10"></div>
-                I come quickly; hold fast what you have that no one take<br>your crown.
+                I come quickly; hold fast what you have that no one take your crown.
 
                 <div class="cb_50"></div>';
 
