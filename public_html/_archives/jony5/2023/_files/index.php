@@ -485,7 +485,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
             <?php
 
             /*
-            <p>Added all my photos of M with 5 from ATLANTA to CRNRSTN :: /_tmp_diagrams.
+            Added all my photos of M with 5 from ATLANTA to CRNRSTN :: /_tmp_diagrams.
 
             https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/_M/
 
