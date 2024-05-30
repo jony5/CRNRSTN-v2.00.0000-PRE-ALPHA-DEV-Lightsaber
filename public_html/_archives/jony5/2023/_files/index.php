@@ -485,11 +485,26 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
             <?php
 
             /*
+            Thursday, May 30, 2024 @ 0518 hrs.
+            # # C # R # N # R # S # T # N # : : # # # #
+            I MOVED ALL M AND 5 ATL 935M WEB HTML
+            CONTENT OUTPUT RESPONSIBILITY TO $oBringer,
+            THE ONE WHO BRINGS ALL THE PRECIOUS THINGS
+            OUT FROM THE MIDST OF THE WORTHLESS.
+
+            5 ::
+            CEO, CTO, Lead Full Stack PHP Developer.
+            eVifweb (2004-2024).
+
+            //
+            // Twitter (X)
+            // https://x.com/CRNRSTN_v2_0_0
+            // https://x.com/jony5/status/1795570650989629894
             Added all my photos of M with 5 from ATLANTA to CRNRSTN :: /_tmp_diagrams.
 
             https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/_M/
 
-            ❤ you always, my dear.
+            I will ❤ you always, my dear.
             - 5
 
             -rwxr-xr-x@   1 jony5  staff  4336580 May 23 00:20 M_WITH_5_AT_935M_ATLANTA_G2x_BACKUP_APR_23_2011_IMG021.jpg
