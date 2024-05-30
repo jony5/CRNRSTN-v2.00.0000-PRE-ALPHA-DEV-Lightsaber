@@ -169,6 +169,46 @@ class bringer_of_the_precious_things {
 
     }
 
+    public function jony5_web_output($html_module){
+
+        try{
+
+            $tmp_html_output = '';
+
+            switch($html_module){
+                case 'M_AND_5_935M_ATL_2011':
+
+                    $tmp_html_output = $this->return_web_content_M_AND_5_935M_ATL_2011();
+
+                break;
+                default:
+
+                    $tmp_html_output = '<span style="font-family: Courier New, Courier, monospace; color: #333; font-size: 15px;">The requested jony5 web content could not be found.</span>';
+
+                break;
+
+            }
+
+            return $tmp_html_output;
+
+        }catch(Exception $e){
+
+            //
+            // SEND THIS THROUGH THE LOGGER OBJECT.
+            if(isset($this->oCRNRSTN_USR)){
+
+                $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+            }else{
+
+                self::$oLogger->captureNotice('bringer_of_the_precious_things->__construct()', LOG_EMERG, $e->getMessage());
+
+            }
+
+        }
+
+    }
+
     public function search_the_precious($output_mode = 'BASIC_INPUTBOX', $serial_salt = ''){
 
         $tmp_serial = self::$serial . '_' . $serial_salt . '_';
@@ -8704,6 +8744,337 @@ class bringer_of_the_precious_things {
 
         return $tmp_footnote_array;
 
+    }
+    
+    private function return_web_content_M_AND_5_935M_ATL_2011(){
+        
+        $tmp_html_output = '';
+
+        /*
+        Please see M with 5:
+        https://jony5.com/?scroll=M_AND_5_935M_ATL_2011
+        
+        Added all my photos of M with 5 from ATLANTA to CRNRSTN :: /_tmp_diagrams.
+        
+        https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/_M/
+        
+        ❤ you always, my dear. 
+        - 5
+        
+        Last Modified:
+        Wed May 29 16:20:02.240211 2024.
+        
+        As a ravenous wolf of the tribe of Benjamin, as one of the two sons of
+        thunder, and according to golden incense alter fellowship before the
+        oracles of God in the Holy of holies...before the very face of God our
+        heavenly Father and our Lord Jesus Christ,...
+        
+        In the midst of my daily priestly service and according to my fellowship
+        with God, this unprofitable servant of the Lord testifies that I will
+        be taking the church (100% of the living christian sisters and the
+        living certain brothers) to heaven in my house. I will take the church
+        to heaven through my 935M apartment 305 in Atlanta; 935M is the location
+        of many of these pictures of my girl, M, during times when I could
+        actually be with her in life and before my 2011-2012 martyrdom.
+        
+        Noting only a few exceptions, these living saints will never see death.
+        
+        My life articulates a lattice upon which any astute Bible teacher would
+        be apt to hang and to display (and to teach) many previously hidden
+        divine revelations. One such divine revelation is a 1-2 step to transfer
+        the saints, the church, from earth to heaven. This will produce what
+        could be called an hour of trial upon the earth; I would call it a
+        sausage fest. No. let’s say "welcome to sausage town!"
+        
+        No, we MUST call it PLANET SAUSAGE; I will be kept out of that hour of
+        trial,...as anyone could imagine.
+        
+        https://jony5.com/?vv=rev3_10-11
+        
+        During this 1-2 step hour of trial, the King will martyr the product of
+        my big[sic] brother Jermaine Holloway's ATL breeding activities with
+        "scared ATL girls" for Jezebel (they are her children) straight into my
+        heavenly household; others will seek for this kind of death, martyrdom,
+        and will not find it.
+        
+        Revelation 2:23 is the King of kings assembling my household in heaven.
+        
+        Thundercats hooo!
+        https://jony5.com?vv=rev2_21-23,29
+        
+        Once in heaven, I will be seated at table next to Jesus Christ our Lord,
+        the King of kings and Lord of all lords, for eternity, and my new
+        creation heavenly borne household in 100% resurrection will have
+        +50 billion sisters and gay brothers who, by the date of their first
+        birth, their earthy birth, go back even to the 1800's.
+        
+        This has all been prepared for me beforehand by God my heavenly
+        Father...Father of eternity...and, this prepared portion will be poured
+        directly into my bosom here in space and in time, very soon.
+        
+        Also, the King has two swords, two seats,...two hounds. I suspect that
+        both of the Kings dogs in office are straight wolves from the tribe of
+        Benjamin. Therefore, the other guy is almost certainly Jewish, and I
+        suspect that his heavenly house is much larger than mine as I look to
+        be the more uncomely member that lacked...and but still with that
+        brother also having never married in life whilst serving the Lord
+        faithfully even unto death.
+
+        */
+
+        $tmp_html_output .= '<div id="scroll_M_AND_5_935M_ATL_2011_highlight_content">
+                <div class="hidden"><a id="scroll_M_AND_5_935M_ATL_2011" name="M_AND_5_935M_ATL_2011">M_AND_5_935M_ATL_2011</a></div>
+                <div class="content_title">M and 5 in Atlanta in 2011 @ 935M, APT 305. MY BEST YEAR EVER!</div>
+                <div class="content_copy">
+                    <div class="col">
+                        <p>As a ravenous wolf of the tribe of Benjamin, as one of the two sons of thunder, and according
+                            to golden incense alter fellowship before the oracles of God in the Holy of holies...before
+                            the very face of God our heavenly Father and our Lord Jesus Christ,...</p>
+
+                        <p>In the midst of my daily priestly service and according to my fellowship with God, this unprofitable
+                            servant of the Lord testifies that I will be taking the church (100% of the living christian
+                            sisters and the living certain brothers) to heaven in my house. I will take the church to heaven
+                            through my 935M apartment 305 in Atlanta; 935M is the location of many of these pictures of my
+                            girl, M, during times when I could actually be with her in life and before my 2011-2012 martyrdom.</p>';
+
+        $tmp_str_out = $tmp_first_look = $tmp_second_look = '';
+        $first_img_display = false;
+        $dir_path = "common/imgs/_M/";
+        $thumb_path = "common/imgs/_M/_thumb/";
+
+        /*
+        Thursday, May 30, 2024 @ 0518 hrs.
+        # # C # R # N # R # S # T # N # : : # # # #
+        I MOVED ALL M AND 5 ATL 935M WEB HTML
+        CONTENT OUTPUT RESPONSIBILITY TO $oBringer,
+        THE ONE WHO BRINGS ALL THE PRECIOUS THINGS
+        OUT FROM THE MIDST OF THE WORTHLESS.
+
+        5 ::
+        CEO, CTO, Lead Full Stack PHP Developer.
+        eVifweb (2004-2024).
+
+        Added all my photos of M with 5 from ATLANTA to CRNRSTN :: /_tmp_diagrams.
+
+        https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/_M/
+
+        ❤ you always, my dear.
+        - 5
+
+        -rwxr-xr-x@   1 jony5  staff  4336580 May 23 00:20 M_WITH_5_AT_935M_ATLANTA_G2x_BACKUP_APR_23_2011_IMG021.jpg
+        -rwxr-xr-x@   1 jony5  staff  5599026 May 23 00:05 M_WITH_5_AT_935M_ATLANTA_G2x_BACKUP_APR_23_2011_IMG022.jpg
+        -rwxr-xr-x@   1 jony5  staff  5361355 May 23 00:06 M_WITH_5_AT_935M_ATLANTA_G2x_BACKUP_APR_23_2011_IMG023.jpg
+        -rwxr-xr-x@   1 jony5  staff  5113037 May 23 00:13 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_A_MEGATRON_PINEAPPLE_MAY_28_2011_IMG330.jpg
+        -rwxr-xr-x@   1 jony5  staff  4494732 May 23 00:12 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG343.jpg
+        -rwxr-xr-x@   1 jony5  staff  4154440 May 23 00:05 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG344.jpg
+        -rwxr-xr-x@   1 jony5  staff  4225890 May 23 00:19 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG353.jpg
+        -rwxr-xr-x@   1 jony5  staff  5217108 May 23 00:11 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG354.jpg
+        -rwxr-xr-x@   1 jony5  staff  4592267 May 23 00:13 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG355.jpg
+        -rwxr-xr-x@   1 jony5  staff  5069214 May 23 00:12 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG356.jpg
+        -rwxr-xr-x@   1 jony5  staff  3436005 May 23 00:06 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG358.jpg
+        -rwxr-xr-x@   1 jony5  staff  4502634 May 23 00:08 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG360.jpg
+        -rwxr-xr-x@   1 jony5  staff  4726747 May 23 00:09 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG363.jpg
+        -rwxr-xr-x@   1 jony5  staff  4303682 May 23 00:19 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG366.jpg
+        -rwxr-xr-x@   1 jony5  staff  4418492 May 23 00:09 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG368.jpg
+        -rwxr-xr-x@   1 jony5  staff  4622232 May 23 00:20 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG369.jpg
+        -rwxr-xr-x@   1 jony5  staff  5036481 May 23 00:14 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG370.jpg
+        -rwxr-xr-x@   1 jony5  staff  4484635 May 23 00:21 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG372.jpg
+        -rwxr-xr-x@   1 jony5  staff  4525461 May 23 00:17 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG373.jpg
+        -rwxr-xr-x@   1 jony5  staff  3668828 May 23 00:18 M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG376.jpg
+        -rw-r--r--@   1 jony5  staff   294555 May 23 00:08 M_WITH_5_IN_ATLANTA_AT_FELLINIS_PIZZA_HOWELL_MILL_RD_MAY_11_2011_123034.jpg
+        -rw-r--r--@   1 jony5  staff  1103331 May 23 00:10 M_WITH_5_IN_ATLANTA_HAVING_TACOS_OFF_PEACHTREE_STREET_DEC_31_2011_141714.jpg
+        -rw-r--r--@   1 jony5  staff  1439640 May 22 12:18 M_WITH_5_IN_ATLANTA_HAVING_TACOS_OFF_PEACHTREE_STREET_Screen Shot 2024-05-22 at 12.18.26 PM (15in_mbp).png
+        -rw-r--r--@   1 jony5  staff  3342824 May 23 00:24 M_WITH_5_IN_ATLANTA_HAVING_TACOS_OFF_PEACHTREE_STREET_Screen Shot 2024-05-22 at 12.18.26 PM (27in).png
+        -rw-r--r--@   1 jony5  staff  8312184 May 22 17:36 Screen Shot 2024-05-22 at 5.36.32 PM (15in_mbp).png
+        -rw-r--r--@   1 jony5  staff  9339185 May 23 00:15 Screen Shot 2024-05-22 at 5.36.32 PM (27in).png
+        -rw-r--r--@   1 jony5  staff  9514467 May 24 08:40 Screen Shot 2024-05-24 at 7.27.14 AM (27in).png
+        -rw-r--r--@   1 jony5  staff  1900541 May 24 08:35 Screen Shot 2024-05-24 at 7.48.51 AM (27in).png
+        -rw-r--r--@   1 jony5  staff  8318280 May 25 07:45 Screen Shot 2024-05-25 at 7.45.53 AM (15in_mbp).png
+        -rw-r--r--@   1 jony5  staff  8451040 May 26 14:19 Screen Shot 2024-05-26 at 2.18.54 PM (15in_mbp).png
+
+        */
+
+        $tmp_dir = self::$oEnv->getEnvParam('DOCUMENT_ROOT') . self::$oEnv->getEnvParam('DOCUMENT_ROOT_DIR') . '/' . $dir_path;
+        $j5_filename_array = scandir($tmp_dir, 1);
+
+        $j5_filename_array = array_reverse($j5_filename_array);
+        $j5_array_size = sizeof($j5_filename_array);
+
+        for($i = 0; $i < $j5_array_size; $i++){
+
+            if($j5_filename_array[$i] != '.DS_Store' && $j5_filename_array[$i] != '.' && $j5_filename_array[$i] != '..'){
+
+                $tmp_thumb_filename_png = $j5_filename_array[$i];
+
+                //
+                // PREPARE THUMB PNG FILE NAME FROM POSSIBLE JPG FILE.
+                $tmp_filename_ARRAY = explode('.', $j5_filename_array[$i]);
+                $tmp_ext = array_pop($tmp_filename_ARRAY);
+                if($tmp_ext == '.jpg'){
+
+                    //
+                    // WE HAVE JPG IN THE FILENAME. CHANGE THIS TO PNG.
+                    $patterns = array();
+                    $patterns[0] = '.jpg';
+
+                    $replacements = array();
+                    $replacements[0] = '.png';
+
+                    $tmp_thumb_filename_png = str_replace($patterns, $replacements, $tmp_thumb_filename_png);
+
+                }
+
+                if(!$first_img_display){
+
+                    if(strlen($j5_filename_array[$i]) > 6){
+
+                        $first_img_display = true;
+
+                        $tmp_str_out .= '<p>';
+
+                        $tmp_thumb_filename_png = $j5_filename_array[$i];
+                        $tmp_jpg_pos = strpos($tmp_thumb_filename_png, '.jpg');
+                        if($tmp_jpg_pos !== false){
+
+                            //
+                            // WE HAVE JPG IN THE FILENAME. CHANGE THIS TO PNG.
+                            $patterns = array();
+                            $patterns[0] = '.jpg';
+
+                            $replacements = array();
+                            $replacements[0] = '.png';
+
+                            $tmp_thumb_filename_png = str_replace($patterns, $replacements, $tmp_thumb_filename_png);
+
+                        }
+
+                        $tmp_str_out .= '<a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear." style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; height:221px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="221" alt="M with 5 from ATLANTA." />';
+
+                        $tmp_str_out .= '<span style="font-size:14px; text-decoration: underline; color: #0066CC; display: block; width:295px; text-align: right; padding: 0; margin: 0;">Gallery</span></a></p>';
+
+                        if($j5_filename_array[$i] == 'Screen Shot 2024-05-24 at 7.27.14 AM (27in).png'){
+
+                            $tmp_second_look .= '<a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[0_M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear." style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; height:221px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="221" alt="M with 5 from ATLANTA." />';
+                            $tmp_second_look .= '</a></p>';
+
+                        }else{
+
+                            if($j5_filename_array[$i] == 'M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG344.jpg'){
+
+                                $tmp_first_look .= '<a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[0_M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear." style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; height:221px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="221" alt="M with 5 from ATLANTA." />';
+                                $tmp_first_look .= '</a></p>';
+
+                            }
+
+                        }
+
+                    }
+
+                }else{
+
+                    if(strlen($j5_filename_array[$i]) > 6){
+
+                        $tmp_thumb_filename_png = $j5_filename_array[$i];
+                        $tmp_jpg_pos = strpos($tmp_thumb_filename_png, '.jpg');
+                        if($tmp_jpg_pos !== false){
+
+                            //
+                            // WE HAVE JPG IN THE FILENAME. CHANGE THIS TO PNG.
+                            $patterns = array();
+                            $patterns[0] = '.jpg';
+
+                            $replacements = array();
+                            $replacements[0] = '.png';
+
+                            $tmp_thumb_filename_png = str_replace($patterns, $replacements, $tmp_thumb_filename_png);
+
+                        }
+
+                        if($j5_filename_array[$i] == 'Screen Shot 2024-05-24 at 7.27.14 AM (27in).png'){
+
+                            $tmp_second_look .= '<a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[0_M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear." style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; height:166px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="166 alt="M with 5 from ATLANTA." />';
+                            $tmp_second_look .= '</a></p>';
+
+                        }else{
+
+                            if($j5_filename_array[$i] == 'M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG344.jpg'){
+
+                                $tmp_first_look .= '<a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[0_M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear." style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; height:221px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="221" alt="M with 5 from ATLANTA." />';
+                                $tmp_first_look .= '</a></p>';
+
+                            }
+
+                        }
+
+                        $tmp_str_out .= '<div class="hidden"><a class="j5_my_boy_thumb" href=' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . ' rel="lightbox[M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear."><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="padding:0px; margin:0px;" width="295" height="221" alt="J5" title="M with 5 from ATLANTA. I will love you always, my dear." /></a></div>';
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        $tmp_html_output .= $tmp_str_out;
+
+        $tmp_html_output .= '
+                        <p>Noting only a few exceptions, these living saints will never see death.</p>
+
+                    </div>
+
+                    <div class="col">
+                        ' . $tmp_first_look . '
+                        <p>My life articulates a lattice upon which any astute Bible teacher would be apt to hang and to
+                            display (and to teach) many previously hidden divine revelations. One such divine revelation is
+                            a 1-2 step to transfer the saints, the church, from earth to heaven. This will produce what could
+                            be called an hour of trial upon the earth; I would call it a sausage fest. No. let’s say &quot;welcome
+                            to sausage town!&quot;</p>
+
+                        <p>...No, we MUST call it PLANET SAUSAGE; I will be kept out of that hour of trial,...as anyone
+                            could imagine.</p>
+
+                        <p><a vvid="rev3_10-11" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">https://jony5.com/?vv=rev3_10-11</a>' . $this->seo_out('rev3_10-11') . '</p>
+
+                        <p>During this 1-2 step hour of trial, the King will martyr the product of my big[sic] brother
+                            Jermaine Holloway\'s ATL breeding activities with &quot;scared ATL girls&quot; for Jezebel
+                            (they are her children) straight into my heavenly household; others will seek for this kind
+                            of death, martyrdom, and will not find it.</p>
+
+                        <p>Revelation 2:23 is the King of kings assembling my household in heaven.</p>
+
+                        <p>Thundercats hooo!<br>
+                            <a vvid="rev2_21-23,29" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">https://jony5.com?vv=rev2_21-23,29</a>' . $this->seo_out('rev2_21-23,29') . '</p>
+
+</div>
+<div class="col">
+    <p>Once in heaven, I will be seated at table next to Jesus Christ our Lord, the King of kings and
+        Lord of all lords, for eternity, and my new creation heavenly borne household in 100% resurrection
+        will have +50 billion sisters and gay brothers who, by the date of their first birth, their earthy
+        birth, go back even to the 1800\'s.</p>
+
+    <p>This has all been prepared for me beforehand by God my heavenly Father...Father of eternity...and,
+        this prepared portion will be poured directly into my bosom here in space and in time, very soon.</p>
+
+    <p>Also, the King has two swords, two seats,...two hounds. I suspect that both of the Kings dogs in
+        office are straight wolves from the tribe of Benjamin. Therefore, the other guy is almost certainly
+        Jewish, and I suspect that his heavenly house is much larger than mine as I look to be the more
+        uncomely member that lacked...and but still with that brother also having never married in life
+        whilst serving the Lord faithfully even unto death.</p>
+
+    ' . $tmp_second_look . '
+
+    <div class="cb_30"></div>
+    <p style="font-size: 90%;">Last Modified:<br>
+        Wed May 29 16:20:02.240211 2024.</p>
+
+</div>
+</div>
+<div class="cb"></div>
+</div>';
+
+        return $tmp_html_output;
+        
     }
 
     private function return_search_meta_scriptures($ugc_str_override = NULL){
