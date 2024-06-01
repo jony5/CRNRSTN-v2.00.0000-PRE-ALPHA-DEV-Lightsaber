@@ -272,22 +272,28 @@ switch($_SERVER['SCRIPT_NAME']){
                     $tmp_preview_social_img = 'https://jony5.com/common/imgs/social_share/preview/bmw_m5_social_preview.png';
                     $tmp_M5_page_title      = 'M5 Sedan | BMW USA';
                     $tmp_M5_title           = 'Looking to M5. Looking to legendary M engineering.';
-                    $tmp_M5_desc            = 'See the latest edition of the BMW M5: the quintessential business sedan with a high-performance edge.';
+                    $tmp_M5_desc            = 'Looking to M. See the latest edition of the BMW M5: the quintessential business sedan with a high-performance edge.';
 
-                    $tmp_redirect_html = '    <title>M5 Sedan | BMW USA</title>
-    <meta http-equiv="refresh" content="0; url=' . $tmp_uri . '"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:title" content="' . $tmp_M5_title . '"/>
-    <meta property="og:description" content="' . $tmp_M5_desc . '"/>
-    <meta property="og:url" content="https://jony5.com/?scroll=M5"/>
-    <meta property="og:site_name" content="' . $tmp_M5_page_title . '"/>
-    <meta property="og:image" content="' . $tmp_preview_social_img . '"/>
-    <meta property="og:image:secure_url" content="' . $tmp_preview_social_img . '"/>
-    <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:description" content="' . $tmp_M5_desc . '"/>
-    <meta name="twitter:title" content="' . $tmp_M5_title . '"/>
-    <meta name="twitter:image" content="' . $tmp_preview_social_img . '"/>
-    <meta name="twitter:creator" content="@BMWUSA"/>
+                    $tmp_redirect_html = '    <meta charset="utf-8">
+    <title>M5 Sedan | BMW USA</title>
+    <meta name="description" content="' . $tmp_M5_desc . '" />
+    <link rel="shortcut icon" type="image/x-icon" href="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . 'favicon.ico?v=420" />
+    <meta http-equiv="refresh" content="0; url=' . $tmp_uri . '" />
+    <meta name="twitter:image:src" content="' . $tmp_preview_social_img . '" />
+    <meta name="twitter:site" content="@jony5" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="' . $tmp_M5_title . '" />
+    <meta name="twitter:description" content="' . $tmp_M5_desc . '" />
+    <meta name="twitter:creator" content="@jony5" />
+    <meta property="og:image" content="' . $tmp_preview_social_img . '" />
+    <meta property="og:image:alt" content="' . $tmp_M5_desc . '" />
+    <meta property="og:site_name" content="' . $tmp_M5_page_title . '" />
+    <meta property="og:type" content="object" />
+    <meta property="og:title" content="' . $tmp_M5_title . '" />
+    <meta property="og:url" content="https://jony5.com/?scroll=M5" />
+    <meta property="og:description" content="' . $tmp_M5_desc . '" />
+    <meta name="hostname" content="jony5.com">
+    <meta name="expected-hostname" content="jony5.com">
     <style>
         p                                           { padding:10px 0 0 20px; font-size: 14px; color:#333; font-family: Arial, Helvetica, sans-serif; }
         .crnrstn_redirecting_url_copy               { font-family: Courier New, Courier, monospace; }
@@ -466,38 +472,90 @@ switch($_SERVER['SCRIPT_NAME']){
         }
 
     break;
-	
+
 }
 
+//
+// PREPARE A STRING PREFIX FOR SOCIAL
+// MEDIA TITLE PREVIEW. THE LAST 30 CHARS.
+$tmp_social_prefix = $tmp_scroll_tgt . ': ';
+if($tmp_social_prefix == ': '){
+
+    $tmp_social_prefix = '5: ';
+
+}
+
+/*
+//
+// TAKEN FROM THE CRNRSTN :: LIGHTSABER GITHUB REPOSITORY FOR
+// REPLICATION OF SOCIAL MEDIA INTEGRATIONS BEHAVIORS ON JONY5.COM.
+// PLEASE SEE,
+// view-source:https://github.com/jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber
+//
+// Saturday, June 1, 2024 @ 0630 hrs.
+<!DOCTYPE html>
+<html lang="en" data-color-mode="light" data-light-theme="light" data-dark-theme="dark"data-a11y-animated-images="system" data-a11y-link-underlines="true">
+    <head>
+        <title>jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber: A significant refactoring of CRNRSTN ::. This is hot in the works...with ~60% of refactoring complete.</title>
+        <meta name="description" content="A significant refactoring of CRNRSTN ::. This is hot in the works...with ~60% of refactoring complete. - jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber">
+        <meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/526881244/c7874297-9f5b-451d-9ec3-da9a5e717e0a" />
+        <meta name="twitter:site" content="@github" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber: A significant refactoring of CRNRSTN ::. This is hot in the works...with ~60% of refactoring complete." />
+        <meta name="twitter:description" content="A significant refactoring of CRNRSTN ::. This is hot in the works...with ~60% of refactoring complete. - jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber" />
+        <meta property="og:image" content="https://repository-images.githubusercontent.com/526881244/c7874297-9f5b-451d-9ec3-da9a5e717e0a" />
+        <meta property="og:image:alt" content="A significant refactoring of CRNRSTN ::. This is hot in the works...with ~60% of refactoring complete. - jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber" />
+        <meta property="og:site_name" content="GitHub" />
+        <meta property="og:type" content="object" />
+        <meta property="og:title" content="jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber: A significant refactoring of CRNRSTN ::. This is hot in the works...with ~60% of refactoring complete." />
+        <meta property="og:url" content="https://github.com/jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber" />
+        <meta property="og:description" content="A significant refactoring of CRNRSTN ::. This is hot in the works...with ~60% of refactoring complete. - jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber" />
+        <meta name="hostname" content="github.com">
+        <meta name="expected-hostname" content="github.com">
+        <link rel="canonical" href="https://github.com/jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber" data-turbo-transient>
+    </head>
+</html>
+
+*/
+
 ?>
-<meta http-equiv="Content-Language" content="en-US"/>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
-<link rel="shortcut icon" type="image/x-icon" href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>favicon.ico?v=420"/>
-<meta name="distribution" content="Global"/>
-<meta name="robots" content="index,follow"/>
-<meta property="og:url" content="<?php echo $social_url; ?>"/>
-<meta property="og:site_name" content="<?php echo $social_title; ?>"/>
-<meta property="og:title" content="<?php echo $social_desc . $tmp_elip; ?>"/>
-<meta property="og:image" content="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/preview/<?php echo $social_img; ?>"/>
-<meta property="og:description" content="<?php echo $primary_desc . $tmp_elip; ?>"/>
-<meta property="og:type" content="website"/>
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="<?php echo $social_title; ?>"/>
-<meta name="twitter:image" content="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/preview/<?php echo $social_img; ?>"/>
-<meta name="twitter:description" content="<?php echo $social_desc; ?>"/>
-<meta name="description" content="<?php echo $primary_desc . $tmp_elip; ?>"/>
-<meta name="keywords" content="jesus, christ, jesus christ, gospel, j5, jonathan, harris, jonathan harris, wolf, 5, jony5, atlanta, moxie, agency, web, christian, web services, email, web programming, marketing, CSS, XHTML, php, ajax"/>
+<meta charset="utf-8">
 <title><?php echo $htmlTitle; ?></title>
-<link rel="stylesheet" href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/_lib/frameworks/jquery_ui/1.12.1/jquery-ui.min.css"/>
-<link rel="stylesheet" href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/css/main.css?v=420.00<?php echo filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/css/main.css') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/css/main.css') . '.0'; ?>" type="text/css"/>
-<link rel="stylesheet" href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/_lib/frameworks/lightbox/2.11.1/css/lightbox.min.css" type="text/css"/>
+<meta name="description" content="<?php echo $primary_desc . $tmp_elip; ?>" />
+<meta http-equiv="Content-Language" content="en-US" />
+<meta http-equiv="Content-Type" content="text/html" />
+<meta name="viewport" content="width=device-width" />
+<link rel="shortcut icon" type="image/x-icon" href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>favicon.ico?v=420" />
+<meta name="distribution" content="Global" />
+<meta name="robots" content="index,follow" />
+<meta name="twitter:image:src" content="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/preview/<?php echo $social_img; ?>" />
+<meta name="twitter:site" content="@jony5" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="<?php echo $tmp_social_prefix . $social_title; ?>" />
+<meta name="twitter:description" content="<?php echo $social_desc; ?>" />
+<meta property="og:image" content="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/preview/<?php echo $social_img; ?>" />
+<meta property="og:image:alt" content="<?php echo $social_desc; ?>" />
+<meta property="og:site_name" content="Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin." />
+<meta property="og:type" content="object" />
+<meta property="og:title" content="<?php echo $tmp_social_prefix . $social_desc . $tmp_elip; ?>" />
+<meta property="og:url" content="<?php echo $social_url; ?>" />
+<meta property="og:description" content="<?php echo $primary_desc . $tmp_elip; ?>" />
+<meta name="hostname" content="jony5.com">
+<meta name="expected-hostname" content="jony5.com">
+<link rel="canonical" href="<?php echo $social_url; ?>" data-turbo-transient>
+<meta name="keywords" content="jesus, christ, jesus christ, gospel, j5, jonathan, harris, jonathan harris, wolf, 5, jony5, atlanta, moxie, agency, web, christian, web services, email, web programming, marketing, CSS, XHTML, php, ajax" />
+<link rel="stylesheet" href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/_lib/frameworks/jquery_ui/1.12.1/jquery-ui.min.css" />
+<link rel="stylesheet" href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/css/main.css?v=420.00<?php echo filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/css/main.css') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/css/main.css') . '.0'; ?>" type="text/css" />
+<link rel="stylesheet" href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/_lib/frameworks/lightbox/2.11.1/css/lightbox.min.css" type="text/css" />
 <script src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/_lib/frameworks/jquery_mobi/jquery.js"></script>
 <script src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/_lib/frameworks/jquery_ui/1.12.1/jquery-ui.min.js"></script>
-<script type="text/javascript" language="javascript" src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/_lib/frameworks/jquery/3.4.1/jquery-3.4.1.min.js" ></script>
+<script type="text/javascript" language="javascript" src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/_lib/frameworks/jquery/3.4.1/jquery-3.4.1.min.js" ></script><?php
+/*
 <!--
 <script type="text/javascript" language="javascript" src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/form/form.js"></script>-->
 <script type="text/javascript" language="javascript" src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/main.js?v=420.00<?php echo filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/js/main.js') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/js/main.js') . '.0'; ?>"></script>
+*/
+?>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEL8JKG7SG"></script>
 <script>
