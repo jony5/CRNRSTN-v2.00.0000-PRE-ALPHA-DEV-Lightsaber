@@ -296,21 +296,17 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
 
                         <p>Digital brand strategy and execution are my core competencies.</p>
 
-                        <p>In 2004 I worked as a freelance designer, web application developer and
-                        serial entrepreneur. After the implosion of my 8 person startup company,
-                        CommercialNet Inc., I entered the world of interactive marketing and
-                        advertising by accepting a UI developer position with the Atlanta based
-                        agency, <a href="http://moxieusa.com" target="_blank">Moxie</a>.</p>
+                        <p><a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>downloads/resume/jharris_resume.php?v=420" download>Click here to download</a> the latest version of
+                            my resume, or visit my LinkedIn<sup style="font-size:85%; line-height:12px;">&reg;</sup> profile by clicking <a href="https://www.linkedin.com/in/j00000101/" target="_blank">here</a>.</p>
 
                     </div>
 
                     <div class="col">
-
-                        <p>In 2007 I helped a talented and diverse team of people at Moxie to start
-                        the eCRM department. Lead by Darryl Bolduc, Tina West and Sapana Nanuwa (and with over 50 years of combined
-                        email marketing experience), we worked with our clients to design and execute
-                        both award-winning and state-of-the-art email marketing programs in support of their global strategic
-                        initiatives. </p>
+                        <p>In 2004 I worked as a freelance designer, web application developer and
+                        serial entrepreneur. After the implosion of my 8 person startup company,
+                        CommercialNet Inc., I entered the world of interactive marketing and
+                        advertising by accepting a UI developer position with the Atlanta based
+                        agency, <a href="http://moxieusa.com" target="_blank">Moxie Interactive</a>.</p>
 
                         <p>Born on Nov. 10th, 2005, my dog...named 'J5' (proper)...is part
                         Korean Jindo, German Shepherd and Timber Wolf.</p>
@@ -341,7 +337,6 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                                         $tmp_str_out .= '<p>';
 
                                         $tmp_str_out .= '<a class="j5_my_boy_thumb" href="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[j5_my_boy]" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs." style="line-height:11px;"><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . $j5_filename_array[$i].'" alt="" style="width:295px; height:221px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="221" alt="J5" />';
-
                                         $tmp_str_out .= '<span style="font-size:14px; text-decoration: underline; color: #0066CC; display: block; width:295px; text-align: right; padding: 0; margin: 0;">Gallery</span></a></p>';
 
                                         //$tmp_str_out .= '<div style="font-size:12px; width:295px; text-align: right; padding: 3px 0 0 0;"><a href="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[j5_my_boy]" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs.">Gallery.<img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . $j5_filename_array[$i].'" alt="" style="padding:0px; margin:0px; display: none;" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee" /></a></div></p>';
@@ -352,7 +347,18 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
 
                                     if(strlen($j5_filename_array[$i]) > 6){
 
-                                        $tmp_str_out .= '<div class="hidden"><a class="j5_my_boy_thumb" href=' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . ' rel="lightbox[j5_my_boy]" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs."><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . $j5_filename_array[$i].'" alt="" style="padding:0px; margin:0px;" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee" /></a></div>';
+                                        if($j5_filename_array[$i] == 'jony5_no_disassemble.png'){
+
+                                            $tmp_short_circuit_jony5_copy = 'Back in the days of dial up (late 90\'s), I was quite new to the world of the interwebs. I didn\'t even have an email address. Realizing that I needed to get some kind of messaging account called an email address, I went to the folks at Juno. They hooked me up with a free email account and dial-up
+internet access!<br><br>When I was filling out the Juno forms to get an email address, they asked me what I wanted it to be. I had no idea! Well, at that time, I had just finished watching the movie Short Circuit, and so I was like &quot;I\'ll get the email jony5.&quot; (Johnny 5). From that point forward, I was jony5@juno.com. This era of my digital existence was defined by slow loading images and phone calls that broke the internet connection!';
+
+                                            $tmp_str_out .= '<div class="hidden"><a class="j5_my_boy_thumb" href=' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . ' rel="lightbox[j5_my_boy]" title="' . $tmp_short_circuit_jony5_copy . '"><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . $j5_filename_array[$i].'" alt="" style="padding:0px; margin:0px;" width="295" height="221" alt="J5" title="' . $tmp_short_circuit_jony5_copy . '" /></a></div>';
+
+                                        }else{
+
+                                            $tmp_str_out .= '<div class="hidden"><a class="j5_my_boy_thumb" href=' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . ' rel="lightbox[j5_my_boy]" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs."><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . $j5_filename_array[$i].'" alt="" style="padding:0px; margin:0px;" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee" /></a></div>';
+
+                                        }
 
                                     }
 
@@ -365,14 +371,22 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                         echo $tmp_str_out;
 
                         ?>
+                        <p>In 2007 I helped a talented and diverse team of people at Moxie to start
+                        the eCRM department. Lead by Darryl Bolduc, Tina West, and Sapana Nanuwa (and
+                        with over 50 years of combined email marketing experience), we worked with our
+                        clients to design and execute both award-winning and state-of-the-art email
+                        marketing programs in support of their global strategic initiatives.</p>
 
                         <!--<p><div class="embedded_image" style="width:295px; height:221px;"><img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/j5_octane.jpg" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee"></div></p>-->
 
-                        <p>When I worked at agency, J5 accompanied me to the office on occasion as well as to local parks, coffee shops,
-                        neighborhood bars and even the occasional house party.</p>
-
                     </div>
                     <div class="col">
+                        <p>My boy, J5, when I was a company man at agency,...he would accompany me
+                        to work at the office in the city of Atlanta on many occasions. All the way
+                        through the end of 2012, J5 frequented, with me, local Atlanta parks, local
+                        Atlanta coffee shops, local Atlanta neighborhood bars, and even the
+                        occasional Atlanta house party.</p>
+
                         <p>On the morning of Monday, Aug. 16, 2021 at 0345 hrs and while laying under my arm, J5 went the way of all the earth (<a vvid="1kings2_1-3" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">1 Kings 2:1-3</a><?php echo $oBringer->seo_out('1kings2_1-3'); ?>)
                         even with much encouragement and celebration from me by his side. In the woods behind my house in the dark of night,
                         at 0500 hrs, as I was returning J5 to the earth from whence he came...whilst shoveling the dirt back in place, I thanked
@@ -385,8 +399,6 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
 
                         <p>Later, I came to realize that I buried him facing towards the direction of the rising of the sun to the east.</p>
 
-                        <p>Click <a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>downloads/resume/jharris_resume.php?v=420" download>here</a> to download the latest version of
-                        my resume or visit my <a href="https://www.linkedin.com/in/j00000101/" target="_blank">LinkedIn</a> profile.</p>
                     </div>
                 </div>
                 <div class="cb"></div>
