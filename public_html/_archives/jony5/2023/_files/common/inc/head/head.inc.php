@@ -30,6 +30,11 @@ function getmicrotime(){
 
 }
 
+//
+// INITIALIZE JONY5 SCRIPTURES SOCIAL MEDIA
+// PREVIEW FLAG.
+$tmp_vv_prefix_set = false;
+
 switch($_SERVER['SCRIPT_NAME']){
 	case '/social/fellowship/podcast/listen.php':
 
@@ -236,6 +241,11 @@ switch($_SERVER['SCRIPT_NAME']){
             }
 
             $primary_desc = $social_desc = trim(substr($tmp_description_str_social_preview, 0, 190));
+
+            //
+            // SET SCRIPTURES SOCIAL MEDIA
+            // TITLE PREFIX.
+            $tmp_vv_prefix_set = true;
 
         }else{
 
@@ -475,13 +485,31 @@ switch($_SERVER['SCRIPT_NAME']){
 
 }
 
+
 //
 // PREPARE A STRING PREFIX FOR SOCIAL
 // MEDIA TITLE PREVIEW. THE LAST 30 CHARS.
 $tmp_social_prefix = $tmp_scroll_tgt . ': ';
-if($tmp_social_prefix == ': '){
+$tmp_social_postfix_dot = '';
+if($tmp_social_prefix == ': ' && !($tmp_vv_prefix_set !== false)){
 
     $tmp_social_prefix = '5: ';
+
+}else{
+
+    if($tmp_social_prefix == ': '){
+
+        $tmp_social_prefix = 'Recovery Version by 5: ';
+        $tmp_social_postfix_dot = '.';
+
+        if(strlen($social_title) < 1){
+
+            $tmp_social_prefix = 'Recovery Version by 5';
+            $tmp_social_postfix_dot = '';
+
+        }
+
+    }
 
 }
 
@@ -531,13 +559,13 @@ if($tmp_social_prefix == ': '){
 <meta name="twitter:image:src" content="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/preview/<?php echo $social_img; ?>" />
 <meta name="twitter:site" content="@jony5" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="<?php echo $tmp_social_prefix . $social_title; ?>" />
+<meta name="twitter:title" content="<?php echo $tmp_social_prefix . $social_title . $tmp_social_postfix_dot; ?>" />
 <meta name="twitter:description" content="<?php echo $social_desc; ?>" />
 <meta property="og:image" content="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/preview/<?php echo $social_img; ?>" />
 <meta property="og:image:alt" content="<?php echo $social_desc; ?>" />
 <meta property="og:site_name" content="Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin." />
 <meta property="og:type" content="object" />
-<meta property="og:title" content="<?php echo $tmp_social_prefix . $social_desc . $tmp_elip; ?>" />
+<meta property="og:title" content="<?php echo $tmp_social_prefix . $social_desc . $tmp_elip . $tmp_social_postfix_dot; ?>" />
 <meta property="og:url" content="<?php echo $social_url; ?>" />
 <meta property="og:description" content="<?php echo $primary_desc . $tmp_elip; ?>" />
 <meta name="hostname" content="jony5.com">
