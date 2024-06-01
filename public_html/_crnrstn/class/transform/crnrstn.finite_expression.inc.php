@@ -11,8 +11,8 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
-#            URI :: http://crnrstn.evifweb.com/
+#         AUTHOR :: Jonathan '5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, eVifweb@gmail.com.
+#            URI :: https://crnrstn.jony5.com
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
@@ -66,21 +66,24 @@
 #
 #  CLASS :: crnrstn_finite_expression
 #  VERSION :: 1.00.0000
-#  DATE :: July 4, 2020 @ 1620hrs
-#  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
-#  URI :: 
+#  DATE :: July 4, 2020 @ 1620 hrs.
+#  AUTHOR :: Jonathan '5' Harris, jharris@eVifweb.com, eVifweb@gmail.com.
+#  URI :: http://eVifweb.jony5.com
 #  DESCRIPTION :: Talking about time.
-#  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
+#  LICENSE :: MIT | https://crnrstn.jony5.com/licensing/
 #
-//
-// I'M NOT SUPER STOKED ABOUT THE CLASS NAME...BUT WE WILL CONTINUE.
-// IF I CAN FIND SOME APPROPRIATE AND SCRIPTURALLY RELATED ELEMENT TO
-// REPRESENT OR EMBODY THIS DATE/TIME THING, I'LL DO IT (sans_eternity, crnrstn_finite_expression).
-// - "KIVOTOS" AND "STREAM" ARE EXCELLENT AND APPROPRIATE EXAMPLES OF
-// THIS IN ACTION. JESUS CHRIST ON THE EARTH WAS GOD INFINITE EXPRESSED
-// IN MAN-FINITE. JESUS ON EARTH WAS THE FINITE EXPRESSION OF THE ALMIGHTY
-// GOD THE CREATOR OF THE HEAVENS AND THE EARTH IN SPACE AND IN TIME AND
-// HE IS REPRODUCING HIMSELF IN US TODAY.
+#
+#  I'M NOT SUPER STOKED ABOUT THE CLASS NAME...BUT WE WILL CONTINUE.
+#  IF I CAN FIND SOME APPROPRIATE AND SCRIPTURALLY RELATED ELEMENT TO
+#  REPRESENT OR EMBODY THIS DATE/TIME THING, I'LL DO IT (sans_eternity, crnrstn_finite_expression).
+#  
+#  "KIVOTOS" AND COMMUNICATION "STREAMS" ARE EXCELLENT AND APPROPRIATE 
+#  EXAMPLES OF THIS IN ACTION. JESUS CHRIST ON THE EARTH WAS GOD INFINITE 
+#  EXPRESSED IN MAN-FINITE. JESUS ON EARTH WAS THE FINITE EXPRESSION OF 
+#  THE ALMIGHTY GOD THE CREATOR OF THE HEAVENS AND THE EARTH IN SPACE 
+#  AND IN TIME, AND HE IS REPRODUCING HIMSELF IN US TODAY.
+#
+#  - 5
 #
 class crnrstn_finite_expression {
 

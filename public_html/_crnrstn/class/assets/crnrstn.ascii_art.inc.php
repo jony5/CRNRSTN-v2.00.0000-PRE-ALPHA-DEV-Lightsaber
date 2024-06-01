@@ -11,8 +11,8 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
-#            URI :: http://crnrstn.evifweb.com/
+#         AUTHOR :: Jonathan '5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, eVifweb@gmail.com.
+#            URI :: https://crnrstn.jony5.com
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
@@ -67,8 +67,8 @@
 #  CLASS :: crnrstn_ascii_art
 #  VERSION :: 1.00.0000
 #  DATE :: November 21, 2023 @ 1944 hrs.
-#  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
-#  URI :: 
+#  AUTHOR :: Jonathan '5' Harris, jharris@eVifweb.com, eVifweb@gmail.com.
+#  URI :: http://eVifweb.jony5.com
 #  DESCRIPTION :: SYSTEM ASCII ART. With the creation of the
 #                 (int) CRNRSTN_IS_HTML data type for crnrstn_ascii_art
 #                 a CRNRSTN :: UX and ambiance enrichment
@@ -81,7 +81,7 @@
 #
 #                 Meat off the bone.
 #
-#  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
+#  LICENSE :: MIT | https://crnrstn.jony5.com/licensing/
 #
 class crnrstn_ascii_art {
 
@@ -205,7 +205,7 @@ class crnrstn_ascii_art {
 # (c) 2012-' . date('Y') . ' Jonathan \'J5\' Harris :: eVifweb development.
 # All rights reserved.
 #
-# LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
+# LICENSE :: MIT | https://crnrstn.jony5.com/licensing/
 #
 # # C # R # N # R # S # T # N # : : # # # #
 #
@@ -269,7 +269,7 @@ class crnrstn_ascii_art {
 # (c) 2012-' . date('Y') . ' Jonathan \'J5\' Harris :: eVifweb development.
 # All rights reserved.
 #
-# LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
+# LICENSE :: MIT | https://crnrstn.jony5.com/licensing/
 #
 # # C # R # N # R # S # T # N # : : # # # #
 #
@@ -355,7 +355,7 @@ class crnrstn_ascii_art {
 # (c) 2012-' . date('Y') . ' Jonathan \'J5\' Harris :: eVifweb development.
 # All rights reserved.
 #
-# LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
+# LICENSE :: MIT | https://crnrstn.jony5.com/licensing/
 #
 # # C # R # N # R # S # T # N # : : # # # #
 #
@@ -419,7 +419,7 @@ class crnrstn_ascii_art {
 # (c) 2012-' . date('Y') . ' Jonathan \'J5\' Harris :: eVifweb development.
 # All rights reserved.
 #
-# LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
+# LICENSE :: MIT | https://crnrstn.jony5.com/licensing/
 #
 # # C # R # N # R # S # T # N # : : # # # #
 #

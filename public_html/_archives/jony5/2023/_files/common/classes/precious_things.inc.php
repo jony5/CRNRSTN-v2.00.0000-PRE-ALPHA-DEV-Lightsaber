@@ -2,68 +2,97 @@
 /*
 // J5
 // Code is Poetry */
-
-/*
-//
-// Therefore thus says Jehovah,
-//   If you return, I will restore you;
-// You will stand before Me;
-//   And if you bring out the precious from the worthless,
-// You will be as My mouth;
-//   They will turn to you,
-//   But you will not turn to them.
-// And I will make you to this people
-//   A fortified wall of bronze;
-// And they will fight against you,
-//   But they will not prevail against you;
-// For I am with you
-//   To save you and deliver you,
-//   Declares Jehovah.
-// And I will deliver you from the hand of the wicked
-//   And redeem you from the hand of those who terrorize.
-//
-// - Jeremiah 15:19-21
-//
-//
-// And to the messenger of the church in Philadelphia write:
-//
-//   These things says the Holy One, the true One, the One
-//   who has the key of David, the One who opens and no
-//   one will shut, and shuts and no one opens:
-//
-//   I know your works; behold, I have put before you an
-//   opened door which no one can shut, because you have a
-//   little power and have kept My word and have not denied
-//   My name.
-//
-//   Behold, I will make those of the synagogue of Satan,
-//   those who call themselves Jews and are not, but lie––
-//   behold, I will cause them to come and fall prostrate
-//   before your feet and to know that I have loved you.
-//
-//   Because you have kept the word of My endurance, I also
-//   will keep you out of the hour of trial, which is about
-//   to come on the whole inhabited earth, to try them who
-//   dwell on the earth. I come quickly; hold fast what you
-//   have that no one take your crown.
-//
-//   He who overcomes, him I will make a pillar in the
-//   temple of My God, and he shall by no means go out
-//   anymore, and I will write upon him the name of My God
-//   and the name of the city of My God, the New Jerusalem,
-//   which descends out of heaven from My God, and
-//   My new name.
-//
-//   He who has an ear, let him hear what the Spirit says
-//   to the churches.
-//
-//  - Revelation 3:7-13
-//
-// CLASS :: bringer_of_the_precious_things
-// AUTHOR :: Jonathan 'J5' Harris <jharris@eVifweb.com>
-// VERSION :: 1.0.0
-// DATE :: 4.5.2019 1519 hrs.
-*/
+# # C # R # N # R # S # T # N # : : # # # #
+#
+#   Therefore thus says Jehovah,
+#     If you return, I will restore you;
+#   You will stand before Me;
+#     And if you bring out the precious from the worthless,
+#   You will be as My mouth;
+#     They will turn to you,
+#     But you will not turn to them.
+#   And I will make you to this people
+#     A fortified wall of bronze;
+#   And they will fight against you,
+#     But they will not prevail against you;
+#   For I am with you
+#     To save you and deliver you,
+#     Declares Jehovah.
+#   And I will deliver you from the hand of the wicked
+#     And redeem you from the hand of those who terrorize.
+#
+#   - Jeremiah 15:19-21
+#
+#
+#   And to the messenger of the church in Philadelphia write:
+#
+#     These things says the Holy One, the true One, the One
+#     who has the key of David, the One who opens and no
+#     one will shut, and shuts and no one opens:
+#
+#     I know your works; behold, I have put before you an
+#     opened door which no one can shut, because you have a
+#     little power and have kept My word and have not denied
+#     My name.
+#
+#     Behold, I will make those of the synagogue of Satan,
+#     those who call themselves Jews and are not, but lie––
+#     behold, I will cause them to come and fall prostrate
+#     before your feet and to know that I have loved you.
+#
+#     Because you have kept the word of My endurance, I also
+#     will keep you out of the hour of trial, which is about
+#     to come on the whole inhabited earth, to try them who
+#     dwell on the earth. I come quickly; hold fast what you
+#     have that no one take your crown.
+#
+#     He who overcomes, him I will make a pillar in the
+#     temple of My God, and he shall by no means go out
+#     anymore, and I will write upon him the name of My God
+#     and the name of the city of My God, the New Jerusalem,
+#     which descends out of heaven from My God, and
+#     My new name.
+#
+#     He who has an ear, let him hear what the Spirit says
+#     to the churches.
+#
+#   - Revelation 3:7-13
+#
+# # C # R # N # R # S # T # N # : : # # # #
+#
+#  LICENSE :: MIT
+#
+#  Permission is hereby granted, free of charge, to any person obtaining
+#  a copy of this software and associated documentation files (the
+#  "Software"), to deal in the Software without restriction, including
+#  without limitation the rights to use, copy, modify, merge, publish,
+#  distribute, sublicense, and/or sell copies of the Software, and to
+#  permit persons to whom the Software is furnished to do so, subject to
+#  the following conditions:
+#
+#  The above copyright notice and this permission notice shall be
+#  included in all copies or substantial portions of the Software.
+#
+#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+#  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+#  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+#  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+#  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+#  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+#  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# # C # R # N # R # S # T # N # : : # # # #
+#
+#  CLASS :: bringer_of_the_precious_things
+#  VERSION :: 1.00.0000
+#  DATE :: Friday, April 5, 2019 @ 1519 hrs.
+#  AUTHOR :: Jonathan '5' Harris, jharris@eVifweb.com, eVifweb@gmail.com.
+#  URI :: https://jony5.com
+#  DESCRIPTION :: This is a master HTML content control class
+#                 for https://jony5.com to bring the precious
+#                 things out from the midst of the worthless.
+#  LICENSE :: MIT | https://crnrstn.jony5.com/licensing/
+#
 class bringer_of_the_precious_things {
 
     private static $oLogger;
@@ -8829,13 +8858,13 @@ class bringer_of_the_precious_things {
                     <div class="col">
                         <p>As a ravenous wolf of the tribe of Benjamin, as one of the two sons of thunder, and according
                             to golden incense alter fellowship before the oracles of God in the Holy of holies...before
-                            the very face of God our heavenly Father and our Lord Jesus Christ,...</p>
+                            the very face of God our heavenly Father and our Lord<br>Jesus Christ,...</p>
 
                         <p>In the midst of my daily priestly service and according to my fellowship with God, this unprofitable
                             servant of the Lord testifies that I will be taking the church (100% of the living christian
                             sisters and the living certain brothers) to heaven in my house. I will take the church to heaven
                             through my 935M apartment 305 in Atlanta; 935M is the location of many of these pictures of my
-                            girl, M, during times when I could actually be with her in life and before my 2011-2012 martyrdom.</p>';
+                            girl, M, during times when I could actually be with her in life and before my 2011-<br>2012 martyrdom.</p>';
 
         $tmp_str_out = $tmp_first_look = $tmp_second_look = '';
         $first_img_display = false;
@@ -9054,7 +9083,7 @@ class bringer_of_the_precious_things {
         birth, go back even to the 1800\'s.</p>
 
     <p>This has all been prepared for me beforehand by God my heavenly Father...Father of eternity...and,
-        this prepared portion will be poured directly into my bosom here in space and in time, very soon.</p>
+        this prepared portion will be poured directly into my bosom here in space and in time,<br>very soon.</p>
 
     <p>Also, the King has two swords, two seats,...two hounds. I suspect that both of the Kings dogs in
         office are straight wolves from the tribe of Benjamin. Therefore, the other guy is almost certainly

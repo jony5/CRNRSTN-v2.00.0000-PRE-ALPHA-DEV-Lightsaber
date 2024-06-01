@@ -16,7 +16,7 @@ if($oENV->oHTTP_MGR->issetHTTP($_POST)){
 			//
 			// EXTRACT AND EVALUATE AUTHKEY			
 			if($oENV->oHTTP_MGR->extractData($_POST,'MSG_AUTHKEY')==$oUSER->getEnvParam('MAILER_AUTHKEY')){
-				mail("J00000101@gmail.com",$oENV->oHTTP_MGR->extractData($_POST,'MSG_SUBJECT'),$oENV->oHTTP_MGR->extractData($_POST,'MSG_HTML'));
+				mail("eVifweb@gmail.com",$oENV->oHTTP_MGR->extractData($_POST,'MSG_SUBJECT'),$oENV->oHTTP_MGR->extractData($_POST,'MSG_HTML'));
 				//
 				// PROXY AUTHENTICATED COMMUNICATION
 				// INSTANTIATE AND CONFIGURE MAILER CLASS OBJECT

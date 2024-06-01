@@ -4267,11 +4267,11 @@ class  user {
 #
 #  CLASS :: bassdrive_integration_data
 #  VERSION :: 1.00.0000
-#  DATE :: October 2, 2021 @ 1234hrs
-#  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
-#  URI ::
+#  DATE :: October 2, 2021 @ 1234 hrs.
+#  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com, eVifweb@gmail.com.
+#  URI :: http://eVifweb.jony5.com
 #  DESCRIPTION ::
-#  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
+#  LICENSE :: MIT | https://crnrstn.jony5.com/licensing/
 #
 class bassdrive_integration_data {
 

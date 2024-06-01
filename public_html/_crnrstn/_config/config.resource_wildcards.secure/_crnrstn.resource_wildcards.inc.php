@@ -11,8 +11,8 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
-#            URI :: http://crnrstn.evifweb.com/
+#         AUTHOR :: Jonathan '5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, eVifweb@gmail.com.
+#            URI :: https://crnrstn.jony5.com
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
@@ -120,12 +120,12 @@
 
     //
     // EXCEPTION HANDLING NOTIFICATIONS EMAIL ENDPOINTS
-    $oWCR_BLUEHOST_JONY5->add_attribute('RECIPIENTS_EMAIL_PIPED', 'Jonathan J5 Harris J00000101@gmail.com||jharris@eVifweb.com||j5@jony5.com');
+    $oWCR_BLUEHOST_JONY5->add_attribute('RECIPIENTS_EMAIL_PIPED', 'Jonathan J5 Harris eVifweb@gmail.com||jharris@eVifweb.com||j5@jony5.com');
     $oWCR_BLUEHOST_JONY5->add_attribute('RECIPIENTS_NAME_PIPED', '||Jonathan Harris||J5');
 
     /*
     WHAT ABOUT LIKE THIS....
-    $oWCR_BLUEHOST_JONY5->add_attribute('RECIPIENTS_EMAIL', 'Jonathan J5 Harris J00000101@gmail.com');
+    $oWCR_BLUEHOST_JONY5->add_attribute('RECIPIENTS_EMAIL', 'Jonathan J5 Harris eVifweb@gmail.com');
 
     $oWCR_BLUEHOST_JONY5->add_attribute('RECIPIENTS_EMAIL', 'jharris@eVifweb.com',);
     $oWCR_BLUEHOST_JONY5->add_attribute('RECIPIENTS_NAME', 'Jonathan Harris');
@@ -191,7 +191,7 @@
 
     //
     // EXCEPTION HANDLING NOTIFICATIONS EMAIL ENDPOINTS
-    $oWCR_BLUEHOST_EVIFWEB->add_attribute('RECIPIENTS_EMAIL_PIPED', 'Jonathan J5 Harris J00000101@gmail.com|jharris@eVifweb.com|j5@jony5.com');
+    $oWCR_BLUEHOST_EVIFWEB->add_attribute('RECIPIENTS_EMAIL_PIPED', 'Jonathan J5 Harris eVifweb@gmail.com|jharris@eVifweb.com|j5@jony5.com');
     $oWCR_BLUEHOST_EVIFWEB->add_attribute('RECIPIENTS_NAME_PIPED', '|Jonathan Harris|J5');
 
     //$oCRNRSTN_oWCR_ARRAY[$oWCR_BLUEHOST_EVIFWEB->return_resource_key()] = $oWCR_BLUEHOST_EVIFWEB;
@@ -265,5 +265,5 @@
 
     //
     // EXCEPTION HANDLING NOTIFICATIONS EMAIL ENDPOINTS
-    $oWCR_LOCALHOST_CHAD_MACBOOKPRO->add_attribute('RECIPIENTS_EMAIL_PIPED', 'Jonathan J5 Harris J00000101@gmail.com|jharris@eVifweb.com|j5@jony5.com');
+    $oWCR_LOCALHOST_CHAD_MACBOOKPRO->add_attribute('RECIPIENTS_EMAIL_PIPED', 'Jonathan J5 Harris eVifweb@gmail.com|jharris@eVifweb.com|j5@jony5.com');
     $oWCR_LOCALHOST_CHAD_MACBOOKPRO->add_attribute('RECIPIENTS_NAME_PIPED', '|Jonathan Harris|J5');

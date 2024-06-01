@@ -6,8 +6,8 @@
 #  Copyright (C) 2012-2018 Evifweb Development
 #  VERSION :: 1.0.0
 #  RELEASE DATE :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#  AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
-#  URI :: http://crnrstn.evifweb.com/
+#  AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, eVifweb@gmail.com.
+#  URI :: https://crnrstn.jony5.com/
 #  OVERVIEW :: CRNRSTN is an open source PHP class library that facilitates the operation of an application within multiple server 
 #			   environments (e.g. localhost, stage, preprod, and production). With this tool, data and functionality with 
 #			   characteristics that inherently create distinctions from one environment to the next...such as IP address restrictions, 
@@ -15,7 +15,7 @@
 #			   application. Once CRNRSTN has been configured for your different hosting environments, seamlessly release a web 
 #			   application from one environment to the next without having to change your code-base to account for environmentally 
 #			   specific parameters; and manage this all from one place within the CRNRSTN Suite ::
-
+#
 #  LICENSE :: This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public 
 #			  License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any 
 #			  later version.
@@ -24,7 +24,7 @@
 #  of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #
 #  You should have received a copy of the GNU General Public License along with this program. This license can also be downloaded from
-#  http://crnrstn.evifweb.com/license.txt.  If not, see <http://www.gnu.org/licenses/>
+#  https://crnrstn.jony5.com/license.txt.  If not, see <http://www.gnu.org/licenses/>
 
 require('_crnrstn.root.inc.php');
 include_once($CRNRSTN_ROOT . '_crnrstn.config.inc.php');
@@ -170,7 +170,7 @@ $tmp_crnrstnART[3] = '
         <div id="sess_id"><span style="font-family:Arial, Helvetica, sans-serif;">session id =</span> <?php echo session_id(); ?></div>
         <div class="cb_10"></div>
         <div id="server_params_wrapper">
-        	<div id="server_param_overview"><strong>$_SERVER DATA ::</strong><br>Use at least one (1) SERVER param + value below by passing the resourceKey and resourceValue into <a href="http://crnrstn.evifweb.com/documentation/classes/crnrstn/defineenvresource/" target="_blank">defineEnvResource()</a> in the C<span class="the_R">R</span>NRSTN Suite :: configuration file <em>_crnrstn.config.inc.php</em> to configure C<span class="the_R">R</span>NRSTN for this environment. The resource definition section begins on line 250 of the config file. Of particular interest would be the $_SERVER variables that will differ from one environment to the next (e.g. <span class="underL">scroll down to see <span class="red">red items</span> below</span>).
+        	<div id="server_param_overview"><strong>$_SERVER DATA ::</strong><br>Use at least one (1) SERVER param + value below by passing the resourceKey and resourceValue into <a href="https://crnrstn.jony5.com/documentation/classes/crnrstn/defineenvresource/" target="_blank">defineEnvResource()</a> in the C<span class="the_R">R</span>NRSTN Suite :: configuration file <em>_crnrstn.config.inc.php</em> to configure C<span class="the_R">R</span>NRSTN for this environment. The resource definition section begins on line 250 of the config file. Of particular interest would be the $_SERVER variables that will differ from one environment to the next (e.g. <span class="underL">scroll down to see <span class="red">red items</span> below</span>).
             </div>
             <div class="hr"></div>
             <div class="svr_elem_scroll">
@@ -204,7 +204,7 @@ $tmp_crnrstnART[3] = '
         <a name="configConfirm"></a>
         <div id="crnrstn_params_wrapper">
         	<div class="topAnchor_lnk"><a href="#debugTop">top</a></div>
-        	<div id="crnrstn_param_overview"><strong>C<span class="the_R">R</span>NRSTN SUITE CONFIGURATION CONFIRMATION ::</strong><br>If <em>"SERVER_NAME = <?php echo $_SERVER['SERVER_NAME'] ?>"</em> does not load below, check your error logs for captured C<span class="the_R">R</span>NRSTN notifications. This test is expecting that <strong>SERVER_NAME</strong> has been configured through <a href="http://crnrstn.evifweb.com/documentation/classes/crnrstn/defineenvresource/" target="_blank">defineEnvResource()</a> for this environment:</div>
+        	<div id="crnrstn_param_overview"><strong>C<span class="the_R">R</span>NRSTN SUITE CONFIGURATION CONFIRMATION ::</strong><br>If <em>"SERVER_NAME = <?php echo $_SERVER['SERVER_NAME'] ?>"</em> does not load below, check your error logs for captured C<span class="the_R">R</span>NRSTN notifications. This test is expecting that <strong>SERVER_NAME</strong> has been configured through <a href="https://crnrstn.jony5.com/documentation/classes/crnrstn/defineenvresource/" target="_blank">defineEnvResource()</a> for this environment:</div>
         	<div class="cb_5"></div>
             <div class="crnrstn_param">SERVER_NAME = <?php echo $oCRNRSTN_ENV->getEnvParam('SERVER_NAME'); ?></div>
     		<div class="crnrstn_param"><strong>Error reporting on the following types in this environment:</strong><br><?php 
@@ -384,7 +384,7 @@ if($oCRNRSTN_ENV->debugMode>0){
 <a name="opensslCiphers"></a>
 <div id="crnrstn_algo_wrapper">
 	<div class="topAnchor_lnk"><a href="#debugTop">top</a></div>
-	<div id="crnrstn_algo_overview"><strong>SERVER's Available OpenSSL Ciphers ::</strong><br>Here is a list of available ciphers and aliases that can be passed into <a href="http://crnrstn.evifweb.com/documentation/classes/crnrstn/initsessionencryption/" target="_blank">initSessionEncryption()</a> and <a href="http://crnrstn.evifweb.com/documentation/classes/crnrstn/initcookieencryption/" target="_blank">initCookieEncryption()</a> as the <em>$opensslEncryptCipher</em> parameter to enable execution of  openssl_decrypt()/openssl_encrypt().</div>
+	<div id="crnrstn_algo_overview"><strong>SERVER's Available OpenSSL Ciphers ::</strong><br>Here is a list of available ciphers and aliases that can be passed into <a href="https://crnrstn.jony5.com/documentation/classes/crnrstn/initsessionencryption/" target="_blank">initSessionEncryption()</a> and <a href="https://crnrstn.jony5.com/documentation/classes/crnrstn/initcookieencryption/" target="_blank">initCookieEncryption()</a> as the <em>$opensslEncryptCipher</em> parameter to enable execution of  openssl_decrypt()/openssl_encrypt().</div>
 	<div class="cb_10"></div>
     <div class="hr"></div>
     <div class="svr_elem_scroll">
@@ -403,7 +403,7 @@ if($oCRNRSTN_ENV->debugMode>0){
 <a name="hashAlgo"></a>
 <div id="crnrstn_hash_wrapper">
 	<div class="topAnchor_lnk"><a href="#debugTop">top</a></div>
-	<div id="crnrstn_hash_overview"><strong>SERVER's Available Hash Algorithms ::</strong><br>Here is a list of available hash algorithms that can be passed into <a href="http://crnrstn.evifweb.com/documentation/classes/crnrstn/initsessionencryption/" target="_blank">initSessionEncryption()</a> and <a href="http://crnrstn.evifweb.com/documentation/classes/crnrstn/initcookieencryption/" target="_blank">initCookieEncryption()</a> as the <em>$hmacAlg</em> parameter to be used by C<span class="the_R">R</span>NRSTN when using the HMAC library to generate a keyed hash value.</div>	
+	<div id="crnrstn_hash_overview"><strong>SERVER's Available Hash Algorithms ::</strong><br>Here is a list of available hash algorithms that can be passed into <a href="https://crnrstn.jony5.com/documentation/classes/crnrstn/initsessionencryption/" target="_blank">initSessionEncryption()</a> and <a href="https://crnrstn.jony5.com/documentation/classes/crnrstn/initcookieencryption/" target="_blank">initCookieEncryption()</a> as the <em>$hmacAlg</em> parameter to be used by C<span class="the_R">R</span>NRSTN when using the HMAC library to generate a keyed hash value.</div>	
 	<div class="cb_10"></div>
     <div class="hr"></div>
     <div class="svr_elem_scroll">
@@ -425,7 +425,7 @@ if($oCRNRSTN_ENV->debugMode>0){
 <div id="crnrstn_db_wrapper">
 	<div class="topAnchor_lnk"><a href="#debugTop">top</a></div>
 	<div id="crnrstn_db_overview"><strong>Database Configuration Test ::</strong><br>
-    Update the queries in this test to align them to a table(s) in your database. Ensure that the database authentication profile for this environment has been configured through the execution of <a href="http://crnrstn.evifweb.com/documentation/classes/crnrstn/adddatabase/" target="_blank">addDatabase()</a> in your C<span class="the_R">R</span>NRSTN Suite ::<br>configuration file.<br><br>Multi-query being sent to the database:
+    Update the queries in this test to align them to a table(s) in your database. Ensure that the database authentication profile for this environment has been configured through the execution of <a href="https://crnrstn.jony5.com/documentation/classes/crnrstn/adddatabase/" target="_blank">addDatabase()</a> in your C<span class="the_R">R</span>NRSTN Suite ::<br>configuration file.<br><br>Multi-query being sent to the database:
     </div>
     
     

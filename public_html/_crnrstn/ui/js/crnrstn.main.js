@@ -58,11 +58,11 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 // #
 // #  CLASS :: oCRNRSTN_JS
 // #  VERSION :: 1.00.0000
-// #  DATE :: July 1, 2021 @ 0352hrs
-// #  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
-// #  URI ::
+// #  DATE :: July 1, 2021 @ 0352 hrs.
+// #  AUTHOR :: Jonathan '5' Harris, jharris@eVifweb.com, eVifweb@gmail.com.
+// #  URI :: http://evifweb.jony5.com
 // #  DESCRIPTION :: CRNRSTN :: Main Javascript Support [DESKTOP VARIANT].
-// #  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
+// #  LICENSE :: MIT | https://crnrstn.jony5.com/licensing/
 // #
 // Uses Node, AMD or browser globals to create a module.
 (function (root, factory){

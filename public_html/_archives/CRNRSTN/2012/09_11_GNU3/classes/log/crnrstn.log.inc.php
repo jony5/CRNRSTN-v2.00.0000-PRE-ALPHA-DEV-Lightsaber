@@ -154,7 +154,7 @@ class crnrstn_AdvancedLogger{
 		//	'Reply-To: j5@jony5.com' . "\r\n" .
 		//	'X-Mailer: PHP/' . phpversion();
 		
-		//mail("J00000101@gmail.com","Log Notification", $this->_Source."|".$CUSTOM_ERR_NO."|".$CUSTOM_ERR_DESCRIPTION, $headers);
+		//mail("eVifweb@gmail.com","Log Notification", $this->_Source."|".$CUSTOM_ERR_NO."|".$CUSTOM_ERR_DESCRIPTION, $headers);
 		
 		
 		$newfile_handle = fopen('/var/www/crnrstn/logEvent_LOG.txt', 'a');

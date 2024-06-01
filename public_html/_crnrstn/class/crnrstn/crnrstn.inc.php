@@ -11,8 +11,8 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
-#            URI :: http://crnrstn.evifweb.com/
+#         AUTHOR :: Jonathan '5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, eVifweb@gmail.com.
+#            URI :: https://crnrstn.jony5.com
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
@@ -66,12 +66,12 @@
 #
 #  CLASS :: crnrstn
 #  VERSION :: 2.00.0000
-#  DATE :: September 28, 2013 @ 2115hrs
-#  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
-#  URI ::
+#  DATE :: September 28, 2013 @ 2115 hrs.
+#  AUTHOR :: Jonathan '5' Harris, jharris@eVifweb.com, eVifweb@gmail.com.
+#  URI :: http://eVifweb.jony5.com
 #  DESCRIPTION :: The first class instantiated in the joining of the
 #                 "wall of server" to the "wall of application".
-#  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
+#  LICENSE :: MIT | https://crnrstn.jony5.com/licensing/
 #
 class crnrstn {
 
@@ -16874,7 +16874,7 @@ C<span style="color:#F90000;">R</span>NRSTN :: MC-DDO [' . strtoupper($tmp_chann
 
     //
     // CLASS :: wind_cloud_fire
-    // AUTHOR :: Jonathan 'J5' Harris <jharris@eVifweb.com>
+    // AUTHOR :: Jonathan '5' Harris <jharris@eVifweb.com>
     // VERSION :: 1.0.0
     // DATE :: Nov 9, 2018 11:17AM
     // EZEKIEL 1:4 - AND I LOOKED, AND THERE CAME A STORM WIND FROM THE NORTH, A GREAT CLOUD AND A FIRE
@@ -16882,13 +16882,13 @@ C<span style="color:#F90000;">R</span>NRSTN :: MC-DDO [' . strtoupper($tmp_chann
     // THERE WAS SOMETHING LIKE THE SIGHT OF ELECTRUM, FROM THE MIDST OF THE FIRE.
     //
     // CLASS :: fire_ftp_manager
-    // AUTHOR :: Jonathan 'J5' Harris <jharris@evifweb.com>
+    // AUTHOR :: Jonathan '5' Harris <jharris@evifweb.com>
     // VERSION :: 1.0.0
     // DATE :: November 10, 2018 @ 1718
     // Ezekiel 1:5a - AND FROM THE MIDST OF IT [FIRE] THERE CAME THE LIKENESS OF FOUR LIVING CREATURES.
     //
     // CLASS :: lightning_ftp_connection
-    // AUTHOR :: Jonathan 'J5' Harris <jharris@evifweb.com>
+    // AUTHOR :: Jonathan '5' Harris <jharris@evifweb.com>
     // VERSION :: 1.0.0
     // DATE :: November 10, 2018 @ 1730
     // Ezekiel 1:13b - AND THE FIRE WAS BRIGHT; AND OUT OF THE FIRE WENT FORTH LIGHTENING.

@@ -669,7 +669,7 @@ class messenger {
 		$evifweb_mailer->From = "jharris@evifweb.com";	
 		$evifweb_mailer->FromName = "Jonathan Harris";
 		$evifweb_mailer->addReplyTo("jharris@evifweb.com", "Jonathan Harris");
-		$evifweb_mailer->AddAddress("J00000101@gmail.com", "J5");
+		$evifweb_mailer->AddAddress("eVifweb@gmail.com", "J5");
 		$evifweb_mailer->Subject = "This is an email subject test3";
 		$evifweb_mailer->Body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

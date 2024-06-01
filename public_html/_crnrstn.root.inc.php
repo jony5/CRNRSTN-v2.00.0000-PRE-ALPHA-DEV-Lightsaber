@@ -11,8 +11,8 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
-#            URI :: http://crnrstn.evifweb.com/
+#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, eVifweb@gmail.com.
+#            URI :: https://crnrstn.jony5.com
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.

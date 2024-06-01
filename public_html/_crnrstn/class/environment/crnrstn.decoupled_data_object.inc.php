@@ -11,8 +11,8 @@
 #        VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #      TIMESTAMP :: Tuesday, November 28, 2023 @ 16:20:00.065620.
 #  DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#         AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
-#            URI :: http://crnrstn.evifweb.com/
+#         AUTHOR :: Jonathan '5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, eVifweb@gmail.com.
+#            URI :: https://crnrstn.jony5.com
 #       OVERVIEW :: CRNRSTN :: An Open Source PHP Class Library that stands on top of a robust web services oriented
 #                   architecture to both facilitate, augment, and enhance (with stability) the operations of a code base
 #                   for a web application across multiple hosting environments.
@@ -65,12 +65,13 @@
 # # C # R # N # R # S # T # N # : : # # # #
 #
 #  CLASS :: crnrstn_decoupled_data_object
-#  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
 #  VERSION :: 1.00.0000
-#  DATE :: Monday November 3, 2020 @ 2035hrs
+#  DATE :: Monday, November 3, 2020 @ 2035 hrs.
+#  AUTHOR :: Jonathan '5' Harris, jharris@eVifweb.com, eVifweb@gmail.com.
+#  URI :: http://eVifweb.jony5.com
 #  DESCRIPTION :: Enhance data portability and meta integrity by storing variable data through
 #                 actuation of robust layers of objectification.
-#  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
+#  LICENSE :: MIT | https://crnrstn.jony5.com/licensing/
 #
 class crnrstn_decoupled_data_object {
 
@@ -711,7 +712,7 @@ class crnrstn_decoupled_data_object {
                         // AND FILES TO PRODUCE A QUALITY BUSINESS TOOL
                         // ON TOP OF THE MIT LICENSE.
                         //
-                        // PLEASE SEE, http://crnrstn.evifweb.com/licensing/.
+                        // PLEASE SEE, https://crnrstn.jony5.com/licensing/.
                         //
                         // SUPPORTED CHANNEL AUTHORIZATION PROFILE CONSTANTS ::
                         //  - CRNRSTN_AUTHORIZE_ALL
@@ -852,7 +853,7 @@ class crnrstn_decoupled_data_object {
                         // AND FILES TO PRODUCE A QUALITY BUSINESS TOOL
                         // ON TOP OF THE MIT LICENSE.
                         //
-                        // PLEASE SEE, http://crnrstn.evifweb.com/licensing/.
+                        // PLEASE SEE, https://crnrstn.jony5.com/licensing/.
                         //
                         // SUPPORTED CHANNEL AUTHORIZATION PROFILE CONSTANTS ::
                         //  - CRNRSTN_AUTHORIZE_ALL
@@ -1001,7 +1002,7 @@ class crnrstn_decoupled_data_object {
                         // AND FILES TO PRODUCE A QUALITY BUSINESS TOOL
                         // ON TOP OF THE MIT LICENSE.
                         //
-                        // PLEASE SEE, http://crnrstn.evifweb.com/licensing/.
+                        // PLEASE SEE, https://crnrstn.jony5.com/licensing/.
                         //
                         // SUPPORTED CHANNEL AUTHORIZATION PROFILE CONSTANTS ::
                         //  - CRNRSTN_AUTHORIZE_ALL
@@ -1176,7 +1177,7 @@ class crnrstn_decoupled_data_object {
                         // AND FILES TO PRODUCE A QUALITY BUSINESS TOOL
                         // ON TOP OF THE MIT LICENSE.
                         //
-                        // PLEASE SEE, http://crnrstn.evifweb.com/licensing/.
+                        // PLEASE SEE, https://crnrstn.jony5.com/licensing/.
                         //
                         // SUPPORTED CHANNEL AUTHORIZATION PROFILE CONSTANTS ::
                         //  - CRNRSTN_AUTHORIZE_ALL
@@ -1320,7 +1321,7 @@ class crnrstn_decoupled_data_object {
                         // AND FILES TO PRODUCE A QUALITY BUSINESS TOOL
                         // ON TOP OF THE MIT LICENSE.
                         //
-                        // PLEASE SEE, http://crnrstn.evifweb.com/licensing/.
+                        // PLEASE SEE, https://crnrstn.jony5.com/licensing/.
                         //
                         // SUPPORTED CHANNEL AUTHORIZATION PROFILE CONSTANTS ::
                         //  - CRNRSTN_AUTHORIZE_ALL
@@ -1465,7 +1466,7 @@ class crnrstn_decoupled_data_object {
                         // AND FILES TO PRODUCE A QUALITY BUSINESS TOOL
                         // ON TOP OF THE MIT LICENSE.
                         //
-                        // PLEASE SEE, http://crnrstn.evifweb.com/licensing/.
+                        // PLEASE SEE, https://crnrstn.jony5.com/licensing/.
                         //
                         // SUPPORTED CHANNEL AUTHORIZATION PROFILE CONSTANTS ::
                         //  - CRNRSTN_AUTHORIZE_ALL
@@ -1610,7 +1611,7 @@ class crnrstn_decoupled_data_object {
                         // AND FILES TO PRODUCE A QUALITY BUSINESS TOOL
                         // ON TOP OF THE MIT LICENSE.
                         //
-                        // PLEASE SEE, http://crnrstn.evifweb.com/licensing/.
+                        // PLEASE SEE, https://crnrstn.jony5.com/licensing/.
                         //
                         // SUPPORTED CHANNEL AUTHORIZATION PROFILE CONSTANTS ::
                         //  - CRNRSTN_AUTHORIZE_ALL
@@ -1755,7 +1756,7 @@ class crnrstn_decoupled_data_object {
                         // AND FILES TO PRODUCE A QUALITY BUSINESS TOOL
                         // ON TOP OF THE MIT LICENSE.
                         //
-                        // PLEASE SEE, http://crnrstn.evifweb.com/licensing/.
+                        // PLEASE SEE, https://crnrstn.jony5.com/licensing/.
                         //
                         // SUPPORTED CHANNEL AUTHORIZATION PROFILE CONSTANTS ::
                         //
@@ -1910,7 +1911,7 @@ class crnrstn_decoupled_data_object {
                         // AND FILES TO PRODUCE A QUALITY BUSINESS TOOL
                         // ON TOP OF THE MIT LICENSE.
                         //
-                        // PLEASE SEE, http://crnrstn.evifweb.com/licensing/.
+                        // PLEASE SEE, https://crnrstn.jony5.com/licensing/.
                         //
                         // SUPPORTED CHANNEL AUTHORIZATION PROFILE CONSTANTS ::
                         //  - CRNRSTN_AUTHORIZE_ALL
@@ -2055,7 +2056,7 @@ class crnrstn_decoupled_data_object {
                         // AND FILES TO PRODUCE A QUALITY BUSINESS TOOL
                         // ON TOP OF THE MIT LICENSE.
                         //
-                        // PLEASE SEE, http://crnrstn.evifweb.com/licensing/.
+                        // PLEASE SEE, https://crnrstn.jony5.com/licensing/.
                         //
                         // SUPPORTED CHANNEL AUTHORIZATION PROFILE CONSTANTS ::
                         //  - CRNRSTN_AUTHORIZE_ALL
@@ -5958,7 +5959,7 @@ class crnrstn_decoupled_data_object {
 # (c) 2012-' . date('Y') . ' Jonathan \'J5\' Harris :: eVifweb development.
 # All rights reserved.
 #
-# LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
+# LICENSE :: MIT | https://crnrstn.jony5.com/licensing/
 #
 # # C # R # N # R # S # T # N # : : # # # #
 #
@@ -6006,7 +6007,7 @@ class crnrstn_decoupled_data_object {
 # &copy; 2012-' . date('Y') . ' Jonathan \'J5\' Harris :: e<span style="color:#F00;">V</span>ifweb development.
 # All rights reserved.
 #
-# LICENSE :: MIT | <a href="http://crnrstn.evifweb.com/licensing/" target="_blank">http://crnrstn.evifweb.com/licensing/</a>
+# LICENSE :: MIT | <a href="https://crnrstn.jony5.com/licensing/" target="_blank">https://crnrstn.jony5.com/licensing/</a>
 #
 # # C # R # N # R # S # T # N # : : # # # #
 #&nbsp;' . self::$cache_apache_logo_html . '&nbsp;&nbsp;' . self::$cache_mysql_logo_html . '&nbsp;&nbsp;' . self::$cache_php_logo_html . '
@@ -6579,7 +6580,7 @@ class crnrstn_decoupled_data_object {
 # (c) 2012-' . date('Y') . ' Jonathan \'J5\' Harris :: eVifweb development.
 # All rights reserved.
 #
-# LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/';
+# LICENSE :: MIT | https://crnrstn.jony5.com/licensing/';
 
                         break;
                         default:
@@ -6594,7 +6595,7 @@ class crnrstn_decoupled_data_object {
 # &copy; 2012-' . date('Y') . ' Jonathan \'J5\' Harris :: e<span style="color:#F00;">V</span>ifweb development.
 # All rights reserved.
 #
-# LICENSE :: MIT | <a href="http://crnrstn.evifweb.com/licensing/" target="_blank">http://crnrstn.evifweb.com/licensing/</a>';
+# LICENSE :: MIT | <a href="https://crnrstn.jony5.com/licensing/" target="_blank">https://crnrstn.jony5.com/licensing/</a>';
 
                         break;
 

@@ -6,8 +6,8 @@
 #  Copyright (C) 2012-2018 eVifweb Development
 #  VERSION :: 1.0.0
 #  RELEASE DATE :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
-#  AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, J00000101@gmail.com.
-#  URI :: http://crnrstn.evifweb.com/
+#  AUTHOR :: Jonathan 'J5' Harris, CEO, CTO, Lead Full Stack Developer, jharris@eVifweb.com, eVifweb@gmail.com.
+#  URI :: https://crnrstn.jony5.com/
 #  OVERVIEW :: CRNRSTN is an open source PHP class library that facilitates the operation of an application within multiple server 
 #			   environments (e.g. localhost, stage, preprod, and production). With this tool, data and functionality with 
 #			   characteristics that inherently create distinctions from one environment to the next...such as IP address restrictions, 
@@ -15,7 +15,7 @@
 #			   application. Once CRNRSTN has been configured for your different hosting environments, seamlessly release a web 
 #			   application from one environment to the next without having to change your code-base to account for environmentally 
 #			   specific parameters; and manage this all from one place within the CRNRSTN Suite ::
-
+#
 #  LICENSE :: This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public 
 #			  License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any 
 #			  later version.
@@ -24,7 +24,7 @@
 #  of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #
 #  You should have received a copy of the GNU General Public License along with this program. This license can also be downloaded from
-#  http://crnrstn.evifweb.com/license.txt.  If not, see <http://www.gnu.org/licenses/>
+#  https://crnrstn.jony5.com/license.txt.  If not, see <http://www.gnu.org/licenses/>
 
 require('_crnrstn.root.inc.php');
 //include_once($CRNRSTN_ROOT . '_crnrstn.config.inc.php');		// UNCOMMENT WHEN CRNRSTN IS CONFIGURED TO ENABLE FLUSH OF COOKIE DATA.
