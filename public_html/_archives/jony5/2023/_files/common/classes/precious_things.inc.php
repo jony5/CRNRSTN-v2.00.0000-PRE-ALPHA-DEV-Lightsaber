@@ -8933,7 +8933,7 @@ class bringer_of_the_precious_things {
 
             if($j5_filename_array[$i] != '.DS_Store' && $j5_filename_array[$i] != '.' && $j5_filename_array[$i] != '..'){
 
-                $tmp_thumb_filename_png = $j5_filename_array[$i];
+                $tmp_thumb_filename_png = $tmp_URI_file_name = $j5_filename_array[$i];
 
                 //
                 // PREPARE THUMB PNG FILE NAME FROM POSSIBLE JPG FILE.
@@ -8952,6 +8952,25 @@ class bringer_of_the_precious_things {
                     $tmp_thumb_filename_png = str_replace($patterns, $replacements, $tmp_thumb_filename_png);
 
                 }
+
+                $tmp_pos_space = strpos($tmp_thumb_filename_png, ' ');
+                if($tmp_pos_space !== false){
+
+                    //
+                    // WE HAVE SPACE IN THE
+                    // FILENAME. REPLACE THIS FOR
+                    // URL ENCODING.
+                    $patterns = array();
+                    $patterns[0] = ' ';
+
+                    $replacements = array();
+                    $replacements[0] = '%20';
+
+                    $tmp_URI_file_name = str_replace($patterns, $replacements, $tmp_thumb_filename_png);
+
+                }
+
+                $j5_filename_array[$i] = $tmp_URI_file_name;
 
                 if(!$first_img_display){
 
