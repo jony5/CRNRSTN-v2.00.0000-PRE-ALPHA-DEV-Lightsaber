@@ -374,7 +374,7 @@ class bringer_of_the_precious_things {
     }
 
     public function return_search_meta_jony5($ugc_str_override = NULL){
-        // Friday, March 1, 2024 2158 hrs.
+        // Friday, March 1, 2024 @ 2158 hrs.
 
         //
         // BUILD SEARCH CONTENT ARRAY.
@@ -387,7 +387,7 @@ class bringer_of_the_precious_things {
     }
 
     public function return_search_meta_ARRAY($ugc_str, $search_all_jony5){
-        // Thursday, February 29, 2024 1430 hrs.
+        // Thursday, February 29, 2024 @ 1430 hrs.
 
         //
         // BUILD SEARCH CONTENT ARRAY.
@@ -415,7 +415,7 @@ class bringer_of_the_precious_things {
     public function search_for_all_preciousness($search_all_jony5 = false){
 
         //
-        // Thursday, February 29, 2024 1430 hrs.
+        // Thursday, February 29, 2024 @ 1430 hrs.
         $tmp_ugc_str = $tmp_result_html = '';
 
         //
@@ -689,7 +689,7 @@ class bringer_of_the_precious_things {
             $tmp_link_vvid_ARRAY[] = array(array('heb12_1' => 'Hebrews 12:1'));
             $tmp_link_vvid_ARRAY[] = array(array('1pet2_24' => '1 Peter 2:24'), array('isa53_6' => 'Isaiah 53:6'));
             $tmp_link_vvid_ARRAY[] = array(array('1pet5_8' => '1 Peter 5:8'));
-            $tmp_link_vvid_ARRAY[] = array(array('rev3_10-11' => 'Revelation 3:10-11'), array('rev2_21-23,29' => 'Revelation 2:21-23, 29'), array('rev9_6-7' => 'Revelation 9:6-7'));
+            $tmp_link_vvid_ARRAY[] = array(array('rev3_10-11' => 'Revelation 3:10-11'), array('rev2_21-23,29' => 'Revelation 2:21-23, 29'), array('rev9_6-7' => 'Revelation 9:6-7'), array('exo12_29-33' => 'Exodus 12:29-33'), array('deut14_22-27' => 'Deuteronomy 14:22-27'), array('deut12_1,5-7,21-22,32' => 'Deuteronomy 12:1,5-7,21-22,32'));
             $tmp_link_vvid_ARRAY[] = array(array('rev2_21-22' => 'Revelation 2:21-22'));
             $tmp_link_vvid_ARRAY[] = array(array('rev3_8' => 'Revelation 3:8'));
             $tmp_link_vvid_ARRAY[] = array(array('rev2_11|2_17,26-28|3_5,12,21' => 'Revelation 2:11; 2:17,<br>26-28; 3:5, 12, 21;'), array('matt25_23,10b' => 'Matthew 25:23, 10b<br>&nbsp;&nbsp;'));
@@ -732,6 +732,7 @@ class bringer_of_the_precious_things {
             $tmp_link_vvid_ARRAY[] = array('gen49_1,25-28'                  => '1 And Jacob called to his sons and said, Gather yourselves together that I may tell you what will happen to you in the last days. 25 From the God of your father, who will help you, / And from the All-sufficient One, who will bless you / With blessings of heaven above, / Blessings of the deep that lies beneath, / Blessings of the breasts and of the womb.');
             $tmp_link_vvid_ARRAY[] = array('lifestudy_exo_156'              => 'THE RESULT OF SERVING IN THE TABERNACLE WITHOUT FIRST WASHING IN THE LAVER. When we pray to offer something to the Lord, we first need to wash our hands and even our feet in the laver. To come to the meeting to function is actually to come into the tabernacle to serve the Lord. Before we serve the Lord in the tabernacle, we need to wash.');
             $tmp_link_vvid_ARRAY[] = array('exo9_29'                        => 'And Moses said to him, As soon as I have gone out of the city, I will spread out my hands to Jehovah: The thunder will cease, and there will not be any more hail, that you may know that the earth is Jehovah\'s.');
+            $tmp_link_vvid_ARRAY[] = array('exo12_29-33'                    => 'And there was a great cry in Egypt, for there was no house where there was not someone dead.');
             $tmp_link_vvid_ARRAY[] = array('exo15_26'                       => 'And He said, If you will listen carefully to the voice of Jehovah your God and do what is right in His eyes and give ear to His commandments and keep all His statutes, I will put none of the diseases on you which I have put on the Egyptians;');
             $tmp_link_vvid_ARRAY[] = array('exo20_6'                        => 'Yet showing lovingkindness to thousands of generations of those who love Me and keep My commandments.');
             $tmp_link_vvid_ARRAY[] = array('exo20_13'                       => 'You shall not kill.');
@@ -758,6 +759,8 @@ class bringer_of_the_precious_things {
             $tmp_link_vvid_ARRAY[] = array('deut10_14-22'                   => 'Behold, heaven and the heaven of heavens belong to Jehovah your God, the earth and all that is in it. But on your fathers Jehovah set His affection to love them and to choose their seed after them, that is, you above all the peoples, as it is this day. Circumcise then the foreskin of your heart, and do not be stiff-necked any longer;');
             $tmp_link_vvid_ARRAY[] = array('deut11_14'                      => 'I will give rain for your land in its season, the early rain and the late rain, so that you may gather your grain and your new wine and your fresh oil.');
             $tmp_link_vvid_ARRAY[] = array('deut11_1,8-15,22-28'            => '1 Therefore you shall love Jehovah your God and keep His charge and His statutes and His ordinances and His commandments always. 8 Therefore you shall keep the whole commandment which I am commanding you today so that you may be strong and that you may go in and possess the land into which you are crossing over to possess,');
+            $tmp_link_vvid_ARRAY[] = array('deut12_1,5-7,21-22,32'          => 'If the place where Jehovah your God will choose to put His name is too far away from you, you may slaughter from your herd and from your flock, which Jehovah has given you, as I have commanded you; and you may eat within your gates according to all that your soul desires;');
+            $tmp_link_vvid_ARRAY[] = array('deut14_22-27'                   => 'You must give a tenth of all the produce of your seed, which the field brings forth, year by year.');
             $tmp_link_vvid_ARRAY[] = array('deut26_16-19'                   => 'This day Jehovah your God is commanding you to do these statutes and ordinances; therefore you shall keep them and do them with all your heart and with all your soul. It is Jehovah whom you have today declared to be your God and that you will walk in His ways and keep His statutes and His commandments and His ordinances, and will listen to His voice.');
             $tmp_link_vvid_ARRAY[] = array('deut28_1-14'                    => 'And if you listen diligently to the voice of Jehovah your God and are certain to do all His commandments, which I am commanding you today, Jehovah your God will set you high above all the nations of the earth;');
             $tmp_link_vvid_ARRAY[] = array('deut30_11-20'                   => 'For this commandment which I am commanding you today, it is not too difficult for you, nor is it distant. It is not in heaven that you should say, Who will ascend to heaven for us and bring it to us to make us hear it and do it?');
@@ -1009,7 +1012,7 @@ class bringer_of_the_precious_things {
             $tmp_link_vvid_ARRAY[] = array('rev3_7-13'                      => 'And to the messenger of the church in Philadelphia write: These things says the Holy One, the true One, the One who has the key of David, the One who opens and no one will shut, and shuts and no one opens:');
             $tmp_link_vvid_ARRAY[] = array('rev3_19'                        => 'As many as I love I reprove and discipline; be zealous therefore and repent.');
             $tmp_link_vvid_ARRAY[] = array('rev6_16-17'                     => 'And they say to the mountains and to the rocks, Fall on us and hide us from the face of Him who sits upon the throne and from the wrath of the Lamb; For the great day of Their wrath has come, and who is able to stand?');
-            $tmp_link_vvid_ARRAY[] = array('rev9_6-7'                      => 'And in those days men will seek death and shall by no means find it; and they will long to die, and death flees from them.');
+            $tmp_link_vvid_ARRAY[] = array('rev9_6-7'                       => 'And in those days men will seek death and shall by no means find it; and they will long to die, and death flees from them.');
             $tmp_link_vvid_ARRAY[] = array('rev12_3-4,9'                    => '3 And another sign was seen in heaven; and behold, a great red dragon, having seven heads and ten horns, and on his heads seven diadems. And his tail drags away the third part of the stars of heaven, and he cast them to the earth. And the dragon stood before the woman who was about to bring forth, so that when she brings forth he might devour her child.');
             $tmp_link_vvid_ARRAY[] = array('rev12_3-4,13,17;13:2,4'         => '3 And another sign was seen in heaven; and behold, a great red dragon, having seven heads and ten horns, and on his heads seven diadems. And his tail drags away the third part of the stars of heaven, and he cast them to the earth. And the dragon stood before the woman who was about to bring forth, so that when she brings forth he might devour her child.');
             $tmp_link_vvid_ARRAY[] = array('rev20_6'                        => 'Blessed and holy is he who has part in the first resurrection; over these the second death has no authority, but they will be priests of God and of Christ and will reign with Him for a thousand years.');
@@ -2463,6 +2466,9 @@ class bringer_of_the_precious_things {
             case 'rev3_10-11':
             case 'rev9_6-7':
             case 'rev2_21-23,29':
+            case 'exo12_29-33':
+            case 'deut14_22-27':
+            case 'deut12_1,5-7,21-22,32':
 
                 $tmp_vnav_array['VVID'][0] = 'rev3_10-11';
                 $tmp_vnav_array['COPY'][0] = 'Revelation 3:10-11';
@@ -2470,6 +2476,12 @@ class bringer_of_the_precious_things {
                 $tmp_vnav_array['COPY'][1] = 'Revelation 9:6-7';
                 $tmp_vnav_array['VVID'][2] = 'rev2_21-23,29';
                 $tmp_vnav_array['COPY'][2] = 'Revelation 2:21-23, 29';
+                $tmp_vnav_array['VVID'][3] = 'exo12_29-33';
+                $tmp_vnav_array['COPY'][3] = 'Exodus 12:29-33';
+                $tmp_vnav_array['VVID'][4] = 'deut14_22-27';
+                $tmp_vnav_array['COPY'][4] = 'Deuteronomy 14:22-27';
+                $tmp_vnav_array['VVID'][5] = 'deut12_1,5-7,21-22,32';
+                $tmp_vnav_array['COPY'][5] = 'Deuteronomy 12:1, 5-7, 21-22, 32';
 
             break;
             case 'rev2_21-22':
@@ -2627,6 +2639,7 @@ class bringer_of_the_precious_things {
             case 'exo20_13':
             case 'exo30_18':
             case 'exo9_29':
+            case 'exo12_29-33':
             case 'exo15_26':
             case 'exo30_17-21':
 
@@ -2661,6 +2674,8 @@ class bringer_of_the_precious_things {
             case 'deut10_14-22':
             case 'deut11_14':
             case 'deut11_1,8-15,22-28':
+            case 'deut12_1,5-7,21-22,32':
+            case 'deut14_22-27':
             case 'deut26_16-19':
             case 'deut28_1-14':
             case 'deut30_11-20':
@@ -3489,6 +3504,53 @@ class bringer_of_the_precious_things {
                 you may know that the earth<br>is Jehovah\'s.';
 
             break;
+            case 'exo12_29-33':
+                /*
+                //
+                // THE BEGINNINGS OF THE HOUR OF TRIAL
+                // AT THE END OF THE AGE OF THE CHURCH,
+                // THE AGE OF GRACE.
+                //
+                // Sunday, June 2, 2024 @ 0201 hrs.
+                Ex 12:29
+                And at midnight Jehovah struck all the firstborn in the land of Egypt, from the firstborn of Pharaoh who sat on his throne to the firstborn of the captive who was in the dungeon, and all the firstborn of cattle.
+
+                Ex 12:30
+                And Pharaoh arose in the night, he and all his servants and all the Egyptians; and there was a great cry in Egypt, for there was no house where there was not someone dead.
+
+                Ex 12:31
+                And he called for Moses and Aaron in the night and said, Rise up, go out from the midst of my people, both you and the children of Israel; and go, serve Jehovah, as you have said.
+
+                Ex 12:32
+                Take both your flocks and your herds, as you have said; and go and bless me also.
+
+                Ex 12:33
+                And the Egyptians urged the people on, so as to hasten their departure out of the land, for they said, All of us will be dead.
+
+                */
+                $tmp_verse_array['REFERENCE'][0]        = '12:29-33';
+                $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'and there was a great cry in Egypt, for there was no house where there was not someone dead.';
+                $tmp_verse_array['COPY'][0]             = 'And at midnight Jehovah struck all the firstborn in the land 
+                of Egypt, from the firstborn of Pharaoh who sat on his throne to the firstborn of the captive who was in 
+                the dungeon, and all the firstborn of cattle.
+
+                <div class="cb_10"></div>
+                And Pharaoh arose in the night, he and all his servants and all the Egyptians; and there was a great cry 
+                in Egypt, for there was no house where there was not someone dead.
+
+                <div class="cb_10"></div>
+                And he called for Moses and Aaron in the night and said, Rise up, go out from the midst of my people, 
+                both you and the children of Israel; and go, serve Jehovah, as you have said.
+
+                <div class="cb_10"></div>
+                Take both your flocks and your herds, as you have said; and go and bless me also.
+
+                <div class="cb_10"></div>
+                And the Egyptians urged the people on, so as to hasten their departure out of the land, for they said, 
+                All of us will be dead.';
+
+            break;
+
             case 'exo15_26':
 
                 $tmp_verse_array['REFERENCE'][0]        = '15:26';
@@ -3958,6 +4020,201 @@ class bringer_of_the_precious_things {
                 commandments of Jehovah your God, which I am commanding you today; And the curse, if you do not listen 
                 to the commandments of Jehovah your God and you turn aside from the way which I am commanding you today, 
                 to go after other gods whom you have not known.';
+
+            break;
+            case 'deut12_1,5-7,21-22,32':
+
+                /*
+                //
+                // 935M APT 305 :: PRINCIPLES FOR
+                // TITHING IN ATLANTA.
+                //
+                // Sunday, June 2, 2024 @ 0206 hrs.
+                Dt 12:1
+                These are the statutes and the ordinances that you shall be certain to do in the land which Jehovah, the God of your fathers, has given you to possess, all the days that you live on the earth.
+
+                                    Dt 12:2
+                                    You shall completely destroy all the places where the nations whom you will dispossess have served their gods, on the high mountains and on the hills and under every flourishing tree.
+
+                                    Dt 12:3
+                                    And you shall tear down their altars and crush their pillars; and their Asherahs you shall burn with fire, and the idols of their gods you shall cut down; and you shall destroy their name from that place.
+
+                                    Dt 12:4
+                                    You shall not do so to Jehovah your God.
+
+                Dt 12:5
+                But to the place which Jehovah your God will choose out of all your tribes to put His name, to His habitation, shall you seek, and there shall you go.
+
+                Dt 12:6
+                And there you shall bring your burnt offerings and your sacrifices and your tithes and the heave offering of your hand and your vows and your freewill offerings and the firstborn of your herd and of your flock;
+
+                Dt 12:7
+                And there you shall eat before Jehovah your God, and you and your households shall rejoice in all your undertakings, in which Jehovah your God has blessed you.
+
+                                    Dt 12:8
+                                    You shall not do according to all that we do here today, each man doing all that is right in his own eyes;
+
+                                    Dt 12:9
+                                    For until now you have not come to the rest and to the inheritance that Jehovah your God is giving you.
+
+                                    Dt 12:10
+                                    But when you cross over the Jordan and dwell in the land which Jehovah your God is giving you as an inheritance, and when He gives you rest from all your enemies surrounding you so that you dwell securely;
+
+                                    Dt 12:11
+                                    Then to the place where Jehovah your God will choose to cause His name to dwell, there you shall bring all that I am commanding you, your burnt offerings and your sacrifices, your tithes and the heave offering of your hand and all your choice vows which you vow to Jehovah.
+
+                                    Dt 12:12
+                                    And you shall rejoice before Jehovah your God, you and your sons and daughters, and your male servants and female servants, and the Levite who is within your gates, for he has no portion nor inheritance with you.
+
+                                    Dt 12:13
+                                    Be careful that you do not offer up your burnt offerings in every place that you see;
+
+                                    Dt 12:14
+                                    But in the place which Jehovah will choose in one of your tribes, there you shall offer up your burnt offerings, and there you shall do all that I am commanding you.
+
+                                    Dt 12:15
+                                    Yet you may slaughter and eat meat within all your gates, in all that your soul desires, according to the blessing of Jehovah your God which He has given you; the unclean and the clean may eat it as the gazelle and the deer are eaten.
+
+                                    Dt 12:16
+                                    However, you shall not eat the blood; you shall pour it out upon the earth like water.
+
+                                    Dt 12:17
+                                    You may not eat within your gates the tithe of your grain or of your new wine or of your fresh oil, nor the firstborn of your herd or of your flock, or any of your vows which you vow or of your freewill offerings or of the heave offering of your hand;
+
+                                    Dt 12:18
+                                    But you shall eat them before Jehovah your God in the place which Jehovah your God will choose, you and your son and daughter, and your male servant and female servant, and the Levite who is within your gates; and you shall rejoice before Jehovah your God in all your undertakings.
+
+                                    Dt 12:19
+                                    Be careful that you do not forsake the Levite all your days upon the earth.
+
+                                    Dt 12:20
+                                    When Jehovah your God enlarges your territory, as He has promised you, and you say, I will eat meat, because your soul desires to eat meat, you may eat meat according to all that your soul desires.
+
+                Dt 12:21
+                If the place where Jehovah your God will choose to put His name is too far away from you, you may slaughter from your herd and from your flock, which Jehovah has given you, as I have commanded you; and you may eat within your gates according to all that your soul desires;
+
+                Dt 12:22
+                Indeed, as the gazelle and the deer are eaten, so you may eat it; the unclean and the clean may eat it alike.
+
+                                    Dt 12:23
+                                    But make sure that you do not eat the blood; for the blood is the life, and you shall not eat the life with the flesh.
+
+                                    Dt 12:24
+                                    You shall not eat it; you shall pour it out upon the earth like water.
+
+                                    Dt 12:25
+                                    You shall not eat it, so that it may go well with you and with your children after you, when you do what is right in the sight of Jehovah.
+
+                                    Dt 12:26
+                                    But you shall take your holy things which you have and your vows, and go to the place which Jehovah will choose;
+
+                                    Dt 12:27
+                                    And you shall offer your burnt offerings, the flesh and the blood, upon the altar of Jehovah your God; and the blood of your sacrifices shall be poured out upon the altar of Jehovah your God, and you shall eat the flesh.
+
+                                    Dt 12:28
+                                    Keep and listen to all these words which I am commanding you so that it may go well with you and with your children after you forever, for you will be doing what is good and right in the sight of Jehovah your God.
+
+                                    Dt 12:29
+                                    When Jehovah your God cuts off the nations before you, which you are entering to dispossess, and you dispossess them and dwell in their land,
+
+                                    Dt 12:30
+                                    Be careful that you are not ensnared in following them, after they have been destroyed before you, and that you do not seek after their gods, saying, How did these nations serve their gods, so that I also may do likewise?
+
+                                    Dt 12:31
+                                    You shall not do so for Jehovah your God, for every abomination to Jehovah, which He hates, they have done to their gods; for even their sons and their daughters they have burned with fire to their gods.
+
+                Dt 12:32
+                The whole thing that I am commanding you, you shall be certain to do; you shall not add to it, nor shall you take away from it.
+
+                */
+
+                $tmp_verse_array['REFERENCE'][0]        = '12:1, 5-7, 21-22, 32';
+                $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'If the place where Jehovah your God will choose to put His name is too far away from you, you may slaughter from your herd and from your flock, which Jehovah has given you, as I have commanded you; and you may eat within your gates according to all that your soul desires;';
+                $tmp_verse_array['COPY'][0]             = 'These are the statutes and the ordinances that you shall be 
+                certain to do in the land which Jehovah, the God of your fathers, has given you to possess, all the days 
+                that you live on the earth.
+
+                <div class="cb_10"></div>
+                <span class="script_ref_num">5</span> But to the place which Jehovah your God will choose out of all 
+                your tribes to put His name, to His habitation, shall you seek, and there shall you go.
+
+                <div class="cb_10"></div>
+                And there you shall bring your burnt offerings and your sacrifices and your tithes and the heave 
+                offering of your hand and your vows and your freewill offerings and the firstborn of your herd and of 
+                your flock;
+
+                <div class="cb_10"></div>
+                And there you shall eat before Jehovah your God, and you and your households shall rejoice in all your 
+                undertakings, in which Jehovah your God has blessed you.
+
+                <div class="cb_10"></div>
+                <span class="script_ref_num">21</span> If the place where Jehovah your God will choose to put His name 
+                is too far away from you, you may slaughter from your herd and from your flock, which Jehovah has given 
+                you, as I have commanded you; and you may eat within your gates according to all that your soul desires;
+
+                <div class="cb_10"></div>
+                Indeed, as the gazelle and the deer are eaten, so you may eat it; the unclean and the clean may eat 
+                it alike.
+
+                <div class="cb_10"></div>
+                <span class="script_ref_num">32</span> The whole thing that I am commanding you, you shall be certain to 
+                do; you shall not add to it, nor shall you take away from it.';
+
+            break;
+            case 'deut14_22-27':
+
+                /*
+                //
+                // 935M APT 305 :: PRINCIPLES FOR
+                // TITHING IN ATLANTA.
+                //
+                // Sunday, June 2, 2024 @ 0107 hrs.
+                Dt 14:22
+                You must give a tenth of all the produce of your seed, which the field brings forth, year by year.
+
+                Dt 14:23
+                And you shall eat before Jehovah your God, in the place where He will choose to cause His name to dwell, the tithe of your grain, of your new wine, and of your fresh oil and the firstborn of your herd and flock, that you may learn to fear Jehovah your God always.
+
+                Dt 14:24
+                But if the way is so far away from you that you are not able to carry your tithe, because the place where Jehovah your God will choose to set His name is too far away from you when Jehovah your God has blessed you,
+
+                Dt 14:25
+                Then you shall exchange it for money and bind up the money in your hand, and you shall go to the place which Jehovah your God will choose.
+
+                Dt 14:26
+                And you shall exchange the money for anything that your soul desires, for oxen, for sheep, for wine, for strong drink, or for anything that your soul would like; and you and your household shall eat there before Jehovah your God and rejoice.
+
+                Dt 14:27
+                But you shall not forsake the Levite who is within your gates, for he has no portion nor inheritance with you.
+
+                */
+
+                $tmp_verse_array['REFERENCE'][0]        = '14:22-27';
+                $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'You must give a tenth of all the produce of your seed, which the field brings forth, year by year.';
+                $tmp_verse_array['COPY'][0]             = 'You must give a tenth of all the produce of your seed, which the field brings forth, year by year.
+
+                <div class="cb_10"></div>
+                And you shall eat before Jehovah your God, in the place where He will choose to cause His name to dwell, 
+                the tithe of your grain, of your new wine, and of your fresh oil and the firstborn of your herd and 
+                flock, that you may learn to fear Jehovah your God always.
+
+                <div class="cb_10"></div>
+                But if the way is so far away from you that you are not able to carry <em>your tithe</em>, because the place 
+                where Jehovah your God will choose to set His name is too far away from you when Jehovah your God has 
+                blessed you,
+
+                <div class="cb_10"></div>
+                Then you shall exchange <em>it</em> for money and bind up the money in your hand, and you shall go to the place 
+                which Jehovah your God will choose.
+
+                <div class="cb_10"></div>
+                And you shall exchange the money for anything that your soul desires, for oxen, for sheep, for wine, for 
+                strong drink, or for anything that your soul would like; and you and your household shall eat there 
+                before Jehovah your God and rejoice.
+
+                <div class="cb_10"></div>
+                But you shall not forsake the Levite who is within your gates, for he has no portion nor inheritance 
+                with you.';
 
             break;
             case 'deut26_16-19':
@@ -7324,7 +7581,7 @@ class bringer_of_the_precious_things {
                 they repent of her works;
 
                 <div class="cb_10"></div>
-                <span class="script_ref_num">23</span> <a id="sup_ftnt_1" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_1\');">1</a>And her 
+                <span class="script_ref_num">23</span><!--<a id="sup_ftnt_1" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_1\');">1</a>--> And her 
                 children I will kill with death; and all the churches will know that I am He who searches the inward 
                 parts and the hearts; and I will give to each one of you according to your works.
 
@@ -7355,7 +7612,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['REFERENCE'][0]        = '3:10-11';
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Because you have kept the word of My endurance, I also will keep you out of the hour of trial, which is about to come on the whole inhabited earth, to try them who dwell on the earth.';
                 $tmp_verse_array['COPY'][0]             = 'Because you have kept the word of My endurance, I also will 
-                keep you out of the <a id="sup_ftnt_1" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_1\');">1</a>hour of trial, which is about to come on the whole inhabited earth, to try them who 
+                keep you out of the <!--<a id="sup_ftnt_1" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_1\');">1</a>-->hour of trial, which is about to come on the whole inhabited earth, to try them who 
                 dwell on the earth.
 
                 <div class="cb_10"></div>
@@ -7422,7 +7679,7 @@ class bringer_of_the_precious_things {
 
                 $tmp_verse_array['REFERENCE'][0]        = '9:6-7';
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'And the fifth angel trumpeted, and I saw a star out of heaven fallen to the earth, and to him was given the key of the pit of the abyss.';
-                $tmp_verse_array['COPY'][0]             = 'And in those days men will seek <a id="sup_ftnt_1" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_1\');">1</a>death and shall by no means find it; and they will long to die, and 
+                $tmp_verse_array['COPY'][0]             = 'And in those days men will seek <!--<a id="sup_ftnt_1" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_1\');">1</a>-->death and shall by no means find it; and they will long to die, and 
                 death flees from them.
 
                 <div class="cb_10"></div>
@@ -8117,24 +8374,28 @@ class bringer_of_the_precious_things {
             break;
             case 'rev2_21-23,29':
 
-                $tmp_footnote_array['REFERENCE'][0] = 'Note <span class="script_sup">1</span>';
-                $tmp_footnote_array['COPY'][0]      = '<a id="ftnt_1"></a>
-                ' . $tmp_top_lnk_html . '
+                return $tmp_footnote_array;
 
-
-                <div class="cb_10"></div>
-                <div class="cb_20"></div>';
+//                $tmp_footnote_array['REFERENCE'][0] = 'Note <span class="script_sup">1</span>';
+//                $tmp_footnote_array['COPY'][0]      = '<a id="ftnt_1"></a>
+//                ' . $tmp_top_lnk_html . '
+//
+//
+//                <div class="cb_10"></div>
+//                <div class="cb_20"></div>';
 
             break;
             case 'rev3_10-11':
 
-                $tmp_footnote_array['REFERENCE'][0] = 'Note <span class="script_sup">1</span>';
-                $tmp_footnote_array['COPY'][0]      = '<a id="ftnt_1"></a>
-                ' . $tmp_top_lnk_html . '
+                return $tmp_footnote_array;
 
-
-                <div class="cb_10"></div>
-                <div class="cb_20"></div>';
+//                $tmp_footnote_array['REFERENCE'][0] = 'Note <span class="script_sup">1</span>';
+//                $tmp_footnote_array['COPY'][0]      = '<a id="ftnt_1"></a>
+//                ' . $tmp_top_lnk_html . '
+//
+//
+//                <div class="cb_10"></div>
+//                <div class="cb_20"></div>';
 
             break;
             case 'rev3_7-13':
@@ -8743,13 +9004,15 @@ class bringer_of_the_precious_things {
             break;
             case 'rev9_6-7':
 
-                $tmp_footnote_array['REFERENCE'][0] = 'Note <span class="script_sup">1</span>';
-                $tmp_footnote_array['COPY'][0]      = '<a id="ftnt_1"></a>
-                ' . $tmp_top_lnk_html . '
+                return $tmp_footnote_array;
 
-
-                <div class="cb_10"></div>
-                <div class="cb_20"></div>';
+//                $tmp_footnote_array['REFERENCE'][0] = 'Note <span class="script_sup">1</span>';
+//                $tmp_footnote_array['COPY'][0]      = '<a id="ftnt_1"></a>
+//                ' . $tmp_top_lnk_html . '
+//
+//
+//                <div class="cb_10"></div>
+//                <div class="cb_20"></div>';
 
             break;
             case 'rev21_21':
@@ -8774,30 +9037,30 @@ class bringer_of_the_precious_things {
         return $tmp_footnote_array;
 
     }
-    
+
     private function return_web_content_M_AND_5_935M_ATL_2011(){
-        
+
         $tmp_html_output = '';
 
         /*
         Please see M with 5:
         https://jony5.com/?scroll=M_AND_5_935M_ATL_2011
-        
+
         Added all my photos of M with 5 from ATLANTA to CRNRSTN :: /_tmp_diagrams.
-        
+
         https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/_M/
-        
-        ❤ you always, my dear. 
+
+        ❤ you always, my dear.
         - 5
-        
+
         Last Modified:
         Wed May 29 16:20:02.240211 2024.
-        
+
         As a ravenous wolf of the tribe of Benjamin, as one of the two sons of
         thunder, and according to golden incense alter fellowship before the
         oracles of God in the Holy of holies...before the very face of God our
         heavenly Father and our Lord Jesus Christ,...
-        
+
         In the midst of my daily priestly service and according to my fellowship
         with God, this unprofitable servant of the Lord testifies that I will
         be taking the church (100% of the living christian sisters and the
@@ -8805,42 +9068,42 @@ class bringer_of_the_precious_things {
         to heaven through my 935M apartment 305 in Atlanta; 935M is the location
         of many of these pictures of my girl, M, during times when I could
         actually be with her in life and before my 2011-2012 martyrdom.
-        
+
         Noting only a few exceptions, these living saints will never see death.
-        
+
         My life articulates a lattice upon which any astute Bible teacher would
         be apt to hang and to display (and to teach) many previously hidden
         divine revelations. One such divine revelation is a 1-2 step to transfer
         the saints, the church, from earth to heaven. This will produce what
         could be called an hour of trial upon the earth; I would call it a
         sausage fest. No. let’s say "welcome to sausage town!"
-        
+
         No, we MUST call it PLANET SAUSAGE; I will be kept out of that hour of
         trial,...as anyone could imagine.
-        
+
         https://jony5.com/?vv=rev3_10-11
-        
+
         During this 1-2 step hour of trial, the King will martyr the product of
         my big[sic] brother Jermaine Holloway's ATL breeding activities with
         "scared ATL girls" for Jezebel (they are her children) straight into my
         heavenly household; others will seek for this kind of death, martyrdom,
         and will not find it.
-        
+
         Revelation 2:23 is the King of kings assembling my household in heaven.
-        
+
         Thundercats hooo!
         https://jony5.com?vv=rev2_21-23,29
-        
+
         Once in heaven, I will be seated at table next to Jesus Christ our Lord,
         the King of kings and Lord of all lords, for eternity, and my new
         creation heavenly borne household in 100% resurrection will have
         +50 billion sisters and gay brothers who, by the date of their first
         birth, their earthy birth, go back even to the 1800's.
-        
+
         This has all been prepared for me beforehand by God my heavenly
         Father...Father of eternity...and, this prepared portion will be poured
         directly into my bosom here in space and in time, very soon.
-        
+
         Also, the King has two swords, two seats,...two hounds. I suspect that
         both of the Kings dogs in office are straight wolves from the tribe of
         Benjamin. Therefore, the other guy is almost certainly Jewish, and I
@@ -9122,11 +9385,11 @@ class bringer_of_the_precious_things {
 </div>';
 
         return $tmp_html_output;
-        
+
     }
 
     private function return_search_meta_scriptures($ugc_str_override = NULL){
-        // Friday, March 1, 2024 2205 hrs.
+        // Friday, March 1, 2024 @ 2205 hrs.
 
         //
         // BUILD SEARCH CONTENT ARRAY.
@@ -9151,6 +9414,7 @@ class bringer_of_the_precious_things {
         $tmp_search_meta_ARRAY[] = array('gen49_1,25-28' => '1andjacobcalledtohissonsandsaidgatheryourselvestogetherthatimaytellyouwhatwillhappentoyouinthelastdays25fromthegodofyourfatherwhowillhelpyou&nbsp&nbsp&nbspandfromtheallsufficientonewhowillblessyouwithblessingsofheavenabove&nbsp&nbsp&nbspblessingsofthedeepthatliesbeneath&nbsp&nbsp&nbspblessingsofthebreastsandofthewombdivcb_5theblessingsofyourfathersurpass&nbsp&nbsp&nbsptheblessingsofmyancestors&nbsp&nbsp&nbsptotheutmostboundoftheeverlastinghillstheywillbeontheheadofjoseph&nbsp&nbsp&nbspandonthecrownoftheheadoftheonewhowasseparatefrom&nbsp&nbsp&nbsp&nbsp&nbsp&nbsphisbrothersdivcb_5benjaminisaspanscript_sup1ravenouswolf&nbsp&nbsp&nbspinthemorningdevouringtheprey&nbsp&nbsp&nbspandintheeveningdividingthespoildivcb_5allthesearethetwelvetribesofisraelandthisiswhattheirfatherspoketothemwhenheblessedthemheblessedthemeachoneaccordingtohisblessing');
         $tmp_search_meta_ARRAY[] = array('lifestudy_exo_156' => 'theresultofservinginthetabernaclewithoutfirstwashinginthelaverwhenwepraytooffersomethingtothelordwefirstneedtowashourhandsandevenourfeetinthelavertocometothemeetingtofunctionisactuallytocomeintothetabernacletoservethelordbeforeweservethelordinthetabernacleweneedtowashhoweverinthechristianlifeofmanybelieversandintheirservicetogodtheredoesnotseemtobealaverwhentheycometothealtertomakeanofferingtogodtheyhaveuncleanhandstheymaycomeintothechurchmeetingsandservewithoutwashingtheirhandsinthelaverthiskindofservicebringsindeaththisisthereasonexodus3021says&quotthentheyshallwashtheirhandsandtheirfeetthattheymaynotdie&quotweshouldbecarefulnottotouchgodsserviceunlesswehavefirstwashedourhandsinthelaverifwetrytoservegodinthetabernaclewithuncleanhandsweshalldiespirituallyspeakinghowmuchdeaththereisamongchristianstodaythemoretheyservethemoredeaththeyhavebecausetheyservewithuncleanhandsprayingandservingwithuncleanhandsbringsindeathifwedonotprayinthemeetingsorfunctioninasensewemaybesomewhatlivingbutifweprayorfunctionwithoutwashinginthelaverweshallbringdeathtoourselvesandalsospreaddeathtoothersdeathistheresultofourtryingtoprayorservewithoutwashinginthelaver');
         $tmp_search_meta_ARRAY[] = array('exo9_29' => 'andmosessaidtohimassoonasihavegoneoutofthecityiwillspreadoutmyhandstojehovahthethunderwillceaseandtherewillnotbeanymorehailthatyoumayknowthattheearthisjehovahs');
+        $tmp_search_meta_ARRAY[] = array('exo12_29-33' => 'andatmidnightjehovahstruckallthefirstborninthelandofegyptfromthefirstbornofpharaohwhosatonhisthronetothefirstbornofthecaptivewhowasinthedungeonandallthefirstbornofcattleandpharaoharoseinthenightheandallhisservantsandalltheegyptiansandtherewasagreatcryinegyptfortherewasnohousewheretherewasnotsomeonedeadandhecalledformosesandaaroninthenightandsaidriseupgooutfromthemidstofmypeoplebothyouandthechildrenofisraelandgoservejehovahasyouhavesaidtakebothyourflocksandyourherdsasyouhavesaidandgoandblessmealsoandtheegyptiansurgedthepeopleonsoastohastentheirdepartureoutofthelandfortheysaidallofuswillbedead');
         $tmp_search_meta_ARRAY[] = array('exo15_26' => 'andhesaidifyouwilllistencarefullytothevoiceofjehovahyourgodanddowhatisrightinhiseyesandgiveeartohiscommandmentsandkeepallhisstatutesiwillputnoneofthediseasesonyouwhichihaveputontheegyptiansforiamjehovahwhohealsyou');
         $tmp_search_meta_ARRAY[] = array('exo20_6' => 'yetshowinglovingkindnesstothousandsofgenerationsofthosewholovemeandkeepmycommandments');
         $tmp_search_meta_ARRAY[] = array('exo20_13' => 'youshallnotkill');
@@ -9177,6 +9441,8 @@ class bringer_of_the_precious_things {
         $tmp_search_meta_ARRAY[] = array('deut10_14-22' => 'beholdheavenandtheheavenofheavensbelongtojehovahyourgodtheearthandallthatisinitbutonyourfathersjehovahsethisaffectiontolovethemandtochoosetheirseedafterthemthatisyouaboveallthepeoplesasitisthisdaycircumcisethentheforeskinofyourheartanddonotbestiffneckedanylongerforitisjehovahyourgodwhoisthegodofgodsandthelordoflordsthegreatgodmightyandawesomewhodoesnotregardpersonsanddoesnottakebribesheexecutesjusticefortheorphanandthewidowandhelovesthesojournergivinghimfoodandclothingthereforelovethesojournerforyouweresojournersinthelandofegyptyoushallfearjehovahyourgodhimshallyouserveandtohimshallyouholdfastandbyhisnameshallyouswearheisyourpraiseandheisyourgodwhohasdonethesegreatandawesomethingsforyouwhichyoureyeshaveseenyourfatherswentdownintoegyptasseventysoulsandnowjehovahyourgodhasmadeyouasthestarsofheaveninmultitude');
         $tmp_search_meta_ARRAY[] = array('deut11_14' => 'iwillgiverainforyourlandinitsseasontheearlyrainandthelaterainsothatyoumaygatheryourgrainandyournewwineandyourfreshoil');
         $tmp_search_meta_ARRAY[] = array('deut11_1,8-15,22-28' => '1thereforeyoushalllovejehovahyourgodandkeephischargeandhisstatutesandhisordinancesandhiscommandmentsalways8thereforeyoushallkeepthewholecommandmentwhichiamcommandingyoutodaysothatyoumaybestrongandthatyoumaygoinandpossessthelandintowhichyouarecrossingovertopossessandsothatyoumayextendyourdaysuponthegroundwhichjehovahsworetoyourfatherstogivetothemandtotheirseedalandflowingwithmilkandhoneyforthelandwhichyouareenteringintopossessisnotlikethelandofegyptfromwhichyoucameforthwhereyouusedtosowyourseedandwaterbyfootasinavegetablegardenbutthelandintowhichyouarecrossingovertopossessisalandofmountainsandvalleysbyvirtueofheavensrainitdrinksinwateritisalandwhichjehovahyourgodcaresforalwaystheeyesofjehovahyourgodareuponitfromthebeginningoftheyeareventotheendoftheyearandifyouarecertaintolistentomycommandmentswhichiamcommandingyoutodaytolovejehovahyourgodandservehimwithallyourheartandwithallyoursouliwillgiverainforyourlandinitsseasontheearlyrainandthelaterainsothatyoumaygatheryourgrainandyournewwineandyourfreshoilandiwillputgrassinyourfieldforyourcattleandyouwilleatandbesatisfied22forifyouarecertaintokeepallthiscommandmentwhichiamcommandingyoutodotolovejehovahyourgodtowalkinallhiswaysandholdfasttohimjehovahwilldispossessallthesenationsfrombeforeyouandyouwilldispossessnationsgreaterandmightierthanyoueveryplaceonwhichthesoleofyourfoottreadswillbeyoursfromthewildernessandlebanonfromtherivertherivereuphrateseventothefarmostseawillbeyourterritorynomanwillbeabletostandagainstyoujehovahyourgodwillputthedreadandfearofyouuponallthelandonwhichyoutreadashehasspokentoyouseeiamsettingbeforeyoutodayablessingandacursetheblessingifyoulistentothecommandmentsofjehovahyourgodwhichiamcommandingyoutodayandthecurseifyoudonotlistentothecommandmentsofjehovahyourgodandyouturnasidefromthewaywhichiamcommandingyoutodaytogoafterothergodswhomyouhavenotknown');
+        $tmp_search_meta_ARRAY[] = array('deut14_22-27' => 'youmustgiveatenthofalltheproduceofyourseedwhichthefieldbringsforthyearbyyearandyoushalleatbeforejehovahyourgodintheplacewherehewillchoosetocausehisnametodwellthetitheofyourgrainofyournewwineandofyourfreshoilandthefirstbornofyourherdandflockthatyoumaylearntofearjehovahyourgodalwaysbutifthewayissofarawayfromyouthatyouarenotabletocarryemyourtitheembecausetheplacewherejehovahyourgodwillchoosetosethisnameistoofarawayfromyouwhenjehovahyourgodhasblessedyouthenyoushallexchangeemitemformoneyandbindupthemoneyinyourhandandyoushallgototheplacewhichjehovahyourgodwillchooseandyoushallexchangethemoneyforanythingthatyoursouldesiresforoxenforsheepforwineforstrongdrinkorforanythingthatyoursoulwouldlikeandyouandyourhouseholdshalleattherebeforejehovahyourgodandrejoicebutyoushallnotforsakethelevitewhoiswithinyourgatesforhehasnoportionnorinheritancewithyou');
+        $tmp_search_meta_ARRAY[] = array('deut12_1,5-7,21-22,32' => 'thesearethestatutesandtheordinancesthatyoushallbecertaintodointhelandwhichjehovahthegodofyourfathershasgivenyoutopossessallthedaysthatyouliveontheearth5buttotheplacewhichjehovahyourgodwillchooseoutofallyourtribestoputhisnametohishabitationshallyouseekandthereshallyougoandthereyoushallbringyourburntofferingsandyoursacrificesandyourtithesandtheheaveofferingofyourhandandyourvowsandyourfreewillofferingsandthefirstbornofyourherdandofyourflockandthereyoushalleatbeforejehovahyourgodandyouandyourhouseholdsshallrejoiceinallyourundertakingsinwhichjehovahyourgodhasblessedyou21iftheplacewherejehovahyourgodwillchoosetoputhisnameistoofarawayfromyouyoumayslaughterfromyourherdandfromyourflockwhichjehovahhasgivenyouasihavecommandedyouandyoumayeatwithinyourgatesaccordingtoallthatyoursouldesiresindeedasthegazelleandthedeerareeatensoyoumayeatittheuncleanandthecleanmayeatitalike32thewholethingthatiamcommandingyouyoushallbecertaintodoyoushallnotaddtoitnorshallyoutakeawayfromit');
         $tmp_search_meta_ARRAY[] = array('deut26_16-19' => 'thisdayjehovahyourgodiscommandingyoutodothesestatutesandordinancesthereforeyoushallkeepthemanddothemwithallyourheartandwithallyoursoulitisjehovahwhomyouhavetodaydeclaredtobeyourgodandthatyouwillwalkinhiswaysandkeephisstatutesandhiscommandmentsandhisordinancesandwilllistentohisvoiceanditisjehovahwhohastodaydeclaredyoutobeapeopleforhispersonaltreasureevenashepromisedyouandthatyouwillkeepallhiscommandmentsandthathewillsetyouhighaboveallthenationswhichhehasmadeforpraiseandforanameandforhonorandthatyouwillbeaholypeopletojehovahyourgodashehasspoken');
         $tmp_search_meta_ARRAY[] = array('deut28_1-14' => 'andifyoulistendiligentlytothevoiceofjehovahyourgodandarecertaintodoallhiscommandmentswhichiamcommandingyoutodayjehovahyourgodwillsetyouhighaboveallthenationsoftheearthandalltheseblessingswillcomeuponyouandovertakeyouifyoulistentothevoiceofjehovahyourgodblessedshallyoubeinthecityandblessedshallyoubeinthefieldblessedshallbethefruitofyourwombandthefruitofyourgroundandthefruitofyouranimalstheoffspringofyourcattleandtheyoungofyourflockblessedshallbeyourbasketandyourkneadingbowlblessedshallyoubewhenyoucomeinandblessedshallyoubewhenyougooutjehovahwillcauseyourenemieswhoriseupagainstyoutobestruckdownbeforeyouononeroadtheywillcomeoutagainstyoubutonsevenroadstheywillfleebeforeyoujehovahwillcommandtheblessinguponyouinyourstorehousesandinallyourundertakingsandhewillblessyouinthelandwhichjehovahyourgodisgivingyoujehovahwillestablishyouasaholypeopletohimselfashesworetoyouifyoukeepthecommandmentsofjehovahyourgodandwalkinhiswaysandallthepeoplesoftheearthwillseethatyouarecalledbyjehovahsnameandtheywillbeafraidofyouandjehovahwillgiveyouanexcessofprosperityinthefruitofyourwombandinthefruitofyouranimalsandinthefruitofyourgrounduponthegroundwhichjehovahsworetoyourfatherstogiveyoujehovahwillopenuptoyouhisgoodtreasurytheheavenstogiverainforyourlandinitsseasonandtoblessallyourundertakingsandyouwilllendtomanynationsbutyouwillnotborrowandjehovahwillmakeyoutheheadandnotthetailandyouwilltendonlyupwardandyouwillnottenddownwardifyouwilllistentothecommandmentsofjehovahyourgodwhichiamcommandingyoutodaytokeepandtodoandyoushallnotturnasidefromanyofthewordswhichiamcommandingyoutodaytotherightortothelefttogoafterothergodstoservethem');
         $tmp_search_meta_ARRAY[] = array('deut30_11-20' => 'forthiscommandmentwhichiamcommandingyoutodayitisnottoodifficultforyounorisitdistantitisnotinheaventhatyoushouldsaywhowillascendtoheavenforusandbringittoustomakeushearitanddoitnorisitacrosstheseathatyoushouldsaywhowillgoacrosstheseaforusandbringittoustomakeushearitanddoitbutthewordisveryneartoyoueveninyourmouthandinyourheartthatyoumaydoitseeihaveputbeforeyoutodaylifeandgoodanddeathandevilifyouobeythecommandmentsofjehovahyourgodwhichiamcommandingyoutodaytolovejehovahyourgodandwalkinhiswaysandkeephiscommandmentsandhisstatutesandhisordinancesthenyouwillliveandmultiplyandjehovahyourgodwillblessyouinthelandwhichyouareenteringtopossessbutifyourheartturnsandyoudonotlistenbutratheryouaredrawnawayinworshiptoothergodsandservethemideclaretoyoutodaythatyoushallsurelyperishyourdayswillnotbeextendeduponthelandintowhichyouarecrossingoverthejordantogoandpossessicallheavenandearthtowitnessagainstyoutodayihavesetbeforeyoulifeanddeathblessingandcursethereforechooselifethatyouandyourseedmayliveinlovingjehovahyourgodbylisteningtohisvoiceandholdingfasttohimforheisyourlifeandthelengthofyourdaysthatyoumaydwelluponthelandwhichjehovahsworetoyourfatherstoabrahamtoissacandtojacobtogivethem');
@@ -9422,7 +9688,7 @@ class bringer_of_the_precious_things {
         $tmp_search_meta_ARRAY[] = array('rev2_14[solo]' => 'butihaveafewthingsagainstyouthatyouhavesometherewhoholdtheteachingofbalaamwhotaughtbalaktoputastumblingblockbeforethesonsofisraeltoeatidolsacrificesandtocommitfornication');
         $tmp_search_meta_ARRAY[] = array('rev2_14' => 'butihaveafewthingsagainstyouthatyouhavesometherewhoholdtheteachingofbalaamwhotaughtbalaktoputastumblingblockbeforethesonsofisraeltoeatidolsacrificesandtocommitfornication');
         $tmp_search_meta_ARRAY[] = array('rev2_11|2_17,26-28|3_5,12,21' => '11hewhohasanearlethimhearwhatthespiritsaystothechurcheshewhoovercomesshallbynomeansbehurtoftheseconddeath17hewhohasanearlethimhearwhatthespiritsaystothechurchestohimwhoovercomestohimiwillgiveofthehiddenmannaandtohimiwillgiveawhitestoneanduponthestoneanewnamewrittenwhichnooneknowsexcepthimwhoreceivesemitem26andhewhoovercomesandhewhokeepsmyworksuntiltheendtohimiwillgiveauthorityoverthenationsandhewillshepherdthemwithanironrodasvesselsofpotteryarebrokeninpiecesasialsohavereceivedfrommyfatherandtohimiwillgivethemorningstar5hewhoovercomeswillbeclothedthusinwhitegarmentsandishallbynomeanserasehisnameoutofthebookoflifeandiwillconfesshisnamebeforemyfatherandbeforehisangels12hewhoovercomeshimiwillmakeapillarinthetempleofmygodandheshallbynomeansgooutanymoreandiwillwriteuponhimthenameofmygodandthenameofthecityofmygodthenewjerusalemwhichdescendsoutofheavenfrommygodandmynewname21hewhoovercomestohimiwillgivetositwithmeonmythroneasialsoovercameandsatwithmyfatheronhisthrone');
-        $tmp_search_meta_ARRAY[] = array('rev2_21-23,29' => 'andigavehertimethatshemightrepentandsheisnotwillingtorepentofherfornicationbeholdicastherintoabedandthosewhocommitadulterywithherintogreattribulationunlesstheyrepentofherworksandherchildreniwillkillwithdeathandallthechurcheswillknowthatiamhewhosearchestheinwardpartsandtheheartsandiwillgivetoeachoneofyouaccordingtoyourworks29hewhohasanearlethimhearwhatthespiritsaystothechurches');
+        $tmp_search_meta_ARRAY[] = array('rev2_21-23,29' => 'andigavehertimethatshemightrepentandsheisnotwillingtorepentofherfornicationbeholdicastherintoabedandthosewhocommitadulterywithherintogreattribulationunlesstheyrepentofherworks23andherchildreniwillkillwithdeathandallthechurcheswillknowthatiamhewhosearchestheinwardpartsandtheheartsandiwillgivetoeachoneofyouaccordingtoyourworks29hewhohasanearlethimhearwhatthespiritsaystothechurches');
         $tmp_search_meta_ARRAY[] = array('rev2_21-22' => 'andigavehertimethatshemightrepentandsheisnotwillingtorepentofherfornicationbeholdicastherintoabedandthosewhocommitadulterywithherintogreattribulationunlesstheyrepentofherworks');
         $tmp_search_meta_ARRAY[] = array('rev3_8' => 'iknowyourworksbeholdihaveputbeforeyouanopeneddoorwhichnoonecanshutbecauseyouhavealittlepowerandhavekeptmywordandhavenotdeniedmyname');
         $tmp_search_meta_ARRAY[] = array('rev3_10-11' => 'becauseyouhavekeptthewordofmyenduranceialsowillkeepyououtofthehouroftrialwhichisabouttocomeonthewholeinhabitedearthtotrythemwhodwellontheearthicomequicklyholdfastwhatyouhavethatnoonetakeyourcrowndivcb_50');
@@ -9588,315 +9854,327 @@ Born on Nov. 10th, 2005, my dog...named \'J5\' (proper)...is part Korean Jindo, 
 
                 //
                 // Thursday, February 29, 2024 @ 1632 hrs.
+                //
+                // TLDR;
+                // TO GENERATE THE FOLLOWING, UPDATE THE VVID
+                // CONTROL + VERSE CONTENT AND THEN RUN:
+                // echo $oBringer->generate_optimized_search_content();
+                //
                 // FOR THE GENERATION OF A NEW MASTER CONTROL
                 // STRUCTURE (THIS STRUCT DRIVES SEARCH),
                 // PLEASE SEE, THE INSTRUCTIONS LOCATED
                 // WITHIN, $this->build_link_html_index(), AND
                 // TITLED: "HOW TO GET MORE DATA INTO SEARCH ::".
-                $tmp_search_meta_ARRAY[] = array('jehovah_has_revealed_dl'          => 'capoiv');
-                $tmp_search_meta_ARRAY[] = array('jehovah_has_revealed_audio'       => 'capoiv');
-                $tmp_search_meta_ARRAY[] = array('jehovah_has_revealed_chords'      => 'capoiv');
-                $tmp_search_meta_ARRAY[] = array('jehovah_has_revealed'             => 'capoiv');
-                $tmp_search_meta_ARRAY[] = array('hymn979'                          => 'hymns');
-                $tmp_search_meta_ARRAY[] = array('gen1_1'                           => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('gen1_26'                          => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('gen2_7'                           => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('gen3_1'                           => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('gen3_14[COVID]'                   => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('gen3_14[solo]'                    => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('gen3_14'                          => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('gen26_4-5'                        => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('gen48_21-22|49_1,25-28'           => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('gen49_1,25-28'                    => 'genesis');
-                $tmp_search_meta_ARRAY[] = array('lifestudy_exo_156'                => 'lifestudyofexodus');
-                $tmp_search_meta_ARRAY[] = array('exo9_29'                          => 'exodus');
-                $tmp_search_meta_ARRAY[] = array('exo15_26'                         => 'exodus');
-                $tmp_search_meta_ARRAY[] = array('exo20_6'                          => 'exodus');
-                $tmp_search_meta_ARRAY[] = array('exo20_13'                         => 'exodus');
-                $tmp_search_meta_ARRAY[] = array('exo20_15'                         => 'exodus');
-                $tmp_search_meta_ARRAY[] = array('exo30_18'                         => 'exodus');
-                $tmp_search_meta_ARRAY[] = array('exo30_17-21'                      => 'exodus');
-                $tmp_search_meta_ARRAY[] = array('lev2_1'                           => 'leviticus');
-                $tmp_search_meta_ARRAY[] = array('lev18_1-5,24-28'                  => 'leviticus');
-                $tmp_search_meta_ARRAY[] = array('lev26_3-13'                       => 'leviticus');
-                $tmp_search_meta_ARRAY[] = array('lev26_3,11b-12'                   => 'leviticus');
-                $tmp_search_meta_ARRAY[] = array('num14_31'                         => 'numbers');
-                $tmp_search_meta_ARRAY[] = array('num14_31[000]'                    => 'numbers');
-                $tmp_search_meta_ARRAY[] = array('num14_29-30'                      => 'numbers');
-                $tmp_search_meta_ARRAY[] = array('num14_35'                         => 'numbers');
-                $tmp_search_meta_ARRAY[] = array('num25_1-13'                       => 'numbers');
-                $tmp_search_meta_ARRAY[] = array('num32_13'                         => 'numbers');
-                $tmp_search_meta_ARRAY[] = array('num33_50-54'                      => 'numbers');
-                $tmp_search_meta_ARRAY[] = array('deut4_1-2,39-40'                  => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut5_10,29'                      => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut6_1-6,16-25'                  => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut6_25'                         => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut7_9-26'                       => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut8_1-10'                       => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut10_14-22'                     => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut11_14'                        => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut11_1,8-15,22-28'              => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut26_16-19'                     => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut28_1-14'                      => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut30_11-20'                     => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('deut33_1-4,12,29'                 => 'deuteronomy');
-                $tmp_search_meta_ARRAY[] = array('josh5_6'                          => 'joshua');
-                $tmp_search_meta_ARRAY[] = array('1sam4_4'                          => '1samuel');
-                $tmp_search_meta_ARRAY[] = array('1kings2_1-3'                      => '1kings');
-                $tmp_search_meta_ARRAY[] = array('1kings8_54-66'                    => '1kings');
-                $tmp_search_meta_ARRAY[] = array('1kings18_37-40,45;19_1-18'        => '1kings');
-                $tmp_search_meta_ARRAY[] = array('neh1_1-11'                        => 'nehemiah');
-                $tmp_search_meta_ARRAY[] = array('psa24'                            => 'psalms');
-                $tmp_search_meta_ARRAY[] = array('psa95_10-11'                      => 'psalms');
-                $tmp_search_meta_ARRAY[] = array('psa97_2'                          => 'psalms');
-                $tmp_search_meta_ARRAY[] = array('psa119_103'                       => 'psalms');
-                $tmp_search_meta_ARRAY[] = array('prov20_27'                        => 'proverbs');
-                $tmp_search_meta_ARRAY[] = array('isa14_13'                         => 'isaiah');
-                $tmp_search_meta_ARRAY[] = array('isa14_21-24'                      => 'isaiah');
-                $tmp_search_meta_ARRAY[] = array('isa16_1-5'                        => 'isaiah');
-                $tmp_search_meta_ARRAY[] = array('isa53_6'                          => 'isaiah');
-                $tmp_search_meta_ARRAY[] = array('jer1_11-19'                       => 'jeremiah');
-                $tmp_search_meta_ARRAY[] = array('jer24_7'                          => 'jeremiah');
-                $tmp_search_meta_ARRAY[] = array('jer31_31-34'                      => 'jeremiah');
-                $tmp_search_meta_ARRAY[] = array('jer31_33-34'                      => 'jeremiah');
-                $tmp_search_meta_ARRAY[] = array('jer31_33-37'                      => 'jeremiah');
-                $tmp_search_meta_ARRAY[] = array('jer31_31-37'                      => 'jeremiah');
-                $tmp_search_meta_ARRAY[] = array('ezek11_17-25'                     => 'ezekiel');
-                $tmp_search_meta_ARRAY[] = array('dan9_4'                           => 'daniel');
-                $tmp_search_meta_ARRAY[] = array('dan9_17-27'                       => 'daniel');
-                $tmp_search_meta_ARRAY[] = array('joel2_23'                         => 'joel');
-                $tmp_search_meta_ARRAY[] = array('matt1_18,20'                      => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt2_4-6'                        => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt3_15'                         => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt4_1-2'                        => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt4_3'                          => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt4_4b'                         => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt4_5-7'                        => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt5_10'                         => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt5_13'                         => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt5'                            => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt6'                            => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt7'                            => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt7_13-14'                      => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt10_10b'                       => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt10_16-33'                     => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt11_28-30'                     => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt12_1-8'                       => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt12_5'                         => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt13_4'                         => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt16_25-26'                     => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt19_12'                        => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt24_8-14'                      => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt24_14'                        => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt24_15-22'                     => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt25_4'                         => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt25_23,10b'                    => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt26_33-35,69-75'               => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('matt27_46'                        => 'matthew');
-                $tmp_search_meta_ARRAY[] = array('mark7_19-23'                      => 'mark');
-                $tmp_search_meta_ARRAY[] = array('mark9_50'                         => 'mark');
-                $tmp_search_meta_ARRAY[] = array('mark14_27-31,66-72'               => 'mark');
-                $tmp_search_meta_ARRAY[] = array('luke1_26-33'                      => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke9_1-6'                        => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke9_5-6'                        => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke10_19'                        => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke12_35'                        => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke12_34-44'                     => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke13_17'                        => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke14_31-32'                     => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke14_34-35'                     => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke18_11-12'                     => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke18_13'                        => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke19_12,14,15,27'               => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke22_24-30'                     => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke22_33-34,54-62'               => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke22_42'                        => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke22_42[solo]'                  => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke23_27-30'                     => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke23_38,42-43'                  => 'luke');
-                $tmp_search_meta_ARRAY[] = array('luke24_31-32'                     => 'luke');
-                $tmp_search_meta_ARRAY[] = array('john2_20-21'                      => 'john');
-                $tmp_search_meta_ARRAY[] = array('john2_21'                         => 'john');
-                $tmp_search_meta_ARRAY[] = array('john5_24-25'                      => 'john');
-                $tmp_search_meta_ARRAY[] = array('john8_1-11'                       => 'john');
-                $tmp_search_meta_ARRAY[] = array('john8_6'                          => 'john');
-                $tmp_search_meta_ARRAY[] = array('john8_51-59'                      => 'john');
-                $tmp_search_meta_ARRAY[] = array('john9_41'                         => 'john');
-                $tmp_search_meta_ARRAY[] = array('john13_3-17'                      => 'john');
-                $tmp_search_meta_ARRAY[] = array('john13_34'                        => 'john');
-                $tmp_search_meta_ARRAY[] = array('john13_34[solo]'                  => 'john');
-                $tmp_search_meta_ARRAY[] = array('john13_37-38'                     => 'john');
-                $tmp_search_meta_ARRAY[] = array('john13_37-38;18_14-27'            => 'john');
-                $tmp_search_meta_ARRAY[] = array('john14_10'                        => 'john');
-                $tmp_search_meta_ARRAY[] = array('john14_10-14'                     => 'john');
-                $tmp_search_meta_ARRAY[] = array('john14_12-14'                     => 'john');
-                $tmp_search_meta_ARRAY[] = array('john14_15,20-21'                  => 'john');
-                $tmp_search_meta_ARRAY[] = array('john16_15'                        => 'john');
-                $tmp_search_meta_ARRAY[] = array('acts1_5'                          => 'acts');
-                $tmp_search_meta_ARRAY[] = array('acts2_22-25'                      => 'acts');
-                $tmp_search_meta_ARRAY[] = array('acts8_29'                         => 'acts');
-                $tmp_search_meta_ARRAY[] = array('acts10_15-16b,19-21'              => 'acts');
-                $tmp_search_meta_ARRAY[] = array('acts16_6,7'                       => 'acts');
-                $tmp_search_meta_ARRAY[] = array('acts11_12'                        => 'acts');
-                $tmp_search_meta_ARRAY[] = array('acts11_18'                        => 'acts');
-                $tmp_search_meta_ARRAY[] = array('rom2_6-7'                         => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom5_1-5[000]'                    => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom5_1-5'                         => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom5_10'                          => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom5_14,17,21'                    => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom6_3'                           => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom6_8'                           => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom6_8-11'                        => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom6_9-11'                        => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom6_18-19[000]'                  => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom6_18-19'                       => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom6_22'                          => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom7_2-4,6'                       => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom8_2'                           => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom8_2,4'                         => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom8_14'                          => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom8_16-17,24-25'                 => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom8_14-23'                       => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom8_33-39'                       => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom9_31-33'                       => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom10_2-3'                        => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom12_2'                          => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom12_11'                         => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom12_11-12'                      => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom13_14'                         => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom14_1'                          => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom14_7-12'                       => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom15_4[000]'                     => 'romans');
-                $tmp_search_meta_ARRAY[] = array('rom15_4'                          => 'romans');
-                $tmp_search_meta_ARRAY[] = array('1cor1_22-25'                      => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor3_21-23'                      => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor5_1,5'                        => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor6_12'                         => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor6_17'                         => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor9_8-11,13'                    => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor10_5'                         => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor10_23'                        => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor10_26,29b-31'                 => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor11_4'                         => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor15_58'                        => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor15_55,58'                     => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor1_9-10'                       => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor1_20-22[000]'                 => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor1_20-22'                      => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor3_6-9'                        => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor3_12'                         => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor3_12,17'                      => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor11_2a'                        => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor11_2b-3'                      => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('1cor11_22'                        => '1corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor3_3'                          => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor3_17-18'                      => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('2cor3_18'                         => '2corinthians');
-                $tmp_search_meta_ARRAY[] = array('gal1_14'                          => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal2_20'                          => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal2_20_x'                        => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal3_1'                           => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal5_1,7'                         => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal5_1'                           => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal5_5-6'                         => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal4_11'                          => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal5_13,16'                       => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal5_16,18,22-23,25'              => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('gal6_14'                          => 'galatians');
-                $tmp_search_meta_ARRAY[] = array('eph1_3'                           => 'ephesians');
-                $tmp_search_meta_ARRAY[] = array('eph1_3-12'                        => 'ephesians');
-                $tmp_search_meta_ARRAY[] = array('eph1_3-14[000]'                   => 'ephesians');
-                $tmp_search_meta_ARRAY[] = array('eph1_3-14'                        => 'ephesians');
-                $tmp_search_meta_ARRAY[] = array('eph1_9'                           => 'ephesians');
-                $tmp_search_meta_ARRAY[] = array('eph1_9-14,18-23'                  => 'ephesians');
-                $tmp_search_meta_ARRAY[] = array('phil1_6'                          => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil1_20'                         => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil1_27'                         => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil2_3'                          => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil2_5-8'                        => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil2_5-16[000]'                  => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil2_5-16'                       => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil2_5-9'                        => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil2_8'                          => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil2_13[001]'                    => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil2_13[000]'                    => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('phil2_13'                         => 'philippians');
-                $tmp_search_meta_ARRAY[] = array('col1_5'                           => 'colossians');
-                $tmp_search_meta_ARRAY[] = array('col1_27'                          => 'colossians');
-                $tmp_search_meta_ARRAY[] = array('col1_5-6,21-23,26-27'             => 'colossians');
-                $tmp_search_meta_ARRAY[] = array('col1_16'                          => 'colossians');
-                $tmp_search_meta_ARRAY[] = array('col2_9'                           => 'colossians');
-                $tmp_search_meta_ARRAY[] = array('col2_8,12,20-23'                  => 'colossians');
-                $tmp_search_meta_ARRAY[] = array('col3_5'                           => 'colossians');
-                $tmp_search_meta_ARRAY[] = array('col3_6'                           => 'colossians');
-                $tmp_search_meta_ARRAY[] = array('1thes1_2-3'                       => '1thessalonians');
-                $tmp_search_meta_ARRAY[] = array('1thes5_7-11'                      => '1thessalonians');
-                $tmp_search_meta_ARRAY[] = array('2thes2_8-12'                      => '2thessalonians');
-                $tmp_search_meta_ARRAY[] = array('2thes2_16-17'                     => '2thessalonians');
-                $tmp_search_meta_ARRAY[] = array('1tim1_1'                          => '1timothy');
-                $tmp_search_meta_ARRAY[] = array('1tim4_1-5'                        => '1timothy');
-                $tmp_search_meta_ARRAY[] = array('1tim6_17'                         => '1timothy');
-                $tmp_search_meta_ARRAY[] = array('2tim1_6'                          => '2timothy');
-                $tmp_search_meta_ARRAY[] = array('2tim1_6-8'                        => '2timothy');
-                $tmp_search_meta_ARRAY[] = array('titus1_1-3'                       => 'titus');
-                $tmp_search_meta_ARRAY[] = array('titus2_11-15'                     => 'titus');
-                $tmp_search_meta_ARRAY[] = array('titus3_7[000]'                    => 'titus');
-                $tmp_search_meta_ARRAY[] = array('titus3_7'                         => 'titus');
-                $tmp_search_meta_ARRAY[] = array('heb2_14-15'                       => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb3_6[000]'                      => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb3_6'                           => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb3_7-19[000]'                   => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb3_7-19'                        => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb4_8-16'                        => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb4_11'                          => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb6_17-20'                       => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb7_17-19'                       => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb8_10[000]'                     => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb8_10'                          => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb9_14'                          => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb10_22,19'                      => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb10_22'                         => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb10_21-23'                      => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb10_23'                         => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb10_35'                         => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb10_35,38-39'                   => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb11_1'                          => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('heb12_1'                          => 'hebrews');
-                $tmp_search_meta_ARRAY[] = array('james3_1-2'                       => 'james');
-                $tmp_search_meta_ARRAY[] = array('1pet1_3-9,13,21'                  => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1pet1_3-5'                        => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1pet1_13'                         => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1pet2_16'                         => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1pet2_20'                         => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1pet2_7-8'                        => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1pet2_24'                         => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1pet3_15'                         => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1pet3_5-7,14-22'                  => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1pet5_8'                          => '1peter');
-                $tmp_search_meta_ARRAY[] = array('1john2_15-17'                     => '1john');
-                $tmp_search_meta_ARRAY[] = array('1john3_1-10'                      => '1john');
-                $tmp_search_meta_ARRAY[] = array('rev2_10-11'                       => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev2_12-17'                       => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev2_18-23'                       => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev2_14[solo]'                    => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev2_14'                          => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev2_11|2_17,26-28|3_5,12,21'     => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev2_21-23,29'                    => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev2_21-22'                       => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev3_8'                           => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev3_10-11'                       => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev3_7-13'                        => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev3_19'                          => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev6_16-17'                       => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev9_6-7'                         => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev12_3-4,9'                      => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev12_3-4,13,17;13:2,4'           => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev20_6'                          => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev21_2,9-27'                     => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev21_7'                          => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev21_3-5'                        => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev21_21'                         => 'revelation');
-                $tmp_search_meta_ARRAY[] = array('rev22_2'                          => 'revelation');
+                //
+                // START OF AUTO-GENERATED PHP CODE.
+                $tmp_search_meta_ARRAY[] = array('jehovah_has_revealed_dl' => 'capoiv');
+                $tmp_search_meta_ARRAY[] = array('jehovah_has_revealed_audio' => 'capoiv');
+                $tmp_search_meta_ARRAY[] = array('jehovah_has_revealed_chords' => 'capoiv');
+                $tmp_search_meta_ARRAY[] = array('jehovah_has_revealed' => 'capoiv');
+                $tmp_search_meta_ARRAY[] = array('hymn979' => 'hymns');
+                $tmp_search_meta_ARRAY[] = array('gen1_1' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('gen1_26' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('gen2_7' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('gen3_1' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('gen3_14[COVID]' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('gen3_14[solo]' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('gen3_14' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('gen26_4-5' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('gen48_21-22|49_1,25-28' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('gen49_1,25-28' => 'genesis');
+                $tmp_search_meta_ARRAY[] = array('lifestudy_exo_156' => 'lifestudyofexodus');
+                $tmp_search_meta_ARRAY[] = array('exo9_29' => 'exodus');
+                $tmp_search_meta_ARRAY[] = array('exo12_29-33' => 'exodus');
+                $tmp_search_meta_ARRAY[] = array('exo15_26' => 'exodus');
+                $tmp_search_meta_ARRAY[] = array('exo20_6' => 'exodus');
+                $tmp_search_meta_ARRAY[] = array('exo20_13' => 'exodus');
+                $tmp_search_meta_ARRAY[] = array('exo20_15' => 'exodus');
+                $tmp_search_meta_ARRAY[] = array('exo30_18' => 'exodus');
+                $tmp_search_meta_ARRAY[] = array('exo30_17-21' => 'exodus');
+                $tmp_search_meta_ARRAY[] = array('lev2_1' => 'leviticus');
+                $tmp_search_meta_ARRAY[] = array('lev18_1-5,24-28' => 'leviticus');
+                $tmp_search_meta_ARRAY[] = array('lev26_3-13' => 'leviticus');
+                $tmp_search_meta_ARRAY[] = array('lev26_3,11b-12' => 'leviticus');
+                $tmp_search_meta_ARRAY[] = array('num14_31' => 'numbers');
+                $tmp_search_meta_ARRAY[] = array('num14_31[000]' => 'numbers');
+                $tmp_search_meta_ARRAY[] = array('num14_29-30' => 'numbers');
+                $tmp_search_meta_ARRAY[] = array('num14_35' => 'numbers');
+                $tmp_search_meta_ARRAY[] = array('num25_1-13' => 'numbers');
+                $tmp_search_meta_ARRAY[] = array('num32_13' => 'numbers');
+                $tmp_search_meta_ARRAY[] = array('num33_50-54' => 'numbers');
+                $tmp_search_meta_ARRAY[] = array('deut4_1-2,39-40' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut5_10,29' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut6_1-6,16-25' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut6_25' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut7_9-26' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut8_1-10' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut10_14-22' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut11_14' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut11_1,8-15,22-28' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut14_22-27' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut12_1,5-7,21-22,32' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut26_16-19' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut28_1-14' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut30_11-20' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('deut33_1-4,12,29' => 'deuteronomy');
+                $tmp_search_meta_ARRAY[] = array('josh5_6' => 'joshua');
+                $tmp_search_meta_ARRAY[] = array('1sam4_4' => '1samuel');
+                $tmp_search_meta_ARRAY[] = array('1kings2_1-3' => '1kings');
+                $tmp_search_meta_ARRAY[] = array('1kings8_54-66' => '1kings');
+                $tmp_search_meta_ARRAY[] = array('1kings18_37-40,45;19_1-18' => '1kings');
+                $tmp_search_meta_ARRAY[] = array('neh1_1-11' => 'nehemiah');
+                $tmp_search_meta_ARRAY[] = array('psa24' => 'psalms');
+                $tmp_search_meta_ARRAY[] = array('psa95_10-11' => 'psalms');
+                $tmp_search_meta_ARRAY[] = array('psa97_2' => 'psalms');
+                $tmp_search_meta_ARRAY[] = array('psa119_103' => 'psalms');
+                $tmp_search_meta_ARRAY[] = array('prov20_27' => 'proverbs');
+                $tmp_search_meta_ARRAY[] = array('isa14_13' => 'isaiah');
+                $tmp_search_meta_ARRAY[] = array('isa14_21-24' => 'isaiah');
+                $tmp_search_meta_ARRAY[] = array('isa16_1-5' => 'isaiah');
+                $tmp_search_meta_ARRAY[] = array('isa53_6' => 'isaiah');
+                $tmp_search_meta_ARRAY[] = array('jer1_11-19' => 'jeremiah');
+                $tmp_search_meta_ARRAY[] = array('jer24_7' => 'jeremiah');
+                $tmp_search_meta_ARRAY[] = array('jer31_31-34' => 'jeremiah');
+                $tmp_search_meta_ARRAY[] = array('jer31_33-34' => 'jeremiah');
+                $tmp_search_meta_ARRAY[] = array('jer31_33-37' => 'jeremiah');
+                $tmp_search_meta_ARRAY[] = array('jer31_31-37' => 'jeremiah');
+                $tmp_search_meta_ARRAY[] = array('ezek11_17-25' => 'ezekiel');
+                $tmp_search_meta_ARRAY[] = array('dan9_4' => 'daniel');
+                $tmp_search_meta_ARRAY[] = array('dan9_17-27' => 'daniel');
+                $tmp_search_meta_ARRAY[] = array('joel2_23' => 'joel');
+                $tmp_search_meta_ARRAY[] = array('matt1_18,20' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt2_4-6' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt3_15' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt4_1-2' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt4_3' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt4_4b' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt4_5-7' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt5_10' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt5_13' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt5' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt6' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt7' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt7_13-14' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt10_10b' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt10_16-33' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt11_28-30' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt12_1-8' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt12_5' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt13_4' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt16_25-26' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt19_12' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt24_8-14' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt24_14' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt24_15-22' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt25_4' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt25_23,10b' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt26_33-35,69-75' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('matt27_46' => 'matthew');
+                $tmp_search_meta_ARRAY[] = array('mark7_19-23' => 'mark');
+                $tmp_search_meta_ARRAY[] = array('mark9_50' => 'mark');
+                $tmp_search_meta_ARRAY[] = array('mark14_27-31,66-72' => 'mark');
+                $tmp_search_meta_ARRAY[] = array('luke1_26-33' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke9_1-6' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke9_5-6' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke10_19' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke12_35' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke12_34-44' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke13_17' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke14_31-32' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke14_34-35' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke18_11-12' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke18_13' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke19_12,14,15,27' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke22_24-30' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke22_33-34,54-62' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke22_42' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke22_42[solo]' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke23_27-30' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke23_38,42-43' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('luke24_31-32' => 'luke');
+                $tmp_search_meta_ARRAY[] = array('john2_20-21' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john2_21' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john5_24-25' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john8_1-11' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john8_6' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john8_51-59' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john9_41' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john13_3-17' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john13_34' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john13_34[solo]' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john13_37-38' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john13_37-38;18_14-27' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john14_10' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john14_10-14' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john14_12-14' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john14_15,20-21' => 'john');
+                $tmp_search_meta_ARRAY[] = array('john16_15' => 'john');
+                $tmp_search_meta_ARRAY[] = array('acts1_5' => 'acts');
+                $tmp_search_meta_ARRAY[] = array('acts2_22-25' => 'acts');
+                $tmp_search_meta_ARRAY[] = array('acts8_29' => 'acts');
+                $tmp_search_meta_ARRAY[] = array('acts10_15-16b,19-21' => 'acts');
+                $tmp_search_meta_ARRAY[] = array('acts16_6,7' => 'acts');
+                $tmp_search_meta_ARRAY[] = array('acts11_12' => 'acts');
+                $tmp_search_meta_ARRAY[] = array('acts11_18' => 'acts');
+                $tmp_search_meta_ARRAY[] = array('rom2_6-7' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom5_1-5[000]' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom5_1-5' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom5_10' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom5_14,17,21' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom6_3' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom6_8' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom6_8-11' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom6_9-11' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom6_18-19[000]' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom6_18-19' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom6_22' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom7_2-4,6' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom8_2' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom8_2,4' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom8_14' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom8_16-17,24-25' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom8_14-23' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom8_33-39' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom9_31-33' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom10_2-3' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom12_2' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom12_11' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom12_11-12' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom13_14' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom14_1' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom14_7-12' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom15_4[000]' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('rom15_4' => 'romans');
+                $tmp_search_meta_ARRAY[] = array('1cor1_22-25' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor3_21-23' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor5_1,5' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor6_12' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor6_17' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor9_8-11,13' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor10_5' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor10_23' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor10_26,29b-31' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor11_4' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor15_58' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor15_55,58' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor1_9-10' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor1_20-22[000]' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor1_20-22' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor3_6-9' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor3_12' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor3_12,17' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor11_2a' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor11_2b-3' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('1cor11_22' => '1corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor3_3' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor3_17-18' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('2cor3_18' => '2corinthians');
+                $tmp_search_meta_ARRAY[] = array('gal1_14' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal2_20' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal2_20_x' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal3_1' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal5_1,7' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal5_1' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal5_5-6' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal4_11' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal5_13,16' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal5_16,18,22-23,25' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('gal6_14' => 'galatians');
+                $tmp_search_meta_ARRAY[] = array('eph1_3' => 'ephesians');
+                $tmp_search_meta_ARRAY[] = array('eph1_3-12' => 'ephesians');
+                $tmp_search_meta_ARRAY[] = array('eph1_3-14[000]' => 'ephesians');
+                $tmp_search_meta_ARRAY[] = array('eph1_3-14' => 'ephesians');
+                $tmp_search_meta_ARRAY[] = array('eph1_9' => 'ephesians');
+                $tmp_search_meta_ARRAY[] = array('eph1_9-14,18-23' => 'ephesians');
+                $tmp_search_meta_ARRAY[] = array('phil1_6' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil1_20' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil1_27' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil2_3' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil2_5-8' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil2_5-16[000]' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil2_5-16' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil2_5-9' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil2_8' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil2_13[001]' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil2_13[000]' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('phil2_13' => 'philippians');
+                $tmp_search_meta_ARRAY[] = array('col1_5' => 'colossians');
+                $tmp_search_meta_ARRAY[] = array('col1_27' => 'colossians');
+                $tmp_search_meta_ARRAY[] = array('col1_5-6,21-23,26-27' => 'colossians');
+                $tmp_search_meta_ARRAY[] = array('col1_16' => 'colossians');
+                $tmp_search_meta_ARRAY[] = array('col2_9' => 'colossians');
+                $tmp_search_meta_ARRAY[] = array('col2_8,12,20-23' => 'colossians');
+                $tmp_search_meta_ARRAY[] = array('col3_5' => 'colossians');
+                $tmp_search_meta_ARRAY[] = array('col3_6' => 'colossians');
+                $tmp_search_meta_ARRAY[] = array('1thes1_2-3' => '1thessalonians');
+                $tmp_search_meta_ARRAY[] = array('1thes5_7-11' => '1thessalonians');
+                $tmp_search_meta_ARRAY[] = array('2thes2_8-12' => '2thessalonians');
+                $tmp_search_meta_ARRAY[] = array('2thes2_16-17' => '2thessalonians');
+                $tmp_search_meta_ARRAY[] = array('1tim1_1' => '1timothy');
+                $tmp_search_meta_ARRAY[] = array('1tim4_1-5' => '1timothy');
+                $tmp_search_meta_ARRAY[] = array('1tim6_17' => '1timothy');
+                $tmp_search_meta_ARRAY[] = array('2tim1_6' => '2timothy');
+                $tmp_search_meta_ARRAY[] = array('2tim1_6-8' => '2timothy');
+                $tmp_search_meta_ARRAY[] = array('titus1_1-3' => 'titus');
+                $tmp_search_meta_ARRAY[] = array('titus2_11-15' => 'titus');
+                $tmp_search_meta_ARRAY[] = array('titus3_7[000]' => 'titus');
+                $tmp_search_meta_ARRAY[] = array('titus3_7' => 'titus');
+                $tmp_search_meta_ARRAY[] = array('heb2_14-15' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb3_6[000]' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb3_6' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb3_7-19[000]' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb3_7-19' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb4_8-16' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb4_11' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb6_17-20' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb7_17-19' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb8_10[000]' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb8_10' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb9_14' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb10_22,19' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb10_22' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb10_21-23' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb10_23' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb10_35' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb10_35,38-39' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb11_1' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('heb12_1' => 'hebrews');
+                $tmp_search_meta_ARRAY[] = array('james3_1-2' => 'james');
+                $tmp_search_meta_ARRAY[] = array('1pet1_3-9,13,21' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1pet1_3-5' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1pet1_13' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1pet2_16' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1pet2_20' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1pet2_7-8' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1pet2_24' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1pet3_15' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1pet3_5-7,14-22' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1pet5_8' => '1peter');
+                $tmp_search_meta_ARRAY[] = array('1john2_15-17' => '1john');
+                $tmp_search_meta_ARRAY[] = array('1john3_1-10' => '1john');
+                $tmp_search_meta_ARRAY[] = array('rev2_10-11' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev2_12-17' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev2_18-23' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev2_14[solo]' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev2_14' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev2_11|2_17,26-28|3_5,12,21' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev2_21-23,29' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev2_21-22' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev3_8' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev3_10-11' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev3_7-13' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev3_19' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev6_16-17' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev9_6-7' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev12_3-4,9' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev12_3-4,13,17;13:2,4' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev20_6' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev21_2,9-27' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev21_7' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev21_3-5' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev21_21' => 'revelation');
+                $tmp_search_meta_ARRAY[] = array('rev22_2' => 'revelation');
+                // END OF THE AUTO-GENERATED PHP CODE.
 
             break;
 
