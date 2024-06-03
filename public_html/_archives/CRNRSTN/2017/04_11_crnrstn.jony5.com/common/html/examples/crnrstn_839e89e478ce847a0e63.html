@@ -1,7 +1,61 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd"><html><head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>CRNRSTN :: Code Example</title></head><body><p>some copy here</p><div id="example_scrollto_0" class="example_scrollto" onClick="initScrollTo_lnk(this,'http://127.0.0.1/crnrstn.jony5.com/documentation/classes/logging/?c=80096a95a930ac5ae547');"><a href="#" target="_self">Link</a>.</div><div id="crnrstn_839e89e478ce847a0e63_0" class="code_wrapper"><div id="lineNum_11882" class="l_num">1<br>2<br>3<br>4<br>5<br>6<br>7<br><br><br><br><br></div><div class="code_shell"><code>
-<span class="code_str_qtd">&lt;?php</span><br>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd"><html><head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>CRNRSTN :: Code Example</title></head><body><p>On line 51 we capture a notification with errors concerning the most recent MySQLi function call (line 15), and we pass this notification through the C<span class="the_R">R</span>NRSTN Suite :: logging class object which was instantiated on line 10. If you want to pass your own notifications through the C<span class="the_R">R</span>NRSTN Suite :: logging class, you'll need to instantiate your own copy of the logging class object.</p><div id="crnrstn_839e89e478ce847a0e63_0" class="code_wrapper"><div id="lineNum_252650739" class="l_num">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br><br><br><br><br></div><div class="code_shell"><code>
+<span class="code_str_qtd">&lt;?php</span><br><span CLASS="code_comment">
+/*</span><br><span CLASS="code_comment">
+// J5</span><br>
+<span CLASS="code_comment">// Code is Poetry */</span><br>
+<span id="b7a73b3bf3e58d97abca_1588341573j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>(<span class="code_str_qtd">'./_crnrstn.root.inc.php'</span>); <br>
+<span id="b7a73b3bf3e58d97abca_1972924246j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($CRNRSTN_ROOT.<span class="code_str_qtd">'_crnrstn.config.inc.php'</span>);  <span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// THE CRNRSTN SUITE :: CONFIGURATION FILE</span><br>
 <br>
-<span CLASS="code_comment">#...420!</span><br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// CRNRSTN SUITE LOGGING</span><br>
+$oLogger = <span id="f109c58b6897e5839fe2_904989670j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> crnrstn_logging();<br>
+<br>
+<span id="2b377a23c22576d4ae5a_1937857738j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">try</span>{<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// INITIALIZE DATABASE CONNECTION OBJECT THROUGH THE CRNRSTN SUITE</span><br>
+<span CLASS="tab">&nbsp;</span>$mysqli = $oCRNRSTN_ENV-&gt;oMYSQLI_CONN_MGR-&gt;returnConnection();<br>
+<span CLASS="tab">&nbsp;</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// BUILD QUERY</span><br>
+<span CLASS="tab">&nbsp;</span>$query = <span class="code_str_qtd">'SELECT `users`.`USERNAME`,`users`.`ISACTIVE`,`users`.`USERNAME_DISPLAY`,`users`.`EMAIL`,`users`.`PWDHASH` FROM `users` WHERE `users`.`USERNAME`=&quot;'</span>.$mysqli-&gt;real_escape_string(<span id="008b62deb4978430e9f8_764266411j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">strtolower</span>($inputUN)).<span class="code_str_qtd">'&quot; AND `users`.`USERNAME_CRC32`=&quot;'</span>.<span id="87c448981000856c9ee5_1946794800j00000101" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">crc32</span>(<span id="008b62deb4978430e9f8_j0000010176558286" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">strtolower</span>($inputUN)).<span class="code_str_qtd">'&quot; LIMIT 1;'</span>;<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// PROCESS QUERY </span><br>
+<span CLASS="tab">&nbsp;</span>$result = $oCRNRSTN_ENV-&gt;oMYSQLI_CONN_MGR-&gt;processQuery($mysqli, self::$query);<br>
+<span CLASS="tab">&nbsp;</span><br>
+<span CLASS="tab">&nbsp;</span><span id="e43e09b42c84b845c5a9_488580723j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span>($mysqli-&gt;error){<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span id="6b7e9d5e9a9a8c5b887c_214790358j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">throw</span> <span id="f109c58b6897e5839fe2_j0000010182590933" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> Exception(<span class="code_str_qtd">'CRNRSTN database :: ERROR :: ['</span>.$mysqli-&gt;error.<span class="code_str_qtd">']'</span>);<br>
+<span CLASS="tab">&nbsp;</span>}<span id="e065810be95e4c37e63c_1038720561j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">else</span>{<br>
+<span CLASS="tab">&nbsp;</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// REMAIN STILL WHILE YOUR LIFE IS EXTRACTED</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>$ROWCNT=0;<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span id="6db63a87b4fbbd1f1255_1248507852j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">while</span> ($row = $result-&gt;fetch_row()) {<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span id="9c79be84cf595ca0ad6a_149718394j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">foreach</span>($row as $fieldPos=&gt;$value){<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// STORE DATABASE RETURNED RESULT IN ARRAY FOR USE LATER</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>$result_ARRAY[$ROWCNT][$fieldPos]=$value;<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>}<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>$ROWCNT++;<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>}<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>$result-&gt;free();<br>
+<span CLASS="tab">&nbsp;</span>}<br>
+<span CLASS="tab">&nbsp;</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// CLOSE DATABASE CONNECTION</span><br>
+<span CLASS="tab">&nbsp;</span>$oCRNRSTN_ENV-&gt;oMYSQLI_CONN_MGR-&gt;closeConnection($mysqli);<br>
+<br>
+}<span id="149d7ffebeb55ab05d07_1161491162j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">catch</span>( Exception $e ) {<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// SEND THIS THROUGH THE CRNRSTN SUITE LOGGER OBJECT</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>$oLogger-&gt;captureNotice(<span class="code_str_qtd">'Database - query process'</span>, <span id="1167c87443e132c6048b_79340526j00000101" class="code_system_constants" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">LOG_EMERG</span>, $e-&gt;getMessage());<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// CLOSE DATABASE CONNECTION</span><br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>$oCRNRSTN_ENV-&gt;oMYSQLI_CONN_MGR-&gt;closeConnection($mysqli);<br>
+<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>}<br>
 <br>
 <span class="code_str_qtd">?&gt;</span><br>
-</code></div></div><div class="example_title_wrapper"><code style="color:#FF0000;">Figure 420.</code></div><div class="cb_15"></div><div class="comment_tt_wrapper"></div><div class="cb_15"></div></body></html>
+</code></div></div><div strlen="8327" class="example_title_wrapper"><code style="color:#FF0000;">Figure 40.</code></div><div class="cb_15"></div><div class="comment_tt_wrapper"><span id="b7a73b3bf3e58d97abca_0189442001528814899j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span> <span class="code_tt_space">&nbsp;</span><span id="f109c58b6897e5839fe2_0214466001528814899j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> <span class="code_tt_space">&nbsp;</span><span id="2b377a23c22576d4ae5a_0216152001528814899j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">try</span> <span class="code_tt_space">&nbsp;</span><span id="008b62deb4978430e9f8_0259921001528814899j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">strtolower</span> <span class="code_tt_space">&nbsp;</span><span id="87c448981000856c9ee5_0261862001528814899j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">crc32</span> <span class="code_tt_space">&nbsp;</span><span id="e43e09b42c84b845c5a9_0309599001528814899j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span> <span class="code_tt_space">&nbsp;</span><span id="6b7e9d5e9a9a8c5b887c_0317010001528814899j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">throw</span> <span class="code_tt_space">&nbsp;</span><span id="e065810be95e4c37e63c_0323601001528814899j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">else</span> <span class="code_tt_space">&nbsp;</span><span id="6db63a87b4fbbd1f1255_0365690001528814899j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">while</span> <span class="code_tt_space">&nbsp;</span><span id="9c79be84cf595ca0ad6a_0377998001528814899j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">foreach</span> <span class="code_tt_space">&nbsp;</span><span id="149d7ffebeb55ab05d07_0509617001528814899j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">catch</span> <span class="code_tt_space">&nbsp;</span><span id="1167c87443e132c6048b_0556843001528814899j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">LOG_EMERG</span> <span class="code_tt_space">&nbsp;</span></div><div class="cb_15"></div></body></html>

@@ -1,261 +1,60 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd"><html><head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>CRNRSTN :: Code Example</title></head><body><p>The web services server used in the soap based use case scenarios on this website is defined in the following example. On lines 18-21, the soap_server :: class is instantiated and configured. Following that are the sections for (1) registration of the SOAP data structures (lines 27-158), (2) definition of SOAP methods (lines 174-214), (3) registration of SOAP methods on lines 219-240, and finally the invocation of the service on lines 242-256.</p><div id="example_scrollto_0" class="example_scrollto" onClick="initScrollTo_lnk(this,'http://127.0.0.1/crnrstn.jony5.com/documentation/classes/soap_manager/?c=258a3bb3585d569b8d79');"><a href="#" target="_self">Link</a>.</div><div id="crnrstn_8a23da5ff5ed3e885235_0" class="code_wrapper"><div id="lineNum_20801" class="l_num">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78<br>79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109<br>110<br>111<br>112<br>113<br>114<br>115<br>116<br>117<br>118<br>119<br>120<br>121<br>122<br>123<br>124<br>125<br>126<br>127<br>128<br>129<br>130<br>131<br>132<br>133<br>134<br>135<br>136<br>137<br>138<br>139<br>140<br>141<br>142<br>143<br>144<br>145<br>146<br>147<br>148<br>149<br>150<br>151<br>152<br>153<br>154<br>155<br>156<br>157<br>158<br>159<br>160<br>161<br>162<br>163<br>164<br>165<br>166<br>167<br>168<br>169<br>170<br>171<br>172<br>173<br>174<br>175<br>176<br>177<br>178<br>179<br>180<br>181<br>182<br>183<br>184<br>185<br>186<br>187<br>188<br>189<br>190<br>191<br>192<br>193<br>194<br>195<br>196<br>197<br>198<br>199<br>200<br>201<br>202<br>203<br>204<br>205<br>206<br>207<br>208<br>209<br>210<br>211<br>212<br>213<br>214<br>215<br>216<br>217<br>218<br>219<br>220<br>221<br>222<br>223<br>224<br>225<br>226<br>227<br>228<br>229<br>230<br>231<br>232<br>233<br>234<br>235<br>236<br>237<br>238<br>239<br>240<br>241<br>242<br>243<br>244<br>245<br>246<br>247<br>248<br>249<br>250<br>251<br>252<br>253<br>254<br>255<br>256<br>257<br>258<br>259<br>260<br>261<br><br><br><br><br></div><div class="code_shell"><code>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd"><html><head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>CRNRSTN :: Code Example</title></head><body><p>In the following example of the construction, delivery, and the subsequent results processing of a SOAP client request, the C<span class="the_R">R</span>NRSTN Suite :: web services integrations are flexed. On line 12, a C<span class="the_R">R</span>NRSTN Suite :: crnrstn_soap_manager (soap_manager) class object is instantiated. <br />
+<br />
+The strings 'WSDL_URI', 'WSDL_CACHE_TTL', and 'NUSOAP_USECURL' correlate to three (3) <a href="../../classes/crnrstn/defineenvresource/" target="_self">defineEnvResource()</a> keys that will need to have been initialized in the C<span class="the_R">R</span>NRSTN Suite configuration file. One KEY should reference your web services WSDL endpoint; another other key representing the lifetime for caching-files in seconds or 0 for unlimited in reference to the cached instance of the wsdl class; the final key is a boolean indicating whether or not the NuSOAP client should try to force cURL use.</p><div id="crnrstn_8a23da5ff5ed3e885235_0" class="code_wrapper"><div id="lineNum_1515545257" class="l_num">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br><br><br><br><br></div><div class="code_shell"><code>
 <span class="code_str_qtd">&lt;?php</span><br><span CLASS="code_comment">
 /* </span><br><span CLASS="code_comment">
 // J5</span><br>
 <span CLASS="code_comment">// Code is Poetry */</span><br>
-<br>
-<span id="b7a73b3bf3e58d97abca_70j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>(<span class="code_str_qtd">'_crnrstn.root.inc.php'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// PATH...i.e. &lt;?php $ROOT=&quot;../&quot;; ? &gt; </span><br>
-<span id="b7a73b3bf3e58d97abca_6903j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'/_crnrstn.config.inc.php'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// CRNRSTN CONFIGURATION FILE</span><br>
-<span id="b7a73b3bf3e58d97abca_28004j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'/webservice.inc.php'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// CUSTOM WEB SERVICES MANAGER CLASS DEFINITION</span><br>
-<span id="b7a73b3bf3e58d97abca_15309j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'/database.inc.php'</span>);      <span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// CUSTOM DATABASE INTEGRATION :: CLASS DEFINITION</span><br>
-<span id="b7a73b3bf3e58d97abca_7298j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($ROOT.<span class="code_str_qtd">'/tmpcache.inc.php'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// CRNRSTN TMP CACHE CLASS DEFINITION</span><br>
+<span id="b7a73b3bf3e58d97abca_1722910555j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>(<span class="code_str_qtd">'_crnrstn.root.inc.php'</span>);<br>
+<span id="b7a73b3bf3e58d97abca_952685351j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($CRNRSTN_ROOT.<span class="code_str_qtd">'/_crnrstn.config.inc.php'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// THE CRNRSTN SUITE :: CONFIGURATION FILE</span><br>
 <br>
 <span CLASS="code_comment">//</span><br>
-<span CLASS="code_comment">// PASS CRNRSTN ENVIRONMENTALS CLASS OBJECT TO LIGTHWEIGHT TMP CACHE CONSTRUCTOR</span><br>
-$oTMPCACHE = <span id="f109c58b6897e5839fe2_28563j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> crnrstn_tmpcache($oENV);<br>
+<span CLASS="code_comment">// INSTANTIATE CRNRSTN SUITE :: SOAP CLIENT MANAGER</span><br>
+<span CLASS="code_comment">// BE SURE THE THREE (3) KEYS HAVE BEEN DEFINED IN YOUR</span><br>
+<span CLASS="code_comment">// CRNRSTN SUITE CONFIGURATION FILE. </span><br>
+$oSoapClientManager = <span id="f109c58b6897e5839fe2_320732943j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> crnrstn_soap_manager($oCRNRSTN_ENV,<span class="code_str_qtd">'WSDL_URI'</span>,<span class="code_str_qtd">'WSDL_CACHE_TTL'</span>,<span class="code_str_qtd">'NUSOAP_USECURL'</span>);<br>
 <br>
 <span CLASS="code_comment">//</span><br>
-<span CLASS="code_comment">// INSTANTIATE SOAP SERVER AND PROVIDE SESSION ACCESS TO ENVIRONMENTAL CLASS OBJECT</span><br>
-$server = <span id="f109c58b6897e5839fe2_31696j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> soap_server();<br>
-$server-&gt;debug_flag = <span id="9c13212eecace0e8b16a_18377j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">false;</span><br>
-$server-&gt;configureWSDL(<span class="code_str_qtd">"crnrstn"</span>, $oTMPCACHE-&gt;getEnvParam('SOA_NAMESPACE'));<br>
-$server-&gt;wsdl-&gt;schemaTargetNamespace = $oTMPCACHE-&gt;getEnvParam(<span class="code_str_qtd">'SOA_NAMESPACE'</span>);<br>
-<span id="0c63f470bc9b037ed011_32462j00000101" class="code_html_doc_type_tag" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">$_SESSION</span>[<span class="code_str_qtd">'oENV'</span>]=$oENV;<br>
-<br>
-<span CLASS="code_comment">// </span><br>
-<span CLASS="code_comment">// REGISTER THE DATA STRUCTURES USED BY THE SERVICE</span><br>
-<span CLASS="code_comment">// DATA STRUCTURE :: USER</span><br>
-$server-&gt;wsdl-&gt;addComplexType(<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'oUser'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'complexType'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'struct'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'all'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">''</span>,<br>
-<span CLASS="tab">&nbsp;</span><span id="d3b3ef3a4ad62b6d8bdc_29167j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'USERNAME'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_1276j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'USERNAME'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'USERID_SOURCE'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_6021j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'USERID_SOURCE'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'USERNAME_DISPLAY'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_14810j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'USERNAME_DISPLAY'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'FIRSTNAME'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_15883j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'FIRSTNAME'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'LASTNAME'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_29928j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'LASTNAME'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'EMAIL'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_9985j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'EMAIL'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'USER_PERMISSIONS_ID'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_6566j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'USER_PERMISSIONS_ID'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'PWDHASH'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_12263j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'PWDHASH'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'LANGCODE'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_30612j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'LANGCODE'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'LASTLOGIN'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_12861j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'LASTLOGIN'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'SESSION_PERSIST'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_10802j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'SESSION_PERSIST'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'IMAGE_NAME'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_25475j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'IMAGE_NAME'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'IMAGE_WIDTH'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_30976j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'IMAGE_WIDTH'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'IMAGE_HEIGHT'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_13625j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'IMAGE_HEIGHT'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'ABOUT'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_14206j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'ABOUT'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span>),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'ELEMENTID_PIPED'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_13535j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'ELEMENTID_PIPED'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span>),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'EXTERNAL_URI_RAW'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_9516j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'EXTERNAL_URI_RAW'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span>),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'EXTERNAL_URI_FORMATTED'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_27637j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'EXTERNAL_URI_FORMATTED'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span>),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'DEACTIVATE'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_19850j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'DEACTIVATE'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> )<br>
-<span CLASS="tab">&nbsp;</span>)<br>
-);<br>
+<span CLASS="code_comment">// SEARCH PARAMS</span><br>
+$s_params=<span class="code_str_qtd">"funny cat videos"</span>;<br>
 <br>
 <span CLASS="code_comment">//</span><br>
-<span CLASS="code_comment">// DATA STRUCTURE :: COMMENT</span><br>
-$server-&gt;wsdl-&gt;addComplexType(<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'oComment'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'complexType'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'struct'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'all'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">''</span>,<br>
-<span CLASS="tab">&nbsp;</span><span id="d3b3ef3a4ad62b6d8bdc_16379j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'USER'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_26648j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'USER'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'tns:oUser'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'COMMENTID'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_21105j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'COMMENTID'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'REPLYTO_COMMENTID'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_14422j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'REPLYTO_COMMENTID'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'SUBJECT'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_24791j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'SUBJECT'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'COMMENT_STYLED'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_28100j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'COMMENT_STYLED'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'COMMENT_RAW'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_9389j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'COMMENT_RAW'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'COMMENT_ELEM_TT'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_994j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'COMMENT_ELEM_TT'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'COMMENT_ELEM_SEARCH'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_13171j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'COMMENT_ELEM_SEARCH'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'PAGE_ELEMENT_ID'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_8752j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'PAGE_ELEMENT_ID'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'PAGE_ELEMENT_NAME'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_24233j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'PAGE_ELEMENT_NAME'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'PAGE_ELEMENT_URI'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_31790j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'PAGE_ELEMENT_URI'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'USER_ISUNIQUE'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_5071j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'USER_ISUNIQUE'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'STYLED_CHAR_CNT'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_12636j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'STYLED_CHAR_CNT'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'RAW_CHAR_CNT'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_15461j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'RAW_CHAR_CNT'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'LANGCODE'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_11578j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'LANGCODE'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'CLASSID_SOURCE'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_7659j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'CLASSID_SOURCE'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'METHODID_SOURCE'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_1864j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'METHODID_SOURCE'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'COMMENT_BACKLOG'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_14817j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'COMMENT_BACKLOG'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'DATEMODIFIED'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_25350j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'DATEMODIFIED'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'DATECREATED'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_11719j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'DATECREATED'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> )<br>
-<span CLASS="tab">&nbsp;</span>)<br>
-);<br>
+<span CLASS="code_comment">// BUILD SOAP REQUEST FOR CLIENT TO SEND. STRUCTURE AND FORMAT </span><br>
+<span CLASS="code_comment">// SHOULD ALIGN TO THE SERVICE WSDL.</span><br>
+$params = <span id="d3b3ef3a4ad62b6d8bdc_1135595126j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'oSearchSuggest'</span> =&gt;<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span id="d3b3ef3a4ad62b6d8bdc_623209359j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'SEARCH_PARAM'</span> =&gt; $s_params,<span class="code_str_qtd">'SEARCH_PARAM_SEARCH'</span> =&gt; search_FillerSanitize($s_params))<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>);<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><br>
+$methodName = <span class="code_str_qtd">'searchResultsSuggest'</span>;<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// FIRE WEB SERVICES REQUEST THROUGH CRNRSTN SOAP CLIENT MANAGER</span><br>
+$soapServerResponse_ARRAY = $oSoapClientManager-&gt;returnContent($methodName, $params);<br>
 <br>
 <span CLASS="code_comment">//</span><br>
-<span CLASS="code_comment">// DATA STRUCTURE :: ARRAY OF COMMENTS</span><br>
-$server-&gt;wsdl-&gt;addComplexType(<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'oCommentArray'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'complexType'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'array'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'all'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">''</span>,<br>
-<span CLASS="tab">&nbsp;</span><span id="d3b3ef3a4ad62b6d8bdc_20468j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span>=&gt;array(<span class="code_str_qtd">'ref'</span>=&gt;<span class="code_str_qtd">'SOAP-ENC:arrayType'</span>,<span class="code_str_qtd">'wsdl:arrayType'</span>=&gt;<span class="code_str_qtd">'tns:oComment[]'</span>))<br>
-);<br>
+<span CLASS="code_comment">// PROCESS SOAP RESULT ARRAY</span><br>
+<span id="6ca3d3b92e61bd047c8d_1987935553j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">for</span>($i=0;$i&lt;sizeof($soapServerResponse_ARRAY[<span class="code_str_qtd">'SEARCH_RESPONSE'</span>]);$i++){<br>
+<span CLASS="tab">&nbsp;</span><span id="d5086e9d793d631ffdc3_759964621j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">echo</span> <span class="code_str_qtd">"Title: "</span>.$soapServerResponse_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_TITLE'];<br>
+<span CLASS="tab">&nbsp;</span><span id="d5086e9d793d631ffdc3_2083961497j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">echo</span> <span class="code_str_qtd">"Description: "</span>.$soapServerResponse_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_DESCRIPTION'].'&lt;br&gt;&lt;br&gt;';<br>
 <br>
-<span CLASS="code_comment">//</span><br>
-<span CLASS="code_comment">// DATA STRUCTURE :: SEARCH REQUEST</span><br>
-$server-&gt;wsdl-&gt;addComplexType(<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'oSearchRequest'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'complexType'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'struct'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'all'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">''</span>,<br>
-<span CLASS="tab">&nbsp;</span><span id="d3b3ef3a4ad62b6d8bdc_4893j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'SEARCH_PARAM'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_10642j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'SEARCH_PARAM'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'USERNAME'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_24419j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'USERNAME'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'INDEXSIZE'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_30560j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'INDEXSIZE'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'PAGEINDEX'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_17433j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'PAGEINDEX'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'FILTER'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_19678j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'FILTER'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> )<br>
-<span CLASS="tab">&nbsp;</span>)<br>
-);<br>
-<br>
-<span CLASS="code_comment">//</span><br>
-<span CLASS="code_comment">// DATA STRUCTURE :: SEARCH RESPONSE</span><br>
-$server-&gt;wsdl-&gt;addComplexType(<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'oSearchResponse'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'complexType'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'struct'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'all'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">''</span>,<br>
-<span CLASS="tab">&nbsp;</span><span id="d3b3ef3a4ad62b6d8bdc_3775j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'SEARCH_PARAM'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_10636j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'SEARCH_PARAM'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'RESULT_TEXT'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_2261j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'RESULT_TEXT'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'RESULT_DESCRIPTION'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_22762j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'RESULT_DESCRIPTION'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> ),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'RESULT_URI'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_22491j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'RESULT_URI'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span> )<br>
-<span CLASS="tab">&nbsp;</span>)<br>
-);<br>
-<br>
-<span CLASS="code_comment">//</span><br>
-<span CLASS="code_comment">// DATA STRUCTURE :: ARRAY OF SEARCH RESPONSES</span><br>
-$server-&gt;wsdl-&gt;addComplexType(<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'oSearchResultArray'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'complexType'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'array'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'all'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">''</span>,<br>
-<span CLASS="tab">&nbsp;</span><span id="d3b3ef3a4ad62b6d8bdc_21112j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span>=&gt;array(<span class="code_str_qtd">'ref'</span>=&gt;<span class="code_str_qtd">'SOAP-ENC:arrayType'</span>,<span class="code_str_qtd">'wsdl:arrayType'</span>=&gt;<span class="code_str_qtd">'tns:oSearchResponse[]'</span>))<br>
-);<br>
-<br>
-<span CLASS="code_comment">//</span><br>
-<span CLASS="code_comment">// DATA STRUCTURE :: SEARCH RESULT CUMULATIVE (SITE CONTENT + UGC CONTENT)</span><br>
-$server-&gt;wsdl-&gt;addComplexType(<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'oSearchResult'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'complexType'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'struct'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'all'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">''</span>,<br>
-<span CLASS="tab">&nbsp;</span><span id="d3b3ef3a4ad62b6d8bdc_23889j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'SEARCH_RESPONSE'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_6582j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'SEARCH_PARAM'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'tns:oSearchResultArray'</span>),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'UGC_RESPONSE'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_5815j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>( <span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'UGC_RESPONSE'</span>,  <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'tns:oCommentArray'</span>),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'INDEXTOTAL'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_7716j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'INDEXTOTAL'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span>),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'INDEXSIZE'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_32141j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'INDEXSIZE'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span>),<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'PAGEINDEX'</span> =&gt; <span id="d3b3ef3a4ad62b6d8bdc_6978j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'name'</span> =&gt; <span class="code_str_qtd">'PAGEINDEX'</span>, <span class="code_str_qtd">'type'</span> =&gt; <span class="code_str_qtd">'xsd:string'</span>)<br>
-<span CLASS="tab">&nbsp;</span>)<br>
-);<br>
-<br>
-<span CLASS="code_comment">//</span><br>
-<span CLASS="code_comment">// EXAMPLE OF SIMPLE DATA STRUCTURE TYPE (NOT USED HERE)</span><br><span CLASS="code_comment">
-/*</span><br><span CLASS="code_comment">
-$server-&gt;wsdl-&gt;addSimpleType(</span><br><span CLASS="code_comment">
-<span CLASS="tab">&nbsp;</span>'oStringResponse',</span><br><span CLASS="code_comment">
-<span CLASS="tab">&nbsp;</span>'',</span><br><span CLASS="code_comment">
-<span CLASS="tab">&nbsp;</span>'simpleType',</span><br><span CLASS="code_comment">
-<span CLASS="tab">&nbsp;</span>'scalar',</span><br><span CLASS="code_comment">
-<span CLASS="tab">&nbsp;</span>array('RESPONSETEXT' =&gt; array('name' =&gt; 'RESPONSETEXT','type' =&gt; 'xsd:string'))</span><br><span CLASS="code_comment">
-);</span><br><span CLASS="code_comment">
-*/</span><br>
-<br>
-<span CLASS="code_comment">//</span><br>
-<span CLASS="code_comment">// SOAP METHOD DEFINITION :: IS VALID LOGIN DATA</span><br>
-<span id="2a824b20b18cc45dbde0_26451j00000101" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">function</span> isValidLoginData($soapRequest) {<br>
-<span CLASS="tab">&nbsp;</span>$SERVICE_RESPONSE = <span class="code_str_qtd">''</span>;<br>
-<span CLASS="tab">&nbsp;</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// INSTANTIATE WEB SERVICE MANAGER BY PASSING IN ENVIRONMENTALS :: CLASS OBJECT</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// NOTE THE DIRECT USE OF $_SESSION HERE DUE TO OVERCOME SCOPE LIMITATIONS </span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// BETWEEN CRNRSTN AND NUSOAP. WE SIMPLY SAVED $oENV TO $_SESSION[oENV'</span>]...ABOVE.</span><br>
-<span CLASS="tab">&nbsp;</span><span id="e43e09b42c84b845c5a9_30864j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span>(!<span id="8a854f2276292f7697c0_j0000010125993" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">isset</span>($oSERVICE_MGR)){<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>$oSERVICE_MGR = <span id="f109c58b6897e5839fe2_10638j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> webservice_manager(<span id="0c63f470bc9b037ed011_j000001019647" class="code_html_doc_type_tag" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">$_SESSION</span>[<span class="code_str_qtd">'oENV'</span>]);<br>
-<span CLASS="tab">&nbsp;</span>}<br>
-<span CLASS="tab">&nbsp;</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// PROCESS SOAP REQUEST</span><br>
-<span CLASS="tab">&nbsp;</span>$SERVICE_RESPONSE = $oSERVICE_MGR-&gt;buildResponse(<span class="code_str_qtd">'isValidLoginData'</span>,$soapRequest);<br>
-<span CLASS="tab">&nbsp;</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// RETURN RESULT (SOAP OBJECT PER OUTPUT PARAMETER IN METHOD REGISTRATION BELOW)</span><br>
-<span CLASS="tab">&nbsp;</span><span id="b0240c0e5329b517611f_3516j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">return</span> $SERVICE_RESPONSE;<br>
 }<br>
 <br>
-<span CLASS="code_comment">//</span><br>
-<span CLASS="code_comment">// SOAP METHOD DEFINITION :: SEARCH RESULTS SUGGEST</span><br>
-<span id="2a824b20b18cc45dbde0_20805j00000101" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">function</span> searchResultsSuggest($soapRequest) {<br>
-<span CLASS="tab">&nbsp;</span>$SERVICE_RESPONSE = <span class="code_str_qtd">''</span>;<br>
-<span CLASS="tab">&nbsp;</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// INSTANTIATE WEB SERVICE MANAGER BY PASSING IN ENVIRONMENTALS :: CLASS OBJECT</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// NOTE THE DIRECT USE OF $_SESSION HERE DUE TO OVERCOME SCOPE LIMITATIONS </span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// BETWEEN CRNRSTN AND NUSOAP. WE SIMPLY SAVED $oENV TO $_SESSION[oENV'</span>]...ABOVE.</span><br>
-<span CLASS="tab">&nbsp;</span><span id="e43e09b42c84b845c5a9_20634j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span>(!<span id="8a854f2276292f7697c0_j0000010128107" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">isset</span>($oSERVICE_MGR)){<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>$oSERVICE_MGR = <span id="f109c58b6897e5839fe2_18856j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> webservice_manager(<span id="0c63f470bc9b037ed011_j0000010115553" class="code_html_doc_type_tag" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">$_SESSION</span>[<span class="code_str_qtd">'oENV'</span>]);<br>
-<span CLASS="tab">&nbsp;</span>}<br>
-<span CLASS="tab">&nbsp;</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// PROCESS SOAP REQUEST</span><br>
-<span CLASS="tab">&nbsp;</span>$SERVICE_RESPONSE = $oSERVICE_MGR-&gt;buildResponse(<span class="code_str_qtd">'searchResultsSuggest'</span>,$soapRequest);<br>
-<span CLASS="tab">&nbsp;</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// RETURN RESULT (SOAP OBJECT PER OUTPUT PARAMETER IN METHOD REGISTRATION BELOW)</span><br>
-<span CLASS="tab">&nbsp;</span><span id="b0240c0e5329b517611f_23654j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">return</span> $SERVICE_RESPONSE;<br>
-}<br>
 <br>
 <span CLASS="code_comment">//</span><br>
-<span CLASS="code_comment">// REGISTER SOAP METHOD :: IS VALID LOGIN DATA</span><br>
-<span CLASS="code_comment">// [method name,input parameters,output parameters,namespace,soapaction,style,use,documentation]</span><br>
-$server-&gt;register(<span class="code_str_qtd">'isValidLoginData'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span id="d3b3ef3a4ad62b6d8bdc_7079j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'oLoginSubmission'</span> =&gt; <span class="code_str_qtd">'tns:oUser'</span>),<br>
-<span CLASS="tab">&nbsp;</span><span id="d3b3ef3a4ad62b6d8bdc_22612j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'return'</span> =&gt; <span class="code_str_qtd">'tns:oUser'</span>),<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'urn:isValidLoginDatawsdl'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'urn:isValidLoginDatawsdl#isValidLoginData'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'rpc'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'encoded'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'Valid login data?'</span><br>
-);<br>
-<br>
-<span CLASS="code_comment">//</span><br>
-<span CLASS="code_comment">// REGISTER SOAP METHOD :: SEARCH RESULTS SUGGEST</span><br>
-<span CLASS="code_comment">// [method name,input parameters,output parameters,namespace,soapaction,style,use,documentation]</span><br>
-$server-&gt;register(<span class="code_str_qtd">'searchResultsSuggest'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span id="d3b3ef3a4ad62b6d8bdc_25597j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'oSearchSuggest'</span> =&gt; <span class="code_str_qtd">'tns:oSearchRequest'</span>),<br>
-<span CLASS="tab">&nbsp;</span><span id="d3b3ef3a4ad62b6d8bdc_22770j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'return'</span> =&gt; <span class="code_str_qtd">'tns:oSearchResult'</span>),<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'urn:searchResultsSuggestwsdl'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'urn:searchResultsSuggestwsdl#searchResultsSuggest'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'rpc'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'encoded'</span>,<br>
-<span CLASS="tab">&nbsp;</span><span class="code_str_qtd">'Suggest search results.'</span><br>
-);<br>
-<br>
-<span id="e43e09b42c84b845c5a9_19267j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span>(!<span id="8a854f2276292f7697c0_j000001019664" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">isset</span>(<span id="8619ae33cacf03b2cb1f_j0000010117145" class="code_html_doc_type_tag" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">$HTTP_RAW_POST_DATA</span>)){<br>
-<span CLASS="tab">&nbsp;</span><span id="8619ae33cacf03b2cb1f_4670j000001011" class="code_html_doc_type_tag" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">$HTTP_RAW_POST_DATA</span> = <span class="code_str_qtd">''</span>;<br>
-}<br>
-<br>
-<span id="e43e09b42c84b845c5a9_22687j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span>(<span id="8619ae33cacf03b2cb1f_j0000010124044" class="code_html_doc_type_tag" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">$HTTP_RAW_POST_DATA</span>!=<span class="code_str_qtd">''</span>){<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// EXECUTE SERVICE</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>$server-&gt;service(<span id="8619ae33cacf03b2cb1f_5557j000001011" class="code_html_doc_type_tag" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">$HTTP_RAW_POST_DATA</span>);<br>
-<br>
-}<span id="e065810be95e4c37e63c_5194j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">else</span>{<br>
-<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// RETURN WSDL</span><br>
-<span CLASS="tab">&nbsp;</span>$server-&gt;service(<span id="8619ae33cacf03b2cb1f_24507j000001011" class="code_html_doc_type_tag" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">$HTTP_RAW_POST_DATA</span>);<br>
+<span CLASS="code_comment">// REMOVE UNWANTED CHARACTERS AND SPACES FROM SEARCH STRING; THE SAME</span><br>
+<span CLASS="code_comment">// HAS BEEN DONE TO THE SEARCHED DATA WITHIN THE DATABASE.</span><br>
+<span id="2a824b20b18cc45dbde0_1565970525j00000101" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">function</span> search_FillerSanitize($str){<br>
+<span CLASS="tab">&nbsp;</span>$patterns = <span id="d3b3ef3a4ad62b6d8bdc_923201945j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>();<br>
+<span CLASS="tab">&nbsp;</span>$patterns[0] = <span class="code_str_qtd">" "</span>;<br>
+<span CLASS="tab">&nbsp;</span>$patterns[1] = <span class="code_str_qtd">"&lt;"</span>;<br>
+<span CLASS="tab">&nbsp;</span>$replacements = <span id="d3b3ef3a4ad62b6d8bdc_793521980j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>();<br>
+<span CLASS="tab">&nbsp;</span>$replacements[0] = <span class="code_str_qtd">''</span>;<br>
+<span CLASS="tab">&nbsp;</span>$replacements[1] = <span class="code_str_qtd">''</span>;<br>
+<span CLASS="tab">&nbsp;</span><br>
+<span CLASS="tab">&nbsp;</span>$str = <span id="d79f204d3a3300587e86_1982020258j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">str_replace</span>($patterns, $replacements, $str);<br>
+<span CLASS="tab">&nbsp;</span><span id="b0240c0e5329b517611f_1611523763j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">return</span> $str;<br>
 <span CLASS="tab">&nbsp;</span><br>
 }<br>
 <br>
-<span id="281cc27eeca1929efeb1_27864j00000101" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">exit</span>();<br>
 <span class="code_str_qtd">?&gt;</span><br>
-</code></div></div><div class="example_title_wrapper"><code style="color:#FF0000;">Figure 31.</code></div><div class="cb_15"></div><div class="comment_tt_wrapper"><span id="b7a73b3bf3e58d97abca_0447458001415747797j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span> <span class="code_tt_space">&nbsp;</span><span id="f109c58b6897e5839fe2_0617564001415747798j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> <span class="code_tt_space">&nbsp;</span><span id="9c13212eecace0e8b16a_0813566001415747798j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">false;</span> <span class="code_tt_space">&nbsp;</span><span id="0c63f470bc9b037ed011_0876261001415747798j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">$_SESSION</span> <span class="code_tt_space">&nbsp;</span><span id="d3b3ef3a4ad62b6d8bdc_0326958001415747799j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span> <span class="code_tt_space">&nbsp;</span><span id="2a824b20b18cc45dbde0_0102634001415747807j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">function</span> <span class="code_tt_space">&nbsp;</span><span id="e43e09b42c84b845c5a9_0729763001415747807j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">if</span> <span class="code_tt_space">&nbsp;</span><span id="8a854f2276292f7697c0_j000001010734858001415747807" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">isset</span> <span class="code_tt_space">&nbsp;</span><span id="b0240c0e5329b517611f_0417528001415747808j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">return</span> <span class="code_tt_space">&nbsp;</span><span id="8619ae33cacf03b2cb1f_j000001010877227001415747810" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">$HTTP_RAW_POST_DATA</span> <span class="code_tt_space">&nbsp;</span><span id="e065810be95e4c37e63c_0257919001415747811j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">else</span> <span class="code_tt_space">&nbsp;</span><span id="281cc27eeca1929efeb1_0497312001415747811j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">exit</span> <span class="code_tt_space">&nbsp;</span></div><div class="cb_15"></div></body></html>
+</code></div></div><div strlen="6270" class="example_title_wrapper"><code style="color:#FF0000;">Figure 42.</code></div><div class="cb_15"></div><div class="comment_tt_wrapper"><span id="b7a73b3bf3e58d97abca_0296682001528720055j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span> <span class="code_tt_space">&nbsp;</span><span id="f109c58b6897e5839fe2_0336979001528720055j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> <span class="code_tt_space">&nbsp;</span><span id="d3b3ef3a4ad62b6d8bdc_0365621001528720055j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span> <span class="code_tt_space">&nbsp;</span><span id="6ca3d3b92e61bd047c8d_0421289001528720055j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">for</span> <span class="code_tt_space">&nbsp;</span><span id="d5086e9d793d631ffdc3_0428188001528720055j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">echo</span> <span class="code_tt_space">&nbsp;</span><span id="2a824b20b18cc45dbde0_0460856001528720055j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">function</span> <span class="code_tt_space">&nbsp;</span><span id="d79f204d3a3300587e86_0499957001528720055j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">str_replace</span> <span class="code_tt_space">&nbsp;</span><span id="b0240c0e5329b517611f_0505730001528720055j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">return</span> <span class="code_tt_space">&nbsp;</span></div><div class="cb_15"></div></body></html>

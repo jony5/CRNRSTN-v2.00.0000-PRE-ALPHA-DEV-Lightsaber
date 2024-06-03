@@ -1,37 +1,60 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd"><html><head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>CRNRSTN :: Code Example</title></head><body><p>The <a href="../../../documentation/classes/soap_manager/" target="_self">soap_manager</a> :: class of the C<span class="the_R">R</span>NRSTN Suite :: sits directly on top of the NuSOAP (0.9.5) PHP Toolkit for web services (SOAP server/client) support and development. When the <a href="../../../documentation/classes/soap_manager/" target="_self">soap_manager</a> class is instantiated, an instance of a NuSOAP web services client (within the constructor of the soap_manager) will be created as well. This can be customized for different SOAP client (or connection) types as needed.<br />
 <br />
-In the following example excerpt, the constructor of the users :: class object instantiates its a local object of the <a href="../../../documentation/classes/soap_manager/" target="_self">soap_manager</a> :: class in order to facilitate web services based operations such as logging in and search suggestions. For a complete presentation of the user :: class definition from which this excerpt has been taken see the <a href="../../../documentation/classes/http_manager/" target="_self">http_manager</a> :: class documentation and examples <a href="../../../documentation/classes/http_manager/?scrl=2336&brwsr=webkit" target="_self">here</a>.</p><div id="example_scrollto_0" class="example_scrollto" onClick="initScrollTo_lnk(this,'http://192.168.172.132/crnrstn/documentation/classes/soap_manager/__construct/?ns=soap_manager');"><a href="#" target="_self">Link</a>.</div><div id="crnrstn_7d2842f8be2a2f66c859_0" class="code_wrapper"><div id="lineNum_494091723" class="l_num">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br><br><br><br><br></div><div class="code_shell"><code>
+On line 12 of the following example, a C<span class="the_R">R</span>NRSTN Suite :: crnrstn_soap_manager (soap_manager) class object is instantiated.</p><div id="crnrstn_7d2842f8be2a2f66c859_0" class="code_wrapper"><div id="lineNum_1870863308" class="l_num">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br><br><br><br><br></div><div class="code_shell"><code>
 <span class="code_str_qtd">&lt;?php</span><br><span CLASS="code_comment">
 /* </span><br><span CLASS="code_comment">
 // J5</span><br>
 <span CLASS="code_comment">// Code is Poetry */</span><br>
+<span id="b7a73b3bf3e58d97abca_255762704j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>(<span class="code_str_qtd">'_crnrstn.root.inc.php'</span>);<br>
+<span id="b7a73b3bf3e58d97abca_1741495914j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span>($CRNRSTN_ROOT.<span class="code_str_qtd">'/_crnrstn.config.inc.php'</span>);<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// THE CRNRSTN SUITE :: CONFIGURATION FILE</span><br>
 <br>
-<span id="960a760d0d8d8b8f4803_1434658649j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">class</span> user{<br>
-<span CLASS="tab">&nbsp;</span><span id="a5a78fdbd379ad0fba15_240308806j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">public</span> $svc_resp_ARRAY = <span id="d3b3ef3a4ad62b6d8bdc_j000001011278594450" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>();<br>
-<span CLASS="tab">&nbsp;</span><span id="02d8f1524c3ba5ffa677_1310687890j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">private</span> <span id="719dc38910f731c12940_j000001011671522327" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">static</span> $oUserEnvironment;<br>
-<span CLASS="tab">&nbsp;</span><span id="02d8f1524c3ba5ffa677_286202554j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">private</span> <span id="719dc38910f731c12940_j000001011554852526" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">static</span> $oSoapManager;<br>
-<span CLASS="tab">&nbsp;</span><span id="02d8f1524c3ba5ffa677_1429630617j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">private</span> <span id="719dc38910f731c12940_j000001012013833281" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">static</span> $params;<br>
-<span CLASS="tab">&nbsp;</span><span id="02d8f1524c3ba5ffa677_801089374j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">private</span> <span id="719dc38910f731c12940_j000001011834133088" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">static</span> $methodName;<br>
-<span CLASS="tab">&nbsp;</span><span id="a5a78fdbd379ad0fba15_223971405j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">public</span> $errorMessage;<br>
-<span CLASS="tab">&nbsp;</span><span id="a5a78fdbd379ad0fba15_1979931362j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">public</span> $successMessage;<span CLASS="tab">&nbsp;</span><br>
-<span CLASS="tab">&nbsp;</span><br>
-<span CLASS="tab">&nbsp;</span><span id="02d8f1524c3ba5ffa677_669412963j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">private</span> <span id="719dc38910f731c12940_j000001011407614657" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">static</span> $frm_input_username;<br>
-<span CLASS="tab">&nbsp;</span><span id="02d8f1524c3ba5ffa677_1372021212j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">private</span> <span id="719dc38910f731c12940_j00000101537124363" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">static</span> $frm_input_password;<br>
-<span CLASS="tab">&nbsp;</span><span id="02d8f1524c3ba5ffa677_202886465j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">private</span> <span id="719dc38910f731c12940_j000001011617272259" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">static</span> $frm_input_sessionpersist;<br>
-<span CLASS="tab">&nbsp;</span><br>
-<span CLASS="tab">&nbsp;</span><span id="a5a78fdbd379ad0fba15_1307491870j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">public</span> <span id="2a824b20b18cc45dbde0_j000001011547585979" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">function</span> __construct($userEnv) {<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// INSTANTIATE CRNRSTN SUITE :: SOAP CLIENT MANAGER</span><br>
+<span CLASS="code_comment">// BE SURE THE THREE (3) KEYS HAVE BEEN DEFINED IN YOUR</span><br>
+<span CLASS="code_comment">// CRNRSTN SUITE CONFIGURATION FILE. </span><br>
+$oSoapClientManager = <span id="f109c58b6897e5839fe2_1504616306j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> crnrstn_soap_manager($oCRNRSTN_ENV,<span class="code_str_qtd">'WSDL_URI'</span>,<span class="code_str_qtd">'WSDL_CACHE_TTL'</span>,<span class="code_str_qtd">'NUSOAP_USECURL'</span>);<br>
+<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// SEARCH PARAMS</span><br>
+$s_params=<span class="code_str_qtd">"funny cat videos"</span>;<br>
+<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// BUILD SOAP REQUEST FOR CLIENT TO SEND. STRUCTURE AND FORMAT </span><br>
+<span CLASS="code_comment">// SHOULD ALIGN TO THE SERVICE WSDL.</span><br>
+$params = <span id="d3b3ef3a4ad62b6d8bdc_1235059142j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'oSearchSuggest'</span> =&gt;<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span id="d3b3ef3a4ad62b6d8bdc_586513936j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>(<span class="code_str_qtd">'SEARCH_PARAM'</span> =&gt; $s_params,<span class="code_str_qtd">'SEARCH_PARAM_SEARCH'</span> =&gt; search_FillerSanitize($s_params))<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>);<br>
 <span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// STORE PERSONAL COPY OF CRNRSTN ENVIRONMENTALS :: CLASS OBJECT</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>self::$oUserEnvironment = $userEnv;<br>
+$methodName = <span class="code_str_qtd">'searchResultsSuggest'</span>;<br>
+<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// FIRE WEB SERVICES REQUEST THROUGH CRNRSTN SOAP CLIENT MANAGER</span><br>
+$soapServerResponse_ARRAY = $oSoapClientManager-&gt;returnContent($methodName, $params);<br>
 <br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">//</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// INSTANTIATE WEB SERVICES MANAGER TO FACILITATE </span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span><span CLASS="code_comment">// LOGIN AND SEARCH SUGGESTIONS REQUESTS</span><br>
-<span CLASS="tab">&nbsp;</span><span CLASS="tab">&nbsp;</span>self::$oSoapManager = <span id="f109c58b6897e5839fe2_471357442j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> soap_manager(self::$oUserEnvironment);<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// PROCESS SOAP RESULT ARRAY</span><br>
+<span id="6ca3d3b92e61bd047c8d_1375498466j00000101" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">for</span>($i=0;$i&lt;sizeof($soapServerResponse_ARRAY[<span class="code_str_qtd">'SEARCH_RESPONSE'</span>]);$i++){<br>
+<span CLASS="tab">&nbsp;</span><span id="d5086e9d793d631ffdc3_733148623j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">echo</span> <span class="code_str_qtd">"Title: "</span>.$soapServerResponse_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_TITLE'];<br>
+<span CLASS="tab">&nbsp;</span><span id="d5086e9d793d631ffdc3_282826262j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">echo</span> <span class="code_str_qtd">"Description: "</span>.$soapServerResponse_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_DESCRIPTION'].'&lt;br&gt;&lt;br&gt;';<br>
 <br>
-<span CLASS="tab">&nbsp;</span>}<br>
+}<br>
 <br>
-<span CLASS="code_comment">#...etc.</span><br>
+<br>
+<span CLASS="code_comment">//</span><br>
+<span CLASS="code_comment">// REMOVE UNWANTED CHARACTERS AND SPACES FROM SEARCH STRING; THE SAME</span><br>
+<span CLASS="code_comment">// HAS BEEN DONE TO THE SEARCHED DATA WITHIN THE DATABASE.</span><br>
+<span id="2a824b20b18cc45dbde0_1532986838j00000101" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">function</span> search_FillerSanitize($str){<br>
+<span CLASS="tab">&nbsp;</span>$patterns = <span id="d3b3ef3a4ad62b6d8bdc_1112706597j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>();<br>
+<span CLASS="tab">&nbsp;</span>$patterns[0] = <span class="code_str_qtd">" "</span>;<br>
+<span CLASS="tab">&nbsp;</span>$patterns[1] = <span class="code_str_qtd">"&lt;"</span>;<br>
+<span CLASS="tab">&nbsp;</span>$replacements = <span id="d3b3ef3a4ad62b6d8bdc_1852453579j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span>();<br>
+<span CLASS="tab">&nbsp;</span>$replacements[0] = <span class="code_str_qtd">''</span>;<br>
+<span CLASS="tab">&nbsp;</span>$replacements[1] = <span class="code_str_qtd">''</span>;<br>
+<span CLASS="tab">&nbsp;</span><br>
+<span CLASS="tab">&nbsp;</span>$str = <span id="d79f204d3a3300587e86_127445935j000001011" class="code_sysfunc_call" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">str_replace</span>($patterns, $replacements, $str);<br>
+<span CLASS="tab">&nbsp;</span><span id="b0240c0e5329b517611f_1845281617j000001011" class="code_log_exp" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">return</span> $str;<br>
+<span CLASS="tab">&nbsp;</span><br>
+}<br>
+<br>
 <span class="code_str_qtd">?&gt;</span><br>
-</code></div></div><div class="example_title_wrapper"><code style="color:#FF0000;">Figure 39.</code></div><div class="cb_15"></div><div class="comment_tt_wrapper"><span id="960a760d0d8d8b8f4803_0904413001459924403j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">class</span> <span class="code_tt_space">&nbsp;</span><span id="a5a78fdbd379ad0fba15_0939597001459924403j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">public</span> <span class="code_tt_space">&nbsp;</span><span id="d3b3ef3a4ad62b6d8bdc_j000001010947384001459924403" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span> <span class="code_tt_space">&nbsp;</span><span id="02d8f1524c3ba5ffa677_0979651001459924403j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">private</span> <span class="code_tt_space">&nbsp;</span><span id="719dc38910f731c12940_j000001010984827001459924403" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">static</span> <span class="code_tt_space">&nbsp;</span><span id="2a824b20b18cc45dbde0_j000001010389988001459924404" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">function</span> <span class="code_tt_space">&nbsp;</span><span id="f109c58b6897e5839fe2_0994634001459924404j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> <span class="code_tt_space">&nbsp;</span></div><div class="cb_15"></div></body></html>
+</code></div></div><div strlen="6271" class="example_title_wrapper"><code style="color:#FF0000;">Figure 46.</code></div><div class="cb_15"></div><div class="comment_tt_wrapper"><span id="b7a73b3bf3e58d97abca_0923349001528720100j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">require</span> <span class="code_tt_space">&nbsp;</span><span id="f109c58b6897e5839fe2_0962555001528720100j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">new</span> <span class="code_tt_space">&nbsp;</span><span id="d3b3ef3a4ad62b6d8bdc_0990319001528720100j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">array</span> <span class="code_tt_space">&nbsp;</span><span id="6ca3d3b92e61bd047c8d_0045086001528720101j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">for</span> <span class="code_tt_space">&nbsp;</span><span id="d5086e9d793d631ffdc3_0051581001528720101j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">echo</span> <span class="code_tt_space">&nbsp;</span><span id="2a824b20b18cc45dbde0_0083870001528720101j00000101" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">function</span> <span class="code_tt_space">&nbsp;</span><span id="d79f204d3a3300587e86_0122731001528720101j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">str_replace</span> <span class="code_tt_space">&nbsp;</span><span id="b0240c0e5329b517611f_0128446001528720101j000001011" class="tt_agg_extract" onMouseOver="ttMsOvr(this);" onMouseOut="ttMsOut(this);">return</span> <span class="code_tt_space">&nbsp;</span></div><div class="cb_15"></div></body></html>
