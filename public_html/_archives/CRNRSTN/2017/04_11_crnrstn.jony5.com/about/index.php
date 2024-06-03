@@ -4,7 +4,8 @@
 // J5
 // Code is Poetry */
 require('_crnrstn.root.inc.php');
-include_once($ROOT . '_crnrstn.config.inc.php');
+include_once($CRNRSTN_ROOT . '_crnrstn.config.inc.php');
+$tmp_navOnly=true;
 require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/fh/session.inc.php');
 
 //
@@ -13,11 +14,11 @@ $tmp_dataMode = explode('|',$oUSER->getEnvParam('DATA_MODE'));
 if($tmp_dataMode[0]=='SOAP'){
 	$oUSER->navigationRetrieve();
 }
-$page_title = "HOME";
+$page_title = "ABOUT";
 
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!doctype html>
+<html lang="en">
 <head>
 <?php
 require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/head/head.inc.php');
@@ -71,25 +72,24 @@ require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_
 						<h3 class="content_results_subtitle">Philosophy ::</h3>
 						<div class="content_results_subtitle_divider"></div>
                         <p>In ancient times, a home could be constructed using large stone pieces to provide key support to the structure at the 
-                        foundation, corners and top. A cornerstone, therefore, is the joining piece that connects together two walls of a house. Also, the foundation stone
-                        and roof (topstone) would be connected at the corners.</p>
+                        foundation, corners and top. A cornerstone (or chief or head cornerstone) is the joining stone that rests above and connects and holds together two walls of a house.</p>
                         
-                        <p><strong>Pro Tip (Christian)</strong> :: When Jesus came, He came as the reality of the cornerstone (the real cornerstone) joining the "wall" of the 
-                        Jewish believers to the "wall" of the gentile believers together in the building of the church. Jesus is the Cornerstone (Eph. 2:20, 1 Peter 2:6) in 
+                        <p><strong>Pro Tip (Christian)</strong> :: When Jesus came (when the eternal God became a finite man), He came as the reality of the cornerstone (the real cornerstone) joining the "wall" of the 
+                        Jewish believers and the "wall" of the gentile believers together into one house in the building of the church. Jesus is the Cornerstone (Eph. 2:20, 1 Peter 2:6) in 
                         the building of the Father's house...the church...joining all of God's people together in Himself. According to the footnote 3 on Eph. 2:20 in my 
                         <a href="http://biblesforamerica.org/" target="_blank">Recovery Version</a> study Bible, when the Jewish builders rejected Christ, they rejected Him 
                         as the cornerstone (Acts 4:11; 1 Pet. 2:7), the One who would join the Gentiles to them for the building of God's house. 
                         </p>
                         
-                        <p>Well, to liken the act of building a house to the process of coding a web application...or I should say rather...in elegantly correlating web application
-                        requirements for portability under rigid release to manufacturing (RTM) processes to the simple illustration of a cornerstone joining the "wall of server" to the "wall of application", I have 
+                        <p>Well, to liken the act of building a house to the process of coding a web application...or should I say rather...in elegantly correlating a tool satisfying web application
+                        requirements for codebase portability under rigid release to manufacturing (RTM) processes to the simple illustration of a cornerstone properly joining the "wall of the server environment" to the "wall of application codebase", I have 
                         taken a modern technology staple and cast it under the warm analogue glow of the ancient world of house building.
                         
-                        <h3 class="content_results_subtitle">History ::</h3>
+                        <h3 class="content_results_subtitle">Purpose ::</h3>
 						<div class="content_results_subtitle_divider"></div>
                         <p>When I entered the workforce as an HTML developer (after the start up companies), I used PHP on the side to put together various portals and tools for 
                         quality control...heck...even web services. Sadly, I never had the time to carve out for myself a PHP class library for the gaining of efficiencies
-                        in product maintenance, development and deployment. While working at Moxie, I really could have used an out-of-the-box/plug-n-play class 
+                        in product maintenance, development and deployment. While working at <a href="http://www.moxieusa.com/" target="_blank">Moxie</a>, I really could have used an out-of-the-box/plug-n-play class 
                         library with the capability of facilitating an application's compliance with a mature development shops' RTM processes.</p>
                         
                         <p>I needed a class library that would support and standardize fundamental architectural and operational requirements. It also 

@@ -1,9 +1,3 @@
-<div class="hidden"><h1>__construct()</h1>
-		<p>The constructor of the <a href="../../../classes/environmentals/" target="_self">environmentals</a> :: class object consumes one parameter...the previously instantiated and properly configured <a href="../../../classes/crnrstn/" target="_self">crnrstn</a> :: class object...and then processes all of the configuration information contained therein...selecting the appropriate settings for the present and running environment.<br />
-<br />
-Once the selection is made, the "genetics" of the chosen environmental profile are flashed to session cache (using the appropriate session encryption mechanisms where specified), and ALL the other unused configuration profiles along with the original crnrstn class object are immediately destroyed to free up memory. To be more specific, once the running environment has been detected, the constructor of the <a href="../../../classes/environmentals/" target="_self">environmentals</a> :: class object then parses through the crnstn class object (1) cloning what it needs from the <a href="../../../classes/crnrstn/" target="_self">crnrstn</a> :: class object and (2) immediately destroying the cloned resource within the crnrstn object. By the time the <a href="../../../classes/crnrstn/" target="_self">crnrstn</a> :: class object has been fully traversed, it is nothing but an empty shell, and (3) finally that too is destroyed.<br />
-<br />
-Therefore, upon the successful instantiation of the <a href="../../../classes/environmentals/" target="_self">environmentals</a> :: class object, a streamlined and potentially encrypted packet of configuration data has been stored in memory for the C<span class="the_R">R</span>NRSTN Suite :: to access for the facilitation of the applications' operation within the running hosting environment.</p>
-		<p>Version: </p>
-		<p>Method Definition: __construct($oCRNRSTN)</p>
-		<p>Invoking class: environmentals</p><h2>Technical Specifications:<h2><p>Currently tested on an ubuntu 4.2 server running PHP Version 5.2.6 and Apache 2.2.11</p><p>It is recommended that you upgrade to the latest version of PHP to take advantage of the latest gains in security and processing efficiency.</p><h2>Parameters:</h2><h3>$oCRNRSTN</h3><p>The previously instantiated and properly configured crnrstn class object.</p><p>Last upated: 2017-04-11 02:27:21</p></div>
+<div class="hidden">
+<!-- SEO CONTENT HERE -->
+</div>

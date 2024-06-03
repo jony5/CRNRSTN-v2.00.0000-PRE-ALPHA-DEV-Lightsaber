@@ -137,12 +137,12 @@ class database_integration {
 	
 	private function dbQuery($queryType, $oUserEnvironment, $oUser){
 		try{
-			error_log('(127) queryType sent to database :: '.$queryType);
+			//error_log('(127) queryType sent to database :: '.$queryType);
 			$ts = date("Y-m-d H:i:s", time()-60*60*6);
 			
 			//
 			// OPEN CONNECTION
-			$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->returnConnection('localhost', 'crnrstn_stage');
+			$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->returnConnection();
 						
 			switch($queryType){
 				case 'searchall':
@@ -253,7 +253,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
 					
@@ -329,7 +329,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
 					
@@ -368,7 +368,7 @@ class database_integration {
 								
 				break;
 				case 'getAccntInfo':
-					error_log('(371) :: db mgmt getAccntInfo');
+					//error_log('(371) :: db mgmt getAccntInfo');
 				
 				break;
 				case 'svc_getclass':
@@ -432,7 +432,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
 					
@@ -525,7 +525,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
 					
@@ -569,7 +569,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
 					
@@ -577,26 +577,18 @@ class database_integration {
 						//
 						// REMAIN STILL WHILE YOUR LIFE IS EXTRACTED
 						$ROWCNT=0;
-						do {
-							if (self::$result = $mysqli->store_result()) {
-								while ($row = self::$result->fetch_row()) {
-									foreach($row as $fieldPos=>$value){
-										//
-										// STORE RESULT
-										self::$result_ARRAY[$ROWCNT][$fieldPos]=$value;
-										
-									}
-									$ROWCNT++;
-								}
-								self::$result->free();
-							}
-					
-							if ($mysqli->more_results()) {
+						while ($row = self::$result->fetch_row()) {
+							foreach($row as $fieldPos=>$value){
 								//
-								// END OF RECORD. MORE TO FOLLOW.
+								// STORE RESULT
+								//error_log("services /database.inc.php (296) rowcnt[".$ROWCNT."] fieldPos[".$fieldPos."] value [".$value."]");
+								self::$result_ARRAY[$ROWCNT][$fieldPos]=$value;
+								
 							}
-						} while ($mysqli->next_result());
-						
+							$ROWCNT++;
+						}
+						self::$result->free();
+					
 						//
 						// CLOSE CONNECTION
 						$oUserEnvironment->oMYSQLI_CONN_MGR->closeConnection($mysqli);
@@ -614,7 +606,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
 					
@@ -622,25 +614,17 @@ class database_integration {
 						//
 						// REMAIN STILL WHILE YOUR LIFE IS EXTRACTED
 						$ROWCNT=0;
-						do {
-							if (self::$result = $mysqli->store_result()) {
-								while ($row = self::$result->fetch_row()) {
-									foreach($row as $fieldPos=>$value){
-										//
-										// STORE RESULT
-										self::$result_ARRAY[$ROWCNT][$fieldPos]=$value;
-										
-									}
-									$ROWCNT++;
-								}
-								self::$result->free();
-							}
-					
-							if ($mysqli->more_results()) {
+						while ($row = self::$result->fetch_row()) {
+							foreach($row as $fieldPos=>$value){
 								//
-								// END OF RECORD. MORE TO FOLLOW.
+								// STORE RESULT
+								//error_log("services /database.inc.php (296) rowcnt[".$ROWCNT."] fieldPos[".$fieldPos."] value [".$value."]");
+								self::$result_ARRAY[$ROWCNT][$fieldPos]=$value;
+								
 							}
-						} while ($mysqli->next_result());
+							$ROWCNT++;
+						}
+						self::$result->free();
 						
 						//
 						// CLOSE CONNECTION
@@ -665,7 +649,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
 					
@@ -673,25 +657,17 @@ class database_integration {
 						//
 						// REMAIN STILL WHILE YOUR LIFE IS EXTRACTED
 						$ROWCNT=0;
-						do {
-							if (self::$result = $mysqli->store_result()) {
-								while ($row = self::$result->fetch_row()) {
-									foreach($row as $fieldPos=>$value){
-										//
-										// STORE RESULT
-										self::$result_ARRAY[$ROWCNT][$fieldPos]=$value;
-										
-									}
-									$ROWCNT++;
-								}
-								self::$result->free();
-							}
-					
-							if ($mysqli->more_results()) {
+						while ($row = self::$result->fetch_row()) {
+							foreach($row as $fieldPos=>$value){
 								//
-								// END OF RECORD. MORE TO FOLLOW.
+								// STORE RESULT
+								//error_log("services /database.inc.php (296) rowcnt[".$ROWCNT."] fieldPos[".$fieldPos."] value [".$value."]");
+								self::$result_ARRAY[$ROWCNT][$fieldPos]=$value;
+								
 							}
-						} while ($mysqli->next_result());
+							$ROWCNT++;
+						}
+						self::$result->free();
 						
 						//
 						// CLOSE CONNECTION
@@ -718,7 +694,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
 					
@@ -726,25 +702,17 @@ class database_integration {
 						//
 						// REMAIN STILL WHILE YOUR LIFE IS EXTRACTED
 						$ROWCNT=0;
-						do {
-							if (self::$result = $mysqli->store_result()) {
-								while ($row = self::$result->fetch_row()) {
-									foreach($row as $fieldPos=>$value){
-										//
-										// STORE RESULT
-										self::$result_ARRAY[$ROWCNT][$fieldPos]=$value;
-										
-									}
-									$ROWCNT++;
-								}
-								self::$result->free();
-							}
-					
-							if ($mysqli->more_results()) {
+						while ($row = self::$result->fetch_row()) {
+							foreach($row as $fieldPos=>$value){
 								//
-								// END OF RECORD. MORE TO FOLLOW.
+								// STORE RESULT
+								//error_log("services /database.inc.php (296) rowcnt[".$ROWCNT."] fieldPos[".$fieldPos."] value [".$value."]");
+								self::$result_ARRAY[$ROWCNT][$fieldPos]=$value;
+								
 							}
-						} while ($mysqli->next_result());
+							$ROWCNT++;
+						}
+						self::$result->free();
 						
 						//
 						// CLOSE CONNECTION
@@ -763,7 +731,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
 					
@@ -771,25 +739,17 @@ class database_integration {
 						//
 						// REMAIN STILL WHILE YOUR LIFE IS EXTRACTED
 						$ROWCNT=0;
-						do {
-							if (self::$result = $mysqli->store_result()) {
-								while ($row = self::$result->fetch_row()) {
-									foreach($row as $fieldPos=>$value){
-										//
-										// STORE RESULT
-										self::$result_ARRAY[$ROWCNT][$fieldPos]=$value;
-										
-									}
-									$ROWCNT++;
-								}
-								self::$result->free();
-							}
-					
-							if ($mysqli->more_results()) {
+						while ($row = self::$result->fetch_row()) {
+							foreach($row as $fieldPos=>$value){
 								//
-								// END OF RECORD. MORE TO FOLLOW.
+								// STORE RESULT
+								//error_log("services /database.inc.php (296) rowcnt[".$ROWCNT."] fieldPos[".$fieldPos."] value [".$value."]");
+								self::$result_ARRAY[$ROWCNT][$fieldPos]=$value;
+								
 							}
-						} while ($mysqli->next_result());
+							$ROWCNT++;
+						}
+						self::$result->free();
 						
 						//
 						// INCRMENT LOGIN COUNT
@@ -819,7 +779,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query_elements);
+					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processQuery($mysqli, self::$query_elements);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
 					
@@ -827,25 +787,17 @@ class database_integration {
 						//
 						// REMAIN STILL WHILE YOUR LIFE IS EXTRACTED
 						$ROWCNT=0;
-						do {
-							if (self::$result = $mysqli->store_result()) {
-								while ($row = self::$result->fetch_row()) {
-									foreach($row as $fieldPos=>$value){
-										//
-										// STORE RESULT
-										self::$result_ARRAY[$ROWCNT][$fieldPos]=$value;
-										
-									}
-									$ROWCNT++;
-								}
-								self::$result->free();
-							}
-					
-							if ($mysqli->more_results()) {
+						while ($row = self::$result->fetch_row()) {
+							foreach($row as $fieldPos=>$value){
 								//
-								// END OF RECORD. MORE TO FOLLOW.
+								// STORE RESULT
+								//error_log("services /database.inc.php (296) rowcnt[".$ROWCNT."] fieldPos[".$fieldPos."] value [".$value."]");
+								self::$result_ARRAY[$ROWCNT][$fieldPos]=$value;
+								
 							}
-						} while ($mysqli->next_result());
+							$ROWCNT++;
+						}
+						self::$result->free();
 						
 						//
 						// CLOSE CONNECTION
@@ -864,7 +816,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
 					
@@ -872,24 +824,17 @@ class database_integration {
 						//
 						// REMAIN STILL WHILE YOUR LIFE IS EXTRACTED
 						$ROWCNT=0;
-						do {
-							if (self::$result = $mysqli->store_result()) {
-								while ($row = self::$result->fetch_row()) {
-									foreach($row as $fieldPos=>$value){
-										//
-										// STORE RESULT
-										self::$result_ARRAY[$ROWCNT][$fieldPos]=$value;
-									}
-									$ROWCNT++;
-								}
-								self::$result->free();
-							}
-					
-							if ($mysqli->more_results()) {
+						while ($row = self::$result->fetch_row()) {
+							foreach($row as $fieldPos=>$value){
 								//
-								// END OF RECORD. MORE TO FOLLOW.
+								// STORE RESULT
+								//error_log("services /database.inc.php (296) rowcnt[".$ROWCNT."] fieldPos[".$fieldPos."] value [".$value."]");
+								self::$result_ARRAY[$ROWCNT][$fieldPos]=$value;
+								
 							}
-						} while ($mysqli->next_result());
+							$ROWCNT++;
+						}
+						self::$result->free();
 						
 						//
 						// CLOSE CONNECTION
@@ -917,7 +862,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
 					
 					$ROWCNT=0;
 					do {
@@ -999,7 +944,7 @@ class database_integration {
 									#error_log('(991) :: '.self::$query);
 									//
 									// PROCESS QUERY
-									self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+									$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
 									
 									$ROWCNT=0;
 									do {
@@ -1122,7 +1067,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY (OR PREPARE TRANSACTION FOR COMMIT)
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
 					
 					//
 					// COMMIT TRANSACTION
@@ -1178,7 +1123,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
 					
@@ -1297,7 +1242,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
 
 					//
 					// COMMIT TRANSACTION
@@ -1360,7 +1305,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
 
 					//
 					// COMMIT TRANSACTION
@@ -1418,7 +1363,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
 
 					//
 					// COMMIT TRANSACTION
@@ -1540,7 +1485,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
 					
@@ -1589,7 +1534,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
 					
@@ -1640,7 +1585,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
 					
@@ -1709,7 +1654,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
 					
@@ -1744,7 +1689,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
 					
@@ -1777,7 +1722,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
 					
@@ -1857,7 +1802,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
-					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+					$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
 					
@@ -1887,9 +1832,6 @@ class database_integration {
 			return self::$query_exception_result;
 		}
 		
-		//
-		// IF WE GET THIS FAR...
-		$oUserEnvironment->oMYSQLI_CONN_MGR->closeConnection($mysqli);
 	}
 	
 	public function clearDblBR($str){

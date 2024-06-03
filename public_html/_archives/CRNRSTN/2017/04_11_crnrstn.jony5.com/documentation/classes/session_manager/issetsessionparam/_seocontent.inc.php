@@ -1,7 +1,3 @@
-<div class="hidden"><h1>issetSessionParam()</h1>
-		<p>When seeking to determine whether or not a particular PHP SESSION parameter has been set, the <a href="../../../classes/session_manager/issetsessionparam/" target="_self">issetSessionParam()</a> method of the <a href="../../../classes/session_manager/" target="_self">session_manager</a> :: class can provide all of the required insight without burdening the application with unnecessary encrypt/decrypt processing.<br />
-<br />
-As opposed to checking for <a href="../../../classes/session_manager/getsessionparam/" target="_self">getSessionParam()</a> != ''...for example...which may force the application to swallow an mcrypt cipher decryption request (assuming C<span class="the_R">R</span>NRSTN has been configured with encryption via <a href="../../../classes/crnrstn/initsessionencryption/" target="_self">initSessionEncryption()</a>), <a href="../../../classes/session_manager/issetsessionparam/" target="_self">issetSessionParam()</a> is the recommended and more efficient method for arriving at the same conclusion.</p>
-		<p>Version: </p>
-		<p>Method Definition: issetSessionParam($name)</p>
-		<p>Invoking class: session_manager</p><h2>Technical Specifications:<h2><p>It is recommended that you upgrade to the latest version of PHP to take advantage of the latest gains in security and processing efficiency.</p><p>Currently tested on an ubuntu 4.2 server running PHP Version 5.2.6 and Apache 2.2.11</p><h2>Parameters:</h2><h3>$name</h3><p>The name of the parameter that is stored in the PHP SESSION.</p><p>Last upated: 2017-04-11 02:27:21</p></div>
+<div class="hidden">
+<!-- SEO CONTENT HERE -->
+</div>

@@ -16,9 +16,7 @@ class database_integration {
 	public function __construct() {
 		//
 		// INSTANTIATE LOGGER
-		if(!isset(self::$oLogger)){
-			self::$oLogger = new crnrstn_logging();
-		}
+		self::$oLogger = new crnrstn_logging();
 	}
 	
 	public function svc_searchResultsSuggest($oUser, $oUserEnvironment, $contentType){
@@ -131,9 +129,17 @@ class database_integration {
 		return $this->dbQuery('svc_retrieveUserAccnt', $oUserEnvironment, $oUser);
 	}
 	
+	public function unsubscribeEmail($oUser, $oUserEnvironment){
+		return $this->dbQuery('email_unsub', $oUserEnvironment, $oUser);
+	}
+	
+	public function getUnsubSuppression($oUser, $oUserEnvironment){
+		return $this->dbQuery('get_unsub_suppression', $oUserEnvironment, $oUser);
+	}
+	
 	private function dbQuery($queryType, $oUserEnvironment, $oUser){
 		try{
-			error_log('(127) **NOT THIS DB CLASS. USE SERVICES ** queryType sent to user database_integrations class object :: '.$queryType);
+			//error_log('(127) **NOT THIS DB CLASS. USE SERVICES ** queryType sent to user database_integrations class object :: '.$queryType);
 			$ts = date("Y-m-d H:i:s", time()-60*60*6);
 			
 			//
@@ -141,6 +147,173 @@ class database_integration {
 			$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->returnConnection();
 						
 			switch($queryType){
+				case 'email_unsub':
+//
+					// CHECK THE UNSUB DATABASE TO SEE IF EMAIL EXISTS ALREADY.
+					self::$query = 'SELECT `email_unsub`.`EMAIL`,`email_unsub`.`UNSUB_COUNT` FROM `email_unsub` WHERE 
+					`email_unsub`.`EMAIL`="'.$mysqli->real_escape_string(strtolower(trim($oUser->retrieve_Form_Data('EMAIL')))).'" AND `email_unsub`.`EMAIL_CRC32`="'.crc32(strtolower(trim($oUser->retrieve_Form_Data('EMAIL')))).'" LIMIT 1;';					
+					
+					//
+					// PROCESS QUERY
+					//error_log("evifweb database (809) query->".self::$query);
+					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processQuery($mysqli, self::$query);
+					if($mysqli->error){
+						self::$query_exception_result = "email_unsub=error";
+						throw new Exception('EVIFWEB database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
+					
+					}else{
+						//
+						// REMAIN STILL WHILE YOUR LIFE IS EXTRACTED
+						$ROWCNT=0;
+						while ($row = self::$result->fetch_row()) {
+							foreach($row as $fieldPos=>$value){
+								//
+								// STORE RESULT
+								//error_log("evifweb /database.inc.php (823) rowcnt[".$ROWCNT."] fieldPos[".$fieldPos."] value [".$value."]");
+								self::$result_ARRAY[$ROWCNT][$fieldPos]=$value;
+								
+							}
+							$ROWCNT++;
+						}
+						self::$result->free();
+						
+						/*
+						CREATE TABLE `log_email_unsub` (
+  `UNSUBID` char(70) NOT NULL,
+  `EMAIL` varchar(100) NOT NULL,
+  `EMAIL_CRC32` bigint(11) UNSIGNED NOT NULL,
+  `SESSIONID` char(26) NOT NULL,
+  `IPADDRESS` varchar(30) NOT NULL,
+  `HTTP_USER_AGENT` varchar(500) NOT NULL,
+  `DATECREATED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+						*/
+						
+						$tmp_unsub_id = $oUser->generateNewKey(70);
+						switch($ROWCNT){
+							case 0:
+								//
+								// EMAIL DOES NOT EXISTS. INSERT.
+								error_log("evifweb database email_unsub (1201) email does not exist in unsub.");
+								self::$query = 'INSERT INTO `email_unsub` (`EMAIL`,`EMAIL_CRC32`,`IPADDRESS`,`HTTP_USER_AGENT`,`DATEMODIFIED`) VALUES (
+									"'.$mysqli->real_escape_string(strtolower(trim($oUser->retrieve_Form_Data('EMAIL')))).'",
+									"'.crc32(strtolower(trim($oUser->retrieve_Form_Data('EMAIL')))).'",
+									"'.$_SERVER['REMOTE_ADDR'].'",
+									"'.$mysqli->real_escape_string($_SERVER['HTTP_USER_AGENT']).'",
+									"'.$ts.'");';
+								
+								self::$query .= 'INSERT INTO `log_email_unsub` (`UNSUBID`,`EMAIL`,`EMAIL_CRC32`,`MSG_SOURCEID`,`SESSIONID`,`IPADDRESS`,`HTTP_USER_AGENT`) VALUES (
+												"'.$tmp_unsub_id.'",
+												"'.$mysqli->real_escape_string(strtolower(trim($oUser->retrieve_Form_Data('EMAIL')))).'",
+												"'.crc32(strtolower(trim($oUser->retrieve_Form_Data('EMAIL')))).'",
+												"'.$mysqli->real_escape_string(trim($oUser->retrieve_Form_Data('MSG_SOURCEID'))).'",
+												"'.session_id().'",
+												"'.$_SERVER['REMOTE_ADDR'].'",
+												"'.$mysqli->real_escape_string($_SERVER['HTTP_USER_AGENT']).'");';
+					
+					
+								//
+								// PROCESS QUERY
+								//error_log("evifweb database (112) contact_home query->".self::$query);
+								$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+								if($mysqli->error){
+									self::$query_exception_result="unsub=error";
+									throw new Exception('EVIFWEB database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
+								
+								}else{
+									return "unsub=success";
+								}
+											
+											
+								
+							break;
+							default:
+								//
+								// EMAIL EXISTS ALREADY. UPDATE DATEMODIFIED TIMESTAMP...AND HELL...INCREMENT AN OPT OUT COUNTER AS WELL.
+								error_log("evifweb database email_unsub (1208) email exist in ubnsub.");
+								
+								//
+								// INCREMENT UNSUB COUNT
+								self::$result_ARRAY[0][1]++;
+								
+								self::$query = 'UPDATE `email_unsub` SET `UNSUB_COUNT`="'.self::$result_ARRAY[0][1].'",`DATEMODIFIED`="'.$ts.'" 
+									WHERE `EMAIL`="'.$mysqli->real_escape_string(strtolower(trim($oUser->retrieve_Form_Data('EMAIL')))).'" AND 
+									`EMAIL_CRC32`="'.crc32(strtolower(trim($oUser->retrieve_Form_Data('EMAIL')))).'" LIMIT 1;';
+								
+								self::$query .= 'INSERT INTO `log_email_unsub` (`UNSUBID`,`EMAIL`,`EMAIL_CRC32`,`MSG_SOURCEID`,`SESSIONID`,`IPADDRESS`,`HTTP_USER_AGENT`) VALUES (
+												"'.$tmp_unsub_id.'",
+												"'.$mysqli->real_escape_string(strtolower(trim($oUser->retrieve_Form_Data('EMAIL')))).'",
+												"'.crc32(strtolower(trim($oUser->retrieve_Form_Data('EMAIL')))).'",
+												"'.$mysqli->real_escape_string(trim($oUser->retrieve_Form_Data('MSG_SOURCEID'))).'",
+												"'.session_id().'",
+												"'.$_SERVER['REMOTE_ADDR'].'",
+												"'.$mysqli->real_escape_string($_SERVER['HTTP_USER_AGENT']).'");';
+					
+					
+								//
+								// PROCESS QUERY
+								//error_log("evifweb database (112) contact_home query->".self::$query);
+								$mysqli = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
+								if($mysqli->error){
+									self::$query_exception_result="unsub=error";
+									throw new Exception('EVIFWEB database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
+								
+								}else{
+									return "unsub=success";
+								}
+											
+								
+								return "unsub=success";
+							break;
+						
+						}
+									
+						//
+						// CLOSE CONNECTION
+						$oUserEnvironment->oMYSQLI_CONN_MGR->closeConnection($mysqli);
+					
+					}
+					
+				break;
+				case 'get_unsub_suppression':
+					self::$query = 'SELECT `email_unsub`.`EMAIL` FROM `email_unsub`;';					
+					
+					//
+					// PROCESS QUERY
+					//error_log("evifweb database (809) query->".self::$query);
+					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processQuery($mysqli, self::$query);
+					if($mysqli->error){
+						self::$query_exception_result = "error";
+						throw new Exception('EVIFWEB database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
+					
+					}else{
+						//
+						// REMAIN STILL WHILE YOUR LIFE IS EXTRACTED
+						$ROWCNT=0;
+						while ($row = self::$result->fetch_row()) {
+							foreach($row as $fieldPos=>$value){
+								//
+								// STORE RESULT
+								//error_log("evifweb /database.inc.php (823) rowcnt[".$ROWCNT."] fieldPos[".$fieldPos."] value [".$value."]");
+								self::$result_ARRAY[$value]=1;
+								
+							}
+							$ROWCNT++;
+						}
+						self::$result->free();
+				
+						//
+						// CLOSE CONNECTION
+						$oUserEnvironment->oMYSQLI_CONN_MGR->closeConnection($mysqli);
+						
+						//
+						// RETURN RESULT SET ARRAY
+						return self::$result_ARRAY;
+						
+					}
+					
+					
+				break;
 				case 'searchall':
 					self::$query = '';
 					$skip_str_ARRAY = array('a', 'the', 'i', 'and', 'but');
@@ -467,7 +640,10 @@ class database_integration {
 					//
 					// BUILD QUERY
 					if($queryType!='svc_getMethodComments'){
-						self::$query = 'SELECT `crnrstn_method`.`NAME`,`crnrstn_method`.`DESCRIPTION`,`crnrstn_method`.`DEFINITION`,`crnrstn_method`.`RETURNED_VALUE`,`crnrstn_method`.`URI`,`crnrstn_method`.`LANGCODE`,`crnrstn_method`.`DATEMODIFIED`,`crnrstn_params`.`PARAMETERID_SOURCE`,`crnrstn_params`.`NAME`,`crnrstn_params`.`ISREQUIRED`,`crnrstn_params`.`DESCRIPTION`,`crnrstn_params`.`LANGCODE`,`crnrstn_params`.`ISACTIVE`,`crnrstn_params`.`DATEMODIFIED`,`crnrstn_techspecs`.`TECHSPECID_SOURCE`,`crnrstn_techspecs`.`TECHSPEC_CONTENT`,`crnrstn_techspecs`.`LANGCODE`,`crnrstn_techspecs`.`DATEMODIFIED`,`crnrstn_techspecs`.`ISACTIVE`,`crnrstn_examples`.`EXAMPLEID_SOURCE`,`crnrstn_examples`.`TITLE`,`crnrstn_examples`.`DESCRIPTION`,`crnrstn_examples`.`EXAMPLE_FORMATTED`,`crnrstn_examples`.`EXAMPLE_RAW`,`crnrstn_examples`.`EXAMPLE_ELEM_TT`,`crnrstn_examples`.`LANGCODE`,`crnrstn_examples`.`ISACTIVE`,`crnrstn_examples`.`DATEMODIFIED`,`crnrstn_class`.`NAME` FROM ((((`crnrstn_method` LEFT OUTER JOIN `crnrstn_techspecs` ON `crnrstn_method`.`METHODID` = `crnrstn_techspecs`.`METHODID`) LEFT OUTER JOIN `crnrstn_params` ON `crnrstn_method`.`METHODID` = `crnrstn_params`.`METHODID`) LEFT OUTER JOIN `crnrstn_examples` ON `crnrstn_method`.`METHODID` = `crnrstn_examples`.`METHODID`) LEFT OUTER JOIN `crnrstn_class` ON `crnrstn_method`.`CLASSID` = `crnrstn_class`.`CLASSID`) WHERE `crnrstn_method`.`METHODID`="'.crc32($oUser->getReqParamByKey('METHODID')).'" AND `crnrstn_method`.`METHODID_SOURCE`="'.$mysqli->real_escape_string($oUser->getReqParamByKey('METHODID')).'" AND `crnrstn_method`.`ISACTIVE`="1";';
+						self::$query = 'SELECT `crnrstn_method`.`NAME`,`crnrstn_method`.`DESCRIPTION`,`crnrstn_method`.`DEFINITION`,`crnrstn_method`.`RETURNED_VALUE`,`crnrstn_method`.`URI`,`crnrstn_method`.`LANGCODE`,`crnrstn_method`.`DATEMODIFIED`,`crnrstn_params`.`PARAMETERID_SOURCE`,`crnrstn_params`.`NAME`,`crnrstn_params`.`ISREQUIRED`,`crnrstn_params`.`DESCRIPTION`,`crnrstn_params`.`LANGCODE`,`crnrstn_params`.`ISACTIVE`,
+						
+						`crnrstn_params`.`DATEMODIFIED`,`crnrstn_params`.`POSITION`,
+						`crnrstn_techspecs`.`TECHSPECID_SOURCE`,`crnrstn_techspecs`.`TECHSPEC_CONTENT`,`crnrstn_techspecs`.`LANGCODE`,`crnrstn_techspecs`.`DATEMODIFIED`,`crnrstn_techspecs`.`ISACTIVE`,`crnrstn_examples`.`EXAMPLEID_SOURCE`,`crnrstn_examples`.`TITLE`,`crnrstn_examples`.`DESCRIPTION`,`crnrstn_examples`.`EXAMPLE_FORMATTED`,`crnrstn_examples`.`EXAMPLE_RAW`,`crnrstn_examples`.`EXAMPLE_ELEM_TT`,`crnrstn_examples`.`LANGCODE`,`crnrstn_examples`.`ISACTIVE`,`crnrstn_examples`.`DATEMODIFIED`,`crnrstn_class`.`NAME` FROM ((((`crnrstn_method` LEFT OUTER JOIN `crnrstn_techspecs` ON `crnrstn_method`.`METHODID` = `crnrstn_techspecs`.`METHODID`) LEFT OUTER JOIN `crnrstn_params` ON `crnrstn_method`.`METHODID` = `crnrstn_params`.`METHODID`) LEFT OUTER JOIN `crnrstn_examples` ON `crnrstn_method`.`METHODID` = `crnrstn_examples`.`METHODID`) LEFT OUTER JOIN `crnrstn_class` ON `crnrstn_method`.`CLASSID` = `crnrstn_class`.`CLASSID`) WHERE `crnrstn_method`.`METHODID`="'.crc32($oUser->getReqParamByKey('METHODID')).'" AND `crnrstn_method`.`METHODID_SOURCE`="'.$mysqli->real_escape_string($oUser->getReqParamByKey('METHODID')).'" AND `crnrstn_method`.`ISACTIVE`="1";';
 					}
 										
 					//
@@ -803,7 +979,7 @@ class database_integration {
 						if(password_verify($oUser->getReqParamByKey('PWDHASH'), self::$result_ARRAY[0][4])){
 							//
 							// WE HAVE VALID PASSWORD FOR ACCOUNT
-							error_log("/crnrstn/ database.inc.php (807) password valid");
+							//error_log("/crnrstn/ database.inc.php (807) password valid");
 							
 							//
 							// INCRMENT LOGIN COUNT
@@ -884,6 +1060,7 @@ class database_integration {
 					// BUILD QUERY
 					self::$query = 'SELECT USERNAME FROM users WHERE USERNAME="'.strtolower($mysqli->real_escape_string($oUser->getReqParamByKey('USERNAME'))).'" AND USERNAME_CRC32="'.crc32(strtolower($mysqli->real_escape_string($oUser->getReqParamByKey('USERNAME')))).'" LIMIT 1;';
 					
+					//error_log("(887) query [".self::$query."]");
 					//
 					// PROCESS QUERY
 					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
@@ -894,24 +1071,42 @@ class database_integration {
 						//
 						// REMAIN STILL WHILE YOUR LIFE IS EXTRACTED
 						$ROWCNT=0;
-						do {
-							if (self::$result = $mysqli->store_result()) {
-								while ($row = self::$result->fetch_row()) {
-									foreach($row as $fieldPos=>$value){
-										//
-										// STORE RESULT
-										self::$result_ARRAY[$ROWCNT][$fieldPos]=$value;
-									}
-									$ROWCNT++;
-								}
-								self::$result->free();
-							}
+//						do {
+//							if (self::$result = $mysqli->store_result()) {
+//								while ($row = self::$result->fetch_row()) {
+//									foreach($row as $fieldPos=>$value){
+//										//
+//										// STORE RESULT
+//										self::$result_ARRAY[$ROWCNT][$fieldPos]=$value;
+//									}
+//									$ROWCNT++;
+//								}
+//								self::$result->free();
+//							}
+//					
+//							if ($mysqli->more_results()) {
+//								//
+//								// END OF RECORD. MORE TO FOLLOW.
+//							}
+//						} while ($mysqli->next_result());
+						if (self::$result) {	
+							do {
 					
-							if ($mysqli->more_results()) {
-								//
-								// END OF RECORD. MORE TO FOLLOW.
-							}
-						} while ($mysqli->next_result());
+									while ($row = self::$result->fetch_row()) {
+										//printf("%s\n", $row[1]);
+										self::$result_ARRAY[$ROWCNT][0]=$value;
+									}
+									self::$result->free();
+					
+								/* print divider */
+								if ($mysqli->more_results()) {
+									printf("-----------------\n");
+								}
+							} while ($mysqli->next_result());
+						}	
+
+
+
 						
 						//
 						// CLOSE CONNECTION
@@ -934,11 +1129,11 @@ class database_integration {
 										
 					//
 					// PREPARE QUERY
-					self::$query = 'INSERT INTO `crnrstn_stage`.`users` (`USERNAME`,`USERID_SOURCE`,`USERNAME_CRC32`,`USERID`,`FIRSTNAME`,`LASTNAME`,`USERNAME_DISPLAY`,`EMAIL`,`EMAIL_CRC32`,`PWDHASH`,`LASTLOGIN`,`SESSION_PERSIST`,`DATEMODIFIED`) VALUES ("'.$mysqli->real_escape_string(strtolower($oUser->getReqParamByKey('USERNAME'))).'","'.$seednum_full.'","'.crc32(strtolower($oUser->getReqParamByKey('USERNAME'))).'","'.crc32($seednum_full).'","'.$mysqli->real_escape_string($oUser->getReqParamByKey('FIRSTNAME')).'","'.$mysqli->real_escape_string($oUser->getReqParamByKey('LASTNAME')).'","'.$mysqli->real_escape_string($oUser->getReqParamByKey('USERNAME')).'","'.$mysqli->real_escape_string(strtolower($oUser->getReqParamByKey('EMAIL'))).'","'.crc32(strtolower($oUser->getReqParamByKey('EMAIL'))).'","'.$oUser->getReqParamByKey('PWDHASH').'","'.$ts.'","'.$mysqli->real_escape_string($oUser->getReqParamByKey('SESSION_PERSIST')).'","'.$ts.'");';
-					self::$query .= 'INSERT INTO `crnrstn_stage`.`users_activation` (`KEY`, `KEY_CRC32`, `USERNAME`, `USERNAME_CRC32`, `EMAIL`, `DATEMODIFIED`) VALUES ("'.$seednum_key.'", "'.crc32($seednum_key).'", "'.$mysqli->real_escape_string(strtolower($oUser->getReqParamByKey('USERNAME'))).'", "'.crc32(strtolower($oUser->getReqParamByKey('USERNAME'))).'", "'.$mysqli->real_escape_string(strtolower($oUser->getReqParamByKey('EMAIL'))).'", "'.$ts.'");';
+					self::$query = 'INSERT INTO `users` (`USERNAME`,`USERID_SOURCE`,`USERNAME_CRC32`,`USERID`,`FIRSTNAME`,`LASTNAME`,`USERNAME_DISPLAY`,`EMAIL`,`EMAIL_CRC32`,`PWDHASH`,`LASTLOGIN`,`SESSION_PERSIST`,`DATEMODIFIED`) VALUES ("'.$mysqli->real_escape_string(strtolower($oUser->getReqParamByKey('USERNAME'))).'","'.$seednum_full.'","'.crc32(strtolower($oUser->getReqParamByKey('USERNAME'))).'","'.crc32($seednum_full).'","'.$mysqli->real_escape_string($oUser->getReqParamByKey('FIRSTNAME')).'","'.$mysqli->real_escape_string($oUser->getReqParamByKey('LASTNAME')).'","'.$mysqli->real_escape_string($oUser->getReqParamByKey('USERNAME')).'","'.$mysqli->real_escape_string(strtolower($oUser->getReqParamByKey('EMAIL'))).'","'.crc32(strtolower($oUser->getReqParamByKey('EMAIL'))).'","'.$oUser->getReqParamByKey('PWDHASH').'","'.$ts.'","'.$mysqli->real_escape_string($oUser->getReqParamByKey('SESSION_PERSIST')).'","'.$ts.'");';
+					self::$query .= 'INSERT INTO `users_activation` (`KEY`, `KEY_CRC32`, `USERNAME`, `USERNAME_CRC32`, `EMAIL`, `DATEMODIFIED`) VALUES ("'.$seednum_key.'", "'.crc32($seednum_key).'", "'.$mysqli->real_escape_string(strtolower($oUser->getReqParamByKey('USERNAME'))).'", "'.crc32(strtolower($oUser->getReqParamByKey('USERNAME'))).'", "'.$mysqli->real_escape_string(strtolower($oUser->getReqParamByKey('EMAIL'))).'", "'.$ts.'");';
 
 					
-					error_log('(921) svc_creatNewUser :: '.self::$query);
+					//error_log('(921) svc_creatNewUser :: '.self::$query);
 					
 					//
 					// PROCESS QUERY
@@ -1565,6 +1760,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
+					//error_log("crnrstn database.inc.php (1587) query->[".self::$query."]");
 					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
@@ -1842,7 +2038,7 @@ class database_integration {
 					
 				break;
 				case 'method_parameters':
-					error_log("/crnrstn/ database.inc.php (1815) method_parameters");
+					//error_log("/crnrstn/ database.inc.php (1864) method_parameters");
 					//
 					// BUILD QUERY
 					for($i=0;$i<5000;$i++){						
@@ -1851,10 +2047,17 @@ class database_integration {
 						if($oUserEnvironment->oHTTP_MGR->issetParam($_POST,'m')){
 							if($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_id'.$i)!=''){
 								if($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_name'.$i)!=''){
+									
+									if($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_required'.$i)==""){
+										$tmp_param_required="0";
+									}else{
+										$tmp_param_required = $oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_required'.$i);
+									}
+																		
 									//
 									// UPDATE EXISTING PARAMETER + METADATA
-									error_log("/crnrstn/ database.inc.php (1825) build SQL for method_parameters");
-									self::$query .= 'UPDATE `crnrstn_params` SET `NAME`="'.$mysqli->real_escape_string($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_name'.$i)).'",`NAME_SEARCH`="'.$mysqli->real_escape_string($this->search_FillerSanitize(strtolower($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_name'.$i)))).'",`ISREQUIRED`="'.$mysqli->real_escape_string($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_required'.$i)).'",`DESCRIPTION`="'.$mysqli->real_escape_string(htmlentities($this->clearDblBR($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_description'.$i)))).'",`DESCRIPTION_SEARCH`="'.$mysqli->real_escape_string($this->search_FillerSanitize($this->clearDblBR(strtolower($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_description'.$i))))).'",`URI`="'.$mysqli->real_escape_string($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'uri')).'",`DATEMODIFIED`="'.$ts.'" WHERE `PARAMETERID`="'.crc32($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_id'.$i)).'" AND `PARAMETERID_SOURCE`="'.$mysqli->real_escape_string($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_id'.$i)).'" LIMIT 1;';
+									//error_log("/crnrstn/ database.inc.php (1875) build SQL for method_parameters");
+									self::$query .= 'UPDATE `crnrstn_params` SET `NAME`="'.$mysqli->real_escape_string($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_name'.$i)).'",`NAME_SEARCH`="'.$mysqli->real_escape_string($this->search_FillerSanitize(strtolower($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_name'.$i)))).'",`ISREQUIRED`="'.$mysqli->real_escape_string($tmp_param_required).'",`DESCRIPTION`="'.$mysqli->real_escape_string(htmlentities($this->clearDblBR($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_description'.$i)))).'",`DESCRIPTION_SEARCH`="'.$mysqli->real_escape_string($this->search_FillerSanitize($this->clearDblBR(strtolower($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_description'.$i))))).'",`URI`="'.$mysqli->real_escape_string($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'uri')).'",`POSITION`="'.$mysqli->real_escape_string($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_position'.$i)).'",`DATEMODIFIED`="'.$ts.'" WHERE `PARAMETERID`="'.crc32($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_id'.$i)).'" AND `PARAMETERID_SOURCE`="'.$mysqli->real_escape_string($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_id'.$i)).'" LIMIT 1;';
 								}else{
 									//
 									// DELETE PARAMATER
@@ -1871,7 +2074,14 @@ class database_integration {
 								//
 								// ADD NEW PARAMETER TO DATABASE
 								if($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_name'.$i)!=''){
-									self::$query .= 'INSERT INTO crnrstn_params (`PARAMETERID`,`PARAMETERID_SOURCE`,`METHODID`,`NAME`,`NAME_SEARCH`,`ISREQUIRED`,`DESCRIPTION`,`DESCRIPTION_SEARCH`,`URI`,`DATEMODIFIED`) VALUES ("'.crc32($seednum_mini).'","'.$seednum_mini.'","'.crc32($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'm')).'","'.$mysqli->real_escape_string($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_name'.$i)).'","'.$mysqli->real_escape_string($this->search_FillerSanitize(strtolower($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_name'.$i)))).'","'.$mysqli->real_escape_string($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_required'.$i)).'","'.$mysqli->real_escape_string(htmlentities($this->clearDblBR($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_description'.$i)))).'","'.$mysqli->real_escape_string($this->search_FillerSanitize($this->clearDblBR(strtolower($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_description'.$i))))).'","'.$mysqli->real_escape_string($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'uri')).'","'.$ts.'");';
+									
+									if($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_required'.$i)==""){
+										$tmp_param_required="0";
+									}else{
+										$tmp_param_required = $oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_required'.$i);
+									}
+									
+									self::$query .= 'INSERT INTO crnrstn_params (`PARAMETERID`,`PARAMETERID_SOURCE`,`METHODID`,`NAME`,`NAME_SEARCH`,`ISREQUIRED`,`DESCRIPTION`,`DESCRIPTION_SEARCH`,`URI`,`DATEMODIFIED`) VALUES ("'.crc32($seednum_mini).'","'.$seednum_mini.'","'.crc32($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'm')).'","'.$mysqli->real_escape_string($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_name'.$i)).'","'.$mysqli->real_escape_string($this->search_FillerSanitize(strtolower($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_name'.$i)))).'","'.$mysqli->real_escape_string($tmp_param_required).'","'.$mysqli->real_escape_string(htmlentities($this->clearDblBR($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_description'.$i)))).'","'.$mysqli->real_escape_string($this->search_FillerSanitize($this->clearDblBR(strtolower($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_description'.$i))))).'","'.$mysqli->real_escape_string($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'uri')).'","'.$mysqli->real_escape_string($oUserEnvironment->oHTTP_MGR->extractData($_POST, 'param_position'.$i)).'","'.$ts.'");';
 								}
 							}
 						
@@ -1884,6 +2094,7 @@ class database_integration {
 					
 					//
 					// PROCESS QUERY
+					//error_log("/crnrstn/ database.inc.php (1906) query->".self::$query);
 					self::$result = $oUserEnvironment->oMYSQLI_CONN_MGR->processMultiQuery($mysqli, self::$query);
 					if($mysqli->error){
 						throw new Exception('CRNRSTN database_integration :: '.$queryType.' ERROR :: ['.$mysqli->error.']');
@@ -1913,10 +2124,7 @@ class database_integration {
 			$oUserEnvironment->oMYSQLI_CONN_MGR->closeConnection($mysqli);
 			return self::$query_exception_result;
 		}
-		
-		//
-		// IF WE GET THIS FAR...
-		$oUserEnvironment->oMYSQLI_CONN_MGR->closeConnection($mysqli);
+
 	}
 	
 	public function clearDblBR($str){

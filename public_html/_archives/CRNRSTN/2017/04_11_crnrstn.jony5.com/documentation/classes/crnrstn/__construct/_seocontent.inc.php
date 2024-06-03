@@ -1,7 +1,3 @@
-<div class="hidden"><h1>__construct()</h1>
-		<p>Since crnrstn traverses and stores information about the servers settings and configuration, the successful instantiation of a crnrstn :: class object requires the passing of the $_SERVER super global array as a parameter. The second parameter is a serial key used to version the configuration profile in the SESSION. If there are multiple config files running within the web application, this $configSerial parameter needs to be unique in order to prevent resource contention in session management.<br />
-<br />
-Also, the crnrstn constructor also instantiates its own personal objects of other select C<span class="the_R">R</span>NRSTN Suite :: classes, so before instantiating the crnrstn object, the class definitions of the C<span class="the_R">R</span>NRSTN Suite :: need to be established.</p>
-		<p>Version: </p>
-		<p>Method Definition: __construct($_SERVER,$configSerial)</p>
-		<p>Invoking class: crnrstn</p><h2>Technical Specifications:<h2><p>It is recommended that you upgrade to the latest version of PHP to take advantage of the latest gains in security and processing efficiency.</p><p>Currently tested on an ubuntu 4.2 server running PHP Version 5.2.6 and Apache 2.2.11</p><p>Classes from the C<span class="the_R">R</span>NRSTN Suite :: must be defined before calling.</p><h2>Parameters:</h2><h3>$_SERVER</h3><p>The predefined superglobal variable for server.</p><h3>$configSerial</h3><p>Serialization parameter for the C<span class="the_R">R</span>NRSTN Suite configuration profile. If the web application has multiple C<span class="the_R">R</span>NRSTN configuration files, the value for this parameter needs to be unique for each configuration file to prevent resource contention in session management.</p><p>Last upated: 2017-04-11 02:27:21</p></div>
+<div class="hidden">
+<!-- SEO CONTENT HERE -->
+</div>

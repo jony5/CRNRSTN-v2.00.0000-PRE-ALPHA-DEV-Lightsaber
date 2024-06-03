@@ -4,7 +4,8 @@
 // J5
 // Code is Poetry */
 require('_crnrstn.root.inc.php');
-include_once($ROOT . '_crnrstn.config.inc.php');
+include_once($CRNRSTN_ROOT . '_crnrstn.config.inc.php');
+$tmp_navOnly=true;
 require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/fh/session.inc.php');
 
 //
@@ -13,11 +14,11 @@ $tmp_dataMode = explode('|',$oUSER->getEnvParam('DATA_MODE'));
 if($tmp_dataMode[0]=='SOAP'){
 	$oUSER->navigationRetrieve();
 }
-$page_title = "HOME";
+$page_title = "DOWNLOAD";
 
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!doctype html>
+<html lang="en">
 <head>
 <?php
 require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/head/head.inc.php');
@@ -68,14 +69,9 @@ require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_
 						<div class="cb_15"></div>
                         -->
                         
-						<h3 class="content_results_subtitle">ZIP Compressed File ::</h3>
+						<h3 class="content_results_subtitle">GitHub Repository ::</h3>
 						<div class="content_results_subtitle_divider"></div>
-                        <p><a href="./getfile.php?file=zip" target="_self">Click here</a> to download the zip file of the C<span class="the_R">R</span>NRSTN Suite ::.</p>
-                        
-                        <div class="cb_15"></div>
-                        <h3 class="content_results_subtitle">TAR.GZ Compressed File ::</h3>
-						<div class="content_results_subtitle_divider"></div>
-                        <p><a href="./getfile.php?file=tar" target="_self">Click here</a> to download the tar.gz file of the C<span class="the_R">R</span>NRSTN Suite ::.</p>
+                        <p>Version 1.0.1 can be downloaded from the project GitHub repository <a href="https://github.com/jony5/CRNRSTN" target="_blank">here</a>.</p>
                         
                         
                         <div class="cb_15"></div>

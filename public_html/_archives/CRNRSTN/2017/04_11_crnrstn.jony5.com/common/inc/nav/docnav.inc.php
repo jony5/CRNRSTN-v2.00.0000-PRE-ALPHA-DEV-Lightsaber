@@ -33,12 +33,13 @@ if($tmp_dataMode[0]=='SOAP'){
 									<li id="<?php echo $oUSER->contentOutput_ARRAY[1]['NAV']['CLASS'][$i]['NAME']; ?>_0" class="subnav_class_class" onMouseOver="sublnkMouseOver(this); return false;" onMouseOut="sublnkMouseOut(this); return false;" onclick="loadPage(this,'<?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').$oUSER->contentOutput_ARRAY[1]['NAV']['CLASS'][$i]['URI']; ?>')"><div class="subnav_lnk_copy"><a href="<?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').$oUSER->contentOutput_ARRAY[1]['NAV']['CLASS'][$i]['URI']; ?>" target="_self" onclick="return false;"><?php echo $oUSER->contentOutput_ARRAY[1]['NAV']['CLASS'][$i]['NAME']; ?> ::</a></div></li>								
 									<?php
 									for($ii=0;$ii<sizeof($oUSER->contentOutput_ARRAY[1]['NAV']['METHOD'])+1;$ii++){
-									if($oUSER->contentOutput_ARRAY[1]['NAV']['METHOD'][$ii]['CLASSID']==$oUSER->contentOutput_ARRAY[1]['NAV']['CLASS'][$i]['CLASSID'] && $navMethodMarker_ARRAY[$oUSER->contentOutput_ARRAY[1]['NAV']['METHOD'][$ii]['METHODID']]==''){
+									if(isset($oUSER->contentOutput_ARRAY[1]['NAV']['METHOD'][$ii]['METHODID'])){
+									if($oUSER->contentOutput_ARRAY[1]['NAV']['METHOD'][$ii]['CLASSID']==$oUSER->contentOutput_ARRAY[1]['NAV']['CLASS'][$i]['CLASSID'] && !isset($navMethodMarker_ARRAY[$oUSER->contentOutput_ARRAY[1]['NAV']['METHOD'][$ii]['METHODID']])){
 									?>
 									<li id="<?php echo $oUSER->contentOutput_ARRAY[1]['NAV']['CLASS'][$i]['NAME']; ?>_0<?php echo $ii;  ?>" class="subnav_class_method" onMouseOver="sublnkMouseOver(this); return false;" onMouseOut="sublnkMouseOut(this); return false;" onclick="loadPage(this,'<?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').$oUSER->contentOutput_ARRAY[1]['NAV']['METHOD'][$ii]['URI']; ?>')"><div class="subnav_lnk_copy"><a href="<?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').$oUSER->contentOutput_ARRAY[1]['NAV']['METHOD'][$ii]['URI']; ?>" target="_self" onclick="return false;"><?php echo $oUSER->contentOutput_ARRAY[1]['NAV']['METHOD'][$ii]['NAME']; ?></a></div></li>
 									<?php
 									$navMethodMarker_ARRAY[$oUSER->contentOutput_ARRAY[1]['NAV']['METHOD'][$ii]['METHODID']]=1;
-									}}
+									}}}
 									?>
 								</ul>
 							</div>

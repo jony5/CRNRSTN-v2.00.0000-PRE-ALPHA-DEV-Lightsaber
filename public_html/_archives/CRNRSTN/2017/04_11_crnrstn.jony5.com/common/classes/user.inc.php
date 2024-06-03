@@ -12,6 +12,8 @@ class user {
 	private static $oLogger;
 	private static $contentID;
 	private static $contentType;
+	private static $frm_input_ARRAY = array();
+	private static $unsub_ARRAY = array();
 	
 	private static $dataBaseIntegration;
 	private static $oUserEnvironment;
@@ -169,14 +171,36 @@ class user {
 		
 		//
 		// INSTANTIATE WEB SERVICES MANAGER
-		if(!isset(self::$soapManager)){
-			self::$soapManager = new crnrstn_soap_manager(self::$oUserEnvironment,'WSDL_URI','WSDL_CACHE_TTL');
-		}
+		//if(!isset(self::$soapManager)){
+			self::$soapManager = new crnrstn_soap_manager(self::$oUserEnvironment,'WSDL_URI','WSDL_CACHE_TTL','NUSOAP_USECURL');
+		//}
 		
 		//
 		// INITIALIZE MAX CHAR COUNT FOR REAL-TIME (NON-BACKLOG) CODE STYLES
 		$this->initMaxCodeLen(9500);
 
+	}
+	
+	public function unsubscribeEmail(){
+		self::$frm_input_ARRAY["EMAIL"] = self::$oUserEnvironment->oHTTP_MGR->extractData($_POST, 'email');
+		self::$frm_input_ARRAY["MSG_SOURCEID"] = self::$oUserEnvironment->oHTTP_MGR->extractData($_POST, 'MSG_SOURCEID');
+	 	return self::$dataBaseIntegration->unsubscribeEmail($this, self::$oUserEnvironment);
+	}
+	
+	public function loadUnsubscribes(){
+		//
+		//  UNSUBSCRIBE SUPPORT FOR PROXY EMAIL TRIGGER.
+		self::$unsub_ARRAY = self::$dataBaseIntegration->getUnsubSuppression($this, self::$oUserEnvironment);
+		
+	}
+	
+	public function isUnsubscribed($email){
+		if(isset(self::$unsub_ARRAY[strtolower($email)])){
+			return true;		
+		}else{
+			return false;
+		}
+		
 	}
 	
 	public function testCrnrstn(){
@@ -186,10 +210,14 @@ class user {
 		
 	}
 	
+	public function retrieve_Form_Data($key){
+		return self::$frm_input_ARRAY[$key];
+	}
+	
 	public function getEnvParam($paramName){
 		
 		if(!isset(self::$sess_env_param_ARRAY[$paramName])){
-			self::$sess_env_param_ARRAY[$paramName] = self::$oUserEnvironment->get($paramName);
+			self::$sess_env_param_ARRAY[$paramName] = self::$oUserEnvironment->getEnvParam($paramName);
 		}
 		
 		return self::$sess_env_param_ARRAY[$paramName];
@@ -396,12 +424,12 @@ class user {
 			
 				//
 				// STORE TRANSACTION DETAILS AND CONTENT NAME (FOR ADMINISTRATIVE REVIEW)
-				if(self::$oUserEnvironment->oSESSION_MGR->getSessionParam('LOGIN_USER_PERMISSIONS_ID')>399){
+			#	if(self::$oUserEnvironment->oSESSION_MGR->getSessionParam('LOGIN_USER_PERMISSIONS_ID')>399){
 					$this->contentOutput_ARRAY[3] = $this->returnClientRequest();   #SOAP Request Details(Content) ::
 					$this->contentOutput_ARRAY[5] = $this->returnClientResponse();  #SOAP Response Details(Content) ::
 					$this->contentOutput_ARRAY[7] = $this->returnClientGetDebug();  #SOAP Debug(Content) ::
 					self::$oUserEnvironment->oSESSION_MGR->setSessionParam('newMethodClassName', $this->contentOutput_ARRAY[1]['NAME']);			#CONTENT NAME FOR CONTENT MANAGEMENT PURPOSES
-				}
+			#	}
 			}
 			
 			return true;
@@ -489,12 +517,12 @@ class user {
 			
 			//
 			// STORE TRANSACTION DETAILS AND CONTENT NAME (FOR ADMINISTRATIVE REVIEW)
-			if(self::$oUserEnvironment->oSESSION_MGR->getSessionParam('LOGIN_USER_PERMISSIONS_ID')>399){
+			#if(self::$oUserEnvironment->oSESSION_MGR->getSessionParam('LOGIN_USER_PERMISSIONS_ID')>399){
 				$this->contentOutput_ARRAY[3] = $this->returnClientRequest();   #SOAP Request Details(Content) ::
 				$this->contentOutput_ARRAY[5] = $this->returnClientResponse();  #SOAP Response Details(Content) ::
 				$this->contentOutput_ARRAY[7] = $this->returnClientGetDebug();  #SOAP Debug(Content) ::
 				self::$oUserEnvironment->oSESSION_MGR->setSessionParam('newMethodClassName', $this->contentOutput_ARRAY[1]['NAME']);			#CONTENT NAME FOR CONTENT MANAGEMENT PURPOSES
-			}
+			#}
 			
 			return true;
 		
@@ -518,14 +546,15 @@ class user {
 	public function passwordResetRequest(){
 		self::$frm_input_pwdreset = self::$oUserEnvironment->oHTTP_MGR->extractData($_POST, 'pwdreset_data');
 		
+		//error_log("crnrstn user.inc.php (521) calling passwordResetRequest()...");
 		return $this->pwdResetRequest();
 		//return "pswdreset=true";
 		
 	}
 	
 	public function pwdRstRequest(){
-		self::$frm_input_password = self::$oUserEnvironment->oHTTP_MGR->extractData($_POST, 'pwd');
-		self::$frm_input_pwdconfirm = self::$oUserEnvironment->oHTTP_MGR->extractData($_POST, 'pwdconfirm');
+		self::$frm_input_password = md5(self::$oUserEnvironment->oHTTP_MGR->extractData($_POST, 'pwd'));
+		self::$frm_input_pwdconfirm = md5(self::$oUserEnvironment->oHTTP_MGR->extractData($_POST, 'pwdconfirm'));
 		self::$frm_input_mid = self::$oUserEnvironment->oHTTP_MGR->extractData($_POST, 'mid');
 		
 		
@@ -947,7 +976,7 @@ class user {
 		//
 		// GET FORM DATA
 		self::$frm_input_username = self::$oUserEnvironment->oHTTP_MGR->extractData($_POST, 'un');
-		self::$frm_input_password = self::$oUserEnvironment->oHTTP_MGR->extractData($_POST, 'pwd');
+		self::$frm_input_password = md5(self::$oUserEnvironment->oHTTP_MGR->extractData($_POST, 'pwd'));
 		self::$frm_input_sessionpersist = self::$oUserEnvironment->oHTTP_MGR->extractData($_POST, 'login_persist');
 		
 		self::$oUserEnvironment->oSESSION_MGR->setSessionParam('FORM_UN', self::$frm_input_username);
@@ -1018,7 +1047,7 @@ class user {
 		//
 		// INSTANTIATE COOKIE MANAGER SO YOU CAN DESTROY IT
 		if(!isset($oCOOKIE_MGR)){
-			#error_log("/crnrstn/ user.inc.php (869) ATTN :: Confirm that $oENV was passed into the new cookie_manager.");
+			#error_log("/crnrstn/ user.inc.php (869) ATTN :: Confirm that $oCRNRSTN_ENV was passed into the new cookie_manager.");
 			$oCOOKIE_MGR = new crnrstn_cookie_manager(self::$oUserEnvironment);
 		}
 		
@@ -1091,7 +1120,11 @@ class user {
 				//
 				// CHECK VALIDITY WITH DATABASE
 				if($this->isUnUnique(self::$frm_input_username) == 'unique=true'){
+					//
+					// CREATE NEW USER
+					//error_log("(1096) crnrstn user.inc run creatNewUser()");
 					$tmp_response = $this->creatNewUser();
+					//error_log("crnrstn user.inc (1098) tmp_response->".$tmp_response);
 					if( strlen($tmp_response) == 58){
 						$tmp_response = explode('=',$tmp_response);
 						
@@ -1102,7 +1135,7 @@ class user {
 						
 						//
 						//SEND TO CONFIRMATION PAGE
-						header("Location: ".self::$oUserEnvironment->get('ROOT_PATH_CLIENT_HTTP')."crnrstn/account/confirm/");
+						header("Location: ".self::$oUserEnvironment->getEnvParam('ROOT_PATH_CLIENT_HTTP').self::$oUserEnvironment->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR')."account/confirm/");
 						exit();
 					}else{
 						$this->errorMessage = 'An error was experienced while creating your account. Please try again later.';
@@ -1571,7 +1604,7 @@ class user {
 						
 						$tmp_linkto = '';
 						if($this->getUserParam('USER_PERMISSIONS_ID')>399){
-							$tmp_linkto = '<div id="example_scrollto_'.self::$styleCode_cnt.'" class="example_scrollto" onClick="initScrollTo_lnk(this,\''.$this->getEnvParam('ROOT_PATH_CLIENT_HTTP').$this->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').self::$styleCode_uri.'\');"><a href="#" target="_self">Link</a>.</div>';
+							//$tmp_linkto = '<div id="example_scrollto_'.self::$styleCode_cnt.'" class="example_scrollto" onClick="initScrollTo_lnk(this,\''.$this->getEnvParam('ROOT_PATH_CLIENT_HTTP').$this->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').self::$styleCode_uri.'\');"><a href="#" target="_self">Link</a>.</div>';
 						}
 						
 						$str_styled .= $tmp_linkto.self::$elementOpen_CSS['CODE'].$this->applyCSS(htmlentities(substr($str, $tmp_codeOpen_A1)),htmlentities(substr($str_SHADOW, $tmp_codeOpen_A1))).self::$elementClose_CSS['CODE'];
@@ -1600,7 +1633,7 @@ class user {
 							
 							$tmp_linkto = '';
 							if($this->getUserParam('USER_PERMISSIONS_ID')>399){
-								$tmp_linkto = '<div id="example_scrollto_'.self::$styleCode_cnt.'" class="example_scrollto" onClick="initScrollTo_lnk(this,\''.$this->getEnvParam('ROOT_PATH_CLIENT_HTTP').$this->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').self::$styleCode_uri.'\');"><a href="#" target="_self">Link</a>.</div>';
+								//$tmp_linkto = '<div id="example_scrollto_'.self::$styleCode_cnt.'" class="example_scrollto" onClick="initScrollTo_lnk(this,\''.$this->getEnvParam('ROOT_PATH_CLIENT_HTTP').$this->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').self::$styleCode_uri.'\');"><a href="#" target="_self">Link</a>.</div>';
 							}
 							
 							$str_styled .= $tmp_linkto.self::$elementOpen_CSS['CODE'].$this->applyCSS(htmlentities(substr($str, $tmp_codeOpen_A1, $tmp_codeOpen_A2)),htmlentities(substr($str_SHADOW, $tmp_codeOpen_A1, $tmp_codeOpen_A2))).self::$elementClose_CSS['CODE'];
@@ -2332,6 +2365,7 @@ class user {
 											if($tmp_str_C_pos_slash_open<3){
 												#error_log('PROCESSING LINE LCK('.self::$frm_input_comment_lock.') (2 @ 608) :: '.$str);
 												if(substr($str, ($tmp_str_C_pos_slash_close + 2))==($code_len)){
+													
 													$str = substr($str,0, (-1*($code_len - $tmp_str_C_pos_slash_open))).self::$elementOpen_CSS['CODE_COMMENT'].substr($str,$tmp_str_C_pos_slash_open).self::$elementClose_CSS['CODE_COMMENT'].substr($str, ($tmp_str_C_pos_slash_close + 2));
 													#error_log('(1921) PROCESSED COMMENTS :: '.$str);
 												}else{
@@ -2812,7 +2846,7 @@ class user {
 			
 			//
 			// LOG ERROR FOR DB ACTIVITY LOGGING
-			$oENV->oLOGGER->captureNotice('CRNRSTN error notification :: XML Content Gen Failure (@ln220) (METHOD)', LOG_NOTICE, $e->getMessage());
+			$oCRNRSTN_ENV->oLOGGER->captureNotice('CRNRSTN error notification :: XML Content Gen Failure (@ln220) (METHOD)', LOG_NOTICE, $e->getMessage());
 		}
 	}
 	
@@ -2949,7 +2983,7 @@ class user {
 			
 			//
 			// LOG ERROR FOR DB ACTIVITY LOGGING
-			$oENV->oLOGGER->captureNotice('CRNRSTN error notification :: XML Content Gen Failure (@ln220) (CLASS)', LOG_NOTICE, $e->getMessage());
+			$oCRNRSTN_ENV->oLOGGER->captureNotice('CRNRSTN error notification :: XML Content Gen Failure (@ln220) (CLASS)', LOG_NOTICE, $e->getMessage());
 		}		
 	}
 	
@@ -3015,7 +3049,7 @@ class user {
 	// AUTO-SUGGEST SEARCH RESULTS
 	public function suggestSearchResults($params){
 		$tmp_search_ARRAY = $this->getSuggestions($params);
-		
+		//error_log("user.inc.php (3019) suggestSearchResults() tmp array result = [".sizeof($tmp_search_ARRAY['SEARCH_RESPONSE'])."]");
 		//
 		// BUILD AUTO-SUGGEST SEARCH RESULTS STRING AND RETURN
 		for($i=0;$i<sizeof($tmp_search_ARRAY['SEARCH_RESPONSE']);$i++){
@@ -3033,12 +3067,12 @@ class user {
 				$tmp_str = substr($tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_DESCRIPTION'],$tmp_sub_A1,$tmp_sub_A2);
 				//$pos = strpos($tmp_str, '<a');
 				//if($pos!==false){ $tmp_elip = '</a>'.$tmp_elip;}
-				$tmp_results_output .= '<li style="list-style:none;" onMouseOver="s_ovr(this)" onMouseOut="s_out(this)" onClick="loadPage(this, \''.$this->getEnvParam('ROOT_PATH_CLIENT_HTTP').$this->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'search/?s='.urlencode($tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_TITLE']).'\');"><table cellpadding="0" cellspacing="0" border="0"><tr><td><img src="'.$this->getEnvParam('ROOT_PATH_CLIENT_HTTP').$this->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'common/imgs/the_R.gif"></td><td>'.$tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_TITLE'].' :: '.$tmp_str.$tmp_elip.'</td></tr></table></li>';
+				$tmp_results_output .= '<li style="list-style:none;" onMouseOver="s_ovr(this)" onMouseOut="s_out(this)" onClick="loadPage(this, \''.$this->getEnvParam('ROOT_PATH_CLIENT_HTTP').$this->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'search/?s='.urlencode($tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_TITLE']).'#\');"><table cellpadding="0" cellspacing="0" border="0"><tr><td><img src="'.$this->getEnvParam('ROOT_PATH_CLIENT_HTTP').$this->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'common/imgs/the_R.gif"></td><td>'.$tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_TITLE'].' :: '.$tmp_str.$tmp_elip.'</td></tr></table></li>';
 			}else{
 				$tmp_str = substr($tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_DESCRIPTION'],$tmp_sub_A1);
 				//$pos = strpos($tmp_str, '<a');
 				//if($pos!==false){ $tmp_elip = '</a>'.$tmp_elip;}
-				$tmp_results_output .= '<li style="list-style:none;" onMouseOver="s_ovr(this)" onMouseOut="s_out(this)" onClick="loadPage(this, \''.$this->getEnvParam('ROOT_PATH_CLIENT_HTTP').$this->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'search/?s='.urlencode($tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_TITLE']).'\');"><table cellpadding="0" cellspacing="0" border="0"><tr><td><img src="'.$this->getEnvParam('ROOT_PATH_CLIENT_HTTP').$this->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'common/imgs/the_R.gif"></td><td>'.$tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_TITLE'].' :: '.$tmp_str.$tmp_elip.'</td></tr></table></li>';
+				$tmp_results_output .= '<li style="list-style:none;" onMouseOver="s_ovr(this)" onMouseOut="s_out(this)" onClick="loadPage(this, \''.$this->getEnvParam('ROOT_PATH_CLIENT_HTTP').$this->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'search/?s='.urlencode($tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_TITLE']).'#\');"><table cellpadding="0" cellspacing="0" border="0"><tr><td><img src="'.$this->getEnvParam('ROOT_PATH_CLIENT_HTTP').$this->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'common/imgs/the_R.gif"></td><td>'.$tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_TITLE'].' :: '.$tmp_str.$tmp_elip.'</td></tr></table></li>';
 			}
 			//
 			// LIMIT AUTO-SUGGEST TO 10 RESULTS
@@ -3095,9 +3129,10 @@ class user {
 		//
 		// SEND/RETURN WEB SERVICES NEW COMMENT INSERT STATUS REQUEST
 		#return self::$soapManager->returnContent(self::$methodName,self::$params);
-		#error_log("user.inc.php (2941) *** ABOUT TO SEND SOAP REQUEST ***");
+		//error_log("/crnrstn/ user.inc.php (3098) *** ABOUT TO SEND SOAP REQUEST ***");
 		$tmp = self::$soapManager->returnContent(self::$methodName,self::$params);
-		#error_log("/crnrstn/ user.inc.php (2943) value returned is :: ".$tmp);
+		//error_log("/crnrstn/ user.inc.php (3100) value returned is :: ".$tmp);
+		
 		return $tmp;
 	}
 	
@@ -3120,6 +3155,37 @@ class user {
 		
 	}
 	
+	public function logActivity($contentType,$contentID){
+//		if(!isset($oLogger)){
+//				$oLogger = new crnrstn_logging();
+//			}
+//		
+//		$oLogger->captureNotice('test of email trigger->logActivity()', LOG_NOTICE, 'lookin good!');
+		
+		
+		//
+		// INITIALIZE PARAMS FOR SOAP OBJECT REQUEST
+		self::$params = array('oNewActivityLog' =>
+			array('ACTIVITY_TYPE' => 'BROWSER_REQUEST', 
+			'ACTIVITY_NAME' => 'PAGEVIEW_'.strtoupper($contentType),
+			'PHPSESSION_ID' => session_id(),
+			'ACTIVITY_CONTENTID' => $contentID,
+			'SCRIPT_NAME' => $_SERVER['SCRIPT_NAME'],
+			'HTTP_USER_AGENT' => $_SERVER['HTTP_USER_AGENT'],
+			'HTTP_REFERER' => $_SERVER['HTTP_REFERER'],
+			'HTTP_HEADERS' => self::$oUserEnvironment->oHTTP_MGR->getHeaders(),
+			'REQUEST_METHOD' => $_SERVER['REQUEST_METHOD'],
+			'REMOTE_ADDR' => $_SERVER['REMOTE_ADDR']
+			)
+		);
+
+		self::$methodName = 'logActivity';
+		
+		//
+		// SEND/RETURN WEB SERVICES NEW COMMENT INSERT STATUS REQUEST
+		return self::$soapManager->returnContent(self::$methodName,self::$params);
+		
+	}
 	
 	private function activateAccount(){
 		//
@@ -3242,6 +3308,7 @@ class user {
 		
 		//
 		// SEND/RETURN WEB SERVICES NEW COMMENT INSERT STATUS REQUEST
+		//error_log("crnrstn user.inc.php (3251) calling SOAP...".self::$methodName);
 		return self::$soapManager->returnContent(self::$methodName,self::$params);
 		
 	}
@@ -3384,6 +3451,7 @@ class user {
 			'PAGE_ELEMENT_URI' => self::$frm_input_element_uri,
 			'USER_ISUNIQUE' => self::$frm_input_comment_isunique,
 			'NOTE_ELEM_SEARCH' => $this->search_FillerSanitize(self::$frm_input_comment_elem_s),
+			'NOTE_SEARCH' => $this->search_FillerSanitize(self::$frm_input_comment_raw),
 			'NOTE_ELEM_TT' => self::$frm_input_comment_elem_tt,
 			'NOTE_BACKLOG' => self::$frm_input_comment_backLogCode,
 			'PUBLISH_ME' => self::$frm_input_comment_publishme,
@@ -3415,6 +3483,8 @@ class user {
 			'EXTERNAL_URI_FORMATTED' => $this->getUserParam('EXTERNAL_URI_FORMATTED')
 		);
 		
+		
+		//error_log("crnrstn user (3421) self::frm_input_comment_isunique->".self::$frm_input_comment_isunique);
 		self::$params = array('oCommentSubmission' =>
 			array('USER' => $tmp_user,
 			'METHODID_SOURCE' => self::$frm_input_mid,
@@ -3427,6 +3497,7 @@ class user {
 			'PAGE_ELEMENT_URI' => self::$frm_input_element_uri,
 			'USER_ISUNIQUE' => self::$frm_input_comment_isunique,
 			'NOTE_ELEM_SEARCH' => $this->search_FillerSanitize(self::$frm_input_comment_elem_s),
+			'NOTE_SEARCH' => $this->search_FillerSanitize(self::$frm_input_comment_raw),
 			'NOTE_ELEM_TT' => self::$frm_input_comment_elem_tt,
 			'NOTE_BACKLOG' => self::$frm_input_comment_backLogCode,
 			'PUBLISH_ME' => self::$frm_input_comment_publishme,
@@ -3608,6 +3679,9 @@ class user {
 		//
 		// PREPARE MESSAGING
 		switch($statusSource){
+			case 'email_unsub':
+				$tmp_msg_ARRAY[$statusSource] = array('success'=>'Success :: Your email has been unsubscribed from all future system notices. Thanks!','error'=>'Error :: Oops...there was an error processing your email address.<br>Please try again later.');
+			break;
 			case 'post_feedback':
 				$tmp_msg_ARRAY[$statusSource] = array('success'=>'Success :: Your feedback has been received. Thanks!','error'=>'Error :: Oops...there was an error processing your feedback.<br>Please try again later.');
 			break;
@@ -3679,7 +3753,63 @@ class user {
 		
 	}
 	
-	private function clearDblBR($str){
+	//
+	// METHOD SOURCE :: Stack Overflow ::  https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
+	// Contributor :: https://stackoverflow.com/users/1698153/scott
+	public function generateNewKey($len=32){
+		$token = "";
+		$codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		$codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
+		$codeAlphabet.= "0123456789";
+		$max = strlen($codeAlphabet); // edited
+		
+		
+		if(function_exists('random_int')){
+			for ($i=0; $i < $len; $i++){
+				$token .= $codeAlphabet[random_int(0, $max-1)];
+			}
+		}else{
+			for ($i=0; $i < $len; $i++) {
+				$token .= $codeAlphabet[crypto_rand_secure(0, $max-1)];
+			}
+		}
+		
+		return $token;
+		
+	}
+	
+	//
+	// METHOD SOURCE :: Stack Overflow :: https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
+	// Contributor :: https://stackoverflow.com/users/4895359/yumoji
+	private function crypto_rand_secure($min, $max){
+		$range = $max - $min;
+		if ($range < 1) return $min; // not so random...
+		$log = ceil(log($range, 2));
+		$bytes = (int) ($log / 8) + 1; // length in bytes
+		$bits = (int) $log + 1; // length in bits
+		$filter = (int) (1 << $bits) - 1; // set all lower bits to 1
+		do {
+			$rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($bytes)));
+			$rnd = $rnd & $filter; // discard irrelevant bits
+		} while ($rnd > $range);
+		return $min + $rnd;
+	}
+
+    //
+    // SOURCE :: https://stackoverflow.com/questions/5100189/use-php-to-check-if-page-was-accessed-with-ssl
+    // AUTHOR :: https://stackoverflow.com/users/887067/saeven
+    public function isSSL()
+    {
+        if( !empty( $_SERVER['HTTPS'] ) && ($_SERVER['HTTPS'] != 'off') )
+            return true;
+
+        if( !empty( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' )
+            return true;
+
+        return false;
+    }
+
+    private function clearDblBR($str){
 		return str_replace("<br /><br />", "<br />", $str);
 	}
 	

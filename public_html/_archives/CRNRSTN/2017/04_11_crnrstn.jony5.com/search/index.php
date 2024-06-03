@@ -3,40 +3,42 @@
 // J5
 // Code is Poetry */
 require('_crnrstn.root.inc.php');
-require($ROOT.'_crnrstn.config.inc.php');
+require($CRNRSTN_ROOT.'_crnrstn.config.inc.php');
 require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/fh/session.search.inc.php');
 
 $tmp_dataMode = explode('|',$oUSER->getEnvParam('DATA_MODE'));
 if($tmp_dataMode[0]=='SOAP'){
 	//
 	// RETRIEVE NAVIGATION CONTENT (SOAP)
-	$oUSER->contentOutput_ARRAY[1] = $oUSER->navigationRetrieve();
+	//$oUSER->contentOutput_ARRAY[2] = $oUSER->navigationRetrieve();
+	$oUSER->navigationRetrieve(); 
 }
 
 //
 // GET SEARCH RESULTS
-if($oENV->oHTTP_MGR->extractData($_GET, 's')!='' && strlen($oENV->oHTTP_MGR->extractData($_GET, 's'))>1){
+
+if($oCRNRSTN_ENV->oHTTP_MGR->extractData($_GET, 's')!='' && strlen($oCRNRSTN_ENV->oHTTP_MGR->extractData($_GET, 's'))>1){
 	$starttime = microtime(true);
-	$oUSER->contentOutput_ARRAY[1] = $oUSER->getSearchResultsFull($oENV->oHTTP_MGR->extractData($_GET, 's'));
+	$oUSER->contentOutput_ARRAY[2] = $oUSER->getSearchResultsFull($oCRNRSTN_ENV->oHTTP_MGR->extractData($_GET, 's'));
 	$endtime = microtime(true);
 	$timediff = $endtime - $starttime;
 	
-	$s_results_count = (sizeof($oUSER->contentOutput_ARRAY[1]['SEARCH_RESPONSE'])+sizeof($oUSER->contentOutput_ARRAY[1]['UGC_RESPONSE']));
-	$pos = strpos($oENV->oHTTP_MGR->extractData($_GET, 's'), '"');
+	$s_results_count = (sizeof($oUSER->contentOutput_ARRAY[2]['SEARCH_RESPONSE'])+sizeof($oUSER->contentOutput_ARRAY[2]['UGC_RESPONSE']));
+	$pos = strpos($oCRNRSTN_ENV->oHTTP_MGR->extractData($_GET, 's'), '"');
 	if($pos === false){
-		$tmp_audit = explode(' ',$oENV->oHTTP_MGR->extractData($_GET, 's'));
+		$tmp_audit = explode(' ',$oCRNRSTN_ENV->oHTTP_MGR->extractData($_GET, 's'));
 		for($i=0;$i<sizeof($tmp_audit);$i++){
 			$s_results_w_audit .= '<a href="'.$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'search/?s='.$tmp_audit[$i].'" target="_self">'.$tmp_audit[$i].'</a>&nbsp;';
 		}
 	}else{
-		$s_results_w_audit = '<a href="'.$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'search/?s='.$oENV->oHTTP_MGR->extractData($_GET, 's').'" target="_self">'.$oENV->oHTTP_MGR->extractData($_GET, 's').'</a>&nbsp;';
+		$s_results_w_audit = '<a href="'.$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'search/?s='.$oCRNRSTN_ENV->oHTTP_MGR->extractData($_GET, 's').'" target="_self">'.$oCRNRSTN_ENV->oHTTP_MGR->extractData($_GET, 's').'</a>&nbsp;';
 	}
 }
 
 $page_title = "SEARCH";
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!doctype html>
+<html lang="en">
 <head>
 <?php
 require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/head/head.inc.php');
@@ -72,7 +74,7 @@ require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_
 			</div>
 			<div id="doc_content_results_wrapper">
 				<div id="doc_content_results">
-					<!--<h1 id="content_results_title"><?php echo $oUSER->contentOutput_ARRAY[1]['NAME'].$classDesignation; ?></h1>-->
+					<!--<h1 id="content_results_title"><?php echo $oUSER->contentOutput_ARRAY[2]['NAME'].$classDesignation; ?></h1>-->
 					<div class="cb"></div>
 					<div id="content_results_body">
 						<div id="s_results_filter_wrapper">
@@ -102,7 +104,7 @@ require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_
 						?>	
 						
 						<div class="cb_15"></div>
-						<div class="title_editable_section"><h3 class="content_results_subtitle">Results shown for :: <?php echo $oENV->oHTTP_MGR->extractData($_GET, 's') ?></h3></div>
+						<div class="title_editable_section"><h3 class="content_results_subtitle">Results shown for :: <?php echo $oCRNRSTN_ENV->oHTTP_MGR->extractData($_GET, 's') ?></h3></div>
 						<div class="cb"></div>
 						<div class="content_results_subtitle_divider"></div>
 						<div id="s_results_report_wrapper">
@@ -113,14 +115,14 @@ require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_
 						<p>
 						<?php 
 						$tmp_resultCnt=0;
-						for($i=0;$i<sizeof($oUSER->contentOutput_ARRAY[1]['SEARCH_RESPONSE']);$i++){
-							if(($tmp_resultCnt<($oUSER->contentOutput_ARRAY[1]['INDEXSIZE'])) && 
-							($i>=($oUSER->contentOutput_ARRAY[1]['INDEXSIZE']*($oUSER->contentOutput_ARRAY[1]['PAGEINDEX']-1)))){
+						for($i=0;$i<sizeof($oUSER->contentOutput_ARRAY[2]['SEARCH_RESPONSE']);$i++){
+							if(($tmp_resultCnt<($oUSER->contentOutput_ARRAY[2]['INDEXSIZE'])) && 
+							($i>=($oUSER->contentOutput_ARRAY[2]['INDEXSIZE']*($oUSER->contentOutput_ARRAY[2]['PAGEINDEX']-1)))){
 							
-							$tmp_desc = $oUSER->searchDesc_anchorFix(html_entity_decode($oUSER->contentOutput_ARRAY[1]['SEARCH_RESPONSE'][$i]['RESULT_DESCRIPTION']));
+							$tmp_desc = $oUSER->searchDesc_anchorFix(html_entity_decode($oUSER->contentOutput_ARRAY[2]['SEARCH_RESPONSE'][$i]['RESULT_DESCRIPTION']));
 						?>
 						<div class="s_resultfull_wrapper">
-							<div class="s_resultfull_title"><?php echo $oUSER->contentOutput_ARRAY[1]['SEARCH_RESPONSE'][$i]['RESULT_TITLE']; ?> | <a href="<?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').$oUSER->contentOutput_ARRAY[1]['SEARCH_RESPONSE'][$i]['RESULT_URI']; ?>" target="_self">Load page.</a>&nbsp;<a href="#" target="_self" onClick="$('s_result_<?php echo $i; ?>').morph('height:100%;', {duration: 0.5}); return false;">View more.</a>&nbsp;<a href="#" target="_self" onClick="$('s_result_<?php echo $i; ?>').morph('height:30px;', {duration: 0.5}); return false;">Show less.</a></div>
+							<div class="s_resultfull_title"><?php echo $oUSER->contentOutput_ARRAY[2]['SEARCH_RESPONSE'][$i]['RESULT_TITLE']; ?> | <a href="<?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').$oUSER->contentOutput_ARRAY[2]['SEARCH_RESPONSE'][$i]['RESULT_URI']; ?>" target="_self">Load page.</a>&nbsp;<a href="#" target="_self" onClick="$('s_result_<?php echo $i; ?>').morph('height:100%;', {duration: 0.5}); return false;">View more.</a>&nbsp;<a href="#" target="_self" onClick="$('s_result_<?php echo $i; ?>').morph('height:30px;', {duration: 0.5}); return false;">Show less.</a></div>
 							<div id="s_result_<?php echo $i; ?>" class="s_resultfull_description"><?php echo $tmp_desc; ?></div>
 						</div>
 						<?php
@@ -128,16 +130,16 @@ require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_
 							}
 						}
 						$tmp_curr_ugc = 0;
-						for($ii=$i;$ii<sizeof($oUSER->contentOutput_ARRAY[1]['UGC_RESPONSE'])+$i;$ii++){
-							if(($tmp_resultCnt<($oUSER->contentOutput_ARRAY[1]['INDEXSIZE'])) && ($ii>=($oUSER->contentOutput_ARRAY[1]['INDEXSIZE']*($oUSER->contentOutput_ARRAY[1]['PAGEINDEX']-1)))){
-							if($oUSER->contentOutput_ARRAY[1]['UGC_RESPONSE'][$tmp_curr_ugc]['CLASSID_SOURCE']==''){
-								$tmp_eid = $oUSER->contentOutput_ARRAY[1]['UGC_RESPONSE'][$tmp_curr_ugc]['METHODID_SOURCE'];
+						for($ii=$i;$ii<sizeof($oUSER->contentOutput_ARRAY[2]['UGC_RESPONSE'])+$i;$ii++){
+							if(($tmp_resultCnt<($oUSER->contentOutput_ARRAY[2]['INDEXSIZE'])) && ($ii>=($oUSER->contentOutput_ARRAY[2]['INDEXSIZE']*($oUSER->contentOutput_ARRAY[2]['PAGEINDEX']-1)))){
+							if($oUSER->contentOutput_ARRAY[2]['UGC_RESPONSE'][$tmp_curr_ugc]['CLASSID_SOURCE']==''){
+								$tmp_eid = $oUSER->contentOutput_ARRAY[2]['UGC_RESPONSE'][$tmp_curr_ugc]['METHODID_SOURCE'];
 							}else{
-								$tmp_eid = $oUSER->contentOutput_ARRAY[1]['UGC_RESPONSE'][$tmp_curr_ugc]['CLASSID_SOURCE'];
+								$tmp_eid = $oUSER->contentOutput_ARRAY[2]['UGC_RESPONSE'][$tmp_curr_ugc]['CLASSID_SOURCE'];
 							}
 						?>
 						<div class="s_resultfull_wrapper">
-							<div class="s_resultfull_title">User Note :: <?php echo $oUSER->contentOutput_ARRAY[1]['UGC_RESPONSE'][$tmp_curr_ugc]['SUBJECT']; ?>&nbsp;<i style="font-weight:normal;">(ugc)</i></div>
+							<div class="s_resultfull_title">User Note :: <?php echo $oUSER->contentOutput_ARRAY[2]['UGC_RESPONSE'][$tmp_curr_ugc]['SUBJECT']; ?>&nbsp;<i style="font-weight:normal;">(ugc)</i></div>
 							<div class="cb_10"></div>
 							<div id="s_result_<?php echo $tmp_curr_ugc; ?>" >
 							
@@ -147,7 +149,12 @@ require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_
 								<div class="cb"></div>
 							</div>
 							<script type="text/javascript" language="javascript">
-							loadUGCSearch('<?php echo $oUSER->contentOutput_ARRAY[1]['UGC_RESPONSE'][$tmp_curr_ugc]['NOTEID_SOURCE']; ?>','<?php echo $tmp_eid; ?>', 's_result_<?php echo $tmp_curr_ugc; ?>');
+							//alert("NOTEID_SOURCE:<?php echo $oUSER->contentOutput_ARRAY[2]['UGC_RESPONSE'][$tmp_curr_ugc]['NOTEID_SOURCE']; ?>"+"tmp_eid:<?php echo $tmp_eid; ?>"+"tmp_curr_ugc:<?php echo $tmp_curr_ugc; ?>");
+							//loadUGCSearch('<?php echo $oUSER->contentOutput_ARRAY[2]['UGC_RESPONSE'][$tmp_curr_ugc]['NOTEID_SOURCE']; ?>','<?php echo $tmp_eid; ?>', 's_result_<?php echo $tmp_curr_ugc; ?>');
+							<?php
+							$tmp_ugc_srch_rslt_ajax .= "
+							loadUGCSearch('".$oUSER->contentOutput_ARRAY[2]['UGC_RESPONSE'][$tmp_curr_ugc]['NOTEID_SOURCE']."','".$tmp_eid."', 's_result_".$tmp_curr_ugc."');";
+							?>
 							</script>	
 							</div>
 						</div>

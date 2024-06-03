@@ -1,4 +1,5 @@
-<div id="frm_comment" class="form_shell" style="display:none;">
+<!--<div id="frm_comment" class="form_shell" style="display:none;">-->
+<div id="frm_comment" class="form_shell">
 							<form action="#" method="post" name="post_comment" id="post_comment"  enctype="multipart/form-data" >
 							<div class="main_form_wrapper">
 								<div class="form_red_border">
@@ -109,5 +110,8 @@
 								<div id="comment_max_char_cnt">8900</div>
 							</div>
 							</form>
-							
+							<script language="javascript" type="application/javascript">
+							//prepCommentSubmission();
+							//alert("new comment js running");
+							</script>
 						</div>

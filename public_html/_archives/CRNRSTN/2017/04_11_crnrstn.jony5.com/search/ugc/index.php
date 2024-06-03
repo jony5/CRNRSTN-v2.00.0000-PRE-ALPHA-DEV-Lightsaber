@@ -3,12 +3,12 @@
 // J5
 // Code is Poetry */
 require('_crnrstn.root.inc.php');
-require($ROOT.'_crnrstn.config.inc.php');
+require($CRNRSTN_ROOT.'_crnrstn.config.inc.php');
 
 //
 // RETURN SEARCH RESULTS FOR AUTO-SUGGEST
-if($oENV->oHTTP_MGR->extractData($_GET, 'c')!='' && $oENV->oHTTP_MGR->extractData($_GET, 'e')!=''){
-	$oUSER->getUserCommentbyID($oENV->oHTTP_MGR->extractData($_GET, 'c'),$oENV->oHTTP_MGR->extractData($_GET, 'e'));
+if($oCRNRSTN_ENV->oHTTP_MGR->extractData($_GET, 'c')!='' && $oCRNRSTN_ENV->oHTTP_MGR->extractData($_GET, 'e')!=''){
+	$oUSER->getUserCommentbyID($oCRNRSTN_ENV->oHTTP_MGR->extractData($_GET, 'c'),$oCRNRSTN_ENV->oHTTP_MGR->extractData($_GET, 'e'));
 }
 
 ?>

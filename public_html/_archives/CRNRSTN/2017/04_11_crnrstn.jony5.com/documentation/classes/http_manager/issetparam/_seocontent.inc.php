@@ -1,9 +1,3 @@
-<div class="hidden"><h1>issetParam()</h1>
-		<p>When checking on the overall status of HTTP data, the <a href="../../../classes/http_manager/issethttp/" target="_self">issetHTTP()</a> method of the <a href="../../../classes/http_manager/" target="_self">http_manager</a> :: class will return TRUE or FALSE depending on the existence of data in the request method type. This method accepts only a single parameter...the $_GET or $_POST super global. <br />
-<br />
-For a more granular approach to determining the availability of $_POST or $_GET data, the <a href="../../../classes/http_manager/issetparam/" target="_self">issetParam()</a> method of the <a href="../../../classes/http_manager/" target="_self">http_manager</a> :: class will return TRUE or FALSE depending on the availability of data within the specified HTTP request method type ($_GET or $_POST).<br />
-<br />
-The <a href="../../../classes/http_manager/issetparam/" target="_self">issetParam()</a> method...which is being documented here..., requires one additional parameter...the $name of the variable that is being stored in the super global.</p>
-		<p>Version: </p>
-		<p>Method Definition: issetParam($superGlobal, $param)</p>
-		<p>Invoking class: http_manager</p><h2>Technical Specifications:<h2><p>It is recommended that you upgrade to the latest version of PHP to take advantage of the latest gains in security and processing efficiency.</p><p>Currently tested on an ubuntu 4.2 server running PHP Version 5.2.6 and Apache 2.2.11</p><h2>Parameters:</h2><h3>$param</h3><p>The name of the variable within the specified HTTP request method that needs to have its data extracted from the respective super global.</p><h3>$superGlobal</h3><p>The $_POST or $_GET super global of the HTTP request method containing the data that is to be extracted.</p><p>Last upated: 2017-04-11 02:27:21</p></div>
+<div class="hidden">
+<!-- SEO CONTENT HERE -->
+</div>

@@ -74,30 +74,38 @@ crnrstn_xhandler.prototype = {
 				var cleanURI = cleanURI[0].split("#");
 				var HTTP_ROOT = vars[0]+'//'+vars[2]+'/';
 				
-				if(cleanURI[0].split("/account/").length>1 || cleanURI[0].split("/admin/").length>1){
-					this.closeLightbox_Preloader();
+				if($("IS_ERR_PG")){
+					if($("IS_ERR_PG").innerHTML!=""){
+						this.closeLightbox_Preloader();
+					}
 				}else{
 				
-					switch(cleanURI[0]){
-						case HTTP_ROOT+"crnrstn/licensing/":
-						case HTTP_ROOT+"crnrstn/search/":
-						case HTTP_ROOT+"crnrstn/download/":
-						case HTTP_ROOT+"crnrstn/account/":
-						case HTTP_ROOT+"crnrstn/about/":
-						case HTTP_ROOT+"crnrstn/":
-						case HTTP_ROOT+"licensing/":
-						case HTTP_ROOT+"search/":
-						case HTTP_ROOT+"download/":
-						case HTTP_ROOT+"account/":
-						case HTTP_ROOT+"about/":
-						case HTTP_ROOT:
-							this.closeLightbox_Preloader();	
-						break;
-						default:
-							//
-							// PROCESS CONTENT XML
-							this.init_ContentXmlParse(this);
-						break;
+					if(cleanURI[0].split("/account/").length>1 || cleanURI[0].split("/admin/").length>1){
+						this.closeLightbox_Preloader();
+					}else{
+					
+						switch(cleanURI[0]){
+							case HTTP_ROOT+"crnrstn/licensing/":
+							case HTTP_ROOT+"crnrstn/search/":
+							case HTTP_ROOT+"crnrstn/download/":
+							case HTTP_ROOT+"crnrstn/account/":
+							case HTTP_ROOT+"crnrstn/about/":
+							case HTTP_ROOT+"crnrstn/":
+							case HTTP_ROOT+"licensing/":
+							case HTTP_ROOT+"search/":
+							case HTTP_ROOT+"download/":
+							case HTTP_ROOT+"donate/":
+							case HTTP_ROOT+"account/":
+							case HTTP_ROOT+"about/":
+							case HTTP_ROOT:
+								this.closeLightbox_Preloader();	
+							break;
+							default:
+								//
+								// PROCESS CONTENT XML
+								this.init_ContentXmlParse(this);
+							break;
+						}
 					}
 				}
 			}
@@ -137,6 +145,7 @@ crnrstn_xhandler.prototype = {
 						case HTTP_ROOT+"licensing/":
 						case HTTP_ROOT+"search/":
 						case HTTP_ROOT+"download/":
+						case HTTP_ROOT+"donate/":
 						case HTTP_ROOT+"account/":
 						case HTTP_ROOT+"about/":
 						case HTTP_ROOT:
@@ -160,8 +169,9 @@ crnrstn_xhandler.prototype = {
 		var query = window.location.href; 
 		var vars = query.split("/");
 		var HTTP_ROOT = vars[0]+'//'+vars[2]+'/';
-		//var uri = HTTP_ROOT + 'crnrstn/common/xml/nav/crnrstn_nav.xml';
-		var uri = HTTP_ROOT + 'common/xml/nav/crnrstn_nav.xml';
+		var HTTP_ROOT_DIR = $("http_root_dir").innerHTML;
+		var uri = HTTP_ROOT + HTTP_ROOT_DIR + 'common/xml/nav/crnrstn_nav.xml';
+		//var uri = HTTP_ROOT + 'common/xml/nav/crnrstn_nav.xml';
 		var params = "";
 		var myAjax_nav = new Ajax.Request(
 			uri, 
@@ -176,9 +186,10 @@ crnrstn_xhandler.prototype = {
 		var query = window.location.href; 
 		var vars = query.split("/"); 
 		var HTTP_ROOT = vars[0]+'//'+vars[2]+'/';
+		var HTTP_ROOT_DIR = $("http_root_dir").innerHTML;
 		var contentid = $("contentid").innerHTML;
 		//var uri = HTTP_ROOT + 'crnrstn/common/xml/content/crnrstn_'+contentid+'.xml';
-		var uri = HTTP_ROOT + 'common/xml/content/crnrstn_'+contentid+'.xml';
+		var uri = HTTP_ROOT + HTTP_ROOT_DIR +'common/xml/content/crnrstn_'+contentid+'.xml';
 		var params = "";
 		var myAjax_nav = new Ajax.Request(
 			uri, 
@@ -194,6 +205,7 @@ crnrstn_xhandler.prototype = {
 		var vars = query.split("/"); 
 		var vars_PI = query.split("pi="); 
 		var HTTP_ROOT = vars[0]+'//'+vars[2]+'/';
+		var HTTP_ROOT_DIR = $("http_root_dir").innerHTML;
 		var contentid = $("contentid").innerHTML;
 		var pageIndex = vars_PI[1];
 		
@@ -202,7 +214,7 @@ crnrstn_xhandler.prototype = {
 		}
 		//alert("init_CommentsXmlParse for contentid: crnrstn/common/xml/ugcnotes/crnrstn_"+contentid+"_"+pageIndex+".xml");
 		//var uri = HTTP_ROOT + 'crnrstn/common/xml/ugcnotes/crnrstn_'+contentid+'_'+pageIndex+'.xml';
-		var uri = HTTP_ROOT + 'common/xml/ugcnotes/crnrstn_'+contentid+'_'+pageIndex+'.xml';
+		var uri = HTTP_ROOT + HTTP_ROOT_DIR + 'common/xml/ugcnotes/crnrstn_'+contentid+'_'+pageIndex+'.xml';
 		var params = "";
 		var myAjax_nav = new Ajax.Request(
 			uri, 
@@ -385,6 +397,9 @@ crnrstn_xhandler.prototype = {
 		var query = window.location.href; 
 		var vars = query.split("/");
 		HTTP_ROOT = vars[0]+'//'+vars[2]+'/';
+		var HTTP_ROOT_DIR = $("http_root_dir").innerHTML;
+		HTTP_ROOT = HTTP_ROOT + HTTP_ROOT_DIR;
+		
 		
 		tmp_str = '';
 		//alert(xhandle.oCommentUNDisplay_ARRAY.length);
@@ -584,6 +599,8 @@ crnrstn_xhandler.prototype = {
 			query_encoded = encodeURIComponent(query_encoded);
 			var vars = query.split("/"); 
 			var HTTP_ROOT = vars[0]+'//'+vars[2]+'/';
+			var HTTP_ROOT_DIR = $("http_root_dir").innerHTML;
+			HTTP_ROOT = HTTP_ROOT + HTTP_ROOT_DIR;
 			var params = '';
 			
 			if(tmp_uid>399){
@@ -591,7 +608,7 @@ crnrstn_xhandler.prototype = {
 				exampleShell.setAttribute('id','xhandle_contentexamplesmgmt_'+i);
 				if($("xhandle_contentexamples")){
 					$("xhandle_contentexamples").appendChild(exampleShell);
-					$('xhandle_contentexamplesmgmt_'+i).innerHTML = '<div class="editlnk_editable_section" style="float:right;" onClick="mycrnrstn_fhandler.initAdminForm(\'edit_example\',\'edit_example\',\''+HTTP_ROOT+'crnrstn/admin/mgmt/_frms/examples_edit.php?'+xhandle.oContentType+'='+$("contentid").innerHTML+'&e='+tmp_exampleID+'&uri='+query_encoded+'\'); return false;">edit example</div><div class="cb"></div>';
+					$('xhandle_contentexamplesmgmt_'+i).innerHTML = '<div class="editlnk_editable_section" style="float:right;" onClick="mycrnrstn_fhandler.initAdminForm(\'edit_example\',\'edit_example\',\''+HTTP_ROOT+'admin/mgmt/_frms/examples_edit.php?'+xhandle.oContentType+'='+$("contentid").innerHTML+'&e='+tmp_exampleID+'&uri='+query_encoded+'\'); return false;">edit example</div><div class="cb"></div>';
 				}
 			}
 			
@@ -718,6 +735,8 @@ crnrstn_xhandler.prototype = {
 		$('admin_overlay').style.backgroundColor = '#FFF';
 		$('admin_form_shell').style.zIndex = 11;
 		$('admin_form_shell').style.backgroundColor = '#FFF';
+
+		var tmp_data = $('admin_frm_loading_shell').innerHTML;
 		
 		new Effect.Move($('admin_form_shell'), { x: 320, y: 190, duration: 0.0, afterFinish: function(){$('admin_form_shell').innerHTML = $('admin_frm_loading_shell').innerHTML;}});
 		
@@ -744,7 +763,9 @@ crnrstn_xhandler.prototype = {
 	
 }
 
-
-function initxmlHandler() { mycrnrstn_xhandler = new crnrstn_xhandler(); }
-Event.observe(window, 'load', initxmlHandler, false);
+document.observe("dom:loaded", function() {
+									mycrnrstn_xhandler = new crnrstn_xhandler();	
+										});
+//function initxmlHandler() { mycrnrstn_xhandler = new crnrstn_xhandler(); }
+//Event.observe(window, 'load', initxmlHandler, false);
 	

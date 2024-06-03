@@ -18,7 +18,7 @@ die();
 // INITIALIZE GLOBAL CRNRSTN DOCUMENTATION NAVIGATION
 // INITIALIZE USER WITH ENVIRONMENT CRNRSTN OBJECT
 if(!isset($oUSER)){
-	$oUSER = new user($oENV);
+	$oUSER = new user($oCRNRSTN_ENV);
 }
 
 //
@@ -27,10 +27,10 @@ if(!isset($oUSER)){
 
 // 
 // PROCESS POST METHOD REQUEST TYPE
-if($oENV->oHTTP_MGR->issetHTTP($_POST)){
+if($oCRNRSTN_ENV->oHTTP_MGR->issetHTTP($_POST)){
 	//
 	// WHAT DO WE HAVE
-	switch($oENV->oHTTP_MGR->extractData($_POST,'postid')){
+	switch($oCRNRSTN_ENV->oHTTP_MGR->extractData($_POST,'postid')){
 		case 'login_main':				// ANONYMOUS OK
 
 			//
@@ -42,7 +42,7 @@ if($oENV->oHTTP_MGR->issetHTTP($_POST)){
 			//
 			// INITIALIZE USER WITH ENVIRONMENT CRNRSTN OBJECT
 			if(!isset($oUSER)){
-				$oUSER = new user($oENV);
+				$oUSER = new user($oCRNRSTN_ENV);
 			}
 			
 			//
@@ -67,7 +67,7 @@ if($oENV->oHTTP_MGR->issetHTTP($_POST)){
 			//
 			// INITIALIZE USER WITH ENVIRONMENT CRNRSTN OBJECT
 			if(!isset($oUSER)){
-				$oUSER = new user($oENV);
+				$oUSER = new user($oCRNRSTN_ENV);
 			}
 			
 			//
@@ -88,7 +88,7 @@ if($oENV->oHTTP_MGR->issetHTTP($_POST)){
 			//
 			// INITIALIZE USER WITH ENVIRONMENT CRNRSTN OBJECT
 			if(!isset($oUSER)){
-				$oUSER = new user($oENV);
+				$oUSER = new user($oCRNRSTN_ENV);
 			}
 			
 			//
@@ -121,12 +121,12 @@ if($oENV->oHTTP_MGR->issetHTTP($_POST)){
 				//
 				// INITIALIZE USER WITH ENVIRONMENT CRNRSTN OBJECT
 				if(!isset($oUSER)){
-					$oUSER = new user($oENV);
+					$oUSER = new user($oCRNRSTN_ENV);
 				}
 			
 				//
 				// PROCESS NEW ACCOUNT CREATION ATTEMPT
-				if($oUSER->updateContent_CRNRSTN($oENV->oHTTP_MGR->extractData($_POST,'postid'))){
+				if($oUSER->updateContent_CRNRSTN($oCRNRSTN_ENV->oHTTP_MGR->extractData($_POST,'postid'))){
 					//
 					// UPDATE SESSION SUCCESS FOR PRESENTATION TO END USER
 				
@@ -144,13 +144,13 @@ if($oENV->oHTTP_MGR->issetHTTP($_POST)){
 
 //
 // PROCESS GET METHOD REQUEST TYPE
-if($oENV->oHTTP_MGR->issetHTTP($_GET)){
+if($oCRNRSTN_ENV->oHTTP_MGR->issetHTTP($_GET)){
 	$contentOutput_ARRAY = array();
 	
 	//
 	// INITIALIZE USER WITH ENVIRONMENT CRNRSTN OBJECT
 	if(!isset($oUSER)){
-		$oUSER = new user($oENV);
+		$oUSER = new user($oCRNRSTN_ENV);
 	}
 	
 	//
@@ -163,25 +163,25 @@ if($oENV->oHTTP_MGR->issetHTTP($_GET)){
 try{
 	//
 	// GRAB DATABASE CONNECTION TO LOG ACTIVITY **[POSSIBLE ENHANCEMENT]::BREAK CREATE A database.inc.php FOR THE SITE**
-	$mysqli = $oENV->oMYSQLI_CONN_MGR->returnConnection('localhost', 'crnrstn_stage');
+	$mysqli = $oCRNRSTN_ENV->oMYSQLI_CONN_MGR->returnConnection('localhost', 'crnrstn_stage');
 	
 	$query="INSERT INTO `log_activity` (`ACTIVITY_TYPE` , `ACTIVITY_NAME`, `SCRIPT_NAME`, `HTTP_USER_AGENT`, `HTTP_REFERER`, `HTTP_HEADERS`,
 	 `REQUEST_METHOD`, `REMOTE_ADDR`) VALUES ('BROWSER_REQUEST',
-	'PAGEVIEW','".$_SERVER['SCRIPT_NAME']."','".$_SERVER['HTTP_USER_AGENT']."','".$_SERVER['HTTP_REFERER']."','".addslashes($oENV->oHTTP_MGR->getHeaders())."','".$_SERVER['REQUEST_METHOD']."','".$_SERVER['REMOTE_ADDR']."');";
+	'PAGEVIEW','".$_SERVER['SCRIPT_NAME']."','".$_SERVER['HTTP_USER_AGENT']."','".$_SERVER['HTTP_REFERER']."','".addslashes($oCRNRSTN_ENV->oHTTP_MGR->getHeaders())."','".$_SERVER['REQUEST_METHOD']."','".$_SERVER['REMOTE_ADDR']."');";
 	
-	$result = $oENV->oMYSQLI_CONN_MGR->processQuery($mysqli, $query);
+	$result = $oCRNRSTN_ENV->oMYSQLI_CONN_MGR->processQuery($mysqli, $query);
  
-	$oENV->oMYSQLI_CONN_MGR->closeConnection($mysqli);
+	$oCRNRSTN_ENV->oMYSQLI_CONN_MGR->closeConnection($mysqli);
 	
 } catch( Exception $e ) {
 	//
 	// LOG ERROR FOR DB ACTIVITY LOGGING
-	$oENV->oLOGGER->captureNotice('CRNRSTN error notification :: mysqli query failed', LOG_NOTICE, $e->getMessage());
+	$oCRNRSTN_ENV->oLOGGER->captureNotice('CRNRSTN error notification :: mysqli query failed', LOG_NOTICE, $e->getMessage());
 }
 
 //
 // NAVIGATION STATE MANAGEMENT
-$ns = $oENV->oHTTP_MGR->extractData($_GET, 'ns');
+$ns = $oCRNRSTN_ENV->oHTTP_MGR->extractData($_GET, 'ns');
 $ns_updated = '';
 
 //
@@ -221,22 +221,22 @@ $ns_updated = ltrim($ns_updated, ",");
 if($ns_updated!=""){
 	//
 	// INITIALIZATION OF SESSION NAV STATE PARAMETER
-	$oENV->oSESSION_MGR->setSessionParam('NS', $ns_updated);
+	$oCRNRSTN_ENV->oSESSION_MGR->setSessionParam('NS', $ns_updated);
 	
 	//
 	// INITIALIZATION OF COOKIE NAV STATE PARAMETER
-	$oENV->oCOOKIE_MGR->addEncryptedCookie("clientNavigationState", $ns_updated, time()+60*60*24*100, '/');
+	$oCRNRSTN_ENV->oCOOKIE_MGR->addCookie("clientNavigationState", $ns_updated, time()+60*60*24*100, '/');
 	
 }else{
 	
 	//
 	// CAN WE GET NAVSTATE INITIALIZATION INFORMATION FROM COOKIE
-	$ns_updated = $oENV->oCOOKIE_MGR->getEncryptedCookie('clientNavigationState');
+	$ns_updated = $oCRNRSTN_ENV->oCOOKIE_MGR->getCookie('clientNavigationState');
 	
 	if($ns_updated!=""){
 		//
 		// INITIALIZE SESSION FROM COOKIE DATA
-		$oENV->oSESSION_MGR->setSessionParam('NS', $ns_updated);
+		$oCRNRSTN_ENV->oSESSION_MGR->setSessionParam('NS', $ns_updated);
 	}	
 }
 ?>

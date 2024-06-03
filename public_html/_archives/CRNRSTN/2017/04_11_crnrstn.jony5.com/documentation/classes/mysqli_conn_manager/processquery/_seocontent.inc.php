@@ -1,14 +1,3 @@
-<div class="hidden"><h1>processQuery()</h1>
-		<p>When sending data to or requesting data from a MySQL database, <a href="../../../classes/mysqli_conn_manager/processquery/" target="_self">processQuery()</a> receives a MySQLi database connection handle, the query and an optional result mode as parameters and processes the transaction...returning the result.<br />
-<br />
-The functionality of <a href="../../../classes/mysqli_conn_manager/processquery/" target="_self">processQuery()</a> stands directly on top of the native $mysqli->query(). For additional information about the behaviour of the $mysqli->query() method, please see the PHP.net documentation.</p>
-		<p>Version: </p>
-		<p>Method Definition: processQuery($mysqli, $query, $resultMode=NULL)</p>
-		<p>Invoking class: mysqli_conn_manager</p><h2>Technical Specifications:<h2><p>It is recommended that you upgrade to the latest version of PHP to take advantage of the latest gains in security and processing efficiency.</p><p>Currently tested on an ubuntu 4.2 server running PHP Version 5.2.6, Apache 2.2.11 and MySQL 5.0.75</p><p>For non-DML queries (not INSERT, UPDATE or DELETE), this function is similar to calling mysqli_real_query() followed by either mysqli_use_result() or mysqli_store_result().</p><p>In the case where you pass a statement to mysqli_query() that is longer than max_allowed_packet of the server, the returned error codes are different depending on whether you are using MySQL Native Driver (mysqlnd) or MySQL Client Library (libmysqlclient). The behavior is as follows:<blockquote><strong>mysqlnd on Linux</strong> returns an error code of 1153. The error message means "got a packet bigger than max_allowed_packet bytes". <strong>mysqlnd on Windows</strong> returns an error code 2006. This error message means "server has gone away". <strong>libmysqlclient on all platforms</strong> returns an error code 2006. This error message means "server has gone away".</blockquote></p><p>For data sanitization, always escape user generated content before sending to the database. Please see the documentation on PHP.net concerning $mysqli->real_escape_string() for more information.</p><h2>Parameters:</h2><h3>$resultMode</h3><p>Either the constant <strong>MYSQLI_USE_RESULT</strong> or <strong>MYSQLI_STORE_RESULT</strong> depending on the desired behaviour. By default, <strong>MYSQLI_STORE_RESULT</strong> is used.<br />
-<br />
-If you use <strong>MYSQLI_USE_RESULT</strong> all subsequent calls will return error Commands out of sync unless you call mysqli_free_result()<br />
-<br />
-With <strong>MYSQLI_ASYNC</strong> (available with mysqlnd), it is possible to perform query asynchronously. mysqli_poll() is then used to get results from such queries.</p><h3>$mysqli</h3><p>The MySQLi database connection handle that was returned by returnConnection()</p><h3>$query</h3><p>The query string.<br />
-<br />
-Data inside the query should be properly escaped.<br />
-For example:  $funkyName = $mysqli->real_escape_string($funkyName);</p><p>Last upated: 2017-04-11 02:27:21</p></div>
+<div class="hidden">
+<!-- SEO CONTENT HERE -->
+</div>

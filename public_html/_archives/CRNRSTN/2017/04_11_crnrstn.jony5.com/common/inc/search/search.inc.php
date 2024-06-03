@@ -6,7 +6,7 @@
 <div id="search_wrapper">
 							<form action="#" method="post" name="s" id="s"  enctype="multipart/form-data" >
 							<div id="search_input_wrapper" >
-								<input crnrstn_search="t" name="t" id="t" type="text" value="">
+								<input crnrstn_search="t" name="t" id="t" type="text" value="" autocomplete="off">
 								<div id="s_results_wrapper">
 									<ul id="s_results"></ul>
 								</div>

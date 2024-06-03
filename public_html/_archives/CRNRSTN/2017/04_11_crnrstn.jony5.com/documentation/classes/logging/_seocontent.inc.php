@@ -1,3 +1,3 @@
-<div class="hidden"><h1>logging</h1>
-		<p>logging</p>
-		<p>Version: 1.0.0</p><h2>Technical Specifications:</h2><p>Currently tested on an ubuntu 4.2 server running PHP Version 5.2.6 and Apache 2.2.11</p><p>It is recommended that you upgrade to the latest version of PHP to take advantage of the latest gains in security and processing efficiency.</p><h2>Methods:</h2><p><a href="http://crnrstn.jony5.com/documentation/classes/logging/capturenotice/">captureNotice()</a></p><p>Last upated: 2017-04-11 02:27:10</p></div>
+<div class="hidden">
+<!-- SEO CONTENT HERE -->
+</div>

@@ -3,14 +3,14 @@
 // J5
 // Code is Poetry */
 require('_crnrstn.root.inc.php');
-require($ROOT.'_crnrstn.config.inc.php');
+require($CRNRSTN_ROOT.'_crnrstn.config.inc.php');
 require('_elementid.inc.php');
 require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/fh/session.inc.php');
 $tmp_dataMode = explode('|',$oUSER->getEnvParam('DATA_MODE'));
 
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!doctype html>
+<html lang="en">
 <head>
 <?php
 require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/head/head.inc.php');
@@ -139,9 +139,25 @@ require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_
 						<blockquote class="method_parameter_definition"><?php echo $oUSER->contentOutput_ARRAY[1]['PARAMETERS'][$i]['DESCRIPTION']; ?></blockquote>
 						</p>
 						<?php
-						}}}
+						}}}else{
+						//
+						// IF NO PARAMS TO DEFINE...STILL NEED TO SHOW ADMIN LINK TO ADD NEW PARAMS
+						if($oUSER->getUserParam('USER_PERMISSIONS_ID')>399){
 						?>
+                       	<div class="cb_15"></div>
+						<div class="title_editable_section"><h3 class="content_results_subtitle">Method parameter definitions ::</h3></div>
+						<div class="editlnk_editable_section" onClick="mycrnrstn_fhandler.initAdminForm('method_paramdefs','method_paramdefs','<?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'admin/mgmt/_frms/method_paramdefine.php?'.$contentParam.'='.$contentID.'&uri='.urlencode($oUSER->contentOutput_ARRAY[1]['URI']); ?>'); return false;">edit</div>
+                        <div class="cb"></div>
+						<div class="content_results_subtitle_divider"></div>
+						<?php
+						}
+						}
+						
+						if($tmp_dataMode[1]=='XML' || $tmp_param_cnt > 0){ ?>
 						</div>
+                        <?php
+						}
+						?>
 						
 						<div class="cb_15"></div>
 						<div class="title_editable_section"><h3 class="content_results_subtitle">Returned value ::</h3></div>
@@ -242,7 +258,7 @@ require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_
 						?>
 						<div class="cb_15"></div>
 						<div class="title_editable_section"><h3 class="content_results_subtitle">Add A Note ::</h3></div>
-						<div id="frm_comment_toggle_lnk" class="editlnk_editable_section" onClick="toggleCommentForm('frm_comment','slide'); return false;">expand section</div>
+						<div id="frm_comment_toggle_lnk" class="editlnk_editable_section" onClick="toggleCommentForm('frm_comment','slide'); return false;">collapse section</div>
 						<div class="cb"></div>
 						<div class="content_results_subtitle_divider"></div>
 						<?php
@@ -259,18 +275,18 @@ require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_
 						
 						//
 						// WEB SERVICES PERFORMANCE MONITORING AND DEBUG (ADMIN)
-						if($oUSER->getUserParam('USER_PERMISSIONS_ID')>399){
+						//if($oUSER->getUserParam('USER_PERMISSIONS_ID')>399){
 						?>
 						<div class="cb_15"></div>
-						<div class="title_editable_section"><h3 class="content_results_subtitle">Administrative Performance Monitor (SOAP) ::</h3></div>
+						<div class="title_editable_section"><h3 class="content_results_subtitle">SOAP Performance Monitoring ::</h3></div>
 						<div id="soap_toggle_lnk" class="editlnk_editable_section" onClick="toggleSoapDebug('soap_debug','slide'); return false;">expand section</div>
 						<div class="cb"></div>
 						<div class="content_results_subtitle_divider"></div>
 						<?php
 							require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/soap/soap.debug.inc.php');
-						}
+						//}
 						?>
-						
+						<div class="cb_40"></div>
 						</div>
 					</div>
 				</div>

@@ -57,9 +57,9 @@ crnrstn_fhandler.prototype = {
 				$(input.id+'_input_validation_copy').hide();	
 			}
 			
-			if(i==0 && $(input.id)){
-				$(input.id).focus();
-			}
+			//if(i==0 && $(input.id)){
+			//	$(input.id).focus();
+			//}
 			
 			var frm_initAttribute = String(input.getAttribute('frm_init'));
 			
@@ -81,7 +81,9 @@ crnrstn_fhandler.prototype = {
 					var HTTP_ROOT = vars[0]+'//'+vars[2]+'/';
 	
 					//var url = HTTP_ROOT + 'crnrstn/search/suggest/';
-					var url = HTTP_ROOT + 'search/suggest/';
+					
+					var HTTP_ROOT_DIR = $("http_root_dir").innerHTML;
+					var url = HTTP_ROOT + HTTP_ROOT_DIR + 'search/suggest/';
 					var params = 's='+this.value;
 					
 					if(this.value.length>1){
@@ -845,8 +847,9 @@ crnrstn_fhandler.prototype = {
 			var query = window.location.href; 
 			var vars = query.split("/"); 
 			var HTTP_ROOT = vars[0]+'//'+vars[2]+'/';
+			var HTTP_ROOT_DIR = $("http_root_dir").innerHTML;
 			var params = 'nid=' + NOTEID_SOURCE + '&un='+USERNAME + '&cid='+CLASSID+ '&mid='+METHODID+ '&state='+STATE;
-			var uri = HTTP_ROOT + 'crnrstn/account/comment/like/';
+			var uri = HTTP_ROOT + HTTP_ROOT_DIR + 'account/comment/like/';
 			
 			if($(insertstatus_ElemId).value==''){
 						
@@ -870,8 +873,9 @@ crnrstn_fhandler.prototype = {
 			var query = window.location.href; 
 			var vars = query.split("/"); 
 			var HTTP_ROOT = vars[0]+'//'+vars[2]+'/';
+			var HTTP_ROOT_DIR = $("http_root_dir").innerHTML;
 			var params = 'nid=' + NOTEID_SOURCE + '&un='+USERNAME + '&cid='+CLASSID+ '&mid='+METHODID+ '&state='+STATE;
-			var uri = HTTP_ROOT + 'crnrstn/account/comment/like/';
+			var uri = HTTP_ROOT + HTTP_ROOT_DIR + 'account/comment/like/';
 			
 			if($(insertstatus_ElemId).value==''){
 						
@@ -904,13 +908,14 @@ crnrstn_fhandler.prototype = {
 		var query = window.location.href; 
 		var vars = query.split("/"); 
 		var HTTP_ROOT = vars[0]+'//'+vars[2]+'/';
+		var HTTP_ROOT_DIR = $("http_root_dir").innerHTML;
 		$('admin_overlay').style.zIndex = 10;
 		$('admin_form_shell').style.zIndex = 11;
 		
 		$('admin_overlay').style.backgroundColor = '#FFF';
 		$('frm_loading_wrapper').style.left = '120px';
 		$('frm_loading_wrapper').style.top = '120px';
-		$('frm_loading_wrapper').innerHTML = '<div id="admin_frm_loading_logo"><img src="'+HTTP_ROOT+'crnrstn/common/imgs/logo_tiny_128.gif" width="85" height="47" alt="CRNRSTN ::" title="CRNRSTN ::"></div><div id="admin_frm_loading"><img src="'+HTTP_ROOT+'crnrstn/common/imgs/long_loader.gif" width="220" height="19" alt="CRNRSTN :: LOADING..." title="CRNRSTN :: LOADING..."></div><div class="cb"></div>';
+		$('frm_loading_wrapper').innerHTML = '<div id="admin_frm_loading_logo"><img src="'+HTTP_ROOT+HTTP_ROOT_DIR+'common/imgs/logo_tiny_128.gif" width="85" height="47" alt="CRNRSTN ::" title="CRNRSTN ::"></div><div id="admin_frm_loading"><img src="'+HTTP_ROOT+HTTP_ROOT_DIR+'common/imgs/long_loader.gif" width="220" height="19" alt="CRNRSTN :: LOADING..." title="CRNRSTN :: LOADING..."></div><div class="cb"></div>';
 		
 		new Effect.Appear('admin_overlay', { duration: 0.5, from: 0.0, to: 0.7, afterFinish: function(){ 
 										new Effect.ScrollTo('admin_form_shell',{offset: -40}); 
@@ -1117,7 +1122,8 @@ crnrstn_fhandler.prototype = {
 		var query = window.location.href; 
 		var vars = query.split("/"); 
 		var HTTP_ROOT = vars[0]+'//'+vars[2]+'/';
-		var uri = HTTP_ROOT + 'crnrstn/account/create/ununique/';
+		var HTTP_ROOT_DIR = $("http_root_dir").innerHTML;
+		var uri = HTTP_ROOT + HTTP_ROOT_DIR + 'account/create/ununique/';
 		
 		var myAjax = new Ajax.Request(
 		uri, 

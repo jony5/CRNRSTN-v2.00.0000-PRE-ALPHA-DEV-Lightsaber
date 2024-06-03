@@ -1,0 +1,21 @@
+[31-May-2024 20:43:19 America/Boise] PHP Warning:  Undefined variable $CRNRSTN_ROOT in /home2/jonyfivc/public_html/crnrstn.jony5.com/_crnrstn.config.inc.php on line 42
+[31-May-2024 20:43:19 America/Boise] PHP Warning:  require(/_crnrstn/class/crnrstn/crnrstn.inc.php): Failed to open stream: No such file or directory in /home2/jonyfivc/public_html/crnrstn.jony5.com/_crnrstn.config.inc.php on line 42
+[31-May-2024 20:43:19 America/Boise] PHP Fatal error:  Uncaught Error: Failed opening required '/_crnrstn/class/crnrstn/crnrstn.inc.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home2/jonyfivc/public_html/crnrstn.jony5.com/_crnrstn.config.inc.php:42
+Stack trace:
+#0 /home2/jonyfivc/public_html/crnrstn.jony5.com/documentation/classes/http_manager/issethttp/index.php(6): require()
+#1 {main}
+  thrown in /home2/jonyfivc/public_html/crnrstn.jony5.com/_crnrstn.config.inc.php on line 42
+[31-May-2024 20:43:31 America/Boise] PHP Warning:  Undefined variable $CRNRSTN_ROOT in /home2/jonyfivc/public_html/crnrstn.jony5.com/_crnrstn.config.inc.php on line 42
+[31-May-2024 20:43:31 America/Boise] PHP Warning:  require(/_crnrstn/class/crnrstn/crnrstn.inc.php): Failed to open stream: No such file or directory in /home2/jonyfivc/public_html/crnrstn.jony5.com/_crnrstn.config.inc.php on line 42
+[31-May-2024 20:43:31 America/Boise] PHP Fatal error:  Uncaught Error: Failed opening required '/_crnrstn/class/crnrstn/crnrstn.inc.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home2/jonyfivc/public_html/crnrstn.jony5.com/_crnrstn.config.inc.php:42
+Stack trace:
+#0 /home2/jonyfivc/public_html/crnrstn.jony5.com/documentation/classes/http_manager/issethttp/index.php(6): require()
+#1 {main}
+  thrown in /home2/jonyfivc/public_html/crnrstn.jony5.com/_crnrstn.config.inc.php on line 42
+[31-May-2024 20:43:37 America/Boise] PHP Warning:  Undefined variable $CRNRSTN_ROOT in /home2/jonyfivc/public_html/crnrstn.jony5.com/_crnrstn.config.inc.php on line 42
+[31-May-2024 20:43:37 America/Boise] PHP Warning:  require(/_crnrstn/class/crnrstn/crnrstn.inc.php): Failed to open stream: No such file or directory in /home2/jonyfivc/public_html/crnrstn.jony5.com/_crnrstn.config.inc.php on line 42
+[31-May-2024 20:43:37 America/Boise] PHP Fatal error:  Uncaught Error: Failed opening required '/_crnrstn/class/crnrstn/crnrstn.inc.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home2/jonyfivc/public_html/crnrstn.jony5.com/_crnrstn.config.inc.php:42
+Stack trace:
+#0 /home2/jonyfivc/public_html/crnrstn.jony5.com/documentation/classes/http_manager/issethttp/index.php(6): require()
+#1 {main}
+  thrown in /home2/jonyfivc/public_html/crnrstn.jony5.com/_crnrstn.config.inc.php on line 42

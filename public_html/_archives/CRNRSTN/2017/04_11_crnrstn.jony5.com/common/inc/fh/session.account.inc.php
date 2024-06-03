@@ -3,7 +3,7 @@
 // J5
 // Code is Poetry */
 
-if(!$oENV->oSESSION_MGR->issetSessionParam('LOGIN_USER_PERMISSIONS_ID')){
+if(!$oCRNRSTN_ENV->oSESSION_MGR->issetSessionParam('LOGIN_USER_PERMISSIONS_ID')){
 	//
 	// USER NOT AUTHORIZED TO ACCESS THIS PAGE. STORE REQUESTED RESOURCE TO TMP VAR
 	$tmp_self = $_SERVER['PHP_SELF'];
@@ -11,7 +11,7 @@ if(!$oENV->oSESSION_MGR->issetSessionParam('LOGIN_USER_PERMISSIONS_ID')){
 	
 	//
 	// SET LANDING PAGE TO TMP VAR...FOR REDIRECT AFTER SUCCESSFUL LOGIN.
-	$oENV->oSESSION_MGR->setSessionParam('LANDINGPAGE','http://'.$_SERVER['HTTP_HOST'].$tmp_self);
+	$oCRNRSTN_ENV->oSESSION_MGR->setSessionParam('LANDINGPAGE','http://'.$_SERVER['HTTP_HOST'].$tmp_self);
 
 	header("Location: ".$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'account/signin/');
 	exit();
@@ -29,11 +29,11 @@ if(!$oENV->oSESSION_MGR->issetSessionParam('LOGIN_USER_PERMISSIONS_ID')){
 
 // 
 // PROCESS POST METHOD REQUEST TYPE
-if($oENV->oHTTP_MGR->issetHTTP($_POST)){
+if($oCRNRSTN_ENV->oHTTP_MGR->issetHTTP($_POST)){
 
 	//
 	// WHAT DO WE HAVE
-	switch($oENV->oHTTP_MGR->extractData($_POST,'postid')){
+	switch($oCRNRSTN_ENV->oHTTP_MGR->extractData($_POST,'postid')){
 		case 'login_main':				// ANONYMOUS OK
 			//
 			// PROCESS LOGIN ATTEMPT
@@ -49,7 +49,7 @@ if($oENV->oHTTP_MGR->issetHTTP($_POST)){
 
 		break;
 		case 'post_feedback':
-			if($oENV->oHTTP_MGR->issetParam($_POST,'feedback')){
+			if($oCRNRSTN_ENV->oHTTP_MGR->issetParam($_POST,'feedback')){
 				//
 				// COMPILE FEEDBACK FROM USER AND SEND TO SERVICE
 				if($oUSER->updateContent_CRNRSTN('post_feedback')=='submitfeedback=true'){
@@ -112,7 +112,7 @@ if($oENV->oHTTP_MGR->issetHTTP($_POST)){
 		case 'edit_comment':			// GENERAL ACCOUNT REQUIRED
 			//
 			// PROCESS COMMENT IF MIN REQUIRED DATA HAS BEEN PROVIDED
-			if($oENV->oHTTP_MGR->issetParam($_POST,'comment') && $oENV->oHTTP_MGR->issetParam($_POST,'c')){
+			if($oCRNRSTN_ENV->oHTTP_MGR->issetParam($_POST,'comment') && $oCRNRSTN_ENV->oHTTP_MGR->issetParam($_POST,'c')){
 				//
 				// SET THRESHOLD FOR APPLICATION OF ADVANCED STYLES TO <CODE>
 				if($oUSER->updateContent_CRNRSTN('edit_comment')=='usercommentupdate=true'){				
@@ -133,18 +133,18 @@ if($oENV->oHTTP_MGR->issetHTTP($_POST)){
 
 //
 // PROCESS GET METHOD REQUEST TYPE
-if($oENV->oHTTP_MGR->issetHTTP($_GET)){
+if($oCRNRSTN_ENV->oHTTP_MGR->issetHTTP($_GET)){
 	
 	//
 	// RETURN SEARCH RESULTS FOR AUTO-SUGGEST
-	if($oENV->oHTTP_MGR->extractData($_GET, 's')!='' && strlen($oENV->oHTTP_MGR->extractData($_GET, 's'))>1){
+	if($oCRNRSTN_ENV->oHTTP_MGR->extractData($_GET, 's')!='' && strlen($oCRNRSTN_ENV->oHTTP_MGR->extractData($_GET, 's'))>1){
 		echo $oUSER->suggestSearchResults();		
 		die();
 	}
 	
 	$contentOutput_ARRAY = array();
 
-	if($oENV->oHTTP_MGR->extractData($_GET, 'f')==''){
+	if($oCRNRSTN_ENV->oHTTP_MGR->extractData($_GET, 'f')==''){
 		
 		//
 		// RETRIEVE CONTENT (SOAP)
@@ -168,23 +168,27 @@ if($oENV->oHTTP_MGR->issetHTTP($_GET)){
 
 //
 // ACTIVITY LOGGING
-try{
-	//
-	// GRAB DATABASE CONNECTION TO LOG ACTIVITY **[POSSIBLE ENHANCEMENT]::BREAK CREATE A database.inc.php FOR THE SITE**
-	$mysqli = $oENV->oMYSQLI_CONN_MGR->returnConnection();
-	
-	$query="INSERT INTO log_activity (`ACTIVITY_TYPE` , `ACTIVITY_NAME`, `ACTIVITY_CONTENTID`, `SCRIPT_NAME`, `HTTP_USER_AGENT`, `HTTP_REFERER`, `HTTP_HEADERS`,
-	 `REQUEST_METHOD`, `REMOTE_ADDR`) VALUES ('BROWSER_REQUEST',
-	'PAGEVIEW_".strtoupper($contentType)."','".$mysqli->real_escape_string($contentID)."', '".$_SERVER['SCRIPT_NAME']."','".$_SERVER['HTTP_USER_AGENT']."','".$_SERVER['HTTP_REFERER']."','".addslashes($oENV->oHTTP_MGR->getHeaders())."','".$_SERVER['REQUEST_METHOD']."','".$_SERVER['REMOTE_ADDR']."');";
-	
-	$result = $oENV->oMYSQLI_CONN_MGR->processQuery($mysqli, $query);
- 
-	$oENV->oMYSQLI_CONN_MGR->closeConnection($mysqli);
-	
-} catch( Exception $e ) {
-	//
-	// LOG ERROR FOR DB ACTIVITY LOGGING
-	$oENV->oLOGGER->captureNotice('CRNRSTN error notification :: mysqli query failed', LOG_NOTICE, $e->getMessage());
-}
+//try{
+//	//
+//	// GRAB DATABASE CONNECTION TO LOG ACTIVITY **[POSSIBLE ENHANCEMENT]::BREAK CREATE A database.inc.php FOR THE SITE**
+//	$mysqli = $oCRNRSTN_ENV->oMYSQLI_CONN_MGR->returnConnection();
+//	
+//	$query="INSERT INTO log_activity (`ACTIVITY_TYPE` , `ACTIVITY_NAME`, `ACTIVITY_CONTENTID`, `SCRIPT_NAME`, `HTTP_USER_AGENT`, `HTTP_REFERER`, `HTTP_HEADERS`,
+//	 `REQUEST_METHOD`, `REMOTE_ADDR`) VALUES ('BROWSER_REQUEST',
+//	'PAGEVIEW_".strtoupper($contentType)."','".$mysqli->real_escape_string($contentID)."', '".$_SERVER['SCRIPT_NAME']."','".$_SERVER['HTTP_USER_AGENT']."','".$_SERVER['HTTP_REFERER']."','".addslashes($oCRNRSTN_ENV->oHTTP_MGR->getHeaders())."','".$_SERVER['REQUEST_METHOD']."','".$_SERVER['REMOTE_ADDR']."');";
+//	
+//	$result = $oCRNRSTN_ENV->oMYSQLI_CONN_MGR->processQuery($mysqli, $query);
+// 
+//	$oCRNRSTN_ENV->oMYSQLI_CONN_MGR->closeConnection($mysqli);
+//	
+//} catch( Exception $e ) {
+//	//
+//	// LOG ERROR FOR DB ACTIVITY LOGGING
+//	$oCRNRSTN_ENV->oLOGGER->captureNotice('CRNRSTN error notification :: mysqli query failed', LOG_NOTICE, $e->getMessage());
+//}
+
+//
+// LOG ACTIVITY
+$oUSER->logActivity($contentType,$contentID);
 
 ?>

@@ -4,9 +4,13 @@
 
 //
 // INITIALIZE
-Event.observe(window, 'load', initGlobal, false);
+//Event.observe(window, 'load', initGlobal, false);
 
-function initGlobal(){
+
+document.observe("dom:loaded", function() {
+  // initially hide all containers for tab content
+
+//function initGlobal(){
 	
 	//
 	// TRACKING
@@ -55,7 +59,12 @@ function initGlobal(){
 	if($('user_transaction_status_msg').innerHTML!=''){
 		usr_transTimer = setTimeout(toggleTransactionWrapperOpen, 1200);
 	}
-}
+	
+	if($('isunique')){
+		prepCommentSubmission();
+	}
+//}
+});
 
 function toggleTransactionWrapperOpen(){
 	new Effect.Appear('user_transaction_wrapper', { duration: 0.1, from: 0.0, to: 1.0 });
@@ -111,12 +120,19 @@ function toggleNavState(navElem, actionType){
 }
 
 function toggleCommentForm(frmElem, actionType){
+	//alert("innerHTML0:"+$("isunique").value);
 	Effect.toggle(frmElem, actionType); 
 
 	if($(frmElem).style.display!='none'){
 		$('frm_comment_toggle_lnk').innerHTML = 'expand section';
 	}else{
-		prepCommentSubmission();
+		//alert("hello:0");
+		if($("isunique")){
+			//alert("innerHTML1:"+$("isunique").value);
+			prepCommentSubmission();
+		}else{
+			//alert("NO ISUNIQUE")	
+		}
 		$('frm_comment_toggle_lnk').innerHTML = 'collapse section';
 	}
 	
@@ -126,6 +142,7 @@ function toggleCommentForm(frmElem, actionType){
 var comment_ajax_lock=0;
 var insertstatus_ElemId = 'isunique';
 function prepCommentSubmission(){
+	
 	//
 	// INITIALIZE INPUT PARAM FOR USER COMMENT SUBMISSION
 	if(comment_ajax_lock==0){
@@ -133,9 +150,9 @@ function prepCommentSubmission(){
 		var query = window.location.href; 
 		var vars = query.split("/"); 
 		var HTTP_ROOT = vars[0]+'//'+vars[2]+'/';
+		var HTTP_ROOT_DIR = $("http_root_dir").innerHTML;
 		var params = 'c=' + $('c').value + '&m='+$('m').value + '&u='+$('u').value;
-		var uri = HTTP_ROOT + 'crnrstn/account/comment/insertstatus/';
-		
+		var uri = HTTP_ROOT + HTTP_ROOT_DIR + 'account/comment/insertstatus/';
 		if($(insertstatus_ElemId).value==''){
 					
 			//
@@ -377,9 +394,11 @@ function loadUGCSearch(commentID,elementID, targetID){
 	var query = window.location.href; 
 	var vars = query.split("/"); 
 	var HTTP_ROOT = vars[0]+'//'+vars[2]+'/';
-
+	if($("http_root_dir")){
+		var HTTP_ROOT_DIR = $("http_root_dir").innerHTML;
+	}
 	var params = 'c=' + commentID + '&e=' + elementID;
-	var uri = HTTP_ROOT + 'crnrstn/search/ugc/';
+	var uri = HTTP_ROOT + HTTP_ROOT_DIR + 'search/ugc/';
 
 	//
 	// FIRE AJAX TOOL TIP :: WEB SERVICES REQUEST
@@ -469,7 +488,9 @@ function loadToolTip(){
 		var tmp_id_delim = tmp_id.split("_");
 		var params = 'e=' + tmp_id_delim[0] + '&rnd='+tmp_id_delim[1];
 		//var url = HTTP_ROOT + 'crnrstn/search/tt/';
-		var url = HTTP_ROOT + 'search/tt/';
+		var HTTP_ROOT_DIR = $("http_root_dir").innerHTML;
+		var url = HTTP_ROOT + HTTP_ROOT_DIR + 'search/tt/';
+		//var url = HTTP_ROOT + 'search/tt/';
 		
 		if(!$('tt_'+tt_currElemId)){
 			var ttContent = document.createElement("div");
@@ -478,7 +499,7 @@ function loadToolTip(){
 			ttContent.setAttribute('class','tooltip_wrapper');
 			$(tt_currElemId).appendChild(ttContent);
 			
-			ttContent.innerHTML = '<div class="tt_logo" style="margin-top:5px;"><img src="'+HTTP_ROOT+'common/imgs/the_R.gif"></div><div class="tt_loader"><img src="'+HTTP_ROOT+'common/imgs/long_loader.gif"></div>';
+			ttContent.innerHTML = '<div class="tt_logo" style="margin-top:5px;"><img src="'+HTTP_ROOT+HTTP_ROOT_DIR+'common/imgs/the_R.gif"></div><div class="tt_loader"><img src="'+HTTP_ROOT+HTTP_ROOT_DIR+'common/imgs/long_loader.gif"></div>';
 			
 			//
 			// FIRE AJAX TOOL TIP :: WEB SERVICES REQUEST

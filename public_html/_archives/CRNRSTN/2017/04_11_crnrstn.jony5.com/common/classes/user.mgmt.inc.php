@@ -192,7 +192,7 @@ class user {
 		//
 		// INSTANTIATE WEB SERVICES MANAGER
 		if(!isset(self::$soapManager)){
-			self::$soapManager = new crnrstn_soap_manager(self::$oUserEnvironment,'WSDL_URI_MGMT','WSDL_CACHE_TTL');
+			self::$soapManager = new crnrstn_soap_manager(self::$oUserEnvironment,'WSDL_URI_MGMT','WSDL_CACHE_TTL','NUSOAP_USECURL');
 		}
 		
 		//
@@ -204,7 +204,7 @@ class user {
 	public function getEnvParam($paramName){
 		
 		if(!isset(self::$sess_env_param_ARRAY[$paramName])){
-			self::$sess_env_param_ARRAY[$paramName] = self::$oUserEnvironment->get($paramName);
+			self::$sess_env_param_ARRAY[$paramName] = self::$oUserEnvironment->getEnvParam($paramName);
 		}
 		
 		return self::$sess_env_param_ARRAY[$paramName];
@@ -797,7 +797,7 @@ class user {
 				}
 			break;
 			case 'edit_message':
-				error_log("/crnrstn/ user.mgmt.inc.php (852) edit_message");
+				//error_log("/crnrstn/ user.mgmt.inc.php (852) edit_message");
 			break;
 			default:
 				//
@@ -857,7 +857,7 @@ class user {
 		//
 		// INSTANTIATE COOKIE MANAGER SO YOU CAN DESTROY IT
 		if(!isset($oCOOKIE_MGR)){
-			$oCOOKIE_MGR = new crnrstn_cookie_manager(self::$oUserEnvironment);
+			$oCOOKIE_MGR = new crnrstn_cookie_manager();
 		}
 		
 		//
@@ -940,7 +940,7 @@ class user {
 						
 						//
 						//SEND TO CONFIRMATION PAGE
-						header("Location: ".self::$oUserEnvironment->get('ROOT_PATH_CLIENT_HTTP')."crnrstn/account/confirm/");
+						header("Location: ".self::$oUserEnvironment->getEnvParam('ROOT_PATH_CLIENT_HTTP')."crnrstn/account/confirm/");
 						exit();
 					}else{
 						$this->errorMessage = 'An error was experienced while creating your account. Please try again later.';
@@ -2838,7 +2838,7 @@ class user {
 			
 			//
 			// LOG ERROR FOR DB ACTIVITY LOGGING
-			$oENV->oLOGGER->captureNotice('CRNRSTN error notification :: XML Content Gen Failure (@ln220) (METHOD)', LOG_NOTICE, $e->getMessage());
+			$oCRNRSTN_ENV->oLOGGER->captureNotice('CRNRSTN error notification :: XML Content Gen Failure (@ln220) (METHOD)', LOG_NOTICE, $e->getMessage());
 		}
 	}
 	
@@ -2975,7 +2975,7 @@ class user {
 			
 			//
 			// LOG ERROR FOR DB ACTIVITY LOGGING
-			$oENV->oLOGGER->captureNotice('CRNRSTN error notification :: XML Content Gen Failure (@ln220) (CLASS)', LOG_NOTICE, $e->getMessage());
+			$oCRNRSTN_ENV->oLOGGER->captureNotice('CRNRSTN error notification :: XML Content Gen Failure (@ln220) (CLASS)', LOG_NOTICE, $e->getMessage());
 		}		
 	}
 	
@@ -3059,12 +3059,12 @@ class user {
 				$tmp_str = substr($tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_DESCRIPTION'],$tmp_sub_A1,$tmp_sub_A2);
 				//$pos = strpos($tmp_str, '<a');
 				//if($pos!==false){ $tmp_elip = '</a>'.$tmp_elip;}
-				$tmp_results_output .= '<li style="list-style:none;" onMouseOver="s_ovr(this)" onMouseOut="s_out(this)" onClick="loadPage(this, \'http://127.0.0.1/crnrstn/search/?s='.urlencode($tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_TITLE']).'\');"><table cellpadding="0" cellspacing="0" border="0"><tr><td><img src="http://127.0.0.1/crnrstn/common/imgs/the_R.gif"></td><td>'.$tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_TITLE'].' :: '.$tmp_str.$tmp_elip.'</td></tr></table></li>';
+				$tmp_results_output .= '<li style="list-style:none;" onMouseOver="s_ovr(this)" onMouseOut="s_out(this)" onClick="loadPage(this, \''.$this->getEnvParam('ROOT_PATH_CLIENT_HTTP').$this->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'search/?s='.urlencode($tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_TITLE']).'\');"><table cellpadding="0" cellspacing="0" border="0"><tr><td><img src="'.$this->getEnvParam('ROOT_PATH_CLIENT_HTTP').$this->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'common/imgs/the_R.gif"></td><td>'.$tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_TITLE'].' :: '.$tmp_str.$tmp_elip.'</td></tr></table></li>';
 			}else{
 				$tmp_str = substr($tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_DESCRIPTION'],$tmp_sub_A1);
 				//$pos = strpos($tmp_str, '<a');
 				//if($pos!==false){ $tmp_elip = '</a>'.$tmp_elip;}
-				$tmp_results_output .= '<li style="list-style:none;" onMouseOver="s_ovr(this)" onMouseOut="s_out(this)" onClick="loadPage(this, \'http://127.0.0.1/crnrstn/search/?s='.urlencode($tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_TITLE']).'\');"><table cellpadding="0" cellspacing="0" border="0"><tr><td><img src="http://127.0.0.1/crnrstn/common/imgs/the_R.gif"></td><td>'.$tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_TITLE'].' :: '.$tmp_str.$tmp_elip.'</td></tr></table></li>';
+				$tmp_results_output .= '<li style="list-style:none;" onMouseOver="s_ovr(this)" onMouseOut="s_out(this)" onClick="loadPage(this, \''.$this->getEnvParam('ROOT_PATH_CLIENT_HTTP').$this->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'search/?s='.urlencode($tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_TITLE']).'\');"><table cellpadding="0" cellspacing="0" border="0"><tr><td><img src="'.$this->getEnvParam('ROOT_PATH_CLIENT_HTTP').$this->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'common/imgs/the_R.gif"></td><td>'.$tmp_search_ARRAY['SEARCH_RESPONSE'][$i]['RESULT_TITLE'].' :: '.$tmp_str.$tmp_elip.'</td></tr></table></li>';
 			}
 			//
 			// LIMIT AUTO-SUGGEST TO 10 RESULTS
@@ -3143,7 +3143,7 @@ class user {
 		));
 		
 		self::$methodName = 'updateMessage';
-		error_log('/crnrstn/ user.mgmt.inc.php (3198) Calling updateMessage SOAP method');
+		//error_log('/crnrstn/ user.mgmt.inc.php (3198) Calling updateMessage SOAP method');
 		//
 		// SEND/RETURN WEB SERVICES NEW COMMENT INSERT STATUS REQUEST
 		return self::$soapManager->returnContent(self::$methodName,self::$params);
@@ -3543,6 +3543,36 @@ class user {
 
 		return true;
 	}
+	
+	
+	public function logActivity($contentType,$contentID){
+		
+		/*`ACTIVITY_TYPE` , `ACTIVITY_NAME`, `ACTIVITY_CONTENTID`, `SCRIPT_NAME`, `HTTP_USER_AGENT`, `HTTP_REFERER`, `HTTP_HEADERS`,
+	 `REQUEST_METHOD`, `REMOTE_ADDR`*/
+		//
+		// INITIALIZE PARAMS FOR SOAP OBJECT REQUEST
+		self::$params = array('oActivityLog' =>
+			array('ACTIVITY_TYPE' => 'BROWSER_REQUEST', 
+			'ACTIVITY_NAME' => 'PAGEVIEW_'.strtoupper($contentType),
+			'PHPSESSION_ID' => session_id(),
+			'ACTIVITY_CONTENTID' => $contentID,
+			'SCRIPT_NAME' => $_SERVER['SCRIPT_NAME'],
+			'HTTP_USER_AGENT' => $_SERVER['HTTP_USER_AGENT'],
+			'HTTP_REFERER' => $_SERVER['HTTP_REFERER'],
+			'HTTP_HEADERS' => self::$oUserEnvironment->oHTTP_MGR->getHeaders(),
+			'REQUEST_METHOD' => $_SERVER['REQUEST_METHOD'],
+			'REMOTE_ADDR' => $_SERVER['REMOTE_ADDR']
+			)
+		);
+
+		self::$methodName = 'logActivity';
+		
+		//
+		// SEND/RETURN WEB SERVICES NEW COMMENT INSERT STATUS REQUEST
+		return self::$soapManager->returnContent(self::$methodName,self::$params);
+		
+	}
+	
 	
 	//
 	// RETRIEVE CODE ELEMENTS

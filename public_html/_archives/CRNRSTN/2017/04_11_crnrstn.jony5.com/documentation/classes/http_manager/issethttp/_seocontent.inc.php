@@ -1,5 +1,3 @@
-<div class="hidden"><h1>issetHTTP()</h1>
-		<p>When checking on the availability of $_POST or $_GET data (e.g. in preparation for the potential processing of parameters contained within said data constructs), the <a href="../../../classes/http_manager/issethttp/" target="_self">issetHTTP()</a> method of the <a href="../../../classes/http_manager/" target="_self">http_manager</a> :: class serves this purpose quite nicely.</p>
-		<p>Version: </p>
-		<p>Method Definition: issetHTTP($superGlobal)</p>
-		<p>Invoking class: http_manager</p><h2>Technical Specifications:<h2><p>It is recommended that you upgrade to the latest version of PHP to take advantage of the latest gains in security and processing efficiency.</p><p>Currently tested on an ubuntu 4.2 server running PHP Version 5.2.6 and Apache 2.2.11</p><h2>Parameters:</h2><h3>$superGlobal</h3><p>The $_POST or $_GET super global of the HTTP request method that is being checked.</p><p>Last upated: 2017-04-11 02:27:21</p></div>
+<div class="hidden">
+<!-- SEO CONTENT HERE -->
+</div>

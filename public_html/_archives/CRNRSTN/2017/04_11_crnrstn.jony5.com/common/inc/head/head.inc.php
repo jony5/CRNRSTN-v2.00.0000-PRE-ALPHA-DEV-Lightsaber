@@ -3,7 +3,7 @@
 // J5
 // Code is Poetry */
 
-if($htmlTitle==''){
+if(!isset($htmlTitle)){
 	$htmlTitle='CRNRSTN :: An Open Source PHP Class Library';
 }
 ?>
@@ -22,7 +22,7 @@ if($htmlTitle==''){
 <meta name="twitter:title" content="CRNRSTN Suite :: An open source PHP class library to support the migration of an application across multiple hosting environments."/>
 <meta name="twitter:image" content="<?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/imgs/logo_04_wht.jpg"/>
 
-<meta name="description" content="An open source PHP class library to support the migration of an application across multiple hosting environments." />
+<meta name="description" content="An open source PHP class library to support the operation of an application across multiple hosting environments." />
 <meta name="keywords" content="cornerstone, jesus, christ, j5, jonathan, harris, johnny 5,  jony5, atlanta, moxie, interactive, web, christian, web services, email, web programming, marketing, CSS, XHTML, php, javascript" />
 
 <title><?php echo $htmlTitle; ?></title>

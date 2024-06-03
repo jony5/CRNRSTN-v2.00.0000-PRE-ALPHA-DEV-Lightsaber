@@ -13,15 +13,15 @@
 # RENDER RESPONSE
 // 
 // PROCESS POST METHOD REQUEST TYPE
-if($oENV->oHTTP_MGR->issetHTTP($_POST)){
+if($oCRNRSTN_ENV->oHTTP_MGR->issetHTTP($_POST)){
 
 	//
 	// WHAT DO WE HAVE
-	switch($oENV->oHTTP_MGR->extractData($_POST,'postid')){
+	switch($oCRNRSTN_ENV->oHTTP_MGR->extractData($_POST,'postid')){
 		case 'new_message':
 			//
 			// ADD NEW MESSAGE
-			if($oENV->oHTTP_MGR->issetParam($_POST,'msgkey') && $oENV->oHTTP_MGR->issetParam($_POST,'msgname')){
+			if($oCRNRSTN_ENV->oHTTP_MGR->issetParam($_POST,'msgkey') && $oCRNRSTN_ENV->oHTTP_MGR->issetParam($_POST,'msgname')){
 				$tmp_response = $oUSER->addNewMessage();
 				switch($tmp_response){
 					case 'newmessage=true':
@@ -35,7 +35,7 @@ if($oENV->oHTTP_MGR->issetHTTP($_POST)){
 			
 		break;
 		case 'edit_message':
-			error_log("/crnrstn/ session.msg.inc.php (38) edit_message");
+			//error_log("/crnrstn/ session.msg.inc.php (38) edit_message");
 			$tmp_response = $oUSER->editMessage();
 			switch($tmp_response){
 				case 'editmessage=true':
@@ -52,7 +52,7 @@ if($oENV->oHTTP_MGR->issetHTTP($_POST)){
 
 //
 // PROCESS GET METHOD REQUEST TYPE
-if($oENV->oHTTP_MGR->issetHTTP($_GET)){
+if($oCRNRSTN_ENV->oHTTP_MGR->issetHTTP($_GET)){
 	//
 }
 ?>

@@ -26,7 +26,7 @@ $tmp_paginationCycle = $oUSER->contentOutput_ARRAY[1]['INDEXSIZE'];
 			}else{ 
 				$tmp_uri_array = explode('&pi',$_SERVER['REQUEST_URI']); 
 			?>
-				<div class="pi_lnk" onClick="loadPageFromIndex('<?php echo $tmp_uri_array[0].'&pi='.$tmp_pageCnt; ?>'); return false;"><a href="<?php echo $_SERVER['REQUEST_URI'].'&pi='.$tmp_pageCnt; ?>" target="_self"><div class="pi_copy_wrap"><?php echo $tmp_pageCnt; ?></a></div></div>
+				<div class="pi_lnk" onClick="loadPageFromIndex('<?php echo $tmp_uri_array[0].'&pi='.$tmp_pageCnt; ?>'); return false;"><a href="<?php echo $tmp_uri_array[0].'&pi='.$tmp_pageCnt; ?>" target="_self"><div class="pi_copy_wrap"><?php echo $tmp_pageCnt; ?></a></div></div>
 			<?php
 				$tmp_pageCnt++;
 			}

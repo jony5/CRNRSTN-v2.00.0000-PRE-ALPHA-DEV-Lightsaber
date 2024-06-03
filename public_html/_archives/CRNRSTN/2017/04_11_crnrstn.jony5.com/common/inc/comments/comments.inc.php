@@ -2,9 +2,23 @@
 $tmp_dataMode = explode('|',$oUSER->getEnvParam('DATA_MODE'));
 						
 						#error_log("/crnrstn/comments.inc.php (4) tmp_dataMode: ".$tmp_dataMode[2]);
-						if(($tmp_dataMode[2]=='SOAP') && ($oUSER->getUserParam('USER_PERMISSIONS_ID')>0)){
-						#error_log("/crnrstn/comments.inc.php (4) sizeof(COMMENTS): ".sizeof($oUSER->contentOutput_ARRAY[1]['COMMENTS']));
-						if(sizeof($oUSER->contentOutput_ARRAY[1]['COMMENTS'])>0){
+						//if(($tmp_dataMode[2]=='SOAP') && ($oUSER->getUserParam('USER_PERMISSIONS_ID')>0)){
+						if(($tmp_dataMode[2]=='SOAP')){
+						//error_log("/crnrstn/comments.inc.php (7) sizeof(COMMENTS): ".sizeof($oUSER->contentOutput_ARRAY[1]['COMMENTS']));
+						
+						$tmp_comment_count = 0;
+
+						if(isset($oUSER->contentOutput_ARRAY[1])){
+
+							if(isset($oUSER->contentOutput_ARRAY[1]['COMMENTS'])){
+
+								$tmp_comment_count = sizeof($oUSER->contentOutput_ARRAY[1]['COMMENTS']);
+
+							}
+
+						}
+
+						if($tmp_comment_count > 0){
 							for($i=0;$i<sizeof($oUSER->contentOutput_ARRAY[1]['COMMENTS']);$i++){
 						?>
 						<div id="usr_comm_shell_<?php echo $i ?>" class="usr_comment">
