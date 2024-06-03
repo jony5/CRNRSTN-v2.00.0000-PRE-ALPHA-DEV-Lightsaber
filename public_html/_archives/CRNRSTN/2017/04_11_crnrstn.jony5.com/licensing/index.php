@@ -65,7 +65,7 @@ require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_
 						<?php
 						require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/search/search.inc.php');
 						?>	
-						
+
 						<div class="cb_15"></div>
                         -->
 						<h3 class="content_results_subtitle">Overview ::</h3>
@@ -76,10 +76,10 @@ require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_
 						<div class="cb_10"></div>
                         <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without 
                         even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p>
-						
+
 						<div class="cb_10"></div>
 						<p>C<span class="the_R">R</span>NRSTN :: is powered by e<span class="the_R">V</span>ifweb; C<span class="the_R">R</span>NRSTN :: is
-							powered by eCRM Strategy and Execution, Web Design & Development, and Only The Best Coffee.</p>
+                        powered by eCRM Strategy and Execution, Web Design & Development, and Only The Best Coffee.</p>
 
 						<div class="cb_10"></div>
 						<p>&copy; 2012-2024 :: e<span class="the_R">V</span>ifweb development :: All Rights Reserved.</p>
@@ -106,13 +106,12 @@ require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_
                         IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR 
                         THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
 
-
                         <div class="cb_15"></div>
-						
+
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 	<div class="cb"></div>
