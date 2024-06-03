@@ -78,7 +78,7 @@ require($oUSER->getEnvParam('DOCUMENT_ROOT').$oUSER->getEnvParam('DOCUMENT_ROOT_
                         even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p>
 						
 						<div class="cb_10"></div>
-						<p>C<span class="the_R">R</span>NRSTN :: is powered by eVifweb; C<span class="the_R">R</span>NRSTN :: is 
+						<p>C<span class="the_R">R</span>NRSTN :: is powered by e<span class="the_R">V</span>ifweb; C<span class="the_R">R</span>NRSTN :: is
 							powered by eCRM Strategy and Execution, Web Design & Development, and Only The Best Coffee.</p>
 
 						<div class="cb_10"></div>
