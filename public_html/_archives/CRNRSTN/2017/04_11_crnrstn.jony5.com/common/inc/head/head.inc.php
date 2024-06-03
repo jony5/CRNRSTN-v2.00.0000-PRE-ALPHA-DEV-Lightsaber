@@ -38,4 +38,5 @@ if($tmp_dataMode[1]!='SOAP'){ $preload_prep = 'style="display:none;"' ?>
 <script type="text/javascript" language="javascript" src="<?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/js/form/form.js"></script>
 <script type="text/javascript" language="javascript" src="<?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/js/analytics/google/google.js" ></script>
 <script type="text/javascript" language="javascript" src="<?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/js/main.js"></script>
-
+<link rel="stylesheet" href="<?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/js/lib/frameworks/lightbox/2.02/css/lightbox.css" type="text/css" />
+<script type="text/javascript" language="javascript" src="<?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/js/lib/frameworks/lightbox/2.02/js/lightbox.js"></script>
