@@ -41,7 +41,7 @@ $tmp_paginationCycle = $oUSER->contentOutput_ARRAY[1]['INDEXSIZE'];
 				}else{
 					$tmp_uri_sym = "&";
 				}
-				#http://172.16.110.130/crnrstn/documentation/classes/crnrstn/requireddetectionmatches/?ns=crnrstn|logging&pi=2
+				#https://crnrstn.jony5.com/crnrstn/documentation/classes/crnrstn/requireddetectionmatches/?ns=crnrstn|logging&pi=2
 			?>
 				<div class="pi_lnk" onClick="loadPageFromIndex('<?php echo $tmp_uri_array[0].$tmp_uri_sym.'pi='.$tmp_pageCnt; ?>'); return false;"><a href="<?php echo $tmp_uri_array[0].$tmp_uri_sym.'pi='.$tmp_pageCnt; ?>" target="_self"><div class="pi_copy_wrap"><?php echo $tmp_pageCnt; ?></a></div></div>
 			<?php
