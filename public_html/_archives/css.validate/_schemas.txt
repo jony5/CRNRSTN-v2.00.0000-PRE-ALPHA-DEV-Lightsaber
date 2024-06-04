@@ -1,0 +1,407 @@
+extranet.jony5.com/_crnrstn/kivotos/
+extranet.jony5.com/_crnrstn/kivotos/profile/
+extranet.jony5.com/_crnrstn/kivotos/signin/
+extranet.jony5.com/_crnrstn/kivotos/signout/
+
+#
+# CONTENT MASTER REFERENCE TABLE
+CONTENT_ID char(175)
+CONTENT_ID_CRC bigint(11) unsigned	 * WE SIMPLY USE _CRC FOR WRITING HIGHER PERFORMING SQL. WE DO NOT CARE ABOUT SIGN AND GET MORE SPACE AS UNSIGNED.
+CONTENT_KEY varchar(765)
+CONTENT_KEY_CRC bigint(11) unsigned
+CONTENT_COPY_ID char(175)
+CONTENT_COPY_ID_CRC bigint(11) unsigned
+CONTENT_SERVER_NAME_SOURCE varchar(510)
+CONTENT_SERVER_NAME_SOURCE_CRC bigint(11) unsigned
+CONTENT_SERVER_ADDRESS_SOURCE varbinary(16)	
+CONTENT_SERVER_ADDRESS_SOURCE_CRC bigint(11) unsigned
+ISACTIVE tinyint(1)
+COUNTRY_ISO_CODE char(2)
+COUNTRY_ISO_CODE_CRC bigint(11) unsigned
+ORIGIN_COUNTRY_ISO_CODE char(2)
+ORIGIN_COUNTRY_ISO_CODE_CRC bigint(11) unsigned
+IS_NATIVE_LANG tinyint(1)
+
+SOCIAL_API_MEDIA_ID char(175)
+CONTENT_TYPE_KEY  varchar(255) * [IMAGE, YOUTUBE URI, COPY_SECTION, etc...]
+SPECIALTY_TYPE_KEY varchar(255)
+TITLE blob
+DESCRIPTION blob
+CONTENT blob
+COPY_HASH char(128)
+MBSAFE_CHARACTER_COUNT bigint(11) unsigned
+
+AUTHORIZED_USER_ACCESS_SUPERADMIN tinyint(1)
+AUTHORIZED_USER_ACCESS_ADMIN tinyint(1)
+AUTHORIZED_USER_ACCESS_TRANSLATION tinyint(1)   * ZONE DEFENSE USER ACCESS
+AUTHORIZED_USER_ACCESS_GENERAL tinyint(1)
+AUTHORIZED_USER_ACCESS_SOCIAL_MGMT tinyint(1)
+AUTHORIZED_USER_ACCESS_YOUTUBE_MGMT tinyint(1)
+AUTHORIZED_USER_ACCESS_DATABASE_MGMT tinyint(1) 	* UPLOADED LIST ACCESS
+AUTHORIZED_USER_ACCESS_CAMPAIGN_MGMT tinyint(1)
+AUTHORIZED_USER_ACCESS_ACCOUNT_MGMT tinyint(1)
+AUTHORIZED_USER_ACCESS_CREATIVE_MGMT tinyint(1)
+AUTHORIZED_USER_ACCESS_CLIENT_REVIEW tinyint(1)
+AUTHORIZED_USER_ACCESS_PUBLIC tinyint(1) 	* WILL BE EXPOSED THROUGH SEARCH
+
+AUTHORIZED_ACCESS_USERID blob * BESIDES ZONE DEFENSE...MAN-TO-MAN, AS WELL
+AUTHORIZED_SOAP_CLIENT_IP varchar(765)	* [COMMA DELIM IP, RANGES, etc...]
+AUTHORIZED_CLIENT_IP varchar(765)
+DENIED_SOAP_CLIENT_IP varchar(765)
+DENIED_CLIENT_IP varchar(765)
+
+COMPLETION_STATE varchar(25) * [DRAFT, PUBLISHED, etc.]
+DRAFT_OWNER_USER_ID char(175)
+PUBLISHING_USER_ID char(175)
+DATEDRAFTED DATETIME
+DATEPUBLISHED DATETIME
+
+FILE_NAME varchar(1000)
+FILE_EXT varchar(50)
+FILE_MIME_TYPE varchar(500)
+FILE_MD5 binary(16)
+FILE_SHA1 binary(20)
+FILE_SIZE bigint(11) unsigned
+IMAGE_WIDTH int(11) unsigned
+IMAGE_HEIGHT int(11) unsigned
+FILEPATH_DIR varchar(1020)
+FILEPATH_HTTP varchar(1020)
+
+NEXT_VERSION_CONTENT_ID char(175)
+PREVIOUS_VERSIONS_CONTENT_ID blob
+
+URI_YOUTUBE_VIDEO
+URI_YOUTUBE_ACCOUNT
+URI_VIMEO
+HANDLE_TWITTER
+HANDLE_INSTAGRAM
+# # # # # # # # # # # # # # # # # # # # # # # # # # # ##
+# # # # # # # # # # # # # # # # # # # # # # # # # # # ##
+### # # INSERT CORE TRANSACTION TABLE FIELD DATA # # ###
+# # # # # # # # # # # # # # # # # # # # # # # # # # # ##
+# # # # # # # # # # # # # # # # # # # # # # # # # # # ##
+
+#
+# CONTENT SEARCH TABLE
+SEARCH_ELEMENT_ID char(175)
+SEARCH_ELEMENT_ID_CRC bigint(11) unsigned
+CONTENT_ID char(175)
+CONTENT_ID_CRC bigint(11) unsigned
+CONTENT_KEY varchar(765)
+CONTENT_KEY_CRC bigint(11) unsigned
+CONTENT_COPY_ID char(175)
+CONTENT_COPY_ID_CRC bigint(11) unsigned
+ISACTIVE tinyint(1)
+COUNTRY_ISO_CODE char(2)
+COUNTRY_ISO_CODE_CRC bigint(11) unsigned
+
+TITLE_SEARCH varchar(1020) utf8_unicode_ci	
+TITLE blob
+DESCRIPTION_SEARCH varchar(1020) utf8_unicode_ci	
+DESCRIPTION blob
+CONTENT_SEARCH varchar(1020) utf8_unicode_ci	
+CONTENT blob
+FILENAME varchar(500)
+FILEPATH_DIR varchar(765)
+FILEPATH_HTTP varchar(765)
+PAGE_URI varchar(1000)
+# # # # # # # # # # # # # # # # # # # # # # # # # # # ##
+# # # # # # # # # # # # # # # # # # # # # # # # # # # ##
+### # # INSERT CORE TRANSACTION TABLE FIELD DATA # # ###
+# # # # # # # # # # # # # # # # # # # # # # # # # # # ##
+# # # # # # # # # # # # # # # # # # # # # # # # # # # ##
+
+#
+# LOG ACTIVITY TABLE (ROTATING)
+ACTIVITY_ID char(175)
+DATECREATED DATETIME
+ACTION_TYPE varchar(255)	* [TRANSLATION, CONTENT_GENERATION, IMAGE_UPLOAD...]
+
+CONTENT_ID char(175)
+CONTENT_ID_CRC bigint(11) unsigned
+CONTENT_KEY varchar(765)
+CONTENT_KEY_CRC bigint(11) unsigned
+MEDIA_ID char(175)
+MEDIA_ID_CRC bigint(11) unsigned
+
+DESCRIPTION_SEARCH varchar (1000)
+DESCRIPTION_BLOB blob
+
+CHANNEL varchar(4)	    * [D(esktop), T(ablet), M(obile), SOAP]
+HTTP_USER_AGENT_CLIENT varchar(510)
+PHPSESSION_CLIENT char(26)
+REMOTE_ADDRESS_CLIENT varbinary(16)
+SERVER_ADDRESS_SOAP_CLIENT varbinary(16)
+DOMAIN_SOAP_CLIENT varchar(510)
+
+#
+# SOCIAL MEDIA AND API CONTENT REFERENCE LOOKUP TABLE
+SOCIAL_API_MEDIA_ID char(175)
+SOCIAL_API_MEDIA_ID_CRC bigint(11) unsigned
+
+URI_YOUTUBE_VIDEO
+WIDTH_THUMBNAIL_YOUTUBE
+HEIGHT_THUMBNAIL_YOUTUBE
+URI_YOUTUBE_ACCOUNT
+URI_VIMEO
+HANDLE_TWITTER
+HANDLE_INSTAGRAM
+# # # # # # # # # # # # # # # # # # # # # # # # # # # ##
+# # # # # # # # # # # # # # # # # # # # # # # # # # # ##
+### # # INSERT CORE TRANSACTION TABLE FIELD DATA # # ###
+# # # # # # # # # # # # # # # # # # # # # # # # # # # ##
+# # # # # # # # # # # # # # # # # # # # # # # # # # # ##
+
+#
+# USER TABLE (ADMIN UN AND PASSWORD TO COME FROM CONFIG FILE?)
+USER_ID char(175)
+USER_ID_CRC bigint(11) unsigned
+EMAIL varchar(500)  utf8_unicode_ci
+EMAIL_CRC bigint(11) unsigned
+ISACTIVE tinyint(1)
+USER_PERMISSIONS_ID	****** SET AS BY BIT???? ******
+FIRSTNAME blob
+FIRSTNAME_SEARCH varchar(500) utf8_unicode_ci
+LASTNAME blob
+LASTNAME_SEARCH varchar(500) utf8_unicode_ci
+STREAM_MENTION varchar(500) utf8_unicode_ci
+USER_MENTION_NOTIFICATION_ON tinyint(1)
+CLIENT_MENTION_NOTIFICATION_ON tinyint(1)
+WATCH_NOTIFICATION_ON tinyint(1)
+COMPANYNAME_SEARCH varchar(500) utf8_unicode_ci
+COMPANYNAME blob
+JOBTITLE_SEARCH varchar(500) utf8_unicode_ci
+JOBTITLE blob
+PWDHASH varchar(255) latin1_swedish_ci
+COUNTRY_ISO_CODE char(2)
+LASTLOGIN_DATE datetime
+LASTLOGIN_REMOTE_ADDR varbinary(16)
+TOTAL_LOGIN_CNT bigint(11)
+CONTENT_ID_PROFILE_PHOTO char(175)
+CONTENT_ID_ACCOUNT_BANNER_PHOTO char(175)
+CONTENT_ID_TWITTER_HANDLE char(175)
+CONTENT_ID_INSTAGRAM_HANDLE char(175)
+CONTENT_ID_FACEBOOK_ACCOUNT char(175)
+ABOUT blob
+ABOUT_SEARCH varchar(1000) utf8_unicode_ci
+# # # # # # # # # # # # # # # # # # # # # # # # # # # ##
+# # # # # # # # # # # # # # # # # # # # # # # # # # # ##
+### # # INSERT CORE TRANSACTION TABLE FIELD DATA # # ###
+# # # # # # # # # # # # # # # # # # # # # # # # # # # ##
+# # # # # # # # # # # # # # # # # # # # # # # # # # # ##
+
+#
+# SESSION TABLE (CRNRSTN :: SOAP, USER, ADMIN, TWITTER, YOUTUBE, INSTAGRAM)
+SESSIONID char(26)
+SESSIONID_CRC bigint(11) unsigned
+USER_ID char(175)
+USER_ID_CRC bigint(11) unsigned
+USER_NOMINATION varchar(500)	* [API TWITTER HANDLE, API INSTAGRAM @HANDLE, CRNRSTN :: SOAP SERVICES LAYER USERNAME, LOGIN ACCOUNT EMAIL]
+USER_NOMINATION_CRC bigint(11) unsigned
+AUTHENTICATION_TOKEN char(100)
+PROCESS_TYPE * [User Account Logged Into System, Twitter API Connection, Instagram API Connection, CRNRSTN :: SOAP Connection]
+REQUESTED_RESOURCES * [EMAIL, TWITTER, YOUTUBE, FILE, ELECTRUM]
+LAST_METHOD_REQUESTED	* [CRNRSTN :: SOAP METHOD, USER ACTION, USER POST, OR API METHOD CALL]		
+STATUS_CODE varchar(100)
+STATUS_MESSAGE varchar(100)
+ISERROR_CODE varchar(100)
+ISERROR_MESSAGE varchar(1020)
+ISACTIVE tinyint(1)
+TTL int(11) unsigned  * [SECONDS INACTIVITY (CONFIG SUPPORT EVEN IF ACTIVE) PASS TO FORCE RE-AUTHENTICATION.]
+LASTMODIFIED_CHANNEL varchar(4)		* [D(esktop), T(ablet), M(obile), SOAP]
+DATECREATED_CHANNEL varchar(4)	    * [D(esktop), T(ablet), M(obile), SOAP]
+LASTMODIFIED_HTTP_USER_AGENT_CLIENT varchar(510)
+DATECREATED_HTTP_USER_AGENT_CLIENT varchar(510)
+LASTMODIFIED_IP_CLIENT varbinary(16) * IF IP ADDRESS CHANGES, FORCE RE-AUTHENTICATION. CAN ACCEPT REQUEST, TOO, THO.
+DATECREATED_IP_CLIENT varbinary(16)
+LASTMODIFIED_SERVER_ADDRESS_SOAP_CLIENT varbinary(16) * IF IP ADDRESS CHANGES, FORCE RE-AUTHENTICATION. CAN ACCEPT REQUEST, TOO, THO.
+DATECREATED_SERVER_ADDRESS_SOAP_CLIENT varbinary(16)
+LASTMODIFIED_SERVER_NAME_SOAP_CLIENT varchar(510)
+DATECREATED_SERVER_NAME_SOAP_CLIENT varchar(510)
+LASTMODIFED datetime
+DATECREATED timestamp
+
+
+# # # # CORE TRANSACTION TABLE FIELDS
+LASTMODIFIED_USER_ID char(175) 
+DATECREATED_USER_ID char(175)
+LASTMODIFIED_CHANNEL varchar(4)	* [D(esktop), T(ablet), M(obile), SOAP]
+DATECREATED_CHANNEL varchar(4)	    * [D(esktop), T(ablet), M(obile), SOAP]
+LASTMODIFIED_HTTP_USER_AGENT_CLIENT varchar(510)
+DATECREATED_HTTP_USER_AGENT_CLIENT varchar(510)
+LASTMODIFIED_PHPSESSION_CLIENT char(26)
+DATECREATED_PHPSESSION_CLIENT char(26)
+LASTMODIFIED_IP_CLIENT varbinary(16)
+DATECREATED_IP_CLIENT varbinary(16)
+LASTMODIFIED_SERVER_ADDRESS_SOAP_CLIENT varbinary(16)
+DATECREATED_SERVER_ADDRESS_SOAP_CLIENT varbinary(16)
+LASTMODIFIED_SERVER_NAME_SOAP_CLIENT varchar(510)
+DATECREATED_SERVER_NAME_SOAP_CLIENT varchar(510)
+LASTMODIFIED datetime
+DATECREATED datetime
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+CRNRSTN :: 
+CRNRSTN :: KIVOTOS :: MULTI-SERVER INTEGRATION SUPPORTING EXTRANET/CONTENT/COLLABORATION SUPPORT
+CRNRSTN :: ELECTRUM :: MULTI-SERVER INTEGRATION SUPPORTING BATCH FILE MANIPULATIONS, FTP/DIRECTORY FILE ACTIONS, APPLICATION BACKUPS, ETC...
+CRNRSTN :: GABRIEL :: MULTI-SERVER DATABASE DRIVEN EMAIL MARKETING SUPPORT
+CRNRSTN :: LIVING_STREAMS :: INSTANT MESSAGING, TANGENTIAL COMMUNICATIONS (E.G. @MENTIONS), FILE SHARING
+
+METRICS AND PERFORMANCE ::
+- SOCIAL MEDIA ACTIVITY
+	~ TWITTER
+	~ INSTAGRAM
+	~ YOUTUBE
+	~ VIMEO
+	~ FACEBOOK
+	~ PANDORA
+	~ LASTFM
+	~ SOUNDCLOUD
+	~ ...
+- EXCEPTIONS
+- SURVEY RESULTS
+- EMAIL PERFORMANCE
+	~ OPENS (WHO HOSTS?...PROXY OR CLIENT?)
+	~ CLICKS (WHO HOSTS THE LINKS?...PROXY OR CLIENT?)
+	~ SENT
+	~ HOW TO HANDLE BOUNCE?
+- WEB ANALYTICS
+	~ PAGE VIEWS = OUTPUT ACTIVITY (MOBILE, DESKTOP, TABLET...?)
+	~ CONTENT REQUESTED
+- PAYMENT GATEWAY ACTIVITY
+	~ BY GATEWAY
+- CRNRSTN :: SOAP SERVICES LAYER ACTIVITY
+	~ ACTIVITY BY MACHINE ACCOUNT
+	~ ACTIVITY BY AUTHORIZATION KEY
+	~ ACTIVITY BY IP
+- SLOW DATABASE QUERIES
+- SLOW PAGES
+	--TAKE A SAMPLING OF PAGE BUILD TIMES AND RECORD OUTLIER DESTRUCTOR CALLS?
+
+CONTENT MANAGEMENT ::
+- HOSTED CONTENT [CAN BE MULTI-LANG]
+     ~ IMAGES, HTML STATIC CONTENT, VIDEO, AUDIO, DOCUMENTS, FILES
+- SURVEYS
+- GLOBAL EMAIL FOOTER LEGAL
+- XML DRIVEN (OR MYSQL DRIVEN) RICH MEDIA SLIDE SHOW CONTENT
+- SOCIAL MEDIA FEED CACHE
+- MULTI-LANGUAGE SUPPORT
+- WHITE LABELING [NOTE :: SERVER CODE RESPONSE SHOULD BE WHITE LABELABLE]
+- SUPPORT FOR SITE SEARCH CONTENT?? ...AND SEARCH BOX UI INJECTION (JQUERY AJAX VERSION; $jquery_enabled=true)...
+
+ADMINISTRATION ::
+- IP ACCESS RESTRICTIONS
+	~ Blocked IP 
+	~ Exclusive Access IP
+	~ OPTION TO BROWSE TO CONFIG INCLUDE FILES 
+		
+	~ SOAP Services Layer
+	--System restrictions and any IP considerations for machine user accounts.
+	
+	~ KIVOTOS
+	--System restrictions and any IP considerations for user KIVOTOS accounts.
+	
+	~ Payment Gateway
+	--System restrictions and any IP considerations for payment gateway integrations.
+	
+	~ Analytics
+	--System restrictions and any IP considerations for analytics integrations (injections).
+	
+	~ PORT 80 URI
+	--System web access restrictions.
+	
+- REDIRECTS
+	~ OFF SUCCESS/ERROR/DATA_PROFILE ON FORM SUBMIT
+	~ OFF BASIC WEB PAGE OR DIRECTORY [$_GET ...OR $_POST]
+	~ OFF SESSION TIMEOUT OR IP DENIAL
+	~ OFF LINK CLINKED TO UPLOADED ASSET NO LONGER AVAILABLE...OR ACCESS DENIAL...ETC..
+	~ OFF APPLICATION DRIVEN SERVER RESPONSE CODE (CLICK HERE IF NOT REDIRECTED IN ...SECS...)
+	
+- USER 
+	~ Machine Users :: Authorized SOAP Clients
+	--Add, modify, delete. Authorized access to the CRNRSTN :: SOAP Services layer requires an appropriately configured machine account. 
+	
+	~ Users :: Authorized Users
+	--Add, modify, delete. New administrators or other user types can be created.
+	--Account access permission types include: super admin, admin, account management, translator, content creator, client, email campaign manager, database content manager, html content creator
+
+- PRIVACY COMPLIANCE 
+	~ oCOOKIE_MGR DRIVEN PROMPT WITH FOLLOW THROUGH
+	~ COOKIE PREFERENCES MGMT LANDING PAGE FOR CLIENT
+	~ PREFERENCE RESULTS MAY DRIVE ANALYTICS INTEGRATIONS
+
+- ENCRYPTION 
+	~ COOKIE
+	--Manage the format of data stored at the client.
+	~ SESSION
+	--Manage format of data stored in SESSION by CRNRSTN :: .
+	~ TUNNEL
+	--Manage format of data passed through CRNRSTN :: Form Integrations Layer and the default communications protocols for CRNRSTN :: SOAP Services Layer machine users.
+
+	~
+	~
+	~
+
+	~
+	~
+	~
+
+- PAYMENT GATEWAY
+	~ PROFILES
+	--ADD, MODIFY, DELETE
+	~
+
+	~
+	~
+	~
+
+	~
+	~
+	~
+	
+- ANALYTICS
+	~ PROFILES
+	--ADD, MODIFY, DELETE
+	--Single method $oCRNRSTN_USR->sendClientCare() WILL OUTPUT ANY ANALYTICS FOR THE PAGE/DIR/SITE, OPPORTUNITY FOR $oCOOKIE_MGR TO REQUEST USER COOKIE PREFERENCES AND EXPOSE COOKIE PRIVACY PREFERENCE PROFILE MANAGEMENT FORM.
+	~
+
+	~
+	~
+	~
+
+	~
+	~
+	~
+	
+- DEBUG MODE / EXCEPTION HANDLING
+	~ PHPMAILER DEBUG MODE
+	~ CRNRSTN_DEBUG MODE
+	~ MANAGE LOGGING PROFILE (EMAIL, FILE, EMAIL_PROXY, DEFAULT, SCREEN, ETC.)
+	~ MANAGE set_CRNRSTN_asErrorHandler()
+	~ MANAGE init_sys_assets_transport_mode()
+	~ MANAGE initSystemNotices_imgHTTP_DIR()
+	~ OPTION TO BROWSE TO CONFIG INCLUDE FILES 
+	~
+	~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1532 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+
+                <script>document.documentElement.setAttribute('data-useragent', navigator.userAgent);</script>
+
+                <title>CSS Support Guide for Email Clients [+Checklist] | Campaign Monitor</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta property="fb:admins" content="772549552" />
+        <meta name="google-site-verification" content="zyTuG88Wn1p_b0kNzl1uKJpZyeTZ0Sl6432CMZxPWcs" />
+        <meta name="msvalidate.01" content="A5352BC31C70117F51CB5B8263B6615F" />
+        <meta name="description" content="A complete breakdown of the CSS support for the most popular mobile, web and desktop email clients on the planet." />
+        	<meta property="og:title" content="CSS Support Guide for Email Clients" />
+	<meta property="og:description" content="A complete breakdown of the CSS support for the most popular mobile, web and desktop email clients on the planet." />
+	<meta property="og:url" content="https://www.campaignmonitor.com/css/" />
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:site" content="@CampaignMonitor" />
+	<meta property="twitter:creator" content="@CampaignMonitor" />
+	<meta property="twitter:title" content="CSS Support Guide for Email Clients" />
+	<meta property="twitter:description" content="A complete breakdown of the CSS support for the most popular mobile, web and desktop email clients on the planet." />
+<meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=1" />
+                                <script type="text/javascript">
+
+                function onActivated(event) {
+                    function getOCookie(name) {
+                        var value = "; " + document.cookie;
+                        var parts = value.split("; " + name + "=");
+                        if (parts.length == 2) return parts.pop().split(";").shift();
+                    }
+                    window.oeui = getOCookie('optimizelyEndUserId');
+                }
+
+                window["optimizely"] = window["optimizely"] || [];
+                window["optimizely"].push({
+                    type: "addListener",
+                    filter: {
+                        type: "lifecycle",
+                        name: "activated"
+                    },
+                    handler: onActivated
+                });
+                window["optimizely"].push({
+                    type: "holdEvents"
+                });
+                function handleOptimizely(status) {
+                    if (typeof(status) === "undefined") {
+                        status = cmStorage('get', 'statusOptimizely') || false;
+                        if (get_cookie("cookie-accept") === 'false') status = true;
+                    }
+
+                    cmStorage('set', 'statusOptimizely', status);
+                    window["optimizely"].push({
+                        "type": "optOut",
+                        "isOptOut": status
+                    });
+
+                }
+                // handleOptimizely(); // Not required at page load - run in Global after cmStorage is defined
+            </script>
+            <script type="text/javascript" src="//cdn.optimizely.com/js/341578140.js"></script>
+        
+                <script type="text/javascript">
+            function _addScript(d,s,p){var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src=p;f.parentNode.insertBefore(j,f);}
+                        // SUPPORTING FUNCTIONS
+
+function getUTMParameters() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+(utm_[^=&]+)=([^&]*)/gi, function(m,key,value) {
+    vars[key] = value;
+    });
+    return vars;
+}
+
+function isEmptyObj(obj) {
+    for(var prop in obj) {
+        if(obj.hasOwnProperty(prop))
+            return false;
+    }
+
+    return true;
+}
+
+function getQuerystringParameterByName(name) {
+	var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+	return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function getLocationFromLinkElement(href) {
+    var l = document.createElement("a");
+    l.href = href;
+    return l;
+}
+
+function get_cookie(cookie_name) {
+    var results = document.cookie.match (cookie_name + '=(.*?)(;|$)');
+    if (results)
+        return (unescape(results[1]));
+    else
+        return null;
+}
+
+function set_cookie(name, value, days) {
+    var cookie_string = name + "=" + escape(value);
+    if (typeof(days) === 'undefined') days = 365;
+
+    var expires = new Date();
+    expires.setDate(expires.getDate() + (days));
+    cookie_string += "; expires=" + expires.toGMTString();
+    cookie_string += "; path=" + escape ("/");
+    
+    if (/^localhost(\:\d+)?$/.test(location.host)) {
+        cookie_string += "; domain=";
+    } else {
+        var host = location.host;
+        host = host.split('.');
+        host = host.splice((host.length-2), host.length).join('.');
+    	cookie_string += "; domain=" + escape ("."+host);
+    }
+    
+    document.cookie = cookie_string;
+}
+
+function delete_cookie(name) {
+    var delete_string = "";
+    var expires = new Date();
+    expires.setDate(expires.getDate() - (9999));
+    delete_string += "; expires=" + expires.toGMTString();
+    delete_string += "; path=" + escape("/");
+
+    if (/^localhost(\:\d+)?$/.test(location.host)) {
+        delete_string += "; domain=";
+    } else {
+        var host = location.host;
+        host = host.split('.');
+        host = host.splice((host.length - 2), host.length).join('.');
+        delete_string += "; domain=" + escape("." + host);
+    }
+
+    if (typeof(name) !== "undefined") {
+        // Delete single cookie
+        document.cookie = name + "=" + delete_string;
+    } else {
+        // Delete all cookies
+        document.cookie.split(";").forEach(function(c) {document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=" + delete_string);});
+    }
+}
+	  
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
+
+
+// Clean up old cookies
+delete_cookie("CM-location-data");
+delete_cookie("CM-location-dv1");
+delete_cookie("CM-location-dv2");
+delete_cookie("CM-location-dv3");
+delete_cookie("CM-location-dv4");                        dataLayer = [{
+                'event' : 'virtualPageview',
+                'virtualPageURL' : encodeURI(location.pathname+location.search),
+                'virtualPageTitle' : document.title
+            }];
+
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-5JBZ766');
+
+                        var consent_cookie_name = "cookie-accept";
+            var cookie_consent = {};
+            var script_processed = false;
+            Object.defineProperty(cookie_consent, "given", {
+                get() {return document.cookie.match (consent_cookie_name + '=(.*?)(;|$)') || false;},
+                set(consent) {
+                    if (consent && !script_processed) {
+                        script_processed = true;
+                        _addScript(document,'script','//s3-us-west-1.amazonaws.com/global-assetbkt/trk.js');
+
+                                                window["optimizely"] = window["optimizely"] || [];
+                        window["optimizely"].push({
+                            type: "sendEvents"
+                        });
+
+                                                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                            '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                        })(window,document,'script','dataLayer','GTM-T98KGXJ');
+                    }
+                }
+            });
+            var consented = document.cookie.match (consent_cookie_name + '=(.*?)(;|$)');
+            if (consented) cookie_consent.given = (consented[1] === 'true' || consented[1] === 'implied');
+        </script>
+
+        
+        <link rel="dns-prefetch" href="//i1.campaignmonitor.com"><link rel="dns-prefetch" href="//i3.campaignmonitor.com"><link rel="dns-prefetch" href="//www.googleadservices.com"><link rel="dns-prefetch" href="//fonts.googleapis.com"><link rel="dns-prefetch" href="//themes.googleusercontent.com"><link rel="dns-prefetch" href="//341578140.log.optimizely.com"><link rel="dns-prefetch" href="//cdn.segment.com"><link rel="dns-prefetch" href="//api.segment.io"><link rel="dns-prefetch" href="//cdn.mxpnl.com"><link rel="dns-prefetch" href="//scripts.kissmetrics.com"><link rel="dns-prefetch" href="//www.google.com"><link rel="dns-prefetch" href="//www.google.com.au"><link rel="dns-prefetch" href="//www.google-analytics.com"><link rel="dns-prefetch" href="//sjs.bizographics.com"><link rel="dns-prefetch" href="//www.bizographics.com"><link rel="dns-prefetch" href="//imp2.bizographics.com"><link rel="dns-prefetch" href="//connect.facebook.net"><link rel="dns-prefetch" href="//secure.quantserve.com"><link rel="dns-prefetch" href="//fonts.gstatic.com"><link rel="dns-prefetch" href="//www.getfeedback.com"><link rel="dns-prefetch" href="//platform.twitter.com"><link rel="dns-prefetch" href="//analytics.twitter.com"><link rel="dns-prefetch" href="//trk.kissmetrics.com"><link rel="dns-prefetch" href="//dnn506yrbagrg.cloudfront.net"><link rel="dns-prefetch" href="//analytics.twitter.com"><link rel="dns-prefetch" href="//t.co"><link rel="dns-prefetch" href="//api.mixpanel.com"><link rel="dns-prefetch" href="//www.facebook.com"><link rel="dns-prefetch" href="//stats.g.doubleclick.net"><link rel="dns-prefetch" href="//googleads.g.doubleclick.net"><link rel="dns-prefetch" href="//pixel.quantserve.com"><link rel="dns-prefetch" href="//s.adroll.com"><link rel="dns-prefetch" href="//d.adroll.com"><link rel="dns-prefetch" href="//secure.adnxs.com"><link rel="dns-prefetch" href="//ads.yahoo.com">
+                <!--[if lt IE 9]>
+            <script src="https://www.campaignmonitor.com/wp-content/themes/cm-theme/assets/js/_template/html5.js?ver=138"></script>
+            <link href="https://www.campaignmonitor.com/wp-content/themes/cm-theme/assets/style/ie.css?ver=138" rel="stylesheet" />
+            	<![endif]-->
+        <!--[if IE 9]>
+		<link href="https://www.campaignmonitor.com/wp-content/themes/cm-theme/assets/style/ie-9.css?ver=138" rel="stylesheet" />
+                <link rel="prefetch" href="//i1.campaignmonitor.com"><link rel="prefetch" href="//i3.campaignmonitor.com"><link rel="prefetch" href="//www.googleadservices.com"><link rel="prefetch" href="//fonts.googleapis.com"><link rel="prefetch" href="//themes.googleusercontent.com"><link rel="prefetch" href="//341578140.log.optimizely.com"><link rel="prefetch" href="//cdn.segment.com"><link rel="prefetch" href="//api.segment.io"><link rel="prefetch" href="//cdn.mxpnl.com"><link rel="prefetch" href="//scripts.kissmetrics.com"><link rel="prefetch" href="//www.google.com"><link rel="prefetch" href="//www.google.com.au"><link rel="prefetch" href="//www.google-analytics.com"><link rel="prefetch" href="//sjs.bizographics.com"><link rel="prefetch" href="//www.bizographics.com"><link rel="prefetch" href="//imp2.bizographics.com"><link rel="prefetch" href="//connect.facebook.net"><link rel="prefetch" href="//secure.quantserve.com"><link rel="prefetch" href="//fonts.gstatic.com"><link rel="prefetch" href="//www.getfeedback.com"><link rel="prefetch" href="//platform.twitter.com"><link rel="prefetch" href="//analytics.twitter.com"><link rel="prefetch" href="//trk.kissmetrics.com"><link rel="prefetch" href="//dnn506yrbagrg.cloudfront.net"><link rel="prefetch" href="//analytics.twitter.com"><link rel="prefetch" href="//t.co"><link rel="prefetch" href="//api.mixpanel.com"><link rel="prefetch" href="//www.facebook.com"><link rel="prefetch" href="//stats.g.doubleclick.net"><link rel="prefetch" href="//googleads.g.doubleclick.net"><link rel="prefetch" href="//pixel.quantserve.com"><link rel="prefetch" href="//s.adroll.com"><link rel="prefetch" href="//d.adroll.com"><link rel="prefetch" href="//secure.adnxs.com"><link rel="prefetch" href="//ads.yahoo.com">        <![endif]-->
+                            <link href="https://www.campaignmonitor.com/wp-content/themes/cm-theme/assets/style/csstool.css?ver=138" rel="stylesheet" />
+                
+                <link href="https://www.campaignmonitor.com/wp-content/themes/cm-theme/assets/ico/favicon.ico?ver=138" rel="shortcut icon" />
+        <link href="https://www.campaignmonitor.com/wp-content/themes/cm-theme/assets/ico/apple-touch-icon.png?ver=138" rel="apple-touch-icon-precomposed" />
+        <link href="https://www.campaignmonitor.com/wp-content/themes/cm-theme/assets/ico/cm-marque.svg" rel="mask-icon" color="#00354f">
+
+        <script type="text/javascript">
+            /* For running inline once jQuery is loaded */
+            function defer(func) {
+                if (window.jQuery)
+                    func();
+                else
+                    setTimeout(function() { defer(func) }, 50);
+            }
+        </script>
+
+                <link href="https://plus.google.com/+campaignmonitor" rel="publisher" />
+
+                        <link rel="canonical" href="https://www.campaignmonitor.com/css/" />
+    </head>
+
+<body>
+
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5JBZ766" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-T98KGXJ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+    <div>
+    <div class="fullwidth dark" id="darker">
+        <div class="central">
+            <div id="topBar">
+                <div id="cmlogo" class="has-mobile-banner">
+                    <a href="https://www.campaignmonitor.com/" title="Campaign Monitor" class="home-nav-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="20" viewBox="0 0 2594 259"><g fill="none" fill-rule="evenodd"><path fill="#002B45" d="M1278.09.78c-10.33 0-18.28 2.22-18.28 11.77v9.34c0 9.55 7.95 12.02 18.28 12.02 10.36 0 18.3-2.47 18.3-12.01v-9.35c0-9.55-7.94-11.77-18.3-11.77M1285.53 52.6h-14.58a8.76 8.76 0 0 0-8.76 8.75v125.26a8.77 8.77 0 0 0 8.76 8.76h14.58a8.76 8.76 0 0 0 8.75-8.76V61.35a8.75 8.75 0 0 0-8.75-8.75M859.76 51.14c-21.21 0-36.06 9.28-47.19 24.13-7.41-14.85-21.74-24.13-41.89-24.13-21.47 0-33.66 11.67-42.67 24.13V61.34a8.74 8.74 0 0 0-8.76-8.74h-14.57a8.75 8.75 0 0 0-8.75 8.74v125.27a8.76 8.76 0 0 0 8.75 8.76h14.57a8.75 8.75 0 0 0 8.75-8.76v-71.56c0-21.48 12.2-34.75 29.96-34.75s28.37 12.2 28.37 33.95v72.36a8.76 8.76 0 0 0 8.75 8.76h14.57a8.75 8.75 0 0 0 8.75-8.76v-71.56c0-22.55 12.46-34.75 29.96-34.75 18.03 0 28.36 11.95 28.36 34.2l.01 72.1a8.76 8.76 0 0 0 8.74 8.77h14.58a8.76 8.76 0 0 0 8.75-8.76v-81.92c0-34.2-18.55-53.55-49.04-53.55M2213.03.78c-10.33 0-18.3 2.22-18.3 11.77v9.34c0 9.55 7.97 12.02 18.3 12.02 10.35 0 18.3-2.47 18.3-12.01v-9.35c0-9.55-7.95-11.77-18.3-11.77M2220.46 52.6h-14.58a8.75 8.75 0 0 0-8.75 8.75v125.26a8.76 8.76 0 0 0 8.75 8.76h14.58a8.75 8.75 0 0 0 8.73-8.76V61.35c0-4.84-3.9-8.75-8.73-8.75M453.82 37.99A62.54 62.54 0 0 1 492 50.82a8.37 8.37 0 0 0 11.05-.74l11.22-11.22a8.43 8.43 0 0 0-.7-12.54 94.61 94.61 0 0 0-59.74-20.88c-52.82 0-95.8 42.97-95.8 95.81 0 52.83 42.98 95.81 95.8 95.81a94.66 94.66 0 0 0 59.74-20.88 8.39 8.39 0 0 0 .7-12.53l-11.23-11.21a8.43 8.43 0 0 0-11.05-.75 62.53 62.53 0 0 1-38.16 12.82 63.32 63.32 0 0 1-63.25-63.26A63.33 63.33 0 0 1 453.82 38M1419.69 124.43c0 26.78-18.39 44.82-39.33 44.82-21.22 0-37.87-17.24-37.87-44.82v-.53c0-27.03 16.93-44.79 37.87-44.79 20.94 0 39.33 18.02 39.33 44.79v.53zm26.24-71.83h-14.57a8.75 8.75 0 0 0-8.76 8.75V75.4c-10.33-14.58-24.92-24.12-47.72-24.12-32.87 0-64.94 25.98-64.94 72.63v.53c0 46.4 31.8 72.64 64.94 72.64 23.32 0 37.91-10.7 47.72-23.7l.26-.33V186c0 24.13-18.63 46.22-44.61 46.22-15.96 0-30.6-7.4-37.92-19.83a8.75 8.75 0 0 0-12-2.93l-6.16 4.09a8.78 8.78 0 0 0-2.97 12.03c12.05 19.7 33.41 32.8 60.45 32.8 46.41 0 75.03-33.13 75.03-72.9V61.35a8.75 8.75 0 0 0-8.75-8.75zM2124.79 51.27c-21.76 0-34.74 11.03-43.75 24V61.34a8.75 8.75 0 0 0-8.75-8.74h-14.59a8.75 8.75 0 0 0-8.73 8.74v125.27a8.76 8.76 0 0 0 8.73 8.76h14.59c4.82 0 8.75-3.93 8.75-10.08v-75.42a30.76 30.76 0 1 1 61.51 0v76.74a8.76 8.76 0 0 0 8.73 8.76h14.59a8.76 8.76 0 0 0 8.75-8.76v-81.8c0-32.33-18.3-53.54-49.83-53.54M1553.01 51.27c-21.76 0-34.74 11.03-43.76 24V61.34a8.75 8.75 0 0 0-8.75-8.74h-14.58a8.74 8.74 0 0 0-8.73 8.74v125.27a8.75 8.75 0 0 0 8.73 8.76h14.58c4.83 0 8.75-3.93 8.75-10.08v-75.42a30.76 30.76 0 1 1 61.52 0v76.74a8.76 8.76 0 0 0 8.73 8.76h14.59a8.76 8.76 0 0 0 8.75-8.76v-81.8c0-32.33-18.31-53.54-49.83-53.54M2590.27 52.92a9.3 9.3 0 0 0-.91-.37 42 42 0 0 0-10.38-1.28 42.07 42.07 0 0 0-37.94 23.88v-13.8a8.75 8.75 0 0 0-8.75-8.75h-14.59a8.77 8.77 0 0 0-8.75 8.75v125.27a8.78 8.78 0 0 0 8.75 8.75h14.59a8.76 8.76 0 0 0 8.75-8.75v-53.03c0-42.81 22.35-50.52 35.24-49.47 2.53.2 4.75.55 6.64.8a32.5 32.5 0 0 0 1.62.13c3 0 5.5-2.13 6.07-4.96l3.22-20.6a6.19 6.19 0 0 0-3.56-6.57M2000.35 124.24v.45c0 24.48-17.04 44.28-41.92 44.55-24.89-.27-41.93-20.07-41.93-44.55v-.9c0-24.47 17.04-44.28 41.93-44.54 24.88.27 41.92 20.07 41.92 44.55v.44zm-41.92-72.97c-42.95 0-74.48 32.6-74.48 72.63v.69c0 40.02 31.53 72.63 74.48 72.63s74.48-32.61 74.48-72.63v-.7c0-40.01-31.53-72.62-74.48-72.62zM2459.76 124.24v.45c0 24.48-17.04 44.28-41.92 44.55-24.89-.27-41.93-20.07-41.93-44.55v-.9c0-24.47 17.04-44.28 41.93-44.54 24.88.27 41.92 20.07 41.92 44.55v.44zm-41.92-72.97c-42.95 0-74.48 32.6-74.48 72.63v.69c0 40.02 31.53 72.63 74.48 72.63s74.48-32.61 74.48-72.63v-.7c0-40.01-31.53-72.62-74.48-72.62zM1858.59 7.4h-14.63a8.78 8.78 0 0 0-7 3.53l-60.28 82.34-60.27-82.34a8.8 8.8 0 0 0-7.01-3.53h-14.63a8.76 8.76 0 0 0-8.75 8.76v170.45a8.76 8.76 0 0 0 8.75 8.76h14.59a8.76 8.76 0 0 0 8.75-8.76V68.38l53.24 68.3.12.15.43.54h.02a6.35 6.35 0 0 0 9.52 0h.02l.43-.54.12-.15 53.24-68.3V186.6a8.76 8.76 0 0 0 8.75 8.76h14.59a8.76 8.76 0 0 0 8.75-8.76V16.16a8.76 8.76 0 0 0-8.75-8.76M1776.69 139.53h-.01-.01.02M1043.5 124.43c0 26.78-18.39 44.82-39.33 44.82-21.22 0-37.87-17.24-37.87-44.82v-.53c0-27.03 16.92-44.79 37.87-44.79 20.94 0 39.33 18.03 39.33 44.79v.53zm-32.39-73.16c-22.8 0-37.38 9.41-47.72 24V61.35a8.74 8.74 0 0 0-8.75-8.75h-14.57a8.74 8.74 0 0 0-8.75 8.75V245.2a8.76 8.76 0 0 0 8.75 8.77h14.57a8.76 8.76 0 0 0 8.75-8.77v-72.16c9.82 13 24.4 24.03 47.72 24.03 33.14 0 64.95-26.25 64.95-72.64v-.53c0-46.65-32.08-72.63-64.95-72.63zM633.65 124.43c0 26.78-18.4 44.82-39.34 44.82-21.21 0-37.86-17.24-37.86-44.82v-.53c0-27.03 16.92-44.79 37.86-44.79 20.95 0 39.34 18.03 39.34 44.79v.53zm41.12 48.27a6.18 6.18 0 0 1-6.18-6.18V61.35a8.75 8.75 0 0 0-8.75-8.75h-14.58a8.75 8.75 0 0 0-8.75 8.75v13.92c-10.34-14.58-24.92-24-47.72-24-32.87 0-64.95 25.98-64.95 72.63v.53c0 46.4 31.81 72.64 64.95 72.64 24.02 0 40.96-10.77 48.25-24.03a30.78 30.78 0 0 0 29.59 22.33h8.14a6.18 6.18 0 0 0 6.19-6.18v-10.3a6.18 6.18 0 0 0-6.19-6.19zM1199.56 124.43c0 26.78-18.4 44.82-39.34 44.82-21.21 0-37.86-17.24-37.86-44.82v-.53c0-27.03 16.92-44.79 37.86-44.79 20.94 0 39.34 18.03 39.34 44.79v.53zm41.12 48.27a6.18 6.18 0 0 1-6.18-6.18V61.35a8.75 8.75 0 0 0-8.75-8.75h-14.58a8.75 8.75 0 0 0-8.75 8.75v13.92c-10.34-14.58-24.92-24-47.72-24-32.87 0-64.95 25.98-64.95 72.63v.53c0 46.4 31.81 72.64 64.95 72.64 24.01 0 40.96-10.77 48.25-24.03a30.76 30.76 0 0 0 29.59 22.33h8.14a6.18 6.18 0 0 0 6.18-6.18v-10.3a6.18 6.18 0 0 0-6.18-6.19zM2327.48 52.6h-30.46V13.53a6.18 6.18 0 0 0-9.73-5.02l-15.24 10.7a16.26 16.26 0 0 0-7.12 13.46V52.6h-10.33a8.77 8.77 0 0 0-8.77 8.74v9.02a8.77 8.77 0 0 0 8.77 8.75h10.33v77.02c0 30.75 16.68 41.09 40.3 41.09 12.51 0 25.37-4.84 25.37-4.84s4.36-1.3 3.25-6.38c-.37-1.74-2.55-13.73-2.55-13.73-.53-2.95-1.75-5.26-5.92-4.63-2.05.33-5.93.94-11.15.94-10.87-.03-17.21-5.03-17.21-17.5V79.11h30.46a8.74 8.74 0 0 0 8.75-8.75v-9.02c0-4.81-3.9-8.74-8.75-8.74" class="logo-color"/><path fill="#7856FF" d="M256.33 24.54a9.8 9.8 0 0 0-13.67-2.4L1.88 190.71a9.78 9.78 0 0 0 8.03 4.18l.01.01H248.3c5.42 0 9.81-4.4 9.81-9.82V30a9.8 9.8 0 0 0-1.78-5.48M15.56 22.13A9.81 9.81 0 0 0 .13 30v155.37l114.63-93.9-99.19-69.36" class="envelope-color"/></g></svg>                    </a>
+                </div>
+                <a class="menu-link" role="button" aria-expanded="false" aria-label="Mobile navigation button">
+                    <span class="line line-1"></span>
+                    <span class="line line-2"></span>
+                    <span class="line line-3"></span>
+                </a>
+                                <div class="mobile-banner" id="mobileBanner">
+                  <a href="https://www.campaignmonitor.com/signup/?sv=css" class="cmbtn medbtn primary">Sign up for free</a>
+                </div>
+                            </div>
+
+            <div id="mainNav">
+                                    <span id="skipnav"><a href="#content-skip" tabindex="1">Skip to content</a></span>
+                    <ul id="primary" role="navigation" class="primary-nav" aria-label="Primary navigation">
+    <li class="nav_item " role="none">
+        <a href="https://www.campaignmonitor.com/features/" id="features" class="primary-nav-link" role="menuitem" aria-label="Features" tabindex="2">
+            Features
+        </a>
+    </li>
+    <li class="nav_item " role="none">
+        <a href="https://www.campaignmonitor.com/pricing/" id="pricing" class="primary-nav-link" role="menuitem" aria-label="Pricing" tabindex="3">
+            Pricing
+        </a>
+    </li>
+    <li class="nav_item ">
+        <a href="https://www.campaignmonitor.com/resources/" id="resources" class="primary-nav-link nav_item" aria-label="Resources" tabindex="4">
+            Resources
+        </a>
+    </li>
+    <li class="nav_item ">
+        <a href="https://www.campaignmonitor.com/customers/" id="customers" class="primary-nav-link" aria-label="Customers" tabindex="5">
+            Customers
+        </a>
+    </li>
+    <li class="nav_item ">
+        <a href="https://www.campaignmonitor.com/best-email-marketing-campaigns/" id="gallery" class="primary-nav-link" aria-label="Gallery" tabindex="6">
+            Gallery
+        </a>
+    </li>
+    <li class="nav_item ">
+        <a href="https://www.campaignmonitor.com/agencies/" id="agencies" class="primary-nav-link" aria-label="Agencies" tabindex="7">
+            Agencies
+        </a>
+    </li>
+
+    <li  role="none">
+        <a href="https://help.campaignmonitor.com/"
+           id="support"
+           class="primary-nav-link show-mobile"
+           role="menuitem"
+           aria-label="Support"
+           tabindex="-1">Support</a>
+    </li>
+
+    <li class="" role="none">
+        <a href="https://www.campaignmonitor.com/contact-sales/?sv=css" id="sales" class="primary-nav-link show-mobile" aria-label="Sales" tabindex="-1">
+            Sales
+        </a>
+    </li>
+</ul>                                <div role="navigation" class="secondary-nav" aria-label="Secondary navigation">
+    <ul id="second" role="menu" aria-label="Secondary navigation">
+                    <li  role="none">
+                <a href="https://www.campaignmonitor.com/signup/?sv=css" class="cmbtn secondary" role="menuitem" aria-label="Sign up" tabindex="10">
+                    Sign up
+                </a>
+            </li>
+            <li  role="none">
+                <a href="https://login.createsend.com/l" id="login" class="primary-nav-link" role="menuitem" aria-label="Log in" tabindex="9">
+                    Log in
+                </a>
+            </li>
+                            <li class="nav_item nav_item-secondary ">
+                <a id="contact" class="primary-nav-link nav_item open-subnav hide-mobile" role="button" aria-label="Contact us menu" tabindex="8">
+                    Contact us
+                </a>
+                <div class='subnav' role="navigation">
+                    <div class='backing'></div>
+                    <div class='central'>
+                        <span class="logo">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="200" height="20" viewBox="0 0 2594 259"><g fill="none" fill-rule="evenodd"><path fill="#002B45" d="M1278.09.78c-10.33 0-18.28 2.22-18.28 11.77v9.34c0 9.55 7.95 12.02 18.28 12.02 10.36 0 18.3-2.47 18.3-12.01v-9.35c0-9.55-7.94-11.77-18.3-11.77M1285.53 52.6h-14.58a8.76 8.76 0 0 0-8.76 8.75v125.26a8.77 8.77 0 0 0 8.76 8.76h14.58a8.76 8.76 0 0 0 8.75-8.76V61.35a8.75 8.75 0 0 0-8.75-8.75M859.76 51.14c-21.21 0-36.06 9.28-47.19 24.13-7.41-14.85-21.74-24.13-41.89-24.13-21.47 0-33.66 11.67-42.67 24.13V61.34a8.74 8.74 0 0 0-8.76-8.74h-14.57a8.75 8.75 0 0 0-8.75 8.74v125.27a8.76 8.76 0 0 0 8.75 8.76h14.57a8.75 8.75 0 0 0 8.75-8.76v-71.56c0-21.48 12.2-34.75 29.96-34.75s28.37 12.2 28.37 33.95v72.36a8.76 8.76 0 0 0 8.75 8.76h14.57a8.75 8.75 0 0 0 8.75-8.76v-71.56c0-22.55 12.46-34.75 29.96-34.75 18.03 0 28.36 11.95 28.36 34.2l.01 72.1a8.76 8.76 0 0 0 8.74 8.77h14.58a8.76 8.76 0 0 0 8.75-8.76v-81.92c0-34.2-18.55-53.55-49.04-53.55M2213.03.78c-10.33 0-18.3 2.22-18.3 11.77v9.34c0 9.55 7.97 12.02 18.3 12.02 10.35 0 18.3-2.47 18.3-12.01v-9.35c0-9.55-7.95-11.77-18.3-11.77M2220.46 52.6h-14.58a8.75 8.75 0 0 0-8.75 8.75v125.26a8.76 8.76 0 0 0 8.75 8.76h14.58a8.75 8.75 0 0 0 8.73-8.76V61.35c0-4.84-3.9-8.75-8.73-8.75M453.82 37.99A62.54 62.54 0 0 1 492 50.82a8.37 8.37 0 0 0 11.05-.74l11.22-11.22a8.43 8.43 0 0 0-.7-12.54 94.61 94.61 0 0 0-59.74-20.88c-52.82 0-95.8 42.97-95.8 95.81 0 52.83 42.98 95.81 95.8 95.81a94.66 94.66 0 0 0 59.74-20.88 8.39 8.39 0 0 0 .7-12.53l-11.23-11.21a8.43 8.43 0 0 0-11.05-.75 62.53 62.53 0 0 1-38.16 12.82 63.32 63.32 0 0 1-63.25-63.26A63.33 63.33 0 0 1 453.82 38M1419.69 124.43c0 26.78-18.39 44.82-39.33 44.82-21.22 0-37.87-17.24-37.87-44.82v-.53c0-27.03 16.93-44.79 37.87-44.79 20.94 0 39.33 18.02 39.33 44.79v.53zm26.24-71.83h-14.57a8.75 8.75 0 0 0-8.76 8.75V75.4c-10.33-14.58-24.92-24.12-47.72-24.12-32.87 0-64.94 25.98-64.94 72.63v.53c0 46.4 31.8 72.64 64.94 72.64 23.32 0 37.91-10.7 47.72-23.7l.26-.33V186c0 24.13-18.63 46.22-44.61 46.22-15.96 0-30.6-7.4-37.92-19.83a8.75 8.75 0 0 0-12-2.93l-6.16 4.09a8.78 8.78 0 0 0-2.97 12.03c12.05 19.7 33.41 32.8 60.45 32.8 46.41 0 75.03-33.13 75.03-72.9V61.35a8.75 8.75 0 0 0-8.75-8.75zM2124.79 51.27c-21.76 0-34.74 11.03-43.75 24V61.34a8.75 8.75 0 0 0-8.75-8.74h-14.59a8.75 8.75 0 0 0-8.73 8.74v125.27a8.76 8.76 0 0 0 8.73 8.76h14.59c4.82 0 8.75-3.93 8.75-10.08v-75.42a30.76 30.76 0 1 1 61.51 0v76.74a8.76 8.76 0 0 0 8.73 8.76h14.59a8.76 8.76 0 0 0 8.75-8.76v-81.8c0-32.33-18.3-53.54-49.83-53.54M1553.01 51.27c-21.76 0-34.74 11.03-43.76 24V61.34a8.75 8.75 0 0 0-8.75-8.74h-14.58a8.74 8.74 0 0 0-8.73 8.74v125.27a8.75 8.75 0 0 0 8.73 8.76h14.58c4.83 0 8.75-3.93 8.75-10.08v-75.42a30.76 30.76 0 1 1 61.52 0v76.74a8.76 8.76 0 0 0 8.73 8.76h14.59a8.76 8.76 0 0 0 8.75-8.76v-81.8c0-32.33-18.31-53.54-49.83-53.54M2590.27 52.92a9.3 9.3 0 0 0-.91-.37 42 42 0 0 0-10.38-1.28 42.07 42.07 0 0 0-37.94 23.88v-13.8a8.75 8.75 0 0 0-8.75-8.75h-14.59a8.77 8.77 0 0 0-8.75 8.75v125.27a8.78 8.78 0 0 0 8.75 8.75h14.59a8.76 8.76 0 0 0 8.75-8.75v-53.03c0-42.81 22.35-50.52 35.24-49.47 2.53.2 4.75.55 6.64.8a32.5 32.5 0 0 0 1.62.13c3 0 5.5-2.13 6.07-4.96l3.22-20.6a6.19 6.19 0 0 0-3.56-6.57M2000.35 124.24v.45c0 24.48-17.04 44.28-41.92 44.55-24.89-.27-41.93-20.07-41.93-44.55v-.9c0-24.47 17.04-44.28 41.93-44.54 24.88.27 41.92 20.07 41.92 44.55v.44zm-41.92-72.97c-42.95 0-74.48 32.6-74.48 72.63v.69c0 40.02 31.53 72.63 74.48 72.63s74.48-32.61 74.48-72.63v-.7c0-40.01-31.53-72.62-74.48-72.62zM2459.76 124.24v.45c0 24.48-17.04 44.28-41.92 44.55-24.89-.27-41.93-20.07-41.93-44.55v-.9c0-24.47 17.04-44.28 41.93-44.54 24.88.27 41.92 20.07 41.92 44.55v.44zm-41.92-72.97c-42.95 0-74.48 32.6-74.48 72.63v.69c0 40.02 31.53 72.63 74.48 72.63s74.48-32.61 74.48-72.63v-.7c0-40.01-31.53-72.62-74.48-72.62zM1858.59 7.4h-14.63a8.78 8.78 0 0 0-7 3.53l-60.28 82.34-60.27-82.34a8.8 8.8 0 0 0-7.01-3.53h-14.63a8.76 8.76 0 0 0-8.75 8.76v170.45a8.76 8.76 0 0 0 8.75 8.76h14.59a8.76 8.76 0 0 0 8.75-8.76V68.38l53.24 68.3.12.15.43.54h.02a6.35 6.35 0 0 0 9.52 0h.02l.43-.54.12-.15 53.24-68.3V186.6a8.76 8.76 0 0 0 8.75 8.76h14.59a8.76 8.76 0 0 0 8.75-8.76V16.16a8.76 8.76 0 0 0-8.75-8.76M1776.69 139.53h-.01-.01.02M1043.5 124.43c0 26.78-18.39 44.82-39.33 44.82-21.22 0-37.87-17.24-37.87-44.82v-.53c0-27.03 16.92-44.79 37.87-44.79 20.94 0 39.33 18.03 39.33 44.79v.53zm-32.39-73.16c-22.8 0-37.38 9.41-47.72 24V61.35a8.74 8.74 0 0 0-8.75-8.75h-14.57a8.74 8.74 0 0 0-8.75 8.75V245.2a8.76 8.76 0 0 0 8.75 8.77h14.57a8.76 8.76 0 0 0 8.75-8.77v-72.16c9.82 13 24.4 24.03 47.72 24.03 33.14 0 64.95-26.25 64.95-72.64v-.53c0-46.65-32.08-72.63-64.95-72.63zM633.65 124.43c0 26.78-18.4 44.82-39.34 44.82-21.21 0-37.86-17.24-37.86-44.82v-.53c0-27.03 16.92-44.79 37.86-44.79 20.95 0 39.34 18.03 39.34 44.79v.53zm41.12 48.27a6.18 6.18 0 0 1-6.18-6.18V61.35a8.75 8.75 0 0 0-8.75-8.75h-14.58a8.75 8.75 0 0 0-8.75 8.75v13.92c-10.34-14.58-24.92-24-47.72-24-32.87 0-64.95 25.98-64.95 72.63v.53c0 46.4 31.81 72.64 64.95 72.64 24.02 0 40.96-10.77 48.25-24.03a30.78 30.78 0 0 0 29.59 22.33h8.14a6.18 6.18 0 0 0 6.19-6.18v-10.3a6.18 6.18 0 0 0-6.19-6.19zM1199.56 124.43c0 26.78-18.4 44.82-39.34 44.82-21.21 0-37.86-17.24-37.86-44.82v-.53c0-27.03 16.92-44.79 37.86-44.79 20.94 0 39.34 18.03 39.34 44.79v.53zm41.12 48.27a6.18 6.18 0 0 1-6.18-6.18V61.35a8.75 8.75 0 0 0-8.75-8.75h-14.58a8.75 8.75 0 0 0-8.75 8.75v13.92c-10.34-14.58-24.92-24-47.72-24-32.87 0-64.95 25.98-64.95 72.63v.53c0 46.4 31.81 72.64 64.95 72.64 24.01 0 40.96-10.77 48.25-24.03a30.76 30.76 0 0 0 29.59 22.33h8.14a6.18 6.18 0 0 0 6.18-6.18v-10.3a6.18 6.18 0 0 0-6.18-6.19zM2327.48 52.6h-30.46V13.53a6.18 6.18 0 0 0-9.73-5.02l-15.24 10.7a16.26 16.26 0 0 0-7.12 13.46V52.6h-10.33a8.77 8.77 0 0 0-8.77 8.74v9.02a8.77 8.77 0 0 0 8.77 8.75h10.33v77.02c0 30.75 16.68 41.09 40.3 41.09 12.51 0 25.37-4.84 25.37-4.84s4.36-1.3 3.25-6.38c-.37-1.74-2.55-13.73-2.55-13.73-.53-2.95-1.75-5.26-5.92-4.63-2.05.33-5.93.94-11.15.94-10.87-.03-17.21-5.03-17.21-17.5V79.11h30.46a8.74 8.74 0 0 0 8.75-8.75v-9.02c0-4.81-3.9-8.74-8.75-8.74" class="logo-color"/><path fill="#7856FF" d="M256.33 24.54a9.8 9.8 0 0 0-13.67-2.4L1.88 190.71a9.78 9.78 0 0 0 8.03 4.18l.01.01H248.3c5.42 0 9.81-4.4 9.81-9.82V30a9.8 9.8 0 0 0-1.78-5.48M15.56 22.13A9.81 9.81 0 0 0 .13 30v155.37l114.63-93.9-99.19-69.36" class="envelope-color"/></g></svg>                        </span>
+                        <span class="close"></span>
+                        <div class="block">
+                            <div class="title small">ASK US YOUR QUESTIONS</div>
+                            <a tabindex="11" aria-label="Request a live demo" class="sublink" href='https://www.campaignmonitor.com/demo/direct/?sv=css'>Request a live demo</a>
+                            <a tabindex="12" aria-label="Contact Sales" class="sublink" href='https://www.campaignmonitor.com/contact-sales/?sv=css'>Contact the sales team</a>
+                            <a tabindex="13" aria-label="Contact Campaign Monitor Support" class="sublink" href='https://help.campaignmonitor.com/'>Contact the support team</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            </ul>
+</div>            </div>
+        </div>
+    </div>
+
+    
+            </div>
+        </header>
+        <div id="content-skip"></div>
+    <section id="banner" class="fullwidth shorthead">
+    <div class="inner">
+        <div class="content">
+            <hgroup>
+                                <h1>The Ultimate Guide to CSS</h1>
+                <p>A complete breakdown of the CSS support for the most popular mobile, web and desktop email clients on the planet.</p>
+                <a href="https://www.campaignmonitor.com/signup/?sv=css" class="primary cmbtn white">Try it for free</a>
+            </hgroup>
+        </div>
+    </div>
+</section>
+
+<section id="filter-bar" class="fullwidth">
+    <div class="inner">
+        <div class="right cmForm">
+            <div id="search-box">
+                <form id="search" class="search-form">
+                    <input type="text" autocomplete="off" name="search" placeholder="Search CSS" data-search="css" />
+                    <span id="submit-search" class="action-flagged"></span
+                </form>
+            </div>
+        </div>
+        
+        <div class="left">
+            <a href="https://www.campaignmonitor.com/css/" class="resource-home">
+                <svg width="31px" height="31px" viewBox="0 0 31 31" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g transform="translate(-154.000000, -469.000000)">
+                            <g transform="translate(154.000000, 461.000000)">
+                                <g transform="translate(0.000000, 8.000000)">
+                                    <g>
+                                        <rect fill="currentColor" x="0" y="0" width="31" height="31" rx="3"></rect>
+                                        <path d="M15.7884966,7 L8,12.7361037 L8,23.4405227 L14.0651558,23.4405227 L14.0651558,17.9203014 L17.5120698,17.9203014 L17.5120698,23.4405227 L23.577458,23.4405227 L23.577458,12.7361037 L15.7884966,7 Z M9.04571652,13.2645391 L15.7884966,8.29877992 L22.5317415,13.2645391 L22.5317415,22.3948062 L18.5577864,22.3948062 L18.5577864,16.8745849 L13.0194393,16.8745849 L13.0194393,22.3948062 L9.04571652,22.3948062 L9.04571652,13.2645391 Z" stroke="#FFFFFF" fill="#FFFFFF"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+                Css guide
+            </a>
+            
+            <span class="sep"></span>
+            <span class="section-menu" data-menu="email-clients">
+                <span>Email clients</span>
+                
+                <svg width="12px" height="6px" viewBox="0 0 12 6" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g transform="translate(-330.000000, -481.000000)" stroke="currentColor">
+                            <g transform="translate(154.000000, 461.000000)">
+                                <g transform="translate(0.000000, 8.000000)">
+                                    <polyline points="177 12.2999604 181.85002 17.1499802 187 12"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+            </span>
+            
+            <span class="sep hidemob"></span>
+            <div class="social">
+                                <a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.campaignmonitor.com%2Fcss%2F&title=The+Ultimate+Guide+to+CSS&source=https%3A%2F%2Fwww.campaignmonitor.com%2Fcss%2F" title="Share this post on LinkedIn" target="_blank" rel="noopener noreferrer" onClick="_gaq.push(['_trackSocial', 'LinkedIn', 'Share', document.title]);" class="linkedin" rel="social">
+                    <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>LinkedIn</title>
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g class="social-color" transform="translate(-715.000000, -378.000000)" fill="currentColor">
+                                <g>
+                                    <g transform="translate(145.000000, 367.000000)">
+                                        <g transform="translate(570.000000, 11.000000)">
+                                            <g>
+                                                <path d="M15.3385,15.338 L12.669,15.338 L12.669,11.1605 C12.669,10.1645 12.652,8.883 11.282,8.883 C9.8925,8.883 9.6805,9.9685 9.6805,11.0895 L9.6805,15.338 L7.014,15.338 L7.014,6.748 L9.573,6.748 L9.573,7.9225 L9.61,7.9225 C9.966,7.247 10.837,6.535 12.1355,6.535 C14.839,6.535 15.3385,8.3135 15.3385,10.627 L15.3385,15.338 Z M4.004,5.5745 C3.1465,5.5745 2.455,4.881 2.455,4.026 C2.455,3.1715 3.1465,2.478 4.004,2.478 C4.858,2.478 5.551,3.1715 5.551,4.026 C5.551,4.881 4.858,5.5745 4.004,5.5745 Z M2.667,15.338 L5.3395,15.338 L5.3395,6.748 L2.667,6.748 L2.667,15.338 Z M16.668,0 L1.3275,0 C0.595,0 0,0.581 0,1.298 L0,16.701 C0,17.418 0.595,18 1.3275,18 L16.668,18 C17.402,18 17.9995,17.418 17.9995,16.701 L17.9995,1.298 C17.9995,0.581 17.402,0 16.668,0 L16.668,0 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                <a href="https://twitter.com/intent/tweet?text=The+Ultimate+Guide+to+CSS&via=campaignmonitor&url=https%3A%2F%2Fmonitor.cm%2F2j1FIrP" via="campaignmonitor" target="_blank" rel="noopener noreferrer" title="Share this post on Twitter" onClick="_gaq.push(['_trackSocial', 'Twitter', 'Tweet', document.title]);" class="twitter" rel="social">
+                    <svg width="18px" height="15px" viewBox="0 0 18 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>Twitter</title>
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g class="social-color" transform="translate(-751.000000, -379.000000)" fill="currentColor">
+                                <g>
+                                    <g transform="translate(145.000000, 367.000000)">
+                                        <g transform="translate(570.000000, 11.000000)">
+                                            <path d="M52.0165333,5.22450082 C52.0165333,5.06054204 52.0165333,4.8973218 52.0058347,4.73484012 C52.721808,4.19858474 53.3398483,3.53460227 53.8310176,2.77398166 C53.1633381,3.08033479 52.4550545,3.28124108 51.7298105,3.36999401 C52.4935087,2.89656822 53.0650852,2.15195155 53.3381683,1.27471888 C52.6200472,1.71597135 51.8344045,2.02694408 51.0151433,2.19421748 C49.8811496,0.945615395 48.0792444,0.640015644 46.6198326,1.44878102 C45.1604208,2.25754639 44.4064511,3.97954088 44.7807063,5.64916885 C41.8392273,5.49647266 39.098657,4.05782569 37.2410388,1.69126282 C36.2700492,3.42216889 36.7660119,5.63650967 38.3736651,6.74813586 C37.7914761,6.73026845 37.2219806,6.56764321 36.7132407,6.27398477 L36.7132407,6.32199072 C36.7137172,8.12523676 37.9412639,9.67837122 39.6482262,10.0354357 C39.1096365,10.1875333 38.5445437,10.2097669 37.9963607,10.1004283 C38.4756213,11.643578 39.8490566,12.7007142 41.4142102,12.7311545 C40.1187761,13.7853887 38.5184954,14.3576904 36.8708669,14.3559713 C36.5797959,14.3553927 36.289008,14.3371437 36,14.3013183 C37.673003,15.413045 39.6196348,16.0027356 41.6074984,15.9999905 C48.3362112,16.0029447 52.0165333,10.2304137 52.0165333,5.22450082 Z"></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                <a href="https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.campaignmonitor.com%2Fcss%2F&title=The+Ultimate+Guide+to+CSS" target="_blank" rel="noopener noreferrer" title="Share this post on Facebook" onClick="_gaq.push(['_trackSocial', 'Facebook', 'Share', document.title]);" class="facebook" rel="social">
+                    <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>Facebook</title>
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g class="social-color" transform="translate(-787.000000, -378.000000)" fill="currentColor">
+                                <g>
+                                    <g transform="translate(145.000000, 367.000000)">
+                                        <g transform="translate(570.000000, 11.000000)">
+                                            <path d="M72.9934244,0 C72.4447142,0 72,0.444714213 72,0.99342438 L72,17.0065082 C72,17.5551509 72.4447142,18 72.9934244,18 L81.6143652,18 L81.6143652,11.0294385 L79.2685888,11.0294385 L79.2685888,8.31286461 L81.6143652,8.31286461 L81.6143652,6.3094925 C81.6143652,3.98462317 83.0342944,2.71866464 85.1082785,2.71866464 C86.1017704,2.71866464 86.9555893,2.79258135 87.2043837,2.82562806 L87.2043837,5.25530265 L85.7659754,5.25597707 C84.6380712,5.25597707 84.4196257,5.79194065 84.4196257,6.5784522 L84.4196257,8.31286461 L87.1096948,8.31286461 L86.7594672,11.0294385 L84.4196257,11.0294385 L84.4196257,18 L89.0065082,18 C89.5551509,18 89.9999326,17.5551509 89.9999326,17.0065082 L89.9999326,0.99342438 C89.9999326,0.444714213 89.5551509,0 89.0065082,0 L72.9934244,0 Z"></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a> 
+            </div>
+        </div>
+        
+        <br class="clear" />
+    </div>
+</section>
+
+<section id="email-clients-bar" class="fullwidth">
+    <div class="inner">
+                <div class="section">
+            <h3 style="background-color: #000;">
+                Desktop
+                                <a href="#" class="seeall">
+                    See all 11                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#FFFFFF" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                            </h3>
+            <div>
+                            <a href='https://www.campaignmonitor.com/css/email-client/aol-desktop/' class='menuitem'>AOL Desktop                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/apple-mail-10/' class='menuitem'>Apple Mail 10                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/ibm-notes-9/' class='menuitem'>IBM Notes 9                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/outlook-2000-03/' class='menuitem'>Outlook 2000–03                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/outlook-2007-16/' class='menuitem'>Outlook 2007–16                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/outlook-express/' class='menuitem'>Outlook Express                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/outlook-for-mac/' class='menuitem'>Outlook for Mac                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/postbox/' class='menuitem'>Postbox                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                            </div>
+            <div class="remainder">
+                                            <a href='https://www.campaignmonitor.com/css/email-client/thunderbird/' class='menuitem'>Thunderbird                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/windows-10-mail/' class='menuitem'>Windows 10 Mail                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/windows-live-mail/' class='menuitem'>Windows Live Mail                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                        </div>
+        </div>
+        <div class="section">
+            <h3 style="background-color: #000;">
+                Mobile
+                                <a href="#" class="seeall">
+                    See all 19                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#FFFFFF" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                            </h3>
+            <div>
+                            <a href='https://www.campaignmonitor.com/css/email-client/android-4-2-2-mail/' class='menuitem'>Android 4.2.2 Mail                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/android-4-4-4-mail/' class='menuitem'>Android 4.4.4 Mail                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/aol-alto-android-app/' class='menuitem'>AOL Alto Android app                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/aol-alto-ios-app/' class='menuitem'>AOL Alto iOS app                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/blackberry/' class='menuitem'>BlackBerry                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/gmail-android-app/' class='menuitem'>Gmail Android app                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/gmail-android-app-imap/' class='menuitem'>Gmail Android app IMAP                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/gmail-ios-app/' class='menuitem'>Gmail iOS app                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                            </div>
+            <div class="remainder">
+                                            <a href='https://www.campaignmonitor.com/css/email-client/gmail-mobile-webmail/' class='menuitem'>Gmail mobile webmail                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/google-inbox-android-app/' class='menuitem'>Google Inbox Android app                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/google-inbox-ios-app/' class='menuitem'>Google Inbox iOS app                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/ios-10-mail/' class='menuitem'>iOS 10 Mail                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/ios-11-mail/' class='menuitem'>iOS 11 Mail                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/outlook-android-app/' class='menuitem'>Outlook Android app                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/outlook-ios-app/' class='menuitem'>Outlook iOS app                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/sparrow/' class='menuitem'>Sparrow                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/windows-phone-8-mail/' class='menuitem'>Windows Phone 8 Mail                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/yahoo-mail-android-app/' class='menuitem'>Yahoo! Mail Android app                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/yahoo-mail-ios-app/' class='menuitem'>Yahoo! Mail iOS app                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                        </div>
+        </div>
+        <div class="section">
+            <h3 style="background-color: #000;">
+                Webmail
+                            </h3>
+            <div>
+                            <a href='https://www.campaignmonitor.com/css/email-client/aol-mail/' class='menuitem'>AOL Mail                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/g-suite/' class='menuitem'>G Suite                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/gmail/' class='menuitem'>Gmail                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/google-inbox/' class='menuitem'>Google Inbox                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/outlook-com/' class='menuitem'>Outlook.com                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                            <a href='https://www.campaignmonitor.com/css/email-client/yahoo-mail/' class='menuitem'>Yahoo! Mail                    <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-664.000000, -1540.000000)" stroke="#8E959C" stroke-width="2" class="color-change">
+                                <g transform="translate(665.000000, 1541.000000)">
+                                    <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                                        </div>
+        </div>
+    </div>
+</section>
+<section id="list" class='fullwidth'>
+    <div class='inner content'> 
+        <div class='list'>
+                        <div class="section" id="section-style-element">
+                <h3 style="background-color: #002b45">
+                    Style Element                                    </h3>
+                <div><a href='https://www.campaignmonitor.com/css/style-element/style-in-head/' class='menuitem' id='element-style-in-head'>&lt;style&gt; in &lt;head&gt;<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/style-element/style-in-body/' class='menuitem' id='element-style-in-body'>&lt;style&gt; in &lt;body&gt;<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a></div>                </div>
+                        <div class="section" id="section-link-element">
+                <h3 style="background-color: #a764a8">
+                    Link Element                                    </h3>
+                <div><a href='https://www.campaignmonitor.com/css/link-element/link-in-head/' class='menuitem' id='element-link-in-head'>&lt;link&gt; in &lt;head&gt;<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/link-element/link-in-body/' class='menuitem' id='element-link-in-body'>&lt;link&gt; in &lt;body&gt;<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a></div>                </div>
+                        <div class="section" id="section-selectors">
+                <h3 style="background-color: #8dc8d6">
+                    Selectors                                        <a href="https://www.campaignmonitor.com/css/properties/selectors/" class="seeall">
+                        See all 37                        <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                                <g transform="translate(-664.000000, -1540.000000)" stroke="#FFFFFF" stroke-width="2" class="color-change">
+                                    <g transform="translate(665.000000, 1541.000000)">
+                                        <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </a>
+                                    </h3>
+                <div><a href='https://www.campaignmonitor.com/css/selectors/universal/' class='menuitem' id='element-universal'>*<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/type/' class='menuitem' id='element-type'>E<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/id/' class='menuitem' id='element-id'>#id<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/class/' class='menuitem' id='element-class'>.classname<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/class-chaining/' class='menuitem' id='element-class-chaining'>.class.chaining<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/selector-groups/' class='menuitem' id='element-selector-groups'>.selector, .groups.<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/descendant/' class='menuitem' id='element-descendant'>E F<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/child/' class='menuitem' id='element-child'>E &gt; F<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a></div><div class='remainder'><a href='https://www.campaignmonitor.com/css/selectors/adjacent-sibling/' class='menuitem' id='element-adjacent-sibling'>E + F<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/general-sibling/' class='menuitem' id='element-general-sibling'>E ~ F<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/not/' class='menuitem' id='element-not-2'>E:not(s)<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/attribute-exists/' class='menuitem' id='element-attribute-exists'>E[foo]<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/attribute-equals/' class='menuitem' id='element-attribute-equals'>E[foo="bar"]<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/attribute-contains-word/' class='menuitem' id='element-attribute-contains-word'>E[foo~="bar"]<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/attribute-begins-with/' class='menuitem' id='element-attribute-begins-with'>E[foo^="bar"]<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/attribute-ends-with/' class='menuitem' id='element-attribute-ends-with'>E[foo$="bar"]<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/attribute-contains/' class='menuitem' id='element-attribute-contains'>E[foo*="bar"]<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/first-child/' class='menuitem' id='element-first-child'>E:first-child<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/last-child/' class='menuitem' id='element-last-child'>E:last-child<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/first-of-type/' class='menuitem' id='element-first-of-type'>E:first-of-type<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/last-of-type/' class='menuitem' id='element-last-of-type'>E:last-of-type<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/nth-child/' class='menuitem' id='element-nth-child'>E:nth-child(n)<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/nth-last-child/' class='menuitem' id='element-nth-last-child'>E:nth-last-child(n)<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/nth-of-type/' class='menuitem' id='element-nth-of-type'>E:nth-of-type(n)<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/nth-last-of-type/' class='menuitem' id='element-nth-last-of-type'>E:nth-last-of-type(n)<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/first-letter/' class='menuitem' id='element-first-letter'>E::first-letter<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/first-line/' class='menuitem' id='element-first-line'>E::first-line<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/before/' class='menuitem' id='element-before'>E::before<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/after/' class='menuitem' id='element-after'>E::after<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/active/' class='menuitem' id='element-active'>E:active<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/checked/' class='menuitem' id='element-checked'>E:checked<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/empty/' class='menuitem' id='element-empty'>E:empty<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/focus/' class='menuitem' id='element-focus'>E:focus<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/hover/' class='menuitem' id='element-hover-2'>E:hover<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/link/' class='menuitem' id='element-link'>E:link<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/target/' class='menuitem' id='element-target'>E:target<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/selectors/visited/' class='menuitem' id='element-visited'>E:visited<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a></div>                </div>
+                        <div class="section" id="section-media-queries">
+                <h3 style="background-color: #e4cbac">
+                    Media Queries      See all 28                                    <a href="https://www.campaignmonitor.com/css/properties/media-queries/" class="seeall">
+                       
+                                    </h3>
+                <div><a href='https://www.campaignmonitor.com/css/media-queries/media/' class='menuitem' id='element-media'>@media<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/and/' class='menuitem' id='element-and'>and<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/or/' class='menuitem' id='element-or'>or (comma)<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/not/' class='menuitem' id='element-not'>not<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/screen/' class='menuitem' id='element-screen'>screen<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/only-screen/' class='menuitem' id='element-only-screen'>only screen<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/all/' class='menuitem' id='element-all'>all<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/any-hover/' class='menuitem' id='element-any-hover'>any-hover<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a></div><div class='remainder'><a href='https://www.campaignmonitor.com/css/media-queries/any-pointer/' class='menuitem' id='element-any-pointer'>any-pointer<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/hover/' class='menuitem' id='element-hover'>hover<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/max-aspect-ratio/' class='menuitem' id='element-max-aspect-ratio'>max-aspect-ratio<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/max-device-aspect-ratio/' class='menuitem' id='element-max-device-aspect-ratio'>max-device-aspect-ratio<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/max-device-height/' class='menuitem' id='element-max-device-height'>max-device-height<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/max-device-pixel-ratio/' class='menuitem' id='element-max-device-pixel-ratio'>max-device-pixel-ratio<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/max-device-width/' class='menuitem' id='element-max-device-width'>max-device-width<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/max-height/' class='menuitem' id='element-max-height'>max-height<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/max-resolution/' class='menuitem' id='element-max-resolution'>max-resolution<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/max-width/' class='menuitem' id='element-max-width'>max-width<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/min-aspect-ratio/' class='menuitem' id='element-min-aspect-ratio'>min-aspect-ratio<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/min-device-aspect-ratio/' class='menuitem' id='element-min-device-aspect-ratio'>min-device-aspect-ratio<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/min-device-height/' class='menuitem' id='element-min-device-height'>min-device-height<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/min-device-pixel-ratio/' class='menuitem' id='element-min-device-pixel-ratio'>min-device-pixel-ratio<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/min-device-width/' class='menuitem' id='element-min-device-width'>min-device-width<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/min-height/' class='menuitem' id='element-min-height'>min-height<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/min-resolution/' class='menuitem' id='element-min-resolution'>min-resolution<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/min-width/' class='menuitem' id='element-min-width'>min-width<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/orientation/' class='menuitem' id='element-orientation'>orientation<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/media-queries/pointer/' class='menuitem' id='element-pointer'>pointer<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a></div>                </div>
+                        <div class="section" id="section-text-fonts">
+                <h3 style="background-color: #f57373">
+                    Text &amp; Fonts                                        <a href="https://www.campaignmonitor.com/css/properties/text-fonts/" class="seeall">
+                        See all 39                        <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                                <g transform="translate(-664.000000, -1540.000000)" stroke="#FFFFFF" stroke-width="2" class="color-change">
+                                    <g transform="translate(665.000000, 1541.000000)">
+                                        <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </a>
+                                    </h3>
+                <div><a href='https://www.campaignmonitor.com/css/text-fonts/font-face/' class='menuitem' id='element-font-face'>@font-face<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/eot/' class='menuitem' id='element-eot'>EOT<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/svg/' class='menuitem' id='element-svg'>SVG<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/ttf/' class='menuitem' id='element-ttf'>TTF<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/woff/' class='menuitem' id='element-woff'>WOFF<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/woff2/' class='menuitem' id='element-woff2'>WOFF2<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/woff-base64-encoded/' class='menuitem' id='element-woff-base64-encoded'>WOFF base64 encoded<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/woff2-base64-encoded/' class='menuitem' id='element-woff2-base64-encoded'>WOFF2 base64 encoded<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a></div><div class='remainder'><a href='https://www.campaignmonitor.com/css/text-fonts/direction/' class='menuitem' id='element-direction'>direction<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/font/' class='menuitem' id='element-font'>font<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/font-family/' class='menuitem' id='element-font-family'>font-family<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/font-feature-settings/' class='menuitem' id='element-font-feature-settings'>font-feature-settings<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/font-kerning/' class='menuitem' id='element-font-kerning'>font-kerning<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/font-size/' class='menuitem' id='element-font-size'>font-size<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/font-size-adjust/' class='menuitem' id='element-font-size-adjust'>font-size-adjust<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/font-stretch/' class='menuitem' id='element-font-stretch'>font-stretch<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/font-style/' class='menuitem' id='element-font-style'>font-style<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/font-synthesis/' class='menuitem' id='element-font-synthesis'>font-synthesis<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/font-variant/' class='menuitem' id='element-font-variant'>font-variant<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/font-weight/' class='menuitem' id='element-font-weight'>font-weight<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/hyphens/' class='menuitem' id='element-hyphens'>hyphens<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/letter-spacing/' class='menuitem' id='element-letter-spacing'>letter-spacing<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/line-height/' class='menuitem' id='element-line-height'>line-height<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/overflow-wrap/' class='menuitem' id='element-overflow-wrap'>overflow-wrap<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/text-align/' class='menuitem' id='element-text-align'>text-align<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/text-decoration/' class='menuitem' id='element-text-decoration'>text-decoration<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/text-fill-color/' class='menuitem' id='element-text-fill-color'>text-fill-color<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/text-indent/' class='menuitem' id='element-text-indent'>text-indent<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/text-overflow/' class='menuitem' id='element-text-overflow'>text-overflow<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/text-shadow/' class='menuitem' id='element-text-shadow'>text-shadow<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/text-size-adjust/' class='menuitem' id='element-text-size-adjust'>text-size-adjust<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/text-stroke/' class='menuitem' id='element-text-stroke'>text-stroke<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/text-stroke-color/' class='menuitem' id='element-text-stroke-color'>text-stroke-color<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/text-stroke-width/' class='menuitem' id='element-text-stroke-width'>text-stroke-width<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/text-transform/' class='menuitem' id='element-text-transform'>text-transform<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/vertical-align/' class='menuitem' id='element-vertical-align'>vertical-align<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/white-space/' class='menuitem' id='element-white-space'>white-space<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/word-spacing/' class='menuitem' id='element-word-spacing'>word-spacing<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/text-fonts/word-wrap/' class='menuitem' id='element-word-wrap'>word-wrap<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a></div>                </div>
+                        <div class="section" id="section-color-background">
+                <h3 style="background-color: #10cc72">
+                    Color &amp; Background                                        <a href="https://www.campaignmonitor.com/css/properties/color-background/" class="seeall">
+                        See all 25                        <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                                <g transform="translate(-664.000000, -1540.000000)" stroke="#FFFFFF" stroke-width="2" class="color-change">
+                                    <g transform="translate(665.000000, 1541.000000)">
+                                        <polyline transform="translate(2.500000, 5.000000) rotate(-180.000000) translate(-2.500000, -5.000000) " points="4.967466 0 0 4.98377129 5 10"></polyline>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </a>
+                                    </h3>
+                <div><a href='https://www.campaignmonitor.com/css/color-background/background/' class='menuitem' id='element-background'>background<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/background-attachment/' class='menuitem' id='element-background-attachment'>background-attachment<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/background-blend-mode/' class='menuitem' id='element-background-blend-mode'>background-blend-mode<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/background-clip/' class='menuitem' id='element-background-clip'>background-clip<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/background-color/' class='menuitem' id='element-background-color'>background-color<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/background-image/' class='menuitem' id='element-background-image'>background-image<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/background-origin/' class='menuitem' id='element-background-origin'>background-origin<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/background-position/' class='menuitem' id='element-background-position'>background-position<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a></div><div class='remainder'><a href='https://www.campaignmonitor.com/css/color-background/background-repeat/' class='menuitem' id='element-background-repeat'>background-repeat<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/background-size/' class='menuitem' id='element-background-size'>background-size<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/color/' class='menuitem' id='element-color'>color<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/isolation/' class='menuitem' id='element-isolation'>isolation<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/mix-blend-mode/' class='menuitem' id='element-mix-blend-mode'>mix-blend-mode<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/css-gradients/' class='menuitem' id='element-css-gradients'>CSS gradients<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/data-uri-background-image/' class='menuitem' id='element-data-uri-background-image'>Data URI background image<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/multiple-background-images/' class='menuitem' id='element-multiple-background-images'>Multiple background images<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/html-4-01-named-colors/' class='menuitem' id='element-html-4-01-named-colors'>HTML 4.01 Named Colors<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                     
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/x11-named-colors/' class='menuitem' id='element-x11-named-colors'>X11 Named Colors<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/hex-colors/' class='menuitem' id='element-hex-colors'>HEX Colors<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/hex-shorthand-colors/' class='menuitem' id='element-hex-shorthand-colors'>HEX Shorthand Colors<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                   
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/hsl-colors/' class='menuitem' id='element-hsl-colors'>HSL Colors<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/hsla-colors/' class='menuitem' id='element-hsla-colors'>HSLA Colors<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/rgb-colors/' class='menuitem' id='element-rgb-colors'>RGB Colors<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/rgba-colors/' class='menuitem' id='element-rgba-colors'>RGBA Colors<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/color-background/currentcolor/' class='menuitem' id='element-currentcolor'>currentColor<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                <h3 style="background-color: #509cf6">
+                    Box Model        See all 44                                     <a href="https://www.campaignmonitor.com/css/properties/box-model/" class="seeall">
+                       
+                                    </h3>
+                <div><a href='https://www.campaignmonitor.com/css/box-model/border/' class='menuitem' id='element-border'>border<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-bottom/' class='menuitem' id='element-border-bottom'>border-bottom<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-bottom-color/' class='menuitem' id='element-border-bottom-color'>border-bottom-color<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-bottom-left-radius/' class='menuitem' id='element-border-bottom-left-radius'>border-bottom-left-radius<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-bottom-right-radius/' class='menuitem' id='element-border-bottom-right-radius'>border-bottom-right-radius<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-bottom-style/' class='menuitem' id='element-border-bottom-style'>border-bottom-style<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-bottom-width/' class='menuitem' id='element-border-bottom-width'>border-bottom-width<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-color/' class='menuitem' id='element-border-color'>border-color<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a></div><div class='remainder'><a href='https://www.campaignmonitor.com/css/box-model/border-image/' class='menuitem' id='element-border-image'>border-image<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                     
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-left/' class='menuitem' id='element-border-left'>border-left<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-left-color/' class='menuitem' id='element-border-left-color'>border-left-color<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/partial-support-on-table-elements/' class='menuitem' id='element-partial-support-on-table-elements'>border-left-style<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-left-width/' class='menuitem' id='element-border-left-width'>border-left-width<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-radius/' class='menuitem' id='element-border-radius'>border-radius<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-right/' class='menuitem' id='element-border-right'>border-right<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-right-color/' class='menuitem' id='element-border-right-color'>border-right-color<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-right-style/' class='menuitem' id='element-border-right-style'>border-right-style<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-right-width/' class='menuitem' id='element-border-right-width'>border-right-width<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-style/' class='menuitem' id='element-border-style'>border-style<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-top/' class='menuitem' id='element-border-top'>border-top<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-top-color/' class='menuitem' id='element-border-top-color'>border-top-color<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-top-left-radius/' class='menuitem' id='element-border-top-left-radius'>border-top-left-radius<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-top-right-radius/' class='menuitem' id='element-border-top-right-radius'>border-top-right-radius<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-top-style/' class='menuitem' id='element-border-top-style'>border-top-style<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-top-width/' class='menuitem' id='element-border-top-width'>border-top-width<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/border-width/' class='menuitem' id='element-border-width'>border-width<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/box-shadow/' class='menuitem' id='element-box-shadow'>box-shadow<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/box-sizing/' class='menuitem' id='element-box-sizing'>box-sizing<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/height/' class='menuitem' id='element-height'>height<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/margin/' class='menuitem' id='element-margin'>margin<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/margin-bottom/' class='menuitem' id='element-margin-bottom'>margin-bottom<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/margin-left/' class='menuitem' id='element-margin-left'>margin-left<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/margin-right/' class='menuitem' id='element-margin-right'>margin-right<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/margin-top/' class='menuitem' id='element-margin-top'>margin-top<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                     
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/max-height/' class='menuitem' id='element-max-height-2'>max-height<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                     
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/max-width/' class='menuitem' id='element-max-width-2'>max-width<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/min-height/' class='menuitem' id='element-min-height-2'>min-height<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/min-width/' class='menuitem' id='element-min-width-2'>min-width<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/padding/' class='menuitem' id='element-padding'>padding<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/padding-bottom/' class='menuitem' id='element-padding-bottom'>padding-bottom<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/padding-left/' class='menuitem' id='element-padding-left'>padding-left<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/padding-right/' class='menuitem' id='element-padding-right'>padding-right<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/padding-top/' class='menuitem' id='element-padding-top'>padding-top<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/box-model/width/' class='menuitem' id='element-width-2'>width<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                <h3 style="background-color: #002b45">
+                    Positioning &amp; Display See all 20                                           <a href="https://www.campaignmonitor.com/css/properties/positioning-display/" class="seeall">
+                        
+                                    </h3>
+                <div><a href='https://www.campaignmonitor.com/css/positioning-display/bottom/' class='menuitem' id='element-bottom'>bottom<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/positioning-display/clear/' class='menuitem' id='element-clear'>clear<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/positioning-display/cursor/' class='menuitem' id='element-cursor'>cursor<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/positioning-display/display/' class='menuitem' id='element-display'>display<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/positioning-display/float/' class='menuitem' id='element-float'>float<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/positioning-display/left/' class='menuitem' id='element-left'>left<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/positioning-display/object-fit/' class='menuitem' id='element-object-fit'>object-fit<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/positioning-display/object-position/' class='menuitem' id='element-object-position'>object-position<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a></div><div class='remainder'><a href='https://www.campaignmonitor.com/css/positioning-display/opacity/' class='menuitem' id='element-opacity'>opacity<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/positioning-display/outline/' class='menuitem' id='element-outline'>outline<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/positioning-display/outline-color/' class='menuitem' id='element-outline-color'>outline-color<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/positioning-display/outline-style/' class='menuitem' id='element-outline-style'>outline-style<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/positioning-display/outline-width/' class='menuitem' id='element-outline-width'>outline-width<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/positioning-display/overflow/' class='menuitem' id='element-overflow'>overflow<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                     
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/positioning-display/position/' class='menuitem' id='element-position'>position<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/positioning-display/resize/' class='menuitem' id='element-resize'>resize<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/positioning-display/right/' class='menuitem' id='element-right'>right<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/positioning-display/top/' class='menuitem' id='element-top'>top<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/positioning-display/visibility/' class='menuitem' id='element-visibility'>visibility<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/positioning-display/z-index/' class='menuitem' id='element-z-index'>z-index<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                <h3 style="background-color: #a764a8">
+                    Lists                                    </h3>
+                <div><a href='https://www.campaignmonitor.com/css/lists/list-style/' class='menuitem' id='element-list-style'>list-style<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/lists/list-style-image/' class='menuitem' id='element-list-style-image'>list-style-image<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/lists/list-style-position/' class='menuitem' id='element-list-style-position'>list-style-position<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/lists/list-style-type/' class='menuitem' id='element-list-style-type'>list-style-type<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                <h3 style="background-color: #e4cbac">
+                    Tables                                    </h3>
+                <div><a href='https://www.campaignmonitor.com/css/tables/border-collapse/' class='menuitem' id='element-border-collapse'>border-collapse<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/tables/border-spacing/' class='menuitem' id='element-border-spacing'>border-spacing<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/tables/empty-cells/' class='menuitem' id='element-empty-cells'>empty-cells<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/tables/table-layout/' class='menuitem' id='element-table-layout'>table-layout<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                <h3 style="background-color: #509cf6">
+                    Animations       See all 9                                  <a href="https://www.campaignmonitor.com/css/properties/animations/" class="seeall">
+                        </h3>
+                            <div><a href='https://www.campaignmonitor.com/css/animations/animation/' class='menuitem' id='element-animation'>animation<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/animations/animation-delay/' class='menuitem' id='element-animation-delay'>animation-delay<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/animations/animation-direction/' class='menuitem' id='element-animation-direction'>animation-direction<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/animations/animation-duration/' class='menuitem' id='element-animation-duration'>animation-duration<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/animations/animation-fill-mode/' class='menuitem' id='element-animation-fill-mode'>animation-fill-mode<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/animations/animation-iteration-count/' class='menuitem' id='element-animation-iteration-count'>animation-iteration-count<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/animations/animation-name/' class='menuitem' id='element-animation-name'>animation-name<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/animations/animation-play-state/' class='menuitem' id='element-animation-play-state'>animation-play-state<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a></div><div class='remainder'><a href='https://www.campaignmonitor.com/css/animations/animation-timing-function/' class='menuitem' id='element-animation-timing-function'>animation-timing-function<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                <h3 style="background-color: #f57373">
+                    Transforms                                    </h3>
+                                    <div><a href='https://www.campaignmonitor.com/css/transforms/backface-visibility/' class='menuitem' id='element-backface-visibility'>backface-visibility<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/transforms/perspective/' class='menuitem' id='element-perspective'>perspective<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/transforms/perspective-origin/' class='menuitem' id='element-perspective-origin'>perspective-origin<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/transforms/transform/' class='menuitem' id='element-transform'>transform<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/transforms/transform-origin/' class='menuitem' id='element-transform-origin'>transform-origin<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/transforms/transform-style/' class='menuitem' id='element-transform-style'>transform-style<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                <h3 style="background-color: #10cc72">
+                    Transitions                                    </h3>
+                                    <div><a href='https://www.campaignmonitor.com/css/transitions/transition/' class='menuitem' id='element-transition'>transition<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/transitions/transition-delay/' class='menuitem' id='element-transition-delay'>transition-delay<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/transitions/transition-duration/' class='menuitem' id='element-transition-duration'>transition-duration<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/transitions/transition-property/' class='menuitem' id='element-transition-property'>transition-property<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/transitions/transition-timing-function/' class='menuitem' id='element-transition-timing-function'>transition-timing-function<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                        <h3 style="background-color: #509cf6">
+                        Filters                                    </h3>
+                                    <div><a href='https://www.campaignmonitor.com/css/filters/backdrop-filter/' class='menuitem' id='element-backdrop-filter'>backdrop-filter<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/filters/filter/' class='menuitem' id='element-filter'>filter<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                <h3 style="background-color: #002b45">
+                    Columns  See all 13                                       <a href="https://www.campaignmonitor.com/css/properties/columns/" class="seeall">
+                       
+                                    </h3>
+                                    <div><a href='https://www.campaignmonitor.com/css/columns/break-after/' class='menuitem' id='element-break-after'>break-after<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/columns/break-before/' class='menuitem' id='element-break-before'>break-before<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/columns/break-inside/' class='menuitem' id='element-break-inside'>break-inside<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/columns/column-count/' class='menuitem' id='element-column-count'>column-count<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/columns/column-fill/' class='menuitem' id='element-column-fill'>column-fill<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/columns/column-gap/' class='menuitem' id='element-column-gap'>column-gap<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/columns/column-rule/' class='menuitem' id='element-column-rule'>column-rule<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/columns/column-rule-color/' class='menuitem' id='element-column-rule-color'>column-rule-color<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a></div><div class='remainder'><a href='https://www.campaignmonitor.com/css/columns/column-rule-style/' class='menuitem' id='element-column-rule-style'>column-rule-style<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/columns/column-rule-width/' class='menuitem' id='element-column-rule-width'>column-rule-width<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/columns/column-span/' class='menuitem' id='element-column-span'>column-span<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/columns/column-width/' class='menuitem' id='element-column-width'>column-width<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/columns/columns/' class='menuitem' id='element-columns'>columns<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                <h3 style="background-color: #a764a8">
+                    Flexbox               See all 13   
+                                    </h3>
+                                    <div><a href='https://www.campaignmonitor.com/css/flexbox/align-content/' class='menuitem' id='element-align-content'>align-content<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/flexbox/align-items/' class='menuitem' id='element-align-items'>align-items<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/flexbox/align-self/' class='menuitem' id='element-align-self'>align-self<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/flexbox/display/' class='menuitem' id='element-display-2'>display<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/flexbox/flex/' class='menuitem' id='element-flex'>flex<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/flexbox/flex-basis/' class='menuitem' id='element-flex-basis'>flex-basis<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/flexbox/flex-direction/' class='menuitem' id='element-flex-direction'>flex-direction<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/flexbox/flex-flow/' class='menuitem' id='element-flex-flow'>flex-flow<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a></div><div class='remainder'><a href='https://www.campaignmonitor.com/css/flexbox/flex-grow/' class='menuitem' id='element-flex-grow'>flex-grow<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/flexbox/flex-shrink/' class='menuitem' id='element-flex-shrink'>flex-shrink<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/flexbox/flex-wrap/' class='menuitem' id='element-flex-wrap'>flex-wrap<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/flexbox/justify-content/' class='menuitem' id='element-justify-content'>justify-content<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/flexbox/order/' class='menuitem' id='element-order'>order<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                <h3 style="background-color: #8dc8d6">
+                    Grid     See all 24                                        <a href="https://www.campaignmonitor.com/css/properties/grid/" class="seeall">
+                              
+                                    </h3>
+                <div><a href='https://www.campaignmonitor.com/css/grid/align-content/' class='menuitem' id='element-align-content-3'>align-content<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                     
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/align-items/' class='menuitem' id='element-align-items-2'>align-items<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/align-self/' class='menuitem' id='element-align-self-2'>align-self<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/display/' class='menuitem' id='element-display-3'>display<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/grid/' class='menuitem' id='element-grid'>grid<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/grid-area/' class='menuitem' id='element-grid-area'>grid-area<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/grid-auto-columns/' class='menuitem' id='element-grid-auto-columns'>grid-auto-columns<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/grid-auto-flow/' class='menuitem' id='element-grid-auto-flow'>grid-auto-flow<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a></div><div class='remainder'><a href='https://www.campaignmonitor.com/css/grid/grid-auto-rows/' class='menuitem' id='element-grid-auto-rows'>grid-auto-rows<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/grid-column/' class='menuitem' id='element-grid-column'>grid-column<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/grid-column-end/' class='menuitem' id='element-grid-column-end'>grid-column-end<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/grid-column-gap/' class='menuitem' id='element-grid-column-gap'>grid-column-gap<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/grid-column-start/' class='menuitem' id='element-grid-column-start'>grid-column-start<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/grid-gap/' class='menuitem' id='element-grid-gap'>grid-gap<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/grid-row/' class='menuitem' id='element-grid-row'>grid-row<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/grid-row-end/' class='menuitem' id='element-grid-row-end'>grid-row-end<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/grid-row-gap/' class='menuitem' id='element-grid-row-gap'>grid-row-gap<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/grid-row-start/' class='menuitem' id='element-grid-row-start'>grid-row-start<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/grid-template-areas/' class='menuitem' id='element-grid-template-areas'>grid-template-areas<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/grid-template-columns/' class='menuitem' id='element-grid-template-columns'>grid-template-columns<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/grid-template-rows/' class='menuitem' id='element-grid-template-rows'>grid-template-rows<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                       
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/justify-content/' class='menuitem' id='element-justify-content-2'>justify-content<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/justify-items/' class='menuitem' id='element-justify-items'>justify-items<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a><a href='https://www.campaignmonitor.com/css/grid/justify-self/' class='menuitem' id='element-justify-self'>justify-self<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        
+                                    </svg></a></div>                </div>
+                    </div>
+    </div>
+</section>
+</body>
+</html>
+
+
