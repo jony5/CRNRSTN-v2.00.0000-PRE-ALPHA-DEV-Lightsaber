@@ -9592,13 +9592,13 @@ Formally, the display property sets an element\'s inner and outer display types.
         <meta property="og:site_name" content="CRNRSTN :: CSS Validator for HTML Email v2.00.0000"/>
         <meta property="og:title" content="Only email pros can score over 92.5%. The CRNRSTN :: CSS Validator will assess the use of CSS within HTML email code and score the situation from a high level and then down to each email client."/>
         <meta property="og:image" content="http://css.validate.jony5.com/_crnrstn/ui/imgs/jpg/crnrstn_css_validator_logo_smedia.jpg?v=420.00"/>
-        <meta property="og:description" content="Only email pros can score over 92.5%.  Special thanks to the folks  at WaSP and Campaign Monitor for  their Ultimate Guide to CSS breaking  down a host of the nitty-gritty with  respect to CSS support for many popular mobile, web, and desktop email clients and for their creation of  the Email Standards Project." />
+        <meta property="og:description" content="Only email pros can score over 92.5%.  Special thanks to the folks at WaSP and Campaign Monitor for their Ultimate Guide to CSS breaking down a host of the nitty-gritty with respect to CSS support for many popular mobile, web, and desktop email clients and for their creation of the Email Standards Project." />
         <meta property="og:type" content="website"/>
         <meta name="twitter:card" content="summary"/>
         <meta name="twitter:title" content="CRNRSTN :: CSS Validator for HTML Email v2.00.0000"/>
         <meta name="twitter:image" content="http://css.validate.jony5.com/_crnrstn/ui/imgs/jpg/crnrstn_css_validator_logo_smedia.jpg?v=420.00"/>
-        <meta name="twitter:description" content="Only email pros can score over 92.5%. Special thanks to the folks  at WaSP and Campaign Monitor for  their Ultimate Guide to CSS breaking  down a host of the nitty-gritty with  respect to CSS support!" />
-        <meta name="description" content="Only email pros can score over 92.5%. Special thanks to the folks  at WaSP and Campaign Monitor for  their Ultimate Guide to CSS breaking  down a host of the nitty-gritty with  respect to CSS support for many popular mobile, web, and desktop email clients and for their creation of  the Email Standards Project." />
+        <meta name="twitter:description" content="Only email pros can score over 92.5%. Special thanks to the folks at WaSP and Campaign Monitor for their Ultimate Guide to CSS breaking down a host of the nitty-gritty with respect to CSS support!" />
+        <meta name="description" content="Only email pros can score over 92.5%. Special thanks to the folks at WaSP and Campaign Monitor for their Ultimate Guide to CSS breaking down a host of the nitty-gritty with respect to CSS support for many popular mobile, web, and desktop email clients and for their creation of the Email Standards Project." />
         <meta name="keywords" content="jesus, christ, jesus christ, gospel, j5, jonathan, harris, jonathan harris, johnny 5, jony5, atlanta, moxie, agency, web, christian, web services, email, web programming, marketing, CSS, XHTML, php, ajax" />
 
         <title>CRNRSTN :: CSS Validator for HTML Email v2.00.0000</title>
@@ -9689,14 +9689,14 @@ Formally, the display property sets an element\'s inner and outer display types.
                                 <table style="border:0; padding: 0; margin:0; width:305px;">
                                 <tr>
                                     <td style=\'text-align:left; line-height: 18px; color:#6885C3;border-right:15px solid #FFF; font-size: 14px; margin: 0; font-family:"Courier New", Courier, monospace;\'>
-                                        <strong>Note:</strong> Special thanks to the folks  at <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://webstandards.org/', 'web_standards_thanks_results').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">WaSP</a> and <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://www.campaignmonitor.com/', 'campaign_monitor_thanks_results').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Campaign Monitor</a>
-                                        for  their <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://www.campaignmonitor.com/css/', 'ultimate_guide_to_css_results').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Ultimate Guide to CSS</a> breaking  down a host of the nitty-gritty with
-                                         respect to CSS support for many popular mobile, web, and desktop email  clients and for their creation of  the <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://www.email-standards.org/', 'email_standards_project_results').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Email Standards Project</a>.
+                                        <strong>Note:</strong> Special thanks to the folks at <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://webstandards.org/', 'web_standards_thanks_results').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">WaSP</a> and <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://www.campaignmonitor.com/', 'campaign_monitor_thanks_results').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Campaign Monitor</a>
+                                        for their <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://www.campaignmonitor.com/css/', 'ultimate_guide_to_css_results').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Ultimate Guide to CSS</a> breaking down a host of the nitty-gritty with
+                                        respect to CSS support for many popular mobile, web, and desktop email clients and for their creation of the <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://www.email-standards.org/', 'email_standards_project_results').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Email Standards Project</a>.
     
-                                        <br><br>  The strength, accuracy, and thorough  consideration baked into the
-                                        algorithm  behind this validator are each and  equally directly proportional
-                                        to the  diligence and care these organizations  have exercised in the pursuit
-                                        of  their craft.
+                                        <br><br>The strength, accuracy, and thorough consideration baked into the
+                                        algorithm behind this validator are each and equally directly proportional
+                                        to the diligence and care these organizations have exercised in the pursuit
+                                        of their craft.
                                                                                                               
                                     </td>
                                 </tr>
@@ -9758,13 +9758,13 @@ Formally, the display property sets an element\'s inner and outer display types.
         <meta property="og:site_name" content="CRNRSTN :: CSS Validator for HTML Email v2.00.0000"/>
         <meta property="og:title" content="Only email pros can score over 92.5%. The CRNRSTN :: CSS Validator will assess the use of CSS within HTML email code and score the situation from a high level and then down to each email client."/>
         <meta property="og:image" content="http://css.validate.jony5.com/_crnrstn/ui/imgs/jpg/crnrstn_css_validator_logo_smedia.jpg?v=420.00"/>
-        <meta property="og:description" content="Only email pros can score over 92.5%.  Special thanks to the folks  at WaSP and Campaign Monitor for  their Ultimate Guide to CSS breaking  down a host of the nitty-gritty with  respect to CSS support for many popular mobile, web, and desktop email clients and for their creation of  the Email Standards Project." />
+        <meta property="og:description" content="Only email pros can score over 92.5%.  Special thanks to the folks at WaSP and Campaign Monitor for their Ultimate Guide to CSS breaking down a host of the nitty-gritty with respect to CSS support for many popular mobile, web, and desktop email clients and for their creation of the Email Standards Project." />
         <meta property="og:type" content="website"/>
         <meta name="twitter:card" content="summary"/>
         <meta name="twitter:title" content="CRNRSTN :: CSS Validator for HTML Email v2.00.0000"/>
         <meta name="twitter:image" content="http://css.validate.jony5.com/_crnrstn/ui/imgs/jpg/crnrstn_css_validator_logo_smedia.jpg?v=420.00"/>
-        <meta name="twitter:description" content="Only email pros can score over 92.5%. Special thanks to the folks  at WaSP and Campaign Monitor for  their Ultimate Guide to CSS breaking  down a host of the nitty-gritty with  respect to CSS support!" />
-        <meta name="description" content="Only email pros can score over 92.5%. Special thanks to the folks  at WaSP and Campaign Monitor for  their Ultimate Guide to CSS breaking  down a host of the nitty-gritty with  respect to CSS support for many popular mobile, web, and desktop email clients and for their creation of  the Email Standards Project." />
+        <meta name="twitter:description" content="Only email pros can score over 92.5%. Special thanks to the folks at WaSP and Campaign Monitor for their Ultimate Guide to CSS breaking down a host of the nitty-gritty with respect to CSS support!" />
+        <meta name="description" content="Only email pros can score over 92.5%. Special thanks to the folks at WaSP and Campaign Monitor for their Ultimate Guide to CSS breaking down a host of the nitty-gritty with respect to CSS support for many popular mobile, web, and desktop email clients and for their creation of the Email Standards Project." />
         <meta name="keywords" content="jesus, christ, jesus christ, gospel, j5, jonathan, harris, jonathan harris, johnny 5, jony5, atlanta, moxie, agency, web, christian, web services, email, web programming, marketing, CSS, XHTML, php, ajax" />
 
         <title>CRNRSTN :: CSS Validator for HTML Email v2.00.0000</title>
@@ -9855,14 +9855,14 @@ Formally, the display property sets an element\'s inner and outer display types.
                                     <table style="border:0; padding: 0; margin:0; width:305px;">
                                     <tr>
                                         <td style=\'text-align:left; line-height: 18px; color:#6885C3;border-right:15px solid #FFF; font-size: 14px; margin: 0; font-family:"Courier New", Courier, monospace;\'>
-                                            <strong>Note:</strong> Special thanks to the folks  at <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://webstandards.org/', 'web_standards_thanks').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">WaSP</a> and <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://www.campaignmonitor.com/', 'campaign_monitor_thanks').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Campaign Monitor</a>
-                                            for  their <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://www.campaignmonitor.com/css/', 'ultimate_guide_to_css').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Ultimate Guide to CSS</a> breaking  down a host of the nitty-gritty with
-                                             respect to CSS support for many popular mobile, web, and desktop email  clients and for their creation of  the <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://www.email-standards.org/', 'email_standards_project').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Email Standards Project</a>.
+                                            <strong>Note:</strong> Special thanks to the folks at <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://webstandards.org/', 'web_standards_thanks').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">WaSP</a> and <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://www.campaignmonitor.com/', 'campaign_monitor_thanks').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Campaign Monitor</a>
+                                            for their <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://www.campaignmonitor.com/css/', 'ultimate_guide_to_css').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Ultimate Guide to CSS</a> breaking down a host of the nitty-gritty with
+                                            respect to CSS support for many popular mobile, web, and desktop email clients and for their creation of the <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://www.email-standards.org/', 'email_standards_project').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Email Standards Project</a>.
         
-                                            <br><br>  The strength, accuracy, and thorough  consideration baked into the
-                                            algorithm  behind this validator are each and  equally directly proportional
-                                            to the  diligence and care these organizations  have exercised in the pursuit
-                                            of  their craft.
+                                            <br><br>The strength, accuracy, and thorough consideration baked into the
+                                            algorithm behind this validator are each and equally directly proportional
+                                            to the diligence and care these organizations have exercised in the pursuit
+                                            of their craft.
                                                                                                                   
                                         </td>
                                     </tr>
@@ -10480,7 +10480,7 @@ Formally, the display property sets an element\'s inner and outer display types.
                                             <div style="text-align: left; width: 390px; background-color: #FFF;">
                                                 <div style="width:385px; border:2px solid #FFF; margin:0; color: #6885C3;">
                                                     
-                                                    <div style=\'font-family:"Courier New", Courier, monospace; font-size: 19px; line-height:25px; font-weight: bold; border-right: 0px solid #FFF; border-bottom: 5px solid #FFF; color: #6885C3; \'>Email Client CSS<br> Compatibility Report</div>
+                                                    <div style=\'font-family:"Courier New", Courier, monospace; font-size: 19px; line-height:25px; font-weight: bold; border-right: 0px solid #FFF; border-bottom: 5px solid #FFF; color: #6885C3; \'>Email Client CSS<br>Compatibility Report</div>
 
                                                     <div style="text-align: left; border: 1px solid #A5B9D8; width: 382px; background-color: #FFF;">
                                                         <table cellspacing="0" cellpadding="0" border="0">
@@ -10644,7 +10644,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                 //
                 // TEXT VERSION EMAIL, GETS NOT THIS CONTENT.
-                $tmp_str = 'Email Client CSS  Compatibility Report';
+                $tmp_str = 'Email Client CSS Compatibility Report';
 
             break;
 
@@ -10856,7 +10856,7 @@ Formally, the display property sets an element\'s inner and outer display types.
             case 'HTML':
 
                 $tmp_str = '<div style=\'font-family:"Courier New", Courier, monospace; font-size: 17px; line-height:25px; font-weight: bold; border-top: 30px solid #FFF; border-bottom: 6px solid #FFF; color: #6885C3;\'>
-                                Notices, Errors, and Success<br> Details About Email Client<br> CSS Support for the Submitted Data 
+                                Notices, Errors, and Success<br>Details About Email Client<br>CSS Support for the Submitted Data 
                                 </div>';
 
             break;
