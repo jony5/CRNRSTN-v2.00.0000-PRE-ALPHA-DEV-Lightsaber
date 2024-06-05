@@ -36,8 +36,8 @@
             
             <p>In 2004 I worked as a freelance designer, web application developer and serial entrepreneur. After the implosion of my start-up</p>
 		</div>
-		<div id="j5_text_pos2" class="grid_4" omega >
-            <p> company, I entered the world of interactive marketing and advertising when I accepted a UI developer position with an Atlanta based agency, Moxie Interactive.</p>
+		<div id="j5_text_pos2" class="grid_4 omega">
+            <p>company, I entered the world of interactive marketing and advertising when I accepted a UI developer position with an Atlanta based agency, Moxie Interactive.</p>
             
             <p>In 2007 I joined the eCRM team at Moxie and was recently promoted to be the Moxie Interactive eCRM Solutions Engineer. As such, I architect multi-channel data capture and message deliverability systems that support the
 		</div>
