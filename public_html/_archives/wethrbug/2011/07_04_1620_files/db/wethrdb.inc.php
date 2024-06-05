@@ -204,7 +204,7 @@ function loginSuccessful($ID, $USERNAME, $MOBILENUMBER, $STATUS, $NACL, $UNHASH,
 	
 }
 
-
+$SCRIPT_NAME=$_SERVER['SCRIPT_NAME'];
 if($SCRIPT_NAME=="/wethrdb.inc.php"){
 		echo "Access Denied!<br>You shouldn't be here and your presence has been classified as an unauthorized access attempt.  
 	Your IP address ($REMOTE_ADDR) has been recorded and an incident report is has been made to the security officer on 
