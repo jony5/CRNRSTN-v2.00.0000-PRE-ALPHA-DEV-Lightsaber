@@ -64,8 +64,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
 // INSTANTIATE A bringer_of_the_precious_things CLASS OBJECT.
 $oBringer = new bringer_of_the_precious_things($oCRNRSTN_ENV);
 $pfw = $precious_from_the_worthless = $oBringer->return_to_me_the_precious();
-$tmp_scroll_ID = '';
-$tmp_serial =
+$tmp_scroll_ID = $tmp_serial = '';
 $tmp_sprite_ver_size = filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/media_icon/sprite.png');
 $tmp_sprite_ver_date = filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/media_icon/sprite.png');
 
