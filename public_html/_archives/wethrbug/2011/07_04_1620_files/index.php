@@ -3,7 +3,7 @@ session_start();
 session_destroy();
 session_start();
 include("root.inc.php");
-include("$ROOT/db/wethrdb.inc.php");
+//include("$ROOT/db/wethrdb.inc.php");
 include("$ROOT/common/inc/logs.inc.php");
 echo '<?xml version="1.0" encoding="UTF-8"?>';
 ?>
