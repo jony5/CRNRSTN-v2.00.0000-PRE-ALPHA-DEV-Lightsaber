@@ -9271,7 +9271,7 @@ class bringer_of_the_precious_things {
                 $patterns = array();
                 $patterns[0] = '.jpg';
 
-                $replacements = array();
+                $replacements = array(); //
                 $replacements[0] = '.png';
                 $tmp_thumb_filename_png = str_replace($patterns, $replacements, $tmp_thumb_filename_png);
 
@@ -9282,8 +9282,12 @@ class bringer_of_the_precious_things {
                     if(strlen($j5_filename_array[$i]) > 6){
 
                         $first_img_display = true;
-                        $tmp_gallery_html .= '<p><a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[' . $tmp_gallery_key . ']" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs." style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; height:221px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="221" alt="J5" />';
+
+                        $tmp_gallery_html .= '<p><a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . '2010_10_30_11.11.56_j5_octane_00.png" rel="lightbox[' . $tmp_gallery_key . ']" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs." style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_2010_10_30_11.11.56_j5_octane_00.png" alt="" style="width:295px; height:221px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="221" alt="J5, my boy!" />';
                         $tmp_gallery_html .= '<span style="font-size:14px; text-decoration: underline; color: #0066CC; display: block; width:295px; text-align: right; padding: 0; margin: 0;">Gallery</span></a></p>';
+
+                        $tmp_gallery_html .= '<div class="hidden"><p><a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[' . $tmp_gallery_key . ']" title="J5, my boy!" style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; height:221px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="221" alt="J5, my boy!" />';
+                        $tmp_gallery_html .= '</a></p></div>';
 
                     }
 
@@ -9311,13 +9315,17 @@ class bringer_of_the_precious_things {
                             //
                             // IS THIS AN IMAGE THAT WE ARE
                             // LOOKING TO HANDLE?
-                            if(isset($tmp_content_flag_ARRAY['J5_OCTANE_CHILLING'][$j5_filename_array[$i]])){
+                            if(isset($tmp_content_flag_ARRAY['J5_OCTANE_CHILLING'][$j5_filename_array[$i]]) && ($j5_filename_array[$i] != '2010_10_30_11.11.56_j5_octane_00.png')){
 
                                 $tmp_gallery_html .= '<div class="hidden"><a class="' . $tmp_gallery_key . '_thumb" href=' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . ' rel="lightbox[' . $tmp_gallery_key . ']" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs."><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' .$tmp_thumb_filename_png . '" alt="" style="padding:0px; margin:0px;" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee." /></a></div>';
 
                             }else{
 
-                                $tmp_gallery_html .= '<div class="hidden"><a class="' . $tmp_gallery_key . '_thumb" href=' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . ' rel="lightbox[' . $tmp_gallery_key . ']" title="J5, my boy!"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="padding:0px; margin:0px;" width="295" height="221" alt="J5" title="J5, my boy!" /></a></div>';
+                                if($j5_filename_array[$i] != '2010_10_30_11.11.56_j5_octane_00.png'){
+
+                                    $tmp_gallery_html .= '<div class="hidden"><a class="' . $tmp_gallery_key . '_thumb" href=' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . ' rel="lightbox[' . $tmp_gallery_key . ']" title="J5, my boy!"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="padding:0px; margin:0px;" width="295" height="221" alt="J5" title="J5, my boy!" /></a></div>';
+
+                                }
 
                             }
 
