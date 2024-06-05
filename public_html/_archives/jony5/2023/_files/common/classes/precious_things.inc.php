@@ -210,6 +210,15 @@ class bringer_of_the_precious_things {
                     $tmp_html_output = $this->return_web_content_M_AND_5_935M_ATL_2011();
 
                 break;
+                case 'WELCOME_SECTION_LIGHTBOX_GALLERY_HTML':
+
+                    $tmp_output_html_ARRAY = array();
+
+                    $tmp_output_html_ARRAY[] = $this->return_web_content_GALLERY_HTML('WELCOME_SECTION_LIGHTBOX_GALLERY_HTML');
+
+                    return $tmp_output_html_ARRAY;
+
+                break;
                 default:
 
                     $tmp_html_output = '<span style="font-family: Courier New, Courier, monospace; color: #333; font-size: 15px;">The requested jony5 web content could not be found.</span>';
@@ -9038,6 +9047,320 @@ class bringer_of_the_precious_things {
 
     }
 
+    private function return_5_gallery_HTML_ARRAY(){
+
+        $tmp_gallery_html = $tmp_alpha_thumb = $tmp_omega_thumb = '';
+        $tmp_gallery_key = '5_of_the_tribe_benjamin';
+        $first_img_display = false;
+        $dir_path = "common/imgs/_5/5/";
+        $thumb_path = "common/imgs/_5/5/_thumb/";
+        $tmp_content_flag_ARRAY = array();
+        $tmp_gallery_html_ARRAY = array();
+
+        $image_text = 'I\'m Jonathan \'5\' Harris a ravenous wolf of the tribe of Benjamin and one of the King\'s two 
+        swords, an eternal son of thunder officially seated in heaven at a place prepared by God my heavenly Father at 
+        table next to Jesus Christ, the Son of God, the Son of David, the King of kings and Lord of all lords, and a web 
+        professional living and working in Atlanta, GA.
+
+        <br><br>
+        In the midst of my daily priestly service and according to my fellowship with God, this unprofitable 
+        servant of the Lord testifies that I will be taking the church (100% of the living christian 
+        sisters and the living certain brothers) to heaven in my house. I will take the church to heaven 
+        through my 935M apartment #305 in Atlanta; 935M is the location of many of the best of my days during times in 
+        which I could easily be with people that I love in my city...and before my 2011-2012 martyrdom.';
+
+        //
+        // 5 GALLERY THUMB ALPHA.
+        $tmp_content_flag_ARRAY['5_ALPHA']['20190627_105948.jpg'] = 1;
+
+        //
+        // 5 GALLERY THUMB OMEGA.
+        $tmp_content_flag_ARRAY['5_OMEGA']['20190528_134924_HDR.jpg'] = 1;
+
+        $tmp_dir = self::$oEnv->getEnvParam('DOCUMENT_ROOT') . self::$oEnv->getEnvParam('DOCUMENT_ROOT_DIR') . '/' . $dir_path;
+        $j5_filename_array = scandir($tmp_dir, 1);
+
+        $j5_filename_array = array_reverse($j5_filename_array);
+        $j5_array_size = sizeof($j5_filename_array);
+
+        for($i = 0; $i < $j5_array_size; $i++){
+
+            if($j5_filename_array[$i] != '.DS_Store' && $j5_filename_array[$i] != '.' && $j5_filename_array[$i] != '..'){
+
+                $tmp_thumb_filename_png = $tmp_URI_file_name = $j5_filename_array[$i];
+
+                //
+                // PREPARE THUMB PNG FILE NAME FROM POSSIBLE JPG FILE.
+                $tmp_filename_ARRAY = explode('.', $j5_filename_array[$i]);
+                $tmp_ext = array_pop($tmp_filename_ARRAY);
+                if($tmp_ext == '.jpg'){
+
+                    //
+                    // WE HAVE JPG IN THE FILENAME. CHANGE THIS TO PNG.
+                    $patterns = array();
+                    $patterns[0] = '.jpg';
+
+                    $replacements = array();
+                    $replacements[0] = '.png';
+
+                    $tmp_thumb_filename_png = str_replace($patterns, $replacements, $tmp_thumb_filename_png);
+
+                }
+
+                $tmp_pos_space = strpos($tmp_thumb_filename_png, ' ');
+                if($tmp_pos_space !== false){
+
+                    //
+                    // WE HAVE SPACE IN THE
+                    // FILENAME. REPLACE THIS FOR
+                    // URL ENCODING.
+                    $patterns = array();
+                    $patterns[0] = ' ';
+
+                    $replacements = array();
+                    $replacements[0] = '%20';
+
+                    $tmp_URI_file_name = str_replace($patterns, $replacements, $tmp_thumb_filename_png);
+
+                }
+
+                $j5_filename_array[$i] = $tmp_URI_file_name;
+
+                if(!$first_img_display){
+
+                    if(strlen($j5_filename_array[$i]) > 6){
+
+                        $first_img_display = true;
+
+                        $tmp_thumb_filename_png = $j5_filename_array[$i];
+                        $tmp_jpg_pos = strpos($tmp_thumb_filename_png, '.jpg');
+                        if($tmp_jpg_pos !== false){
+
+                            //
+                            // WE HAVE JPG IN THE FILENAME. CHANGE THIS TO PNG.
+                            $patterns = array();
+                            $patterns[0] = '.jpg';
+
+                            $replacements = array();
+                            $replacements[0] = '.png';
+
+                            $tmp_thumb_filename_png = str_replace($patterns, $replacements, $tmp_thumb_filename_png);
+
+                        }
+
+                        $tmp_gallery_html .= '<div class="hidden"><p><a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[' . $tmp_gallery_key . ']" title="' . $image_text . '" style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; border:2px solid #CCC; padding:0; margin:0;" width="295" alt="' . $image_text . '" />';
+                        $tmp_gallery_html .= '</a></p></div>';
+
+                        if(isset($tmp_content_flag_ARRAY['5_OMEGA'][$j5_filename_array[$i]])){
+
+                            $tmp_omega_thumb .= '<p><a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[' . $tmp_gallery_key . ']" title="' . $image_text . '" style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; border:2px solid #CCC; padding:0; margin:0;" width="295" alt="' . $image_text . '" />';
+                            $tmp_omega_thumb .= '<span style="font-size:14px; text-decoration: underline; color: #0066CC; display: block; width:295px; text-align: right; padding: 0; margin: 0;">Gallery</span></a></p>';
+
+                        }else{
+
+                            if(isset($tmp_content_flag_ARRAY['5_ALPHA'][$j5_filename_array[$i]])){
+
+                                $tmp_alpha_thumb .= '<p><a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[' . $tmp_gallery_key . ']" title="' . $image_text . '" style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; border:2px solid #CCC; padding:0; margin:0;" width="295" alt="' . $image_text . '" />';
+                                $tmp_alpha_thumb .= '<span style="font-size:14px; text-decoration: underline; color: #0066CC; display: block; width:295px; text-align: right; padding: 0; margin: 0;">Gallery</span></a></p>';
+
+                            }
+
+                        }
+
+                    }
+
+                }else{
+
+                    if(strlen($j5_filename_array[$i]) > 6){
+
+                        $tmp_thumb_filename_png = $j5_filename_array[$i];
+                        $tmp_jpg_pos = strpos($tmp_thumb_filename_png, '.jpg');
+                        if($tmp_jpg_pos !== false){
+
+                            //
+                            // WE HAVE JPG IN THE FILENAME. CHANGE THIS TO PNG.
+                            $patterns = array();
+                            $patterns[0] = '.jpg';
+
+                            $replacements = array();
+                            $replacements[0] = '.png';
+
+                            $tmp_thumb_filename_png = str_replace($patterns, $replacements, $tmp_thumb_filename_png);
+
+                        }
+
+                        if(isset($tmp_content_flag_ARRAY['5_OMEGA'][$j5_filename_array[$i]])){
+
+                            $tmp_omega_thumb .= '<p><a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[' . $tmp_gallery_key . ']" title="' . $image_text . '" style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; border:2px solid #CCC; padding:0; margin:0;" width="295" alt="' . $image_text . '" />';
+                            $tmp_omega_thumb .= '<span style="font-size:14px; text-decoration: underline; color: #0066CC; display: block; width:295px; text-align: right; padding: 0; margin: 0;">Gallery</span></a></p>';
+
+                        }else{
+
+                            if(isset($tmp_content_flag_ARRAY['5_ALPHA'][$j5_filename_array[$i]])){
+
+                                $tmp_alpha_thumb .= '<p><a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[' . $tmp_gallery_key . ']" title="' . $image_text . '" style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; border:2px solid #CCC; padding:0; margin:0;" width="295" alt="' . $image_text . '" />';
+                                $tmp_alpha_thumb .= '<span style="font-size:14px; text-decoration: underline; color: #0066CC; display: block; width:295px; text-align: right; padding: 0; margin: 0;">Gallery</span></a></p>';
+
+                            }else{
+
+                                $tmp_gallery_html .= '<div class="hidden"><a class="j5_my_boy_thumb" href=' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . ' rel="lightbox[' . $tmp_gallery_key . ']" title="' . $image_text . '"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="padding:0px; margin:0px;" width="295" alt="J5" title="' . $image_text . '" /></a></div>';
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        $tmp_gallery_html_ARRAY[0] = $tmp_alpha_thumb;
+        $tmp_gallery_html_ARRAY[1] = '1';
+        $tmp_gallery_html_ARRAY[2] = $tmp_omega_thumb . $tmp_gallery_html;
+
+        return $tmp_gallery_html_ARRAY;
+
+    }
+
+    private function return_j5_my_boy_gallery_HTML(){
+
+        $tmp_gallery_html = '';
+        $tmp_gallery_key = 'j5_my_boy';
+        $first_img_display = false;
+        $dir_path = "common/imgs/_5/J5/";
+        $thumb_path = "common/imgs/_5/J5/_thumb/";
+        $tmp_content_flag_ARRAY = array();
+
+        //
+        // J5 CHILLIN' @ OCTANE WESTSIDE IMAGES.
+        $tmp_content_flag_ARRAY['J5_OCTANE_CHILLING']['2010_10_30_11.11.56_j5_octane_00.png'] = 1;
+        $tmp_content_flag_ARRAY['J5_OCTANE_CHILLING']['2010_10_30_11.11.56_j5_octane_01.png'] = 1;
+        $tmp_content_flag_ARRAY['J5_OCTANE_CHILLING']['2010_10_30_11.11.56_j5_octane_02.png'] = 1;
+
+        //
+        // SHORT CIRCUIT IMAGE.
+        $tmp_content_flag_ARRAY['SHORT_CIRCUIT']['jony5_no_disassemble.png'] = 1;
+
+        $tmp_dir = self::$oEnv->getEnvParam('DOCUMENT_ROOT') . self::$oEnv->getEnvParam('DOCUMENT_ROOT_DIR') . '/' . $dir_path;
+        $j5_filename_array = scandir($tmp_dir, 1);
+
+        $j5_filename_array = array_reverse($j5_filename_array);
+        $j5_array_size = sizeof($j5_filename_array);
+
+        for($i = 0; $i < $j5_array_size; $i++){
+
+            if($j5_filename_array[$i] != '.DS_Store' && $j5_filename_array[$i] != '.' && $j5_filename_array[$i] != '..'){
+
+                $tmp_thumb_filename_png = $tmp_URI_file_name = $j5_filename_array[$i];
+
+                //
+                // PREPARE THUMB PNG FILE NAME FROM POSSIBLE JPG FILE
+                // OR SPACES IN THE FILENAME.
+                $patterns = array();
+                $patterns[0] = ' ';
+
+                $replacements = array();
+                $replacements[0] = '%20';
+                $tmp_URI_file_name = $tmp_thumb_filename_png = str_replace($patterns, $replacements, $tmp_thumb_filename_png);
+
+                $tmp_thumb_filename_png = $j5_filename_array[$i] = $tmp_URI_file_name;
+
+                $patterns = array();
+                $patterns[0] = '.jpg';
+
+                $replacements = array();
+                $replacements[0] = '.png';
+                $tmp_thumb_filename_png = str_replace($patterns, $replacements, $tmp_thumb_filename_png);
+
+                $j5_filename_array[$i] = $tmp_URI_file_name;
+
+                if(!$first_img_display){
+
+                    if(strlen($j5_filename_array[$i]) > 6){
+
+                        $first_img_display = true;
+                        $tmp_gallery_html .= '<p><a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[' . $tmp_gallery_key . ']" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs." style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; height:221px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="221" alt="J5" />';
+                        $tmp_gallery_html .= '<span style="font-size:14px; text-decoration: underline; color: #0066CC; display: block; width:295px; text-align: right; padding: 0; margin: 0;">Gallery</span></a></p>';
+
+                    }
+
+                }else{
+
+                    if(strlen($j5_filename_array[$i]) > 6){
+
+                        if(isset($tmp_content_flag_ARRAY['SHORT_CIRCUIT'][$j5_filename_array[$i]])){
+
+                            $tmp_short_circuit_jony5_copy = 'Back in the days of dial up (late 90\'s), I was quite new to the world 
+                            of the interwebs. I didn\'t even have an email address. Realizing that I needed to get some kind of messaging 
+                            account called an email address, I went to the folks at Juno. They hooked me up with a free email account and 
+                            dial-up internet access!
+
+                            <br><br>
+                            When I was filling out the Juno forms to get an email address, they asked me what I wanted it to be. I had no 
+                            idea! Well, at that time, I had just finished watching the movie Short Circuit, and so I was like &quot;I\'ll 
+                            get the email jony5.&quot; (Johnny 5). From that point forward, I was jony5@juno.com. This era of my digital 
+                            existence was defined by slow loading images and phone calls that broke the internet connection!';
+
+                            $tmp_gallery_html .= '<div class="hidden"><a class="j5_my_boy_thumb" href=' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . ' rel="lightbox[' . $tmp_gallery_key . ']" title="' . $tmp_short_circuit_jony5_copy . '"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="padding:0px; margin:0px;" width="295" height="221" alt="J5" title="' . $tmp_short_circuit_jony5_copy . '" /></a></div>';
+
+                        }else{
+
+                            //
+                            // IS THIS AN IMAGE THAT WE ARE
+                            // LOOKING TO HANDLE?
+                            if(isset($tmp_content_flag_ARRAY['J5_OCTANE_CHILLING'][$j5_filename_array[$i]])){
+
+                                $tmp_gallery_html .= '<div class="hidden"><a class="' . $tmp_gallery_key . '_thumb" href=' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . ' rel="lightbox[' . $tmp_gallery_key . ']" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs."><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' .$tmp_thumb_filename_png . '" alt="" style="padding:0px; margin:0px;" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee." /></a></div>';
+
+                            }else{
+
+                                $tmp_gallery_html .= '<div class="hidden"><a class="' . $tmp_gallery_key . '_thumb" href=' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . ' rel="lightbox[' . $tmp_gallery_key . ']" title="J5, my boy!"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="padding:0px; margin:0px;" width="295" height="221" alt="J5" title="J5, my boy!" /></a></div>';
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        return $tmp_gallery_html;
+
+    }
+
+    private function return_web_content_GALLERY_HTML($gallery_key = 'WELCOME_SECTION_LIGHTBOX_GALLERY_HTML'){
+
+        $tmp_output_HTML_ARRAY = array();
+
+        switch($gallery_key){
+            case 'WELCOME_SECTION_LIGHTBOX_GALLERY_HTML':
+
+                //
+                // 5 GALLERY HTML CONTENT.
+                $tmp_output_HTML_ARRAY = $this->return_5_gallery_HTML_ARRAY();
+
+                //
+                // J5 GALLERY HTML CONTENT.
+                $tmp_output_HTML_ARRAY[1] = $this->return_j5_my_boy_gallery_HTML();
+
+            break;
+            default:
+                //SILENCE IS GOLDEN.
+            break;
+
+        }
+
+        return $tmp_output_HTML_ARRAY;
+
+    }
+
     private function return_web_content_M_AND_5_935M_ATL_2011(){
 
         $tmp_html_output = '';
@@ -9120,14 +9443,14 @@ class bringer_of_the_precious_things {
                 <div class="content_copy">
                     <div class="col">
                         <p>As a ravenous wolf of the tribe of Benjamin, as one of the two sons of thunder, and according
-                            to golden incense alter fellowship before the oracles of God in the Holy of holies...before
-                            the very face of God our heavenly Father and our Lord<br>Jesus Christ,...</p>
+                        to golden incense alter fellowship before the oracles of God in the Holy of holies...before
+                        the very face of God our heavenly Father and our Lord<br>Jesus Christ,...</p>
 
                         <p>In the midst of my daily priestly service and according to my fellowship with God, this unprofitable
-                            servant of the Lord testifies that I will be taking the church (100% of the living christian
-                            sisters and the living certain brothers) to heaven in my house. I will take the church to heaven
-                            through my 935M apartment 305 in Atlanta; 935M is the location of many of these pictures of my
-                            girl, M, during times when I could actually be with her in life and before my 2011-<br>2012 martyrdom.</p>';
+                        servant of the Lord testifies that I will be taking the church (100% of the living christian
+                        sisters and the living certain brothers) to heaven in my house. I will take the church to heaven
+                        through my 935M apartment 305 in Atlanta; 935M is the location of many of these pictures of my
+                        girl, M, during times when I could actually be with her in life and before my 2011-<br>2012 martyrdom.</p>';
 
         $tmp_str_out = $tmp_first_look = $tmp_second_look = '';
         $first_img_display = false;
@@ -9264,15 +9587,15 @@ class bringer_of_the_precious_things {
 
                         if(($j5_filename_array[$i] == 'Screen Shot 2024-05-24 at 7.27.14 AM (27in).png') || ($j5_filename_array[$i] == 'Screen%20Shot%202024-05-24%20at%207.27.14%20AM%20(27in).png')){
 
-                            $tmp_second_look .= '<a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[0_M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear." style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; border:2px solid #CCC; padding:0; margin:0;" width="295" alt="M with 5 from ATLANTA." />';
-                            $tmp_second_look .= '</a>';
+                            $tmp_second_look .= '<p><a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[0_M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear." style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; border:2px solid #CCC; padding:0; margin:0;" width="295" alt="M with 5 from ATLANTA." />';
+                            $tmp_second_look .= '</a></p>';
 
                         }else{
 
                             if($j5_filename_array[$i] == 'M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG344.jpg'){
 
-                                $tmp_first_look .= '<a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[0_M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear." style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; border:2px solid #CCC; padding:0; margin:0;" width="295" alt="M with 5 from ATLANTA." />';
-                                $tmp_first_look .= '</a>';
+                                $tmp_first_look .= '<p><a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[0_M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear." style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; border:2px solid #CCC; padding:0; margin:0;" width="295" alt="M with 5 from ATLANTA." />';
+                                $tmp_first_look .= '</a></p>';
 
                             }
 
@@ -9302,15 +9625,15 @@ class bringer_of_the_precious_things {
 
                         if(($j5_filename_array[$i] == 'Screen Shot 2024-05-24 at 7.27.14 AM (27in).png') || ($j5_filename_array[$i] == 'Screen%20Shot%202024-05-24%20at%207.27.14%20AM%20(27in).png')){
 
-                            $tmp_second_look .= '<a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[0_M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear." style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; border:2px solid #CCC; padding:0; margin:0;" width="295" alt="M with 5 from ATLANTA." />';
-                            $tmp_second_look .= '</a>';
+                            $tmp_second_look .= '<p><a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[0_M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear." style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; border:2px solid #CCC; padding:0; margin:0;" width="295" alt="M with 5 from ATLANTA." />';
+                            $tmp_second_look .= '</a></p>';
 
                         }else{
 
                             if($j5_filename_array[$i] == 'M_WITH_5_AT_935M_ATLANTA_MEMORIAL_DAY_WEEKEND_COOKOUT_AND_SOMEONES_BDAY_MAY_28_2011_IMG344.jpg'){
 
-                                $tmp_first_look .= '<a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[0_M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear." style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; border:2px solid #CCC; padding:0; margin:0;" width="295" alt="M with 5 from ATLANTA." />';
-                                $tmp_first_look .= '</a>';
+                                $tmp_first_look .= '<p><a class="j5_my_boy_thumb" href="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[0_M_with_5_935M_ATL_2011]" title="M with 5 from ATLANTA. I will love you always, my dear." style="line-height:11px;"><img src="' . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP') . self::$oEnv->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="width:295px; border:2px solid #CCC; padding:0; margin:0;" width="295" alt="M with 5 from ATLANTA." />';
+                                $tmp_first_look .= '</a></p>';
 
                             }
 
@@ -9336,10 +9659,10 @@ class bringer_of_the_precious_things {
                     <div class="col">
                         ' . $tmp_first_look . '
                         <p>My life articulates a lattice upon which any astute Bible teacher would be apt to hang and to
-                            display (and to teach) many previously hidden divine revelations. One such divine revelation is
-                            a 1-2 step to transfer the saints, the church, from earth to heaven. This will produce what could
-                            be called an hour of trial upon the earth; I would call it a sausage fest. No. let’s say &quot;welcome
-                            to sausage town!&quot;</p>
+                        display (and to teach) many previously hidden divine revelations. One such divine revelation is
+                        a 1-2 step to transfer the saints, the church, from earth to heaven. This will produce what could
+                        be called an hour of trial upon the earth; I would call it a sausage fest. No. let’s say &quot;welcome
+                        to sausage town!&quot;</p>
 
                         <p>...No, we MUST call it PLANET SAUSAGE; I will be kept out of that hour of trial,...as anyone
                             could imagine.</p>
@@ -9347,36 +9670,36 @@ class bringer_of_the_precious_things {
                         <p><a vvid="rev3_10-11" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">https://jony5.com/?vv=rev3_10-11</a>' . $this->seo_out('rev3_10-11') . '</p>
 
                         <p>During this 1-2 step hour of trial, the King will martyr the product of my big[sic] brother
-                            Jermaine Holloway\'s ATL breeding activities with &quot;scared ATL girls&quot; for Jezebel
-                            (they are her children) straight into my heavenly household; others will seek for this kind
-                            of death, martyrdom, and will not find it.</p>
+                        Jermaine Holloway\'s ATL breeding activities with &quot;scared ATL girls&quot; for Jezebel
+                        (they are her children) straight into my heavenly household; others will seek for this kind
+                        of death, martyrdom, and will not find it.</p>
 
                         <p>Revelation 2:23 is the King of kings assembling my household in heaven.</p>
 
                         <p>Thundercats hooo!<br>
-                            <a vvid="rev2_21-23,29" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">https://jony5.com?vv=rev2_21-23,29</a>' . $this->seo_out('rev2_21-23,29') . '</p>
+                        <a vvid="rev2_21-23,29" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">https://jony5.com?vv=rev2_21-23,29</a>' . $this->seo_out('rev2_21-23,29') . '</p>
 
 </div>
 <div class="col">
     <p>Once in heaven, I will be seated at table next to Jesus Christ our Lord, the King of kings and
-        Lord of all lords, for eternity, and my new creation heavenly borne household in 100% resurrection
-        will have +50 billion sisters and gay brothers who, by the date of their first birth, their earthy
-        birth, go back even to the 1800\'s.</p>
+    Lord of all lords, for eternity, and my new creation heavenly borne household in 100% resurrection
+    will have +50 billion sisters and gay brothers who, by the date of their first birth, their earthy
+    birth, go back even to the 1800\'s.</p>
 
     <p>This has all been prepared for me beforehand by God my heavenly Father...Father of eternity...and,
-        this prepared portion will be poured directly into my bosom here in space and in time,<br>very soon.</p>
+    this prepared portion will be poured directly into my bosom here in space and in time,<br>very soon.</p>
 
     <p>Also, the King has two swords, two seats,...two hounds. I suspect that both of the Kings dogs in
-        office are straight wolves from the tribe of Benjamin. Therefore, the other guy is almost certainly
-        Jewish, and I suspect that his heavenly house is much larger than mine as I look to be the more
-        uncomely member that lacked...and but still with that brother also having never married in life
-        whilst serving the Lord faithfully even unto death.</p>
+    office are straight wolves from the tribe of Benjamin. Therefore, the other guy is almost certainly
+    Jewish, and I suspect that his heavenly house is much larger than mine as I look to be the more
+    uncomely member that lacked...and but still with that brother also having never married in life
+    whilst serving the Lord faithfully even unto death.</p>
 
     ' . $tmp_second_look . '
 
     <div class="cb_30"></div>
     <p style="font-size: 90%;">Last Modified:<br>
-        Wed May 29 16:20:02.240211 2024.</p>
+    Wed May 29 16:20:02.240211 2024.</p>
 
 </div>
 </div>

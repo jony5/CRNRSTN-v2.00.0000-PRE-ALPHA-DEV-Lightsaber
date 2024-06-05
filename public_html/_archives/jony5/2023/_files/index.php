@@ -68,6 +68,10 @@ $tmp_scroll_ID = $tmp_serial = '';
 $tmp_sprite_ver_size = filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/media_icon/sprite.png');
 $tmp_sprite_ver_date = filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/media_icon/sprite.png');
 
+//
+// 0=5, 1=J5, 2=5.
+$tmp_lightbox_gallery_ARRAY = $oBringer->jony5_web_output('WELCOME_SECTION_LIGHTBOX_GALLERY_HTML');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -293,10 +297,18 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                         to formulate and execute (with my own bare hands in the code whenever necessary) multi-channel
                         business marketing initiatives.</p>
 
+                        <?php
+                        //
+                        // 0=5, 1=J5, 2=5.
+                        //error_log(__LINE__ . ' index [' . print_r($tmp_lightbox_gallery_ARRAY[0], true) . '].');
+                        echo $tmp_lightbox_gallery_ARRAY[0][0];
+
+                        ?>
+
                         <p>Digital brand strategy and execution are my core competencies.</p>
 
                         <p><a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>downloads/resume/jharris_resume.php?v=420" download>Click here to download</a> the latest version of
-                            my resume, or visit my LinkedIn<sup style="font-size:85%; line-height:12px;">&reg;</sup> profile by clicking <a href="https://www.linkedin.com/in/j00000101/" target="_blank">here</a>.</p>
+                        my resume, or visit my LinkedIn<sup style="font-size:85%; line-height:12px;">&reg;</sup> profile by clicking <a href="https://www.linkedin.com/in/j00000101/" target="_blank">here</a>.</p>
 
                     </div>
 
@@ -311,63 +323,10 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                         Korean Jindo, German Shepherd and Timber Wolf.</p>
 
                         <?php
-                        $tmp_str_out = '';
-                        $first_img_display = false;
-                        $dir_path = "common/imgs/j5_my_boy/";
-                        $thumb_path = "common/imgs/j5_my_boy/_thumb/";
 
-                        $tmp_dir = $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/' . $dir_path;
-                        $j5_filename_array = scandir($tmp_dir, 1);
-
-                        $j5_filename_array = array_reverse($j5_filename_array);
-
-                        $j5_array_size = sizeof($j5_filename_array);
-
-                        for($i = 0; $i < $j5_array_size; $i++){
-
-                            if($j5_filename_array[$i] != '.DS_Store' && $j5_filename_array[$i] != '.' && $j5_filename_array[$i] != '..'){
-
-                                if(!$first_img_display){
-
-                                    if(strlen($j5_filename_array[$i]) > 6){
-
-                                        $first_img_display = true;
-
-                                        $tmp_str_out .= '<p>';
-
-                                        $tmp_str_out .= '<a class="j5_my_boy_thumb" href="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[j5_my_boy]" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs." style="line-height:11px;"><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . $j5_filename_array[$i].'" alt="" style="width:295px; height:221px; border:2px solid #CCC; padding:0; margin:0;" width="295" height="221" alt="J5" />';
-                                        $tmp_str_out .= '<span style="font-size:14px; text-decoration: underline; color: #0066CC; display: block; width:295px; text-align: right; padding: 0; margin: 0;">Gallery</span></a></p>';
-
-                                        //$tmp_str_out .= '<div style="font-size:12px; width:295px; text-align: right; padding: 3px 0 0 0;"><a href="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[j5_my_boy]" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs.">Gallery.<img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . $j5_filename_array[$i].'" alt="" style="padding:0px; margin:0px; display: none;" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee" /></a></div></p>';
-
-                                    }
-
-                                }else{
-
-                                    if(strlen($j5_filename_array[$i]) > 6){
-
-                                        if($j5_filename_array[$i] == 'jony5_no_disassemble.png'){
-
-                                            $tmp_short_circuit_jony5_copy = 'Back in the days of dial up (late 90\'s), I was quite new to the world of the interwebs. I didn\'t even have an email address. Realizing that I needed to get some kind of messaging account called an email address, I went to the folks at Juno. They hooked me up with a free email account and dial-up
-internet access!<br><br>When I was filling out the Juno forms to get an email address, they asked me what I wanted it to be. I had no idea! Well, at that time, I had just finished watching the movie Short Circuit, and so I was like &quot;I\'ll get the email jony5.&quot; (Johnny 5). From that point forward, I was jony5@juno.com. This era of my digital existence was defined by slow loading images and phone calls that broke the internet connection!';
-
-                                            $tmp_str_out .= '<div class="hidden"><a class="j5_my_boy_thumb" href=' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . ' rel="lightbox[j5_my_boy]" title="' . $tmp_short_circuit_jony5_copy . '"><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . $j5_filename_array[$i].'" alt="" style="padding:0px; margin:0px;" width="295" height="221" alt="J5" title="' . $tmp_short_circuit_jony5_copy . '" /></a></div>';
-
-                                        }else{
-
-                                            $tmp_str_out .= '<div class="hidden"><a class="j5_my_boy_thumb" href=' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $dir_path . $j5_filename_array[$i] . ' rel="lightbox[j5_my_boy]" title="J5, chillin\' at Octane Coffee \'Westside\' in Atlanta, GA on Saturday, October 30, 2010 at 1111hrs."><img src="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . $thumb_path . $j5_filename_array[$i].'" alt="" style="padding:0px; margin:0px;" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee" /></a></div>';
-
-                                        }
-
-                                    }
-
-                                }
-
-                            }
-
-                        }
-
-                        echo $tmp_str_out;
+                        //
+                        // 0=5, 1=J5, 2=5.
+                        echo $tmp_lightbox_gallery_ARRAY[0][1];
 
                         ?>
                         <p>In 2007 I helped a talented and diverse team of people at Moxie to start
@@ -376,16 +335,14 @@ internet access!<br><br>When I was filling out the Juno forms to get an email ad
                         clients to design and execute both award-winning and state-of-the-art email
                         marketing programs in support of their global strategic initiatives.</p>
 
-                        <!--<p><div class="embedded_image" style="width:295px; height:221px;"><img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/j5_octane.jpg" width="295" height="221" alt="J5" title="J5 chillin at Octane Coffee"></div></p>-->
-
-                    </div>
-                    <div class="col">
                         <p>My boy, J5, when I was a company man at agency,...he would accompany me
                         to work at the office in the city of Atlanta on many occasions. All the way
                         through the end of 2012, J5 frequented, with me, local Atlanta parks, local
                         Atlanta coffee shops, local Atlanta neighborhood bars, and even the
                         occasional Atlanta house party.</p>
 
+                    </div>
+                    <div class="col">
                         <p>On the morning of Monday, Aug. 16, 2021 at 0345 hrs and while laying under my arm, J5 went the way of all the earth (<a vvid="1kings2_1-3" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">1 Kings 2:1-3</a><?php echo $oBringer->seo_out('1kings2_1-3'); ?>)
                         even with much encouragement and celebration from me by his side. In the woods behind my house in the dark of night,
                         at 0500 hrs, as I was returning J5 to the earth from whence he came...whilst shoveling the dirt back in place, I thanked
@@ -397,6 +354,13 @@ internet access!<br><br>When I was filling out the Juno forms to get an email ad
                         is still clutched against his chest in the arm of his front right paw.</p>
 
                         <p>Later, I came to realize that I buried him facing towards the direction of the rising of the sun to the east.</p>
+
+                        <?php
+                        //
+                        // 0=5, 1=J5, 2=5.
+                        echo $tmp_lightbox_gallery_ARRAY[0][2];
+
+                        ?>
 
                     </div>
                 </div>
