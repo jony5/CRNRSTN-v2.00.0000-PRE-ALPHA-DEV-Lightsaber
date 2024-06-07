@@ -7,7 +7,16 @@ A significant refactoring of CRNRSTN :: This is hot in the works...with ~60% of 
 
 -- All bassdrive_dirty_shit audio files will be finished clean uploading to _tmp_diagrams in about 15min. More issues found on Fri Jun 07 07:14:31.386185 2024. --
 
-Ben XO - Warm Winter Air (2009-02-17).mp3 ##PLZ COME BACK FOR THIS ONE IN 15 MIN.
+## AUDIO UPLOAD IS FINISHED ON FTP! 
+
+KomaticBassDrive_16062008.mp3...INTRO...HEADPHONES......SO NICE!
+
+[KomaticBassDrive_16062008.mp3](https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/bassdrive_dirty_shit/KomaticBassDrive_16062008.mp3)
+
+----
+
+
+Ben XO - Warm Winter Air (2009-02-17).mp3 ## READY. STEADY. GO.
 
 I'm having internet issues or something over here. 
 
