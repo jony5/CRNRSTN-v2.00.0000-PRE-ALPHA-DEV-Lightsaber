@@ -5,9 +5,14 @@ A significant refactoring of CRNRSTN :: This is hot in the works...with ~60% of 
 
 ## Production
 
--- This file is corrupted in repo until next push.  Found on Fri Jun 07 02:13:07.259988 2024. --
+-- All bassdrive_dirty_shit audio files will be finished clean uploading to _tmp_diagrams in about 15min. More issues found on Fri Jun 07 07:14:31.386185 2024. --
 
-Ben XO - Warm Winter Air (2009-02-17).mp3
+Ben XO - Warm Winter Air (2009-02-17).mp3 ##PLZ COME BACK FOR THIS ONE IN 15 MIN.
+
+I'm having internet issues or something over here. 
+
+
+I'm so sorry!
 
 [https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/bassdrive_dirty_shit/XO/](https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/bassdrive_dirty_shit/XO/)
 
