@@ -1,10 +1,19 @@
 <?php
 
 /*
-// J5
+// 5 ::
 // Code is Poetry */
 require('_crnrstn.root.inc.php');
 include_once($CRNRSTN_ROOT . '_crnrstn.config.inc.php');
+
+//
+// INITIALIZE WEB PAGE
+// HTTP/S AND DIRECTORY
+// PATH ROOTS.
+//
+// Saturday, June 8, 2024 @ 1320 hrs.
+$tmp_root_path = $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR');
+$tmp_http_root = $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');
 
 header('Content-Type: text/html; charset=UTF-8');
 header('Cache-Control: no-store');
@@ -27,7 +36,7 @@ if(isset($_GET['type'])){
 
         $tmp_popup_mode = true;
         $tmp_script_window_resize_handle = '<div id="script_popup_window_handle" class="hidden"></div>';
-        $tmp_ajax_root_html = '<div id="ajax_root" class="hidden">' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . '</div>';
+        $tmp_ajax_root_html = '<div id="ajax_root" class="hidden">' . $tmp_http_root . '</div>';
 
     }
 
@@ -92,8 +101,8 @@ if(isset($_GET['type'])){
 $oBringer = new bringer_of_the_precious_things($oCRNRSTN_ENV,'popup');
 $pfw = $precious_from_the_worthless = $oBringer->return_to_me_the_precious();
 
-$tmp_sprite_ver_size = filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/media_icon/sprite.png');
-$tmp_sprite_ver_date = filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/media_icon/sprite.png');
+$tmp_sprite_ver_size = filesize($tmp_root_path . '/common/imgs/social_share/media_icon/sprite.png');
+$tmp_sprite_ver_date = filemtime($tmp_root_path . '/common/imgs/social_share/media_icon/sprite.png');
 
 //
 // NAVIGATION
@@ -165,13 +174,12 @@ for($i = 0; $i < $tmp_loop_size; $i++){
 <head>
     <meta http-equiv="Content-Language" content="en-US" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
     <?php
     if($tmp_popup_mode){
 
         $tmp_uri = $_SERVER['SCRIPT_NAME'];
         $tmp_uri = str_replace("index.php", "", $tmp_uri);
-        $site_name = 'Hi, I\'m Jonathan \'J5\' Harris, messenger of the church in Philadelphia.';
+        $site_name = "Hi, I'm Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and messenger of the church in Philadelphia.";
         $social_url = "https://jony5.com" . $tmp_uri;
         $htmlTitle = $social_title = $tmp_nav_str_social_preview;
         $social_img = 'scriptures_lsm_social_preview.png';
@@ -186,31 +194,29 @@ for($i = 0; $i < $tmp_loop_size; $i++){
 
     ?>
     <meta name="viewport" content="width=device-width">
-    <link rel="shortcut icon" type="image/x-icon" href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>favicon.ico?v=420" />
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo $tmp_http_root;  ?>favicon.ico?v=420" />
     <meta name="distribution" content="Global" />
     <meta name="robots" content="index,follow" />
     <meta property="og:url" content="<?php echo $social_url; ?>"/>
     <meta property="og:site_name" content="<?php echo $site_name; ?>"/>
     <meta property="og:title" content="<?php echo $social_title; ?>"/>
-    <meta property="og:image" content="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/imgs/social_share/preview/<?php echo $social_img; ?>"/>
+    <meta property="og:image" content="<?php echo $tmp_http_root;  ?>common/imgs/social_share/preview/<?php echo $social_img; ?>"/>
     <meta property="og:description" content="<?php echo $social_desc.$tmp_elip; ?>" />
     <meta property="og:type" content="website"/>
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:title" content="<?php echo $social_title; ?>"/>
-    <meta name="twitter:image" content="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/imgs/social_share/preview/<?php echo $social_img; ?>"/>
+    <meta name="twitter:image" content="<?php echo $tmp_http_root;  ?>common/imgs/social_share/preview/<?php echo $social_img; ?>"/>
     <meta name="twitter:description" content="<?php echo $social_desc.$tmp_elip; ?>" />
     <meta name="description" content="<?php echo $primary_desc.$tmp_elip; ?>" />
     <meta name="keywords" content="jesus, christ, jesus christ, gospel, j5, jonathan, harris, jonathan harris, johnny 5, jony5, atlanta, moxie, agency, web, christian, web services, email, web programming, marketing, CSS, XHTML, php, ajax" />
     <title><?php echo $htmlTitle; ?></title>
-    <link rel="stylesheet" href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/js/_lib/frameworks/jquery_ui/1.12.1/jquery-ui.min.css">
-    <link rel="stylesheet" href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/css/main.css?v=420.00<?php echo filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR').'/common/css/main.css').'.'.filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR').'/common/css/main.css').'.0'; ?>" type="text/css" />
-    <link rel="stylesheet" href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/js/_lib/frameworks/lightbox/2.11.1/css/lightbox.min.css" type="text/css" />
-
-    <script src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/js/_lib/frameworks/jquery_mobi/jquery.js"></script>
-    <script src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/js/_lib/frameworks/jquery_ui/1.12.1/jquery-ui.min.js"></script>
-
-    <script type="text/javascript" language="javascript" src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/js/_lib/frameworks/jquery/3.4.1/jquery-3.4.1.min.js" ></script>
-    <script type="text/javascript" language="javascript" src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/js/main.js?v=420.00<?php echo filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR').'/common/js/main.js').'.'.filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR').'/common/js/main.js').'.0'; ?>"></script>
+    <link rel="stylesheet" href="<?php echo $tmp_http_root;  ?>common/js/_lib/frameworks/jquery_ui/1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="<?php echo $tmp_http_root;  ?>common/css/main.css?v=420.00<?php echo filesize($tmp_root_path . '/common/css/main.css').'.'.filemtime($tmp_root_path . '/common/css/main.css').'.0'; ?>" type="text/css" />
+    <link rel="stylesheet" href="<?php echo $tmp_http_root;  ?>common/js/_lib/frameworks/lightbox/2.11.1/css/lightbox.min.css" type="text/css" />
+    <script src="<?php echo $tmp_http_root;  ?>common/js/_lib/frameworks/jquery_mobi/jquery.js"></script>
+    <script src="<?php echo $tmp_http_root;  ?>common/js/_lib/frameworks/jquery_ui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" language="javascript" src="<?php echo $tmp_http_root;  ?>common/js/_lib/frameworks/jquery/3.4.1/jquery-3.4.1.min.js" ></script>
+    <script type="text/javascript" language="javascript" src="<?php echo $tmp_http_root;  ?>common/js/main.js?v=420.00<?php echo filesize($tmp_root_path . '/common/js/main.js').'.'.filemtime($tmp_root_path . '/common/js/main.js').'.0'; ?>"></script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEL8JKG7SG"></script>
@@ -241,7 +247,7 @@ for($i = 0; $i < $tmp_loop_size; $i++){
 
     <style>
 
-        .script_fade_bdr                    { background-image: url("<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/imgs/scriptures_fade_edge_grey.png");}
+        .script_fade_bdr                    { background-image: url("<?php echo $tmp_http_root;  ?>common/imgs/scriptures_fade_edge_grey.png");}
         .script_footer_vv_index_rel         { position:relative; float:left; width:5px; padding:0 0 10px 10px;}
         .script_footer_vv_index_abs         { position:absolute; width: 200px;}
         .script_footer_holy_bible_rel       { position:relative; width: 5px; float:right; padding:0 10px; 10px 0;}
@@ -250,6 +256,64 @@ for($i = 0; $i < $tmp_loop_size; $i++){
     </style>
 </head>
 <body style="width: 670px; min-width:670px;">
+<!--
+//
+// Therefore thus says Jehovah,
+//   If you return, I will restore you;
+// You will stand before Me;
+//   And if you bring out the precious from the worthless,
+// You will be as My mouth;
+//   They will turn to you,
+//   But you will not turn to them.
+// And I will make you to this people
+//   A fortified wall of bronze;
+// And they will fight against you,
+//   But they will not prevail against you;
+// For I am with you
+//   To save you and deliver you,
+//   Declares Jehovah.
+// And I will deliver you from the hand of the wicked
+//   And redeem you from the hand of those who terrorize.
+//
+// - Jeremiah 15:19-21
+//
+//
+// And to the messenger of the church in Philadelphia write:
+//
+//   These things says the Holy One, the true One, the One
+//   who has the key of David, the One who opens and no
+//   one will shut, and shuts and no one opens:
+//
+//   I know your works; behold, I have put before you an
+//   opened door which no one can shut, because you have a
+//   little power and have kept My word and have not denied
+//   My name.
+//
+//   Behold, I will make those of the synagogue of Satan,
+//   those who call themselves Jews and are not, but lie––
+//   behold, I will cause them to come and fall prostrate
+//   before your feet and to know that I have loved you.
+//
+//   Because you have kept the word of My endurance, I also
+//   will keep you out of the hour of trial, which is about
+//   to come on the whole inhabited earth, to try them who
+//   dwell on the earth. I come quickly; hold fast what you
+//   have that no one take your crown.
+//
+//   He who overcomes, him I will make a pillar in the
+//   temple of My God, and he shall by no means go out
+//   anymore, and I will write upon him the name of My God
+//   and the name of the city of My God, the New Jerusalem,
+//   which descends out of heaven from My God, and
+//   My new name.
+//
+//   He who has an ear, let him hear what the Spirit says
+//   to the churches.
+//
+//  - Revelation 3:7-13
+//
+// INSTANTIATE A bringer_of_the_precious_things CLASS OBJECT.
+-->
 <?php echo $tmp_script_window_resize_handle; ?><div id="script_wrapper" onclick="lockPopup(); return false;">
     <div id="script_vnav_wrapper">
         <?php
@@ -271,7 +335,7 @@ for($i = 0; $i < $tmp_loop_size; $i++){
         $tmp_share_message = urlencode('Check this out in the Holy Word of God!');
         $tmp_copy_share_lnk = 'https://jony5.com?vv=' . $tmp_vv;
         $tmp_share_lnk =  urlencode($tmp_copy_share_lnk);
-        $tmp_lnk_www = $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . '?vv=' . $tmp_vv;
+        $tmp_lnk_www = $tmp_http_root . '?vv=' . $tmp_vv;
         $tmp_lnk_twitter = 'https://twitter.com/intent/tweet?text=' . $tmp_share_message . '&url=' . $tmp_share_lnk;
         $tmp_lnk_facebook = 'https://www.facebook.com/sharer/sharer.php?u=' . $tmp_share_lnk . '&quote=' . $tmp_share_message;
         $tmp_lnk_linkedin = 'https://www.linkedin.com/sharing/share-offsite/?url=' . $tmp_share_lnk;
@@ -299,7 +363,7 @@ for($i = 0; $i < $tmp_loop_size; $i++){
                     //
                     // Monday, March 4, 2024 @ 2316 hrs. -->
                     <?php
-                    if($oCRNRSTN_ENV->getEnvParam('SERVER_ADDR') == '172.16.225.139'){
+                    if($oCRNRSTN_ENV->getEnvParam('SERVER_ADDR') == '172.16.225.128'){
 
                         //
                         // RETURN THE HTML STRING OUTPUT FOR
@@ -313,7 +377,7 @@ for($i = 0; $i < $tmp_loop_size; $i++){
                         <div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
                             <div style="position: relative;">
                                 <div style="position: absolute; left:-107px; top: 0;">
-                                    <img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Share Link." title="Share Link.">
+                                    <img src="<?php echo $tmp_http_root; ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Share Link." title="Share Link.">
                                 </div>
                             </div>
                         </div>
@@ -323,7 +387,7 @@ for($i = 0; $i < $tmp_loop_size; $i++){
                         <div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
                             <div style="position: relative;">
                                 <div style="position: absolute; left:-80px; top: 0;">
-                                    <img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Tweet to Twitter." title="Twitter Share Link.">
+                                    <img src="<?php echo $tmp_http_root; ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Tweet to Twitter." title="Twitter Share Link.">
                                 </div>
                             </div>
                         </div>
@@ -333,7 +397,7 @@ for($i = 0; $i < $tmp_loop_size; $i++){
                         <div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
                             <div style="position: relative;">
                                 <div style="position: absolute; left:-26px; top: 0;">
-                                    <img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="319" height="414" alt="Share to Facebook." title="Facebook Share Link.">
+                                    <img src="<?php echo $tmp_http_root; ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="319" height="414" alt="Share to Facebook." title="Facebook Share Link.">
                                 </div>
                             </div>
                         </div>
@@ -343,7 +407,7 @@ for($i = 0; $i < $tmp_loop_size; $i++){
                         <div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
                             <div style="position: relative;">
                                 <div style="position: absolute; left:-2px; top: -89px;">
-                                    <img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Post to Linkedin." title="Linkedin Share Link.">
+                                    <img src="<?php echo $tmp_http_root; ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Post to Linkedin." title="Linkedin Share Link.">
                                 </div>
                             </div>
                         </div>
@@ -353,7 +417,7 @@ for($i = 0; $i < $tmp_loop_size; $i++){
                         <div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
                             <div style="position: relative;">
                                 <div style="position: absolute; left:-273px; top: -29px;">
-                                    <img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Share to Reddit." title="Reddit Share Link.">
+                                    <img src="<?php echo $tmp_http_root; ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Share to Reddit." title="Reddit Share Link.">
                                 </div>
                             </div>
                         </div>
@@ -452,7 +516,7 @@ for($i = 0; $i < $tmp_loop_size; $i++){
     <div id="script_footer_wrapper">
         <div class="script_footer_vv_index_rel">
             <div class="script_footer_vv_index_abs">
-                <div class="script_footer_vv_index"><a href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>scriptures/site_index/" target="_blank" onclick="lockPopup('<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>scriptures/site_index/');">Site Index of Holy Scriptures</a></div>
+                <div class="script_footer_vv_index"><a href="<?php echo $tmp_http_root; ?>scriptures/site_index/" target="_blank" onclick="lockPopup('<?php echo $tmp_http_root; ?>scriptures/site_index/');">Site Index of Holy Scriptures</a></div>
             </div>
         </div>
         <div class="script_footer_holy_bible_rel">
