@@ -3633,7 +3633,7 @@ function auto_transitionBanner(oImg){
 		currentBackControlIndex++;
 		pushToControllerQueue($("#banner_cache").html());
 
-		var tmp_img_html = '<img src="' + this.src + '" width="1180" height="250" alt="Jonathan \'5\' Harris">';
+		var tmp_img_html = '<img src="' + this.src + '" width="1180" height="250" alt="Hi, I\'m Jonathan \'5\' Harris, a ravenous wolf of the tribe of Benjamin and one of the King\'s two swords, an eternal son of thunder, and messenger of the church in Philadelphia." title="Hi, I\'m Jonathan \'5\' Harris, a ravenous wolf of the tribe of Benjamin and one of the King\'s two swords, an eternal son of thunder, and messenger of the church in Philadelphia.">';
 
 		var tmp = injectIntoElement($("#banner_cache_slower_conn").html(), 'banner_cache');
 		var tmp = injectIntoElement(tmp_img_html, 'banner_cache_slower_conn');
@@ -3951,7 +3951,7 @@ function bannerTransition_run(top_container, oImg){
 
 	}
 
-	var tmp_img_html = '<img src="' + oImg.src + '" width="1180" height="250" alt="Jonathan \'5\' Harris">';
+	var tmp_img_html = '<img src="' + oImg.src + '" width="1180" height="250" alt="Hi, I\'m Jonathan \'5\' Harris, a ravenous wolf of the tribe of Benjamin and one of the King\'s two swords, an eternal son of thunder, and messenger of the church in Philadelphia." title="Hi, I\'m Jonathan \'5\' Harris, a ravenous wolf of the tribe of Benjamin and one of the King\'s two swords, an eternal son of thunder, and messenger of the church in Philadelphia.">';
 	var tmp = injectIntoElement(tmp_img_html, 'banner_cache_slower_conn');
 
 }
@@ -4159,7 +4159,7 @@ function syncToBannerImageIndex(){
 
 	for(var ss=0; ss<tmp_len; ss++){
 
-		imageHTML_ARRAY[ss] = '<img src="' + bannerImageIndexARRAY[ss].uri + '" width="1180" height="250" alt="Jonathan \'5\' Harris">';
+		imageHTML_ARRAY[ss] = '<img src="' + bannerImageIndexARRAY[ss].uri + '" width="1180" height="250" alt="Hi, I\'m Jonathan \'5\' Harris, a ravenous wolf of the tribe of Benjamin and one of the King\'s two swords, an eternal son of thunder, and messenger of the church in Philadelphia." title="Hi, I\'m Jonathan \'5\' Harris, a ravenous wolf of the tribe of Benjamin and one of the King\'s two swords, an eternal son of thunder, and messenger of the church in Philadelphia.">';
 
 	}
 
