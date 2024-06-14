@@ -1,21 +1,28 @@
 <?php
-
-/* 
-// J5
+/*
+// 5 ::
 // Code is Poetry */
 require('_crnrstn.root.inc.php');
 include_once($CRNRSTN_ROOT . '_crnrstn.config.inc.php');
 
-if($oCRNRSTN_ENV->oHTTP_MGR->issetHTTP($_GET)) {
+//
+// INITIALIZE WEB PAGE
+// HTTP/S AND DIRECTORY
+// PATH ROOTS.
+//
+// Saturday, June 8, 2024 @ 1440 hrs.
+$tmp_root_path = $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR');
+$tmp_http_root = $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');
+
+if($oCRNRSTN_ENV->oHTTP_MGR->issetHTTP($_GET)){
 
     $tmp_demo = $oCRNRSTN_ENV->oHTTP_MGR->extractData($_GET, 'demo');
 
-    $tmp_body_style = "background-image: url('".$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR')."common/imgs/overlay_OBS_demo_bg2.png');";
+    $tmp_body_style = "background-image: url('" . $tmp_http_root . "common/imgs/overlay_OBS_demo_bg2.png');";
 
 }
 
 $oLogger = new crnrstn_logging();
-
 
 //
 // RETRIEVE OVERLAY STATE FROM DB
@@ -118,7 +125,7 @@ if($oCRNRSTN_ENV->getEnvParam('SSL_ENABLED')){
 
         //
         // REDIRECT HTTPS TO HTTP
-        header("Location: ".$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR')."/social/fellowship/avsvc_overlay/");
+        header("Location: ".$tmp_http_root."/social/fellowship/avsvc_overlay/");
        // die();
 
     }
@@ -127,18 +134,22 @@ if($oCRNRSTN_ENV->getEnvParam('SSL_ENABLED')){
 
 // SOURCE :: https://stackoverflow.com/questions/7304182/detecting-ssl-with-php
 // FROM WordPress tho
-function is_ssl() {
-    if ( isset($_SERVER['HTTPS']) ) {
-        if ( 'on' == strtolower($_SERVER['HTTPS']) )
-            return true;
-        if ( '1' == $_SERVER['HTTPS'] )
-            return true;
-    } elseif ( isset($_SERVER['SERVER_PORT']) && ( '443' == $_SERVER['SERVER_PORT'] ) ) {
-        return true;
-    }
-    return false;
-}
+function is_ssl(){
 
+    if(isset($_SERVER['HTTPS'])){
+        if('on' == strtolower($_SERVER['HTTPS']))
+            return true;
+        if('1' == $_SERVER['HTTPS'])
+            return true;
+    }elseif(isset($_SERVER['SERVER_PORT']) && ( '443' == $_SERVER['SERVER_PORT'])){
+
+        return true;
+
+    }
+
+    return false;
+
+}
 
 ?>
 <!doctype html>
@@ -151,10 +162,10 @@ function is_ssl() {
     <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
 
     <title>AV OBS Meeting Overlay</title>
-    <script type="text/javascript" language="javascript" src="<?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/lib/frameworks/prototype/1.7.3/prototype.js" ></script>
-    <script type="text/javascript" language="javascript" src="<?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/lib/frameworks/scriptaculous/1.9.0/scriptaculous.js" ></script>
-    <script type="text/javascript" language="javascript" src="<?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/seblend/form.js"></script>
-    <script type="text/javascript" language="javascript" src="<?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/seblend/overlay_ctrl.js"></script>
+    <script type="text/javascript" language="javascript" src="<?php echo $tmp_http_root; ?>common/js/lib/frameworks/prototype/1.7.3/prototype.js" ></script>
+    <script type="text/javascript" language="javascript" src="<?php echo $tmp_http_root; ?>common/js/lib/frameworks/scriptaculous/1.9.0/scriptaculous.js" ></script>
+    <script type="text/javascript" language="javascript" src="<?php echo $tmp_http_root; ?>common/js/seblend/form.js"></script>
+    <script type="text/javascript" language="javascript" src="<?php echo $tmp_http_root; ?>common/js/seblend/overlay_ctrl.js"></script>
 
     <style>
         *									{ border:0; padding:0; margin:0; }   /*font-family:Arial, Helvetica, sans-serif;*/
@@ -204,7 +215,7 @@ function is_ssl() {
         .message_time                       { float: left; font-weight: bold; font-size:26px; color:#1A182D; padding-top: 8px; position:absolute; z-index: 12;}
 
         #message_time_wrapper               { }
-        
+
         /*UTILITY*/
         .hidden								{ width:0px; height:0px; position:absolute; left:-2000px; overflow:hidden;}
         .cb 								{ display:block; clear:both; height:0px; line-height:0px; overflow:hidden; width:100%; font-size:1px;}
@@ -246,8 +257,8 @@ function is_ssl() {
 
    <div id="mini_overlay_handle" class="mini_overlay_handle">
        <div id="seblend_mini_overlay_wrapper" class="seblend_mini_overlay_wrapper"></div>
-       <div id="right_gate_fade" class="right_copy_fade"><img src="<?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/avoverlay_fade_29_right.png" width="33" height="50" border="0" alt="fade" title="fade"></div>
-       <div id="left_gate_fade" class="left_copy_fade"><img src="<?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/avoverlay_fade_29_left.png" width="33" height="50" border="0" alt="fade" title="fade"></div>
+       <div id="right_gate_fade" class="right_copy_fade"><img src="<?php echo $tmp_http_root; ?>common/imgs/avoverlay_fade_29_right.png" width="33" height="50" border="0" alt="fade" title="fade"></div>
+       <div id="left_gate_fade" class="left_copy_fade"><img src="<?php echo $tmp_http_root; ?>common/imgs/avoverlay_fade_29_left.png" width="33" height="50" border="0" alt="fade" title="fade"></div>
        <div id="seblend_minioverlay_content_wrapper" class="seblend_minioverlay_content_wrapper">
            <div id="message_time_wrapper" class="message_time">0:00:00</div>
            <div id="scroll_extension_ui_mitigator" class="scroll_extension_ui_mitigator">
@@ -290,7 +301,7 @@ function is_ssl() {
 
    <div id="test_mode" class="cb"></div>
    <div id="sid" class="hidden"><?php echo session_id(); ?></div>
-   <div id="ajax_root" class="hidden"><?php echo $oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oUSER->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?></div>
+   <div id="ajax_root" class="hidden"><?php echo $tmp_http_root; ?></div>
    <div id="mov" class="hidden" >false</div>
    <div id="tov" class="hidden" >true</div>
    <div id="cov" class="hidden" >true</div>
