@@ -1,6 +1,6 @@
 <?php
 /*
-// J5
+// 5 ::
 // Code is Poetry */
 require('_crnrstn.root.inc.php');
 include_once($CRNRSTN_ROOT . '_crnrstn.config.inc.php');
@@ -64,17 +64,25 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT').$oCRNRSTN_ENV->getEnvParam('
 // INSTANTIATE A bringer_of_the_precious_things CLASS OBJECT.
 $oBringer = new bringer_of_the_precious_things($oCRNRSTN_ENV);
 $pfw = $precious_from_the_worthless = $oBringer->return_to_me_the_precious();
+
+//
+// INITIALIZE WEB PAGE
+// HTTP/S AND DIRECTORY
+// PATH ROOTS.
+//
+// Friday, June 14, 2024 @ 0918 hrs.
+$tmp_root_path = $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR');
+$tmp_http_root = $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');
+
 $tmp_scroll_ID = '';
-$tmp_sprite_ver_size = filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/media_icon/sprite.png');
-$tmp_sprite_ver_date = filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/media_icon/sprite.png');
+$tmp_sprite_ver_size = filesize($tmp_root_path . '/common/imgs/social_share/media_icon/sprite.png');
+$tmp_sprite_ver_date = filemtime($tmp_root_path . '/common/imgs/social_share/media_icon/sprite.png');
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<?php
-require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR').'/common/inc/head/head.inc.php');
-?>
+<?php require($tmp_root_path.'/common/inc/head/head.inc.php'); ?>
 </head>
 <body>
 <!--
@@ -144,20 +152,22 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
         </div>
     </div>
 </div>
-<?php
-	require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/inc/contact/contact.inc.php');
-	?>
+    <?php
 
-<div id="body_wrapper">
+	require($tmp_root_path . '/common/inc/contact/contact.inc.php');
+
+	?>
+    <div id="body_wrapper">
 	<!-- HEAD CONTENT -->
 	<?php
-	require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/inc/nav/topnav.inc.php');
+
+	require($tmp_root_path . '/common/inc/nav/topnav.inc.php');
+
 	?>
 	<div class="cb_30"></div>
 
     <!-- PAGE CONTENT -->
     <div id="content_wrapper" style="text-align: center; margin: 0px auto; width:925px;">
-
     	<div id="content">
 
             <!-- BEGIN SOCIAL SHARE -->
@@ -176,10 +186,10 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                         <div class="scripture_social_link_wrapper">
                             <?php
 
-                            $tmp_share_message = urlencode('Hi, I\'m Jonathan J5 Harris!');
-                            $tmp_copy_share_lnk = $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . 'scriptures/site_index/';
+                            $tmp_share_message = urlencode("Hi, I'm Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and messenger of the church in Philadelphia.");
+                            $tmp_copy_share_lnk = $tmp_http_root . 'scriptures/site_index/';
                             $tmp_share_lnk = urlencode($tmp_copy_share_lnk);
-                            $tmp_lnk_www = $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . '?scroll=welcome';
+                            $tmp_lnk_www = $tmp_http_root . '?scroll=welcome';
                             $tmp_lnk_twitter = 'https://twitter.com/intent/tweet?text=' . $tmp_share_message . '&url=' . $tmp_share_lnk;
                             $tmp_lnk_facebook = 'https://www.facebook.com/sharer/sharer.php?u=' . $tmp_share_lnk . '&quote=' . $tmp_share_message;
                             $tmp_lnk_linkedin = 'https://www.linkedin.com/sharing/share-offsite/?url=' . $tmp_share_lnk;
@@ -191,7 +201,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                                 <div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
                                     <div style="position: relative;">
                                         <div style="position: absolute; left:-107px; top: 0;">
-                                            <img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Share Link." title="Share Link.">
+                                            <img src="<?php echo $tmp_http_root; ?>common/imgs/social_share/media_icon/sprite.png?cache_v=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Share Link." title="Share Link.">
                                         </div>
                                     </div>
                                 </div>
@@ -201,7 +211,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                                 <div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
                                     <div style="position: relative;">
                                         <div style="position: absolute; left:-80px; top: 0;">
-                                            <img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Tweet to Twitter." title="Twitter Share Link.">
+                                            <img src="<?php echo $tmp_http_root; ?>common/imgs/social_share/media_icon/sprite.png?cache_v=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Tweet to Twitter." title="Twitter Share Link.">
                                         </div>
                                     </div>
                                 </div>
@@ -211,7 +221,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                                 <div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
                                     <div style="position: relative;">
                                         <div style="position: absolute; left:-26px; top: 0;">
-                                            <img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="319" height="414" alt="Share to Facebook." title="Facebook Share Link.">
+                                            <img src="<?php echo $tmp_http_root; ?>common/imgs/social_share/media_icon/sprite.png?cache_v=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="319" height="414" alt="Share to Facebook." title="Facebook Share Link.">
                                         </div>
                                     </div>
                                 </div>
@@ -221,7 +231,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                                 <div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
                                     <div style="position: relative;">
                                         <div style="position: absolute; left:-2px; top: -89px;">
-                                            <img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Post to Linkedin." title="Linkedin Share Link.">
+                                            <img src="<?php echo $tmp_http_root; ?>common/imgs/social_share/media_icon/sprite.png?cache_v=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Post to Linkedin." title="Linkedin Share Link.">
                                         </div>
                                     </div>
                                 </div>
@@ -231,7 +241,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                                 <div class="social_share_link" style="display: inline-block; width:25px; height:25px; overflow: hidden;">
                                     <div style="position: relative;">
                                         <div style="position: absolute; left:-273px; top: -29px;">
-                                            <img src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/media_icon/sprite.png?ver=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Share to Reddit." title="Reddit Share Link.">
+                                            <img src="<?php echo $tmp_http_root; ?>common/imgs/social_share/media_icon/sprite.png?cache_v=<?php echo $tmp_sprite_ver_size . '.' . $tmp_sprite_ver_date . '.0'; ?>" width="318" height="414" alt="Share to Reddit." title="Reddit Share Link.">
                                         </div>
                                     </div>
                                 </div>
@@ -251,17 +261,23 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                 <div id="static_jony5_performance_report_wrapper">&nbsp;</div>
                 <div class="content_copy">
                     <?php
+
                     $oBringer->build_link_html_index(NULL);
+
                     ?>
                 </div>
                 <div class="content_copy">
                     <div class="col" style="width:600px;">
                         <?php
+
                         $oBringer->build_link_html_index();
+
                         ?>
                     </div>
                     <?php
+
                     echo $oBringer->return_performance_report_html();
+
                     ?>
                 </div>
                 <div class="cb"></div>
@@ -276,10 +292,12 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
 
     <div class="cb_30"></div>
     <?php
-	require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/inc/footer/footer.inc.php');
+
+	require($tmp_root_path . '/common/inc/footer/footer.inc.php');
+
 	?>
     <div class="cb_50"></div>
 
-</div>
+    </div>
 </body>
 </html>
