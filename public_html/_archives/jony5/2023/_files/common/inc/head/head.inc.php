@@ -1,7 +1,15 @@
 <?php
 /*
-// J5
+// 5 ::
 // Code is Poetry */
+//
+// INITIALIZE WEB PAGE 
+// HTTP/S AND DIRECTORY 
+// PATH ROOTS.
+//
+// Friday, June 7, 2024 @ 2320 hrs.
+$tmp_root_path = $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR');
+$tmp_http_root = $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');
 
 //
 // METHOD TAKEN FROM NUSOAP.PHP - http://sourceforge.net/projects/nusoap/
@@ -40,7 +48,7 @@ switch($_SERVER['SCRIPT_NAME']){
 
 		$social_url         = "https://jony5.com/social/fellowship/podcast/";
 		$social_title       = "Welcome to Life Study of the Bible with Witness Lee. A program brought to you by Living Stream Ministry.";
-		$social_img         = 'scriptures_lsm_social_preview.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.0';
+		$social_img         = 'scriptures_lsm_social_preview.png' . '?cache_v=' . filesize($tmp_root_path . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.' . filemtime($tmp_root_path . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.0';
 		$social_desc        = "Life-Study of the Bible with Witness Lee is a 30-minute radio broadcast composed of excerpts from Witness Lee's spoken ministry that focuses on the enjoyment of the divine life as revealed in the Scriptures.";
 		$primary_desc       = "Welcome to Life Study of the Bible with Witness Lee. A program brought to you by Living Stream Ministry.";
 
@@ -165,16 +173,16 @@ switch($_SERVER['SCRIPT_NAME']){
             // SCRIPTURES BIBLE BOOK IMAGE DEFAULT
             // FOR HTML <META> SUPPORT.
             // Wednesday, February 28, 2024 @ 2013 hrs.
-            $social_img = 'scriptures_lsm_social_preview.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.0';
+            $social_img = 'scriptures_lsm_social_preview.png' . '?cache_v=' . filesize($tmp_root_path . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.' . filemtime($tmp_root_path . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.0';
 
             //
             // DID $oBringer (...of_the_precious_things) PROVIDE US
             // WITH A VALID FILE NAME?
-            if(is_file($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/' . $tmp_book_str_social . '_lsm_social_preview.png')){
+            if(is_file($tmp_root_path . '/common/imgs/social_share/preview/' . $tmp_book_str_social . '_lsm_social_preview.png')){
 
                 //
                 // USE THE FILE NAME PROVIDED BY $oBringer.
-                $social_img = $tmp_book_str_social . '_lsm_social_preview.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/' . $tmp_book_str_social . '_lsm_social_preview.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/' . $tmp_book_str_social . '_lsm_social_preview.png') . '.0';
+                $social_img = $tmp_book_str_social . '_lsm_social_preview.png' . '?cache_v=' . filesize($tmp_root_path . '/common/imgs/social_share/preview/' . $tmp_book_str_social . '_lsm_social_preview.png') . '.' . filemtime($tmp_root_path . '/common/imgs/social_share/preview/' . $tmp_book_str_social . '_lsm_social_preview.png') . '.0';
 
             }
 
@@ -287,7 +295,7 @@ switch($_SERVER['SCRIPT_NAME']){
                     $tmp_redirect_html = '    <meta charset="utf-8">
     <title>M5 Sedan | BMW USA</title>
     <meta name="description" content="' . $tmp_M5_desc . '" />
-    <link rel="shortcut icon" type="image/x-icon" href="' . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR') . 'favicon.ico?v=420" />
+    <link rel="shortcut icon" type="image/x-icon" href="' . $tmp_http_root . 'favicon.ico?v=420" />
     <meta http-equiv="refresh" content="0; url=' . $tmp_uri . '" />
     <meta name="twitter:image:src" content="' . $tmp_preview_social_img . '" />
     <meta name="twitter:site" content="@jony5" />
@@ -358,7 +366,7 @@ switch($_SERVER['SCRIPT_NAME']){
                     $tmp_uri                    = str_replace("index.php", "", $tmp_uri);
                     $social_url                 = "https://jony5.com" . $tmp_uri;
                     $htmlTitle = $social_title  = "Hi, I'm Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and messenger of the church in Philadelphia.";
-                    $social_img                 = 'jony5_social_preview_00.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/jony5_social_preview_00.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/jony5_social_preview_00.png') . '.0';
+                    $social_img                 = 'jony5_social_preview_00.png' . '?cache_v=' . filesize($tmp_root_path . '/common/imgs/social_share/preview/jony5_social_preview_00.png') . '.' . filemtime($tmp_root_path . '/common/imgs/social_share/preview/jony5_social_preview_00.png') . '.0';
                     $social_desc                = "I'm Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and a web professional living in ATL, GA. In my free time, I jump head-first into web development, email marketing, &amp; drum-n-bass music!";
                     $primary_desc               = "I'm Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+10 years of programming experience) behind me, I am always open to finding fresh opportunities to work with growing and digitally fueled companies in order to strengthen and broaden the technical aspects of their service offerings. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands when necessary) multi-channel business marketing initiatives. Digital brand strategy and execution are my core competencies.";
 
@@ -368,7 +376,7 @@ switch($_SERVER['SCRIPT_NAME']){
                     $tmp_uri                    = str_replace("index.php", "", $tmp_uri);
                     $social_url                 = "https://jony5.com" . $tmp_uri;
                     $htmlTitle = $social_title  = "Hi, I'm Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and messenger of the church in Philadelphia.";
-                    $social_img                 = 'm_with_5_in_ATL_at_935M_2011_social_preview.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/m_with_5_in_ATL_at_935M_2011_social_preview.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/m_with_5_in_ATL_at_935M_2011_social_preview.png') . '.0';
+                    $social_img                 = 'm_with_5_in_ATL_at_935M_2011_social_preview.png' . '?cache_v=' . filesize($tmp_root_path . '/common/imgs/social_share/preview/m_with_5_in_ATL_at_935M_2011_social_preview.png') . '.' . filemtime($tmp_root_path . '/common/imgs/social_share/preview/m_with_5_in_ATL_at_935M_2011_social_preview.png') . '.0';
                     $social_desc                = "935M in Atlanta was the location of the best of my days! Check out these pictures of my girl, M, during times when I could actually be with her in life and before my 2011-2012 martyrdom.";
                     $primary_desc               = "935M in Atlanta was the location of the best of my days! Check out these pictures of my girl, M, during times when I could actually be with her in life and before my 2011-2012 martyrdom.";
 
@@ -378,7 +386,7 @@ switch($_SERVER['SCRIPT_NAME']){
                     $tmp_uri                    = str_replace("index.php", "", $tmp_uri);
                     $social_url                 = "https://jony5.com" . $tmp_uri;
                     $htmlTitle = $social_title  = "Hi, I'm Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and messenger of the church in Philadelphia.";
-                    $social_img                 = 'j5_social_preview.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/j5_social_preview.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/j5_social_preview.png') . '.0';
+                    $social_img                 = 'j5_social_preview.png' . '?cache_v=' . filesize($tmp_root_path . '/common/imgs/social_share/preview/j5_social_preview.png') . '.' . filemtime($tmp_root_path . '/common/imgs/social_share/preview/j5_social_preview.png') . '.0';
                     $social_desc                = "How did the idea for &quot;J5&quot; come about?";
                     $primary_desc               = "This is an excellent question! You see, back in the days of dial up (late 90's), I was quite new to the world of the interwebs. I didn't even have an email address. Realizing that I needed to get some kind of messaging account called an email address, I went to the folks at Juno. They hooked me up with a free email account and dial-up internet access!";
 
@@ -388,7 +396,7 @@ switch($_SERVER['SCRIPT_NAME']){
                     $tmp_uri                    = str_replace("index.php", "", $tmp_uri);
                     $social_url                 = "https://jony5.com" . $tmp_uri;
                     $htmlTitle = $social_title  = "COVID: the flex of a fancy pants mud throne.";
-                    $social_img                 = 'covid_dust_throne_flex_social_preview.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/covid_dust_throne_flex_social_preview.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/covid_dust_throne_flex_social_preview.png') . '.0';
+                    $social_img                 = 'covid_dust_throne_flex_social_preview.png' . '?cache_v=' . filesize($tmp_root_path . '/common/imgs/social_share/preview/covid_dust_throne_flex_social_preview.png') . '.' . filemtime($tmp_root_path . '/common/imgs/social_share/preview/covid_dust_throne_flex_social_preview.png') . '.0';
                     $social_desc                = "COVID: the flex of a fancy pants mud throne whose authority over the hearts of the people is melting away out in the middle of some freak rain storm by the side of the solid gold street of the lowly man, Jesus.";
                     $primary_desc               = "I'm Jonathan '5' Harris, a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+10 years of programming experience) behind me, I am always open to finding fresh opportunities to work with growing and digitally fueled companies in order to strengthen and broaden the technical aspects of their service offerings. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands when necessary) multi-channel business marketing initiatives. Digital brand strategy and execution are my core competencies.";
 
@@ -398,7 +406,7 @@ switch($_SERVER['SCRIPT_NAME']){
                     $tmp_uri                    = str_replace("index.php", "", $tmp_uri);
                     $social_url                 = "https://jony5.com" . $tmp_uri;
                     $htmlTitle = $social_title  = "Hi, I'm Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and messenger of the church in Philadelphia.";
-                    $social_img                 = 'overcoming_social_preview.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/overcoming_social_preview.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/overcoming_social_preview.png') . '.0';
+                    $social_img                 = 'overcoming_social_preview.png' . '?cache_v=' . filesize($tmp_root_path . '/common/imgs/social_share/preview/overcoming_social_preview.png') . '.' . filemtime($tmp_root_path . '/common/imgs/social_share/preview/overcoming_social_preview.png') . '.0';
                     $social_desc                = "Living on this earth as an overcoming [normal] Christian according to the Truth of the Gospel of our Lord Jesus Christ.";
                     $primary_desc               = "I'm Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+10 years of programming experience) behind me, I am always open to finding fresh opportunities to work with growing and digitally fueled companies in order to strengthen and broaden the technical aspects of their service offerings. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands when necessary) multi-channel business marketing initiatives. Digital brand strategy and execution are my core competencies.";
 
@@ -450,7 +458,7 @@ switch($_SERVER['SCRIPT_NAME']){
                             $tmp_uri                    = str_replace("index.php", "", $tmp_uri);
                             $social_url                 = $tmp_uri;
                             $htmlTitle = $social_title  = "INDEX OF SCRIPTURES by Jonathan '5' Harris.";
-                            $social_img                 = 'scriptures_lsm_social_preview.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.0';
+                            $social_img                 = 'scriptures_lsm_social_preview.png' . '?cache_v=' . filesize($tmp_root_path . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.' . filemtime($tmp_root_path . '/common/imgs/social_share/preview/scriptures_lsm_social_preview.png') . '.0';
                             $social_desc                = "INDEX OF SCRIPTURES by Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and messenger of the church in Philadelphia.";
                             $primary_desc               = "INDEX OF SCRIPTURES by Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and messenger of the church in Philadelphia.";
 
@@ -460,7 +468,7 @@ switch($_SERVER['SCRIPT_NAME']){
                             $tmp_uri                    = str_replace("index.php", "", $tmp_uri);
                             $social_url                 = $tmp_uri;
                             $htmlTitle = $social_title  = "Hi, I'm Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and messenger of the church in Philadelphia.";
-                            $social_img                 = 'jony5_social_preview_00.png' . '?vers=' . filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/jony5_social_preview_00.png') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/imgs/social_share/preview/jony5_social_preview_00.png') . '.0';
+                            $social_img                 = 'jony5_social_preview_00.png' . '?cache_v=' . filesize($tmp_root_path . '/common/imgs/social_share/preview/jony5_social_preview_00.png') . '.' . filemtime($tmp_root_path . '/common/imgs/social_share/preview/jony5_social_preview_00.png') . '.0';
                             $social_desc                = "I'm Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and a web professional living in the metro-Atlanta area. In my free time, I jump head-first into web development, email marketing, & drum-n-bass music!";
                             $primary_desc               = "I'm Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin and one of the King's two swords, an eternal son of thunder, and a web professional living and working in Atlanta, GA. With 6 years of solid agency experience (+10 years of programming experience) behind me, I am always open to finding fresh opportunities to work with growing and digitally fueled companies in order to strengthen and broaden the technical aspects of their service offerings. For my previous employer, I worked with corporate clients to formulate and execute (with my own bare hands when necessary) multi-channel business marketing initiatives. Digital brand strategy and execution are my core competencies.";
 
@@ -553,36 +561,36 @@ if($tmp_social_prefix == ': ' && !($tmp_vv_prefix_set !== false)){
 <meta http-equiv="Content-Language" content="en-US" />
 <meta http-equiv="Content-Type" content="text/html" />
 <meta name="viewport" content="width=device-width" />
-<link rel="shortcut icon" type="image/x-icon" href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>favicon.ico?v=420" />
+<link rel="shortcut icon" type="image/x-icon" href="<?php echo $tmp_http_root; ?>favicon.ico?cache_v=420" />
 <meta name="distribution" content="Global" />
 <meta name="robots" content="index,follow" />
-<meta name="twitter:image:src" content="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/preview/<?php echo $social_img; ?>" />
+<meta name="twitter:image:src" content="<?php $tmp_http_root; ?>common/imgs/social_share/preview/<?php echo $social_img; ?>" />
 <meta name="twitter:site" content="@jony5" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="<?php echo $tmp_social_prefix . $social_title . $tmp_social_postfix_dot; ?>" />
 <meta name="twitter:description" content="<?php echo $social_desc; ?>" />
-<meta property="og:image" content="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/social_share/preview/<?php echo $social_img; ?>" />
+<meta property="og:image" content="<?php echo $tmp_http_root; ?>common/imgs/social_share/preview/<?php echo $social_img; ?>" />
 <meta property="og:image:alt" content="<?php echo $social_desc; ?>" />
 <meta property="og:site_name" content="Jonathan '5' Harris, a ravenous wolf of the tribe of Benjamin." />
 <meta property="og:type" content="object" />
-<meta property="og:title" content="<?php echo $tmp_social_prefix . $social_desc . $tmp_elip . $tmp_social_postfix_dot; ?>" />
+<meta property="og:title" content="<?php echo $tmp_social_prefix . $social_title . $tmp_elip . $tmp_social_postfix_dot; ?>" />
 <meta property="og:url" content="<?php echo $social_url; ?>" />
 <meta property="og:description" content="<?php echo $primary_desc . $tmp_elip; ?>" />
 <meta name="hostname" content="jony5.com">
 <meta name="expected-hostname" content="jony5.com">
 <link rel="canonical" href="<?php echo $social_url; ?>" data-turbo-transient>
 <meta name="keywords" content="jesus, christ, jesus christ, gospel, j5, jonathan, harris, jonathan harris, wolf, 5, jony5, atlanta, moxie, agency, web, christian, web services, email, web programming, marketing, CSS, XHTML, php, ajax" />
-<link rel="stylesheet" href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/_lib/frameworks/jquery_ui/1.12.1/jquery-ui.min.css" />
-<link rel="stylesheet" href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/css/main.css?v=420.00<?php echo filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/css/main.css') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/css/main.css') . '.0'; ?>" type="text/css" />
-<link rel="stylesheet" href="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/_lib/frameworks/lightbox/2.11.1/css/lightbox.min.css" type="text/css" />
-<script src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/_lib/frameworks/jquery_mobi/jquery.js"></script>
-<script src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/_lib/frameworks/jquery_ui/1.12.1/jquery-ui.min.js"></script>
-<script type="text/javascript" language="javascript" src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/_lib/frameworks/jquery/3.4.1/jquery-3.4.1.min.js" ></script>
-<script type="text/javascript" language="javascript" src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/main.js?v=420.00<?php echo filesize($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/js/main.js') . '.' . filemtime($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT_DIR') . '/common/js/main.js') . '.0'; ?>"></script>
+<link rel="stylesheet" href="<?php echo $tmp_http_root; ?>common/js/_lib/frameworks/jquery_ui/1.12.1/jquery-ui.min.css" />
+<link rel="stylesheet" href="<?php echo $tmp_http_root; ?>common/css/main.css?cache_v=420.00<?php echo filesize($tmp_root_path . '/common/css/main.css') . '.' . filemtime($tmp_root_path . '/common/css/main.css') . '.0'; ?>" type="text/css" />
+<link rel="stylesheet" href="<?php echo $tmp_http_root; ?>common/js/_lib/frameworks/lightbox/2.11.1/css/lightbox.min.css" type="text/css" />
+<script src="<?php echo $tmp_http_root; ?>common/js/_lib/frameworks/jquery_mobi/jquery.js"></script>
+<script src="<?php echo $tmp_http_root; ?>common/js/_lib/frameworks/jquery_ui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" language="javascript" src="<?php echo $tmp_http_root; ?>common/js/_lib/frameworks/jquery/3.4.1/jquery-3.4.1.min.js" ></script>
+<script type="text/javascript" language="javascript" src="<?php echo $tmp_http_root; ?>common/js/main.js?cache_v=420.00<?php echo filesize($tmp_root_path . '/common/js/main.js') . '.' . filemtime($tmp_root_path . '/common/js/main.js') . '.0'; ?>"></script>
 <?php
 /*
 <!--
-<script type="text/javascript" language="javascript" src="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/js/form/form.js"></script>-->
+<script type="text/javascript" language="javascript" src="<?php echo $tmp_http_root; ?>common/js/form/form.js"></script>-->
 */
 ?>
 <!-- Google tag (gtag.js) -->
