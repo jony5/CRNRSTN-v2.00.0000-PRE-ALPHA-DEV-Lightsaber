@@ -1,0 +1,68 @@
+BODY { FONT-SIZE: 8px; COLOR: #000000; FONT-FAMILY: Geneva, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #ffffff}
+UL LI {list-style-image: url(/images/bullet_arrow_1.gif);}
+A:hover {TEXT-DECORATION: none}
+A:hover {TEXT-DECORATION: underline}
+.mtDropdownMenu {LEFT: -1000px; OVERFLOW: hidden; POSITION: absolute; TOP: -1000px}
+.mtDropdownMenu .content {POSITION: absolute}
+.mtDropdownMenu .items {BORDER-RIGHT: #999 1px solid; BORDER-TOP: #999 1px solid; Z-INDEX: 2; LEFT: 0px; BORDER-LEFT: #999 1px solid; BORDER-BOTTOM: #999 1px solid; POSITION: relative; TOP: 0px}
+.top .items {BORDER-TOP: medium none}
+.mtDropdownMenu .item {BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT-SIZE: 10px; BORDER-LEFT: medium none; CURSOR: hand; COLOR: #4a4b4b; BORDER-BOTTOM: medium none; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none}
+.mtDropdownMenu .background {Z-INDEX: 1; FILTER: alpha(opacity=85); LEFT: 0px; POSITION: absolute; TOP: 0px; moz-opacity: .8}
+.mtDropdownMenu .shadowRight {Z-INDEX: 3; FILTER: alpha(opacity=40); WIDTH: 2px; POSITION: absolute; TOP: 3px; moz-opacity: .4}
+.mtDropdownMenu .shadowBottom {Z-INDEX: 1; FILTER: alpha(opacity=40); LEFT: 3px; POSITION: absolute; HEIGHT: 2px; moz-opacity: .4}
+.mtDropdownMenu .hover {BACKGROUND: #ffffff; COLOR: #8d1c1c}
+.mtDropdownMenu .item IMG {MARGIN-LEFT: 10px}
+.choose {FONT-WEIGHT: 800; FONT-SIZE: 10px; COLOR: #953637; FONT-FAMILY: verdana, sans-serif;TEXT-DECORATION: none}
+.subadtitle {FONT-WEIGHT: bold; FONT-SIZE: 10px; COLOR: #953637; FONT-FAMILY: verdana, sans-serif;TEXT-DECORATION: none}
+.subadtitle A {COLOR: #555555; TEXT-DECORATION: none}
+.subadtitle A:hover {COLOR: #8d1c1c; TEXT-DECORATION: underline}
+.highlight {FONT-WEIGHT: bold; FONT-SIZE: 10px; COLOR: #A21F1F; FONT-FAMILY: verdana, sans-serif;TEXT-DECORATION: none}
+.highlight A {COLOR: #555555; TEXT-DECORATION: none}
+.highlight A:hover {COLOR: #8d1c1c; TEXT-DECORATION: underline}
+.subad {FONT-SIZE: 10px; COLOR: #000000; FONT-FAMILY: verdana, sans-serif; TEXT-DECORATION: none}
+.subad A {COLOR: #555555; TEXT-DECORATION: none}
+.subad A:hover {COLOR: #8d1c1c; TEXT-DECORATION: underline}
+.hottopic A {FONT-SIZE: 10px; COLOR: #555555; LINE-HEIGHT: 16px; FONT-FAMILY: arial, sans-serif; TEXT-DECORATION: none}
+.hottopic A:hover {FONT-SIZE: 10px; COLOR: #555555; LINE-HEIGHT: 16px; FONT-FAMILY: arial, sans-serif; TEXT-DECORATION: underline}
+.navbox {WIDTH: 204px; BACKGROUND-COLOR: #ffffff; layer-background-color: #FFFFFF}
+.navsub {FONT-SIZE: 11px; BACKGROUND-COLOR: #ffffff; layer-background-color: #ffffff}
+.navsub A {PADDING-RIGHT: 7px; PADDING-LEFT: 7px; PADDING-BOTTOM: 4px; COLOR: #666666; PADDING-TOP: 4px; BACKGROUND-COLOR: #ffffff; TEXT-DECORATION: none}
+.navsub A:hover {COLOR: #8d1c1c; BACKGROUND-COLOR: #ffffff; TEXT-DECORATION: underline}
+.navsub2 {FONT-SIZE: 11px; BACKGROUND-COLOR: #DDDDDD; layer-background-color: #DDDDDD}
+.navsub2 A {PADDING-RIGHT: 7px; PADDING-LEFT: 7px; PADDING-BOTTOM: 4px; COLOR: #000000; PADDING-TOP: 4px; TEXT-DECORATION: none}
+.navsub2 A:hover {COLOR: #8d1c1c; TEXT-DECORATION: underline}
+.cms {FONT-SIZE: 11px; layer-background-color: #ffffff}
+.cms A {COLOR: #333333; TEXT-DECORATION: none}
+.cms A:hover {COLOR: #8d1c1c; TEXT-DECORATION: underline}
+.cmssub {FONT-SIZE: 11px; COLOR: #DDDDDD layer-background-color: #ffffff}
+.cmssub A {COLOR: #CCCCCC; TEXT-DECORATION: none}
+.cmssub A:hover {COLOR: #8d1c1c; TEXT-DECORATION: underline}
+.cmsb {FONT-SIZE: 11px; BACKGROUND-COLOR: #ffffff; layer-background-color: #ffffff}
+.cmsb A {COLOR: #000000; BACKGROUND-COLOR: #ffffff; TEXT-DECORATION: none}
+.cmsb A:hover {COLOR: #8d1c1c; BACKGROUND-COLOR: #ffffff; TEXT-DECORATION: underline}
+.nav {PADDING-RIGHT: 7px; PADDING-LEFT: 7px; FONT-SIZE: 11px; PADDING-BOTTOM: 4px; COLOR: #666666; PADDING-TOP: 4px; BACKGROUND-COLOR: #f1f1f1; layer-background-color: #F1F1F1}
+.nav A {FONT-WEIGHT: bold; COLOR: #666666; BACKGROUND-COLOR: #f1f1f1; TEXT-DECORATION: none}
+.nav A:hover {COLOR: #8d1c1c; BACKGROUND-COLOR: #f1f1f1}
+.nav2 {PADDING-RIGHT: 7px; PADDING-LEFT: 7px; FONT-SIZE: 11px; PADDING-BOTTOM: 4px; COLOR: #666666; PADDING-TOP: 4px; BACKGROUND-COLOR: #f1f1f1; layer-background-color: #F1F1F1}
+.nav2 A {FONT-WEIGHT: bold; COLOR: #666666; TEXT-DECORATION: none}
+.nav2 A:hover {COLOR: #8d1c1c; }
+.footer {FONT-SIZE: 10px; LINE-HEIGHT: 17px; FONT-FAMILY: arial, sans-serif}
+.footer A {FONT-SIZE: 10px; COLOR: #264771; LINE-HEIGHT: 17px; FONT-FAMILY: arial, sans-serif}
+.footer A:hover {FONT-SIZE: 10px; COLOR: #264771; LINE-HEIGHT: 17px; FONT-FAMILY: arial, sans-serif}
+HR {COLOR: #dddddd; HEIGHT: 1px}
+.top {COLOR: #cccccc; TEXT-DECORATION: none}
+A.top:link {COLOR: #cccccc; TEXT-DECORATION: none}
+A.top:visited {COLOR: #cccccc; TEXT-DECORATION: none}
+A.top:active {COLOR: #cccccc; TEXT-DECORATION: none}
+A.top:hover {COLOR: #8d1c1c; TEXT-DECORATION: none}
+visited {FONT-WEIGHT: normal; COLOR: #cccccc; TEXT-DECORATION: none}
+active {FONT-WEIGHT: normal; COLOR: #cccccc; TEXT-DECORATION: none}
+LINK {COLOR: #8d1c1c; TEXT-DECORATION: underline}
+visited {COLOR: #8d1c1c; TEXT-DECORATION: underline}
+.BodContent {PADDING-LEFT: 6px; FONT-SIZE: 12px; COLOR: #4a4a4a; LINE-HEIGHT: 16px; FONT-FAMILY: Geneva, Arial, Helvetica, sans-serif}
+.BodContent TD {FONT-SIZE: 12px; COLOR: #4a4a4a; LINE-HEIGHT: 16px; FONT-FAMILY: Geneva, Arial, Helvetica, sans-serif}
+.BodContent A {COLOR: #8d1c1c; TEXT-DECORATION: none}
+.BottomContent {PADDING-LEFT: 6px; FONT-SIZE: 12px; COLOR: #4a4a4a; LINE-HEIGHT: 16px; FONT-FAMILY: Geneva, Arial, Helvetica, sans-serif}
+.BottomContent TD {FONT-SIZE: 12px; COLOR: #666666; LINE-HEIGHT: 16px; FONT-FAMILY: Geneva, Arial, Helvetica, sans-serif}
+.BottomContent A {COLOR: #666666; TEXT-DECORATION: none}
+.main_text{font-family:Tahoma; font-size:12px;  color:#5F5F5F;}
