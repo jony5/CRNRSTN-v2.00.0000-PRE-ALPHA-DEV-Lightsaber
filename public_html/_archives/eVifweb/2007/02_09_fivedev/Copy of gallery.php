@@ -51,24 +51,10 @@ function returnpage(pagenumber, mycategory){
 	}
 }
 
-function returnclick(imagetouched){
+function returnclick(imageclicked){
 //	alert(imageclicked);
-
-var url = 'admin/imagetouch.php';
-var pars = 'image=' + imagetouched;
-
-var myAjax = new Ajax.Request(
-	url, 
-	{
-		method: 'get', 
-		parameters: pars, 
-		onComplete: showResponse
-	});
 }
-function showResponse(originalRequest)
-{
-//do nothing
-}
+
 function  initializepage(pagenumber){
 		newrowcount=0;
 		newimages="";
@@ -80,7 +66,7 @@ function  initializepage(pagenumber){
 			if(pagenationArray[galleryphotocount]==mypage){
 				newimages=newimages+"<td align='center' style='margin:auto; text-align:center;'><div style='width:160px; text-align:center; display:inline;'><div style='padding-bottom:5px;padding-right:5px;'><a href='imgs/mylife/display/";
 				newimages=newimages+filenameArray[galleryphotocount];
-				newimages=newimages+"' onmousedown='returnclick(\"" + filenameArray[galleryphotocount] +"\")' rel='lightbox[gallery]'><img src='imgs/mylife/thumbs/"
+				newimages=newimages+"' onclick='returnclick(\"" + filenameArray[galleryphotocount] +"\")' rel='lightbox[gallery]'><img src='imgs/mylife/thumbs/"
 				newimages=newimages+filenameArray[galleryphotocount];
 				newimages=newimages+"' width='"+thumbwidthArray[galleryphotocount]+"' height='"+thumbheightArray[galleryphotocount]+"' border='0' alt='"+alttextArray[galleryphotocount]+"' /></a><br>";
 				newimages=newimages+"<div style='display:inline; text-align:left; width:160px; height:20px; line-height:10px;font-size:10px; font-family:verdana;color:#FFFFFF;'>count</div>";
