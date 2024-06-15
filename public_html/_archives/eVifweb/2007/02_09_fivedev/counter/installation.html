@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+      <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><title>PHPCounter 7 Help File</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+<link href="phpcounter.css" rel="stylesheet" /></head>
+<body>
+<!--START Heading Table-->
+	<table width="100%" cellpadding="0" cellspacing="0" border="0" class="HeadingTable">
+		<tr>
+			<td class="HeadLeftTD">
+				<!--eKstreme.com logo here?-->&nbsp;
+			</td>
+
+			<td class="HeadRightTD" colspan="2">
+				<span class="BeforeCOM">eKstreme</span><span class="COM">.com</span> 
+                                PHPCounter VII
+			</td>
+		</tr>
+	</table>
+	<!--END Heading Table-->
+<h1>PHPCounter VII Installation Instructions</h1>
+
+<p><a href="index.php">Back to the index page</a>.</p>
+
+<h2>Installation</h2>
+<p>Note: If you are upgrading from PHPCounter 5.x, 6.x, 7.0, or 7.1 please see the notes below.</p>
+<p>PHPCounter is very easy to install. The following installation instructions will get PHPCounter installed using the default settings. Please read the Settings section below 
+to learn how to customise PHPCounter.</p>
+<ul>
+<li>The first thing you need to do is to download the ZIP file as per the instructions above.</li>
+<li>Next, create a folder (also called a directory) on your webserver to store PHPCounter. For the sake of this example, I will call this directory the <span class="DropEM">COUNTER</span> directory.</li>
+<li>Next, unzip the PHPCounter ZIP file to a folder on your computer. You will get a list of files. You will also get a some folders (directories) including <span class="DropEM">plugins</span> and <span class="DropEM">images</span>.</li>
+<li>Upload ALL OF THE FILES AND FOLDERS to your <span class="DropEM">COUNTER</span> directory on your server.</li>
+
+<li>Inside your <span class="DropEM">COUNTER</span> directory, create another folder called <span class="DropEM">locks</span>.</li>
+
+<li>Now you need to set the permissions. How you do this varies with each program, but look for the option to change permissions, or one called CHMOD. Once
+you have found it, set the permission for the following directories:<br />
+		<ul>
+			<li><span class="DropEM">COUNTER</span> directory to be 777 </li>
+			<li>The <span class="DropEM">locks</span> directory to be 777</li>
+			<li>The <span class="DropEM">counts</span> directory to be 777</li>
+			<li>The <span class="DropEM">globals</span> directory to be 777</li>
+			<li>The <span class="DropEM">dawn.txt</span> file to be 666</li>
+			</ul>
+	</li>
+	
+</ul>
+<p>Your installation is now ready to use!</p>
+<p>Using your web browser, browse to the <span class="DropEM">information.php</span> file in the <span class="DropEM">COUNTER</span> directory to get the
+PHP code you need to start tracking pages. For example, if you installed PHPCounter to http://ekstreme.com/counter/, then browse to PHP code you need to start tracking pages. For example, if you installed PHPCounter to http://ekstreme.com/counter/, 
+then browse to http://ekstreme.com/counter/information.php.</p>
+
+<h3>Upgrading</h3>
+<p>The PHPCounter 7.x series is not compatible with previous versions. All of the 7.x series versions are compatible with each other and can be used as drop in replacements.</p>
+<p>However, as of PHPCounter 7.2, if you upgrade the plugins, you need to upgrade the associated text files. For example, if you upgrade the Search Strings plugin, you need to update the searchstrings.querynames.txt file too. That is because of a change in the plugin algorithm.</p>
+<p>The default settings for PHPCounter allow you to quickly start using PHPCounter without having to edit any files. However, you 
+can customise PHPCounter to suit your needs as follows.</p>
+
+<p>All of the customisable settings are stored in the <span class="DropEM">settings.ini</span> file. 
+To edit <span class="DropEM">settings.ini</span>, use a text editor. You can find my recommendations for text editors on 
+the eKstreme.com <a href="http://ekstreme.com/digitalsmoke/freeware.php">Freeware Page</a>.</p>
+
+<p>All of the following code excerpts are for the <span class="DropEM">settings.ini</span> file.</p>
+
+<h3>HTML Output</h3>
+<p>By default, PHPCounter outputs the count as HTML. The default code is:</p>
+<p class="code">OutputCountText = TRUE</p>
+<p>If you do not want PHPCounter to output the count as HTML, then change the value to FALSE:</p>
+<p class="code">OutputCountText = FALSE</p>
+<p>Further, output can be controlled by HTML output plugins. These are PHP files that allow you to customise the output
+of PHPCounter. The default HTML ouput plugin (in the file called <span class="DropEM">output-text.php</span>) that comes with PHPCounter outputs the following text:</p>
+<p class="DropEM">You are visitor number X since Y.</p>
+<p>Where X is the number of visitor for that page in the current Epoch and Y is the begining of the Epoch.</p>
+<p>You can customise the output by editing the <span class="DropEM">output-text.php</span> file or by writing your own HTML output plugin in PHP.</p>
+<p>The setting that controls which output plugin to use is:</p>
+<p class="code">OutputCountTextPlugin = "output-text.php"</p>
+<p>Output plugins should be in the PHPCounter directory. If not, then you need to specify the full server path to the plugin.</p>
+
+<h3>Image Output</h3>
+<p>PHPCounter can output the count as images. The images can be of ANY file format you want, such as .jpg, .gif, or .png. By default, PHPCounter does NOT output the count as images. PHPCounter comes with a (simple) set of images for you to use, but you can make your own as use them! See the Custom Output Images section below for instructions on how to do this.</p>
+<p>If you want PHPCounter to output the count as images, you need to specify 3 things:</p>
+<p class="code">OutputCountImage = TRUE<br />
+ImagesURL = "http://ekstreme.com/counter7/images/"<br />
+OutputCountImageExtension = "jpg"<br /></p>
+<p>Firstly, you need to set OutputCountImage to TRUE. Also, you need to specify the URL where the images are stored. Finally, you need to specify what is the file extension (file format) of the image files. The example above states that the images are found in http://ekstreme.com/counter7/images/ and that they are JPG (.jpg) files.</p>
+<p>Further, output can be controlled by image output plugins. These are PHP files that allow you to customise the output
+of PHPCounter. The default image ouput plugin (in the file called <span class="DropEM">output-image.php</span>) defaults to outputing a series of images that represent the count using the above settings.</p>
+<p>You can customise the output by editing the <span class="DropEM">output-image.php</span> file or by writing your own image output plugin in PHP.</p>
+<p>The setting that controls which output plugin to use is:</p>
+<p class="code">OutputCountImagePlugin = "output-image.php"</p>
+<p>Output plugins should be in the PHPCounter directory. If not, then you need to specify the full server path to the plugin.</p>
+
+
+<h3>Invisible Tracking</h3>
+<p>You can use PHPCounter to log your visitors invisibly, i.e., without any output. To do this, just set OutputCountText to FALSE and OutputCountImage to FALSE:</p>
+<p class="code">OutputCountText = FALSE<br />OutputCountImage = FALSE</p>
+
+<h3>Ignoring Multiple Hits</h3>
+<p>PHPCounter allows you to ignore multiple hits to the same page from the same visitor. These would include page refreshes. To do this, PHPCounter defines a time span during which any new hits to the same page by the same user are ignored.</p>
+<p>This time span is set in seconds, and the default is 300 seconds, which is 5 minutes. The code is as follows:</p>
+<p class="code">TrackRecentHits = TRUE<br />
+TimeDifference = 300</p>
+
+<p>If you do NOT want PHPCounter to ignore multiple hits, then set TrackRecentHits to FALSE; the setting for TimeDifference is then ignored:</p>
+<p class="code">TrackRecentHits = FALSE</p>
+
+<p>If you want to change the time span during which PHPCounter ignores multiple hits, then change the TimeDifference. Remember that
+it is set in seconds. 1 minute is 60 seconds, 5 minutes is 300 seconds, 10 minutes is 600 seconds, 1 hour is 3600 seconds. For example, to 
+ignore multiple hits for 1 hour:</p>
+<p class="code">TimeDifference = 3600</p>
+
+<h3>Automatic Log Rotation</h3>
+<p>By default, PHPCounter automatically starts fresh log files every week. This time-based automatic log rotation can be customised to occur at defined spans. These time spans (such as the 1 week default) are called Epochs. This means that at the end of each Epoch, PHPCounter starts a new Epoch (called the Dawn of the Epoch) and a fresh (empty) set of log files (see below though about keeping the page counts.)</p>
+<p>Epochs are defined in seconds. This means that the shortest possible Epoch is 1 second! The default of one week is 604800 seconds.</p>
+<p>Epochs are an integral concept of PHPCounter, but some people prefer not automatically rotate log files. To circumvent this, set the Epoch length to be a very large value, such as about 10 years (314496000 seconds).</p>
+<p>Epoch lengths are defined with the following code:</p>
+<p class="code">EpochLength = 604800</p>
+<p>Change the value to whatever you want.</p>
+
+<p>You can also trigger a new Epoch manually by uploading a fresh copy of the dawn.txt file that came with PHPCounter.</p>
+
+<p>As of version 7.2, PHPCounter allows you to keep the page counts when the log is rotated. If you want PHPCounter to preserve the count when changing Epochs, use the following setting in <span class="DropEM">settings.ini</span>:</p>
+<p class="code">KeepCountWhenChangingEpochs = TRUE</p>
+<p>If you want PHPCounter to reset the counts at the begining of each Epoch, then set the above setting to FALSE.</p>
+
+<h3>Time Zone Correction</h3>
+<p>By default, PHPCounter saves the hits times' as the server's time. However, PHPCounter can save a time-zone corrected hit time. For example, you can save the hit time in your own time zone.</p>
+<p>The time zone correction is defined in hours by:</p>
+<p class="code">TimeZoneDifferenceFromServer = 0</p>
+<p>If you are East of the server, the time zone correction is positive (larger than zero); for example: 4. If you are West of the server, the time zone correction is negative (less than zero); for example: -4. The default is zero, i.e., the same time zone.</p>
+
+<h3>Starting Count</h3>
+<p>PHPCounter has a powerful system to start the page counts at any count you wish. There are two settings you need to know about.</p>
+<p>Firstly, you can set up PHPCounter to start ALL counts at a certain count. THe default is zero (0), but you can change it to any number. To do that, in <span class="DropEM">settings.ini</span>, set the StartCounterAt variable to your base number. The default code is:</p>
+<p class="code">StartCounterAt = 0</p>
+<p>To make PHPCounter start the count at 1000, change that to:</p>
+<p class="code">StartCounterAt = 1000</p>
+<p>This makes all new pages start with a count of 1000.</p>
+<p>You can also change the start count for a single page as follows: Once you upload the page to your webserver and BEFORE any new hits are registered to the page (i.e., you MUST make sure that you register the very first hit) browse to the webpage, but with this modification. Suppose that the URL to the new webpage is http://ekstreme.com/phplabs/phpcounter.php, browse to:</p>
+<p class="code">http://ekstreme.com/phplabs/phpcounter.php?StartCounter=1934</p>
+
+<p>This has the effect of starting the counter at 1934 hits.</p>
+
+<p><span class="DropEM">These two systems are additive</span>. This means that if StartCounterAt is set to 1000 and you browse to the URL with StartCounter set to 1934, then the page starts with 2934 hits.</p>
+
+<h2>Custom Output Images</h2>
+<p>For image output, you can use your own custom set of images with PHPCounter. This will allow you to integrate PHPCounter more into your website.</p>
+<p>The images should be named as 0, 1, 2,..., 8, 9 with the appropriate file extension. For example, to use a set of GIF files, the file names should be 0.gif, 1.gif, 2.gif,..., 8.gif, 9.gif. Place these somewhere accessible on your webserver, and specify the URL they are located at as per the instructions above.</p>
+
+</body></html>

@@ -1,0 +1,4 @@
+/counter/phpcounter.php	/counter/phpcounter.php	http://www.evifwebdev.com/	Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en) AppleWebKit/418.8 (KHTML, like Gecko) Safari/419.3	m815f36d0.tmodns.net	1161536667	-	-	POST	
+/counter/phpcounter.php	/counter/phpcounter.php	http://www.fivedev.com/	Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322; .NET CLR 2.0.50727; Media Center PC 4.0)	dhcp45-139.es.emory.edu	1161613415	-	-	POST	
+/counter/phpcounter.php	/counter/phpcounter.php	http://www.evifweb.com/	Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)	208.52.141.138	1161635274	-	-	POST	
+/counter/phpcounter.php	/counter/phpcounter.php	http://www.evifweb.com/	Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; {E12EDDF0-EE40-C76D-85D0-8861BDE2E7AE}; .NET CLR 1.1.4322)	64.246.165.235	1161680827	-	-	POST	

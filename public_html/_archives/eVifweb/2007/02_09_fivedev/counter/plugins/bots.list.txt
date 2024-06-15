@@ -1,0 +1,155 @@
+Mediapartners\-Google	<a href="http://www.googlebot.com/bot.html">Media Partrners GoogleBot</a>
+Googlebot\-Image	<a href="http://www.googlebot.com/bot.html">Image GoogleBot</a>
+GoogleBot\/	<a href="http://www.googlebot.com/bot.html">GoogleBot</a>
+Inktomi	<a href="http://www.inktomi.com/slurp.html">Inktomi Slurp</a>
+fast\.no	<a href="http://fast.no/support/crawler.asp">FAST WebCrawler</a>
+Scrubby	<a href="http://www.scrubtheweb.com/">Scrubby</a>
+YahooSeeker	<a href="http://help.yahoo.com/help/us/shop/merchant/">YahooSeeker</a>
+Yahoo! Slurp	<a href="http://help.yahoo.com/help/us/ysearch/slurp">Yahoo! Slurp</a>
+ZyBorg	<a href="http://www.WISEnutbot.com/">ZyBorg Dead Link Checker</a>
+AltaVista	<a href="http://www.altavista.com">Altavista</a>
+AVSearch	<a href="http://www.altavista.com">Altavista</a>
+Mercator	<a href="http://www.altavista.com">Altavista</a>
+Scooter	<a href="http://www.altavista.com">Altavista</a>
+InfoSeek	<a href="http://www.infoseek.com/">Infoseek</a>
+Ultraseek	<a href="http://www.infoseek.com/">Infoseek</a>
+Jeeves	<a href="http://www.askjeeves.com/">Ask Jeeves</a>
+ArchitextSpider	<a href="http://www.excite.com/">Excite</a>
+Lycos	<a href="http://www.lycos.com/">Lycos</a>
+Atomz	<a href="http://www.atomz.com/">Atomz</a>
+PicoSearch	<a href="http://www.picosearch.com/">Pico Search</a>
+MantraAgent	<a href="http://www.looksmart.com/">Looksmart</a>
+MSNBOT	<a href="http://search.msn.com/msnbot.htm">MSN Search</a>
+Mirago	<a href="http://www.mirago.co.uk/">Mirago Robot</a>
+Gulliver	<a href="http://www.northernlight.com">Northernlight</a>
+nttdirectory_robot	<a href="http://navi.ocn.ne.jp/">http://navi.ocn.ne.jp/</a>
+griffon	<a href="http://navi.ocn.ne.jp/">http://navi.ocn.ne.jp/</a>
+Fluffy the spider	<a href="mailto:info@searchhippo.com">Searchhippo.com Fluffy Spider (Mail Link)</a>
+teoma	<a href="mailto:teoma_admin@hawkholdings.com">Teoma (Mail Link)</a>
+ia_archiver	<a href="http://www.alexa.com">Alexa Archiver</a>
+IAArchiver	<a href="http://www.alexa.com">Alexa Archiver</a>
+crawler\@alexa\.com	<a href="mailto:crawler@alexa.com">Alexa Crawler (Mail Link)</a>
+almaden	<a href="http://www.almaden.ibm.com/cs/crawler">IBM Almaden Research</a>
+AbachoBOT	<a href="http://www.abacho.com/">Abacho</a> / <a href="http://www.crawler.de/">Crawler.de</a>
+DeepIndex	<a href="http://www.deepindex.com/">DeepIndex</a>
+Girafabot	<a href="http://www.girafa.com">Girafabot</a>
+Aranha	<a href="http://www.girafa.com">Girafabot</a>
+NutchOrg	<a href="http://www.nutch.org/docs/en/bot.html">NutchOrg</a>
+NaverRobot	dloader(NaverRobot)
+SurveyBot	SurveyBot (Whois Source)
+Szukacz	<a href="http://www.szukacz.pl/jakdzialarobot.html">Szukacz</a>
+NPBot	<a href="http://www.nameprotect.com/botinfo.html">NPBot</a>
+TurnitinBot	<a href="http://www.turnitin.com/robot/crawlerinfo.html">TurnitinBot</a>
+QPCreep	<a href="mailto:crawler@quepasacorp.com">QuepasaCreep (Mail Link)</a>
+QuepasaCreep	<a href="mailto:crawler@quepasacorp.com">QuepasaCreep (Mail Link)</a>
+psbot	<a href="http://www.picsearch.com/bot.html">Picsearch</a>
+GalaxyBot	<a href="http://www.galaxy.com/galaxybot.html">GalaxyBot</a>
+Missigua	Missigua
+Missauga	Missauga
+NaverBot	<a href="mailto:nhnbot@naver.com">NHN Corp NaverBot</a>
+Asterias Crawler	<a href="http://www.singingfish.com/help/spider.html">SingingFish Spider (Asterias Crawler)</a>
+kuloko	<a href="http://kuloko.com/">kuloko-bot</a>
+Fetch API Request	Fetch API Request
+Zealbot	<a href="http://listings.looksmart.com/help/faq.jhtml?showFaq=tracking">LookSmart ZealBot</a>
+SiteScripts	<a href="http://www.sitescripts.com/">SiteScripts.com Link Checker</a>
+TSW Bot	TSW Bot
+ZipppBot	<a href="http://www.zippp.net">Zippp.net</a><br/><a href="mailto:webmaster@zippp.net">webmaster@zippp.net</a>
+NetNose	<a href="http://www.netnose.com">NetNose-Crawler</a>
+IlTrovatore-Setaccio	<a href="http://www.iltrovatore.it/bot.html">IlTrovatore-Setaccio</a><br/><a href="mailto:info@iltrovatore.it">info@iltrovatore.it</a>
+Yahoo\-VerticalCrawler\-FormerWebCrawler	<a href="http://www.alltheweb.com/help/webmaster/crawler">AllTheWeb Crawler</a>
+Program Shareware	Program Shareware
+larbin	larbin
+WEP Search	WEP Search
+Pompos	<a href="http://dir.com/pompos.html">Pompos</a>
+appie	<a href="http://www.walhello.com">appie</a>
+Gigabot	Gigabot
+deepak\-USC\/ISI	deepak-USC/ISI
+River Valley Inc	River Valley Inc
+Baiduspider	<a href="http://www.baidu.com/search/spider.htm">Baiduspider</a>
+Expired Domain Sleuth	Expired Domain Sleuth
+SCRIPTS.COM_Link_Verification	SCRIPTS.COM Link Verification
+Girafabot	<a href="http://www.girafa.com">Girafabot</a>
+Clustered\-Search-Bot	<a href="http://www.clush.com/">Clustered-Search-Bot</a>
+Openbot	<a href="http://gais.cs.ccu.edu.tw/robot.php">Openbot</a>
+TAMU_CS_IRL_CRAWLER	TAMU_CS_IRL_CRAWLER
+Wysigot	Wysigot
+ObjectsSearch	<a href="http://www.ObjectsSearch.com/bot.html">ObjectsSearch</a>
+WebStripper	WebStripper
+Webdup	Webdup
+PobbleLabs	PobbleLabs
+Tutorial Crawler	<a href="http://www.tutorgig.com/crawler">Tutorial Crawler</a>
+Indiana U Web	Indiana U Web
+nuSearch	<a href="http://www.nusearch.com">www.nusearch.com</a>
+Baiduspider	<a href="http://www.baidu.com/search/spider.htm">Baiduspider</a>
+semanticdiscovery	<a href="http://www.semanticdiscovery.com/sd/robot.html">semanticdiscovery</a>
+oo\-x	<a href="http://www.oo-x.com">oo-x Crawler</a>
+WebZIP	<a href="http://www.spidersoft.com">WebZIP</a>
+Nutch	<a href="http://www.nutch.org/docs/en/bot.html">Nutch</a>
+search.ch	<a href="http://www.search.ch">search.ch</a>
+mozDex	<a href="http://www.mozdex.com/bot.html">mozDex</a>
+Teleport	Teleport Pro
+Vagabondo	<a href="http://webagent.wise-guys.nl/">Vagabondo</a>
+WebCapture	WebCapture
+Cam Finder	Cam Finder
+Wells Search	Wells Search
+INDEXU	<a href="http://www.indexu.com">INDEXU Spider Link Checker</a>
+TheUsefulbot	<a href="mailto:bot@theusefulnet.com">TheUsefulbot</a>
+PEERbot	<a href="http://www.peerbot.com">PEERbot</a>
+Wotbox	<a href="http://www.wotbox.com">Wotbox</a><br /><a href="mailto:bot@wotbox.com">(mail link)</a>
+Franklin Locator	Franklin Locator
+boitho	<a href="http://www.boitho.com/dcbot.html">boitho.com-dc</a>
+AxmoRobot	<a href="http://axmo.com">AxmoRobot</a>
+sohu-search	sohu-search
+Cerberian Drtrs	Cerberian Drtrs
+SKIZZLE	<a href="http://www.SKIZZLE.com">SKIZZLE! Distributed Internet Spider</a>
+PlantyNet	<a href="mailto:dhkang@plantynet.com">PlantyNet WebRobot</a>
+findlinks	<a href="http://wortschatz.uni-leipzig.de/findlinks/">findlinks</a>
+Jetbot	Jetbot
+Gaisbot	<a href="http://gais.cs.ccu.edu.tw/robot.php">Gaisbot</a>
+VoilaBot	<a href="http://www.voila.com/">VoilaBot</a>
+SOFT411	SOFT411 Directory
+ClariaBot	ClariaBot
+Seekbot	<a href="http://www.seekbot.net/bot.html">Seekbot</a>
+ScSpider	ScSpider
+pixelmetric	pixelmetric
+Rosoboronexport	Rosoboronexport
+Netcraft	<a href="http://www.netcraft.com">Netcraft Web Server Survey</a>
+advertiserpro	advertiserpro.com
+WebCopier	WebCopier
+webcrawl.net	<a href="http://webcrawl.net/">webcrawl.net</a>
+NG\/	NG
+WebRingChecker	WebRingChecker
+LS\/	LS
+ultraknowledge	<a href="http://www.ultraknowledge.com/spider">ultraknowledge.com spider</a>
+ConveraCrawler	ConveraCrawler
+Lincoln State Web Browser	Lincoln State Web Browser
+HTML Works	HTML Works
+TutorGigBot	<a href="http://www.tutorgig.info">TutorGigBot</a>
+BecomeBot	<a href="http://www.become.com/webmasters.html">BecomeBot</a>
+Java\/	Java
+Port Huron Labs	Port Huron Labs
+sherlock	sherlock
+gazz	<a href="mailto:gazz@nttr.co.jp">gazz</a>
+BuyGet	<a href="mailto:webmaster@kfda.go.kr">BuyGet</a>
+libcurl	libcurl-based
+FreshDownload	FreshDownload
+EmeraldShield	EmeraldShield.com WebBot
+FavOrg	FavOrg
+Butch	<a href="mailto:agdm79@mail.ru">Butch</a>
+Boston Project	8484 Boston Project
+eWillaBot	<a href="http://www.ewilla.com/bot.php">eWillaBot</a>
+AnoProxy	AnoProxy
+tarantula	<a href="http://www.pisoc.com">tarantula</a>
+InnerpriseBot	<a href="http://www.innerprise.com/">InnerpriseBot</a>
+statbot	<a href="mailto:statbot@gmail.com">statbot</a>
+SafariBookmarkChecker	<a href="http://www.coriolis.ch/">Safari Bookmark Checker</a>
+SeznamBot	SeznamBot
+smartwit.com	smartwit.com
+ichiro	<a href="mailto:ichiro@nttr.co.jp">ichiro</a>
+IRLbot	<a href="http://irl.cs.tamu.edu/crawler">IRLbot</a>
+MSNPTC	MSNPTC
+Powermarks	<a href="http://www.kaylon.com/power.html">Powermarks</a>
+Ocelli	<a href="http://www.globalspec.com/Ocelli">Ocelli</a>
+IP*Works	<a href="http://www.nsoftware.com">IP*Works</a>
+grub	<a href="http://www.grub.org">grub</a>
+pipeLiner	<a href="http://www.pipeline-search.com/webmaster.html">pipeLiner</a>

@@ -1,0 +1,65 @@
+BODY {margin:0px; padding:0px;font-family:verdana, helvetica, sans-serif; font-size:90%;line-height:150%}
+IMG{border:0px;}
+H1{font-size:150%; margin:1em;border-bottom:1px solid #B3D9FF; text-align:center;}
+H2{font-size:110%;color:black; padding-left:1em; border-bottom:1px solid #B3D9FF;}
+H3{font-size:100%; margin:1em;}
+P{font-size:90%; margin:1em;}
+LI{font-size:90%;}
+
+.HeadingTable{margin:0px; padding:0px;}
+
+.HeadLeftTD {background-color:#FFFFB3; width:20%; border-bottom:1px solid black; 
+	border-right:1px solid black;}
+.LikeHeadLeftTD{width:20%;}
+
+.HeadRightTD {background-color: #B3D9FF; border-bottom:1px solid black; padding:15pt; font-size:1.8em;}
+.HeadRightNav{background-color:white; padding-left:10pt;}
+.HeadRightNav2{background-color:white; width:25%;}
+.BeforeCOM{color:white;}
+.COM{color:black;}
+.tblHeading{font-weight:bold; text-align:center; border-bottom:1px solid black; 
+	padding-bottom:0.2em; background-color:#B3D9FF;}
+.CountsTableHeader{text-align:center; padding:0.5em; font-weight:bold; font-size:1.2em; border-bottom:1px solid black;}
+.CountsTableRecordHeader{text-align:center; padding:0.5em; font-weight:bold; font-size:90%;}
+.LeftDataTD{text-align:center; padding:0.3em; font-size:0.9em; border-right:1px solid black;font-family:Verdana, Helvetica, sans-serif; vertical-align:top;}
+.DataTD{text-align:center; padding:0.3em; font-size:0.9em; font-family:Verdana, Helvetica, sans-serif; vertical-align:top;}
+a:link{text-decoration: none; color:red; border:0px;}
+a:visited{text-decoration: none; color:#0066FF; border:0px;}
+a:hover{text-decoration: underline; color:#0066FF; border:0px;}
+a:active{text-decoration: none; color:silver; border:0px;}
+.OddRow{background-color:#B3D9FF;}
+
+.DropEM{font-weight:bold;}
+
+
+.Navigation{vertical-align:top; padding:0.7em;font-size:0.9em; line-height:120%;}
+.Content{padding-left:0.7em;}
+
+.PluginInfo{font-weight:bold; font-size:0.6em; font-style:italic; color:black;}
+.HelpHint{font-weight:bold; font-size:0.9em; font-style:italic;}
+
+.Legal{font-weight:bold; font-size:0.8em; font-style:italic; color:black; border:1px solid red; padding:0.8em; text-align:center;}
+
+.code{font-family:courier; font-weight:bold; font-size:1em; color:blue; background-color:silver; padding:0.4em;}
+
+
+.NavigationTD{vertical-align:top; width:20%;border-right:1px dashed silver;}
+.MainTD{vertical-align:top; padding-right:0.5em; padding-left:0.5em;}
+.NavListDiv{margin:0.2em; margin-bottom:0.2em;}
+
+.ImgDataTD{text-align:center; vertical-align:bottom;}
+.VertDataTD{text-align:center;font-size:0.8em; font-family:Verdana, Helvetica, sans-serif;}
+
+.DataTable2{width:100%;}
+.LeftDataTD2{text-align:center; padding:0.2em;border-right:1px solid black;font-family:Verdana, Helvetica, sans-serif; vertical-align:top; width:20%; font-size:1.2em;}
+.DataTD2{text-align:center; padding:0.2em; font-family:Verdana, Helvetica, sans-serif; vertical-align:top; font-size:1.2em;}
+.OddRow2{background-color:#66B3FF;}
+.CountsTableHeader2{text-align:center; padding:0.5em; font-weight:bold; font-size:90%; border-bottom:1px solid black; width:20%;}
+.TotalsTD{border-top:2px solid black; padding:0.2em;}
+
+.InformationTD{vertical-align:top;}
+.TestingTD{vertical-align:top;}
+.PITD{vertical-align:top;}
+.HelpTD{vertical-align:top;}
+.PayTD{vertical-align:top;}
+.UpdateIFrame{border:1px solid silver;}
