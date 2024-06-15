@@ -1,0 +1,5 @@
+[27-Mar-2005 20:04:47] PHP Warning:  mysql_connect(): Access denied for user: 'root@localhost' (Using password: NO) in /usr/home/cyexx/public_html/_core/dbconnect.php on line 5
+[27-Mar-2005 20:04:47] PHP Warning:  Cannot modify header information - headers already sent by (output started at /usr/home/cyexx/public_html/_core/dbconnect.php:5) in /usr/home/cyexx/public_html/_core/dbconnect.php on line 5
+[27-Mar-2005 20:04:55] PHP Warning:  mysql_query(): Access denied for user: 'root@localhost' (Using password: NO) in /usr/home/cyexx/public_html/_core/security.php on line 51
+[27-Mar-2005 20:04:55] PHP Warning:  mysql_query(): A link to the server could not be established in /usr/home/cyexx/public_html/_core/security.php on line 51
+[27-Mar-2005 20:04:55] PHP Warning:  mysql_fetch_row(): supplied argument is not a valid MySQL result resource in /usr/home/cyexx/public_html/_core/security.php on line 54
