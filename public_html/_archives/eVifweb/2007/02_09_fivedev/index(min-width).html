@@ -129,7 +129,10 @@ function registerpage(){
 			.6, // opacity
 			500, // 500ms (1/2 second)
 			10, // 10 steps
-		{complete:function() { document.getElementById('footer').innerHTML = '&copy; EvifWeb Development';	new Ajax.Updater('footer', 'content/footer.php', {asynchronous:true, evalScripts:true});}} );	
+		{complete:function() { 
+
+			document.getElementById('footer').innerHTML = '&copy; EvifWeb Development';	
+			//new Ajax.Updater('footer', 'content/footer.php', {asynchronous:true, evalScripts:true});}} );	
 		
 		delete nodes;
 		
