@@ -1,3 +1,16 @@
+# The Lightbox Helper by eVifweb 
+
+(A new product for the summer of 2024...even, July 4th, 2024...if even we even could...).
+
+Hi, all.  This new product is incoming to a new GitHub repository soon...once the code-base (+CRNRSTN :: Lightsaber, yo) can be stabalized.
+
+The Lightbox Helper by eVifweb makes flawless Lightbox galleries with rich and deep social media technology integrations quickly and easily. The Lightbox Helper is an MIT licensed PHP framework that provides robust support for Lightbox.
+
+[The Lightbox Helper by eVfiweb.](https://lightbox-helper.evifweb.jony5.com)
+
+[COMING TO GITHUB REPO SOON]
+#
+
 # CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber
 A significant refactoring of CRNRSTN :: This is hot in the works...with ~60% of refactoring complete.
 
