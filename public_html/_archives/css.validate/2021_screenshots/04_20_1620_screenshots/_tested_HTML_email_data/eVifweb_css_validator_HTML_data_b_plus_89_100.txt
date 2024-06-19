@@ -1,0 +1,108 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="NA">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Verizon Wireless">
+<style type="text/css">
+/*  ===GLOBAL FIX FOR A BUG IN HOTMAIL LIVE - DO NOT MODIFY OR ADD TO THIS STYLE===  */
+img           { display:block;}
+</style>
+
+<title>Verizon Wireless</title>
+</head>
+<body>
+
+<table cellpadding="0" cellspacing="0" border="0" width="640" align="center">
+<tr>
+<td><!-- SHELL TD -  ENTIRE EMAIL CONTAINED WITHIN -->
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+	<tr>
+		<td width="227"><a href="http://www.verizonwireless.com/b2c/index.html" target="_blank"><img src="imgs/vzwlogo.gif" width="227" height="79" border="0" alt="Verizon Wireless"></a></td>
+		<td width="413" valign="bottom" style="padding-right: 20px;text-align:right">
+		<div style="border-bottom: 15px solid #FFFFFF; font-size:10px; color:#999999; font-family:Arial; ">To ensure our emails reach your inbox, please add<br>
+              <a href="mailto:verizonwireless@email.vzwshop.com" target="_blank" style="color:#999999">verizonwireless@email.vzwshop.com</a> to your address book.<br>
+Having trouble viewing this email? <a href="$clickthrough(text_viewonline, email)$" target="_blank" style="color:#0066cc">View online</a>.</div></td>
+	</tr>
+</table>
+
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#E10000" background="imgs/topnav_bkg.jpg" >
+	<tr>
+				<td align="left">
+		<table cellpadding="0" cellspacing="0" border="0">
+		<tr>
+		<td width="21" height="35" >&#160;</td>
+		<!-- USE TD PADDING TO CONTROL WIDTH OF TABLE CELLS TO KEEP SPACING INDEPENDENT OF CELL CONTENT WIDTH  -->
+		<td width="1"><img src="imgs/topnav_divline.gif" width="1" height="35" border="0" alt="|" ></td>
+		<td style="padding-left:10px; padding-right:11px;"><a href="http://www.verizonwireless.com/b2c/store/controller?item=phoneFirst&action=viewStoreIndex&lid=//global//phones+and+accessories&link=text_phones" target="_blank" style="text-decoration:none; color:#ffffff; font-family:Arial, Helvetica, sans-serif; font-size:12px; font-weight:bold;">Phones &amp; Accessories</a></td>
+		<td width="1"><img src="imgs/topnav_divline.gif" width="1" height="35" border="0" alt="|" ></td>
+		<td style="padding-left:11px; padding-right:11px;"><a href="http://www.verizonwireless.com/b2c/store/controller?item=planFirst&action=viewPlanOverview&lid=//global//plans&link=text_plans" target="_blank" style="text-decoration:none; color:#ffffff; font-family:Arial, Helvetica, sans-serif; font-size:12px; font-weight:bold;">Plans</a><a href="#" target="_blank" style="text-decoration:none; color:#ffffff; font-family:Arial, Helvetica, sans-serif; font-size:11px; font-weight:bold;"></a></td>
+		<td width="1"><img src="imgs/topnav_divline.gif" width="1" height="35" border="0" alt="|" ></td>
+		<td style="padding-left:11px; padding-right:11px;"><a href="http://products.vzw.com/index.aspx?id=fnd&lid=//global//features+and+downloads&link=text_features" target="_blank" style="text-decoration:none; color:#ffffff; font-family:Arial, Helvetica, sans-serif; font-size:12px; font-weight:bold;">Features &amp; Downloads</a><a href="#" target="_blank" style="text-decoration:none; color:#ffffff; font-family:Arial, Helvetica, sans-serif; font-size:11px; font-weight:bold;"></a></td>
+		<td width="1"><img src="imgs/topnav_divline.gif" width="1" height="35" border="0" alt="|" ></td>
+		<td style="padding-left:11px; padding-right:11px;"><a href="http://products.vzw.com/index.aspx?id=messaging&lid=//global//messaging&link=text_messaging" target="_blank" style="text-decoration:none; color:#ffffff; font-family:Arial, Helvetica, sans-serif; font-size:12px; font-weight:bold;">Messaging</a></td>
+		<td width="1"><img src="imgs/topnav_divline.gif" width="1" height="35" border="0" alt="|" ></td>
+		<td style="padding-left:11px; padding-right:11px;"><a href="http://support.vzw.com/?lid=//global//support&link=text_support" target="_blank" style="text-decoration:none; color:#ffffff; font-family:Arial, Helvetica, sans-serif; font-size:12px; font-weight:bold;">Support</a></td>
+				<td width="1"><img src="imgs/topnav_divline.gif" width="1" height="35" border="0" alt="|" ></td>
+		<td style="padding-left:11px; padding-right:12px;"><a href="http://www.verizonwireless.com/b2c/index.html?tab=myaccount&lid=//global//my+account&link=text_myverizon" target="_blank" style="text-decoration:none; color:#ffffff; font-family:Arial, Helvetica, sans-serif; font-size:12px; font-weight:bold;">My Verizon</a></td>
+		<td width="1"><img src="imgs/topnav_divline.gif" width="1" height="35" border="0" alt="|" ></td>
+		</tr>
+		</table>
+		</td>
+	</tr>
+</table>
+
+<table align="center" width="640" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td style="font-family:Arial, Helvetica, sans-serif; font-size:12px;">
+		
+		
+		
+		
+		This is where it's @.
+		
+		
+		
+		
+		
+		
+		</td>
+	</tr>
+	<tr>
+		<td><img src="imgs/bottomgrad.jpg" width="640" height="18" alt=""></td>
+	</tr>
+	<tr>
+		<td ><img src="imgs/mostreliablenetwork.jpg" width="640" height="85" border="0" alt="America's Most Reliable Wireless Network" usemap="#learnmore_banner080505"></td>
+	</tr>
+</table>
+	
+<table align="center" width="600" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff">
+	<tr>
+		<td style="padding-top: 10px; padding-left:20px;">
+		<div style="color: #666666; font-size:11px; font-family:Arial;">Activation fee/line: $35 ($25 for secondary Family SharePlan lines w/2 yr Agmts)  
+		<br><br>
+		IMPORTANT CUSTOMER INFORMATION: Subject to Customer Agmt. Calling Plan &amp; credit approval. Up to $175 early termination fee &amp; other charges. Offers &amp; coverage, varying by service, not available everywhere. While supplies last.</div>
+		</td>
+	</tr>
+	<tr>
+		<td align="center" style="padding-left:30px; padding-right:30px;"><!-- NOTE USE OF TD PADDING TO CONTROL LINE WRAP IN THE FOLLOWING TEXT... No <BR> -->
+		<div style="color: #666666; font-size:11px; font-family:Arial; border-top:10px solid #FFFFFF; border-bottom:10px solid #FFFFFF;">&copy; 2009 Verizon Wireless</div>
+		<div style="color: #666666; font-size:11px; font-family:Arial; border-bottom:10px solid #FFFFFF;">Verizon Wireless | One Verizon Way | Mail Code: 180WVB | Basking Ridge, NJ 07920</div>
+<div style="color: #666666; font-size:11px; font-family:Arial; border-bottom:10px solid #FFFFFF;">This email was sent to <a href="mailto:$EMAIL$" target="_blank" style="color:#666666">$EMAIL$</a><br>
+    and associated with you Verizon Wireless mobile number $COND(EMPTY(lookup(mobilenumber)),nothing(),lookup(mobilenumber)))$. <br>
+    We respect your privacy. Please review our <a href="$clickthrough(text_policy, email)$" target="_blank" style="color:#0066cc; text-decoration:underline;">privacy policy</a> for more information<br>
+	about click activity with Verizon Wireless and links included in this email.
+        <br><br>
+        <span style="font-size:11px; font-family:Arial; color:#666666; padding-bottom:15px;">If you no longer wish to receive emails, you may <a href="$clickthrough(text_unsub, email)$" target="_blank" style="color:#0066cc; text-decoration:underline;">unsubscribe</a>,<br>
+or easily adjust your subscription preferences from your <a href="$clickthrough(text_profile, email)$" target="_blank" style="color:#0066cc; text-decoration:underline;">profile information</a>.</span></div>
+		</td>
+	</tr>
+</table>
+</td></tr></table>
+
+<map name="learnmore_banner080505"> <!-- ALMOST GUARANTEEED MAP NAME UNIQUENESS AD INFINITUM VIA TIMESTAMPED NAME -->
+<area shape="rect" coords="339,47,430,73" href="http://www.verizonwireless.com/b2c/splash/innetwork.jsp" target="_blank" alt="Learn More">
+</map>
+ 
+</body>
+</html>
