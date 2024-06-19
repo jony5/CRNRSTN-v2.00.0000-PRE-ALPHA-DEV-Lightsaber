@@ -4,7 +4,7 @@
 
 Hi, all.  This new product is incoming to a new GitHub repository soon...once the code-base (+CRNRSTN :: Lightsaber, yo) can be stabalized.
 
-The Lightbox Helper by eVifweb makes flawless Lightbox galleries with rich and deep social media technology integrations quickly and easily. The Lightbox Helper is an MIT licensed PHP framework that provides robust support for Lightbox.
+The Lightbox Helper by eVifweb makes flawless Lightbox galleries with rich and deep social media technology integrations quickly and easily. The Lightbox Helper is an MIT licensed PHP framework that provides robust support for Lightbox,...the original lightbox script.
 
 [The Lightbox Helper by eVfiweb.](https://lightbox-helper.evifweb.jony5.com)
 
