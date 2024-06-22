@@ -8,7 +8,11 @@ The Lightbox Helper by eVifweb makes flawless Lightbox galleries with rich and d
 
 [The Lightbox Helper by eVfiweb.](https://lightbox-helper.evifweb.jony5.com)
 
-[COMING TO GITHUB REPO SOON]
+#
+
+The Lightbox Helper "just getting started" files have been posted:
+
+[https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/_latest_code_not_released/](https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/_latest_code_not_released/)
 #
 
 # CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber
