@@ -803,7 +803,7 @@ class bringer_of_the_precious_things {
             $tmp_link_vvid_ARRAY[] = array('jer1_11-19'                     => 'Then the word of Jehovah came to me, saying, What do you see, Jeremiah? And I said, I see a rod of an almond tree. And Jehovah said to me, You have seen well, for I am watching over My word to perform it. Then the word of Jehovah came to me a second time, saying, What do you see? And I said, I see a boiling pot, and it is facing away from the north.');
             $tmp_link_vvid_ARRAY[] = array('jer24_7'                        => 'And I will give them a heart to know Me, that I am Jehovah; and they will be My people, and I will be their God; for they will return to Me with their whole heart.');
             $tmp_link_vvid_ARRAY[] = array('jer31_31-34'                    => 'Indeed, days are coming, declares Jehovah, when I will make a new covenant with the house of Israel and with the house of Judah, Not like the covenant which I made with their fathers in the day I took them by their hand to bring them out from the land of Egypt, My covenant which they broke, although I was their Husband, declares Jehovah.');
-            $tmp_link_vvid_ARRAY[] = array('jer31_33-34'                    => 'But this is the covenant which I will make with the house of Israel after those days, declares Jehovah: I will put My law in their inward parts and write it upon their hearts; and I will be their God, and they will be My people.');
+            $tmp_link_vvid_ARRAY[] = array('jer31_33'                       => 'But this is the covenant which I will make with the house of Israel after those days, declares Jehovah: I will put My law in their inward parts and write it upon their hearts; and I will be their God, and they will be My people.');
             $tmp_link_vvid_ARRAY[] = array('jer31_33-37'                    => 'But this is the covenant which I will make with the house of Israel after those days, declares Jehovah: I will put My law in their inward parts and write it upon their hearts; and I will be their God, and they will be My people. And they will no longer teach, each man his neighbor and each man his brother, saying, Know Jehovah; for all of them will know Me, from the little one among them even to the great one among them, declares Jehovah, for I will forgive their iniquity, and their sin I will remember no more.');
             $tmp_link_vvid_ARRAY[] = array('jer31_31-37'                    => 'Indeed days are coming, declares Jehovah, when I will make a new covenant with the house of Israel and with the house of Judah, Not like the covenant which I made with their fathers in the day I took them by their hand to bring them out from the land of Egypt, My covenant which they broke, although I was their Husband, declares Jehovah.');
             $tmp_link_vvid_ARRAY[] = array('ezek11_17-25'                   => 'Therefore say, Thus says the Lord Jehovah, I will gather you from the peoples and assemble you from the countries among which you have been scattered, and I will give you the land of Israel. And they will come there and take away all its detestable things and all its abominations from it.');
@@ -2750,6 +2750,7 @@ class bringer_of_the_precious_things {
             case 'jer1_11-19':
             case 'jer24_7':
             case 'jer31_31-34':
+            case 'jer31_33':
             case 'jer31_33-34':
             case 'jer31_33-37':
             case 'jer31_31-37':
@@ -3701,7 +3702,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['REFERENCE'][0]        = '26:3, 11b-12';
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = '3 If you walk in My statutes and keep My commandments and do them, 11b My soul will not abhor you. And I will walk among you and be your God, and you will be My people.';
                 $tmp_verse_array['COPY'][0]             = '<span class="script_ref_num">3</span> If you walk in My statutes and 
-                keep My commandments and<br>do them,
+                keep My commandments and do them,
 
                 <div class="cb_10"></div>
                 <span class="script_ref_num">11b</span> My soul will not abhor you. And I will walk among you and be 
@@ -4392,7 +4393,7 @@ class bringer_of_the_precious_things {
                 saying, I am going the way of all the earth. Be strong therefore and be a man; And keep the charge 
                 of Jehovah your God by walking in His ways, by keeping His statutes, His commandments, and His 
                 ordinances and His testimonies as they are written in the law of Moses, that you may prosper in all 
-                that you do and wherever<br>you turn;';
+                that you do and wherever you turn;';
 
             break;
             case '1kings8_54-66':
@@ -4767,6 +4768,15 @@ class bringer_of_the_precious_things {
                 And they will no longer teach, each man his neighbor and each man his brother, saying, Know Jehovah; for 
                 all of them will know Me, from the little one among them even to the great one among them, declares 
                 Jehovah, for I will forgive their iniquity, and their sin I will remember no more.';
+
+            break;
+            case 'jer31_33':
+
+                $tmp_verse_array['REFERENCE'][0]        = '31:33';
+                $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'But this is the covenant which I will make with the house of Israel after those days, declares Jehovah: I will put My law in their inward parts and write it upon their hearts; and I will be their God, and they will be My people.';
+                $tmp_verse_array['COPY'][0]             = 'But this is the covenant which I will make with the house of Israel 
+                after those days, declares Jehovah: I will put My law in their inward parts and write it upon their 
+                hearts; and I will be their God, and they will be My people.';
 
             break;
             case 'jer31_33-34':
@@ -5278,7 +5288,7 @@ class bringer_of_the_precious_things {
                 to them, Have you not read what David did when he became hungry, and those who were with him; How he 
                 entered into the house of God, and they ate the bread of the Presence, which was not lawful for him 
                 to eat, nor for those who were with him, except for the priests only? Or have you not read in the 
-                law that on the Sabbath the priests in the temple profane the Sabbath and<br>are guiltless?
+                law that on the Sabbath the priests in the temple profane the Sabbath and are guiltless?
 
                 <div class="cb_10"></div>
                 But I say to you that something greater than the temple is here. But if you knew 
@@ -5350,7 +5360,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['REFERENCE'][0]        = '24:15-22';
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Therefore when you see the abomination of desolation, which was spoken of through Daniel the prophet, standing in the Holy Place (let him who reads understand), Then let those in Judea flee to the mountains; Let him who is on the housetop not come down to take the things out of his house; And let him who is in the field not turn back to take his garment.';
                 $tmp_verse_array['COPY'][0]             = 'Therefore when you see the abomination of desolation, which was 
-                spoken of through Daniel the prophet, standing in the Holy Place<br>
+                spoken of through Daniel the prophet, standing in the Holy Place
                 (let <a id="sup_ftnt_1" href="#" class="script_sup" onclick="jony5_vv_scroll_to(\'ftnt_1\');">1</a>him 
                 who reads understand), Then let those in Judea flee to the mountains; Let him who is on the housetop 
                 not come down to take the things out of his house; And let him who is in the field not turn back to 
@@ -5989,7 +5999,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['REFERENCE'][0]        = '10:15-16b, 19-21';
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = '15 And a voice to him again a second time: The things that God has cleansed, do not make common. And this occurred three times. 19 And while Peter was pondering over the vision, the Spirit said to him, Behold, three men seeking you. But rise up, go down and go with them, doubting nothing, because I have sent them.';
                 $tmp_verse_array['COPY'][0]             = '<span class="script_ref_num">15</span> And a voice <em>came</em> to 
-                him again a second time: The things that God has cleansed, do not make common. And this occurred<br>
+                him again a second time: The things that God has cleansed, do not make common. And this occurred 
                 three times.
 
                 <div class="cb_10"></div>
@@ -6015,7 +6025,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['REFERENCE'][0]        = '11:12';
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'And the Spirit told me to go with them, doubting nothing. And these six brothers went with me also; and we entered into the man\'s house.';
                 $tmp_verse_array['COPY'][0]             = 'And the Spirit told me to go with them, doubting nothing. And these 
-                six brothers went with me also; and we entered into the<br>man\'s house.';
+                six brothers went with me also; and we entered into the man\'s house.';
 
             break;
             case 'acts11_18':
@@ -6057,7 +6067,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['REFERENCE'][0]        = '5:10';
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'For if we, being enemies, were reconciled to God through the death of His Son, much more we will be saved in His life, having been reconciled.';
                 $tmp_verse_array['COPY'][0]             = 'For if we, being enemies, were reconciled to God through the death of 
-                His Son, much more we will be saved in His life, having<br>been reconciled.';
+                His Son, much more we will be saved in His life, having been reconciled.';
 
             break;
             case 'rom5_14,17,21':
@@ -6309,7 +6319,7 @@ class bringer_of_the_precious_things {
                 knee shall bow to Me, and every tongue shall openly confess to God.&quot; 
 
                 <div class="cb_10"></div>
-                So then each one of us will give an account concerning himself<br>to God.';
+                So then each one of us will give an account concerning himself to God.';
 
             break;
             case 'rom15_4[000]':
@@ -6359,7 +6369,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['REFERENCE'][0]        = '6:12';
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'All things are lawful to me, but not all things are profitable; all things are lawful to me, but I will not be brought under the power of anything.';
                 $tmp_verse_array['COPY'][0]             = 'All things are lawful to me, but not all things are profitable; all 
-                things are lawful to me, but I will not be brought under the power<br>of anything.';
+                things are lawful to me, but I will not be brought under the power of anything.';
 
             break;
             case '1cor6_17':
@@ -7277,7 +7287,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['REFERENCE'][0]        = '10:35, 38-39';
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = '35 Do not cast away therefore your boldness, which has great reward. 38 &quot;...But My righteous one shall live by faith; and if he shrinks back, My soul does not delight in him.&quot; But we are not of those who shrink back to ruin but of those who have faith to the gaining of the soul.';
                 $tmp_verse_array['COPY'][0]             = '<span class="script_ref_num">35</span> Do not cast away therefore 
-                your boldness, which has<br>great reward.
+                your boldness, which has great reward.
 
                 <div class="cb_10"></div>
                 <span class="script_ref_num">38</span> "...But My righteous one shall live by faith; and if he 
@@ -7373,7 +7383,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['REFERENCE'][0]        = '2:20';
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'For what glory is it if, while sinning and being buffeted, you endure? But if, while doing good and suffering, you endure, this is grace with God.';
                 $tmp_verse_array['COPY'][0]             = 'For what glory is it if, while sinning and being buffeted, you 
-                endure? But if, while doing good and suffering, you endure, this is grace<br>with God.';
+                endure? But if, while doing good and suffering, you endure, this is grace with God.';
 
             break;
             case '1pet2_7-8':
@@ -7456,7 +7466,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['COPY'][0]             = 'Do not love the world nor the things in the world. If anyone loves 
                 the world, love for the Father is not in him; Because all that is in the world, the lust of the 
                 flesh and the lust of the eyes and the vainglory of life, is not of the Father but is of the world. 
-                And the world is passing away, and its lust, but he who does the will of God<br>abides forever.';
+                And the world is passing away, and its lust, but he who does the will of God abides forever.';
 
             break;
             case '1john3_1-10':
@@ -7551,7 +7561,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'But I have a few things against you, that you have some there who hold the teaching of Balaam, who taught Balak to put a stumbling block before the sons of Israel, to eat idol sacrifices and to commit fornication.';
                 $tmp_verse_array['COPY'][0]             = 'But I have a few things against you, that you have some there who 
                 hold the teaching of Balaam, who taught Balak to put a stumbling block before the sons of Israel, to 
-                eat idol sacrifices and to<br>commit fornication.';
+                eat idol sacrifices and to commit fornication.';
 
             break;
             case 'rev2_11|2_17,26-28|3_5,12,21':
@@ -7559,7 +7569,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['REFERENCE'][0]        = '2:11; 2:17,<br>26-28; 3:5,12,<br>21';
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = '11 He who has an ear, let him hear what the Spirit says to the churches. He who overcomes shall by no means be hurt of the second death. 17 He who has an ear, let him hear what the Spirit says to the churches. To him who overcomes, to him I will give of the hidden manna, and to him I will give a white stone, and upon the stone a new name written, which no one knows except him who receives.';
                 $tmp_verse_array['COPY'][0]             = '<span class="script_ref_num">11</span> He who has an ear, let him 
-                hear what the Spirit says to the churches. He who overcomes shall by no means be hurt of the<br>
+                hear what the Spirit says to the churches. He who overcomes shall by no means be hurt of the 
                 second death.
 
                 <div class="cb_10"></div>
@@ -7720,7 +7730,7 @@ class bringer_of_the_precious_things {
                 <div class="cb_10"></div>
                 <span class="script_ref_num">9</span> And the great dragon was cast down, the ancient serpent, he 
                 who is called the Devil and Satan, he who deceives the whole inhabited earth; he was cast to the 
-                earth, and his angels were cast down<br>with him.';
+                earth, and his angels were cast down with him.';
 
             break;
             case 'rev12_3-4,13,17;13:2,4':
@@ -7986,7 +7996,7 @@ class bringer_of_the_precious_things {
                 the former and the latter...such as when going to a rave, when crushing a beer, or when leaving 
                 independent contractors at the strip club with no other option but to bring out the rakes. All of 
                 these forms of sacrifice and many more unmentioned have ceased in the living of the messenger to the 
-                church in Philadelphia to fulfill the Word of God at the end of<br>this age.' . $tmp_top_lnk_html . '<div class="cb_10"></div>
+                church in Philadelphia to fulfill the Word of God at the end of this age.' . $tmp_top_lnk_html . '<div class="cb_10"></div>
 
                 The vessel or soul of the messenger to the church in Philadelphia is the temple within which the 
                 abominations or the evil possessions (even intentions of heart) of the desolation (Matt. 24:15; see 
@@ -8493,7 +8503,7 @@ class bringer_of_the_precious_things {
                 lb. lobster&quot; people! We are the &quot;stone become factory fresh <a onclick=\'window.open("https://www.bugatti.com/discover-chiron-pur-sport/", "jony5BlessingsInChristTab");\' href="#" target="_blank" style="color#0066CC; text-decoration:none;">Bugatti 
                 Chiron PUR Sport</a>&quot; people (' . $this->link_html('john14_12-14','John 14:12-14', 'popup', 295) . ')! 
                 God our Father has blessed us with every spiritual blessing in the heavenlies to the praise of the glory 
-                of<br>His grace (' . $this->link_html('eph1_3-14[000]','Eph. 1:3-14', 'popup', 295) . ').
+                of His grace (' . $this->link_html('eph1_3-14[000]','Eph. 1:3-14', 'popup', 295) . ').
 
                 ' . $tmp_top_lnk_html . '
                 <div class="cb_10"></div>
@@ -8699,7 +8709,7 @@ class bringer_of_the_precious_things {
                 teaching) the perfect carbon copy of a pure and apostolically sourced Christian living,...with 
                 exceptions being on account of maybe the internet existing and the popularity of human rights...oh 
                 yeah, and we have penicillin. Hey, don\'t knock it; penicillin is the next best thing to having a 
-                son of God with leaves in<br>your midst (' .
+                son of God with leaves in your midst (' .
 
                 $this->link_html('rev22_2','Rev. 22:2', 'popup', 295)
 
@@ -9811,6 +9821,7 @@ class bringer_of_the_precious_things {
         $tmp_search_meta_ARRAY[] = array('isa53_6' => 'wealllikesheephavegoneastray&nbsp&nbsp&nbspeachofushasturnedtohisownwayandjehovahhascausedtheiniquityofusall&nbsp&nbsp&nbsptofallonhim');
         $tmp_search_meta_ARRAY[] = array('jer1_11-19' => 'thenthewordofjehovahcametomesayingwhatdoyouseejeremiahandisaidiseearodofanalmondtreeandjehovahsaidtomeyouhaveseenwellforiamwatchingovermywordtoperformitthenthewordofjehovahcametomeasecondtimesayingwhatdoyouseeandisaidiseeaboilingpotanditisfacingawayfromthenorthandjehovahsaidtomeoutofthenorthevilwillbeletlooseuponalltheinhabitantsofthelandforiamnowcallingallthefamiliesfromthekingdomsofthenorthdeclaresjehovahandtheywillcomeandseteachonehisthroneattheentranceofthegatesofjerusalemandagainstallitswallsallaroundandagainstallthecitiesofjudahandiwilluttermyjudgementonthemconcerningalltheirwickednessbywhichtheyhaveforsakenmeandhaveburnedincensetoothergodsandhaveworshippedtheworksoftheirownhandsyouthereforegirdupyourloinsandriseupandspeaktothemeverythingthaticommandyoudonotbedismayedbeforethemlestidismayyouintheirpresenceandiamnowmakingyoutodayintoafortifiedcityandintoanironpillarandintobronzewallsagainstthewholelandagainstthekingsofjudahagainstitsprincesagainstitspriestsandagainstthepeopleofthelandandtheywillfightagainstyoubuttheywillnotprevailagainstyouforiamwithyoudeclaresjehovahtodeliveryou');
         $tmp_search_meta_ARRAY[] = array('jer24_7' => 'andiwillgivethemahearttoknowmethatiamjehovahandtheywillbemypeopleandiwillbetheirgodfortheywillreturntomewiththeirwholeheart');
+        $tmp_search_meta_ARRAY[] = array('jer31_33' => 'butthisisthecovenantwhichiwillmakewiththehouseofisraelafterthosedaysdeclaresjehovahiwillputmylawintheirinwardpartsandwriteitupontheirheartsandiwillbetheirgodandtheywillbemypeople');
         $tmp_search_meta_ARRAY[] = array('jer31_31-34' => 'indeeddaysarecomingdeclaresjehovahwheniwillmakeanewcovenantwiththehouseofisraelandwiththehouseofjudahnotlikethecovenantwhichimadewiththeirfathersinthedayitookthembytheirhandtobringthemoutfromthelandofegyptmycovenantwhichtheybrokealthoughiwastheirhusbanddeclaresjehovahbutthisisthecovenantwhichiwillmakewiththehouseofisraelafterthosedaysdeclaresjehovahiwillputmylawintheirinwardpartsandwriteitupontheirheartsandiwillbetheirgodandtheywillbemypeopleandtheywillnolongerteacheachmanhisneighborandeachmanhisbrothersayingknowjehovahforallofthemwillknowmefromthelittleoneamongthemeventothegreatoneamongthemdeclaresjehovahforiwillforgivetheiriniquityandtheirsiniwillremembernomore');
         $tmp_search_meta_ARRAY[] = array('jer31_33-34' => 'butthisisthecovenantwhichiwillmakewiththehouseofisraelafterthosedaysdeclaresjehovahiwillputmylawintheirinwardpartsandwriteitupontheirheartsandiwillbetheirgodandtheywillbemypeopleandtheywillnolongerteacheachmanhisneighborandeachmanhisbrothersayingknowjehovahforallofthemwillknowmefromthelittleoneamongthemeventothegreatoneamongthemdeclaresjehovahforiwillforgivetheiriniquityandtheirsiniwillremembernomore');
         $tmp_search_meta_ARRAY[] = array('jer31_33-37' => 'butthisisthecovenantwhichiwillmakewiththehouseofisraelafterthosedaysdeclaresjehovahiwillputmylawintheirinwardpartsandwriteitupontheirheartsandiwillbetheirgodandtheywillbemypeopleandtheywillnolongerteacheachmanhisneighborandeachmanhisbrothersayingknowjehovahforallofthemwillknowmefromthelittleoneamongthemeventothegreatoneamongthemdeclaresjehovahforiwillforgivetheiriniquityandtheirsiniwillremembernomorethussaysjehovahwhogivesthesunforlightbyday&nbsp&nbsp&nbspandtheorderofthemoonandthestarsforlightbynightwhostirsuptheseasothatitswavesroar&ndash&ndash&nbsp&nbsp&nbspjehovahofhostsishisname&ndash&ndashifthisorderdeparts&nbsp&nbsp&nbspfrombeforemedeclaresjehovahthentheseedofisraelwillalsocease&nbsp&nbsp&nbspfrombeinganationbeforemeforeverthussaysjehovahiftheheavensabovecanbemeasured&nbsp&nbsp&nbspandthefoundationsoftheearthbelowcanbeexaminedcarefullytheniwillalsocastoffalltheseedofisrael&nbsp&nbsp&nbspforalltheyhavedonedeclaresjehovah');
@@ -10281,6 +10292,7 @@ Born on Nov. 10th, 2005, my dog...named \'J5\' (proper)...is part Korean Jindo, 
                 $tmp_search_meta_ARRAY[] = array('isa53_6' => 'isaiah');
                 $tmp_search_meta_ARRAY[] = array('jer1_11-19' => 'jeremiah');
                 $tmp_search_meta_ARRAY[] = array('jer24_7' => 'jeremiah');
+                $tmp_search_meta_ARRAY[] = array('jer31_33' => 'jeremiah');
                 $tmp_search_meta_ARRAY[] = array('jer31_31-34' => 'jeremiah');
                 $tmp_search_meta_ARRAY[] = array('jer31_33-34' => 'jeremiah');
                 $tmp_search_meta_ARRAY[] = array('jer31_33-37' => 'jeremiah');
