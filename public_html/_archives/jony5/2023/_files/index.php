@@ -1118,7 +1118,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                         Moses is receiving the designs and instructions from Jehovah concerning a piece of furniture in the tabernacle called the
                         bronze laver. This laver was filled with clean water and used to wash the priests hands and feet before they could approach the alter or
                         enter the Tent of Meeting. The failure of a priest to wash in the laver before serving would expose that priest to judgement from Jehovah
-                        in the form of<br>physical death.</p>
+                        in the form of physical death.</p>
 
                         <div style="float:right;">
                             <div style="position:relative; line-height: 0; width: 20px; text-align: right;">
