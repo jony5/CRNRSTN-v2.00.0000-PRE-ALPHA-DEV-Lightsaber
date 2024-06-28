@@ -3522,7 +3522,7 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'And Moses said to him, As soon as I have gone out of the city, I will spread out my hands to Jehovah: The thunder will cease, and there will not be any more hail, that you may know that the earth is Jehovah\'s.';
                 $tmp_verse_array['COPY'][0]             = 'And Moses said to him, As soon as I have gone out of the city, I will 
                 spread out my hands to Jehovah: The thunder will cease, and there will not be any more hail, that 
-                you may know that the earth<br>is Jehovah\'s.';
+                you may know that the earth is Jehovah\'s.';
 
             break;
             case 'exo12_29-33':
