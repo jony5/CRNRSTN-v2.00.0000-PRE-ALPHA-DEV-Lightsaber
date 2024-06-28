@@ -1027,7 +1027,7 @@ require($oCRNRSTN_ENV->getEnvParam('DOCUMENT_ROOT') . $oCRNRSTN_ENV->getEnvParam
                         moment by moment experience in every way...this means that living according to even one tiny little law that regulates our relationship with potato chips (an element of this world) equals you keeping
                         one little pinky finger out of the &quot;baptismal waters of His death&quot; so to speak (<a vvid="col2_8,12,20-23" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Col. 2:8, 12, 20-23</a><?php echo $oBringer->seo_out('col2_8,12,20-23'); ?>).
                         This will make you an idolater and a fornicator and it will ravage your purity to
-                        Christ. Keep the first pillar pristine in your experience; simply believe and receive the Word of God<br>in faith.</p>
+                        Christ. Keep the first pillar pristine in your experience; simply believe and receive the Word of God in faith.</p>
 
                         <div class="blockquote"><p>And being found in fashion <strong>as a man</strong>, He humbled Himself, becoming <strong>obedient</strong> even unto death, and <em style="color:#B0B0B0;">that</em>
                                 the death of a cross. (<a vvid="phil2_8" class="script_lnk" href="#" target="_self" onclick="scripture_return(this); return false;">Phil. 2:8</a>)</p></div>
