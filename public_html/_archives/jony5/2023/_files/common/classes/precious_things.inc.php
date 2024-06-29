@@ -8765,7 +8765,10 @@ class bringer_of_the_precious_things {
 
                 . ') the 
                 Lord. What can the saints even do? They can only lose enjoyment when their Master says to them 
-                &quot;no&quot;. What does teaching sacrifice (loss) accomplish? Rebellion. 
+                &quot;no&quot;. What does teaching sacrifice (loss) accomplish?
+
+                <div class="cb_10"></div>
+                Rebellion.
 
                 ' . $tmp_top_lnk_html . '
                 <div class="cb_10"></div>
