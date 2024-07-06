@@ -1,6 +1,6 @@
 <?php
 /*
-// J5
+// 5 ::
 // Code is Poetry */
 # # C # R # N # R # S # T # N # : : # # # #
 #
@@ -600,6 +600,7 @@ class bringer_of_the_precious_things {
             $tmp_link_vvid_ARRAY[] = array(array('isa14_21-24' => 'Isaiah 14:21-24'));
             $tmp_link_vvid_ARRAY[] = array(array('jer24_7' => 'Jeremiah 24:7'), array('1pet3_15' => '1 Peter 3:15'));
             $tmp_link_vvid_ARRAY[] = array(array('jer31_33' => 'Jeremiah 31:33'));
+            $tmp_link_vvid_ARRAY[] = array(array('jer15_19-21' => 'Jeremiah 15:19-21'));
             $tmp_link_vvid_ARRAY[] = array(array('jer31_31-37' => 'Jeremiah 31:31-37'));
             $tmp_link_vvid_ARRAY[] = array(array('ezek11_17-25' => 'Ezekiel 11:17-25'), array('jer31_33-37' => 'Jeremiah 31:33-37'));
             $tmp_link_vvid_ARRAY[] = array(array('dan9_4' => 'Daniel 9:4'), array('gen26_4-5' => 'Genesis 26:4-5'), array('exo20_6' => 'Exodus 20:6'));
@@ -1506,6 +1507,12 @@ class bringer_of_the_precious_things {
                 $tmp_vnav_array['COPY'][0] = 'Jeremiah 24:7';
                 $tmp_vnav_array['VVID'][1] = '1pet3_15';
                 $tmp_vnav_array['COPY'][1] = '1 Peter 3:15';
+
+            break;
+            case 'jer15_19-21':
+
+                $tmp_vnav_array['VVID'][0] = 'jer15_19-21';
+                $tmp_vnav_array['COPY'][0] = 'Jeremiah 15:19-21';
 
             break;
             case 'jer31_33':
@@ -2749,6 +2756,7 @@ class bringer_of_the_precious_things {
             break;
             case 'jer1_11-19':
             case 'jer24_7':
+            case 'jer15_19-21':
             case 'jer31_31-34':
             case 'jer31_33':
             case 'jer31_33-34':
@@ -4748,6 +4756,32 @@ class bringer_of_the_precious_things {
                 $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'And I will give them a heart to know Me, that I am Jehovah; and they will be My people, and I will be their God; for they will return to Me with their whole heart.';
                 $tmp_verse_array['COPY'][0]             = 'And I will give them a heart to know Me, that I am Jehovah; and they will 
                 be My people, and I will be their God; for they will return to Me with their whole heart.';
+
+            break;
+            case 'jer15_19-21':
+
+                $tmp_verse_array['REFERENCE'][0]        = '15:19-21';
+                $tmp_verse_array['SOCIAL_PREVIEW'][0]   = 'Therefore thus says Jehovah, / If you return, I will restore you; / You will stand before Me; / And if you bring out the precious from the worthless, / You will be as My mouth; / They will turn to you, / But you will not turn to them.';
+                $tmp_verse_array['COPY'][0]             = 'Therefore thus says Jehovah,<br>
+                &nbsp;&nbsp;&nbsp;If you return, I will restore you;<br>
+                You will stand before Me;<br>
+                &nbsp;&nbsp;&nbsp;And if you bring out the precious from the worthless,<br>
+                You will be as My mouth;<br>
+                &nbsp;&nbsp;&nbsp;They will turn to you,<br>
+                &nbsp;&nbsp;&nbsp;But you will not turn to them.
+
+                <div class="cb_10"></div>
+                And I will make you to this people<br>
+                &nbsp;&nbsp;&nbsp;A fortified wall of bronze;<br>
+                And they will fight against you,<br>
+                &nbsp;&nbsp;&nbsp;But they will not prevail against you;<br>
+                For I am with you<br>
+                &nbsp;&nbsp;&nbsp;To save you and deliver you,<br>
+                &nbsp;&nbsp;&nbsp;Declares Jehovah.
+
+                <div class="cb_10"></div>
+                And I will deliver you from the hand of the wicked<br>
+                &nbsp;&nbsp;&nbsp;And redeem you from the hand of those who terrorize.';
 
             break;
             case 'jer31_31-34':
@@ -9350,7 +9384,7 @@ class bringer_of_the_precious_things {
                             }else{
 
                                 if($j5_filename_array[$i] != '2010_10_30_11.11.56_j5_octane_00.png'){
-                                    
+
                                     //$tmp_gallery_html .= '<div class="hidden"><a class="' . $tmp_gallery_key . '_thumb" href="' . self::$http_root . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[' . $tmp_gallery_key . ']" title="J5, my boy!"><img src="' . self::$http_root . $thumb_path . 'thumb_' . $tmp_thumb_filename_png . '" alt="" style="padding:0px; margin:0px;" width="295" height="221" alt="J5" title="J5, my boy!" /></a></div>';
                                     $tmp_gallery_html .= '<div class="hidden"><a class="' . $tmp_gallery_key . '_thumb" href="' . self::$http_root . $dir_path . $j5_filename_array[$i] . '" rel="lightbox[' . $tmp_gallery_key . ']" title="J5, my boy!"><img src="' . $http_root . '/common/imgs/x.gif" alt="" style="padding:0px; margin:0px;" width="1" height="1" alt="J5" title="J5, my boy!" /></a></div>';
 
