@@ -1,5 +1,5 @@
 /* 
-// J5
+// 5 ::
 // Code is Poetry */
 
 // OVERLAY CONTROLS
@@ -382,6 +382,18 @@ function parseXHRCP_JSON(oElemJSON){
 				var tmp_windSpeed = oElemJSON.properties.periods[ii].windSpeed;
 				var tmp_windDirection = oElemJSON.properties.periods[ii].windDirection;
 				var tmp_icon = oElemJSON.properties.periods[ii].icon;
+				
+
+				//
+				// IMAGE URL CHECK.
+				// 5 :: Monday, July 8, 2024 @ 0042 hrs.
+				var tmp_api_icon_ARRAY = tmp_icon.split('api.weather.gov');
+				if(tmp_api_icon_ARRAY.length < 2){
+
+					tmp_icon = 'https://api.weather.gov' + tmp_icon;  // WHERE, tmp_icon = '/icons/land/night/bkn?size=medium';
+
+				}
+				
 				var tmp_shortForecast = oElemJSON.properties.periods[ii].shortForecast;
 				var tmp_detailedForecast = oElemJSON.properties.periods[ii].detailedForecast;
 
@@ -616,8 +628,6 @@ function parseXHRCP_JSON_error(oElemJSON){
 		const d = new Date();
 
 		/*
-		Thursday, December 28, 2023 @ 0420 hrs.
-
 		Access to XMLHttpRequest at 
 		'https://api.weather.gov/gridpoints/FFC/49,88/forecast' from 
 		origin 'https://wethrbug.jony5.com' has been blocked by CORS policy: 
