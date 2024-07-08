@@ -1,6 +1,6 @@
 <?php
 /* 
-// J5
+// 5 ::
 // Code is Poetry */
 
 /*
@@ -553,7 +553,9 @@ class user {
 			
 	}
 	
-	public function getKivotosData_Simple($handle){
+	//
+	// 5 :: Monday, July 8, 2024 @ 1631 hrs.
+	public function getKivotosData_Simple($handle = NULL){
 
 	    if(isset($handle)){
 
@@ -611,7 +613,9 @@ class user {
 		
 	}
 	
-	public function getKivotosData($handle){
+	//
+	// 5 :: Monday, July 8, 2024 @ 1630 hrs.
+	public function getKivotosData($handle = NULL){
 
 	    //
         // I THINK I CAN LEAVE THIS AS IS....NO NEED TO SERIALIZE. WELL...WE SHOULD PROBABLY SERIALIZE...MAY BE ABLE TO GET AWAY WITH PUSHING.
