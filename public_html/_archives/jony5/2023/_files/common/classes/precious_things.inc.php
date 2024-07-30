@@ -8908,7 +8908,7 @@ class bringer_of_the_precious_things {
 
                 . '), the 
                 saint is taught to appreciate &quot;clean smoke free Christian living&quot;, and the saint enjoys 
-                eating sacrifice at the feet of this Asherah idol with other Christians of similiar ilk. Now when 
+                eating sacrifice at the feet of this Asherah idol with other Christians of similar ilk. Now when 
                 this saint desires to smoke a cigarette according to their God created natural desires, the 
                 &quot;clean living&quot; Asherah idol with all of that saint\'s appreciation from enjoyment at 
                 sacrifice are insulted. 
